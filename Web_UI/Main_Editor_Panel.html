@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Code Hour - Problem Solver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dependencies -->
+    <script src="Extra_Component/split.min.js"></script>
+    <script src="Extra_Component/ace.js"></script>
+    <script src="Extra_Component/mode-java.js"></script>
+    <script src="Extra_Component/mode-c_cpp.js"></script>
+    <script src="Extra_Component/theme-monokai.js"></script>
+    <script src="Extra_Component/qwebchannel.js"></script>
+    <link rel="stylesheet" href="Extra_Component/uikit.css" />
+    <script src="Extra_Component/uikit.js" defer></script>
+
+    <style>
+        :root {
+            --bg-main: #181a1b;
+            --bg-panel: #212324;
+            --bg-header: #2b2d2e;
+            --border-color: #383b3d;
+            --accent-primary: #f0ad4e;
+            --accent-hover: #d58f2a;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0a6;
+            --success: #6cc644;
+            --danger: #d9534f;
+            --editor-bg: #272822;
+        }
+
+        /* reset */
+        * {
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Layout */
+        #app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .split-panel {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .gutter {
+            background-color: var(--bg-main);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            cursor: col-resize;
+            transition: background 0.2s;
+        }
+
+        .gutter:hover {
+            background-color: var(--accent-primary);
+        }
+
+        .gutter.gutter-vertical {
+            cursor: row-resize;
+        }
+
+        /* Headers */
+        .panel-header {
+            height: 48px;
+            background: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            justify-content: space-between;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--text-primary);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-primary);
+        }
+
+        /* Content Areas */
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            background: var(--bg-panel);
+            position: relative;
+        }
+
+        .scrollable-content {
+            padding: 20px;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        h4 {
+            margin: 16px 0 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #cfd2d6;
+            font-size: 15px;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            color: #eebb77;
+        }
+
+        pre {
+            background: #111;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+
+        /* Action Bar (Run/Submit) */
+        .action-bar {
+            height: 52px;
+            background: var(--bg-header);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 16px;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            background: #3a3d40;
+            color: var(--text-primary);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background: #4a4d50;
+        }
+
+        .btn-primary {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #5ab533;
+        }
+
+        .btn-run {
+            background: #3a3d40;
+            border: 1px solid #555;
+        }
+
+        .btn-run:hover {
+            border-color: #888;
+            background: #444;
+        }
+
+        /* Test Case UI */
+        .testcase-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .case-chip {
+            padding: 6px 14px;
+            background: #2b2d2e;
+            border: 1px solid #444;
+            border-radius: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .case-chip:hover {
+            border-color: #666;
+        }
+
+        .case-chip.active {
+            background: rgba(240, 173, 78, 0.15);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .io-box {
+            background: #181a1b;
+            border: 1px solid #383b3d;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .io-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .io-value {
+            font-family: 'Fira Code', monospace;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        /* Terminal/Console */
+        #console-panel {
+            background: #121212;
+            font-family: 'Fira Code', monospace;
+            padding: 12px;
+            font-size: 13px;
+            color: #dcdcdc;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            margin-bottom: 4px;
+            border-left: 2px solid transparent;
+            padding-left: 8px;
+        }
+
+        .log-success {
+            border-left-color: var(--success);
+            color: #a3eea3;
+        }
+
+        .log-error {
+            border-left-color: var(--danger);
+            color: #ffa8a8;
+        }
+
+        .log-info {
+            border-left-color: #5bc0de;
+        }
+
+        /* Editor Customizations */
+        #editor {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ace_gutter {
+            background: #212324 !important;
+            color: #666 !important;
+        }
+
+        /* Loader */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+            display: none;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app-container">
+
+
+        <!-- LEFT PANEL: Problem & Test Cases -->
+        <div id="left-panel" class="split-panel">
+            <div class="panel-header">
+                <div class="nav-tabs">
+                    <div class="nav-item active" onclick="switchLeftTab('desc')">Description</div>
+                    <div class="nav-item" onclick="switchLeftTab('cases')">Test Cases</div>
+                    <div class="nav-item" onclick="switchLeftTab('subs')">Submissions</div>
+                </div>
+            </div>
+
+            <div class="panel-content">
+                <!-- DESCRIPTION TAB -->
+                <div id="tab-desc" class="scrollable-content">
+                    <h2 id="prob-title">Loading...</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <span id="prob-diff"
+                            style="padding: 2px 8px; background: rgba(108, 198, 68, 0.1); border-radius: 12px; font-size: 12px; font-weight: bold;">-</span>
+                        <span style="color: var(--text-secondary); font-size: 12px;">Topics</span>
+                    </div>
+
+                    <div id="prob-description"></div>
+                </div>
+
+                <!-- TEST CASES TAB -->
+                <div id="tab-cases" class="scrollable-content" style="display: none;">
+                    <h4>Test Cases</h4>
+                    <div class="testcase-tabs" id="case-selectors">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <div id="current-case-display">
+                        <div class="io-box">
+                            <span class="io-label">Input</span>
+                            <div class="io-value" id="case-input"></div>
+                        </div>
+                        <div class="io-box">
+                            <span class="io-label">Expected Output</span>
+                            <div class="io-value" id="case-output"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMISSIONS TAB -->
+                <div id="tab-subs" class="scrollable-content" style="display: none;">
+                    <p style="text-align: center; color: var(--text-secondary); margin-top: 50px;">No submissions yet.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Editor & Console -->
+        <div id="right-panel" class="split-panel">
+            <div class="panel-header">
+                <div class="nav-tabs">
+                    <div class="nav-item active">Code</div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <select id="language-select" onchange="handleLanguageChange()"
+                        style="background: #333; color: #ddd; border: 1px solid #555; padding: 4px; border-radius: 4px;">
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                    </select>
+                    <button onclick="backend.settings()"
+                        style="background:none; border:none; color: #aaa; cursor: pointer;">⚙️</button>
+                </div>
+            </div>
+
+            <div style="flex: 1; position: relative;">
+                <div id="editor">class Solution {
+                    public void solve() {
+                    // Write your code here
+                    }
+                    }</div>
+            </div>
+
+            <!-- Console Panel (Collapsible ideally, fixed height for now) -->
+            <div id="console-wrapper"
+                style="height: 160px; display: flex; flex-direction: column; border-top: 1px solid var(--border-color);">
+                <div
+                    style="padding: 6px 16px; background: #212324; font-size: 12px; font-weight: bold; color: var(--text-secondary); border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                    <span>CONSOLE</span>
+                    <span id="exec-time" style="font-weight: normal;"></span>
+                </div>
+                <div id="console-panel">
+                    <div class="log-entry log-info">> Ready.</div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <div id="spinner" class="spinner"></div>
+                <button class="btn btn-run" onclick="runCode()">Run Code</button>
+                <button class="btn btn-primary" onclick="submitCode()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- LAYOUT ---
+        Split(['#left-panel', '#right-panel'], {
+            sizes: [40, 60],
+            minSize: 300,
+            gutterSize: 8,
+            onDrag: function () { editor.resize(); }
+        });
+
+        // --- EDITOR ---
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/java");
+        editor.setOptions({
+            fontSize: "14px",
+            fontFamily: "'Fira Code', Consolas, monospace",
+            showPrintMargin: false,
+            scrollPastEnd: 0.5
+        });
+
+        // --- UI LOGIC ---
+        function switchLeftTab(tab) {
+            ['desc', 'cases', 'subs'].forEach(t => {
+                document.getElementById('tab-' + t).style.display = (t === tab ? 'block' : 'none');
+            });
+            document.querySelectorAll('#left-panel .nav-item').forEach((el, index) => {
+                el.classList.toggle('active', ['desc', 'cases', 'subs'][index] === tab);
+            });
+        }
+
+        function logToConsole(msg, type = 'info') {
+            const p = document.getElementById('console-panel');
+            const div = document.createElement('div');
+            div.className = 'log-entry log-' + type;
+            div.innerText = msg;
+            p.appendChild(div);
+            p.scrollTop = p.scrollHeight;
+        }
+
+        function clearConsole() {
+            document.getElementById('console-panel').innerHTML = '';
+        }
+
+        // --- DATA STATE ---
+        var currentTestCases = [];
+        var currentProblemId = "";
+
+        // 1. Initialize from URL
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const path = urlParams.get('path');
+
+            if (path) {
+                loadProblem(path);
+            } else {
+                logToConsole("No problem path specified.", "error");
+            }
+        });
+
+        // --- TEMPLATES ---
+        const CODE_TEMPLATES = {
+            'java': `import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Write your solution here
+        
+    }
+}`,
+            'cpp': `#include <iostream>
+using namespace std;
+
+int main() {
+    // Write your solution here
+    
+    return 0;
+}`
+        };
+
+        function handleLanguageChange() {
+            const lang = document.getElementById('language-select').value;
+            const mode = lang === 'cpp' ? 'c_cpp' : 'java';
+            editor.session.setMode("ace/mode/" + mode);
+            editor.setValue(CODE_TEMPLATES[lang], -1);
+        }
+
+        function loadProblem(path) {
+            // Construct path to data file (relative to Web_UI, goes up to data/problems)
+            const fullPath = "../data/problems/" + path;
+
+            fetch(fullPath)
+                .then(res => {
+                    if (!res.ok) throw new Error("HTTP " + res.status);
+                    return res.json();
+                })
+                .then(data => {
+                    // Set Problem ID for backend (remove .json extension)
+                    // e.g. "medium/two_sum.json" -> "medium/two_sum"
+                    currentProblemId = path.replace(".json", "");
+
+                    // Update UI
+                    document.getElementById('prob-title').textContent = data.title;
+                    document.getElementById('prob-description').innerHTML = data.description;
+
+                    const diffEl = document.getElementById('prob-diff');
+                    diffEl.textContent = data.difficulty;
+
+                    // Color code difficulty
+                    const diff = data.difficulty.toLowerCase();
+                    if (diff === 'easy') diffEl.style.color = 'var(--success)';
+                    else if (diff === 'medium') diffEl.style.color = '#eab308'; // Yellow/Gold
+                    else if (diff === 'hard') diffEl.style.color = 'var(--danger)';
+
+                    // Set Default Template (Force reset or keep existing if safe? For now force reset to match simplified logic)
+                    handleLanguageChange();
+
+                    // Request test cases if backend is ready
+                    if (backend) {
+                        backend.requestTestCases(currentProblemId);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('prob-title').textContent = "Error Loading Problem";
+                    logToConsole("Failed to load problem data: " + err.message, "error");
+                });
+        }
+
+
+        window.setTestCases = function (jsonString) {
+            try {
+                currentTestCases = JSON.parse(jsonString);
+                renderTestCases();
+            } catch (e) { console.error("Parse Error", e); }
+        };
+
+        function renderTestCases() {
+            const container = document.getElementById('case-selectors');
+            container.innerHTML = '';
+            currentTestCases.forEach((tc, idx) => {
+                const chip = document.createElement('div');
+                chip.className = 'case-chip' + (idx === 0 ? ' active' : '');
+                chip.innerText = 'Case ' + (idx + 1);
+                chip.onclick = () => selectTestCase(idx);
+                container.appendChild(chip);
+            });
+            if (currentTestCases.length) selectTestCase(0);
+        }
+
+        function selectTestCase(idx) {
+            document.querySelectorAll('.case-chip').forEach((c, i) => {
+                c.classList.toggle('active', i === idx);
+            });
+            const tc = currentTestCases[idx];
+            if (!tc) return;
+
+            // Format Input
+            let inputStr = "";
+            if (Array.isArray(tc.input)) {
+                inputStr = tc.input.join(", ");
+            } else {
+                inputStr = tc.input;
+            }
+
+            document.getElementById('case-input').innerText = inputStr;
+            document.getElementById('case-output').innerText = tc.output;
+        }
+
+        // --- QT BACKEND ---
+        let backend = null;
+        let isRunning = false;
+
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            backend = channel.objects.qt;
+            console.log("Qt Backend Connected");
+
+            // Connect Signals
+            if (backend.sendTestCases) backend.sendTestCases.connect(window.setTestCases);
+
+            if (backend.judgeResult) {
+                backend.judgeResult.connect(function (json) {
+                    isRunning = false;
+                    document.getElementById('spinner').style.display = 'none';
+
+                    try {
+                        const res = JSON.parse(json);
+
+                        if (res.status === "Accepted") {
+                            logToConsole(`✅ Case ${parseInt(res.testIndex) + 1}: Passed (${res.time})`, 'success');
+                        } else if (res.status === "Compile Error") {
+                            logToConsole(`❌ Compile Error:\n${res.stdout}`, 'error');
+                        } else {
+                            logToConsole(`❌ Case ${parseInt(res.testIndex) + 1}: ${res.status}\nExpected: ${res.expected}\nActual: ${res.stdout}`, 'error');
+                        }
+                    } catch (e) {
+                        logToConsole("Error parsing result: " + json, 'error');
+                    }
+                });
+            }
+
+            if (currentProblemId) backend.requestTestCases(currentProblemId);
+        });
+
+        function runCode() {
+            if (!backend) { logToConsole("Backend not connected!", "error"); return; }
+            if (isRunning) return;
+            if (!currentProblemId) { logToConsole("No problem loaded!", "error"); return; }
+
+            isRunning = true;
+            document.getElementById('spinner').style.display = 'inline-block';
+            clearConsole();
+            logToConsole("> Compiling & Running...", "info");
+
+            backend.runJava(editor.getValue(), currentProblemId);
+        }
+
+        function submitCode() {
+            // Placeholder for submit logic
+            alert("Submit feature coming soon!");
+        }
+
+    </script>
+</body>
+
+
+</html>

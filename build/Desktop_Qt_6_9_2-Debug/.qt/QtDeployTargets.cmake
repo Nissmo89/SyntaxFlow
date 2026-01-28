@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_Code_hour_FILE /home/nord/Project_Data/Code_Hours/Code_hour/build/Desktop_Qt_6_9_2-Debug/Code_hour)
+set(__QT_DEPLOY_TARGET_Code_hour_TYPE EXECUTABLE)

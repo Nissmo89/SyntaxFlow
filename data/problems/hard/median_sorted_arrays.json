@@ -1,0 +1,28 @@
+{
+    "id": "median_sorted_arrays",
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "Hard",
+    "description": "<p>Given two sorted arrays <b>nums1</b> and <b>nums2</b> of size m and n respectively, return the median of the two sorted arrays.</p><p>The overall run time complexity should be O(log (m+n)).</p>",
+    "methodName": "findMedianSortedArrays",
+    "paramTypes": [
+        "int[]",
+        "int[]"
+    ],
+    "returnType": "double",
+    "testCases": [
+        {
+            "input": [
+                "[1,3]",
+                "[2]"
+            ],
+            "output": "2.00000"
+        },
+        {
+            "input": [
+                "[1,2]",
+                "[3,4]"
+            ],
+            "output": "2.50000"
+        }
+    ]
+}
