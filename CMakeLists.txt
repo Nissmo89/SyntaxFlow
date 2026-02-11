@@ -1,15 +1,16 @@
 cmake_minimum_required(VERSION 3.19)
 project(project_syntaxFlow LANGUAGES C CXX)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
+# 1. Qt 6.2 & C++ Standard Setup
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# FIX 1: Added Gui to the components list
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Widgets Gui)
-qt_standard_project_setup()
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+# 2. Find Qt 6.2
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Widgets)
 
 # --- Tree-sitter Core ---
 add_library(tree-sitter STATIC
@@ -26,15 +27,12 @@ add_library(tree-sitter-cpp STATIC
     libs/tree-sitter-cpp/src/parser.c
     libs/tree-sitter-cpp/src/scanner.c
 )
-
-# FIX: Tree-sitter-cpp's scanner often requires C11 or to be treated as C++
-# We will set it to C11 and ensure it has access to the core headers
 target_include_directories(tree-sitter-cpp PUBLIC
     libs/tree-sitter-cpp/src
 )
 target_link_libraries(tree-sitter-cpp PRIVATE tree-sitter)
 
-# This forces the compiler to use C11, which understands static_assert
+# Force C11 for parser
 set_target_properties(tree-sitter-cpp PROPERTIES
     C_STANDARD 11
     C_STANDARD_REQUIRED ON
@@ -45,45 +43,53 @@ add_library(tree-sitter-highlighter STATIC
     src/TreeSitterHighlighter.cpp
     src/TreeSitterHighlighter.h
 )
-
 target_include_directories(tree-sitter-highlighter PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-
-
-# FIX 2: Linked Qt::Gui here so <QtGui> or <QSyntaxHighlighter> can be found
 target_link_libraries(tree-sitter-highlighter PUBLIC
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src
     tree-sitter
     tree-sitter-cpp
-    Qt::Core
-    Qt::Gui
-    Qt::Widgets   # ← THIS WAS MISSING
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
 )
 
 # --- Main Executable ---
-qt_add_executable(project_syntaxFlow
+add_executable(project_syntaxFlow
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
+    mainwindow.cpp mainwindow.h mainwindow.ui
     hoversidebar.cpp hoversidebar.h
     problemwidgets.cpp problemwidgets.h
-    problem_panel.h problem_panel.cpp
-    jsonutils.h jsonutils.cpp
-    code_editor.h code_editor.cpp
-    testcase_panel.h testcase_panel.cpp
-    language_config.h language_config.cpp
-    language_registry.h language_registry.cpp
-    code_runner.h code_runner.cpp
-    backend.h backend.cpp
+    problem_panel.cpp problem_panel.h
+    jsonutils.cpp jsonutils.h
+    code_editor.cpp code_editor.h
+    testcase_panel.cpp testcase_panel.h
+    language_config.cpp language_config.h
+    language_registry.cpp language_registry.h
+    code_runner.cpp code_runner.h
+    backend.cpp backend.h
     output_normalizer.h
 )
 
-# FIX 3: Ensure the main app also has access to the Gui symbols
 target_link_libraries(project_syntaxFlow PRIVATE
-    Qt::Core
-    Qt::Widgets
-    Qt::Gui
     tree-sitter-highlighter
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+)
+
+# Copy assets after build
+add_custom_command(TARGET project_syntaxFlow POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/problems"
+        "$<TARGET_FILE_DIR:project_syntaxFlow>/problems"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "${CMAKE_CURRENT_SOURCE_DIR}/problems.json"
+        "$<TARGET_FILE_DIR:project_syntaxFlow>/problems.json"
+    COMMENT "Copying problems directory and JSON to build folder..."
+)
+
+# Windows: Hide console
+set_target_properties(project_syntaxFlow PROPERTIES
+    WIN32_EXECUTABLE TRUE
 )

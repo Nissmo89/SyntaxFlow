@@ -19,6 +19,9 @@
 #include <QComboBox>
 #include <QMessageBox>
 
+#include <QCoreApplication>
+#include <QDir>
+
 // ═══════════════════════════════════════════════════════════════════════════
 // Tree-sitter C++ Parser
 // ═══════════════════════════════════════════════════════════════════════════
@@ -95,6 +98,13 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     resize(1400, 900);
+    const QString appDir = QCoreApplication::applicationDirPath();
+        ProblemsBasePath = QDir(appDir).filePath("problems/");
+        ProblemsJsonPath = QDir(appDir).filePath("problems.json");
+
+        // 2. Now you can safely use qDebug
+        qDebug() << ProblemsBasePath << "-- [the ProblemsBasePath]";
+        qDebug() << ProblemsJsonPath << "-- [the ProblemsJsonPath]";
 
     setupBackend();
     setupUI();

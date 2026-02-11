@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QLabel>
+#include <QCoreApplication>
+#include <QDir>
 
 class QStackedLayout;
 class CodeEditor;
@@ -70,10 +72,11 @@ private:
     void setExecutionState(bool running);
     void updateLanguageIndicator();
 
-    // ─── Constants ───
+    // Constants
     static constexpr int GlobalMargin = 55;
-    const QString ProblemsJsonPath = "/home/nord/Project_Data/project_syntaxFlow/problems.json";
-    const QString ProblemsBasePath = "/home/nord/Project_Data/project_syntaxFlow/problems/";
+    QString ProblemsBasePath; // Just declare
+    QString ProblemsJsonPath; // Just declare
+
 
     // ─── Backend ───
     Backend *m_backend = nullptr;
