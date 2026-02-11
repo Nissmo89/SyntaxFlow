@@ -1,51 +1,29 @@
-// hoversidebar.h
 #ifndef HOVERSIDEBAR_H
 #define HOVERSIDEBAR_H
 
 #include <QWidget>
-#include <QPropertyAnimation>
-#include <QParallelAnimationGroup>
-#include <QList>
+#include <QVBoxLayout>
 #include <QTimer>
-
-// Forward declarations
-class NavButton;
-class QVBoxLayout;
+#include <QVector>
 
 //=============================================================================
-// NavButton - Custom painted navigation button with modern styling
+// NavButton - Simple navigation button
 //=============================================================================
 class NavButton : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(qreal hoverProgress READ hoverProgress WRITE setHoverProgress)
-    Q_PROPERTY(qreal pressProgress READ pressProgress WRITE setPressProgress)
-    Q_PROPERTY(qreal glowIntensity READ glowIntensity WRITE setGlowIntensity)
 
 public:
-    explicit NavButton(const QString &iconText, const QString &label,
-                       QWidget *parent = nullptr);
+    explicit NavButton(const QString &iconText, const QString &label, QWidget *parent = nullptr);
+
+    QSize sizeHint() const override;
 
     void setSelected(bool selected);
     bool isSelected() const { return m_selected; }
 
     void setBadge(int count);
     void setCollapsed(bool collapsed);
-    void setAccentColor(const QColor &color);
-
-    qreal hoverProgress() const { return m_hoverProgress; }
-    void setHoverProgress(qreal p);
-
-    qreal pressProgress() const { return m_pressProgress; }
-    void setPressProgress(qreal p);
-
-    qreal glowIntensity() const { return m_glowIntensity; }
-    void setGlowIntensity(qreal g);
-
-    QSize sizeHint() const override;
-
-    // NavButton *btnExplorer = nullptr;
-
+    void setAccentColor(const QColor &color) { m_accentColor = color; update(); }
 
 signals:
     void clicked();
@@ -58,48 +36,32 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    void animateHover(bool in);
-    void animatePress(bool pressed);
-    void startGlowPulse();
-    void stopGlowPulse();
-
     QString m_iconText;
     QString m_label;
     bool m_selected = false;
-    bool m_collapsed = true;
+    bool m_hovered = false;
+    bool m_pressed = false;
+    bool m_collapsed = false;
     int m_badge = 0;
-    QColor m_accentColor{100, 180, 255};  // Default blue accent
-
-    qreal m_hoverProgress = 0.0;
-    qreal m_pressProgress = 0.0;
-    qreal m_glowIntensity = 0.0;
-
-    QPropertyAnimation *m_hoverAnim;
-    QPropertyAnimation *m_pressAnim;
-    QPropertyAnimation *m_glowAnim;
-    QTimer *m_glowTimer;
+    QColor m_accentColor{100, 180, 255};
 };
 
 //=============================================================================
-// ProfileWidget - User avatar and info display
+// ProfileWidget - User profile display
 //=============================================================================
 class ProfileWidget : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(qreal hoverProgress READ hoverProgress WRITE setHoverProgress)
 
 public:
     explicit ProfileWidget(QWidget *parent = nullptr);
+
+    QSize sizeHint() const override;
 
     void setCollapsed(bool collapsed);
     void setUserName(const QString &name);
     void setUserEmail(const QString &email);
     void setOnlineStatus(bool online);
-
-    qreal hoverProgress() const { return m_hoverProgress; }
-    void setHoverProgress(qreal p);
-
-    QSize sizeHint() const override;
 
 signals:
     void clicked();
@@ -111,16 +73,15 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
 
 private:
-    QString m_userName = "John Doe";
-    QString m_userEmail = "john@example.com";
-    bool m_collapsed = true;
+    QString m_userName = "User";
+    QString m_userEmail = "user@email.com";
     bool m_online = true;
-    qreal m_hoverProgress = 0.0;
-    QPropertyAnimation *m_hoverAnim;
+    bool m_collapsed = false;
+    bool m_hovered = false;
 };
 
 //=============================================================================
-// Divider - Styled separator line
+// Divider - Simple horizontal line
 //=============================================================================
 class Divider : public QWidget
 {
@@ -128,14 +89,13 @@ class Divider : public QWidget
 
 public:
     explicit Divider(QWidget *parent = nullptr);
-    QSize sizeHint() const override { return QSize(-1, 1); }
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 };
 
 //=============================================================================
-// SectionLabel - Collapsible section header
+// SectionLabel - Section header text
 //=============================================================================
 class SectionLabel : public QWidget
 {
@@ -144,39 +104,39 @@ class SectionLabel : public QWidget
 public:
     explicit SectionLabel(const QString &text, QWidget *parent = nullptr);
 
-    void setCollapsed(bool collapsed);
     QSize sizeHint() const override;
+    void setCollapsed(bool collapsed);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
     QString m_text;
-    bool m_collapsed = true;
+    bool m_collapsed = false;
 };
 
 //=============================================================================
-// HoverSidebar - Main sidebar container
+// HoverSidebar - Main sidebar widget
 //=============================================================================
 class HoverSidebar : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(qreal shadowOpacity READ shadowOpacity WRITE setShadowOpacity)
 
 public:
     explicit HoverSidebar(QWidget *parent = nullptr);
 
+    void addNavButton(NavButton *button);
+    void setSelectedIndex(int index);
+    int selectedIndex() const { return m_selectedIndex; }
+
     void setCollapsedWidth(int width);
     void setExpandedWidth(int width);
 
-    void addNavButton(NavButton *button);
-    void setSelectedIndex(int index);
-
-    qreal shadowOpacity() const { return m_shadowOpacity; }
-    void setShadowOpacity(qreal opacity);
+    bool isExpanded() const { return m_isExpanded; }
 
 signals:
     void navigationChanged(int index);
+    void expandedChanged(bool expanded);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -184,25 +144,18 @@ protected:
     void leaveEvent(QEvent *event) override;
 
 private:
-    void animateTo(int targetWidth);
     void updateChildStates(bool collapsed);
+    void setExpanded(bool expanded);
 
-    QVBoxLayout *m_mainLayout;
-    QVBoxLayout *m_navLayout;
-    ProfileWidget *m_profile;
+    QVBoxLayout *m_mainLayout = nullptr;
+    QVBoxLayout *m_navLayout = nullptr;
+    QVector<NavButton*> m_navButtons;
+    ProfileWidget *m_profile = nullptr;
 
-    QPropertyAnimation *m_animMin;
-    QPropertyAnimation *m_animMax;
-    QPropertyAnimation *m_shadowAnim;
-    QParallelAnimationGroup *m_animGroup;
-
-    QList<NavButton*> m_navButtons;
     int m_selectedIndex = 0;
-
-    int m_collapsedWidth = 64;
-    int m_expandedWidth = 240;
+    int m_collapsedWidth = 60;
+    int m_expandedWidth = 220;
     bool m_isExpanded = false;
-    qreal m_shadowOpacity = 0.0;
 };
 
 #endif // HOVERSIDEBAR_H

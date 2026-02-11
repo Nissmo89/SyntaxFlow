@@ -1,12 +1,7 @@
-// hoversidebar.cpp
 #include "hoversidebar.h"
-#include <QVBoxLayout>
 #include <QPainter>
 #include <QPainterPath>
-#include <QLinearGradient>
-#include <QRadialGradient>
 #include <QMouseEvent>
-#include <QtMath>
 
 //=============================================================================
 // NavButton Implementation
@@ -19,24 +14,6 @@ NavButton::NavButton(const QString &iconText, const QString &label, QWidget *par
     setMouseTracking(true);
     setCursor(Qt::PointingHandCursor);
     setFixedHeight(44);
-
-    // Hover animation
-    m_hoverAnim = new QPropertyAnimation(this, "hoverProgress", this);
-    m_hoverAnim->setDuration(150);
-    m_hoverAnim->setEasingCurve(QEasingCurve::OutCubic);
-
-    // Press animation
-    m_pressAnim = new QPropertyAnimation(this, "pressProgress", this);
-    m_pressAnim->setDuration(100);
-    m_pressAnim->setEasingCurve(QEasingCurve::OutCubic);
-
-    // Glow animation for selected state
-    m_glowAnim = new QPropertyAnimation(this, "glowIntensity", this);
-    m_glowAnim->setDuration(1500);
-    m_glowAnim->setEasingCurve(QEasingCurve::InOutSine);
-
-    m_glowTimer = new QTimer(this);
-    connect(m_glowTimer, &QTimer::timeout, this, &NavButton::startGlowPulse);
 }
 
 QSize NavButton::sizeHint() const
@@ -48,11 +25,6 @@ void NavButton::setSelected(bool selected)
 {
     if (m_selected != selected) {
         m_selected = selected;
-        if (m_selected) {
-            startGlowPulse();
-        } else {
-            stopGlowPulse();
-        }
         update();
     }
 }
@@ -69,119 +41,37 @@ void NavButton::setCollapsed(bool collapsed)
     update();
 }
 
-void NavButton::setAccentColor(const QColor &color)
-{
-    m_accentColor = color;
-    update();
-}
-
-void NavButton::setHoverProgress(qreal p)
-{
-    m_hoverProgress = p;
-    update();
-}
-
-void NavButton::setPressProgress(qreal p)
-{
-    m_pressProgress = p;
-    update();
-}
-
-void NavButton::setGlowIntensity(qreal g)
-{
-    m_glowIntensity = g;
-    update();
-}
-
-void NavButton::animateHover(bool in)
-{
-    m_hoverAnim->stop();
-    m_hoverAnim->setStartValue(m_hoverProgress);
-    m_hoverAnim->setEndValue(in ? 1.0 : 0.0);
-    m_hoverAnim->start();
-}
-
-void NavButton::animatePress(bool pressed)
-{
-    m_pressAnim->stop();
-    m_pressAnim->setStartValue(m_pressProgress);
-    m_pressAnim->setEndValue(pressed ? 1.0 : 0.0);
-    m_pressAnim->start();
-}
-
-void NavButton::startGlowPulse()
-{
-    m_glowAnim->stop();
-    m_glowAnim->setStartValue(0.3);
-    m_glowAnim->setEndValue(0.8);
-    m_glowAnim->setLoopCount(-1);  // Infinite loop
-    m_glowAnim->start();
-}
-
-void NavButton::stopGlowPulse()
-{
-    m_glowAnim->stop();
-    m_glowTimer->stop();
-    m_glowIntensity = 0.0;
-    update();
-}
-
 void NavButton::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
     p.setRenderHint(QPainter::TextAntialiasing);
 
-    QRectF r = rect().adjusted(4, 2, -4, -2);
-    qreal radius = 10;
+    QRectF r = rect().adjusted(6, 2, -6, -2);
+    const qreal radius = 8;
 
-    // Calculate colors based on state
-    QColor bgColor(255, 255, 255, 0);
-    QColor borderColor(255, 255, 255, 0);
-
+    // Background
+    QColor bgColor;
     if (m_selected) {
-        // Selected state - gradient background
-        QLinearGradient grad(r.topLeft(), r.bottomRight());
-        grad.setColorAt(0, QColor(m_accentColor.red(), m_accentColor.green(),
-                                  m_accentColor.blue(), 40 + int(m_glowIntensity * 30)));
-        grad.setColorAt(1, QColor(m_accentColor.red(), m_accentColor.green(),
-                                  m_accentColor.blue(), 20 + int(m_glowIntensity * 15)));
-
-        // Glow effect
-        if (m_glowIntensity > 0) {
-            QPainterPath glowPath;
-            glowPath.addRoundedRect(r.adjusted(-2, -2, 2, 2), radius + 2, radius + 2);
-            p.setPen(Qt::NoPen);
-            p.setBrush(QColor(m_accentColor.red(), m_accentColor.green(),
-                              m_accentColor.blue(), int(m_glowIntensity * 40)));
-            p.drawPath(glowPath);
-        }
-
-        p.setBrush(grad);
-        borderColor = QColor(m_accentColor.red(), m_accentColor.green(),
-                             m_accentColor.blue(), 100);
+        bgColor = QColor(m_accentColor.red(), m_accentColor.green(),
+                         m_accentColor.blue(), 40);
+    } else if (m_pressed) {
+        bgColor = QColor(255, 255, 255, 20);
+    } else if (m_hovered) {
+        bgColor = QColor(255, 255, 255, 12);
     } else {
-        // Hover state
-        int alpha = int(m_hoverProgress * 25);
-        bgColor = QColor(255, 255, 255, alpha);
-        p.setBrush(bgColor);
+        bgColor = Qt::transparent;
     }
 
-    // Press effect - slight shrink
-    if (m_pressProgress > 0) {
-        qreal shrink = m_pressProgress * 2;
-        r.adjust(shrink, shrink, -shrink, -shrink);
+    if (bgColor != Qt::transparent) {
+        QPainterPath path;
+        path.addRoundedRect(r, radius, radius);
+        p.fillPath(path, bgColor);
     }
-
-    // Draw background
-    QPainterPath path;
-    path.addRoundedRect(r, radius, radius);
-    p.setPen(m_selected ? QPen(borderColor, 1) : Qt::NoPen);
-    p.drawPath(path);
 
     // Left accent bar for selected
     if (m_selected) {
-        QRectF accentBar(r.left(), r.top() + 8, 3, r.height() - 16);
+        QRectF accentBar(r.left() + 2, r.top() + 10, 3, r.height() - 20);
         QPainterPath barPath;
         barPath.addRoundedRect(accentBar, 1.5, 1.5);
         p.fillPath(barPath, m_accentColor);
@@ -190,13 +80,10 @@ void NavButton::paintEvent(QPaintEvent *)
     // Icon
     QFont iconFont = font();
     iconFont.setPixelSize(18);
-    iconFont.setWeight(QFont::Normal);
     p.setFont(iconFont);
 
     QColor iconColor = m_selected ? m_accentColor :
-                           QColor(180 + int(m_hoverProgress * 40),
-                                  180 + int(m_hoverProgress * 40),
-                                  180 + int(m_hoverProgress * 40));
+                           (m_hovered ? QColor(220, 220, 220) : QColor(160, 160, 160));
     p.setPen(iconColor);
 
     QRectF iconRect(r.left() + 12, r.top(), 24, r.height());
@@ -210,9 +97,7 @@ void NavButton::paintEvent(QPaintEvent *)
         p.setFont(labelFont);
 
         QColor textColor = m_selected ? QColor(255, 255, 255) :
-                               QColor(200 + int(m_hoverProgress * 30),
-                                      200 + int(m_hoverProgress * 30),
-                                      200 + int(m_hoverProgress * 30));
+                               (m_hovered ? QColor(230, 230, 230) : QColor(180, 180, 180));
         p.setPen(textColor);
 
         QRectF textRect(r.left() + 48, r.top(), r.width() - 60, r.height());
@@ -233,20 +118,15 @@ void NavButton::paintEvent(QPaintEvent *)
 
         QRectF badgeRect;
         if (m_collapsed) {
-            badgeRect = QRectF(r.right() - 14, r.top() + 6, badgeWidth, 16);
+            badgeRect = QRectF(r.right() - 12, r.top() + 6, badgeWidth, 16);
         } else {
             badgeRect = QRectF(r.right() - badgeWidth - 8,
                                (r.height() - 16) / 2 + r.top(), badgeWidth, 16);
         }
 
-        // Badge background with gradient
-        QLinearGradient badgeGrad(badgeRect.topLeft(), badgeRect.bottomRight());
-        badgeGrad.setColorAt(0, QColor(255, 90, 90));
-        badgeGrad.setColorAt(1, QColor(220, 60, 60));
-
         QPainterPath badgePath;
         badgePath.addRoundedRect(badgeRect, 8, 8);
-        p.fillPath(badgePath, badgeGrad);
+        p.fillPath(badgePath, QColor(220, 70, 70));
 
         p.setPen(Qt::white);
         p.drawText(badgeRect, Qt::AlignCenter, badgeText);
@@ -255,26 +135,30 @@ void NavButton::paintEvent(QPaintEvent *)
 
 void NavButton::enterEvent(QEnterEvent *)
 {
-    animateHover(true);
+    m_hovered = true;
+    update();
 }
 
 void NavButton::leaveEvent(QEvent *)
 {
-    animateHover(false);
-    animatePress(false);
+    m_hovered = false;
+    m_pressed = false;
+    update();
 }
 
 void NavButton::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        animatePress(true);
+        m_pressed = true;
+        update();
     }
 }
 
 void NavButton::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        animatePress(false);
+        m_pressed = false;
+        update();
         if (rect().contains(event->pos())) {
             emit clicked();
         }
@@ -290,10 +174,6 @@ ProfileWidget::ProfileWidget(QWidget *parent)
     setMouseTracking(true);
     setCursor(Qt::PointingHandCursor);
     setFixedHeight(56);
-
-    m_hoverAnim = new QPropertyAnimation(this, "hoverProgress", this);
-    m_hoverAnim->setDuration(150);
-    m_hoverAnim->setEasingCurve(QEasingCurve::OutCubic);
 }
 
 QSize ProfileWidget::sizeHint() const
@@ -325,41 +205,30 @@ void ProfileWidget::setOnlineStatus(bool online)
     update();
 }
 
-void ProfileWidget::setHoverProgress(qreal p)
-{
-    m_hoverProgress = p;
-    update();
-}
-
 void ProfileWidget::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
     p.setRenderHint(QPainter::TextAntialiasing);
 
-    QRectF r = rect().adjusted(4, 4, -4, -4);
+    QRectF r = rect().adjusted(6, 4, -6, -4);
 
     // Hover background
-    if (m_hoverProgress > 0) {
-        QColor bgColor(255, 255, 255, int(m_hoverProgress * 15));
+    if (m_hovered) {
         QPainterPath path;
-        path.addRoundedRect(r, 10, 10);
-        p.fillPath(path, bgColor);
+        path.addRoundedRect(r, 8, 8);
+        p.fillPath(path, QColor(255, 255, 255, 10));
     }
 
     // Avatar
-    qreal avatarSize = 36;
+    const qreal avatarSize = 36;
     QRectF avatarRect(r.left() + 8, (r.height() - avatarSize) / 2 + r.top(),
                       avatarSize, avatarSize);
 
-    // Avatar gradient background
-    QLinearGradient avatarGrad(avatarRect.topLeft(), avatarRect.bottomRight());
-    avatarGrad.setColorAt(0, QColor(100, 180, 255));
-    avatarGrad.setColorAt(1, QColor(80, 140, 220));
-
+    // Avatar background
     QPainterPath avatarPath;
     avatarPath.addEllipse(avatarRect);
-    p.fillPath(avatarPath, avatarGrad);
+    p.fillPath(avatarPath, QColor(80, 140, 200));
 
     // Avatar initials
     QFont initialsFont = font();
@@ -376,20 +245,19 @@ void ProfileWidget::paintEvent(QPaintEvent *)
             if (initials.length() >= 2) break;
         }
     }
+    if (initials.isEmpty() && !m_userName.isEmpty()) {
+        initials = m_userName[0].toUpper();
+    }
     p.drawText(avatarRect, Qt::AlignCenter, initials);
 
     // Online indicator
-    qreal indicatorSize = 10;
+    const qreal indicatorSize = 10;
     QRectF indicatorRect(avatarRect.right() - indicatorSize + 2,
                          avatarRect.bottom() - indicatorSize + 2,
                          indicatorSize, indicatorSize);
 
-    QPainterPath indicatorPath;
-    indicatorPath.addEllipse(indicatorRect);
-
-    // White border
-    p.setPen(QPen(QColor(30, 30, 30), 2));
-    p.setBrush(m_online ? QColor(80, 200, 120) : QColor(150, 150, 150));
+    p.setPen(QPen(QColor(30, 30, 35), 2));
+    p.setBrush(m_online ? QColor(80, 180, 100) : QColor(130, 130, 130));
     p.drawEllipse(indicatorRect);
 
     // User info (when expanded)
@@ -398,10 +266,10 @@ void ProfileWidget::paintEvent(QPaintEvent *)
         nameFont.setPixelSize(12);
         nameFont.setWeight(QFont::DemiBold);
         p.setFont(nameFont);
-        p.setPen(QColor(230, 230, 230));
+        p.setPen(QColor(220, 220, 220));
 
-        QRectF nameRect(avatarRect.right() + 10, r.top() + 8,
-                        r.width() - avatarRect.width() - 24, 16);
+        QRectF nameRect(avatarRect.right() + 10, r.top() + 10,
+                        r.width() - avatarRect.width() - 30, 16);
         p.drawText(nameRect, Qt::AlignVCenter | Qt::AlignLeft,
                    p.fontMetrics().elidedText(m_userName, Qt::ElideRight,
                                               int(nameRect.width())));
@@ -409,10 +277,10 @@ void ProfileWidget::paintEvent(QPaintEvent *)
         QFont emailFont = font();
         emailFont.setPixelSize(10);
         p.setFont(emailFont);
-        p.setPen(QColor(140, 140, 140));
+        p.setPen(QColor(130, 130, 130));
 
         QRectF emailRect(avatarRect.right() + 10, nameRect.bottom() + 2,
-                         r.width() - avatarRect.width() - 24, 14);
+                         r.width() - avatarRect.width() - 30, 14);
         p.drawText(emailRect, Qt::AlignVCenter | Qt::AlignLeft,
                    p.fontMetrics().elidedText(m_userEmail, Qt::ElideRight,
                                               int(emailRect.width())));
@@ -421,18 +289,14 @@ void ProfileWidget::paintEvent(QPaintEvent *)
 
 void ProfileWidget::enterEvent(QEnterEvent *)
 {
-    m_hoverAnim->stop();
-    m_hoverAnim->setStartValue(m_hoverProgress);
-    m_hoverAnim->setEndValue(1.0);
-    m_hoverAnim->start();
+    m_hovered = true;
+    update();
 }
 
 void ProfileWidget::leaveEvent(QEvent *)
 {
-    m_hoverAnim->stop();
-    m_hoverAnim->setStartValue(m_hoverProgress);
-    m_hoverAnim->setEndValue(0.0);
-    m_hoverAnim->start();
+    m_hovered = false;
+    update();
 }
 
 void ProfileWidget::mousePressEvent(QMouseEvent *)
@@ -452,15 +316,7 @@ Divider::Divider(QWidget *parent)
 void Divider::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-
-    // Gradient fade on edges
-    QLinearGradient grad(0, 0, width(), 0);
-    grad.setColorAt(0, QColor(80, 80, 80, 0));
-    grad.setColorAt(0.1, QColor(80, 80, 80, 255));
-    grad.setColorAt(0.9, QColor(80, 80, 80, 255));
-    grad.setColorAt(1, QColor(80, 80, 80, 0));
-
-    p.fillRect(rect(), grad);
+    p.fillRect(rect().adjusted(16, 0, -16, 0), QColor(60, 60, 65));
 }
 
 //=============================================================================
@@ -470,23 +326,24 @@ SectionLabel::SectionLabel(const QString &text, QWidget *parent)
     : QWidget(parent)
     , m_text(text)
 {
-    setFixedHeight(28);
+    setFixedHeight(32);
 }
 
 QSize SectionLabel::sizeHint() const
 {
-    return QSize(200, 28);
+    return QSize(200, 32);
 }
 
 void SectionLabel::setCollapsed(bool collapsed)
 {
     m_collapsed = collapsed;
+    setVisible(!collapsed);
     update();
 }
 
 void SectionLabel::paintEvent(QPaintEvent *)
 {
-    if (m_collapsed) return;  // Hide when collapsed
+    if (m_collapsed) return;
 
     QPainter p(this);
     p.setRenderHint(QPainter::TextAntialiasing);
@@ -497,9 +354,9 @@ void SectionLabel::paintEvent(QPaintEvent *)
     labelFont.setLetterSpacing(QFont::AbsoluteSpacing, 1);
     p.setFont(labelFont);
 
-    p.setPen(QColor(120, 120, 120));
-    p.drawText(rect().adjusted(20, 0, 0, 0),
-               Qt::AlignVCenter | Qt::AlignLeft, m_text.toUpper());
+    p.setPen(QColor(110, 110, 115));
+    p.drawText(rect().adjusted(20, 8, 0, 0),
+               Qt::AlignTop | Qt::AlignLeft, m_text.toUpper());
 }
 
 //=============================================================================
@@ -510,40 +367,23 @@ HoverSidebar::HoverSidebar(QWidget *parent)
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
-    setMinimumWidth(m_collapsedWidth);
-    setMaximumWidth(m_collapsedWidth);
+    setFixedWidth(m_collapsedWidth);
 
-    // Animation setup
-    m_animGroup = new QParallelAnimationGroup(this);
-
-    m_animMin = new QPropertyAnimation(this, "minimumWidth", this);
-    m_animMax = new QPropertyAnimation(this, "maximumWidth", this);
-    m_shadowAnim = new QPropertyAnimation(this, "shadowOpacity", this);
-
-    for (auto *anim : {m_animMin, m_animMax, m_shadowAnim}) {
-        anim->setDuration(250);
-        anim->setEasingCurve(QEasingCurve::OutCubic);
-    }
-
-    m_animGroup->addAnimation(m_animMin);
-    m_animGroup->addAnimation(m_animMax);
-    m_animGroup->addAnimation(m_shadowAnim);
-
-    // Layout
+    // Main layout
     m_mainLayout = new QVBoxLayout(this);
     m_mainLayout->setSpacing(0);
-    m_mainLayout->setContentsMargins(0, 8, 0, 8);
+    m_mainLayout->setContentsMargins(0, 12, 0, 8);
 
-    // Logo/Brand area
+    // Logo area
     auto *logoWidget = new QWidget(this);
-    logoWidget->setFixedHeight(48);
+    logoWidget->setFixedHeight(40);
     m_mainLayout->addWidget(logoWidget);
 
-    // Section label
-    auto *mainSection = new SectionLabel("Main Menu", this);
+    // Main section label
+    auto *mainSection = new SectionLabel("Navigation", this);
     m_mainLayout->addWidget(mainSection);
 
-    // Navigation buttons container
+    // Navigation container
     auto *navContainer = new QWidget(this);
     m_navLayout = new QVBoxLayout(navContainer);
     m_navLayout->setSpacing(2);
@@ -553,11 +393,11 @@ HoverSidebar::HoverSidebar(QWidget *parent)
     // Create navigation buttons
     auto *btnExplorer = new NavButton("📁", "Explorer", this);
     auto *btnSearch = new NavButton("🔍", "Search", this);
-    auto *btnGit = new NavButton("⎇", "Source Control", this);
+    auto *btnGit = new NavButton("⌥", "Source Control", this);
     btnGit->setBadge(3);
-    auto *btnDebug = new NavButton("🐛", "Debug", this);
-    auto *btnExtensions = new NavButton("🧩", "Extensions", this);
-    btnExtensions->setBadge(12);
+    auto *btnDebug = new NavButton("▶", "Run & Debug", this);
+    auto *btnExtensions = new NavButton("⊞", "Extensions", this);
+    btnExtensions->setBadge(5);
 
     addNavButton(btnExplorer);
     addNavButton(btnSearch);
@@ -565,32 +405,34 @@ HoverSidebar::HoverSidebar(QWidget *parent)
     addNavButton(btnDebug);
     addNavButton(btnExtensions);
 
-    // Set first button as selected
+    // Set first as selected
     setSelectedIndex(0);
 
     // Spacer
     m_mainLayout->addStretch();
 
     // Bottom section
-    auto *bottomSection = new SectionLabel("Account", this);
+    auto *bottomSection = new SectionLabel("Settings", this);
     m_mainLayout->addWidget(bottomSection);
 
     // Settings button
-    auto *btnSettings = new NavButton("⚙️", "Settings", this);
-    btnSettings->setAccentColor(QColor(180, 140, 255));
-    m_navLayout->addWidget(btnSettings);
+    auto *btnSettings = new NavButton("⚙", "Settings", this);
+    btnSettings->setAccentColor(QColor(160, 140, 200));
+    addNavButton(btnSettings);
 
     // Divider
-    m_mainLayout->addWidget(new Divider(this));
+    auto *divider = new Divider(this);
+    m_mainLayout->addWidget(divider);
+    m_mainLayout->addSpacing(4);
 
-    // Profile widget
+    // Profile
     m_profile = new ProfileWidget(this);
     m_profile->setUserName("John Developer");
     m_profile->setUserEmail("john@company.dev");
     m_mainLayout->addWidget(m_profile);
 
-    // Store section labels for collapse/expand
-    m_mainLayout->itemAt(1)->widget()->setProperty("isSection", true);
+    // Initial collapsed state
+    updateChildStates(true);
 }
 
 void HoverSidebar::addNavButton(NavButton *button)
@@ -631,26 +473,14 @@ void HoverSidebar::setExpandedWidth(int width)
     }
 }
 
-void HoverSidebar::setShadowOpacity(qreal opacity)
+void HoverSidebar::setExpanded(bool expanded)
 {
-    m_shadowOpacity = opacity;
-    update();
-}
-
-void HoverSidebar::animateTo(int targetWidth)
-{
-    m_animGroup->stop();
-
-    m_animMin->setStartValue(minimumWidth());
-    m_animMin->setEndValue(targetWidth);
-
-    m_animMax->setStartValue(maximumWidth());
-    m_animMax->setEndValue(targetWidth);
-
-    m_shadowAnim->setStartValue(m_shadowOpacity);
-    m_shadowAnim->setEndValue(targetWidth == m_expandedWidth ? 0.4 : 0.0);
-
-    m_animGroup->start();
+    if (m_isExpanded != expanded) {
+        m_isExpanded = expanded;
+        setFixedWidth(expanded ? m_expandedWidth : m_collapsedWidth);
+        updateChildStates(!expanded);
+        emit expandedChanged(expanded);
+    }
 }
 
 void HoverSidebar::updateChildStates(bool collapsed)
@@ -660,7 +490,7 @@ void HoverSidebar::updateChildStates(bool collapsed)
     }
     m_profile->setCollapsed(collapsed);
 
-    // Update all section labels
+    // Update section labels
     for (int i = 0; i < m_mainLayout->count(); ++i) {
         auto *item = m_mainLayout->itemAt(i);
         if (item && item->widget()) {
@@ -676,47 +506,21 @@ void HoverSidebar::paintEvent(QPaintEvent *)
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
 
-    // Background gradient
-    QLinearGradient bgGrad(0, 0, 0, height());
-    bgGrad.setColorAt(0, QColor(28, 28, 32));
-    bgGrad.setColorAt(1, QColor(22, 22, 26));
-    p.fillRect(rect(), bgGrad);
+    // Solid background
+    p.fillRect(rect(), QColor(30, 30, 35));
 
-    // Right border with gradient
-    QLinearGradient borderGrad(0, 0, 0, height());
-    borderGrad.setColorAt(0, QColor(60, 60, 65));
-    borderGrad.setColorAt(0.5, QColor(50, 50, 55));
-    borderGrad.setColorAt(1, QColor(40, 40, 45));
-
-    p.setPen(QPen(QBrush(borderGrad), 1));
+    // Right border
+    p.setPen(QColor(50, 50, 55));
     p.drawLine(width() - 1, 0, width() - 1, height());
-
-    // Drop shadow when expanded
-    if (m_shadowOpacity > 0) {
-        QLinearGradient shadowGrad(width(), 0, width() + 20, 0);
-        shadowGrad.setColorAt(0, QColor(0, 0, 0, int(80 * m_shadowOpacity)));
-        shadowGrad.setColorAt(1, QColor(0, 0, 0, 0));
-
-        QPainter shadowPainter(this);
-        // Note: Shadow would need to be drawn on parent or use graphics effects
-    }
 }
 
 void HoverSidebar::enterEvent(QEnterEvent *)
 {
-    if (!m_isExpanded) {
-        m_isExpanded = true;
-        raise();
-        updateChildStates(false);
-        animateTo(m_expandedWidth);
-    }
+    setExpanded(true);
+    raise();
 }
 
 void HoverSidebar::leaveEvent(QEvent *)
 {
-    if (m_isExpanded) {
-        m_isExpanded = false;
-        updateChildStates(true);
-        animateTo(m_collapsedWidth);
-    }
+    setExpanded(false);
 }
