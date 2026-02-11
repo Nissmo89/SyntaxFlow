@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(project_syntaxFlow LANGUAGES C CXX)
+project(SyntaxFlow LANGUAGES C CXX)
 
 # 1. Qt 6.2 & C++ Standard Setup
 set(CMAKE_CXX_STANDARD 17)
@@ -55,7 +55,7 @@ target_link_libraries(tree-sitter-highlighter PUBLIC
 )
 
 # --- Main Executable ---
-add_executable(project_syntaxFlow
+add_executable(SyntaxFlow
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
     hoversidebar.cpp hoversidebar.h
@@ -71,7 +71,7 @@ add_executable(project_syntaxFlow
     output_normalizer.h
 )
 
-target_link_libraries(project_syntaxFlow PRIVATE
+target_link_libraries(SyntaxFlow PRIVATE
     tree-sitter-highlighter
     Qt6::Core
     Qt6::Gui
@@ -79,17 +79,17 @@ target_link_libraries(project_syntaxFlow PRIVATE
 )
 
 # Copy assets after build
-add_custom_command(TARGET project_syntaxFlow POST_BUILD
+add_custom_command(TARGET SyntaxFlow POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/problems"
-        "$<TARGET_FILE_DIR:project_syntaxFlow>/problems"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/problems"
     COMMAND ${CMAKE_COMMAND} -E copy
         "${CMAKE_CURRENT_SOURCE_DIR}/problems.json"
-        "$<TARGET_FILE_DIR:project_syntaxFlow>/problems.json"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/problems.json"
     COMMENT "Copying problems directory and JSON to build folder..."
 )
 
 # Windows: Hide console
-set_target_properties(project_syntaxFlow PROPERTIES
+set_target_properties(SyntaxFlow PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
