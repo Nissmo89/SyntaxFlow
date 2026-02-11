@@ -1,0 +1,43 @@
+{
+  "title": "Median of Two Sorted Arrays",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": ["Binary Search", "Divide and Conquer", "Array"],
+
+  "description": "Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and <code>n</code> respectively, return the <strong>median</strong> of the two sorted arrays.<br><br>The overall run time complexity should be <strong>O(log (m+n))</strong>.",
+
+  "task": "Find the median value after merging the two sorted arrays.<br>If the total number of elements is even, return the average of the two middle elements.",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>m</code> — the length of the first array</td></tr><tr><td class='line-num'>Line 2:</td><td><code>nums1</code> elements (space-separated)</td></tr><tr><td class='line-num'>Line 3:</td><td><code>n</code> — the length of the second array</td></tr><tr><td class='line-num'>Line 4:</td><td><code>nums2</code> elements (space-separated)</td></tr></table>",
+
+  "outputFormat": "A single floating-point number representing the median of the two sorted arrays.",
+
+  "constraints": [
+    "nums1.length == m",
+    "nums2.length == n",
+    "0 ≤ m ≤ 1000",
+    "0 ≤ n ≤ 1000",
+    "1 ≤ m + n ≤ 2000",
+    "-10<sup>6</sup> ≤ nums1[i], nums2[i] ≤ 10<sup>6</sup>"
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Size of nums1</p><div class='io-line highlight-green'>2</div><p class='io-line comment'>// nums1 elements</p><div class='io-line'>1 3</div><p class='io-line comment'>// Size of nums2</p><div class='io-line highlight-green'>1</div><p class='io-line comment'>// nums2 elements</p><div class='io-line'>2</div>",
+
+  "sampleOutput": "<div class='io-line output'>2.00000</div>",
+
+  "sampleExplanation": "The merged array is <code>[1, 2, 3]</code> and the median is <code>2</code>.",
+
+  "hints": [
+    "A brute force approach merges the arrays in O(m+n) time, but we need O(log(m+n)).",
+    "Think about Binary Search. You want to cut both arrays such that elements on the left are smaller than elements on the right.",
+    "Try to find a partition point in the smaller array and calculate the corresponding partition in the larger array."
+  ],
+
+  "testCases": [
+    { "input": "2\n1 3\n1\n2", "output": "2.00000" },
+    { "input": "2\n1 2\n2\n3 4", "output": "2.50000" },
+    { "input": "0\n\n1\n1", "output": "1.00000" },
+    { "input": "2\n0 0\n2\n0 0", "output": "0.00000" },
+    { "input": "1\n100000\n1\n100001", "output": "100000.50000" }
+  ]
+}

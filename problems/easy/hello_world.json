@@ -1,0 +1,37 @@
+{
+  "id": "leftover_blocks",
+  "title": "Leftover Blocks",
+  "difficulty": "Easy",
+  "category": "Math",
+  "tags": ["modulo", "arithmetic", "beginner"],
+  
+  "description": "You are dividing up building block toys by color into even amounts for all of the kids in a 15 person kindergarten class. You don't want to give anyone more than anyone else, so you might have some leftover blocks of each color in the end.\n\nHow many total do you have left over?",
+  
+  "task": "If you know how many of each color block you have, add up the leftover blocks to come up with the amount you will have after you have evenly distributed each color to all 15 students.",
+  
+  "inputFormat": "4 integers (each on a new line) that represent the blue, red, green, and yellow blocks that you are sorting out (in that order).",
+  
+  "outputFormat": "An integer of the total remaining blocks after you have distributed an even amount to all 15 students.",
+  
+  "constraints": [
+    "0 ≤ blocks ≤ 10000 for each color",
+    "There are exactly 15 students"
+  ],
+  
+  "hints": [
+    "The modulo operator (%) gives you the remainder after division",
+    "You need to find remainders for each color and sum them up"
+  ],
+  
+  "sampleInput": "150\n20\n300\n53",
+  "sampleOutput": "13",
+  "sampleExplanation": "150 % 15 = 0, 20 % 15 = 5, 300 % 15 = 0, 53 % 15 = 8. Total = 0 + 5 + 0 + 8 = 13",
+  
+  "testCases": [
+    { "input": "150\n20\n300\n53", "output": "13" },
+    { "input": "15\n15\n15\n15", "output": "0" },
+    { "input": "16\n17\n18\n19", "output": "10" },
+    { "input": "0\n0\n0\n0", "output": "0" },
+    { "input": "1\n2\n3\n4", "output": "10" }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Two Sum",
+  "difficulty": "Medium",
+  "category": "",
+  "tags": ["HashMap", "Two Pointers", "Array"],
+
+  "description": "Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of the two numbers</em> such that they add up to <code>target</code>.<br><br>You may assume that each input would have <strong>exactly one solution</strong>, and you may not use the same element twice.",
+
+  "task": "Find two numbers in the array that add up to the target value.<br>Return their <strong>0-based indices</strong> in any order.",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>N</code> — the length of the array</td></tr><tr><td class='line-num'>Line 2..N+1:</td><td>Array elements as integers</td></tr><tr><td class='line-num'>Line N+2:</td><td><code>target</code> — the target sum</td></tr></table>",
+
+  "outputFormat": "Two space-separated integers representing the <strong>0-based indices</strong> of the two numbers that add up to the target.",
+
+  "constraints": [
+    "2 ≤ N ≤ 10<sup>4</sup>",
+    "-10<sup>9</sup> ≤ nums[i] ≤ 10<sup>9</sup>",
+    "-10<sup>9</sup> ≤ target ≤ 10<sup>9</sup>",
+    "Only one valid answer exists"
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Array size</p><div class='io-line highlight-green'>6</div><p class='io-line comment'>//array elements</p><div class='io-line'>2 7 11 15</div><p class='io-line comment'>// Target sum</p><div class='io-line highlight-red'>8</div>",
+
+  "sampleOutput": "<div class='io-line output'>0 1</div>",
+
+  "sampleExplanation": "Because <code>nums[0] + nums[1] = 2 + 7 = 9</code>, we return <code>[0, 1]</code>.",
+
+  "hints": [
+    "A brute force approach checks every pair — O(n²) time complexity",
+    "Can you use extra space to reduce time complexity?",
+    "A HashMap can help you find the complement in O(1)"
+  ],
+
+  "testCases": [
+    { "input": "4\n2\n7\n11\n15\n9", "output": "0 1" },
+    { "input": "3\n3\n2\n4\n6", "output": "1 2" },
+    { "input": "2\n3\n3\n6", "output": "0 1" },
+    { "input": "5\n1\n5\n3\n7\n2\n8", "output": "1 2" },
+    { "input": "4\n-1\n-2\n-3\n-4\n-6", "output": "1 3" }
+  ]
+}

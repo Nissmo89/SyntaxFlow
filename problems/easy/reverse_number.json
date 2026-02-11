@@ -1,0 +1,30 @@
+{
+  "title": "Reverse a Number",
+  "difficulty": "Easy",
+  "category": "Basic Math",
+  "tags": ["Math", "Recursion", "Modulus"],
+
+  "description": "Given an integer <code>n</code>, output the reverse of that integer.<br><br>For example, if <code>n = 123</code>, the reverse integer will be <code>321</code>.",
+
+  "task": "output the reverse of given number",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>n</code> — the integer to process</td></tr></table>",
+
+  "outputFormat": "A single integer representing the reverse of the given number of <code>n</code>.",
+
+  "constraints": [
+    "0 ≤ n ≤ 2<sup>31</sup> - 1"
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Input number</p><div class='io-line highlight-green'>123</div>",
+
+  "sampleOutput": "<div class='io-line output'>321</div>",
+
+  "testCases": [
+    { "input": "123", "output": "321" },
+    { "input": "0", "output": "0" },
+    { "input": "987", "output": "789" },
+    { "input": "1000", "output": "1" },
+    { "input": "-123", "output": "-321" }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Sum of Digits",
+  "difficulty": "Easy",
+  "category": "Basic Math",
+  "tags": ["Math", "Recursion", "Modulus"],
+
+  "description": "Given an integer <code>n</code>, return the sum of its digits.<br><br>For example, if <code>n = 123</code>, the digits are <code>1, 2, 3</code>, and the sum is <code>1 + 2 + 3 = 6</code>.",
+
+  "task": "Extract each digit of the given number and calculate their total sum.<br>The input can be a <strong>positive integer</strong>.",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>n</code> — the integer to process</td></tr></table>",
+
+  "outputFormat": "A single integer representing the sum of the digits of <code>n</code>.",
+
+  "constraints": [
+    "0 ≤ n ≤ 2<sup>31</sup> - 1"
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Input number</p><div class='io-line highlight-green'>438</div>",
+
+  "sampleOutput": "<div class='io-line output'>15</div>",
+
+  "sampleExplanation": "The digits of <code>438</code> are <code>4, 3, 8</code>. Summing them: <code>4 + 3 + 8 = 15</code>.",
+
+  "hints": [
+    "Use the modulo operator (%) to get the last digit: <code>n % 10</code>.",
+    "Use integer division (/) to remove the last digit: <code>n / 10</code>.",
+    "Repeat this process in a loop until the number becomes zero."
+  ],
+
+  "testCases": [
+    { "input": "123", "output": "6" },
+    { "input": "0", "output": "0" },
+    { "input": "999", "output": "27" },
+    { "input": "1000", "output": "1" },
+    { "input": "4567", "output": "22" }
+  ]
+}

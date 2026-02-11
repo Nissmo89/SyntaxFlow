@@ -1,0 +1,39 @@
+{
+  "title": "Palindrome String",
+  "difficulty": "Easy",
+  "category": "Strings",
+  "tags": ["String", "Two Pointers"],
+
+  "description": "A string is a <strong>palindrome</strong> if it reads the same forward and backward.<br><br>Given a string <code>s</code>, determine if it is a palindrome. For this problem, we consider only alphanumeric characters and ignore cases.",
+
+  "task": "Check if the input string is a palindrome.<br>Return <code>1</code> if it is a palindrome, and <code>0</code> otherwise.",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>s</code> — the string to check (may contain spaces)</td></tr></table>",
+
+  "outputFormat": "An integer <code>1</code> (True) or <code>0</code> (False).",
+
+  "constraints": [
+    "1 ≤ s.length ≤ 10<sup>5</sup>",
+    "String only contains ASCII characters"
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Input string</p><div class='io-line highlight-green'>racecar</div>",
+
+  "sampleOutput": "<div class='io-line output'>1</div>",
+
+  "sampleExplanation": "<code>'racecar'</code> read backward is <code>'racecar'</code>, which is identical to the original.",
+
+  "hints": [
+    "A simple way is to reverse the string and compare it to the original.",
+    "For better space efficiency, use two pointers: one starting at the beginning and one at the end.",
+    "Move the pointers toward the center, comparing characters at each step."
+  ],
+
+  "testCases": [
+    { "input": "racecar", "output": "1" },
+    { "input": "hello", "output": "0" },
+    { "input": "Aba", "output": "1" },
+    { "input": "12321", "output": "1" },
+    { "input": "WasItACatISaw", "output": "1" }
+  ]
+}

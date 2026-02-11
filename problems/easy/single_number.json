@@ -1,0 +1,34 @@
+{
+  "title": "Single Number",
+  "difficulty": "Easy",
+  "category": "",
+  "tags": ["Array", "Bit Manipulation"],
+
+  "description": "Given a non-empty array of integers <strong>nums</strong>, every element appears twice except for one. Find that single one.",
+
+  "task": "Find the Single number in array and output it,\n find out a way to solve this in linear <code>O(N)</code> time complexity with constant extra space.",
+
+  "inputFormat": "<table class='input-table'><tr><td class='line-num'>Line 1:</td><td><code>N</code> — the length of the nums</td></tr><tr><td class='line-num'>Line 2:</td><td><code>nums</code> — Array elements as integers</td></tr></table>",
+
+  "outputFormat": "Single integer represnt the unique integer in array",
+
+  "constraints": [
+    "1 ≤ N ≤ 3 * 10<sup>4</sup>",
+    "-3 * 10<sup>4</sup> ≤ nums[i] ≤ 3 * 10<sup>4</sup>",
+    "Each element in the array appears twice except for one element which appears only once."
+  ],
+
+  "sampleInput": "<p class='io-line comment'>// Array size</p><div class='io-line highlight-green'>5</div><p class='io-line comment'>//array elements</p><div class='io-line'>4 1 2 1 2</div>",
+
+  "sampleOutput": "<div class='io-line output'>4</div>",
+
+  "hints": [
+    "Think about the XOR (^) operator's property."
+  ],
+
+  "testCases": [
+    { "input": "5\n4\n1\n2\n1\n2", "output": "4" },
+    { "input": "3\n2\n2\n1", "output": "1" },
+    { "input": "1\n1", "output": "1" }
+  ]
+}
