@@ -30,6 +30,9 @@ public:
 
     void applyStyle(const QString &path);
     QString extractProblemId(const QString &fullPath) const;
+    QString m_currentTemplateLanguage;
+    bool m_isShowingTemplate = false;
+
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

@@ -415,8 +415,14 @@ void MainWindow::setupConnections()
             this, &MainWindow::onRunAllTests);
 
     // Language selection
-    connect(languageCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+    connect(languageCombo, QOverload<int>::of(&QComboBox::activated),
             this, &MainWindow::onLanguageChanged);
+
+
+    connect(codeEditor, &QPlainTextEdit::textChanged, this, [this]() {
+        m_isShowingTemplate = false;
+    });
+
 }
 
 void MainWindow::setupShortcuts()
@@ -493,30 +499,29 @@ void MainWindow::populateLanguages()
     updateLanguageIndicator();
 }
 
-void MainWindow::onLanguageChanged(int index)
+void MainWindow::onLanguageChanged(int)
 {
-    Q_UNUSED(index);
     updateLanguageIndicator();
 
-    QString langId = languageCombo->currentData().toString();
+    QString newLangId = languageCombo->currentData().toString();
+    QString newTemplate = m_backend->getTemplate(newLangId);
 
-    // Load template if editor is empty or contains default template
-    QString currentCode = codeEditor->toPlainText().trimmed();
-    QString newTemplate = m_backend->getTemplate(langId);
+    if (!m_isShowingTemplate)
+        return;
 
-    // Check if current code looks like a template
-    bool isDefaultCode = currentCode.isEmpty() ||
-                         currentCode.startsWith("#include") ||
-                         currentCode.startsWith("import") ||
-                         currentCode.startsWith("package") ||
-                         currentCode.startsWith("//") ||
-                         currentCode.startsWith("def ") ||
-                         currentCode.startsWith("fn ") ||
-                         currentCode.startsWith("use ");
+    if (m_currentTemplateLanguage == newLangId)
+        return;
 
-    if (isDefaultCode && !newTemplate.isEmpty()) {
-        codeEditor->setPlainText(newTemplate);
-    }
+
+    if (newTemplate.isEmpty())
+        return;
+
+    codeEditor->blockSignals(true);
+    codeEditor->setPlainText(newTemplate);
+    codeEditor->blockSignals(false);
+
+    m_currentTemplateLanguage = newLangId;
+    m_isShowingTemplate = true;
 }
 
 void MainWindow::updateLanguageIndicator()
@@ -558,7 +563,9 @@ CodeEditor* MainWindow::createEditor()
     )");
 
     // Set default C++ template
-    QString defaultTemplate = m_backend->getTemplate("cpp");
+    QString defaultLang = "cpp";
+    QString defaultTemplate = m_backend->getTemplate(defaultLang);
+
     if (!defaultTemplate.isEmpty()) {
         editor->setPlainText(defaultTemplate);
     } else {
@@ -566,12 +573,13 @@ CodeEditor* MainWindow::createEditor()
 using namespace std;
 
 int main() {
-    // Write your code here
-
     return 0;
 }
 )");
     }
+
+    m_isShowingTemplate = true;
+    m_currentTemplateLanguage = defaultLang;
 
     editor->setContentsMargins(0, 0, 0, 0);
 
@@ -614,8 +622,19 @@ void MainWindow::onNavigateToEditor(const QString &path)
     // Switch to editor view
     stack->setCurrentWidget(editorPage);
 
+    QString langId = languageCombo->currentData().toString();
+    QString tpl = m_backend->getTemplate(langId);
+
+    codeEditor->blockSignals(true);
+    codeEditor->setPlainText(tpl);
+    codeEditor->blockSignals(false);
+
+    m_isShowingTemplate = true;
+    m_currentTemplateLanguage = langId;
+
     // Focus the code editor
     codeEditor->setFocus();
+
 }
 
 void MainWindow::onNavigateToBrowser()
