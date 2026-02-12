@@ -2,6 +2,7 @@
 #include "progressmanager.h"
 #include <qdir.h>
 #include <qstandardpaths.h>
+#include <QJsonDocument>
 
 ProgressManager::ProgressManager(QObject *parent)
     : QObject(parent)
