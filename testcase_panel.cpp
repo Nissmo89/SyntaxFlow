@@ -129,10 +129,17 @@ void TestCasePanel::buildUI()
     contentStack->addWidget(testcaseView);
     contentStack->addWidget(resultView);
 
+    // ─── Scroll Area ───
+    auto *scrollArea = new QScrollArea;
+    scrollArea->setObjectName("contentScrollArea");
+    scrollArea->setFrameShape(QFrame::NoFrame);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setWidget(contentStack);
+
     // ─── Assemble ───
     mainLayout->addWidget(headerWidget);
     mainLayout->addWidget(caseTabBar);
-    mainLayout->addWidget(contentStack, 1);
+    mainLayout->addWidget(scrollArea, 1);
 }
 
 QString TestCasePanel::buildStyleSheet()
@@ -196,6 +203,11 @@ QString TestCasePanel::buildStyleSheet()
 
         #contentStack {
             background: #1a1a1a;
+        }
+
+        QScrollArea#contentScrollArea {
+            background: #1a1a1a;
+            border: none;
         }
 
         #fieldTitle {
