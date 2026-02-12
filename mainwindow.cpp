@@ -105,6 +105,8 @@ MainWindow::MainWindow(QWidget *parent)
         // 2. Now you can safely use qDebug
         qDebug() << ProblemsBasePath << "-- [the ProblemsBasePath]";
         qDebug() << ProblemsJsonPath << "-- [the ProblemsJsonPath]";
+        progressManager = new ProgressManager();
+
 
     setupBackend();
     setupUI();
@@ -165,7 +167,7 @@ void MainWindow::setupBrowserPage()
     auto *layout = new QVBoxLayout(browserPage);
     layout->setContentsMargins(GlobalMargin, 0, 0, 0);
 
-    browser = new ProblemBrowser(this);
+    browser = new ProblemBrowser(progressManager,this);
     browser->loadFromJson(ProblemsJsonPath);
 
     layout->addWidget(browser);
@@ -593,6 +595,7 @@ TreeSitterHighlighter* MainWindow::createHighlighter(QTextDocument *document)
 void MainWindow::onNavigateToEditor(const QString &path)
 {
     const QString filePath = ProblemsBasePath + path;
+    m_currentProblemId = extractProblemId(path);
 
     qDebug() << ">>> Opening editor for:" << filePath;
 
@@ -773,7 +776,7 @@ void MainWindow::onExecutionFinished()
     setExecutionState(false);
 
     if (m_runningAllTests) {
-        // Calculate summary
+
         int passed = 0;
         int total = testCasePanel->getTestCaseCount();
 
@@ -784,6 +787,15 @@ void MainWindow::onExecutionFinished()
         }
 
         qDebug() << "Results:" << passed << "/" << total << "passed";
+
+        // ✅ Mark solved only if ALL passed
+        if (total > 0 && passed == total) {
+            qDebug() << "All test cases passed. Marking as solved.";
+
+            progressManager->markSolved(m_currentProblemId, true);
+
+            qDebug() << "Current ID:" << extractProblemId(m_currentProblemId);
+        }
     }
 
     m_runningAllTests = false;
@@ -833,4 +845,10 @@ void MainWindow::applyStyle(const QString &path)
     }
 
     qApp->setStyleSheet(QString::fromUtf8(file.readAll()));
+}
+
+QString MainWindow::extractProblemId(const QString &fullPath) const
+{
+    QFileInfo info(fullPath);
+    return info.completeBaseName();
 }

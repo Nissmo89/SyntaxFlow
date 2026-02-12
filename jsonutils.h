@@ -3,3 +3,4 @@
 #include <QString>
 
 QJsonObject loadJsonFile(const QString &path);
+

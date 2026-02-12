@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "progressmanager.h"
 #include <QMainWindow>
 #include <QSplitter>
 #include <QPushButton>
@@ -28,6 +29,7 @@ public:
     ~MainWindow();
 
     void applyStyle(const QString &path);
+    QString extractProblemId(const QString &fullPath) const;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -108,6 +110,9 @@ private:
 
     // ─── Sidebar ───
     HoverSidebar *sidebar = nullptr;
+
+    ProgressManager *progressManager;
+    QString m_currentProblemId;
 };
 
 #endif // MAINWINDOW_H
