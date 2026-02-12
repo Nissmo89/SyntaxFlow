@@ -32,7 +32,9 @@ public:
     QString extractProblemId(const QString &fullPath) const;
     QString m_currentTemplateLanguage;
     bool m_isShowingTemplate = false;
-
+    void saveSolution(const QString& problemId,const QString& languageId,const QString& code);
+    QString loadSolution(const QString& problemId,const QString& languageId);
+    QString SolutionsBasePath;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

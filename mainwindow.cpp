@@ -107,6 +107,12 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << ProblemsJsonPath << "-- [the ProblemsJsonPath]";
         progressManager = new ProgressManager();
 
+        SolutionsBasePath = QStandardPaths::writableLocation(
+                                QStandardPaths::AppDataLocation) + "/solutions/";
+
+        QDir().mkpath(SolutionsBasePath);
+
+
 
     setupBackend();
     setupUI();
@@ -420,8 +426,19 @@ void MainWindow::setupConnections()
 
 
     connect(codeEditor, &QPlainTextEdit::textChanged, this, [this]() {
-        m_isShowingTemplate = false;
+
+        if (m_currentProblemId.isEmpty())
+            return;
+
+        QString langId = languageCombo->currentData().toString();
+
+        saveSolution(
+            m_currentProblemId,
+            langId,
+            codeEditor->toPlainText()
+            );
     });
+
 
 }
 
@@ -503,25 +520,22 @@ void MainWindow::onLanguageChanged(int)
 {
     updateLanguageIndicator();
 
+    if (m_currentProblemId.isEmpty())
+        return;
+
     QString newLangId = languageCombo->currentData().toString();
-    QString newTemplate = m_backend->getTemplate(newLangId);
 
-    if (!m_isShowingTemplate)
-        return;
-
-    if (m_currentTemplateLanguage == newLangId)
-        return;
-
-
-    if (newTemplate.isEmpty())
-        return;
+    QString saved = loadSolution(m_currentProblemId, newLangId);
 
     codeEditor->blockSignals(true);
-    codeEditor->setPlainText(newTemplate);
-    codeEditor->blockSignals(false);
 
-    m_currentTemplateLanguage = newLangId;
-    m_isShowingTemplate = true;
+    if (!saved.isEmpty()) {
+        codeEditor->setPlainText(saved);
+    } else {
+        codeEditor->setPlainText(m_backend->getTemplate(newLangId));
+    }
+
+    codeEditor->blockSignals(false);
 }
 
 void MainWindow::updateLanguageIndicator()
@@ -623,14 +637,18 @@ void MainWindow::onNavigateToEditor(const QString &path)
     stack->setCurrentWidget(editorPage);
 
     QString langId = languageCombo->currentData().toString();
-    QString tpl = m_backend->getTemplate(langId);
+
+    QString saved = loadSolution(m_currentProblemId, langId);
 
     codeEditor->blockSignals(true);
-    codeEditor->setPlainText(tpl);
-    codeEditor->blockSignals(false);
 
-    m_isShowingTemplate = true;
-    m_currentTemplateLanguage = langId;
+    if (!saved.isEmpty()) {
+        codeEditor->setPlainText(saved);
+    } else {
+        codeEditor->setPlainText(m_backend->getTemplate(langId));
+    }
+
+    codeEditor->blockSignals(false);
 
     // Focus the code editor
     codeEditor->setFocus();
@@ -871,3 +889,46 @@ QString MainWindow::extractProblemId(const QString &fullPath) const
     QFileInfo info(fullPath);
     return info.completeBaseName();
 }
+
+void MainWindow::saveSolution(const QString& problemId,
+                              const QString& languageId,
+                              const QString& code)
+{
+    QString path = SolutionsBasePath + problemId + ".json";
+
+    QJsonObject root;
+
+    QFile file(path);
+    if (file.exists() && file.open(QIODevice::ReadOnly)) {
+        root = QJsonDocument::fromJson(file.readAll()).object();
+        file.close();
+    }
+
+    root[languageId] = code;
+
+    QSaveFile saveFile(path);
+    if (saveFile.open(QIODevice::WriteOnly)) {
+        QJsonDocument doc(root);
+        saveFile.write(doc.toJson());
+        saveFile.commit();
+    }
+}
+
+QString MainWindow::loadSolution(const QString& problemId,
+                                 const QString& languageId)
+{
+    QString path = SolutionsBasePath + problemId + ".json";
+
+    QFile file(path);
+    if (!file.exists())
+        return QString();
+
+    if (!file.open(QIODevice::ReadOnly))
+        return QString();
+
+    QJsonObject root =
+        QJsonDocument::fromJson(file.readAll()).object();
+
+    return root.value(languageId).toString();
+}
+
