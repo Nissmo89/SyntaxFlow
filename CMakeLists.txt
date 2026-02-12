@@ -69,6 +69,7 @@ add_executable(SyntaxFlow
     code_runner.cpp code_runner.h
     backend.cpp backend.h
     output_normalizer.h
+    progressmanager.h progressmanager.cpp
 )
 
 target_link_libraries(SyntaxFlow PRIVATE
