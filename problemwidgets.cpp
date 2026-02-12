@@ -1,7 +1,9 @@
 #include "problemwidgets.h"
 #include <QPainter>
 #include <QGraphicsDropShadowEffect>
-
+#include <qdir.h>
+#include <qstandardpaths.h>
+#include "progressmanager.h"
 // ==========================================
 // TAG LABEL (The "Chip")
 // ==========================================
@@ -156,7 +158,7 @@ void ProblemCard::setupUi(const ProblemData &data) {
     actionLayout->setSpacing(5);
 
     // Status Label
-    QLabel *statusLabel = new QLabel(this);
+    statusLabel = new QLabel(this);
     statusLabel->setObjectName("Status");
     if (data.isSolved) {
         statusLabel->setText("SOLVED");
@@ -196,10 +198,13 @@ QColor ProblemCard::getDifficultyColor(const QString &diff) {
 // ==========================================
 // PROBLEM BROWSER
 // ==========================================
-ProblemBrowser::ProblemBrowser(QWidget *parent) : QWidget(parent) {
+ProblemBrowser::ProblemBrowser(ProgressManager *pm, QWidget *parent)
+    : QWidget(parent),
+    progressManager(pm)   // ✅ STORE IT HERE
+{
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
-
+    progressManager->load();
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
 
@@ -237,15 +242,20 @@ ProblemBrowser::ProblemBrowser(QWidget *parent) : QWidget(parent) {
 
     scrollArea->setWidget(scrollContent);
     mainLayout->addWidget(scrollArea);
+
+    connect(progressManager, &ProgressManager::progressChanged,
+            this, &ProblemBrowser::onProgressChanged);
+
+
 }
 
 // Logic loadFromJson remains the same as requested...
 void ProblemBrowser::loadFromJson(const QString &filePath) {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) return;
-
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     QJsonArray array = doc.array();
+    cardMap.clear();
 
     // Clear old widgets
     QLayoutItem *child;
@@ -262,12 +272,43 @@ void ProblemBrowser::loadFromJson(const QString &filePath) {
         data.difficulty = obj["difficulty"].toString();
         data.path = obj["path"].toString();
         QJsonObject statusObj = obj["status"].toObject();
-        data.isSolved = statusObj["solved"].toBool();
+        // data.isSolved = statusObj["solved"].toBool(); this change from this to
+        data.isSolved = progressManager->isSolved(data.id);
         QJsonArray topicArray = obj["topics"].toArray();
         for (const QJsonValue &t : topicArray) data.topics.append(t.toString());
 
         ProblemCard *card = new ProblemCard(data, scrollContent);
-        connect(card, &ProblemCard::openRequested, this, &ProblemBrowser::navigateToEditor);
+
+        cardMap[data.id] = card;   // ✅ STORE POINTER
+
+        connect(card, &ProblemCard::openRequested,
+                this, &ProblemBrowser::navigateToEditor);
+
         listLayout->addWidget(card);
+
     }
 }
+
+void ProblemBrowser::onProgressChanged(const QString &problemId)
+{
+    if (!cardMap.contains(problemId))
+        return;
+
+    ProblemCard *card = cardMap.value(problemId);
+
+    bool solved = progressManager->isSolved(problemId);
+
+    card->updateSolvedState(solved);
+}
+
+void ProblemCard::updateSolvedState(bool solved)
+{
+    if (solved) {
+        statusLabel->setText("SOLVED");
+        statusLabel->setStyleSheet("color: #4CAF50;");
+    } else {
+        statusLabel->setText("UNSOLVED");
+        statusLabel->setStyleSheet("color: #555;");
+    }
+}
+

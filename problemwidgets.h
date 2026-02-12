@@ -1,6 +1,7 @@
 #ifndef PROBLEMWIDGETS_H
 #define PROBLEMWIDGETS_H
 
+#include "progressmanager.h"
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
@@ -19,9 +20,12 @@ struct ProblemData {
     QString title;
     QString difficulty;
     QString path;
-    bool isSolved;
-    bool isStarred;
     QStringList topics;
+
+    // From user_progress.json
+    bool isSolved = false;
+    bool isStarred = false;
+    int attempts = 0;
 };
 
 // A small widget for "Array", "DP" tags
@@ -34,6 +38,9 @@ class ProblemCard : public QFrame {
     Q_OBJECT
 public:
     explicit ProblemCard(const ProblemData &data, QWidget *parent = nullptr);
+    void updateSolvedState(bool solved);
+    QLabel *statusLabel;
+
 
 signals:
     void openRequested(QString path);
@@ -46,12 +53,13 @@ private:
     void setupUi(const ProblemData &data);
     QColor getDifficultyColor(const QString &diff);
     QColor difficultyColor;
+
 };
 
 class ProblemBrowser : public QWidget {
     Q_OBJECT
 public:
-    explicit ProblemBrowser(QWidget *parent = nullptr);
+    explicit ProblemBrowser(ProgressManager *pm, QWidget *parent = nullptr);
     void loadFromJson(const QString &filePath);
 
 signals:
@@ -60,6 +68,15 @@ signals:
 private:
     QVBoxLayout *listLayout;
     QWidget *scrollContent;
+    ProgressManager *progressManager;
+    QMap<QString, ProblemCard*> cardMap;   // 🔥 THIS
+
+private slots:
+    void onProgressChanged(const QString &problemId);
+
+
 };
 
 #endif // PROBLEMWIDGETS_H
+
+
