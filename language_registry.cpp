@@ -58,7 +58,14 @@ QJsonObject LanguageRegistry::builtinC() {
         {"sourceFile", "solution.c"},
         {"compiled", true},
         {"compileCommand", "gcc"},
-        {"compileArgs", QJsonArray{"-O2", "-Wall", "-o", "{output}", "{source}"}},
+        {"compileArgs", QJsonArray{
+                            "-O2",
+                            "-Wall",
+                            "{source}",
+                            "-o",
+                            "{output}",
+                            "-lm"
+                        }},
         {"runCommand", "{workdir}/{output}"},
         {"timeout", 2000},
         {"template", "#include <stdio.h>\n\nint main() {\n    \n    return 0;\n}\n"}
