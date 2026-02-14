@@ -78,5 +78,3 @@ private slots:
 };
 
 #endif // PROBLEMWIDGETS_H
-
-

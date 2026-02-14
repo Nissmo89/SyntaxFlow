@@ -311,4 +311,3 @@ void ProblemCard::updateSolvedState(bool solved)
         statusLabel->setStyleSheet("color: #555;");
     }
 }
-
