@@ -325,7 +325,8 @@ void MainWindow::setupEditorPage()
     // also putting a shortcut to change theme for testing
     // Inside setupShortcuts() or constructor
     QShortcut *theme_change = new QShortcut(QKeySequence("Ctrl+K"), this);
-    // 2. Capture [this] to access member variables safely
+    // CRITICAL: Set this to ApplicationShortcut
+    theme_change->setContext(Qt::ApplicationShortcut);
     connect(theme_change, &QShortcut::activated, this, [this]() {
         // Increment index to cycle through
         m_themeIndex++;

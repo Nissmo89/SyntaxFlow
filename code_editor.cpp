@@ -618,7 +618,12 @@ void CodeEditor::setLanguage(const QString &langId) {
             "false fn for if impl in let loop match mod move mut pub ref "
             "return self Self static struct super trait true type unsafe use "
             "where while";
-        SendScintilla(SCI_SETKEYWORDS, static_cast<uptr_t>(0), rustKeywords);
+        // SendScintilla(SCI_SETKEYWORDS, 0, rustKeywords);
+        SendScintilla(SCI_SETKEYWORDS,
+                      static_cast<unsigned long>(0),
+                      rustKeywords);
+
+
 
 
     }
@@ -627,7 +632,7 @@ void CodeEditor::setLanguage(const QString &langId) {
             "break case chan const continue default defer else fallthrough for "
             "func go goto if import interface map package range return select "
             "struct switch type var true false nil iota";
-        SendScintilla(SCI_SETKEYWORDS, static_cast<uptr_t>(0), goKeywords);
+        SendScintilla(SCI_SETKEYWORDS, static_cast<unsigned long>(0), goKeywords);
     }
 
     // Setup autocomplete for this language
