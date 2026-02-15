@@ -83,7 +83,7 @@ EditorTheme EditorTheme::dracula() {
     t.comment = QColor("#6272a4");
     t.commentDoc = QColor("#6272a4");
     t.number = QColor("#bd93f9");
-    t.operator_ = QColor("#ff79c6");
+    t.operator_ = QColor("#ffffef");
     t.identifier = QColor("#f8f8f2");
     t.type = QColor("#8be9fd");
     t.function = QColor("#50fa7b");
@@ -126,7 +126,7 @@ EditorTheme EditorTheme::tokyoNight() {
     t.comment = QColor("#565f89");
     t.commentDoc = QColor("#565f89");
     t.number = QColor("#ff9e64");
-    t.operator_ = QColor("#89ddff");
+    t.operator_ = QColor("#ffffef");
     t.identifier = QColor("#c0caf5");
     t.type = QColor("#2ac3de");
     t.function = QColor("#7aa2f7");
@@ -169,7 +169,7 @@ EditorTheme EditorTheme::monokai() {
     t.comment = QColor("#75715e");
     t.commentDoc = QColor("#75715e");
     t.number = QColor("#ae81ff");
-    t.operator_ = QColor("#f92672");
+    t.operator_ = QColor("#ffffef");
     t.identifier = QColor("#f8f8f2");
     t.type = QColor("#66d9ef");
     t.function = QColor("#a6e22e");
@@ -212,7 +212,7 @@ EditorTheme EditorTheme::githubDark() {
     t.comment = QColor("#8b949e");
     t.commentDoc = QColor("#8b949e");
     t.number = QColor("#79c0ff");
-    t.operator_ = QColor("#ff7b72");
+    t.operator_ = QColor("#ffffef");
     t.identifier = QColor("#c9d1d9");
     t.type = QColor("#ffa657");
     t.function = QColor("#d2a8ff");
@@ -306,11 +306,13 @@ void CodeEditor::setupEditor() {
     setTabIndents(true);
 
     // Brace matching
-    setBraceMatching(QsciScintilla::SloppyBraceMatch);
-    setMatchedBraceForegroundColor(m_theme.braceMatch);
-    setMatchedBraceBackgroundColor(m_theme.braceMatchBg);
-    setUnmatchedBraceForegroundColor(m_theme.braceBad);
-    setUnmatchedBraceBackgroundColor(m_theme.braceBadBg);
+    // setBraceMatching(QsciScintilla::SloppyBraceMatch);
+    // setMatchedBraceForegroundColor(m_theme.braceMatch);
+    // // setMatchedBraceBackgroundColor(m_theme.braceMatchBg);
+    // setUnmatchedBraceForegroundColor(m_theme.braceBad);
+    // setUnmatchedBraceBackgroundColor(m_theme.braceBadBg);
+    setBraceMatching(QsciScintilla::NoBraceMatch);
+
 
     // Visual settings
     setCaretLineVisible(true);
@@ -435,9 +437,10 @@ void CodeEditor::setupShortcuts() {
     auto *moveDownShortcut = new QShortcut(QKeySequence("Alt+Down"), this);
     connect(moveDownShortcut, &QShortcut::activated, this, &CodeEditor::moveLineDown);
 
-    // Toggle comment: Ctrl+/
-    auto *commentShortcut = new QShortcut(QKeySequence("Ctrl+/"), this);
-    connect(commentShortcut, &QShortcut::activated, this, &CodeEditor::toggleComment);
+    // // Toggle comment: Ctrl+/
+    // auto *commentShortcut = new QShortcut(QKeySequence("Ctrl+/"), this);
+    // connect(commentShortcut, &QShortcut::activated, this, &CodeEditor::toggleComment);
+    connect(this,&CodeEditor::toggleCommentRequested,this,&CodeEditor::toggleComment);
 }
 
 void CodeEditor::setupAutocompletion() {
@@ -1077,6 +1080,9 @@ void CodeEditor::toggleComment() {
     QString prefix = getCommentPrefix();
     if (prefix.isEmpty()) return;
 
+    // just capture position of cursor on same line so after comment in/out the cursor remains at same position
+
+
     int lineFrom, lineTo, indexFrom, indexTo;
     getSelection(&lineFrom, &indexFrom, &lineTo, &indexTo);
 
@@ -1129,7 +1135,6 @@ void CodeEditor::toggleComment() {
             }
         }
     }
-
     endUndoAction();
 }
 
@@ -1151,6 +1156,7 @@ QString CodeEditor::getCommentPrefix() const {
         {"bash", "#"},
         {"sh", "#"}
     };
+
 
     return commentMap.value(m_currentLanguage, "//");
 }
@@ -1181,6 +1187,14 @@ long CodeEditor::toScintillaColor(const QColor &color) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 void CodeEditor::keyPressEvent(QKeyEvent *event) {
+
+    if (event->modifiers() == Qt::ControlModifier && event->key() == Qt::Key_Slash) {
+        qDebug() << "CustomQsciEditor caught Ctrl+/ ! Emitting signal...";
+        emit toggleCommentRequested(); // Emit our new signal
+        event->accept();                   // Mark the event as handled
+        return;                        // Stop processing
+    }
+
     // Auto-close brackets
     if (event->text() == "{") {
         QsciScintilla::keyPressEvent(event);
@@ -1313,3 +1327,7 @@ void CodeEditor::updateColorBlocks() {
         }
     }
 }
+
+
+// This is the new, robust implementation
+// This is the final, robust implementation

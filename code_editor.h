@@ -115,6 +115,8 @@ public:
 signals:
     void languageChanged(const QString &langId);
     void cursorPositionChanged(int line, int column);
+    void toggleCommentRequested();
+
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
