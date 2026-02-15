@@ -322,6 +322,20 @@ void MainWindow::setupEditorPage()
 
     // Apply theme
     codeEditor->setTheme("monokai");  // Options: "one dark pro", "dracula", "monokai", "github dark", "tokyo night"
+    // also putting a shortcut to change theme for testing
+    // Inside setupShortcuts() or constructor
+    QShortcut *theme_change = new QShortcut(QKeySequence("Ctrl+K"), this);
+    // 2. Capture [this] to access member variables safely
+    connect(theme_change, &QShortcut::activated, this, [this]() {
+        // Increment index to cycle through
+        m_themeIndex++;
+        // Wrap around using modulo
+        int index = m_themeIndex % m_themes.count();
+        QString nextTheme = m_themes[index];
+        qDebug() << "Switching to theme:" << nextTheme;
+        // Apply
+        codeEditor->setTheme(nextTheme); // Assuming you implemented setTheme in CustomQsciEditor
+    });
 
     // Editor settings
     codeEditor->setFontSize(13);
@@ -914,6 +928,7 @@ QString MainWindow::loadSolution(const QString &problemId,
 // - **Ctrl+Shift+K** - Delete line
 // - **Alt+Up/Down** - Move line up/down
 // - **Ctrl+Scroll** - Zoom in/out
+// - **Ctrl+k**      - change theme [just shortcut not Gui in testing state]
 // - Auto-close brackets `{}`, `()`, `[]`, `""`, `''`
 // - Code folding
 // - Brace matching

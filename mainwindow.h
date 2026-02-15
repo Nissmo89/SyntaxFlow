@@ -121,6 +121,11 @@ private:
 
     // ─── Sidebar ───
     HoverSidebar *sidebar = nullptr;
+
+
+    // 1. Move variables here
+    QStringList m_themes = {"one dark pro", "dracula", "monokai", "github dark", "tokyo night"};
+    int m_themeIndex = 0;
 };
 
 #endif // MAINWINDOW_H
