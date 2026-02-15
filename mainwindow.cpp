@@ -4,7 +4,6 @@
 #include "testcase_panel.h"
 #include "problemwidgets.h"
 #include "hoversidebar.h"
-#include "TreeSitterHighlighter.h"
 #include "backend.h"
 
 #include <QStackedLayout>
@@ -18,77 +17,8 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QMessageBox>
-
 #include <QCoreApplication>
 #include <QDir>
-
-// ═══════════════════════════════════════════════════════════════════════════
-// Tree-sitter C++ Parser
-// ═══════════════════════════════════════════════════════════════════════════
-
-extern "C" {
-const TSLanguage* tree_sitter_cpp(void);
-}
-
-namespace {
-
-const std::string CppHighlightQuery = R"(
-["extern" "catch" "class" "delete" "namespace" "new" "private" "protected" "public"
- "throw" "try" "requires" "virtual" "break" "case" "const" "continue" "do" "else"
- "enum" "for" "if"  "inline" "return" "static" "struct" "switch" "typedef" "while" ] @keyword
-
-["#define" "#elif" "#else" "#endif" "#if" "#ifdef" "#ifndef" "#include" ] @preproc
-(preproc_directive) @preproc
-
-(number_literal) @number
-
-(true) @bool
-(false) @bool
-
-(string_literal) @string.std
-(raw_string_literal) @string.raw
-
-(type_identifier) @type
-(primitive_type) @type
-(sized_type_specifier) @type
-
-(field_identifier) @variable
-(identifier) @variable
-
-(call_expression
-    function: (identifier) @function)
-(call_expression
-    function: (field_expression
-    field: (field_identifier) @function))
-(function_declarator
-    declarator: (identifier) @function)
-
-(comment) @comment
-)";
-
-FormatMap createFormatMap()
-{
-    FormatMap map;
-
-    map[""].setForeground(QColor("#ABB2BF"));
-    map["keyword"].setForeground(QColor("#C678DD"));
-    map["preproc"].setForeground(QColor("#E5C07B"));
-    map["number"].setForeground(QColor("#D19A66"));
-    map["bool"].setForeground(QColor("#56B6C2"));
-    map["bool"].setFontWeight(QFont::Bold);
-    map["string"].setForeground(QColor("#98C379"));
-    map["string.std"].setForeground(QColor("#98C379"));
-    map["string.raw"].setForeground(QColor("#7EC07B"));
-    map["type"].setForeground(QColor("#E5C07B"));
-    map["variable"].setForeground(QColor("#ABB2BF"));
-    map["function"].setForeground(QColor("#61AFEF"));
-    map["comment"].setForeground(QColor("#5C6370"));
-    map["comment"].setFontItalic(true);
-
-    return map;
-}
-
-} // anonymous namespace
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Constructor / Destructor
@@ -98,22 +28,24 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     resize(1400, 900);
+
+    // Setup paths
     const QString appDir = QCoreApplication::applicationDirPath();
-        ProblemsBasePath = QDir(appDir).filePath("problems/");
-        ProblemsJsonPath = QDir(appDir).filePath("problems.json");
+    ProblemsBasePath = QDir(appDir).filePath("problems/");
+    ProblemsJsonPath = QDir(appDir).filePath("problems.json");
 
-        // 2. Now you can safely use qDebug
-        qDebug() << ProblemsBasePath << "-- [the ProblemsBasePath]";
-        qDebug() << ProblemsJsonPath << "-- [the ProblemsJsonPath]";
-        progressManager = new ProgressManager();
+    qDebug() << "Problems base path:" << ProblemsBasePath;
+    qDebug() << "Problems JSON path:" << ProblemsJsonPath;
 
-        SolutionsBasePath = QStandardPaths::writableLocation(
-                                QStandardPaths::AppDataLocation) + "/solutions/";
+    // Progress manager
+    progressManager = new ProgressManager(this);
 
-        QDir().mkpath(SolutionsBasePath);
+    // Solutions directory
+    SolutionsBasePath = QStandardPaths::writableLocation(
+                            QStandardPaths::AppDataLocation) + "/solutions/";
+    QDir().mkpath(SolutionsBasePath);
 
-
-
+    // Setup
     setupBackend();
     setupUI();
     setupConnections();
@@ -173,7 +105,7 @@ void MainWindow::setupBrowserPage()
     auto *layout = new QVBoxLayout(browserPage);
     layout->setContentsMargins(GlobalMargin, 0, 0, 0);
 
-    browser = new ProblemBrowser(progressManager,this);
+    browser = new ProblemBrowser(progressManager, this);
     browser->loadFromJson(ProblemsJsonPath);
 
     layout->addWidget(browser);
@@ -282,9 +214,24 @@ void MainWindow::setupEditorPage()
     langIndicator = new QLabel;
     langIndicator->setStyleSheet("color: #5c5; font-size: 14px;");
 
+    // Cursor position label
+    cursorPosLabel = new QLabel("Ln 1, Col 1");
+    cursorPosLabel->setStyleSheet(R"(
+        color: #666;
+        font-size: 12px;
+        padding: 0 10px;
+    )");
+
     toolbarLayout->addWidget(languageCombo);
     toolbarLayout->addWidget(langIndicator);
     toolbarLayout->addStretch();
+    toolbarLayout->addWidget(cursorPosLabel);
+
+    // Separator
+    auto *separator = new QFrame;
+    separator->setFrameShape(QFrame::VLine);
+    separator->setStyleSheet("color: #333;");
+    toolbarLayout->addWidget(separator);
 
     // Run button
     runButton = new QPushButton("▶ Run");
@@ -367,9 +314,25 @@ void MainWindow::setupEditorPage()
     toolbarLayout->addWidget(stopButton);
     toolbarLayout->addWidget(submitButton);
 
-    // Code Editor
-    codeEditor = createEditor();
+    // ═══════════════════════════════════════════════════════════════════
+    // Code Editor - Using new CodeEditor class
+    // ═══════════════════════════════════════════════════════════════════
+    codeEditor = new CodeEditor(this);
     codeEditor->setMinimumHeight(200);
+
+    // Apply theme
+    codeEditor->setTheme("monokai");  // Options: "one dark pro", "dracula", "monokai", "github dark", "tokyo night"
+
+    // Editor settings
+    codeEditor->setFontSize(13);
+    codeEditor->setTabSize(4);
+    codeEditor->setShowWhitespace(false);
+    codeEditor->setShowIndentGuides(true);
+    codeEditor->setAutoCompleteEnabled(true);
+    codeEditor->setBraceMatchingEnabled(true);
+
+    // Set default language
+    codeEditor->setLanguage("cpp");
 
     editorContainerLayout->addWidget(editorToolbar);
     editorContainerLayout->addWidget(codeEditor, 1);
@@ -424,22 +387,18 @@ void MainWindow::setupConnections()
     connect(languageCombo, QOverload<int>::of(&QComboBox::activated),
             this, &MainWindow::onLanguageChanged);
 
+    // Editor cursor position
+    connect(codeEditor, &CodeEditor::cursorPositionChanged,
+            this, &MainWindow::onEditorCursorChanged);
 
-    connect(codeEditor, &QPlainTextEdit::textChanged, this, [this]() {
-
+    // Auto-save solution on text change (debounced internally by editor)
+    connect(codeEditor, &CodeEditor::textChanged, this, [this]() {
         if (m_currentProblemId.isEmpty())
             return;
 
         QString langId = languageCombo->currentData().toString();
-
-        saveSolution(
-            m_currentProblemId,
-            langId,
-            codeEditor->toPlainText()
-            );
+        saveSolution(m_currentProblemId, langId, codeEditor->text());
     });
-
-
 }
 
 void MainWindow::setupShortcuts()
@@ -472,9 +431,22 @@ void MainWindow::setupShortcuts()
         }
     });
 
+    // Go to line: Ctrl+G
+    auto *gotoLine = new QShortcut(QKeySequence("Ctrl+G"), this);
+    connect(gotoLine, &QShortcut::activated, this, [this]() {
+        // Could show a dialog here
+        // For now, just focus the editor
+        codeEditor->setFocus();
+    });
+
     // Open language config: Ctrl+,
     auto *openConfig = new QShortcut(QKeySequence("Ctrl+,"), this);
     connect(openConfig, &QShortcut::activated, m_backend, &Backend::openConfigDirectory);
+
+    // Toggle comment: Already handled in CodeEditor (Ctrl+/)
+    // Duplicate line: Already handled in CodeEditor (Ctrl+Shift+D)
+    // Delete line: Already handled in CodeEditor (Ctrl+Shift+K)
+    // Move line up/down: Already handled in CodeEditor (Alt+Up/Down)
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -518,21 +490,29 @@ void MainWindow::populateLanguages()
 
 void MainWindow::onLanguageChanged(int)
 {
+    QString newLangId = languageCombo->currentData().toString();
+
     updateLanguageIndicator();
+
+    // Update editor syntax highlighting
+    codeEditor->setLanguage(newLangId);
 
     if (m_currentProblemId.isEmpty())
         return;
 
-    QString newLangId = languageCombo->currentData().toString();
-
+    // Load saved solution for this language
     QString saved = loadSolution(m_currentProblemId, newLangId);
 
     codeEditor->blockSignals(true);
 
     if (!saved.isEmpty()) {
-        codeEditor->setPlainText(saved);
+        codeEditor->setText(saved);
     } else {
-        codeEditor->setPlainText(m_backend->getTemplate(newLangId));
+        // Load template for new language
+        QString templ = m_backend->getTemplate(newLangId);
+        if (!templ.isEmpty()) {
+            codeEditor->setText(templ);
+        }
     }
 
     codeEditor->blockSignals(false);
@@ -557,57 +537,17 @@ void MainWindow::updateLanguageIndicator()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Factory Methods
+// Editor Events
 // ═══════════════════════════════════════════════════════════════════════════
 
-CodeEditor* MainWindow::createEditor()
+void MainWindow::onEditorCursorChanged(int line, int column)
 {
-    auto *editor = new CodeEditor(this);
-
-    createHighlighter(editor->document());
-
-    editor->setStyleSheet(R"(
-        CodeEditor {
-            background-color: #0d0d0d;
-            color: #d4d4d4;
-            border: none;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-            font-size: 14px;
-        }
-    )");
-
-    // Set default C++ template
-    QString defaultLang = "cpp";
-    QString defaultTemplate = m_backend->getTemplate(defaultLang);
-
-    if (!defaultTemplate.isEmpty()) {
-        editor->setPlainText(defaultTemplate);
-    } else {
-        editor->setPlainText(R"(#include <iostream>
-using namespace std;
-
-int main() {
-    return 0;
-}
-)");
-    }
-
-    m_isShowingTemplate = true;
-    m_currentTemplateLanguage = defaultLang;
-
-    editor->setContentsMargins(0, 0, 0, 0);
-
-    return editor;
+    cursorPosLabel->setText(QString("Ln %1, Col %2").arg(line).arg(column));
 }
 
-TreeSitterHighlighter* MainWindow::createHighlighter(QTextDocument *document)
+void MainWindow::updateStatusBar(int line, int column)
 {
-    return new TreeSitterHighlighter(
-        tree_sitter_cpp(),
-        CppHighlightQuery,
-        createFormatMap(),
-        document
-        );
+    cursorPosLabel->setText(QString("Ln %1, Col %2").arg(line).arg(column));
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -618,17 +558,15 @@ void MainWindow::onNavigateToEditor(const QString &path)
 {
     const QString filePath = ProblemsBasePath + path;
     m_currentProblemId = extractProblemId(path);
+    m_currentProblemPath = filePath;
 
     qDebug() << ">>> Opening editor for:" << filePath;
+    qDebug() << ">>> Problem ID:" << m_currentProblemId;
 
     if (!problemPanel->loadFromFile(filePath)) {
         qWarning() << "Failed to load problem:" << filePath;
         return;
     }
-
-    // Store the full path to the problem file
-    m_currentProblemPath = filePath;
-    qDebug() << "Problem path:" << m_currentProblemPath;
 
     // Reset test results
     testCasePanel->clearAllResults();
@@ -636,16 +574,24 @@ void MainWindow::onNavigateToEditor(const QString &path)
     // Switch to editor view
     stack->setCurrentWidget(editorPage);
 
+    // Get current language
     QString langId = languageCombo->currentData().toString();
 
+    // Update editor language
+    codeEditor->setLanguage(langId);
+
+    // Load saved solution or template
     QString saved = loadSolution(m_currentProblemId, langId);
 
     codeEditor->blockSignals(true);
 
     if (!saved.isEmpty()) {
-        codeEditor->setPlainText(saved);
+        codeEditor->setText(saved);
     } else {
-        codeEditor->setPlainText(m_backend->getTemplate(langId));
+        QString templ = m_backend->getTemplate(langId);
+        if (!templ.isEmpty()) {
+            codeEditor->setText(templ);
+        }
     }
 
     codeEditor->blockSignals(false);
@@ -653,6 +599,8 @@ void MainWindow::onNavigateToEditor(const QString &path)
     // Focus the code editor
     codeEditor->setFocus();
 
+    // Reset cursor position display
+    cursorPosLabel->setText("Ln 1, Col 1");
 }
 
 void MainWindow::onNavigateToBrowser()
@@ -662,14 +610,14 @@ void MainWindow::onNavigateToBrowser()
         m_backend->stopExecution();
     }
 
-    m_currentProblemPath.clear();  // Clear the path
+    m_currentProblemPath.clear();
+    m_currentProblemId.clear();
     stack->setCurrentWidget(browserPage);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Code Execution
 // ═══════════════════════════════════════════════════════════════════════════
-
 
 void MainWindow::onRunCurrentTest()
 {
@@ -699,10 +647,10 @@ void MainWindow::onRunCurrentTest()
     testCasePanel->setTestRunning(currentIndex);
 
     m_backend->runTestCase(
-        codeEditor->toPlainText(),
+        codeEditor->text(),
         langId,
         currentIndex,
-        m_currentProblemPath  // Pass full path
+        m_currentProblemPath
         );
 }
 
@@ -736,9 +684,9 @@ void MainWindow::onRunAllTests()
     }
 
     m_backend->runCode(
-        codeEditor->toPlainText(),
+        codeEditor->text(),
         langId,
-        m_currentProblemPath  // Pass full path
+        m_currentProblemPath
         );
 }
 
@@ -786,7 +734,7 @@ void MainWindow::onCompilationError(const QString &error)
         testCasePanel->setTestResult(i, "[Compile Error]\n" + error, false);
     }
 
-    // Also show a message box for visibility
+    // Show message box
     QMessageBox::critical(this, "Compilation Error",
                           "Failed to compile your code:\n\n" + error.left(500));
 }
@@ -813,7 +761,6 @@ void MainWindow::onExecutionFinished()
     setExecutionState(false);
 
     if (m_runningAllTests) {
-
         int passed = 0;
         int total = testCasePanel->getTestCaseCount();
 
@@ -825,13 +772,10 @@ void MainWindow::onExecutionFinished()
 
         qDebug() << "Results:" << passed << "/" << total << "passed";
 
-        // ✅ Mark solved only if ALL passed
+        // Mark solved if ALL passed
         if (total > 0 && passed == total) {
             qDebug() << "All test cases passed. Marking as solved.";
-
             progressManager->markSolved(m_currentProblemId, true);
-
-            qDebug() << "Current ID:" << extractProblemId(m_currentProblemId);
         }
     }
 
@@ -850,7 +794,7 @@ void MainWindow::setExecutionState(bool running)
     submitButton->setEnabled(!running);
     languageCombo->setEnabled(!running);
 
-    // Change cursor on code editor during execution
+    // Editor state
     if (running) {
         codeEditor->setReadOnly(true);
         codeEditor->setCursor(Qt::WaitCursor);
@@ -884,28 +828,38 @@ void MainWindow::applyStyle(const QString &path)
     qApp->setStyleSheet(QString::fromUtf8(file.readAll()));
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// Solution Persistence
+// ═══════════════════════════════════════════════════════════════════════════
+
 QString MainWindow::extractProblemId(const QString &fullPath) const
 {
     QFileInfo info(fullPath);
     return info.completeBaseName();
 }
 
-void MainWindow::saveSolution(const QString& problemId,
-                              const QString& languageId,
-                              const QString& code)
+void MainWindow::saveSolution(const QString &problemId,
+                              const QString &languageId,
+                              const QString &code)
 {
+    if (problemId.isEmpty() || languageId.isEmpty())
+        return;
+
     QString path = SolutionsBasePath + problemId + ".json";
 
     QJsonObject root;
 
+    // Load existing solutions
     QFile file(path);
     if (file.exists() && file.open(QIODevice::ReadOnly)) {
         root = QJsonDocument::fromJson(file.readAll()).object();
         file.close();
     }
 
+    // Update this language's solution
     root[languageId] = code;
 
+    // Save
     QSaveFile saveFile(path);
     if (saveFile.open(QIODevice::WriteOnly)) {
         QJsonDocument doc(root);
@@ -914,21 +868,54 @@ void MainWindow::saveSolution(const QString& problemId,
     }
 }
 
-QString MainWindow::loadSolution(const QString& problemId,
-                                 const QString& languageId)
+QString MainWindow::loadSolution(const QString &problemId,
+                                 const QString &languageId)
 {
+    if (problemId.isEmpty() || languageId.isEmpty())
+        return QString();
+
     QString path = SolutionsBasePath + problemId + ".json";
 
     QFile file(path);
-    if (!file.exists())
+    if (!file.exists() || !file.open(QIODevice::ReadOnly))
         return QString();
 
-    if (!file.open(QIODevice::ReadOnly))
-        return QString();
-
-    QJsonObject root =
-        QJsonDocument::fromJson(file.readAll()).object();
+    QJsonObject root = QJsonDocument::fromJson(file.readAll()).object();
+    file.close();
 
     return root.value(languageId).toString();
 }
+
+
+
+// ```
+
+// ## Key Changes:
+
+// 1. **Removed Tree-sitter** - The new `CodeEditor` uses QScintilla's built-in lexers
+// 2. **Removed manual Scintilla background hacks** - Now handled internally by `CodeEditor::lockBackground()`
+// 3. **Added theme support** - `codeEditor->setTheme("tokyo night")`
+// 4. **Added editor settings** - Font size, tab size, whitespace visibility, etc.
+// 5. **Connected new signals** - `cursorPositionChanged` for cursor position display
+// 6. **Added cursor position label** - Shows "Ln X, Col Y" in toolbar
+// 7. **Language switching updates editor** - `codeEditor->setLanguage(langId)` now properly updates syntax highlighting
+// 8. **Cleaner code** - Removed unused includes and simplified setup
+
+// ## Available Themes:
+// - `"one dark pro"` - Atom One Dark
+// - `"dracula"` - Dracula
+// - `"monokai"` - Monokai
+// - `"github dark"` - GitHub Dark Dimmed
+// - `"tokyo night"` - Tokyo Night
+
+// ## Available Editor Features:
+// - **Ctrl+/** - Toggle comment
+// - **Ctrl+Shift+D** - Duplicate line
+// - **Ctrl+Shift+K** - Delete line
+// - **Alt+Up/Down** - Move line up/down
+// - **Ctrl+Scroll** - Zoom in/out
+// - Auto-close brackets `{}`, `()`, `[]`, `""`, `''`
+// - Code folding
+// - Brace matching
+// - Autocomplete
 

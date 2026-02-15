@@ -1,14 +1,18 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "progressmanager.h"
 #include <QMainWindow>
 #include <QSplitter>
 #include <QPushButton>
 #include <QComboBox>
 #include <QLabel>
-#include <QCoreApplication>
-#include <QDir>
+#include <QStandardPaths>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QSaveFile>
+
+// #include "ProgressManager.h"
+#include "progressmanager.h"
 
 class QStackedLayout;
 class CodeEditor;
@@ -16,8 +20,6 @@ class ProblemBrowser;
 class ProblemPanel;
 class TestCasePanel;
 class HoverSidebar;
-class TreeSitterHighlighter;
-class QTextDocument;
 class Backend;
 
 class MainWindow : public QMainWindow
@@ -29,12 +31,6 @@ public:
     ~MainWindow();
 
     void applyStyle(const QString &path);
-    QString extractProblemId(const QString &fullPath) const;
-    QString m_currentTemplateLanguage;
-    bool m_isShowingTemplate = false;
-    void saveSolution(const QString& problemId,const QString& languageId,const QString& code);
-    QString loadSolution(const QString& problemId,const QString& languageId);
-    QString SolutionsBasePath;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -61,6 +57,9 @@ private slots:
     void onLanguageChanged(int index);
     void populateLanguages();
 
+    // Editor
+    void onEditorCursorChanged(int line, int column);
+
 private:
     // Setup
     void setupUI();
@@ -71,24 +70,30 @@ private:
     void setupShortcuts();
     void setupBackend();
 
-    // Factory
-    CodeEditor* createEditor();
-    TreeSitterHighlighter* createHighlighter(QTextDocument *document);
-
-    // Update UI state
+    // UI State
     void setExecutionState(bool running);
     void updateLanguageIndicator();
+    void updateStatusBar(int line, int column);
 
-    // Constants
-    static constexpr int GlobalMargin = 55;
-    QString ProblemsBasePath; // Just declare
-    QString ProblemsJsonPath; // Just declare
+    // Solution persistence
+    void saveSolution(const QString &problemId, const QString &languageId, const QString &code);
+    QString loadSolution(const QString &problemId, const QString &languageId);
+    QString extractProblemId(const QString &fullPath) const;
 
+    // ─── Constants ───
+    static constexpr int GlobalMargin = 50;
+    QString ProblemsJsonPath;
+    QString ProblemsBasePath;
+    QString SolutionsBasePath;
 
     // ─── Backend ───
     Backend *m_backend = nullptr;
-    QString m_currentProblemPath;  // Full path to the problem JSON file
+    QString m_currentProblemId;
+    QString m_currentProblemPath;
     bool m_runningAllTests = false;
+
+    // ─── Progress ───
+    ProgressManager *progressManager = nullptr;
 
     // ─── Layout ───
     QStackedLayout *stack = nullptr;
@@ -109,15 +114,13 @@ private:
     // ─── Toolbar ───
     QComboBox *languageCombo = nullptr;
     QLabel *langIndicator = nullptr;
+    QLabel *cursorPosLabel = nullptr;
     QPushButton *runButton = nullptr;
     QPushButton *stopButton = nullptr;
     QPushButton *submitButton = nullptr;
 
     // ─── Sidebar ───
     HoverSidebar *sidebar = nullptr;
-
-    ProgressManager *progressManager;
-    QString m_currentProblemId;
 };
 
 #endif // MAINWINDOW_H
