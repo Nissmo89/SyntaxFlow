@@ -112,6 +112,9 @@ public:
     void moveLineDown();
     void toggleComment();
 
+    void setKeywordSet(int set, const char* words);
+
+
 signals:
     void languageChanged(const QString &langId);
     void cursorPositionChanged(int line, int column);
