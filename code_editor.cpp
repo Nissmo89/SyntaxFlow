@@ -8,6 +8,61 @@
 #include <QDebug>
 #include <QFontDatabase>
 
+
+
+
+
+void CodeEditor::registerExtraKeywords(const QString &lexerName,
+                                       int set,
+                                       const QStringList &words)
+{
+    keywordRegistry[lexerName][set].append(words);
+}
+
+void CodeEditor::setLexer(QsciLexer *lexer)
+{
+    QsciScintilla::setLexer(lexer);
+    applyExtraKeywords();
+}
+
+void CodeEditor::applyExtraKeywords()
+{
+    QsciLexer *lexer = this->lexer();
+    if (!lexer)
+        return;
+
+    QString name = lexer->language();  // IMPORTANT
+
+    if (!keywordRegistry.contains(name))
+        return;
+
+    auto sets = keywordRegistry[name];
+
+    for (auto it = sets.begin(); it != sets.end(); ++it)
+    {
+        int set = it.key();
+        QStringList words = it.value();
+
+        const char *existing = lexer->keywords(set);
+        QString combined = existing ? QString(existing) : "";
+
+        for (const QString &word : words)
+        {
+            if (!combined.contains(word))
+                combined += " " + word;
+        }
+
+        QByteArray bytes = combined.toUtf8();
+
+        SendScintilla(QsciScintilla::SCI_SETKEYWORDS,
+                      set - 1,
+                      bytes.constData());
+    }
+
+    recolor();
+}
+
+
 // ═══════════════════════════════════════════════════════════════════════════
 // Theme Definitions
 // ═══════════════════════════════════════════════════════════════════════════
@@ -264,6 +319,11 @@ CodeEditor::CodeEditor(QWidget *parent)
             this, &CodeEditor::onCursorPositionChanged);
     connect(this, &QsciScintilla::textChanged,
             this, &CodeEditor::onTextChanged);
+
+    this->registerExtraKeywords("C++", 1, {"myCppKeyword"});
+    this->registerExtraKeywords("Python", 1, {"myPyKeyword"});
+    this->registerExtraKeywords("Java",1,{"myJavaKeyword"});
+
 }
 
 CodeEditor::~CodeEditor() {

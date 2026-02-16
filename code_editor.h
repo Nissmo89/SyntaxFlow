@@ -81,6 +81,12 @@ public:
     explicit CodeEditor(QWidget *parent = nullptr);
     ~CodeEditor() override;
 
+    void setLexer(QsciLexer *lexer) override;
+
+    void registerExtraKeywords(const QString &lexerName,
+                               int set,
+                               const QStringList &words);
+
     // Language support
     void setLanguage(const QString &langId);
     QString currentLanguage() const { return m_currentLanguage; }
@@ -132,6 +138,11 @@ private slots:
     void updateColorBlocks();
 
 private:
+
+    void applyExtraKeywords();
+
+    QMap<QString, QMap<int, QStringList>> keywordRegistry;
+
     // Setup methods
     void setupEditor();
     void setupMargins();
