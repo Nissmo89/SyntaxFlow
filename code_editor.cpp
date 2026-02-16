@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QFontDatabase>
-
+#include <QStack>
 
 
 
@@ -103,14 +103,21 @@ EditorTheme EditorTheme::oneDarkPro() {
     t.constant = QColor("#d19a66");
     t.error = QColor("#f44747");
 
-    // Braces
-    t.braceMatch = QColor("#c678dd");
-    t.braceMatchBg = QColor("#3e4451");
-    t.braceBad = QColor("#e06c75");
-    t.braceBadBg = QColor("#422c2c");
+
 
     // Guides
     t.indentGuide = QColor("#3b4048");
+
+    t.bracketColors = {
+        QColor("#e06c75"), // red
+        QColor("#61afef"), // blue
+        QColor("#98c379")  // green
+    };
+
+    t.braceMatchBg   = QColor("#803D5A80");  // one dark blue-gray
+    t.braceUnmatchBg = QColor("#80553333");  // deep neutral red
+
+
 
     return t;
 }
@@ -148,12 +155,20 @@ EditorTheme EditorTheme::dracula() {
     t.constant = QColor("#bd93f9");
     t.error = QColor("#ff5555");
 
-    t.braceMatch = QColor("#f1fa8c");
-    t.braceMatchBg = QColor("#44475a");
-    t.braceBad = QColor("#ff5555");
-    t.braceBadBg = QColor("#442222");
+
 
     t.indentGuide = QColor("#424450");
+
+    t.bracketColors = {
+        QColor("#ff79c6"), // pink
+        QColor("#8be9fd"), // cyan
+        QColor("#f1fa8c")  // yellow
+    };
+
+    t.braceMatchBg   = QColor("#803E68A8");  // muted dracula blue
+    t.braceUnmatchBg = QColor("#805A1F2B");  // deep dracula red
+
+
 
     return t;
 }
@@ -191,12 +206,20 @@ EditorTheme EditorTheme::tokyoNight() {
     t.constant = QColor("#ff9e64");
     t.error = QColor("#f7768e");
 
-    t.braceMatch = QColor("#7aa2f7");
-    t.braceMatchBg = QColor("#33467c");
-    t.braceBad = QColor("#f7768e");
-    t.braceBadBg = QColor("#3b2634");
+
 
     t.indentGuide = QColor("#292e42");
+
+
+    t.bracketColors = {
+        QColor("#7aa2f7"), // blue
+        QColor("#bb9af7"), // purple
+        QColor("#9ece6a")  // green
+    };
+
+    t.braceMatchBg   = QColor("#803A5F8F");  // tokyo muted blue
+    t.braceUnmatchBg = QColor("#80502A3A");  // violet-red tone
+
 
     return t;
 }
@@ -234,12 +257,20 @@ EditorTheme EditorTheme::monokai() {
     t.constant = QColor("#ae81ff");
     t.error = QColor("#f92672");
 
-    t.braceMatch = QColor("#e6db74");
-    t.braceMatchBg = QColor("#49483e");
-    t.braceBad = QColor("#f92672");
-    t.braceBadBg = QColor("#3e2723");
+
 
     t.indentGuide = QColor("#3b3a32");
+
+    t.bracketColors = {
+        QColor("#f92672"), // red
+        QColor("#66d9ef"), // cyan
+        QColor("#a6e22e")  // green
+    };
+
+    t.braceMatchBg   = QColor("#804E8070");  // desaturated teal-green
+    t.braceUnmatchBg = QColor("#80602C2C");  // earthy red
+
+
 
     return t;
 }
@@ -277,12 +308,19 @@ EditorTheme EditorTheme::githubDark() {
     t.constant = QColor("#79c0ff");
     t.error = QColor("#f85149");
 
-    t.braceMatch = QColor("#79c0ff");
-    t.braceMatchBg = QColor("#1f3a52");
-    t.braceBad = QColor("#f85149");
-    t.braceBadBg = QColor("#3b2020");
+
 
     t.indentGuide = QColor("#21262d");
+
+    t.bracketColors = {
+        QColor("#ff7b72"), // red
+        QColor("#79c0ff"), // blue
+        QColor("#ffa657")  // orange
+    };
+
+    t.braceMatchBg   = QColor("#804A6C9B");  // github steel blue
+    t.braceUnmatchBg = QColor("#80582A2A");  // muted red
+
 
     return t;
 }
@@ -294,6 +332,11 @@ EditorTheme EditorTheme::githubDark() {
 CodeEditor::CodeEditor(QWidget *parent)
     : QsciScintilla(parent)
 {
+    // --- Bracket Pair Coloring Setup ---
+    // m_bracketColors << QColor("#ffff00")    // Yellow
+    //                 << QColor("#DA70D6")   // Purple
+    //                 << QColor("#1E90FF"); // Blue
+
     // Set default theme
     m_theme = EditorTheme::tokyoNight();
 
@@ -304,15 +347,20 @@ CodeEditor::CodeEditor(QWidget *parent)
     setupFolding();
     setupIndicators();
     setupShortcuts();
+    setupBracketIndicators(); // this is important
+
 
     // Apply default language
-    setLanguage("cpp");
+    // setLanguage("cpp");
+
+    highlightVisibleBrackets();
+
 
     // Debounced color block update
-    m_colorBlockTimer = new QTimer(this);
-    m_colorBlockTimer->setSingleShot(true);
-    m_colorBlockTimer->setInterval(150);
-    connect(m_colorBlockTimer, &QTimer::timeout, this, &CodeEditor::updateColorBlocks);
+    // m_colorBlockTimer = new QTimer(this);
+    // m_colorBlockTimer->setSingleShot(true);
+    // m_colorBlockTimer->setInterval(150);
+    // connect(m_colorBlockTimer, &QTimer::timeout, this, &CodeEditor::updateColorBlocks);
 
     // Connections
     connect(this, &QsciScintilla::cursorPositionChanged,
@@ -320,9 +368,32 @@ CodeEditor::CodeEditor(QWidget *parent)
     connect(this, &QsciScintilla::textChanged,
             this, &CodeEditor::onTextChanged);
 
-    this->registerExtraKeywords("C++", 1, {"myCppKeyword"});
-    this->registerExtraKeywords("Python", 1, {"myPyKeyword"});
-    this->registerExtraKeywords("Java",1,{"myJavaKeyword"});
+
+
+    // --- CONSOLIDATED DEBOUNCE TIMER ---
+    // A single timer for all idle processing (brackets, errors, etc.)
+    m_idleProcessingTimer = new QTimer(this);
+    m_idleProcessingTimer->setSingleShot(true);
+    m_idleProcessingTimer->setInterval(60); // 400ms delay
+    m_idleProcessingTimer->start();
+
+    setLanguage("cpp");  // calling here to prevent crash
+
+
+    connect(m_idleProcessingTimer, &QTimer::timeout, this, &CodeEditor::onIdleTimeout);
+
+
+    // Initial processing after a short delay
+    QTimer::singleShot(50, this, &CodeEditor::scheduleIdleProcessing);
+
+
+
+
+
+
+
+    // this->registerExtraKeywords("Python", 1, {"myPyKeyword"});
+    // this->registerExtraKeywords("Java",1,{"myJavaKeyword"});
 
 }
 
@@ -365,13 +436,6 @@ void CodeEditor::setupEditor() {
     setIndentationGuides(true);
     setTabIndents(true);
 
-    // Brace matching
-    // setBraceMatching(QsciScintilla::SloppyBraceMatch);
-    // setMatchedBraceForegroundColor(m_theme.braceMatch);
-    // // setMatchedBraceBackgroundColor(m_theme.braceMatchBg);
-    // setUnmatchedBraceForegroundColor(m_theme.braceBad);
-    // setUnmatchedBraceBackgroundColor(m_theme.braceBadBg);
-    setBraceMatching(QsciScintilla::NoBraceMatch);
 
 
     // Visual settings
@@ -414,6 +478,8 @@ void CodeEditor::setupEditor() {
 
     // Paper (background)
     setPaper(m_theme.background);
+
+
 }
 
 void CodeEditor::setupMargins() {
@@ -715,12 +781,25 @@ void CodeEditor::applyLexer(QsciLexer *lexer) {
     // Apply the new lexer
     setLexer(lexer);
 
+    // setBraceMatching(QsciScintilla::NoBraceMatch);
     // Lock background
     lockBackground();
 
     // Re-apply margin settings
     setMarginsForegroundColor(m_theme.marginForeground);
     setMarginsBackgroundColor(m_theme.marginBackground);
+
+    m_idleProcessingTimer->start();
+
+    setupColorBlockIndicators(this);
+    // setUnmatchedBraceBackgroundColor(QColor("#c0fe2909"));
+    // setMatchedBraceBackgroundColor(QColor("#c0266f9f"));
+
+
+
+
+
+
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -805,6 +884,11 @@ void CodeEditor::themePythonLexer(QsciLexerPython *lexer) {
     lexer->setColor(m_theme.identifier, QsciLexerPython::Identifier);
     lexer->setColor(m_theme.operator_, QsciLexerPython::Operator);
     lexer->setColor(m_theme.error, QsciLexerPython::UnclosedString);
+
+    lexer->setV3BinaryOctalAllowed(true);
+    lexer->setV3BytesAllowed(true);
+
+
 
     // Apply paper
     for (int i = 0; i <= QsciLexerPython::HighlightedIdentifier; ++i) {
@@ -935,8 +1019,9 @@ void CodeEditor::setTheme(const QString &themeName) {
     }
 }
 
-void CodeEditor::applyTheme() {
-    // Base colors
+void CodeEditor::applyTheme()
+{
+    // Base
     setPaper(m_theme.background);
     setColor(m_theme.foreground);
 
@@ -952,12 +1037,6 @@ void CodeEditor::applyTheme() {
     setMarginsForegroundColor(m_theme.marginForeground);
     setMarginsBackgroundColor(m_theme.marginBackground);
 
-    // Brace matching
-    setMatchedBraceForegroundColor(m_theme.braceMatch);
-    setMatchedBraceBackgroundColor(m_theme.braceMatchBg);
-    setUnmatchedBraceForegroundColor(m_theme.braceBad);
-    setUnmatchedBraceBackgroundColor(m_theme.braceBadBg);
-
     // Whitespace
     setWhitespaceForegroundColor(m_theme.invisibles);
 
@@ -966,14 +1045,20 @@ void CodeEditor::applyTheme() {
     setIndentationGuidesBackgroundColor(m_theme.background);
 
     // Folding
-    setFoldMarginColors(m_theme.foldMarginBackground, m_theme.foldMarginBackground);
-    setupFolding();
+    setFoldMarginColors(m_theme.foldMarginBackground,
+                        m_theme.foldMarginBackground);
 
-    // Re-theme current lexer
+    // IMPORTANT: Re-theme lexer FIRST
     setLanguage(m_currentLanguage);
 
-    // Lock background
+
+
     lockBackground();
+
+    setupBracketIndicators();
+
+    highlightVisibleBrackets();
+
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1245,6 +1330,12 @@ void CodeEditor::lockBackground() {
     // Also set specific areas
     SendScintilla(SCI_STYLESETBACK, STYLE_DEFAULT, scBg);
     SendScintilla(SCI_STYLESETBACK, STYLE_LINENUMBER, toScintillaColor(m_theme.marginBackground));
+
+
+
+
+
+
 }
 
 long CodeEditor::toScintillaColor(const QColor &color) {
@@ -1262,39 +1353,64 @@ void CodeEditor::keyPressEvent(QKeyEvent *event) {
         emit toggleCommentRequested(); // Emit our new signal
         event->accept();                   // Mark the event as handled
         return;                        // Stop processing
-    }
+    }        
 
-    // Auto-close brackets
-    if (event->text() == "{") {
-        QsciScintilla::keyPressEvent(event);
-        insert("}");
-        SendScintilla(SCI_CHARLEFT);
-        return;
-    }
-    else if (event->text() == "(") {
-        QsciScintilla::keyPressEvent(event);
-        insert(")");
-        SendScintilla(SCI_CHARLEFT);
-        return;
-    }
-    else if (event->text() == "[") {
-        QsciScintilla::keyPressEvent(event);
-        insert("]");
-        SendScintilla(SCI_CHARLEFT);
-        return;
-    }
-    else if (event->text() == "\"") {
-        QsciScintilla::keyPressEvent(event);
-        insert("\"");
-        SendScintilla(SCI_CHARLEFT);
-        return;
-    }
-    else if (event->text() == "'") {
-        QsciScintilla::keyPressEvent(event);
-        insert("'");
-        SendScintilla(SCI_CHARLEFT);
-        return;
-    }
+
+        QString text = event->text();
+        if (text.isEmpty()) {
+            QsciScintilla::keyPressEvent(event); // Handle non-character keys like Shift, Ctrl
+            return;
+        }
+
+        QChar typedChar = text.at(0);
+
+        // --- Case 1: User types an OPENING bracket ---
+        if (bracketPairs.contains(typedChar)) {
+            QChar closingChar = bracketPairs.value(typedChar);
+
+            // Feature: Wrap selection
+            if (hasSelectedText()) {
+                QString selected = selectedText();
+                replaceSelectedText(QString(typedChar) + selected + QString(closingChar));
+                event->accept();
+                return;
+            }
+
+            // --- THE CRITICAL FIX FOR CURSOR POSITION ---
+            // 1. Get the current position BEFORE we insert anything.
+            int currentPos = SendScintilla(SCI_GETCURRENTPOS);
+
+            // 2. Insert both brackets. The cursor will move to the end.
+            insert(QString(typedChar) + closingChar);
+
+            // 3. Set the cursor's absolute position to be exactly in the middle.
+            // This is far more reliable than relative movement.
+            SendScintilla(SCI_GOTOPOS, currentPos + 1);
+            // --- END FIX ---
+
+            event->accept(); // We handled the event
+            return;
+        }
+
+        // --- Case 2: User types a CLOSING bracket ---
+        if (bracketPairs.key(typedChar) != Q_NULLPTR) {
+            int currentPos = SendScintilla(SCI_GETCURRENTPOS);
+            char nextChar = SendScintilla(SCI_GETCHARAT, currentPos);
+
+            // Feature: Smart Overtype for closing brackets
+            if (nextChar == typedChar.toLatin1()) {
+                // The character to the right is what we just typed.
+                // So, instead of inserting, just move the cursor past it.
+                SendScintilla(SCI_CHARRIGHT);
+                event->accept();
+                return;
+            }
+        }
+
+        // --- Case 3: Any other character ---
+        // Let the base class handle all other keys (a, b, c, backspace, etc.)
+
+
 
     QsciScintilla::keyPressEvent(event);
 }
@@ -1330,7 +1446,12 @@ void CodeEditor::onCursorPositionChanged(int line, int index) {
 
 void CodeEditor::onTextChanged() {
     // Debounced color block update
-    m_colorBlockTimer->start();
+    // m_colorBlockTimer->start();
+
+    // --- ADD THIS LINE ---
+    // Restart the idle timer to trigger rainbow brackets
+    // and other analysis after the user stops typing for 400ms
+    m_idleProcessingTimer->start();
 }
 
 void CodeEditor::updateColorBlocks() {
@@ -1410,3 +1531,148 @@ void CodeEditor::setKeywordSet(int set, const char* words)
 
 // This is the new, robust implementation
 // This is the final, robust implementation
+
+// ============================================================================================================
+                                            // RAINBOW BRACKET
+// ============================================================================================================
+
+// --- Bracket Coloring Functions (Unchanged, already good) ---
+void CodeEditor::setupBracketIndicators()
+{
+    auto toScintillaColor = [] (const QColor &c) { return (c.blue() << 16) | (c.green() << 8) | c.red(); };
+    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+        int indicatorId = INDICATOR_BRACKET_BASE + i;
+        SendScintilla(SCI_INDICSETSTYLE, indicatorId, IndicatorStyle::TextColorIndicator);
+        SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(m_theme.bracketColors[i]));
+        SendScintilla(SCI_INDICSETALPHA, indicatorId, 255);
+        SendScintilla(SCI_INDICSETUNDER, indicatorId, false);
+    }
+}
+
+void CodeEditor::setupIndicators_bracket()
+{
+    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+        int indicatorId = INDICATOR_BRACKET_BASE + i;
+        SendScintilla(SCI_INDICSETSTYLE, indicatorId, IndicatorStyle::TextColorIndicator);
+        // SendScintilla(SCI_INDICSETFORE, indicatorId, bracketColors[i].rgb());
+        SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(bracketColors[i]));
+
+        SendScintilla(SCI_INDICSETALPHA, indicatorId, 255);
+        SendScintilla(SCI_INDICSETUNDER, indicatorId, false);
+    }
+}
+
+void CodeEditor::scheduleBracketHighlight()
+{
+    // This just starts (or restarts) the timer. The real work is delayed.
+    m_highlightTimer->start();
+}
+
+// ---------------------------------------------
+// Ignore < > for bracket matching
+// ---------------------------------------------
+inline bool isRealBracket(char ch)
+{
+    return (ch == '(' || ch == ')' ||
+            ch == '{' || ch == '}' ||
+            ch == '[' || ch == ']');
+}
+
+void CodeEditor::highlightVisibleBrackets()
+{
+    // --- 1. Determine the visible range ---
+    const int firstVisibleLine = SendScintilla(SCI_GETFIRSTVISIBLELINE);
+    const int linesOnScreen = SendScintilla(SCI_LINESONSCREEN);
+    const int lastVisibleLine = firstVisibleLine + linesOnScreen;
+    const int startPos = SendScintilla(SCI_POSITIONFROMLINE, firstVisibleLine);
+    const int endPos = SendScintilla(SCI_POSITIONFROMLINE, lastVisibleLine + 1);
+    const int docLength = SendScintilla(SCI_GETTEXTLENGTH);
+    const int highlightEndPos = (endPos == -1) ? docLength : endPos;
+
+    // --- 2. Clear indicators ONLY from the visible area ---
+    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+        SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + i);
+        SendScintilla(SCI_INDICATORCLEARRANGE, startPos, highlightEndPos - startPos);
+    }
+
+    // --- 3. Parse the document, but only apply indicators to the visible part ---
+    QStack<int> nestingLevelStack;
+
+    // We must scan from the start to correctly calculate nesting levels.
+    // However, we avoid the slow memory copy of editor->text().
+    for (int pos = 0; pos < docLength; ++pos) {
+        char ch = SendScintilla(SCI_GETCHARAT, pos);
+
+        // Optimization: If we are past the visible area and have no open brackets, we can stop.
+        if (pos > highlightEndPos && nestingLevelStack.isEmpty()) {
+            break;
+        }
+
+        int styleId = SendScintilla(SCI_GETSTYLEAT, pos);
+        bool isAComment = (styleId == QsciLexerCPP::Comment || styleId == QsciLexerCPP::CommentLine);
+        bool isAString = (styleId == QsciLexerCPP::DoubleQuotedString || styleId == QsciLexerCPP::SingleQuotedString || styleId == QsciLexerCPP::UnclosedString);
+
+        if (isAComment || isAString) {
+            continue;
+        }
+
+        // if (ch == '(' || ch == '[' || ch == '{') {
+        // === Ignore < and > ===
+        if (!isRealBracket(ch))
+            continue;
+
+        if (ch == '(' || ch == '[' || ch == '{') {
+            int currentNesting = nestingLevelStack.isEmpty() ? 0 : nestingLevelStack.top() + 1;
+            nestingLevelStack.push(currentNesting);
+
+            // ONLY apply the indicator if the bracket is visible
+            if (pos >= startPos && pos < highlightEndPos) {
+                int colorIndex = currentNesting % MAX_BRACKET_COLORS;
+                SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+                SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+            }
+        }
+        else if (ch == ')' || ch == ']' || ch == '}') {
+            if (!nestingLevelStack.isEmpty()) {
+                // To keep the logic simple, we don't check for matching pairs here,
+                // as that can be complex. We just pop. A more advanced implementation
+                // would track the character type.
+                int currentNesting = nestingLevelStack.pop();
+
+                // ONLY apply the indicator if the bracket is visible
+                if (pos >= startPos && pos < highlightEndPos) {
+                    int colorIndex = currentNesting % MAX_BRACKET_COLORS;
+                    SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+                    SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+                }
+            }
+        }
+    }
+
+    setUnmatchedBraceBackgroundColor(QColor(m_theme.braceUnmatchBg));
+    setMatchedBraceBackgroundColor(QColor(m_theme.braceMatchBg));
+}
+
+void CodeEditor::onIdleTimeout()
+{
+    // When the user has been idle, run ALL background tasks.
+    highlightVisibleBrackets();
+
+    // CRITICAL FIX: The slow text() copy now happens right before emitting the signal,
+    // and only when we are sure we need to do the analysis.
+}
+
+void CodeEditor::scheduleIdleProcessing()
+{
+    // This is called on every text or scroll change. It just resets the single timer.
+    m_idleProcessingTimer->start();
+}
+
+void CodeEditor::setupColorBlockIndicators(QsciScintilla* editor) {
+    for (int id = 20; id <= 30; ++id) {
+        editor->SendScintilla(QsciScintilla::SCI_INDICSETSTYLE, id, CustomQsciEditor::INDIC_ROUNDBOX);
+        editor->SendScintilla(QsciScintilla::SCI_INDICSETALPHA, id, 100);
+        editor->SendScintilla(QsciScintilla::SCI_INDICSETFORE, id, toScintillaColor(QColor("#ee882f"))); //88c0ff
+        editor->SendScintilla(QsciScintilla::SCI_INDICSETUNDER, id, long(0));
+    }
+}

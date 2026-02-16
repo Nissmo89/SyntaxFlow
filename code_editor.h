@@ -15,6 +15,29 @@
 #include <QMap>
 #include <QTimer>
 
+// --- Central Indicator Definitions ---
+enum EditorIndicator {
+    // ... your other indicators ...
+    INDICATOR_BRACE_MATCH = 12,
+
+    // NEW: Indicators for warnings and errors
+    INDICATOR_WARNING = 2,
+    INDICATOR_ERROR   = 1,
+
+    INDICATOR_BRACKET_BASE = 17,
+    // ...
+};
+
+enum CustomIndicator {
+    // We can define other indicators here in the future
+    INDICATOR_COLORBLOCK_BASE = 20, // As used by your colorBlockRx
+
+    // Let's reserve the highest available indicators for brackets to be safe.
+    // INDICATOR_BRACKET_BASE = 17, // Using 29, 30, 31
+    MAX_BRACKET_COLORS = 3
+};
+
+
 // ═══════════════════════════════════════════════════════════════════════════
 // Theme Definition
 // ═══════════════════════════════════════════════════════════════════════════
@@ -55,10 +78,10 @@ struct EditorTheme {
     QColor error;
 
     // Brace matching
-    QColor braceMatch;
     QColor braceMatchBg;
-    QColor braceBad;
-    QColor braceBadBg;
+    QColor braceUnmatchBg;  // no foreground since we use Rainbow bracket
+
+    QVector<QColor> bracketColors;
 
     // Indentation guides
     QColor indentGuide;
@@ -120,6 +143,28 @@ public:
 
     void setKeywordSet(int set, const char* words);
 
+    // Data for keyPressEvent
+    const QMap<QChar, QChar> bracketPairs = {
+        {'(', ')'}, {'{', '}'}, {'[', ']'}, {'"', '"'}, {'\'', '\''}
+    };
+
+    // rainbow bracket
+
+    void setupIndicators_bracket();  // good at public
+    void setupBracketIndicators();   // good at public
+    QTimer *m_highlightTimer;
+    QVector<QColor> m_bracketColors;
+    QVector<QColor> bracketColors;
+    QTimer *m_idleProcessingTimer; // Single timer for all idle tasks
+    void setupColorBlockIndicators(QsciScintilla* editor);
+
+
+
+
+
+
+
+
 
 signals:
     void languageChanged(const QString &langId);
@@ -136,6 +181,12 @@ private slots:
     void onCursorPositionChanged(int line, int index);
     void onTextChanged();
     void updateColorBlocks();
+
+    void onIdleTimeout();              // private slot
+    void highlightVisibleBrackets();  // private slot
+    void scheduleBracketHighlight(); // private slot
+    void scheduleIdleProcessing();
+
 
 private:
 
@@ -155,6 +206,7 @@ private:
     void createLexers();
     void applyLexer(QsciLexer *lexer);
     void themeLexer(QsciLexer *lexer);
+
 
     // Specific lexer theming
     void themeCppLexer(QsciLexerCPP *lexer);
@@ -187,7 +239,7 @@ private:
     int m_tabSize = 4;
 
     // Timers
-    QTimer *m_colorBlockTimer = nullptr;
+    // QTimer *m_colorBlockTimer = nullptr;
 
     // Indicator IDs
     static const int IndicatorError = 8;
