@@ -152,6 +152,7 @@ if(TCC_ARCH STREQUAL "x86_64")
     list(APPEND TCC_CORE_SOURCES
         ${TCC_DIR}/x86_64-gen.c
         ${TCC_DIR}/x86_64-link.c
+        ${TCC_DIR}/i386-asm.c   # <--- ADD THIS LINE
     )
 else()
     list(APPEND TCC_CORE_SOURCES
@@ -171,19 +172,18 @@ endif()
 # DO NOT mix these! PE/COFF are Windows-only formats.
 # ============================================================
 if(WIN32)
-    message(STATUS "TCC: Adding Windows sources (PE/COFF)")
+    message(STATUS "TCC: Adding Windows sources (PE + ELF Core)")
     list(APPEND TCC_CORE_SOURCES
-        ${TCC_DIR}/tccpe.c       # PE executable format (Windows)
-        ${TCC_DIR}/tcccoff.c     # COFF object format (Windows)
-        ${TCC_DIR}/tcctools.c    # Windows tools (ar, rc, etc.)
+        ${TCC_DIR}/tccelf.c     # REQUIRED: TCC uses ELF internally for symbol management
+        ${TCC_DIR}/tccpe.c      # REQUIRED: For Windows PE output
+        ${TCC_DIR}/tcctools.c   # REQUIRED: Windows-specific tools
     )
+    # We leave tcccoff.c out because it's causing the header conflict
 else()
     message(STATUS "TCC: Adding Linux sources (ELF)")
     list(APPEND TCC_CORE_SOURCES
-        ${TCC_DIR}/tccelf.c      # ELF format (Linux/Unix) ONLY
+        ${TCC_DIR}/tccelf.c
     )
-    # NO tccpe.c   - Windows PE format
-    # NO tcccoff.c - Windows COFF format
 endif()
 
 # ============================================================
