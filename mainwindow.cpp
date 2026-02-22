@@ -92,6 +92,11 @@ void MainWindow::setupUI()
 
     stack = new QStackedLayout(centralContainer);
 
+    // Global font for consistency across all widgets
+    QFont appFont("Segoe UI", 10);
+    appFont.setStyleHint(QFont::SansSerif);
+    qApp->setFont(appFont);
+
     setupBrowserPage();
     setupEditorPage();
     setupSidebar();
@@ -161,17 +166,41 @@ void MainWindow::setupEditorPage()
     // ═══════════════════════════════════════════════════════════════════
     auto *editorToolbar = new QWidget;
     editorToolbar->setObjectName("editorToolbar");
-    editorToolbar->setFixedHeight(42);
+    editorToolbar->setFixedHeight(46);
     editorToolbar->setStyleSheet(R"(
         #editorToolbar {
-            background: #1a1a1a;
-            border-bottom: 1px solid #2a2a2a;
+            background: #161616;
+            border-bottom: 1px solid #222;
         }
     )");
 
     auto *toolbarLayout = new QHBoxLayout(editorToolbar);
     toolbarLayout->setContentsMargins(16, 0, 16, 0);
     toolbarLayout->setSpacing(10);
+
+    // Back button: ← Problems
+    backButton = new QPushButton("← Problems");
+    backButton->setObjectName("backBtn");
+    backButton->setCursor(Qt::PointingHandCursor);
+    backButton->setToolTip("Back to problem list  (Ctrl+B)");
+    backButton->setStyleSheet(R"(
+        #backBtn {
+            background: transparent;
+            color: #555;
+            border: none;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            padding: 6px 10px 6px 6px;
+        }
+        #backBtn:hover {
+            color: #aaa;
+        }
+    )");
+
+    // Separator after back button
+    auto *backSep = new QFrame;
+    backSep->setFrameShape(QFrame::VLine);
+    backSep->setStyleSheet("color: #252525;");
 
     // Language Selector ComboBox
     languageCombo = new QComboBox;
@@ -212,75 +241,98 @@ void MainWindow::setupEditorPage()
 
     // Language availability indicator
     langIndicator = new QLabel;
-    langIndicator->setStyleSheet("color: #5c5; font-size: 14px;");
+    langIndicator->setStyleSheet("color: #5c5; font-size: 12px;");
+
+    // Problem title label (center of toolbar)
+    problemTitleLabel = new QLabel;
+    problemTitleLabel->setObjectName("problemTitleLabel");
+    problemTitleLabel->setAlignment(Qt::AlignCenter);
+    problemTitleLabel->setStyleSheet(R"(
+        #problemTitleLabel {
+            color: #888;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13px;
+            background: transparent;
+        }
+    )");
 
     // Cursor position label
     cursorPosLabel = new QLabel("Ln 1, Col 1");
     cursorPosLabel->setStyleSheet(R"(
-        color: #666;
-        font-size: 12px;
-        padding: 0 10px;
+        color: #555;
+        font-family: 'Consolas', monospace;
+        font-size: 11px;
+        padding: 0 8px;
     )");
 
+    toolbarLayout->addWidget(backButton);
+    toolbarLayout->addWidget(backSep);
     toolbarLayout->addWidget(languageCombo);
     toolbarLayout->addWidget(langIndicator);
+    toolbarLayout->addStretch();
+    toolbarLayout->addWidget(problemTitleLabel);
     toolbarLayout->addStretch();
     toolbarLayout->addWidget(cursorPosLabel);
 
     // Separator
     auto *separator = new QFrame;
     separator->setFrameShape(QFrame::VLine);
-    separator->setStyleSheet("color: #333;");
+    separator->setStyleSheet("color: #252525;");
     toolbarLayout->addWidget(separator);
 
-    // Run button
-    runButton = new QPushButton("▶ Run");
+    // Run button — styled as primary green action
+    runButton = new QPushButton("▶  Run");
     runButton->setObjectName("runBtn");
     runButton->setCursor(Qt::PointingHandCursor);
+    runButton->setToolTip("Run current test case  (Ctrl+Enter)");
     runButton->setStyleSheet(R"(
         #runBtn {
-            background: transparent;
-            color: #8b949e;
-            border: 1px solid #3a3a3a;
-            border-radius: 5px;
-            padding: 7px 18px;
-            font-size: 13px;
-            font-weight: 500;
+            background: #1a6330;
+            color: #d4f5de;
+            border: 1px solid #2ea043;
+            border-radius: 4px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Segoe UI', sans-serif;
         }
         #runBtn:hover {
-            background: #2a2a2a;
+            background: #238636;
             color: #fff;
-            border-color: #4a4a4a;
+            border-color: #3fb950;
         }
         #runBtn:pressed {
-            background: #333;
+            background: #145523;
         }
         #runBtn:disabled {
-            color: #555;
-            border-color: #2a2a2a;
+            background: #0e2e1a;
+            color: #3a5a3a;
+            border-color: #1a3a1a;
         }
     )");
 
     // Stop button
-    stopButton = new QPushButton("■ Stop");
+    stopButton = new QPushButton("■  Stop");
     stopButton->setObjectName("stopBtn");
     stopButton->setCursor(Qt::PointingHandCursor);
     stopButton->setVisible(false);
+    stopButton->setToolTip("Stop execution  (Esc)");
     stopButton->setStyleSheet(R"(
         #stopBtn {
-            background: #c53030;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 7px 18px;
-            font-size: 13px;
-            font-weight: 500;
+            background: #6b1a1a;
+            color: #fca5a5;
+            border: 1px solid #c53030;
+            border-radius: 4px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 600;
         }
         #stopBtn:hover {
-            background: #e53e3e;
+            background: #9b2c2c;
+            color: #fff;
         }
         #stopBtn:pressed {
-            background: #9b2c2c;
+            background: #4a0f0f;
         }
     )");
 
@@ -288,25 +340,29 @@ void MainWindow::setupEditorPage()
     submitButton = new QPushButton("Submit");
     submitButton->setObjectName("submitBtn");
     submitButton->setCursor(Qt::PointingHandCursor);
+    submitButton->setToolTip("Run ALL test cases  (Ctrl+Shift+Enter)");
     submitButton->setStyleSheet(R"(
         #submitBtn {
-            background: #238636;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 7px 18px;
-            font-size: 13px;
+            background: transparent;
+            color: #58a6ff;
+            border: 1px solid #1f3a5c;
+            border-radius: 4px;
+            padding: 6px 18px;
+            font-size: 12px;
             font-weight: 600;
+            font-family: 'Segoe UI', sans-serif;
         }
         #submitBtn:hover {
-            background: #2ea043;
+            background: #1f3a5c;
+            color: #fff;
+            border-color: #58a6ff;
         }
         #submitBtn:pressed {
-            background: #1a7f37;
+            background: #0d2442;
         }
         #submitBtn:disabled {
-            background: #1a4d23;
-            color: #888;
+            color: #2a4a6a;
+            border-color: #1a2a3a;
         }
     )");
 
@@ -397,6 +453,8 @@ void MainWindow::setupConnections()
             this, &MainWindow::onStopExecution);
     connect(submitButton, &QPushButton::clicked,
             this, &MainWindow::onRunAllTests);
+    connect(backButton, &QPushButton::clicked,
+            this, &MainWindow::onNavigateToBrowser);
 
     // Language selection
     connect(languageCombo, QOverload<int>::of(&QComboBox::activated),
@@ -583,6 +641,18 @@ void MainWindow::onNavigateToEditor(const QString &path)
         return;
     }
 
+    // Update the problem title in the toolbar
+    problemTitleLabel->setText(m_currentProblemId);
+    problemTitleLabel->setStyleSheet(R"(
+        #problemTitleLabel {
+            color: #ccc;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13px;
+            background: transparent;
+            font-weight: 500;
+        }
+    )");
+
     // Reset test results
     testCasePanel->clearAllResults();
 
@@ -627,6 +697,7 @@ void MainWindow::onNavigateToBrowser()
 
     m_currentProblemPath.clear();
     m_currentProblemId.clear();
+    problemTitleLabel->setText("");
     stack->setCurrentWidget(browserPage);
 }
 

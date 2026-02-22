@@ -112,12 +112,14 @@ private:
     TestCasePanel *testCasePanel = nullptr;
 
     // ─── Toolbar ───
-    QComboBox *languageCombo = nullptr;
-    QLabel *langIndicator = nullptr;
-    QLabel *cursorPosLabel = nullptr;
-    QPushButton *runButton = nullptr;
-    QPushButton *stopButton = nullptr;
-    QPushButton *submitButton = nullptr;
+    QComboBox  *languageCombo      = nullptr;
+    QLabel     *langIndicator      = nullptr;
+    QLabel     *cursorPosLabel     = nullptr;
+    QLabel     *problemTitleLabel  = nullptr;
+    QPushButton *backButton        = nullptr;
+    QPushButton *runButton         = nullptr;
+    QPushButton *stopButton        = nullptr;
+    QPushButton *submitButton      = nullptr;
 
     // ─── Sidebar ───
     HoverSidebar *sidebar = nullptr;

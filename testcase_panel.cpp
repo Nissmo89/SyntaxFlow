@@ -4,6 +4,7 @@
 #include <QScrollArea>
 #include <QFrame>
 #include <QStyle>
+#include <QTimer>
 
 TestCasePanel::TestCasePanel(QWidget *parent)
     : QWidget(parent)
@@ -19,10 +20,10 @@ void TestCasePanel::buildUI()
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
 
-    // ─── Header: Testcase | Result tabs ───
+    // ─── Header: Testcase | Result tabs + summary ───
     headerWidget = new QWidget;
     headerWidget->setObjectName("header");
-    headerWidget->setFixedHeight(36);
+    headerWidget->setFixedHeight(38);
 
     auto *headerLayout = new QHBoxLayout(headerWidget);
     headerLayout->setContentsMargins(12, 0, 12, 0);
@@ -30,23 +31,27 @@ void TestCasePanel::buildUI()
 
     testcaseTab = new QPushButton("Testcase");
     testcaseTab->setObjectName("modeTab");
-    testcaseTab->setProperty("active", true);
     testcaseTab->setCursor(Qt::PointingHandCursor);
     testcaseTab->setCheckable(true);
     testcaseTab->setChecked(true);
 
     resultTab = new QPushButton("Result");
     resultTab->setObjectName("modeTab");
-    resultTab->setProperty("active", false);
     resultTab->setCursor(Qt::PointingHandCursor);
     resultTab->setCheckable(true);
 
     connect(testcaseTab, &QPushButton::clicked, this, &TestCasePanel::showTestcaseView);
-    connect(resultTab, &QPushButton::clicked, this, &TestCasePanel::showResultView);
+    connect(resultTab,   &QPushButton::clicked, this, &TestCasePanel::showResultView);
 
     headerLayout->addWidget(testcaseTab);
     headerLayout->addWidget(resultTab);
     headerLayout->addStretch();
+
+    // Summary chip (hidden by default, shown after running)
+    m_summaryLabel = new QLabel(this);
+    m_summaryLabel->setObjectName("summaryLabel");
+    m_summaryLabel->setVisible(false);
+    headerLayout->addWidget(m_summaryLabel);
 
     // ─── Case Tab Bar ───
     caseTabBar = new QTabBar;
@@ -64,23 +69,23 @@ void TestCasePanel::buildUI()
     testcaseView->setObjectName("contentView");
     auto *testcaseLayout = new QVBoxLayout(testcaseView);
     testcaseLayout->setContentsMargins(16, 12, 16, 16);
-    testcaseLayout->setSpacing(12);
+    testcaseLayout->setSpacing(10);
 
-    // Input section
-    inputTitleLabel = new QLabel("Input =");
+    inputTitleLabel = new QLabel("Input");
     inputTitleLabel->setObjectName("fieldTitle");
 
     inputValueLabel = new QLabel;
     inputValueLabel->setObjectName("fieldValue");
+    inputValueLabel->setProperty("accent", "blue");
     inputValueLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     inputValueLabel->setWordWrap(false);
 
-    // Expected section
-    expectedTitleLabel = new QLabel("Expected =");
+    expectedTitleLabel = new QLabel("Expected Output");
     expectedTitleLabel->setObjectName("fieldTitle");
 
     expectedValueLabel = new QLabel;
-    expectedValueLabel->setObjectName("fieldValueExpected");
+    expectedValueLabel->setObjectName("fieldValue");
+    expectedValueLabel->setProperty("accent", "green");
     expectedValueLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
     testcaseLayout->addWidget(inputTitleLabel);
@@ -97,28 +102,32 @@ void TestCasePanel::buildUI()
     resultLayout->setContentsMargins(16, 12, 16, 16);
     resultLayout->setSpacing(10);
 
-    // Status
+    // Status bar area
+    auto *statusRow = new QHBoxLayout;
+    statusRow->setContentsMargins(0, 0, 0, 0);
     resultStatusLabel = new QLabel;
     resultStatusLabel->setObjectName("resultStatus");
+    statusRow->addWidget(resultStatusLabel);
+    statusRow->addStretch();
 
-    // Output
-    outputTitleLabel = new QLabel("Output =");
+    outputTitleLabel = new QLabel("Your Output");
     outputTitleLabel->setObjectName("fieldTitle");
 
     outputValueLabel = new QLabel;
     outputValueLabel->setObjectName("fieldValue");
+    outputValueLabel->setProperty("accent", "blue");
     outputValueLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
-    // Expected
-    expectedResultTitleLabel = new QLabel("Expected =");
+    expectedResultTitleLabel = new QLabel("Expected Output");
     expectedResultTitleLabel->setObjectName("fieldTitle");
 
     expectedResultValueLabel = new QLabel;
-    expectedResultValueLabel->setObjectName("fieldValueExpected");
+    expectedResultValueLabel->setObjectName("fieldValue");
+    expectedResultValueLabel->setProperty("accent", "green");
     expectedResultValueLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
-    resultLayout->addWidget(resultStatusLabel);
-    resultLayout->addSpacing(6);
+    resultLayout->addLayout(statusRow);
+    resultLayout->addSpacing(4);
     resultLayout->addWidget(outputTitleLabel);
     resultLayout->addWidget(outputValueLabel);
     resultLayout->addSpacing(4);
@@ -140,123 +149,141 @@ void TestCasePanel::buildUI()
     mainLayout->addWidget(headerWidget);
     mainLayout->addWidget(caseTabBar);
     mainLayout->addWidget(scrollArea, 1);
+
+    // Running pulse timer
+    m_pulseTimer = new QTimer(this);
+    m_pulseTimer->setInterval(600);
+    connect(m_pulseTimer, &QTimer::timeout, this, [this]() {
+        m_pulseBright = !m_pulseBright;
+        if (m_isRunning) {
+            resultStatusLabel->setStyleSheet(m_pulseBright
+                ? "color: #ffc01e; font-size: 14px; font-weight: 600;"
+                : "color: #886800; font-size: 14px; font-weight: 600;");
+        }
+    });
 }
 
 QString TestCasePanel::buildStyleSheet()
 {
     return R"(
         #testCasePanel {
-            background: #1a1a1a;
-            border-top: 1px solid #333;
+            background: #161616;
+            border-top: 1px solid #252525;
         }
 
         #header {
-            background: #1a1a1a;
-            border-bottom: 1px solid #2a2a2a;
+            background: #161616;
+            border-bottom: 1px solid #222;
         }
 
+        /* Mode tabs: Testcase / Result */
         #modeTab {
             background: transparent;
             border: none;
-            color: #666;
+            border-bottom: 2px solid transparent;
+            color: #555;
             font-size: 13px;
             font-weight: 500;
             padding: 8px 16px;
+            margin-right: 2px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        #modeTab:hover {
+            color: #888;
+        }
+        #modeTab:checked {
+            color: #e8e8e8;
+            border-bottom: 2px solid #58a6ff;
+        }
+
+        /* Summary chip */
+        #summaryLabel {
+            font-family: 'Consolas', monospace;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 3px;
             margin-right: 4px;
         }
 
-        #modeTab:hover {
-            color: #999;
+        /* Case tab bar */
+        QTabBar#caseTabBar {
+            background: #161616;
+            border-bottom: 1px solid #222;
         }
-
-        #modeTab:checked {
-            color: #fff;
-        }
-
-        #caseTabBar {
-            background: #1a1a1a;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        #caseTabBar::tab {
+        QTabBar#caseTabBar::tab {
             background: transparent;
-            color: #666;
+            color: #555;
             border: none;
-            padding: 8px 16px;
-            margin: 0 2px;
+            border-bottom: 2px solid transparent;
+            padding: 7px 16px;
+            margin: 0 1px;
             font-size: 12px;
+            font-family: 'Consolas', monospace;
         }
-
-        #caseTabBar::tab:selected {
-            color: #fff;
-            background: #2a2a2a;
-            border-radius: 4px 4px 0 0;
+        QTabBar#caseTabBar::tab:selected {
+            color: #ccc;
+            border-bottom: 2px solid #3a3a3a;
         }
-
-        #caseTabBar::tab:hover:!selected {
-            color: #999;
+        QTabBar#caseTabBar::tab:hover:!selected {
+            color: #888;
         }
 
         #contentView {
-            background: #1a1a1a;
+            background: #161616;
         }
-
         #contentStack {
-            background: #1a1a1a;
+            background: #161616;
         }
-
         QScrollArea#contentScrollArea {
-            background: #1a1a1a;
+            background: #161616;
             border: none;
         }
 
+        /* Section label above each code box */
         #fieldTitle {
-            color: #666;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        #fieldValue {
-            color: #79c0ff;
-            font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
-            font-size: 13px;
-            line-height: 1.5;
-            background: #0d0d0d;
-            padding: 10px 12px;
-            border-radius: 6px;
-        }
-
-        #fieldValueExpected {
-            color: #7ee787;
-            font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
-            font-size: 13px;
-            line-height: 1.5;
-            background: #0d0d0d;
-            padding: 10px 12px;
-            border-radius: 6px;
-        }
-
-        #resultStatus {
-            font-size: 14px;
+            color: #555;
+            font-size: 11px;
             font-weight: 600;
-            padding: 8px 0;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 0 2px;
+            background: transparent;
         }
 
-        #resultStatus[status="passed"] {
+        /* Code boxes */
+        #fieldValue {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 13px;
+            background: #0d0d0d;
+            padding: 10px 14px;
+            border-radius: 5px;
+            border: 1px solid #252525;
+        }
+        #fieldValue[accent="blue"] {
+            color: #79c0ff;
+            border-left: 3px solid #1d4e7e;
+        }
+        #fieldValue[accent="green"] {
             color: #7ee787;
+            border-left: 3px solid #1a5c2a;
         }
-
-        #resultStatus[status="failed"] {
+        #fieldValue[accent="red"] {
             color: #f85149;
+            border-left: 3px solid #6b1a1a;
         }
 
-        #resultStatus[status="running"] {
-            color: #d29922;
+        /* Result status label */
+        #resultStatus {
+            font-size: 15px;
+            font-weight: 700;
+            padding: 4px 0;
+            font-family: 'Segoe UI', sans-serif;
         }
-
-        #resultStatus[status="pending"] {
-            color: #666;
-        }
+        #resultStatus[status="passed"] { color: #7ee787; }
+        #resultStatus[status="failed"]  { color: #f85149; }
+        #resultStatus[status="running"] { color: #ffc01e; }
+        #resultStatus[status="pending"] { color: #555; }
     )";
 }
 
@@ -290,7 +317,6 @@ void TestCasePanel::updateContent(int index)
 
     const TestCaseData &data = testCaseData[index];
 
-    // Format text for display (convert \n to visual line breaks)
     auto formatCode = [](const QString &text) -> QString {
         QString html = text;
         html.replace("&", "&amp;");
@@ -301,42 +327,52 @@ void TestCasePanel::updateContent(int index)
         return QString("<div style='white-space:pre;'>%1</div>").arg(html);
     };
 
-    // Update testcase view
     inputValueLabel->setText(formatCode(data.input));
     inputValueLabel->setTextFormat(Qt::RichText);
 
     expectedValueLabel->setText(formatCode(data.expectedOutput));
     expectedValueLabel->setTextFormat(Qt::RichText);
 
-    // Update result view
     expectedResultValueLabel->setText(formatCode(data.expectedOutput));
     expectedResultValueLabel->setTextFormat(Qt::RichText);
 
-    // Reset output style
-    outputValueLabel->setStyleSheet("");
+    // Reset output
+    outputValueLabel->setProperty("accent", "blue");
+    outputValueLabel->style()->unpolish(outputValueLabel);
+    outputValueLabel->style()->polish(outputValueLabel);
+
+    m_isRunning = false;
+    m_pulseTimer->stop();
 
     if (data.status == TestCaseData::Pending) {
         resultStatusLabel->setText("Click Run to see result");
         resultStatusLabel->setProperty("status", "pending");
         outputValueLabel->setText("—");
     } else if (data.status == TestCaseData::Running) {
-        resultStatusLabel->setText("⟳ Running...");
+        resultStatusLabel->setText("⟳  Running...");
         resultStatusLabel->setProperty("status", "running");
-        outputValueLabel->setText("...");
+        outputValueLabel->setText("…");
+        m_isRunning = true;
+        m_pulseTimer->start();
     } else if (data.status == TestCaseData::Passed) {
-        resultStatusLabel->setText("✓ Accepted");
+        resultStatusLabel->setText("✓  Accepted");
         resultStatusLabel->setProperty("status", "passed");
+        outputValueLabel->setProperty("accent", "green");
+        outputValueLabel->style()->unpolish(outputValueLabel);
+        outputValueLabel->style()->polish(outputValueLabel);
         outputValueLabel->setText(formatCode(data.actualOutput));
         outputValueLabel->setTextFormat(Qt::RichText);
     } else {
-        resultStatusLabel->setText("✗ Wrong Answer");
+        resultStatusLabel->setText("✗  Wrong Answer");
         resultStatusLabel->setProperty("status", "failed");
+        outputValueLabel->setProperty("accent", "red");
+        outputValueLabel->style()->unpolish(outputValueLabel);
+        outputValueLabel->style()->polish(outputValueLabel);
         outputValueLabel->setText(formatCode(data.actualOutput));
         outputValueLabel->setTextFormat(Qt::RichText);
-        outputValueLabel->setStyleSheet("#fieldValue { color: #f85149; }");
     }
 
-    // Refresh styles
+    // Refresh status label style
     resultStatusLabel->style()->unpolish(resultStatusLabel);
     resultStatusLabel->style()->polish(resultStatusLabel);
 }
@@ -350,13 +386,12 @@ void TestCasePanel::loadTestCases(const QJsonArray &testCases)
         QJsonObject testCase = tc.toObject();
 
         TestCaseData data;
-        data.input = testCase["input"].toString();
+        data.input          = testCase["input"].toString();
         data.expectedOutput = testCase["output"].toString();
-        data.status = TestCaseData::Pending;
+        data.status         = TestCaseData::Pending;
 
         testCaseData[caseNum] = data;
         caseTabBar->addTab(QString("Case %1").arg(caseNum + 1));
-
         caseNum++;
     }
 
@@ -364,13 +399,14 @@ void TestCasePanel::loadTestCases(const QJsonArray &testCases)
         caseTabBar->setCurrentIndex(0);
         updateContent(0);
     }
+
+    m_summaryLabel->setVisible(false);
 }
 
 void TestCasePanel::clearTestCases()
 {
-    while (caseTabBar->count() > 0) {
+    while (caseTabBar->count() > 0)
         caseTabBar->removeTab(0);
-    }
     testCaseData.clear();
     currentCaseIndex = 0;
 }
@@ -382,19 +418,22 @@ void TestCasePanel::setTestResult(int caseIndex, const QString &actualOutput, bo
     testCaseData[caseIndex].actualOutput = actualOutput;
     testCaseData[caseIndex].status = passed ? TestCaseData::Passed : TestCaseData::Failed;
 
-    // Update tab text with status
+    // Update tab label
     QString tabText = passed
-                          ? QString("✓ Case %1").arg(caseIndex + 1)
-                          : QString("✗ Case %1").arg(caseIndex + 1);
+        ? QString("✓ Case %1").arg(caseIndex + 1)
+        : QString("✗ Case %1").arg(caseIndex + 1);
     caseTabBar->setTabText(caseIndex, tabText);
 
-    // If viewing this case, update display
+    // Color the tab
+    caseTabBar->setTabTextColor(caseIndex,
+        passed ? QColor("#7ee787") : QColor("#f85149"));
+
     if (caseIndex == currentCaseIndex) {
         updateContent(caseIndex);
     }
 
-    // Auto-switch to Result view
     showResultView();
+    updateSummary();
 }
 
 void TestCasePanel::setTestRunning(int caseIndex)
@@ -404,11 +443,11 @@ void TestCasePanel::setTestRunning(int caseIndex)
     testCaseData[caseIndex].status = TestCaseData::Running;
     testCaseData[caseIndex].actualOutput.clear();
     caseTabBar->setTabText(caseIndex, QString("◌ Case %1").arg(caseIndex + 1));
+    caseTabBar->setTabTextColor(caseIndex, QColor("#ffc01e"));
 
     if (caseIndex == currentCaseIndex) {
         updateContent(caseIndex);
     }
-
     showResultView();
 }
 
@@ -418,8 +457,11 @@ void TestCasePanel::clearAllResults()
         testCaseData[i].actualOutput.clear();
         testCaseData[i].status = TestCaseData::Pending;
         caseTabBar->setTabText(i, QString("Case %1").arg(i + 1));
+        caseTabBar->setTabTextColor(i, QColor("#555"));
     }
-
+    m_summaryLabel->setVisible(false);
+    m_isRunning = false;
+    m_pulseTimer->stop();
     updateContent(currentCaseIndex);
     showTestcaseView();
 }
@@ -431,9 +473,57 @@ void TestCasePanel::resetTestResult(int index)
     testCaseData[index].actualOutput.clear();
     testCaseData[index].status = TestCaseData::Pending;
     caseTabBar->setTabText(index, QString("Case %1").arg(index + 1));
+    caseTabBar->setTabTextColor(index, QColor("#555"));
 
     if (index == currentCaseIndex) {
         updateContent(index);
+    }
+}
+
+void TestCasePanel::updateSummary()
+{
+    int total  = testCaseData.size();
+    int passed = 0;
+    int done   = 0;
+
+    for (int i = 0; i < total; ++i) {
+        auto s = testCaseData[i].status;
+        if (s == TestCaseData::Passed)  { passed++; done++; }
+        if (s == TestCaseData::Failed)  { done++; }
+    }
+
+    if (done == 0) {
+        m_summaryLabel->setVisible(false);
+        return;
+    }
+
+    m_summaryLabel->setText(QString("%1 / %2 Passed").arg(passed).arg(total));
+    m_summaryLabel->setVisible(true);
+
+    if (passed == total) {
+        m_summaryLabel->setStyleSheet(R"(
+            #summaryLabel {
+                color: #7ee787;
+                background: rgba(46,160,67,18);
+                border: 1px solid rgba(46,160,67,50);
+                border-radius: 3px;
+                font-family: 'Consolas', monospace;
+                font-size: 11px;
+                padding: 3px 10px;
+            }
+        )");
+    } else {
+        m_summaryLabel->setStyleSheet(R"(
+            #summaryLabel {
+                color: #f85149;
+                background: rgba(248,81,73,12);
+                border: 1px solid rgba(248,81,73,40);
+                border-radius: 3px;
+                font-family: 'Consolas', monospace;
+                font-size: 11px;
+                padding: 3px 10px;
+            }
+        )");
     }
 }
 
@@ -454,8 +544,7 @@ TestCaseData TestCasePanel::getCurrentTestCase() const
 
 bool TestCasePanel::isTestPassed(int index) const
 {
-    if (testCaseData.contains(index)) {
+    if (testCaseData.contains(index))
         return testCaseData[index].status == TestCaseData::Passed;
-    }
     return false;
 }

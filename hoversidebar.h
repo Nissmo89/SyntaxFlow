@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QTimer>
 #include <QVector>
 
@@ -151,6 +153,8 @@ private:
     QVBoxLayout *m_navLayout = nullptr;
     QVector<NavButton*> m_navButtons;
     ProfileWidget *m_profile = nullptr;
+    QLabel *m_logoLabel    = nullptr;
+    QLabel *m_appNameLabel = nullptr;
 
     int m_selectedIndex = 0;
     int m_collapsedWidth = 60;

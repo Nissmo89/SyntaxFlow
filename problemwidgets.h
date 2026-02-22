@@ -14,6 +14,8 @@
 #include <QJsonObject>
 #include <QPainter>
 #include <QFrame>
+#include <QEvent>
+#include <QMouseEvent>
 
 struct ProblemData {
     QString id;
@@ -23,12 +25,12 @@ struct ProblemData {
     QStringList topics;
 
     // From user_progress.json
-    bool isSolved = false;
+    bool isSolved  = false;
     bool isStarred = false;
-    int attempts = 0;
+    int  attempts  = 0;
 };
 
-// A small widget for "Array", "DP" tags
+// A small chip for "Array", "DP" tags — color-coded by category
 class TagLabel : public QLabel {
 public:
     TagLabel(const QString &text, QWidget *parent = nullptr);
@@ -41,19 +43,20 @@ public:
     void updateSolvedState(bool solved);
     QLabel *statusLabel;
 
-
 signals:
     void openRequested(QString path);
 
 protected:
-    // We override paint to draw the "Difficulty Strip" on the left
     void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    bool event(QEvent *e) override;
 
 private:
     void setupUi(const ProblemData &data);
+    QString buildCardStyleSheet() const;
     QColor getDifficultyColor(const QString &diff);
     QColor difficultyColor;
-
+    ProblemData m_data;
 };
 
 class ProblemBrowser : public QWidget {
@@ -66,15 +69,18 @@ signals:
     void navigateToEditor(QString problemPath);
 
 private:
-    QVBoxLayout *listLayout;
-    QWidget *scrollContent;
+    void setupHeader();
+    void updateHeaderStats();
+
+    QVBoxLayout  *listLayout;
+    QWidget      *scrollContent;
+    QWidget      *m_headerWidget;
+    QLabel       *m_statsLabel;
     ProgressManager *progressManager;
-    QMap<QString, ProblemCard*> cardMap;   // 🔥 THIS
+    QMap<QString, ProblemCard*> cardMap;
 
 private slots:
     void onProgressChanged(const QString &problemId);
-
-
 };
 
 #endif // PROBLEMWIDGETS_H

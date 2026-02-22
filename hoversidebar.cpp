@@ -376,7 +376,39 @@ HoverSidebar::HoverSidebar(QWidget *parent)
 
     // Logo area
     auto *logoWidget = new QWidget(this);
-    logoWidget->setFixedHeight(40);
+    logoWidget->setFixedHeight(48);
+    auto *logoLayout = new QHBoxLayout(logoWidget);
+    logoLayout->setContentsMargins(8, 8, 8, 8);
+
+    m_logoLabel = new QLabel("SF", this);
+    m_logoLabel->setFixedSize(32, 32);
+    m_logoLabel->setAlignment(Qt::AlignCenter);
+    m_logoLabel->setStyleSheet(
+        "QLabel {"
+        "  background: qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+        "      stop:0 #1a5faa, stop:1 #0e3a6a);"
+        "  color: #fff;"
+        "  font-weight: 800;"
+        "  font-size: 12px;"
+        "  border-radius: 8px;"
+        "}"
+    );
+
+    m_appNameLabel = new QLabel("SyntaxFlow", this);
+    m_appNameLabel->setStyleSheet(
+        "QLabel {"
+        "  color: #ddd;"
+        "  font-size: 13px;"
+        "  font-weight: 700;"
+        "  font-family: 'Segoe UI', sans-serif;"
+        "  background: transparent;"
+        "}"
+    );
+    m_appNameLabel->setVisible(false);
+
+    logoLayout->addWidget(m_logoLabel);
+    logoLayout->addWidget(m_appNameLabel);
+    logoLayout->addStretch();
     m_mainLayout->addWidget(logoWidget);
 
     // Main section label
@@ -390,22 +422,14 @@ HoverSidebar::HoverSidebar(QWidget *parent)
     m_navLayout->setContentsMargins(0, 0, 0, 0);
     m_mainLayout->addWidget(navContainer);
 
-    // Create navigation buttons
-    auto *btnExplorer = new NavButton("📁", "Explorer", this);
-    auto *btnSearch = new NavButton("🔍", "Search", this);
-    auto *btnGit = new NavButton("⌥", "Source Control", this);
-    btnGit->setBadge(3);
-    auto *btnDebug = new NavButton("▶", "Run & Debug", this);
-    auto *btnExtensions = new NavButton("⊞", "Extensions", this);
-    btnExtensions->setBadge(5);
+    // App-relevant navigation buttons
+    auto *btnProblems = new NavButton("[P]", "Problems", this);
+    auto *btnEditor   = new NavButton("[E]", "Editor",   this);
 
-    addNavButton(btnExplorer);
-    addNavButton(btnSearch);
-    addNavButton(btnGit);
-    addNavButton(btnDebug);
-    addNavButton(btnExtensions);
+    addNavButton(btnProblems);
+    addNavButton(btnEditor);
 
-    // Set first as selected
+    // Set Problems as selected by default
     setSelectedIndex(0);
 
     // Spacer
@@ -427,8 +451,7 @@ HoverSidebar::HoverSidebar(QWidget *parent)
 
     // Profile
     m_profile = new ProfileWidget(this);
-    m_profile->setUserName("John Developer");
-    m_profile->setUserEmail("john@company.dev");
+    m_profile->setUserName("Developer");
     m_mainLayout->addWidget(m_profile);
 
     // Initial collapsed state
@@ -489,6 +512,7 @@ void HoverSidebar::updateChildStates(bool collapsed)
         btn->setCollapsed(collapsed);
     }
     m_profile->setCollapsed(collapsed);
+    if (m_appNameLabel) m_appNameLabel->setVisible(!collapsed);
 
     // Update section labels
     for (int i = 0; i < m_mainLayout->count(); ++i) {

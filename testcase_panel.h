@@ -10,6 +10,7 @@
 #include <QJsonObject>
 #include <QVBoxLayout>
 #include <QMap>
+#include <QTimer>
 
 struct TestCaseData {
     QString input;
@@ -46,6 +47,7 @@ signals:
     void submitRequested();
 
 private slots:
+    void updateSummary();
     void onTabChanged(int index);
 
 private:
@@ -63,6 +65,12 @@ private:
     QWidget *headerWidget;
     QPushButton *testcaseTab;
     QPushButton *resultTab;
+    QLabel *m_summaryLabel = nullptr;
+
+    // Running animation
+    QTimer *m_pulseTimer   = nullptr;
+    bool m_isRunning       = false;
+    bool m_pulseBright     = true;
 
     // Case tabs
     QTabBar *caseTabBar;
