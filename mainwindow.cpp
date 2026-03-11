@@ -410,14 +410,13 @@ void MainWindow::setupEditorPage()
 
     // Test Case Panel
     testCasePanel = new TestCasePanel(this);
-    testCasePanel->setMinimumHeight(100);
 
     // ─── Assemble Right Splitter ───
     rightVerticalSplitter->addWidget(editorContainer);
     rightVerticalSplitter->addWidget(testCasePanel);
-    rightVerticalSplitter->setSizes({450, 200});
-    rightVerticalSplitter->setStretchFactor(0, 1);
-    rightVerticalSplitter->setStretchFactor(1, 0);
+    rightVerticalSplitter->setStretchFactor(0, 1);  // editor stretches
+    rightVerticalSplitter->setStretchFactor(1, 0);  // panel stays at preferred size
+    rightVerticalSplitter->setCollapsible(1, false); // never collapse the test panel
 
     // ─── Assemble Main Splitter ───
     mainHorizontalSplitter->addWidget(problemPanel);

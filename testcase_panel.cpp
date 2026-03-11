@@ -11,7 +11,23 @@ TestCasePanel::TestCasePanel(QWidget *parent)
 {
     setObjectName("testCasePanel");
     setStyleSheet(buildStyleSheet());
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     buildUI();
+}
+
+QSize TestCasePanel::sizeHint() const
+{
+    // Header (38) + caseTabBar + current content view's natural height
+    int h = 38; // header fixed height
+    if (caseTabBar)
+        h += caseTabBar->sizeHint().height();
+
+    // Get the currently visible content widget's ideal height
+    QWidget *visibleContent = contentStack->currentWidget();
+    if (visibleContent)
+        h += visibleContent->sizeHint().height();
+
+    return QSize(QWidget::sizeHint().width(), h);
 }
 
 void TestCasePanel::buildUI()
@@ -93,7 +109,6 @@ void TestCasePanel::buildUI()
     testcaseLayout->addSpacing(4);
     testcaseLayout->addWidget(expectedTitleLabel);
     testcaseLayout->addWidget(expectedValueLabel);
-    testcaseLayout->addStretch();
 
     // ─── Result View ───
     resultView = new QWidget;
@@ -133,7 +148,6 @@ void TestCasePanel::buildUI()
     resultLayout->addSpacing(4);
     resultLayout->addWidget(expectedResultTitleLabel);
     resultLayout->addWidget(expectedResultValueLabel);
-    resultLayout->addStretch();
 
     contentStack->addWidget(testcaseView);
     contentStack->addWidget(resultView);
@@ -144,6 +158,7 @@ void TestCasePanel::buildUI()
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(contentStack);
+
 
     // ─── Assemble ───
     mainLayout->addWidget(headerWidget);
@@ -401,6 +416,7 @@ void TestCasePanel::loadTestCases(const QJsonArray &testCases)
     }
 
     m_summaryLabel->setVisible(false);
+    updateGeometry();
 }
 
 void TestCasePanel::clearTestCases()
@@ -434,6 +450,7 @@ void TestCasePanel::setTestResult(int caseIndex, const QString &actualOutput, bo
 
     showResultView();
     updateSummary();
+    updateGeometry();
 }
 
 void TestCasePanel::setTestRunning(int caseIndex)

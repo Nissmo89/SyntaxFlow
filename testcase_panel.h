@@ -28,6 +28,8 @@ class TestCasePanel : public QWidget {
 public:
     explicit TestCasePanel(QWidget *parent = nullptr);
 
+    QSize sizeHint() const override;
+
     void loadTestCases(const QJsonArray &testCases);
     void clearTestCases();
 

@@ -212,7 +212,7 @@ void ProblemCard::setupUi(const ProblemData &data)
     // ── RIGHT: solved check circle, vertically centered ──
     statusLabel = new QLabel(this);
     statusLabel->setObjectName("Status");
-    statusLabel->setFixedSize(22, 22);
+    statusLabel->setFixedSize(24, 24);
     statusLabel->setAlignment(Qt::AlignCenter);
     updateSolvedState(data.isSolved);
 
@@ -224,14 +224,23 @@ void ProblemCard::setupUi(const ProblemData &data)
 void ProblemCard::updateSolvedState(bool solved)
 {
     if (solved) {
-        statusLabel->setText("✓");
+        statusLabel->setText(" ✓ Solved");
+        QFontMetrics fm(statusLabel->font());
+        int textWidth = fm.horizontalAdvance(statusLabel->text());
+        statusLabel->setFixedSize(textWidth+11, 22);
         statusLabel->setStyleSheet(R"(
             QLabel#Status {
-                color: #fff;
-                font-size: 13px;
-                font-weight: bold;
-                background: #2cbb5d;
-                border-radius: 11px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background-color: hsla(90, 80%, 60%, 0.15);
+            color: hsl(90, 80%, 70%);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid hsla(90, 80%, 60%, 0.15);
             }
         )");
     } else {

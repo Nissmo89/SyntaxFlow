@@ -1324,21 +1324,16 @@ QString CodeEditor::getCommentPrefix() const {
 
 void CodeEditor::lockBackground() {
     long scBg = toScintillaColor(m_theme.background);
+    long scFg = toScintillaColor(m_theme.foreground); // ADD
 
-    // Force all default styles to use our background
     for (int i = 0; i <= 255; ++i) {
         SendScintilla(SCI_STYLESETBACK, i, scBg);
+        SendScintilla(SCI_STYLESETFORE, i, scFg);     // ADD — no more white fallback
     }
 
-    // Also set specific areas
     SendScintilla(SCI_STYLESETBACK, STYLE_DEFAULT, scBg);
+    SendScintilla(SCI_STYLESETFORE, STYLE_DEFAULT, scFg); // ADD
     SendScintilla(SCI_STYLESETBACK, STYLE_LINENUMBER, toScintillaColor(m_theme.marginBackground));
-
-
-
-
-
-
 }
 
 long CodeEditor::toScintillaColor(const QColor &color) {
