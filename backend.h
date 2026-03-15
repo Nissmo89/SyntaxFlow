@@ -2,63 +2,77 @@
 #define BACKEND_H
 
 #include <QObject>
-#include "language_config.h"
+#include <QProcess>
+#include <QStringList>
+#include "language_registry.h"
 
-class LanguageRegistry;
 class CodeRunner;
 
-class Backend : public QObject {
+class Backend : public QObject
+{
     Q_OBJECT
 
 public:
     explicit Backend(QObject *parent = nullptr);
     ~Backend();
 
-    // Language info
+    // Existing methods...
     QStringList availableLanguages() const;
     QStringList allLanguages() const;
     LanguageConfig getLanguageConfig(const QString &id) const;
     QString getTemplate(const QString &languageId) const;
     bool isLanguageAvailable(const QString &id) const;
-
-    // State
     bool isRunning() const;
 
-public slots:
-    // Execution
-    void runCode(const QString &code, const QString &languageId, const QString &problemPath);
+    void runCode(const QString &code, const QString &languageId, const QString &problemId);
     void runTestCase(const QString &code, const QString &languageId,
-                     int testIndex, const QString &problemPath);
+                     int testIndex, const QString &problemId);
     void stopExecution();
-
-    // Test cases
     void requestTestCases(const QString &problemId);
 
-    // Language management
     bool addLanguage(const LanguageConfig &config);
     bool removeLanguage(const QString &id);
     void reloadLanguages();
     void openConfigDirectory();
 
+    // ═══════════════════════════════════════════════════════════════════
+    // NEW: For Code Labs free execution
+    // ═══════════════════════════════════════════════════════════════════
+    void runFreeCode(const QString &code, const QString &languageId);
+
 signals:
-    // Execution results
-    void testResult(int testIndex, const QString &status, const QString &output,
-                    const QString &expected, qint64 timeMs);
+    // Existing signals
+    void testResult(int testIndex, const QString &status,
+                    const QString &output, const QString &expected, qint64 timeMs);
     void compilationError(const QString &error);
     void systemError(const QString &error);
     void executionStarted();
     void executionFinished();
+    void languagesChanged();
+    void testCasesReady(const QJsonArray &testCases);
     void progress(int current, int total);
 
-    // Data
-    void testCasesReady(const QJsonArray &testCases);
+    // ═══════════════════════════════════════════════════════════════════
+    // NEW: Signals for interactive I/O (Code Labs)
+    // ═══════════════════════════════════════════════════════════════════
+    void outputReceived(const QString &output);
+    void errorReceived(const QString &error);
+    void programFinished(int exitCode, qint64 elapsedMs);
 
-    // Config
-    void languagesChanged();
+public slots:
+    // ═══════════════════════════════════════════════════════════════════
+    // NEW: Send input to running process
+    // ═══════════════════════════════════════════════════════════════════
+    void sendInput(const QString &input);
 
 private:
     LanguageRegistry *m_registry;
     CodeRunner *m_runner;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // NEW: For free execution process management
+    // ═══════════════════════════════════════════════════════════════════
+    QProcess *m_currentProcess = nullptr;
 };
 
 #endif // BACKEND_H

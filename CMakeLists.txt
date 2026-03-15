@@ -77,6 +77,9 @@ add_executable(SyntaxFlow
     output_normalizer.h
     progressmanager.h progressmanager.cpp
     tcc_compiler.h tcc_compiler.cpp
+    lab_manager.h lab_manager.cpp
+    lab_browser.h lab_browser.cpp
+    output_panel.h output_panel.cpp
 )
 
 # ---- Link Qt BEFORE QScintilla ----

@@ -335,69 +335,42 @@ EditorTheme EditorTheme::githubDark() {
 CodeEditor::CodeEditor(QWidget *parent)
     : QsciScintilla(parent)
 {
-    // --- Bracket Pair Coloring Setup ---
-    // m_bracketColors << QColor("#ffff00")    // Yellow
-    //                 << QColor("#DA70D6")   // Purple
-    //                 << QColor("#1E90FF"); // Blue
-
     // Set default theme
     m_theme = EditorTheme::tokyoNight();
 
-    // Initialize
+    // ── Core setup (no timers, no language yet) ───────────────────────
     setupEditor();
     createLexers();
     setupMargins();
     setupFolding();
     setupIndicators();
     setupShortcuts();
-    setupBracketIndicators(); // this is important
 
-
-    // Apply default language
-    // setLanguage("cpp");
-
-    highlightVisibleBrackets();
-
-
-    // Debounced color block update
-    // m_colorBlockTimer = new QTimer(this);
-    // m_colorBlockTimer->setSingleShot(true);
-    // m_colorBlockTimer->setInterval(150);
-    // connect(m_colorBlockTimer, &QTimer::timeout, this, &CodeEditor::updateColorBlocks);
-
-    // Connections
+    // ── Connections ───────────────────────────────────────────────────
     connect(this, &QsciScintilla::cursorPositionChanged,
             this, &CodeEditor::onCursorPositionChanged);
     connect(this, &QsciScintilla::textChanged,
             this, &CodeEditor::onTextChanged);
 
-
-
-    // --- CONSOLIDATED DEBOUNCE TIMER ---
-    // A single timer for all idle processing (brackets, errors, etc.)
+    // ── Timers — create and CONNECT before anything starts them ───────
     m_idleProcessingTimer = new QTimer(this);
     m_idleProcessingTimer->setSingleShot(true);
-    m_idleProcessingTimer->setInterval(60); // 400ms delay
-    m_idleProcessingTimer->start();
+    m_idleProcessingTimer->setInterval(60);
+    connect(m_idleProcessingTimer, &QTimer::timeout,
+            this, &CodeEditor::onIdleTimeout);   // ← connected BEFORE start
 
-    setLanguage("cpp");  // calling here to prevent crash
+    m_highlightTimer = new QTimer(this);
+    m_highlightTimer->setSingleShot(true);
+    m_highlightTimer->setInterval(80);
+    connect(m_highlightTimer, &QTimer::timeout,
+            this, &CodeEditor::highlightVisibleBrackets);
 
+    // ── Language + bracket indicators (after timers are ready) ────────
+    setLanguage("cpp");
+    setupBracketIndicators();
 
-    connect(m_idleProcessingTimer, &QTimer::timeout, this, &CodeEditor::onIdleTimeout);
-
-
-    // Initial processing after a short delay
+    // ── Kick off first highlight after everything is initialized ──────
     QTimer::singleShot(50, this, &CodeEditor::scheduleIdleProcessing);
-
-
-
-
-
-
-
-    // this->registerExtraKeywords("Python", 1, {"myPyKeyword"});
-    // this->registerExtraKeywords("Java",1,{"myJavaKeyword"});
-
 }
 
 CodeEditor::~CodeEditor() {
@@ -1324,16 +1297,27 @@ QString CodeEditor::getCommentPrefix() const {
 
 void CodeEditor::lockBackground() {
     long scBg = toScintillaColor(m_theme.background);
-    long scFg = toScintillaColor(m_theme.foreground); // ADD
+    long scFg = toScintillaColor(m_theme.foreground);
 
+    // Lock BACKGROUND only across all styles — prevents white flicker
+    // Do NOT set foreground here, it would overwrite lexer syntax colors
     for (int i = 0; i <= 255; ++i) {
         SendScintilla(SCI_STYLESETBACK, i, scBg);
-        SendScintilla(SCI_STYLESETFORE, i, scFg);     // ADD — no more white fallback
     }
 
-    SendScintilla(SCI_STYLESETBACK, STYLE_DEFAULT, scBg);
-    SendScintilla(SCI_STYLESETFORE, STYLE_DEFAULT, scFg); // ADD
+    // Set foreground only on the true default/fallback styles
+    // These are the ones the lexer doesn't explicitly colorize
+    SendScintilla(SCI_STYLESETBACK, STYLE_DEFAULT,    scBg);
+    SendScintilla(SCI_STYLESETFORE, STYLE_DEFAULT,    scFg);
+
     SendScintilla(SCI_STYLESETBACK, STYLE_LINENUMBER, toScintillaColor(m_theme.marginBackground));
+    SendScintilla(SCI_STYLESETFORE, STYLE_LINENUMBER, toScintillaColor(m_theme.marginForeground));
+
+    // These fallback styles should also match the theme
+    SendScintilla(SCI_STYLESETBACK, STYLE_BRACELIGHT, scBg);
+    SendScintilla(SCI_STYLESETBACK, STYLE_BRACEBAD,   scBg);
+    SendScintilla(SCI_STYLESETBACK, STYLE_INDENTGUIDE,scBg);
+    SendScintilla(SCI_STYLESETBACK, STYLE_CALLTIP,    scBg);
 }
 
 long CodeEditor::toScintillaColor(const QColor &color) {

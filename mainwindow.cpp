@@ -19,6 +19,7 @@
 #include <QMessageBox>
 #include <QCoreApplication>
 #include <QDir>
+#include <qinputdialog.h>
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Constructor / Destructor
@@ -45,9 +46,15 @@ MainWindow::MainWindow(QWidget *parent)
                             QStandardPaths::AppDataLocation) + "/solutions/";
     QDir().mkpath(SolutionsBasePath);
 
+    QString labsDir = QStandardPaths::writableLocation(
+                          QStandardPaths::AppDataLocation) + "/labs/";
+    m_labManager = new LabManager(labsDir, this);
+
+
     // Setup
     setupBackend();
     setupUI();
+    setupLabPages();  // ADD THIS
     setupConnections();
     setupShortcuts();
     populateLanguages();
@@ -160,6 +167,8 @@ void MainWindow::setupEditorPage()
     auto *editorContainerLayout = new QVBoxLayout(editorContainer);
     editorContainerLayout->setContentsMargins(0, 0, 0, 0);
     editorContainerLayout->setSpacing(0);
+
+
 
     // ═══════════════════════════════════════════════════════════════════
     // Editor Toolbar
@@ -410,13 +419,19 @@ void MainWindow::setupEditorPage()
 
     // Test Case Panel
     testCasePanel = new TestCasePanel(this);
+    // Output Panel for Labs - ADD THIS
+    m_outputPanel = new OutputPanel(this);
+    m_outputPanel->setVisible(false);  // Hidden by default (only for labs)
 
     // ─── Assemble Right Splitter ───
     rightVerticalSplitter->addWidget(editorContainer);
     rightVerticalSplitter->addWidget(testCasePanel);
+    rightVerticalSplitter->addWidget(m_outputPanel);  // ADD THIS
     rightVerticalSplitter->setStretchFactor(0, 1);  // editor stretches
     rightVerticalSplitter->setStretchFactor(1, 0);  // panel stays at preferred size
+    rightVerticalSplitter->setStretchFactor(2, 0);  // ADD THIS
     rightVerticalSplitter->setCollapsible(1, false); // never collapse the test panel
+    rightVerticalSplitter->setCollapsible(2, false);  // ADD THIS
 
     // ─── Assemble Main Splitter ───
     mainHorizontalSplitter->addWidget(problemPanel);
@@ -429,10 +444,157 @@ void MainWindow::setupEditorPage()
     stack->addWidget(editorPage);
 }
 
+// Add this new method:
+void MainWindow::setupLabPages()
+{
+    // Lab Browser Page
+    labBrowserPage = new QWidget(this);
+    auto *browserLayout = new QVBoxLayout(labBrowserPage);
+    browserLayout->setContentsMargins(GlobalMargin, 0, 0, 0);
+
+    m_labBrowser = new LabBrowser(m_labManager, this);
+    browserLayout->addWidget(m_labBrowser);
+    stack->addWidget(labBrowserPage);
+
+    // Connect signals
+    connect(m_labBrowser, &LabBrowser::labSelected,
+            this, &MainWindow::onNavigateToLabEditor);
+    connect(m_labBrowser, &LabBrowser::createNewLab,
+            this, &MainWindow::onCreateNewLab);
+
+    // Lab Editor Page (reuse existing editor page)
+    // We'll switch between problem mode and lab mode dynamically
+}
+
+// Add these slot implementations:
+void MainWindow::onNavigateToLabBrowser()
+{
+    if (m_backend->isRunning()) m_backend->stopExecution();
+    m_currentLabId.clear();
+    sidebar->setSelectedIndex(1);   // ← keep sidebar in sync
+    stack->setCurrentWidget(labBrowserPage);
+}
+
+void MainWindow::onNavigateToLabEditor(const QString &labId)
+{
+    m_currentLabId = labId;
+    m_currentProblemId.clear();
+
+    CodeLab lab = m_labManager->loadLab(labId);
+    if (lab.id.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Failed to load lab");
+        return;
+    }
+
+    // Update UI for lab mode
+    problemPanel->setVisible(false);
+    testCasePanel->setVisible(false);      // Hide test panel
+    m_outputPanel->setVisible(true);       // SHOW output panel
+    m_outputPanel->clear();
+
+    problemTitleLabel->setText(lab.title);
+    backButton->setText("← Labs");
+
+    // Hide Submit button in lab mode
+    submitButton->setVisible(false);
+    runButton->setVisible(false);  // Use output panel's run button instead
+
+    // Set language
+    int langIndex = languageCombo->findData(lab.language);
+    if (langIndex >= 0) {
+        languageCombo->setCurrentIndex(langIndex);
+        codeEditor->setLanguage(lab.language);
+    }
+
+    // Load code
+    codeEditor->blockSignals(true);
+    codeEditor->setText(lab.code);
+    codeEditor->blockSignals(false);
+
+    // Adjust splitter for lab mode
+    mainHorizontalSplitter->setSizes({0, 1000});
+    rightVerticalSplitter->setSizes({600, 0, 300});  // Editor : Output
+
+    stack->setCurrentWidget(editorPage);
+    codeEditor->setFocus();
+}
+
+void MainWindow::onCreateNewLab()
+{
+    bool ok;
+    QString title = QInputDialog::getText(this, "New Lab",
+                                          "Lab name:", QLineEdit::Normal,
+                                          "Untitled Lab", &ok);
+    if (!ok || title.isEmpty()) {
+        return;
+    }
+
+    // Ask for language
+    QStringList languages = {"C++", "Python", "Java", "JavaScript"};
+    QString lang = QInputDialog::getItem(this, "Select Language",
+                                         "Language:", languages, 0, false, &ok);
+    if (!ok) {
+        return;
+    }
+
+    QString langId = lang.toLower().replace("++", "pp");
+
+    QString labId = m_labManager->createLab(title, langId);
+    if (labId.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Failed to create lab");
+        return;
+    }
+
+    // Load template
+    CodeLab lab = m_labManager->loadLab(labId);
+    lab.code = m_backend->getTemplate(langId);
+    m_labManager->saveLab(lab);
+
+    // Open in editor
+    onNavigateToLabEditor(labId);
+}
+
+void MainWindow::onSaveCurrentLab()
+{
+    if (m_currentLabId.isEmpty()) {
+        return;
+    }
+
+    CodeLab lab = m_labManager->loadLab(m_currentLabId);
+    lab.code = codeEditor->text();
+    lab.modified = QDateTime::currentDateTime();
+    m_labManager->saveLab(lab);
+}
+
+// Update sidebar to include Labs button:
 void MainWindow::setupSidebar()
 {
     sidebar = new HoverSidebar(this);
     sidebar->setGeometry(0, 0, 50, height());
+
+    // Add main nav items
+    sidebar->addNavItem("[P]", "Problems", QColor(80, 140, 220));
+    sidebar->addNavItem("[L]", "Labs",     QColor(80, 200, 140));
+
+    // Add bottom utility items
+    sidebar->addBottomItem("⚙", "Settings", QColor(160, 140, 200));
+
+    // Default selection
+    // sidebar->setSelectedIndex(0);
+
+    // Wire up navigation
+    connect(sidebar, &HoverSidebar::navigationChanged, this, [this](int index) {
+        switch (index) {
+        case 0: onNavigateToBrowser();    break;
+        case 1: onNavigateToLabBrowser(); break;
+        }
+    });
+
+    connect(sidebar, &HoverSidebar::bottomItemClicked, this, [this](int index) {
+        switch (index) {
+        case 0: /* open settings */ break;
+        }
+    });
 }
 
 void MainWindow::setupConnections()
@@ -452,8 +614,15 @@ void MainWindow::setupConnections()
             this, &MainWindow::onStopExecution);
     connect(submitButton, &QPushButton::clicked,
             this, &MainWindow::onRunAllTests);
-    connect(backButton, &QPushButton::clicked,
-            this, &MainWindow::onNavigateToBrowser);
+    // connect(backButton, &QPushButton::clicked,
+    //         this, &MainWindow::onNavigateToBrowser);
+    connect(backButton, &QPushButton::clicked,this,[this](){
+        if (which_editor == "Problem_Panel"){
+            onNavigateToBrowser();
+        }else{
+            onNavigateToLabBrowser();
+        }
+    });
 
     // Language selection
     connect(languageCombo, QOverload<int>::of(&QComboBox::activated),
@@ -470,6 +639,43 @@ void MainWindow::setupConnections()
 
         QString langId = languageCombo->currentData().toString();
         saveSolution(m_currentProblemId, langId, codeEditor->text());
+    });
+
+
+    // Output panel connections
+    connect(m_outputPanel, &OutputPanel::runRequested, this, [this]() {
+        if (m_currentLabId.isEmpty()) return;
+
+        QString langId = languageCombo->currentData().toString();
+        if (!m_backend->isLanguageAvailable(langId)) {
+            m_outputPanel->appendError("[Language not available]\n");
+            return;
+        }
+
+        m_outputPanel->setRunning(true);
+        m_backend->runFreeCode(codeEditor->text(), langId);
+    });
+
+    connect(m_outputPanel, &OutputPanel::stopRequested, this, [this]() {
+        m_backend->stopExecution();
+        m_outputPanel->setRunning(false);
+    });
+
+    connect(m_outputPanel, &OutputPanel::inputSubmitted,
+            m_backend, &Backend::sendInput);
+
+    // Backend -> Output panel
+    connect(m_backend, &Backend::outputReceived,
+            m_outputPanel, &OutputPanel::appendOutput);
+    connect(m_backend, &Backend::errorReceived,
+            m_outputPanel, &OutputPanel::appendError);
+    connect(m_backend, &Backend::programFinished, this, [this](int exitCode, qint64) {
+        m_outputPanel->setRunning(false);
+        if (exitCode == 0) {
+            m_outputPanel->appendInfo(QString("\n[Program exited with code %1]\n").arg(exitCode));
+        } else {
+            m_outputPanel->appendError(QString("\n[Program exited with code %1]\n").arg(exitCode));
+        }
     });
 }
 
@@ -628,6 +834,8 @@ void MainWindow::updateStatusBar(int line, int column)
 
 void MainWindow::onNavigateToEditor(const QString &path)
 {
+    which_editor = "Problem_Panel";
+    restoreProblemMode();  // ← ADD THIS as first line
     const QString filePath = ProblemsBasePath + path;
     m_currentProblemId = extractProblemId(path);
     m_currentProblemPath = filePath;
@@ -689,17 +897,34 @@ void MainWindow::onNavigateToEditor(const QString &path)
 
 void MainWindow::onNavigateToBrowser()
 {
-    // Stop any running execution
     if (m_backend->isRunning()) {
         m_backend->stopExecution();
     }
 
-    m_currentProblemPath.clear();
-    m_currentProblemId.clear();
-    problemTitleLabel->setText("");
-    stack->setCurrentWidget(browserPage);
-}
+    if (!m_currentLabId.isEmpty()) {
+        // Lab mode -> go back to labs
+        m_currentLabId.clear();
+        m_outputPanel->setRunning(false);
+        m_outputPanel->setVisible(false);
+        stack->setCurrentWidget(labBrowserPage);
+        backButton->setText("← Problems");
+    } else {
+        // Problem mode -> go back to problems
+        m_currentProblemPath.clear();
+        m_currentProblemId.clear();
+        problemTitleLabel->setText("");
+        stack->setCurrentWidget(browserPage);
+    }
 
+    // Restore UI for problem mode
+    problemPanel->setVisible(true);
+    testCasePanel->setVisible(true);
+    m_outputPanel->setVisible(false);
+    submitButton->setVisible(true);
+    runButton->setVisible(true);
+    mainHorizontalSplitter->setSizes({400, 900});
+    rightVerticalSplitter->setSizes({600, 200, 0});  // ✅ fix here too
+}
 // ═══════════════════════════════════════════════════════════════════════════
 // Code Execution
 // ═══════════════════════════════════════════════════════════════════════════
@@ -971,6 +1196,25 @@ QString MainWindow::loadSolution(const QString &problemId,
     return root.value(languageId).toString();
 }
 
+
+// Add this helper — call it at the TOP of onNavigateToEditor
+void MainWindow::restoreProblemMode()
+{
+    problemPanel->setVisible(true);
+    testCasePanel->setVisible(true);
+    m_outputPanel->setVisible(false);
+    m_outputPanel->setRunning(false);
+    languageCombo->show();
+    submitButton->show();
+    runButton->show();
+    langIndicator->show();
+
+    mainHorizontalSplitter->setSizes({400, 900});
+    rightVerticalSplitter->setSizes({600, 200, 0});  // ✅ editor : testPanel : output(hidden)
+
+    backButton->setText("← Problems");
+    m_currentLabId.clear();
+}
 
 
 // ```

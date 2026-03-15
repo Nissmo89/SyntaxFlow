@@ -159,12 +159,12 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
     emit finished();
 }
 
-void CodeRunner::stop() {
-    m_stopRequested = true;
-    if (m_currentProcess && m_currentProcess->state() == QProcess::Running) {
-        m_currentProcess->kill();
-    }
-}
+// void CodeRunner::stop() {
+//     m_stopRequested = true;
+//     if (m_currentProcess && m_currentProcess->state() == QProcess::Running) {
+//         m_currentProcess->kill();
+//     }
+// }
 
 QString CodeRunner::createWorkDir(const QString &langId) {
     QString temp = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
@@ -217,96 +217,98 @@ bool CodeRunner::compile(const QString &dir, const LanguageConfig &cfg, QString 
 
 void CodeRunner::executeTest(const QString &dir, const LanguageConfig &cfg,
                              const QJsonObject &test, int index) {
-    // Handle both array and string input formats
     QString inputStr;
-
     if (test.contains("input")) {
         QJsonValue inputVal = test["input"];
         if (inputVal.isArray()) {
-            QJsonArray inputs = inputVal.toArray();
-            for (const auto &arg : inputs) {
+            for (const auto &arg : inputVal.toArray())
                 inputStr += arg.toString() + "\n";
-            }
         } else if (inputVal.isString()) {
             inputStr = inputVal.toString();
-            if (!inputStr.endsWith("\n")) {
-                inputStr += "\n";
-            }
+            if (!inputStr.endsWith("\n")) inputStr += "\n";
         }
     }
 
     QString expected = test["output"].toString();
-
     qDebug() << "Test" << index << "- Input:" << inputStr.trimmed() << "Expected:" << expected;
 
-    QProcess runner;
-    m_currentProcess = &runner;
-    runner.setWorkingDirectory(dir);
+    // ✅ Heap-allocate so m_currentProcess pointer stays valid
+    //    if stop() fires during waitForFinished()
+    QProcess *runner = new QProcess(this);
+    m_currentProcess = runner;
 
-    // Setup environment
+    runner->setWorkingDirectory(dir);
+
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    for (auto it = cfg.environment.begin(); it != cfg.environment.end(); ++it) {
+    for (auto it = cfg.environment.begin(); it != cfg.environment.end(); ++it)
         env.insert(it.key(), cfg.expand(it.value(), dir));
-    }
-    runner.setProcessEnvironment(env);
+    runner->setProcessEnvironment(env);
 
     QString cmd = cfg.expand(cfg.runCommand, dir);
     QStringList args = cfg.expandArgs(cfg.runArgs, dir);
-
     qDebug() << "Running:" << cmd << args;
 
     QElapsedTimer timer;
     timer.start();
 
-    runner.start(cmd, args);
+    runner->start(cmd, args);
 
-    if (!runner.waitForStarted(5000)) {
-        emit testResult(index, "Runtime Error", "Failed to start: " + runner.errorString(), expected, 0);
+    if (!runner->waitForStarted(5000)) {
+        emit testResult(index, "Runtime Error", "Failed to start: " + runner->errorString(), expected, 0);
         m_currentProcess = nullptr;
+        runner->deleteLater();
         return;
     }
 
     if (!inputStr.isEmpty()) {
-        runner.write(inputStr.toUtf8());
-        runner.closeWriteChannel();
+        runner->write(inputStr.toUtf8());
+        runner->closeWriteChannel();
     }
 
-    bool finished = runner.waitForFinished(cfg.timeout);
+    bool finished = runner->waitForFinished(cfg.timeout);
     qint64 timeTaken = timer.elapsed();
 
     QString status;
     QString output;
 
     if (m_stopRequested) {
-        runner.kill();
+        runner->kill();
+        runner->waitForFinished(1000);
         status = "Stopped";
         output = "Stopped by user";
-    } else if (!finished || runner.state() == QProcess::Running) {
-        runner.kill();
-        runner.waitForFinished(1000);
+    } else if (!finished || runner->state() == QProcess::Running) {
+        runner->kill();
+        runner->waitForFinished(1000);
         status = "Time Limit Exceeded";
         output = "";
-    } else if (runner.exitCode() != 0) {
+    } else if (runner->exitCode() != 0) {
         status = "Runtime Error";
-        output = QString(runner.readAllStandardError());
-        if (output.isEmpty()) output = QString(runner.readAllStandardOutput());
+        output = QString(runner->readAllStandardError());
+        if (output.isEmpty()) output = QString(runner->readAllStandardOutput());
     } else {
-        QString actual = QString(runner.readAllStandardOutput()).trimmed();
-        // if (actual == expected.trimmed()) {
-        if (OutputNormalizer::equals(actual, expected)) {
-            status = "Accepted";
-        } else {
-            status = "Wrong Answer";
-        }
+        QString actual = QString(runner->readAllStandardOutput()).trimmed();
+        status = OutputNormalizer::equals(actual, expected) ? "Accepted" : "Wrong Answer";
         output = actual;
     }
 
     qDebug() << "Test" << index << "result:" << status << "in" << timeTaken << "ms";
 
+    // ✅ Clear BEFORE deleteLater so stop() can't access freed memory
     m_currentProcess = nullptr;
+    runner->deleteLater();
+
     emit testResult(index, status, output, expected, timeTaken);
 }
 
+void CodeRunner::stop() {
+    m_stopRequested = true;
+    // ✅ Capture locally — prevents race where m_currentProcess
+    //    becomes nullptr between the check and the kill()
+    QProcess *proc = m_currentProcess;
+    if (proc && proc->state() == QProcess::Running) {
+        proc->kill();
+    }
+}
 void CodeRunner::cleanup(const QString &dir) {
     if (!dir.isEmpty() && dir.contains("CodeHour_")) {
         QDir(dir).removeRecursively();

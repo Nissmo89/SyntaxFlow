@@ -13,6 +13,10 @@
 
 // #include "ProgressManager.h"
 #include "progressmanager.h"
+#include "lab_manager.h"
+#include "lab_browser.h"
+#include "output_panel.h"
+
 
 class QStackedLayout;
 class CodeEditor;
@@ -59,6 +63,12 @@ private slots:
 
     // Editor
     void onEditorCursorChanged(int line, int column);
+
+    // Labs
+    void onNavigateToLabBrowser();
+    void onNavigateToLabEditor(const QString &labId);
+    void onCreateNewLab();
+    void onSaveCurrentLab();
 
 private:
     // Setup
@@ -128,6 +138,21 @@ private:
     // 1. Move variables here
     QStringList m_themes = {"one dark pro", "dracula", "monokai", "github dark", "tokyo night"};
     int m_themeIndex = 0;
+
+    // Labs
+    LabManager *m_labManager;
+    LabBrowser *m_labBrowser;
+    QWidget *labBrowserPage;
+    QWidget *labEditorPage;
+    QString m_currentLabId;
+
+    QString which_editor;
+    OutputPanel *m_outputPanel = nullptr;
+
+    void setupLabPages();
+
+    void restoreProblemMode();
+
 };
 
 #endif // MAINWINDOW_H
