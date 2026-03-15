@@ -1519,121 +1519,104 @@ void CodeEditor::setKeywordSet(int set, const char* words)
 // ============================================================================================================
 
 // --- Bracket Coloring Functions (Unchanged, already good) ---
-void CodeEditor::setupBracketIndicators()
-{
-    auto toScintillaColor = [] (const QColor &c) { return (c.blue() << 16) | (c.green() << 8) | c.red(); };
-    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
-        int indicatorId = INDICATOR_BRACKET_BASE + i;
-        SendScintilla(SCI_INDICSETSTYLE, indicatorId, IndicatorStyle::TextColorIndicator);
-        SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(m_theme.bracketColors[i]));
-        SendScintilla(SCI_INDICSETALPHA, indicatorId, 255);
-        SendScintilla(SCI_INDICSETUNDER, indicatorId, false);
-    }
-}
+// void CodeEditor::setupBracketIndicators()
+// {
+//     auto toScintillaColor = [] (const QColor &c) { return (c.blue() << 16) | (c.green() << 8) | c.red(); };
+//     for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+//         int indicatorId = INDICATOR_BRACKET_BASE + i;
+//         SendScintilla(SCI_INDICSETSTYLE, indicatorId, IndicatorStyle::TextColorIndicator);
+//         SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(m_theme.bracketColors[i]));
+//         SendScintilla(SCI_INDICSETALPHA, indicatorId, 255);
+//         SendScintilla(SCI_INDICSETUNDER, indicatorId, false);
+//     }
+// }
 
-void CodeEditor::setupIndicators_bracket()
-{
-    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
-        int indicatorId = INDICATOR_BRACKET_BASE + i;
-        SendScintilla(SCI_INDICSETSTYLE, indicatorId, IndicatorStyle::TextColorIndicator);
-        // SendScintilla(SCI_INDICSETFORE, indicatorId, bracketColors[i].rgb());
-        SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(bracketColors[i]));
 
-        SendScintilla(SCI_INDICSETALPHA, indicatorId, 255);
-        SendScintilla(SCI_INDICSETUNDER, indicatorId, false);
-    }
-}
-
-void CodeEditor::scheduleBracketHighlight()
-{
-    // This just starts (or restarts) the timer. The real work is delayed.
-    m_highlightTimer->start();
-}
 
 // ---------------------------------------------
 // Ignore < > for bracket matching
 // ---------------------------------------------
-inline bool isRealBracket(char ch)
-{
-    return (ch == '(' || ch == ')' ||
-            ch == '{' || ch == '}' ||
-            ch == '[' || ch == ']');
-}
+// inline bool isRealBracket(char ch)
+// {
+//     return (ch == '(' || ch == ')' ||
+//             ch == '{' || ch == '}' ||
+//             ch == '[' || ch == ']');
+// }
 
-void CodeEditor::highlightVisibleBrackets()
-{
-    // --- 1. Determine the visible range ---
-    const int firstVisibleLine = SendScintilla(SCI_GETFIRSTVISIBLELINE);
-    const int linesOnScreen = SendScintilla(SCI_LINESONSCREEN);
-    const int lastVisibleLine = firstVisibleLine + linesOnScreen;
-    const int startPos = SendScintilla(SCI_POSITIONFROMLINE, firstVisibleLine);
-    const int endPos = SendScintilla(SCI_POSITIONFROMLINE, lastVisibleLine + 1);
-    const int docLength = SendScintilla(SCI_GETTEXTLENGTH);
-    const int highlightEndPos = (endPos == -1) ? docLength : endPos;
+// void CodeEditor::highlightVisibleBrackets()
+// {
+//     // --- 1. Determine the visible range ---
+//     const int firstVisibleLine = SendScintilla(SCI_GETFIRSTVISIBLELINE);
+//     const int linesOnScreen = SendScintilla(SCI_LINESONSCREEN);
+//     const int lastVisibleLine = firstVisibleLine + linesOnScreen;
+//     const int startPos = SendScintilla(SCI_POSITIONFROMLINE, firstVisibleLine);
+//     const int endPos = SendScintilla(SCI_POSITIONFROMLINE, lastVisibleLine + 1);
+//     const int docLength = SendScintilla(SCI_GETTEXTLENGTH);
+//     const int highlightEndPos = (endPos == -1) ? docLength : endPos;
 
-    // --- 2. Clear indicators ONLY from the visible area ---
-    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
-        SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + i);
-        SendScintilla(SCI_INDICATORCLEARRANGE, startPos, highlightEndPos - startPos);
-    }
+//     // --- 2. Clear indicators ONLY from the visible area ---
+//     for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+//         SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + i);
+//         SendScintilla(SCI_INDICATORCLEARRANGE, startPos, highlightEndPos - startPos);
+//     }
 
-    // --- 3. Parse the document, but only apply indicators to the visible part ---
-    QStack<int> nestingLevelStack;
+//     // --- 3. Parse the document, but only apply indicators to the visible part ---
+//     QStack<int> nestingLevelStack;
 
-    // We must scan from the start to correctly calculate nesting levels.
-    // However, we avoid the slow memory copy of editor->text().
-    for (int pos = 0; pos < docLength; ++pos) {
-        char ch = SendScintilla(SCI_GETCHARAT, pos);
+//     // We must scan from the start to correctly calculate nesting levels.
+//     // However, we avoid the slow memory copy of editor->text().
+//     for (int pos = 0; pos < docLength; ++pos) {
+//         char ch = SendScintilla(SCI_GETCHARAT, pos);
 
-        // Optimization: If we are past the visible area and have no open brackets, we can stop.
-        if (pos > highlightEndPos && nestingLevelStack.isEmpty()) {
-            break;
-        }
+//         // Optimization: If we are past the visible area and have no open brackets, we can stop.
+//         if (pos > highlightEndPos && nestingLevelStack.isEmpty()) {
+//             break;
+//         }
 
-        int styleId = SendScintilla(SCI_GETSTYLEAT, pos);
-        bool isAComment = (styleId == QsciLexerCPP::Comment || styleId == QsciLexerCPP::CommentLine);
-        bool isAString = (styleId == QsciLexerCPP::DoubleQuotedString || styleId == QsciLexerCPP::SingleQuotedString || styleId == QsciLexerCPP::UnclosedString);
+//         int styleId = SendScintilla(SCI_GETSTYLEAT, pos);
+//         bool isAComment = (styleId == QsciLexerCPP::Comment || styleId == QsciLexerCPP::CommentLine);
+//         bool isAString = (styleId == QsciLexerCPP::DoubleQuotedString || styleId == QsciLexerCPP::SingleQuotedString || styleId == QsciLexerCPP::UnclosedString);
 
-        if (isAComment || isAString) {
-            continue;
-        }
+//         if (isAComment || isAString) {
+//             continue;
+//         }
 
-        // if (ch == '(' || ch == '[' || ch == '{') {
-        // === Ignore < and > ===
-        if (!isRealBracket(ch))
-            continue;
+//         // if (ch == '(' || ch == '[' || ch == '{') {
+//         // === Ignore < and > ===
+//         if (!isRealBracket(ch))
+//             continue;
 
-        if (ch == '(' || ch == '[' || ch == '{') {
-            int currentNesting = nestingLevelStack.isEmpty() ? 0 : nestingLevelStack.top() + 1;
-            nestingLevelStack.push(currentNesting);
+//         if (ch == '(' || ch == '[' || ch == '{') {
+//             int currentNesting = nestingLevelStack.isEmpty() ? 0 : nestingLevelStack.top() + 1;
+//             nestingLevelStack.push(currentNesting);
 
-            // ONLY apply the indicator if the bracket is visible
-            if (pos >= startPos && pos < highlightEndPos) {
-                int colorIndex = currentNesting % MAX_BRACKET_COLORS;
-                SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
-                SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
-            }
-        }
-        else if (ch == ')' || ch == ']' || ch == '}') {
-            if (!nestingLevelStack.isEmpty()) {
-                // To keep the logic simple, we don't check for matching pairs here,
-                // as that can be complex. We just pop. A more advanced implementation
-                // would track the character type.
-                int currentNesting = nestingLevelStack.pop();
+//             // ONLY apply the indicator if the bracket is visible
+//             if (pos >= startPos && pos < highlightEndPos) {
+//                 int colorIndex = currentNesting % MAX_BRACKET_COLORS;
+//                 SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+//                 SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+//             }
+//         }
+//         else if (ch == ')' || ch == ']' || ch == '}') {
+//             if (!nestingLevelStack.isEmpty()) {
+//                 // To keep the logic simple, we don't check for matching pairs here,
+//                 // as that can be complex. We just pop. A more advanced implementation
+//                 // would track the character type.
+//                 int currentNesting = nestingLevelStack.pop();
 
-                // ONLY apply the indicator if the bracket is visible
-                if (pos >= startPos && pos < highlightEndPos) {
-                    int colorIndex = currentNesting % MAX_BRACKET_COLORS;
-                    SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
-                    SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
-                }
-            }
-        }
-    }
+//                 // ONLY apply the indicator if the bracket is visible
+//                 if (pos >= startPos && pos < highlightEndPos) {
+//                     int colorIndex = currentNesting % MAX_BRACKET_COLORS;
+//                     SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+//                     SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+//                 }
+//             }
+//         }
+//     }
 
-    setUnmatchedBraceBackgroundColor(QColor(m_theme.braceUnmatchBg));
-    setMatchedBraceBackgroundColor(QColor(m_theme.braceMatchBg));
-}
+//     setUnmatchedBraceBackgroundColor(QColor(m_theme.braceUnmatchBg));
+//     setMatchedBraceBackgroundColor(QColor(m_theme.braceMatchBg));
+// }
 
 void CodeEditor::onIdleTimeout()
 {
@@ -1657,4 +1640,129 @@ void CodeEditor::setupColorBlockIndicators(QsciScintilla* editor) {
         editor->SendScintilla(QsciScintilla::SCI_INDICSETFORE, id, toScintillaColor(QColor("#ee882f"))); //88c0ff
         editor->SendScintilla(QsciScintilla::SCI_INDICSETUNDER, id, long(0));
     }
+}
+
+
+
+
+
+
+// ============================================================================================================
+//                                      RAINBOW BRACKET - WINDOWS FIX
+// ============================================================================================================
+
+void CodeEditor::setupBracketIndicators()
+{
+    auto toScintillaColor = [](const QColor &c) {
+        return (c.blue() << 16) | (c.green() << 8) | c.red();
+    };
+
+    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+        int indicatorId = INDICATOR_BRACKET_BASE + i;
+
+        // ══════════════════════════════════════════════════════════════
+        // FIX FOR WINDOWS: Use FULLBOX instead of TextColorIndicator
+        // FULLBOX draws BEHIND the text, so it survives re-styling
+        // ══════════════════════════════════════════════════════════════
+        SendScintilla(SCI_INDICSETSTYLE, indicatorId, INDIC_FULLBOX);
+        SendScintilla(SCI_INDICSETFORE, indicatorId, toScintillaColor(m_theme.bracketColors[i]));
+        SendScintilla(SCI_INDICSETALPHA, indicatorId, 80);     // Semi-transparent background
+        SendScintilla(SCI_INDICSETOUTLINEALPHA, indicatorId, 255);  // Solid outline
+        SendScintilla(SCI_INDICSETUNDER, indicatorId, true);   // Draw behind text
+    }
+}
+
+// Remove this old function - not needed anymore
+// void CodeEditor::setupIndicators_bracket() { ... }
+// void CodeEditor::scheduleBracketHighlight() { ... }
+
+inline bool isRealBracket(char ch)
+{
+    return (ch == '(' || ch == ')' ||
+            ch == '{' || ch == '}' ||
+            ch == '[' || ch == ']');
+}
+
+void CodeEditor::highlightVisibleBrackets()
+{
+    // ═══════════════════════════════════════════════════════════════
+    // 1. Determine visible range
+    // ═══════════════════════════════════════════════════════════════
+    const int firstVisibleLine = SendScintilla(SCI_GETFIRSTVISIBLELINE);
+    const int linesOnScreen = SendScintilla(SCI_LINESONSCREEN);
+    const int lastVisibleLine = firstVisibleLine + linesOnScreen;
+    const int startPos = SendScintilla(SCI_POSITIONFROMLINE, firstVisibleLine);
+    const int endPos = SendScintilla(SCI_POSITIONFROMLINE, lastVisibleLine + 1);
+    const int docLength = SendScintilla(SCI_GETTEXTLENGTH);
+    const int highlightEndPos = (endPos == -1) ? docLength : endPos;
+
+    // ═══════════════════════════════════════════════════════════════
+    // 2. Clear indicators ONLY in visible area
+    // ═══════════════════════════════════════════════════════════════
+    for (int i = 0; i < MAX_BRACKET_COLORS; ++i) {
+        SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + i);
+        SendScintilla(SCI_INDICATORCLEARRANGE, startPos, highlightEndPos - startPos);
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // 3. Parse and colorize brackets
+    // ═══════════════════════════════════════════════════════════════
+    QStack<int> nestingStack;
+
+    for (int pos = 0; pos < docLength; ++pos) {
+        // Early exit optimization
+        if (pos > highlightEndPos && nestingStack.isEmpty()) {
+            break;
+        }
+
+        char ch = SendScintilla(SCI_GETCHARAT, pos);
+
+        if (!isRealBracket(ch)) {
+            continue;
+        }
+
+        // Skip brackets in comments and strings
+        int styleId = SendScintilla(SCI_GETSTYLEAT, pos);
+        bool isComment = (styleId == QsciLexerCPP::Comment ||
+                          styleId == QsciLexerCPP::CommentLine ||
+                          styleId == QsciLexerCPP::CommentDoc);
+        bool isString = (styleId == QsciLexerCPP::DoubleQuotedString ||
+                         styleId == QsciLexerCPP::SingleQuotedString ||
+                         styleId == QsciLexerCPP::RawString ||
+                         styleId == QsciLexerCPP::UnclosedString);
+
+        if (isComment || isString) {
+            continue;
+        }
+
+        // Opening bracket
+        if (ch == '(' || ch == '[' || ch == '{') {
+            int level = nestingStack.isEmpty() ? 0 : nestingStack.top() + 1;
+            nestingStack.push(level);
+
+            // Apply color only if visible
+            if (pos >= startPos && pos < highlightEndPos) {
+                int colorIndex = level % MAX_BRACKET_COLORS;
+                SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+                SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+            }
+        }
+        // Closing bracket
+        else if (ch == ')' || ch == ']' || ch == '}') {
+            if (!nestingStack.isEmpty()) {
+                int level = nestingStack.pop();
+
+                // Apply color only if visible
+                if (pos >= startPos && pos < highlightEndPos) {
+                    int colorIndex = level % MAX_BRACKET_COLORS;
+                    SendScintilla(SCI_SETINDICATORCURRENT, INDICATOR_BRACKET_BASE + colorIndex);
+                    SendScintilla(SCI_INDICATORFILLRANGE, pos, 1);
+                }
+            }
+        }
+    }
+
+    // Brace matching background colors
+    setUnmatchedBraceBackgroundColor(QColor(m_theme.braceUnmatchBg));
+    setMatchedBraceBackgroundColor(QColor(m_theme.braceMatchBg));
 }

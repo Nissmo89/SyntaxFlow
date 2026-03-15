@@ -150,7 +150,7 @@ public:
 
     // rainbow bracket
 
-    void setupIndicators_bracket();  // good at public
+    // void setupIndicators_bracket();  // good at public
     void setupBracketIndicators();   // good at public
     QTimer *m_highlightTimer;
     QVector<QColor> m_bracketColors;
@@ -184,7 +184,6 @@ private slots:
 
     void onIdleTimeout();              // private slot
     void highlightVisibleBrackets();  // private slot
-    void scheduleBracketHighlight(); // private slot
     void scheduleIdleProcessing();
 
 
