@@ -1,0 +1,85 @@
+<mxfile host='app.diagrams.net'>
+  <diagram name='Page-1' id='architecture'>
+    <mxGraphModel dx='1008' dy='759' grid='1' gridSize='10' guides='1' tooltips='1' connect='1' arrows='1' fold='1' page='1' pageScale='1' pageWidth='827' pageHeight='1169' math='0' shadow='0'>
+      <root>
+        <mxCell id='0' name='Page-1' parent='1' />
+        <mxCell id='1' parent='0' />
+        <mxCell id='2' value='Main Window' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='260' y='50' />
+        </mxCell>
+        <mxCell id='3' value='Code Editor' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='260' y='100' />
+        </mxCell>
+        <mxCell id='4' value='Problem Panel' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='260' y='150' />
+        </mxCell>
+        <mxCell id='5' value='Test Case Panel' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='260' y='200' />
+        </mxCell>
+        <mxCell id='6' value='Output Panel' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='260' y='250' />
+        </mxCell>
+        <mxCell id='7' value='Hover Sidebar' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='400' y='50' />
+        </mxCell>
+        <mxCell id='8' value='Problem Browser' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='400' y='100' />
+        </mxCell>
+        <mxCell id='9' value='Lab Browser' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='400' y='150' />
+        </mxCell>
+        <mxCell id='10' value='Backend' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='550' y='125' />
+        </mxCell>
+        <mxCell id='11' value='Code Runner' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='550' y='175' />
+        </mxCell>
+        <mxCell id='12' value='Language Registry' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='550' y='225' />
+        </mxCell>
+        <mxCell id='13' value='Lab Manager' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='700' y='125' />
+        </mxCell>
+        <mxCell id='14' value='Progress Manager' style='rounded=1;whiteSpace=wrap;html=1;' vertex='1' parent='1'>
+          <mxGeometry width='120' height='40' x='700' y='175' />
+        </mxCell>
+        <mxCell id='15' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='2' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='16' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='3' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='17' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='4' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='18' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='5' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='19' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='6' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='20' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='7' target='11'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='21' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='8' target='11'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='22' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='9' target='11'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='23' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='10' target='12'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='24' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='11' target='14'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='25' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='12' target='13'>
+          <mxGeometry relative='1' />
+        </mxCell>
+        <mxCell id='26' value='' style='edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;' edge='1' parent='1' source='14' target='10'>
+          <mxGeometry relative='1' />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
