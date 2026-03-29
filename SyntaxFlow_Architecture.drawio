@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="Id1">
+    <mxGraphModel dx="1454" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" parent="1"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Frontend Components -->
+        <mxCell id="fe" value="Frontend" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"/>
+        <mxCell id="ui" value="User Interface" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm" value="State Management" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="50" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="API Client" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="50" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Backend Components -->
+        <mxCell id="be" value="Backend" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="150" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-gateway" value="API Gateway" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="200" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="auth" value="Authentication Service" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="200" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="business" value="Business Logic Layer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="200" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Helper Classes -->
+        <mxCell id="helpers" value="Helper Classes" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="300" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="utils" value="Utility Functions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"/>
+        <mxCell id="validation" value="Validation Classes" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"/>
+        <!-- Data Flow -->
+        <mxCell id="data-flow" value="Data Flow" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"/>
+        <!-- Execution Pipeline -->
+        <mxCell id="execution-pipeline" value="Execution Pipeline" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"/>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
