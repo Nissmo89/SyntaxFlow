@@ -42,10 +42,7 @@ private:
     static QJsonObject builtinC();
     static QJsonObject builtinCpp();
     static QJsonObject builtinPython();
-    static QJsonObject builtinJava();
     static QJsonObject builtinJavaScript();
-    static QJsonObject builtinGo();
-    static QJsonObject builtinRust();
 };
 
 #endif // LANGUAGE_REGISTRY_H

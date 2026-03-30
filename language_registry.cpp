@@ -45,10 +45,7 @@ void LanguageRegistry::loadBuiltinDefaults() {
     addBuiltin(builtinC(), "c");
     addBuiltin(builtinCpp(), "cpp");
     addBuiltin(builtinPython(), "python");
-    addBuiltin(builtinJava(), "java");
     addBuiltin(builtinJavaScript(), "javascript");
-    addBuiltin(builtinGo(), "go");
-    addBuiltin(builtinRust(), "rust");
 }
 
 QJsonObject LanguageRegistry::builtinC() {
@@ -103,20 +100,6 @@ QJsonObject LanguageRegistry::builtinPython() {
     };
 }
 
-QJsonObject LanguageRegistry::builtinJava() {
-    return QJsonObject{
-        {"name", "Java"},
-        {"extension", ".java"},
-        {"sourceFile", "Main.java"},
-        {"compiled", true},
-        {"compileCommand", "javac"},
-        {"compileArgs", QJsonArray{"{source}"}},
-        {"runCommand", "java"},
-        {"runArgs", QJsonArray{"-cp", "{workdir}", "Main"}},
-        {"timeout", 3000},
-        {"template", "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        \n    }\n}\n"}
-    };
-}
 
 QJsonObject LanguageRegistry::builtinJavaScript() {
     return QJsonObject{
@@ -131,33 +114,6 @@ QJsonObject LanguageRegistry::builtinJavaScript() {
     };
 }
 
-QJsonObject LanguageRegistry::builtinGo() {
-    return QJsonObject{
-        {"name", "Go"},
-        {"extension", ".go"},
-        {"sourceFile", "solution.go"},
-        {"compiled", true},
-        {"compileCommand", "go"},
-        {"compileArgs", QJsonArray{"build", "-o", "{output}", "{source}"}},
-        {"runCommand", "{workdir}/{output}"},
-        {"timeout", 2000},
-        {"template", "package main\n\nimport \"fmt\"\n\nfunc main() {\n    \n}\n"}
-    };
-}
-
-QJsonObject LanguageRegistry::builtinRust() {
-    return QJsonObject{
-        {"name", "Rust"},
-        {"extension", ".rs"},
-        {"sourceFile", "solution.rs"},
-        {"compiled", true},
-        {"compileCommand", "rustc"},
-        {"compileArgs", QJsonArray{"-O", "-o", "{output}", "{source}"}},
-        {"runCommand", "{workdir}/{output}"},
-        {"timeout", 2000},
-        {"template", "use std::io;\n\nfn main() {\n    \n}\n"}
-    };
-}
 
 void LanguageRegistry::loadFromDirectory(const QString &path) {
     QDir dir(path);

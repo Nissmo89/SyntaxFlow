@@ -2,7 +2,6 @@
 #define BACKEND_H
 
 #include <QObject>
-#include <QProcess>
 #include <QStringList>
 #include "language_registry.h"
 
@@ -21,6 +20,7 @@ public:
     QStringList allLanguages() const;
     LanguageConfig getLanguageConfig(const QString &id) const;
     QString getTemplate(const QString &languageId) const;
+    QString getProblemTemplate(const QString &languageId, const QString &problemId) const;
     bool isLanguageAvailable(const QString &id) const;
     bool isRunning() const;
 
@@ -69,10 +69,6 @@ private:
     LanguageRegistry *m_registry;
     CodeRunner *m_runner;
 
-    // ═══════════════════════════════════════════════════════════════════
-    // NEW: For free execution process management
-    // ═══════════════════════════════════════════════════════════════════
-    QProcess *m_currentProcess = nullptr;
 };
 
 #endif // BACKEND_H

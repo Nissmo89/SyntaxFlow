@@ -5,11 +5,6 @@
 #include <Qsci/qscilexercpp.h>
 #include <Qsci/qscilexerpython.h>
 #include <Qsci/qscilexerjavascript.h>
-#include <Qsci/qscilexerjava.h>
-#include <Qsci/qscilexerruby.h>
-#include <Qsci/qscilexerbash.h>
-#include <Qsci/qscilexerjson.h>
-#include <Qsci/qscilexermarkdown.h>
 #include <Qsci/qsciapis.h>
 
 #include <QMap>
@@ -211,8 +206,6 @@ private:
     void themeCppLexer(QsciLexerCPP *lexer);
     void themePythonLexer(QsciLexerPython *lexer);
     void themeJavaScriptLexer(QsciLexerJavaScript *lexer);
-    void themeJavaLexer(QsciLexerJava *lexer);
-
     // Helper methods
     void lockBackground();
     void applyTheme();
@@ -224,9 +217,6 @@ private:
     QsciLexerCPP *m_lexerC = nullptr;
     QsciLexerPython *m_lexerPython = nullptr;
     QsciLexerJavaScript *m_lexerJavaScript = nullptr;
-    QsciLexerJava *m_lexerJava = nullptr;
-    QsciLexerJSON *m_lexerJson = nullptr;
-
     // API instances for autocomplete
     QMap<QString, QsciAPIs*> m_apis;
 

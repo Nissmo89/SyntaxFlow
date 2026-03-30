@@ -595,24 +595,6 @@ void CodeEditor::setupAutocompletion() {
                 apis->add(kw);
             }
         }
-        else if (lang == "java") {
-            QStringList keywords = {
-                "abstract", "assert", "boolean", "break", "byte", "case",
-                "catch", "char", "class", "const", "continue", "default",
-                "do", "double", "else", "enum", "extends", "final", "finally",
-                "float", "for", "goto", "if", "implements", "import",
-                "instanceof", "int", "interface", "long", "native", "new",
-                "package", "private", "protected", "public", "return", "short",
-                "static", "strictfp", "super", "switch", "synchronized", "this",
-                "throw", "throws", "transient", "try", "void", "volatile", "while",
-                // Common
-                "System.out.println", "System.out.print", "String", "Integer",
-                "ArrayList", "HashMap", "Scanner"
-            };
-            for (const QString &kw : keywords) {
-                apis->add(kw);
-            }
-        }
         else if (lang == "javascript" || lang == "js") {
             QStringList keywords = {
                 "async", "await", "break", "case", "catch", "class", "const",
@@ -674,32 +656,12 @@ void CodeEditor::setLanguage(const QString &langId) {
         themeJavaScriptLexer(m_lexerJavaScript);
         activeLexer = m_lexerJavaScript;
     }
-    else if (lang == "java") {
-        if (!m_lexerJava) {
-            m_lexerJava = new QsciLexerJava(this);
-        }
-        themeJavaLexer(m_lexerJava);
-        activeLexer = m_lexerJava;
-    }
     else if (lang == "c") {
         if (!m_lexerC) {
             m_lexerC = new QsciLexerCPP(this);
         }
         themeCppLexer(m_lexerC);
         activeLexer = m_lexerC;
-    }
-    else if (lang == "json") {
-        if (!m_lexerJson) {
-            m_lexerJson = new QsciLexerJSON(this);
-            // Theme JSON lexer
-            m_lexerJson->setPaper(m_theme.background);
-            m_lexerJson->setDefaultPaper(m_theme.background);
-            m_lexerJson->setDefaultColor(m_theme.foreground);
-            m_lexerJson->setColor(m_theme.keyword, QsciLexerJSON::Keyword);
-            m_lexerJson->setColor(m_theme.string, QsciLexerJSON::String);
-            m_lexerJson->setColor(m_theme.number, QsciLexerJSON::Number);
-        }
-        activeLexer = m_lexerJson;
     }
     else {
         // Default to C++ (also handles Go, Rust with keyword injection)
@@ -712,32 +674,6 @@ void CodeEditor::setLanguage(const QString &langId) {
 
     // Apply lexer
     applyLexer(activeLexer);
-
-    // Inject custom keywords for Rust/Go
-    if (lang == "rust" || lang == "rs") {
-        const char* rustKeywords =
-            "as async await break const continue crate dyn else enum extern "
-            "false fn for if impl in let loop match mod move mut pub ref "
-            "return self Self static struct super trait true type unsafe use "
-            "where while";
-        // SendScintilla(SCI_SETKEYWORDS, 0, rustKeywords);
-        // SendScintilla(SCI_SETKEYWORDS,
-        //               static_cast<unsigned long>(0),
-        //               rustKeywords);
-        setKeywordSet(0, rustKeywords);
-
-
-
-    }
-    else if (lang == "go") {
-        const char* goKeywords =
-            "break case chan const continue default defer else fallthrough for "
-            "func go goto if import interface map package range return select "
-            "struct switch type var true false nil iota";
-        // SendScintilla(SCI_SETKEYWORDS, static_cast<unsigned long>(0), goKeywords);
-        setKeywordSet(0, goKeywords);
-
-    }
 
     // Setup autocomplete for this language
     setupAutocompletion();
@@ -927,48 +863,6 @@ void CodeEditor::themeJavaScriptLexer(QsciLexerJavaScript *lexer) {
     lexer->setFont(boldFont, QsciLexerJavaScript::Keyword);
 }
 
-void CodeEditor::themeJavaLexer(QsciLexerJava *lexer) {
-    if (!lexer) return;
-
-    QFont codeFont(m_fontFamily, m_fontSize);
-    codeFont.setStyleHint(QFont::Monospace);
-
-    lexer->setDefaultFont(codeFont);
-    lexer->setFont(codeFont);
-    lexer->setPaper(m_theme.background);
-    lexer->setDefaultPaper(m_theme.background);
-    lexer->setDefaultColor(m_theme.foreground);
-
-    lexer->setColor(m_theme.foreground, QsciLexerJava::Default);
-    lexer->setColor(m_theme.comment, QsciLexerJava::Comment);
-    lexer->setColor(m_theme.comment, QsciLexerJava::CommentLine);
-    lexer->setColor(m_theme.commentDoc, QsciLexerJava::CommentDoc);
-    lexer->setColor(m_theme.number, QsciLexerJava::Number);
-    lexer->setColor(m_theme.keyword, QsciLexerJava::Keyword);
-    lexer->setColor(m_theme.keywordSecondary, QsciLexerJava::KeywordSet2);
-    lexer->setColor(m_theme.string, QsciLexerJava::DoubleQuotedString);
-    lexer->setColor(m_theme.string, QsciLexerJava::SingleQuotedString);
-    lexer->setColor(m_theme.identifier, QsciLexerJava::Identifier);
-    lexer->setColor(m_theme.operator_, QsciLexerJava::Operator);
-    lexer->setColor(m_theme.error, QsciLexerJava::UnclosedString);
-
-    // Apply paper
-    for (int i = 0; i <= 25; ++i) {
-        lexer->setPaper(m_theme.background, i);
-    }
-
-    // Italic comments
-    QFont italicFont = codeFont;
-    italicFont.setItalic(true);
-    lexer->setFont(italicFont, QsciLexerJava::Comment);
-    lexer->setFont(italicFont, QsciLexerJava::CommentLine);
-    lexer->setFont(italicFont, QsciLexerJava::CommentDoc);
-
-    // Bold keywords
-    QFont boldFont = codeFont;
-    boldFont.setBold(true);
-    lexer->setFont(boldFont, QsciLexerJava::Keyword);
-}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Theme Management

@@ -530,7 +530,7 @@ void MainWindow::onCreateNewLab()
     }
 
     // Ask for language
-    QStringList languages = {"C++", "Python", "Java", "JavaScript"};
+    QStringList languages = {"C++", "Python", "JavaScript"};
     QString lang = QInputDialog::getItem(this, "Select Language",
                                          "Language:", languages, 0, false, &ok);
     if (!ok) {
@@ -787,7 +787,7 @@ void MainWindow::onLanguageChanged(int)
         codeEditor->setText(saved);
     } else {
         // Load template for new language
-        QString templ = m_backend->getTemplate(newLangId);
+        QString templ = m_backend->getProblemTemplate(newLangId, m_currentProblemId);
         if (!templ.isEmpty()) {
             codeEditor->setText(templ);
         }
