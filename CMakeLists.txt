@@ -84,12 +84,11 @@ target_compile_definitions(quickjs PRIVATE
 set_target_properties(quickjs PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)
 
 if(MSVC)
-    target_compile_options(quickjs PRIVATE
-        /wd4244   # conversion, possible loss of data
-        /wd4267   # size_t to int conversion
-        /wd4996   # deprecated POSIX names
-        /wd4018   # signed/unsigned mismatch
-    )
+    # MSVC is NOT a supported toolchain for SyntaxFlow.
+    # The project requires MinGW-w64 on Windows and GCC/Clang on Linux/macOS.
+    # This block is intentionally left empty. Do not add MSVC-specific options
+    # here as they will not be tested or validated.
+    message(WARNING "MSVC detected. SyntaxFlow only officially supports MinGW-w64 (Windows) and GCC/Clang (Linux/macOS). Build may fail.")
 elseif(MINGW)
     target_compile_options(quickjs PRIVATE
         -Wno-implicit-function-declaration
@@ -105,21 +104,22 @@ else()
 endif()
 
 # ============================================================
-# Python 3 (Optional — disable python_runner if not found)
+# Python 3 (Optional on ALL platforms — BUILD-04)
 # ============================================================
-# On Windows with MinGW, set Python3_ROOT_DIR via cmake preset or
-# -DPYTHON3_ROOT_DIR=C:/Python312 on the command line.
-if(WIN32)
-    find_package(Python3 COMPONENTS Interpreter Development QUIET)
-else()
-    find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-endif()
+# On Windows with MinGW, pass -DPYTHON3_ROOT_DIR=C:/Python312 to cmake.
+find_package(Python3 COMPONENTS Interpreter Development QUIET)
 
 if(Python3_FOUND)
     message(STATUS "Python3 found: ${Python3_VERSION} — ${Python3_EXECUTABLE}")
     set(SF_ENABLE_PYTHON ON)
 else()
-    message(WARNING "Python3 Development libs not found. python_runner will be disabled.")
+    message(WARNING
+        "Python3 development headers not found — Python runner will be disabled.\n"
+        "To enable:\n"
+        "  Ubuntu/Debian: sudo apt install python3-dev\n"
+        "  Fedora:        sudo dnf install python3-devel\n"
+        "  Windows:       Install Python 3.x from python.org (tick 'development libraries')\n"
+        "                 then pass -DPYTHON3_ROOT_DIR=C:/Python312 to cmake")
     set(SF_ENABLE_PYTHON OFF)
 endif()
 
@@ -193,19 +193,35 @@ set(QSCI_LOCAL_LINUX
 if(WIN32 AND EXISTS ${QSCI_LOCAL_WIN})
     message(STATUS "Using local QScintilla (Windows): ${QSCI_LOCAL_WIN}")
     target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LOCAL_WIN})
-elseif(UNIX AND EXISTS ${QSCI_LOCAL_LINUX})
+elseif(UNIX AND NOT APPLE AND EXISTS ${QSCI_LOCAL_LINUX})
     message(STATUS "Using local QScintilla (Linux): ${QSCI_LOCAL_LINUX}")
     target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LOCAL_LINUX})
 else()
-    message(STATUS "Local QScintilla not found. Trying system/Qt installation...")
-    find_library(QSCI_SYSTEM_LIB
-        NAMES qscintilla2 qscintilla2_qt6
-    )
-    if(QSCI_SYSTEM_LIB)
-        message(STATUS "Using system QScintilla: ${QSCI_SYSTEM_LIB}")
-        target_link_libraries(SyntaxFlow PRIVATE ${QSCI_SYSTEM_LIB})
+    # BUILD-03: Try pkg-config first (most reliable across distros)
+    find_package(PkgConfig QUIET)
+    if(PKG_CONFIG_FOUND)
+        pkg_check_modules(QSCI QUIET qscintilla2-qt6)
+    endif()
+
+    if(QSCI_FOUND)
+        message(STATUS "QScintilla found via pkg-config: ${QSCI_LIBRARIES}")
+        target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LIBRARIES})
+        target_include_directories(SyntaxFlow PRIVATE ${QSCI_INCLUDE_DIRS})
     else()
-        message(FATAL_ERROR "QScintilla not found locally or system-wide.")
+        find_library(QSCI_SYSTEM_LIB
+            NAMES qscintilla2_qt6 qscintilla2-qt6 qscintilla2 libqscintilla2
+        )
+        if(QSCI_SYSTEM_LIB)
+            message(STATUS "Using system QScintilla: ${QSCI_SYSTEM_LIB}")
+            target_link_libraries(SyntaxFlow PRIVATE ${QSCI_SYSTEM_LIB})
+        else()
+            message(FATAL_ERROR
+                "QScintilla not found locally or system-wide. Install it:\n"
+                "  Ubuntu/Debian: sudo apt install libqscintilla2-qt6-dev\n"
+                "  Fedora:        sudo dnf install qscintilla-qt6-devel\n"
+                "  Arch:          sudo pacman -S qscintilla-qt6\n"
+                "  Windows:       Run build-windows.bat (builds from source in libs/)")
+        endif()
     endif()
 endif()
 
@@ -231,16 +247,51 @@ if(EXISTS ${TINYCC_LIB})
     target_link_libraries(SyntaxFlow PRIVATE tcc)
 
     # On MinGW, TinyCC's internal relocation may need dl-like linkage.
-    # Also ensure we don't strip exports (needed for tcc_get_symbol).
     if(WIN32 AND MINGW)
         target_link_libraries(SyntaxFlow PRIVATE -Wl,--export-all-symbols)
     endif()
 
+elseif(APPLE)
+    # BUILD-05 / TCC does not support macOS (especially Apple Silicon).
+    # Route C/C++ through the system clang runner instead.
+    message(STATUS "macOS detected: TCC is not supported. Using QProcess+clang runner.")
+    target_sources(SyntaxFlow PRIVATE clang_runner.h clang_runner.cpp)
+    target_compile_definitions(SyntaxFlow PRIVATE SF_USE_CLANG_RUNNER)
+
 else()
-    message(FATAL_ERROR
-        "TinyCC static library not found at: ${TINYCC_LIB}\n"
-        "On Windows: run build-windows.bat to build libtcc first.\n"
-        "On Linux:   run libs/tinycc/configure && make first.")
+    # BUILD-01: Auto-build TinyCC from source rather than failing immediately.
+    message(STATUS "TinyCC not found at ${TINYCC_LIB} — attempting to build from source...")
+    if(UNIX)
+        execute_process(
+            COMMAND bash -c
+                "cd '${TINYCC_ROOT}' && ./configure && make libtcc.a libtcc1.a && mkdir -p linux && cp libtcc.a libtcc1.a runmain.o bt-exe.o bt-log.o bcheck.o linux/ 2>/dev/null || true"
+            RESULT_VARIABLE TCC_BUILD_RESULT
+        )
+    elseif(WIN32)
+        execute_process(
+            COMMAND cmd /c "${CMAKE_CURRENT_SOURCE_DIR}/build-windows.bat"
+            RESULT_VARIABLE TCC_BUILD_RESULT
+        )
+    endif()
+
+    if(EXISTS ${TINYCC_LIB})
+        message(STATUS "TinyCC built successfully: ${TINYCC_LIB}")
+        add_library(tcc STATIC IMPORTED)
+        set_target_properties(tcc PROPERTIES
+            IMPORTED_LOCATION ${TINYCC_LIB}
+            INTERFACE_INCLUDE_DIRECTORIES ${TINYCC_ROOT}
+        )
+        target_link_libraries(SyntaxFlow PRIVATE tcc)
+        if(WIN32 AND MINGW)
+            target_link_libraries(SyntaxFlow PRIVATE -Wl,--export-all-symbols)
+        endif()
+    else()
+        message(FATAL_ERROR
+            "TinyCC build failed. Install build tools and retry cmake:\n"
+            "  Ubuntu/Debian: sudo apt install build-essential\n"
+            "  Fedora:        sudo dnf install gcc make\n"
+            "  Windows:       Run build-windows.bat manually first.")
+    endif()
 endif()
 
 # ============================================================

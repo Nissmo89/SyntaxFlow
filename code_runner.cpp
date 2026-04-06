@@ -20,6 +20,10 @@ CodeRunner::CodeRunner(LanguageRegistry *registry, QObject *parent)
 #ifdef SF_PYTHON_ENABLED
     m_pythonRunner = new PythonRunner();
 #endif
+#ifdef SF_USE_CLANG_RUNNER
+    m_clangRunnerC   = new ClangRunner(false);
+    m_clangRunnerCpp = new ClangRunner(true);
+#endif
 }
 
 CodeRunner::~CodeRunner() {
@@ -28,10 +32,25 @@ CodeRunner::~CodeRunner() {
 #ifdef SF_PYTHON_ENABLED
     delete m_pythonRunner;
 #endif
+#ifdef SF_USE_CLANG_RUNNER
+    delete m_clangRunnerC;
+    delete m_clangRunnerCpp;
+#endif
 }
 
 EmbeddedRunner* CodeRunner::getRunner(const QString &languageId) {
-    if (languageId == "c" || languageId == "cpp") return m_tccRunner;
+#ifdef SF_USE_CLANG_RUNNER
+    // macOS: TCC is not available — route C and C++ through system clang
+    if (languageId == "c")                              return m_clangRunnerC;
+    if (languageId == "cpp")                            return m_clangRunnerCpp;
+#else
+    if (languageId == "c") return m_tccRunner;
+    if (languageId == "cpp") {
+        // TCC is a C-only compiler — it cannot handle C++ syntax, templates, or STL.
+        // TODO: implement a QProcess-based g++/clang++ runner for C++.
+        return nullptr;
+    }
+#endif
     if (languageId == "javascript" || languageId == "js") return m_quickjsRunner;
 #ifdef SF_PYTHON_ENABLED
     if (languageId == "python") return m_pythonRunner;
@@ -62,7 +81,10 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
 
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
-        emit systemError("Language not yet configured for embedded compilation: " + languageId);
+        QString msg = (languageId == "cpp")
+            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            : (QStringLiteral("Language not yet configured for embedded compilation: ") + languageId);
+        emit systemError(msg);
         m_running = false;
         emit finished();
         return;
@@ -114,7 +136,10 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
-        emit systemError("Language not yet configured for embedded compilation: " + languageId);
+        QString msg = (languageId == "cpp")
+            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            : (QStringLiteral("Language not yet configured for embedded compilation: ") + languageId);
+        emit systemError(msg);
         m_running = false;
         emit finished();
         return;
@@ -138,24 +163,36 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
 
 void CodeRunner::runFreeCode(const QString &code, const QString &languageId) {
+    // BUG-09: guard against concurrent execution (same guard as runCode/runSingleTest)
+    if (m_running) {
+        emit systemError("Already running");
+        return;
+    }
+    m_running = true;
+    m_stopRequested = false;
+
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
-        emit systemError("Language not yet configured for free execution: " + languageId);
+        QString msg = (languageId == "cpp")
+            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            : (QStringLiteral("Language not yet configured for free execution: ") + languageId);
+        emit systemError(msg);
+        m_running = false;
         emit finished();
         return;
     }
 
-    m_stopRequested = false;
     QElapsedTimer timer;
     timer.start();
-    
     EmbeddedRunner::Result r = runner->execute(code, "", &m_stopRequested);
     qint64 ms = timer.elapsed();
 
     if (!r.output.isEmpty()) emit freeCodeOutput(r.output);
-    if (!r.error.isEmpty()) emit freeCodeError(r.error);
-    
+    if (!r.error.isEmpty())  emit freeCodeError(r.error);
     emit freeCodeFinished(r.exitCode, ms);
+
+    m_running = false;
+    emit finished();
 }
 
 void CodeRunner::stop() {
@@ -266,8 +303,9 @@ void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
     } else if (r.timedOut) {
         status = "Time Limit Exceeded";
     } else {
-        // TCC compile error returns exitCode -1 and timedOut false with empty stdout output
-        if (r.exitCode == -1 && runner->languageId() == "c" && actual.isEmpty() && !r.error.isEmpty()) {
+        // BUG-10: surface compile/parse errors for any language, not just C.
+        // Heuristic: non-zero exit with no stdout and non-empty stderr = compile error.
+        if (r.exitCode != 0 && actual.isEmpty() && !r.error.isEmpty()) {
             emit compilationError(r.error);
             return;
         }

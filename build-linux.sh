@@ -34,9 +34,16 @@ check_cmd() {
 
 check_cmd cmake
 check_cmd make
-check_cmd qmake6 || check_cmd qmake
 
-QMAKE_CMD=$(command -v qmake6 2>/dev/null || command -v qmake)
+# BUILD-02: check_cmd uses "exit 1" which terminates the whole script from a
+# function, so "check_cmd qmake6 || check_cmd qmake" never evaluates the rhs.
+# Use command -v directly for the fallback detection.
+QMAKE_CMD=$(command -v qmake6 2>/dev/null || command -v qmake 2>/dev/null)
+if [ -z "$QMAKE_CMD" ]; then
+    echo "[ERROR] Neither 'qmake6' nor 'qmake' found."
+    echo "        Install Qt6: sudo apt install qt6-base-dev"
+    exit 1
+fi
 echo " qmake   : $QMAKE_CMD"
 
 # ---- Step 1: Build QScintilla (if not already present) ----

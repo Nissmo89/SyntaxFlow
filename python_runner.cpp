@@ -49,8 +49,9 @@ static QString format_py_exception()
                 PyObj args(PyTuple_Pack(3, ptype, pval, ptb));
                 PyObj lines(PyObject_CallObject(fmtFn, args));
                 if (lines.ok()) {
-                    PyObj joined(PyUnicode_Join(
-                        PyUnicode_FromString(""), lines));
+                    // BUG-08: wrap the separator in PyObj so it is auto-freed
+                    PyObj sep(PyUnicode_FromString(""));
+                    PyObj joined(PyUnicode_Join(sep, lines));
                     if (joined.ok()) {
                         const char *s = PyUnicode_AsUTF8(joined);
                         if (s) result = QString::fromUtf8(s);
@@ -165,10 +166,20 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     PyObject_SetAttrString(sysMod, "stderr", captureErr);
     PyObject_SetAttrString(sysMod, "stdin",  captureIn);
 
-    // ── 5. Build a clean __main__ module globals dict ─────────────────────────
-    PyObj mainMod (PyImport_AddModule("__main__"));   // borrowed ref — don't decref
-    PyObject *globals = PyModule_GetDict(mainMod);    // borrowed
-    // Add builtins so the user code has access to print, input, etc.
+    // ── 5. Fresh globals dict per run (BUG-06, BUG-07) ───────────────────────
+    // PyImport_AddModule returns a BORROWED ref — do NOT wrap in PyObj.
+    PyObject* mainMod = PyImport_AddModule("__main__"); // borrowed
+    if (!mainMod) {
+        result.error    = QStringLiteral("Failed to get __main__ module");
+        result.exitCode = -1;
+        // Restore sys streams before returning
+        PyObject_SetAttrString(sysMod, "stdout", realStdout);
+        PyObject_SetAttrString(sysMod, "stderr", realStderr);
+        PyObject_SetAttrString(sysMod, "stdin",  realStdin);
+        return result;
+    }
+    // Create a fresh dict per run so variables don't leak between test cases (BUG-07).
+    PyObj globals(PyDict_New()); // owned ref — auto-freed by PyObj
     PyObj builtinsMod(PyImport_ImportModule("builtins"));
     PyDict_SetItemString(globals, "__builtins__", builtinsMod);
 
@@ -176,8 +187,8 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     QByteArray src = code.toUtf8();
     PyObject *ret = PyRun_String(src.constData(),
                                   Py_file_input,   // compile as a module (allows top-level statements)
-                                  globals,
-                                  globals);
+                                  globals.o,
+                                  globals.o);
 
     if (!ret) {
         // There was an exception
