@@ -17,6 +17,7 @@ LanguageConfig LanguageConfig::fromJson(const QJsonObject &json, const QString &
     }
 
     config.compiled = json.value("compiled").toBool(true);
+    config.isEmbedded = json.value("isEmbedded").toBool(false);
     config.compileCommand = json.value("compileCommand").toString();
 
     for (const auto &arg : json.value("compileArgs").toArray()) {
@@ -54,6 +55,7 @@ QJsonObject LanguageConfig::toJson() const {
     json["extension"] = extension;
     json["sourceFile"] = sourceFile;
     json["compiled"] = compiled;
+    if (isEmbedded) json["isEmbedded"] = true;
 
     if (!compileCommand.isEmpty()) json["compileCommand"] = compileCommand;
     if (!compileArgs.isEmpty()) json["compileArgs"] = QJsonArray::fromStringList(compileArgs);

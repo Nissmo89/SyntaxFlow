@@ -53,17 +53,8 @@ QJsonObject LanguageRegistry::builtinC() {
         {"name", "C"},
         {"extension", ".c"},
         {"sourceFile", "solution.c"},
-        {"compiled", true},
-        {"compileCommand", "gcc"},
-        {"compileArgs", QJsonArray{
-                            "-O2",
-                            "-Wall",
-                            "{source}",
-                            "-o",
-                            "{output}",
-                            "-lm"
-                        }},
-        {"runCommand", "{workdir}/{output}"},
+        {"isEmbedded", true},
+        {"compiled", false},
         {"timeout", 2000},
         {"template", "#include <stdio.h>\n\nint main() {\n    \n    return 0;\n}\n"}
     };
@@ -74,10 +65,8 @@ QJsonObject LanguageRegistry::builtinCpp() {
         {"name", "C++"},
         {"extension", ".cpp"},
         {"sourceFile", "solution.cpp"},
+        {"isEmbedded", false},
         {"compiled", true},
-        {"compileCommand", "g++"},
-        {"compileArgs", QJsonArray{"-std=c++17", "-O2", "-Wall", "-o", "{output}", "{source}"}},
-        {"runCommand", "{workdir}/{output}"},
         {"timeout", 2000},
         {"template", "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n"}
     };
@@ -89,12 +78,11 @@ QJsonObject LanguageRegistry::builtinPython() {
         {"extension", ".py"},
         {"sourceFile", "solution.py"},
         {"compiled", false},
-#ifdef Q_OS_WIN
-        {"runCommand", "python"},
+#ifdef SF_PYTHON_ENABLED
+        {"isEmbedded", true},
 #else
-        {"runCommand", "python3"},
+        {"isEmbedded", false},
 #endif
-        {"runArgs", QJsonArray{"-u", "{source}"}},
         {"timeout", 5000},
         {"template", "# Your code here\n"}
     };
@@ -106,9 +94,8 @@ QJsonObject LanguageRegistry::builtinJavaScript() {
         {"name", "JavaScript"},
         {"extension", ".js"},
         {"sourceFile", "solution.js"},
+        {"isEmbedded", true},
         {"compiled", false},
-        {"runCommand", "node"},
-        {"runArgs", QJsonArray{"{source}"}},
         {"timeout", 3000},
         {"template", "// Your code here\n"}
     };
@@ -173,25 +160,8 @@ QStringList LanguageRegistry::availableLanguages() const {
 bool LanguageRegistry::isLanguageAvailable(const QString &id) const {
     if (!m_languages.contains(id)) return false;
 
-    const LanguageConfig &config = m_languages[id];
-    if (config.isEmbedded) return true;
-
-    QString cmd = config.compiled ? config.compileCommand : config.runCommand;
-    return checkCommandExists(cmd);
-}
-
-bool LanguageRegistry::checkCommandExists(const QString &command) const {
-    if (command.isEmpty()) return false;
-    if (QFile::exists(command)) return true;
-
-    QProcess proc;
-#ifdef Q_OS_WIN
-    proc.start("where", {command});
-#else
-    proc.start("which", {command});
-#endif
-    proc.waitForFinished(2000);
-    return proc.exitCode() == 0;
+    // We only support embedded compilers now.
+    return m_languages[id].isEmbedded;
 }
 
 bool LanguageRegistry::addLanguage(const LanguageConfig &config, bool save) {

@@ -15,14 +15,10 @@
 CodeRunner::CodeRunner(LanguageRegistry *registry, QObject *parent)
     : QObject(parent), m_registry(registry) {
 
-    m_tccRunner = new TccRunner();
+    m_tccRunner     = new TccRunner();
     m_quickjsRunner = new QuickJsRunner();
 #ifdef SF_PYTHON_ENABLED
     m_pythonRunner = new PythonRunner();
-#endif
-#ifdef SF_USE_CLANG_RUNNER
-    m_clangRunnerC   = new ClangRunner(false);
-    m_clangRunnerCpp = new ClangRunner(true);
 #endif
 }
 
@@ -32,27 +28,21 @@ CodeRunner::~CodeRunner() {
 #ifdef SF_PYTHON_ENABLED
     delete m_pythonRunner;
 #endif
-#ifdef SF_USE_CLANG_RUNNER
-    delete m_clangRunnerC;
-    delete m_clangRunnerCpp;
-#endif
 }
 
 EmbeddedRunner* CodeRunner::getRunner(const QString &languageId) {
-#ifdef SF_USE_CLANG_RUNNER
-    // macOS: TCC is not available — route C and C++ through system clang
-    if (languageId == "c")                              return m_clangRunnerC;
-    if (languageId == "cpp")                            return m_clangRunnerCpp;
-#else
+    // libtcc — C only (C89/C99, no C++ support)
     if (languageId == "c") return m_tccRunner;
-    if (languageId == "cpp") {
-        // TCC is a C-only compiler — it cannot handle C++ syntax, templates, or STL.
-        // TODO: implement a QProcess-based g++/clang++ runner for C++.
-        return nullptr;
-    }
-#endif
+
+    // C++ is not supported in embedded mode: TCC cannot compile C++
+    // and no external compiler fallback exists (by design).
+    if (languageId == "cpp") return nullptr;
+
+    // QuickJS — JavaScript (works on all platforms, no external tools)
     if (languageId == "javascript" || languageId == "js") return m_quickjsRunner;
+
 #ifdef SF_PYTHON_ENABLED
+    // CPython — Python (optional, requires python3-dev at build time)
     if (languageId == "python") return m_pythonRunner;
 #endif
     return nullptr;
@@ -82,7 +72,7 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
         QString msg = (languageId == "cpp")
-            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            ? QStringLiteral("C++ is not supported. TCC only compiles C, and no external compiler is used.")
             : (QStringLiteral("Language not yet configured for embedded compilation: ") + languageId);
         emit systemError(msg);
         m_running = false;
@@ -137,7 +127,7 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
         QString msg = (languageId == "cpp")
-            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            ? QStringLiteral("C++ is not supported. TCC only compiles C, and no external compiler is used.")
             : (QStringLiteral("Language not yet configured for embedded compilation: ") + languageId);
         emit systemError(msg);
         m_running = false;
@@ -174,7 +164,7 @@ void CodeRunner::runFreeCode(const QString &code, const QString &languageId) {
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
         QString msg = (languageId == "cpp")
-            ? QStringLiteral("C++ requires a system compiler (g++/clang++). Not yet supported in embedded mode.")
+            ? QStringLiteral("C++ is not supported. TCC only compiles C, and no external compiler is used.")
             : (QStringLiteral("Language not yet configured for free execution: ") + languageId);
         emit systemError(msg);
         m_running = false;

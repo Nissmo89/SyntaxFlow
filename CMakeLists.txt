@@ -85,10 +85,9 @@ set_target_properties(quickjs PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)
 
 if(MSVC)
     # MSVC is NOT a supported toolchain for SyntaxFlow.
-    # The project requires MinGW-w64 on Windows and GCC/Clang on Linux/macOS.
-    # This block is intentionally left empty. Do not add MSVC-specific options
-    # here as they will not be tested or validated.
-    message(WARNING "MSVC detected. SyntaxFlow only officially supports MinGW-w64 (Windows) and GCC/Clang (Linux/macOS). Build may fail.")
+    # The project requires MinGW-w64 on Windows or GCC/Clang on Linux.
+    # This block is intentionally left empty.
+    message(WARNING "MSVC detected. SyntaxFlow only officially supports MinGW-w64 (Windows) and GCC/Clang (Linux). Build may fail.")
 elseif(MINGW)
     target_compile_options(quickjs PRIVATE
         -Wno-implicit-function-declaration
@@ -96,6 +95,9 @@ elseif(MINGW)
         -Wno-unused-variable
         -Wno-unused-parameter
     )
+    # QuickJS uses math functions (pow, floor, etc.) — MinGW needs explicit -lm.
+    # QuickJS CONFIG_ATOMICS uses pthreads — MinGW needs explicit -lpthread.
+    target_link_libraries(quickjs PRIVATE m pthread)
 else()
     target_compile_options(quickjs PRIVATE
         -Wno-implicit-function-declaration
@@ -175,6 +177,11 @@ if(SF_ENABLE_PYTHON)
     endif()
 endif()
 
+# ---- MinGW: link pthread (required by QuickJS CONFIG_ATOMICS) ----
+if(MINGW)
+    target_link_libraries(SyntaxFlow PRIVATE pthread)
+endif()
+
 # ============================================================
 # QScintilla (Manual first, fallback system)
 # ============================================================
@@ -236,6 +243,15 @@ elseif(UNIX)
     set(TINYCC_LIB ${TINYCC_ROOT}/linux/libtcc.a)
 endif()
 
+if(APPLE)
+    # macOS is NOT supported. TCC has no macOS/Apple Silicon backend.
+    # External compiler fallback has been intentionally removed.
+    # Only libtcc (Linux/Windows), QuickJS, and CPython are supported runners.
+    message(FATAL_ERROR
+        "macOS is not a supported build target for SyntaxFlow.\n"
+        "Supported platforms: Linux (x86-64) and Windows (MinGW-w64).")
+endif()
+
 if(EXISTS ${TINYCC_LIB})
     message(STATUS "Using static TinyCC: ${TINYCC_LIB}")
 
@@ -246,22 +262,15 @@ if(EXISTS ${TINYCC_LIB})
     )
     target_link_libraries(SyntaxFlow PRIVATE tcc)
 
-    # On MinGW, TinyCC's internal relocation may need dl-like linkage.
+    # On MinGW, TinyCC's internal relocation needs all symbols exported.
     if(WIN32 AND MINGW)
         target_link_libraries(SyntaxFlow PRIVATE -Wl,--export-all-symbols)
     endif()
 
-elseif(APPLE)
-    # BUILD-05 / TCC does not support macOS (especially Apple Silicon).
-    # Route C/C++ through the system clang runner instead.
-    message(STATUS "macOS detected: TCC is not supported. Using QProcess+clang runner.")
-    target_sources(SyntaxFlow PRIVATE clang_runner.h clang_runner.cpp)
-    target_compile_definitions(SyntaxFlow PRIVATE SF_USE_CLANG_RUNNER)
-
 else()
     # BUILD-01: Auto-build TinyCC from source rather than failing immediately.
     message(STATUS "TinyCC not found at ${TINYCC_LIB} — attempting to build from source...")
-    if(UNIX)
+    if(UNIX AND NOT APPLE)
         execute_process(
             COMMAND bash -c
                 "cd '${TINYCC_ROOT}' && ./configure && make libtcc.a libtcc1.a && mkdir -p linux && cp libtcc.a libtcc1.a runmain.o bt-exe.o bt-log.o bcheck.o linux/ 2>/dev/null || true"

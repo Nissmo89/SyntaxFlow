@@ -10,9 +10,6 @@
 #endif
 #include "quickjs_runner.h"
 #include "driver_generator.h"
-#ifdef SF_USE_CLANG_RUNNER
-#include "clang_runner.h"
-#endif
 
 class LanguageRegistry;
 
@@ -60,14 +57,10 @@ private:
 
     EmbeddedRunner* getRunner(const QString &languageId);
 
-    TccRunner *m_tccRunner = nullptr;
-    QuickJsRunner *m_quickjsRunner = nullptr;
+    TccRunner       *m_tccRunner       = nullptr;
+    QuickJsRunner   *m_quickjsRunner   = nullptr;
 #ifdef SF_PYTHON_ENABLED
-    PythonRunner *m_pythonRunner = nullptr;
-#endif
-#ifdef SF_USE_CLANG_RUNNER
-    ClangRunner *m_clangRunnerC   = nullptr;
-    ClangRunner *m_clangRunnerCpp = nullptr;
+    PythonRunner    *m_pythonRunner    = nullptr;
 #endif
 };
 

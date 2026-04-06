@@ -36,7 +36,6 @@ private:
     void loadFromDirectory(const QString &path);
     void loadFromFile(const QString &filePath);
     bool saveConfig(const LanguageConfig &config);
-    bool checkCommandExists(const QString &command) const;
 
     // Built-in configs
     static QJsonObject builtinC();
