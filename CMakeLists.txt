@@ -317,6 +317,12 @@ if(WIN32)
             "${TINYCC_ROOT}/include"
             "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/include"
         COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${TINYCC_ROOT}/win32/include"
+            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/include"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${TINYCC_ROOT}/win32/lib"
+            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/lib"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${CMAKE_CURRENT_SOURCE_DIR}/problems"
             "$<TARGET_FILE_DIR:SyntaxFlow>/problems"
         COMMAND ${CMAKE_COMMAND} -E copy

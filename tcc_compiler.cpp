@@ -165,7 +165,11 @@ EmbeddedRunner::Result TccRunner::execute(const QString &code,
     TccErrCtx ec;
     TCCState *s = tcc_new();
     tcc_set_error_func(s, &ec, tcc_err_cb);
+#ifdef Q_OS_WIN
+    tcc_set_lib_path(s, m_libPath.toLocal8Bit().constData());
+#else
     tcc_set_lib_path(s, m_libPath.toUtf8().constData());
+#endif
     tcc_set_output_type(s, TCC_OUTPUT_MEMORY);
 
     auto restoreFds = [&]() {
