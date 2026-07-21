@@ -1,0 +1,391 @@
+{
+  "id": "permutation_sequence",
+  "title": "Permutation Sequence",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "description": "<p>The set <code>[1, 2, 3, ...,&nbsp;n]</code> contains a total of <code>n!</code> unique permutations.</p>\n\n<p>By listing and labeling all of the permutations in order, we get the following sequence for <code>n = 3</code>:</p>\n\n<ol>\n\t<li><code>&quot;123&quot;</code></li>\n\t<li><code>&quot;132&quot;</code></li>\n\t<li><code>&quot;213&quot;</code></li>\n\t<li><code>&quot;231&quot;</code></li>\n\t<li><code>&quot;312&quot;</code></li>\n\t<li><code>&quot;321&quot;</code></li>\n</ol>\n\n<p>Given <code>n</code> and <code>k</code>, return the <code>k<sup>th</sup></code> permutation sequence.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> n = 3, k = 3\n<strong>Output:</strong> \"213\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> n = 4, k = 9\n<strong>Output:</strong> \"2314\"\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> n = 3, k = 1\n<strong>Output:</strong> \"123\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 9</code></li>\n\t<li><code>1 &lt;= k &lt;= n!</code></li>\n</ul>\n",
+  "task": "Solve the 'Permutation Sequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 9",
+    "1 <= k <= n!"
+  ],
+  "hints": [],
+  "method": {
+    "name": "getPermutation",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 60,
+      "title": "permutation-sequence",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().getPermutation({n}, {k})",
+        "rust": "Solution::get_permutation({n}, {k})",
+        "python3": "Solution().getPermutation({n}, {k})",
+        "python2": "Solution().getPermutation({n}, {k})",
+        "ruby": "get_permutation({n}, {k})",
+        "java": "new Solution().getPermutation({n}, {k})",
+        "csharp": "new Solution().GetPermutation({n}, {k})",
+        "kotlin": "Solution().getPermutation({n}, {k})",
+        "go": "getPermutation({n}, {k})",
+        "dart": "Solution().getPermutation({n}, {k})",
+        "swift": "Solution().getPermutation({n}, {k})",
+        "typescript": "getPermutation({n}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().getPermutation(n, k, {result})",
+        "checker": "class Checker:\n    def getPermutation(self, n, k, result):\n        if not isinstance(result, str):\n            return False\n        if len(result) != n:\n            return False\n        expected = [str(i) for i in range(1, n + 1)]\n        if sorted(result) != expected:\n            return False\n        nums = expected[:]\n        factorial = [1] * (n + 1)\n        for i in range(1, n + 1):\n            factorial[i] = factorial[i - 1] * i\n        k -= 1\n        res = []\n        for remaining in range(n, 0, -1):\n            block = factorial[remaining - 1]\n            idx = k // block\n            k %= block\n            res.append(nums.pop(idx))\n        return \"\".join(res) == result\n"
+      }
+    },
+    "seed": 60,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "n": 3,
+          "k": 3
+        },
+        "out": "\"213\""
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "n": 4,
+          "k": 9
+        },
+        "out": "\"2314\""
+      },
+      {
+        "name": "Example 3",
+        "in": {
+          "n": 3,
+          "k": 1
+        },
+        "out": "\"123\""
+      },
+      {
+        "name": "n1_k1",
+        "in": {
+          "n": 1,
+          "k": 1
+        },
+        "out": "\"1\""
+      },
+      {
+        "name": "n2_first",
+        "in": {
+          "n": 2,
+          "k": 1
+        },
+        "out": "\"12\""
+      },
+      {
+        "name": "n2_second",
+        "in": {
+          "n": 2,
+          "k": 2
+        },
+        "out": "\"21\""
+      },
+      {
+        "name": "n3_second",
+        "in": {
+          "n": 3,
+          "k": 2
+        },
+        "out": "\"132\""
+      },
+      {
+        "name": "n3_fourth",
+        "in": {
+          "n": 3,
+          "k": 4
+        },
+        "out": "\"231\""
+      },
+      {
+        "name": "n3_fifth",
+        "in": {
+          "n": 3,
+          "k": 5
+        },
+        "out": "\"312\""
+      },
+      {
+        "name": "n3_last",
+        "in": {
+          "n": 3,
+          "k": 6
+        },
+        "out": "\"321\""
+      },
+      {
+        "name": "n4_first",
+        "in": {
+          "n": 4,
+          "k": 1
+        },
+        "out": "\"1234\""
+      },
+      {
+        "name": "n4_second",
+        "in": {
+          "n": 4,
+          "k": 2
+        },
+        "out": "\"1243\""
+      },
+      {
+        "name": "n4_third",
+        "in": {
+          "n": 4,
+          "k": 3
+        },
+        "out": "\"1324\""
+      },
+      {
+        "name": "n4_eighth",
+        "in": {
+          "n": 4,
+          "k": 8
+        },
+        "out": "\"2143\""
+      },
+      {
+        "name": "n4_ninth_repeat_example",
+        "in": {
+          "n": 4,
+          "k": 9
+        },
+        "out": "\"2314\""
+      },
+      {
+        "name": "n4_last",
+        "in": {
+          "n": 4,
+          "k": 24
+        },
+        "out": "\"4321\""
+      },
+      {
+        "name": "n5_first",
+        "in": {
+          "n": 5,
+          "k": 1
+        },
+        "out": "\"12345\""
+      },
+      {
+        "name": "n5_second",
+        "in": {
+          "n": 5,
+          "k": 2
+        },
+        "out": "\"12354\""
+      },
+      {
+        "name": "n5_fifth",
+        "in": {
+          "n": 5,
+          "k": 5
+        },
+        "out": "\"12534\""
+      },
+      {
+        "name": "n5_mid",
+        "in": {
+          "n": 5,
+          "k": 42
+        },
+        "out": "\"24531\""
+      },
+      {
+        "name": "n5_last",
+        "in": {
+          "n": 5,
+          "k": 120
+        },
+        "out": "\"54321\""
+      },
+      {
+        "name": "n6_first",
+        "in": {
+          "n": 6,
+          "k": 1
+        },
+        "out": "\"123456\""
+      },
+      {
+        "name": "n6_second",
+        "in": {
+          "n": 6,
+          "k": 2
+        },
+        "out": "\"123465\""
+      },
+      {
+        "name": "n6_last",
+        "in": {
+          "n": 6,
+          "k": 720
+        },
+        "out": "\"654321\""
+      },
+      {
+        "name": "n7_first",
+        "in": {
+          "n": 7,
+          "k": 1
+        },
+        "out": "\"1234567\""
+      },
+      {
+        "name": "n7_second",
+        "in": {
+          "n": 7,
+          "k": 2
+        },
+        "out": "\"1234576\""
+      },
+      {
+        "name": "n7_near_last",
+        "in": {
+          "n": 7,
+          "k": 5039
+        },
+        "out": "\"7654312\""
+      },
+      {
+        "name": "n8_first",
+        "in": {
+          "n": 8,
+          "k": 1
+        },
+        "out": "\"12345678\""
+      },
+      {
+        "name": "n8_second",
+        "in": {
+          "n": 8,
+          "k": 2
+        },
+        "out": "\"12345687\""
+      },
+      {
+        "name": "n8_last",
+        "in": {
+          "n": 8,
+          "k": 40320
+        },
+        "out": "\"87654321\""
+      },
+      {
+        "name": "n9_first",
+        "in": {
+          "n": 9,
+          "k": 1
+        },
+        "out": "\"123456789\""
+      },
+      {
+        "name": "n9_second",
+        "in": {
+          "n": 9,
+          "k": 2
+        },
+        "out": "\"123456798\""
+      },
+      {
+        "name": "n9_mid",
+        "in": {
+          "n": 9,
+          "k": 181440
+        },
+        "out": "\"549876321\""
+      },
+      {
+        "name": "n9_near_last",
+        "in": {
+          "n": 9,
+          "k": 362879
+        },
+        "out": "\"987654312\""
+      },
+      {
+        "name": "n9_last",
+        "in": {
+          "n": 9,
+          "k": 362880
+        },
+        "out": "\"987654321\""
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3\nk = 3",
+      "output": "\"\\\"213\\\"\""
+    },
+    {
+      "input": "n = 4\nk = 9",
+      "output": "\"\\\"2314\\\"\""
+    },
+    {
+      "input": "n = 3\nk = 1",
+      "output": "\"\\\"123\\\"\""
+    },
+    {
+      "input": "n = 1\nk = 1",
+      "output": "\"\\\"1\\\"\""
+    },
+    {
+      "input": "n = 2\nk = 1",
+      "output": "\"\\\"12\\\"\""
+    },
+    {
+      "input": "n = 2\nk = 2",
+      "output": "\"\\\"21\\\"\""
+    },
+    {
+      "input": "n = 3\nk = 2",
+      "output": "\"\\\"132\\\"\""
+    },
+    {
+      "input": "n = 3\nk = 4",
+      "output": "\"\\\"231\\\"\""
+    }
+  ]
+}

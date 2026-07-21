@@ -1,0 +1,400 @@
+{
+  "id": "moving_stones_until_consecutive",
+  "title": "Moving Stones Until Consecutive",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Brainteaser"
+  ],
+  "description": "<p>There are three stones in different positions on the X-axis. You are given three integers <code>a</code>, <code>b</code>, and <code>c</code>, the positions of the stones.</p>\n\n<p>In one move, you pick up a stone at an endpoint (i.e., either the lowest or highest position stone), and move it to an unoccupied position between those endpoints. Formally, let&#39;s say the stones are currently at positions <code>x</code>, <code>y</code>, and <code>z</code> with <code>x &lt; y &lt; z</code>. You pick up the stone at either position <code>x</code> or position <code>z</code>, and move that stone to an integer position <code>k</code>, with <code>x &lt; k &lt; z</code> and <code>k != y</code>.</p>\n\n<p>The game ends when you cannot make any more moves (i.e., the stones are in three consecutive positions).</p>\n\n<p>Return <em>an integer array </em><code>answer</code><em> of length </em><code>2</code><em> where</em>:</p>\n\n<ul>\n\t<li><code>answer[0]</code> <em>is the minimum number of moves you can play, and</em></li>\n\t<li><code>answer[1]</code> <em>is the maximum number of moves you can play</em>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> a = 1, b = 2, c = 5\n<strong>Output:</strong> [1,2]\n<strong>Explanation:</strong> Move the stone from 5 to 3, or move the stone from 5 to 4 to 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> a = 4, b = 3, c = 2\n<strong>Output:</strong> [0,0]\n<strong>Explanation:</strong> We cannot make any moves.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> a = 3, b = 5, c = 1\n<strong>Output:</strong> [1,2]\n<strong>Explanation:</strong> Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= a, b, c &lt;= 100</code></li>\n\t<li><code>a</code>, <code>b</code>, and <code>c</code> have different values.</li>\n</ul>\n",
+  "task": "Solve the 'Moving Stones Until Consecutive' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= a, b, c <= 100",
+    "a, b, and c have different values."
+  ],
+  "hints": [
+    "For the minimum:  We can always do it in at most 2 moves, by moving one stone next to another, then the third stone next to the other two.  When can we do it in 1 move?  0 moves?\r\n\r\nFor the maximum:  Every move, the maximum position minus the minimum position must decrease by at least 1."
+  ],
+  "method": {
+    "name": "numMovesStones",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "b",
+        "type": "int"
+      },
+      {
+        "name": "c",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1033,
+      "title": "moving-stones-until-consecutive",
+      "params": {
+        "a": {
+          "type": "int"
+        },
+        "b": {
+          "type": "int"
+        },
+        "c": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numMovesStones({a}, {b}, {c})",
+        "rust": "Solution::num_moves_stones({a}, {b}, {c})",
+        "python3": "Solution().numMovesStones({a}, {b}, {c})",
+        "python2": "Solution().numMovesStones({a}, {b}, {c})",
+        "ruby": "num_moves_stones({a}, {b}, {c})",
+        "java": "new Solution().numMovesStones({a}, {b}, {c})",
+        "csharp": "new Solution().NumMovesStones({a}, {b}, {c})",
+        "kotlin": "Solution().numMovesStones({a}, {b}, {c})",
+        "go": "numMovesStones({a}, {b}, {c})",
+        "dart": "Solution().numMovesStones({a}, {b}, {c})",
+        "swift": "Solution().numMovesStones({a}, {b}, {c})",
+        "typescript": "numMovesStones({a}, {b}, {c})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(a, b, c, {result})",
+        "checker": "class Checker:\n    def check(self, a, b, c, result):\n        if not isinstance(result, list) or len(result) != 2:\n            return False\n        x, y, z = sorted([a, b, c])\n        exp = [0 if z - x == 2 else (1 if y - x <= 2 or z - y <= 2 else 2), z - x - 2]\n        return result == exp\n"
+      }
+    },
+    "seed": 1033,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "a": 1,
+          "b": 2,
+          "c": 5
+        }
+      },
+      {
+        "name": "consecutive",
+        "in": {
+          "a": 1,
+          "b": 2,
+          "c": 3
+        }
+      },
+      {
+        "name": "near-consecutive-left",
+        "in": {
+          "a": 1,
+          "b": 3,
+          "c": 5
+        }
+      },
+      {
+        "name": "near-consecutive-right",
+        "in": {
+          "a": 4,
+          "b": 5,
+          "c": 7
+        }
+      },
+      {
+        "name": "spaced-small",
+        "in": {
+          "a": 1,
+          "b": 4,
+          "c": 7
+        }
+      },
+      {
+        "name": "spaced-large",
+        "in": {
+          "a": 10,
+          "b": 20,
+          "c": 30
+        }
+      },
+      {
+        "name": "unsorted-1",
+        "in": {
+          "a": 7,
+          "b": 1,
+          "c": 5
+        }
+      },
+      {
+        "name": "unsorted-2",
+        "in": {
+          "a": 100,
+          "b": 1,
+          "c": 50
+        }
+      },
+      {
+        "name": "unsorted-3",
+        "in": {
+          "a": 6,
+          "b": 4,
+          "c": 2
+        }
+      },
+      {
+        "name": "unsorted-4",
+        "in": {
+          "a": 9,
+          "b": 8,
+          "c": 7
+        }
+      },
+      {
+        "name": "gap-2",
+        "in": {
+          "a": 1,
+          "b": 4,
+          "c": 6
+        }
+      },
+      {
+        "name": "gap-3",
+        "in": {
+          "a": 2,
+          "b": 5,
+          "c": 9
+        }
+      },
+      {
+        "name": "gap-4",
+        "in": {
+          "a": 3,
+          "b": 7,
+          "c": 12
+        }
+      },
+      {
+        "name": "gap-5",
+        "in": {
+          "a": 8,
+          "b": 13,
+          "c": 21
+        }
+      },
+      {
+        "name": "far-apart-1",
+        "in": {
+          "a": 1,
+          "b": 10,
+          "c": 20
+        }
+      },
+      {
+        "name": "far-apart-2",
+        "in": {
+          "a": 5,
+          "b": 15,
+          "c": 25
+        }
+      },
+      {
+        "name": "far-apart-3",
+        "in": {
+          "a": 2,
+          "b": 12,
+          "c": 22
+        }
+      },
+      {
+        "name": "far-apart-4",
+        "in": {
+          "a": 11,
+          "b": 21,
+          "c": 31
+        }
+      },
+      {
+        "name": "reverse-order-1",
+        "in": {
+          "a": 30,
+          "b": 10,
+          "c": 20
+        }
+      },
+      {
+        "name": "reverse-order-2",
+        "in": {
+          "a": 50,
+          "b": 40,
+          "c": 41
+        }
+      },
+      {
+        "name": "reverse-order-3",
+        "in": {
+          "a": 8,
+          "b": 3,
+          "c": 6
+        }
+      },
+      {
+        "name": "tiny-gap",
+        "in": {
+          "a": 1,
+          "b": 2,
+          "c": 4
+        }
+      },
+      {
+        "name": "same-ish-1",
+        "in": {
+          "a": 10,
+          "b": 12,
+          "c": 13
+        }
+      },
+      {
+        "name": "same-ish-2",
+        "in": {
+          "a": 14,
+          "b": 16,
+          "c": 17
+        }
+      },
+      {
+        "name": "same-ish-3",
+        "in": {
+          "a": 18,
+          "b": 19,
+          "c": 21
+        }
+      },
+      {
+        "name": "same-ish-4",
+        "in": {
+          "a": 22,
+          "b": 24,
+          "c": 25
+        }
+      },
+      {
+        "name": "same-ish-5",
+        "in": {
+          "a": 26,
+          "b": 27,
+          "c": 29
+        }
+      },
+      {
+        "name": "same-ish-6",
+        "in": {
+          "a": 30,
+          "b": 32,
+          "c": 33
+        }
+      },
+      {
+        "name": "same-ish-7",
+        "in": {
+          "a": 34,
+          "b": 35,
+          "c": 37
+        }
+      },
+      {
+        "name": "same-ish-8",
+        "in": {
+          "a": 38,
+          "b": 40,
+          "c": 41
+        }
+      },
+      {
+        "name": "same-ish-9",
+        "in": {
+          "a": 42,
+          "b": 43,
+          "c": 45
+        }
+      },
+      {
+        "name": "same-ish-10",
+        "in": {
+          "a": 46,
+          "b": 48,
+          "c": 49
+        }
+      },
+      {
+        "name": "high-values-1",
+        "in": {
+          "a": 100,
+          "b": 102,
+          "c": 103
+        }
+      },
+      {
+        "name": "high-values-2",
+        "in": {
+          "a": 200,
+          "b": 205,
+          "c": 210
+        }
+      },
+      {
+        "name": "high-values-3",
+        "in": {
+          "a": 300,
+          "b": 301,
+          "c": 303
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "a = 1\nb = 2\nc = 5",
+      "output": ""
+    },
+    {
+      "input": "a = 1\nb = 2\nc = 3",
+      "output": ""
+    },
+    {
+      "input": "a = 1\nb = 3\nc = 5",
+      "output": ""
+    },
+    {
+      "input": "a = 4\nb = 5\nc = 7",
+      "output": ""
+    },
+    {
+      "input": "a = 1\nb = 4\nc = 7",
+      "output": ""
+    },
+    {
+      "input": "a = 10\nb = 20\nc = 30",
+      "output": ""
+    },
+    {
+      "input": "a = 7\nb = 1\nc = 5",
+      "output": ""
+    },
+    {
+      "input": "a = 100\nb = 1\nc = 50",
+      "output": ""
+    }
+  ]
+}

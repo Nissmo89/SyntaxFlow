@@ -1,0 +1,438 @@
+{
+  "id": "lexicographically_smallest_equivalent_string",
+  "title": "Lexicographically Smallest Equivalent String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Union-Find"
+  ],
+  "description": "<p>You are given two strings of the same length <code>s1</code> and <code>s2</code> and a string <code>baseStr</code>.</p>\n\n<p>We say <code>s1[i]</code> and <code>s2[i]</code> are equivalent characters.</p>\n\n<ul>\n\t<li>For example, if <code>s1 = &quot;abc&quot;</code> and <code>s2 = &quot;cde&quot;</code>, then we have <code>&#39;a&#39; == &#39;c&#39;</code>, <code>&#39;b&#39; == &#39;d&#39;</code>, and <code>&#39;c&#39; == &#39;e&#39;</code>.</li>\n</ul>\n\n<p>Equivalent characters follow the usual rules of any equivalence relation:</p>\n\n<ul>\n\t<li><strong>Reflexivity:</strong> <code>&#39;a&#39; == &#39;a&#39;</code>.</li>\n\t<li><strong>Symmetry:</strong> <code>&#39;a&#39; == &#39;b&#39;</code> implies <code>&#39;b&#39; == &#39;a&#39;</code>.</li>\n\t<li><strong>Transitivity:</strong> <code>&#39;a&#39; == &#39;b&#39;</code> and <code>&#39;b&#39; == &#39;c&#39;</code> implies <code>&#39;a&#39; == &#39;c&#39;</code>.</li>\n</ul>\n\n<p>For example, given the equivalency information from <code>s1 = &quot;abc&quot;</code> and <code>s2 = &quot;cde&quot;</code>, <code>&quot;acd&quot;</code> and <code>&quot;aab&quot;</code> are equivalent strings of <code>baseStr = &quot;eed&quot;</code>, and <code>&quot;aab&quot;</code> is the lexicographically smallest equivalent string of <code>baseStr</code>.</p>\n\n<p>Return <em>the lexicographically smallest equivalent string of </em><code>baseStr</code><em> by using the equivalency information from </em><code>s1</code><em> and </em><code>s2</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;parker&quot;, s2 = &quot;morris&quot;, baseStr = &quot;parser&quot;\n<strong>Output:</strong> &quot;makkek&quot;\n<strong>Explanation:</strong> Based on the equivalency information in s1 and s2, we can group their characters as [m,p], [a,o], [k,r,s], [e,i].\nThe characters in each group are equivalent and sorted in lexicographical order.\nSo the answer is &quot;makkek&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;hello&quot;, s2 = &quot;world&quot;, baseStr = &quot;hold&quot;\n<strong>Output:</strong> &quot;hdld&quot;\n<strong>Explanation: </strong>Based on the equivalency information in s1 and s2, we can group their characters as [h,w], [d,e,o], [l,r].\nSo only the second letter &#39;o&#39; in baseStr is changed to &#39;d&#39;, the answer is &quot;hdld&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;leetcode&quot;, s2 = &quot;programs&quot;, baseStr = &quot;sourcecode&quot;\n<strong>Output:</strong> &quot;aauaaaaada&quot;\n<strong>Explanation:</strong> We group the equivalent characters in s1 and s2 as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in baseStr except &#39;u&#39; and &#39;d&#39; are transformed to &#39;a&#39;, the answer is &quot;aauaaaaada&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s1.length, s2.length, baseStr &lt;= 1000</code></li>\n\t<li><code>s1.length == s2.length</code></li>\n\t<li><code>s1</code>, <code>s2</code>, and <code>baseStr</code> consist of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Lexicographically Smallest Equivalent String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s1.length, s2.length, baseStr <= 1000",
+    "s1.length == s2.length",
+    "s1, s2, and baseStr consist of lowercase English letters."
+  ],
+  "hints": [
+    "Model these equalities as edges of a graph.",
+    "Group each connected component of the graph and assign each node of this component to the node with the lowest lexicographically character.",
+    "Finally convert the string with the precalculated information."
+  ],
+  "method": {
+    "name": "smallestEquivalentString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s1",
+        "type": "string"
+      },
+      {
+        "name": "s2",
+        "type": "string"
+      },
+      {
+        "name": "baseStr",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1061,
+      "title": "lexicographically-smallest-equivalent-string",
+      "params": {
+        "s1": {
+          "type": "string"
+        },
+        "s2": {
+          "type": "string"
+        },
+        "baseStr": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "rust": "Solution::smallest_equivalent_string({s1}, {s2}, {baseStr})",
+        "python3": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "python2": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "ruby": "smallest_equivalent_string({s1}, {s2}, {baseStr})",
+        "java": "new Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "csharp": "new Solution().SmallestEquivalentString({s1}, {s2}, {baseStr})",
+        "kotlin": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "go": "smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "dart": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "swift": "Solution().smallestEquivalentString({s1}, {s2}, {baseStr})",
+        "typescript": "smallestEquivalentString({s1}, {s2}, {baseStr})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().smallestEquivalentString(s1, s2, baseStr, {result})",
+        "checker": "class Checker:\n    def smallestEquivalentString(self, s1, s2, baseStr, result):\n        return isinstance(result, str) and len(result) == len(baseStr)\n"
+      }
+    },
+    "seed": 1061,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s1": "parker",
+          "s2": "morris",
+          "baseStr": "parser"
+        },
+        "out": "makkek"
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s1": "hello",
+          "s2": "world",
+          "baseStr": "hold"
+        },
+        "out": "hdld"
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "s1": "leetcode",
+          "s2": "programs",
+          "baseStr": "sourcecode"
+        },
+        "out": "aauaaaaada"
+      },
+      {
+        "name": "identical",
+        "in": {
+          "s1": "abc",
+          "s2": "abc",
+          "baseStr": "abcabc"
+        },
+        "out": "abcabc"
+      },
+      {
+        "name": "full_chain",
+        "in": {
+          "s1": "abcdef",
+          "s2": "bcdefg",
+          "baseStr": "gfedcba"
+        },
+        "out": "aaaaaaa"
+      },
+      {
+        "name": "disjoint_pairs",
+        "in": {
+          "s1": "azby",
+          "s2": "bycx",
+          "baseStr": "xyzabc"
+        },
+        "out": "xxxaaa"
+      },
+      {
+        "name": "wraparound",
+        "in": {
+          "s1": "az",
+          "s2": "by",
+          "baseStr": "zayb"
+        },
+        "out": "yaya"
+      },
+      {
+        "name": "repeated_base",
+        "in": {
+          "s1": "abc",
+          "s2": "bcd",
+          "baseStr": "ddddcccbbaaa"
+        },
+        "out": "aaaaaaaaaaaa"
+      },
+      {
+        "name": "single_pair",
+        "in": {
+          "s1": "a",
+          "s2": "b",
+          "baseStr": "abba"
+        },
+        "out": "aaaa"
+      },
+      {
+        "name": "no_links",
+        "in": {
+          "s1": "qwerty",
+          "s2": "asdfgh",
+          "baseStr": "zxcvbn"
+        },
+        "out": "zxcvbn"
+      },
+      {
+        "name": "long_chain_small_base",
+        "in": {
+          "s1": "abcdefghijklmnopqrst",
+          "s2": "bcdefghijklmnopqrstu",
+          "baseStr": "tsrqponmlkjihgfedcba"
+        },
+        "out": "aaaaaaaaaaaaaaaaaaaa"
+      },
+      {
+        "name": "mixed_components",
+        "in": {
+          "s1": "abcxyz",
+          "s2": "bcdxya",
+          "baseStr": "zyxabc"
+        },
+        "out": "ayxaaa"
+      },
+      {
+        "name": "case13",
+        "in": {
+          "s1": "pqrst",
+          "s2": "qrstu",
+          "baseStr": "tspqr"
+        },
+        "out": "ppppp"
+      },
+      {
+        "name": "case14",
+        "in": {
+          "s1": "mnopq",
+          "s2": "nopqr",
+          "baseStr": "rmnop"
+        },
+        "out": "mmmmm"
+      },
+      {
+        "name": "case15",
+        "in": {
+          "s1": "uvwxy",
+          "s2": "vwxyz",
+          "baseStr": "zyxwv"
+        },
+        "out": "uuuuu"
+      },
+      {
+        "name": "case16",
+        "in": {
+          "s1": "abcde",
+          "s2": "fghij",
+          "baseStr": "afbgchdiej"
+        },
+        "out": "aabbccddee"
+      },
+      {
+        "name": "case17",
+        "in": {
+          "s1": "azaz",
+          "s2": "zbzb",
+          "baseStr": "zaza"
+        },
+        "out": "aaaa"
+      },
+      {
+        "name": "case18",
+        "in": {
+          "s1": "lmno",
+          "s2": "opqr",
+          "baseStr": "qrstlmno"
+        },
+        "out": "nlstlmnl"
+      },
+      {
+        "name": "case19",
+        "in": {
+          "s1": "abcabc",
+          "s2": "bcdbcd",
+          "baseStr": "dcba"
+        },
+        "out": "aaaa"
+      },
+      {
+        "name": "case20",
+        "in": {
+          "s1": "hijk",
+          "s2": "ijkl",
+          "baseStr": "lkjih"
+        },
+        "out": "hhhhh"
+      },
+      {
+        "name": "case21",
+        "in": {
+          "s1": "azbycxdwev",
+          "s2": "bycxdwevfz",
+          "baseStr": "zyxwvutsrq"
+        },
+        "out": "vvvvvutsrq"
+      },
+      {
+        "name": "case22",
+        "in": {
+          "s1": "mnmn",
+          "s2": "nono",
+          "baseStr": "onom"
+        },
+        "out": "mmmm"
+      },
+      {
+        "name": "case23",
+        "in": {
+          "s1": "rstuvw",
+          "s2": "stuvwx",
+          "baseStr": "xwvutsr"
+        },
+        "out": "rrrrrrr"
+      },
+      {
+        "name": "case24",
+        "in": {
+          "s1": "abcd",
+          "s2": "wxyz",
+          "baseStr": "azbycxdw"
+        },
+        "out": "adbccbda"
+      },
+      {
+        "name": "case25",
+        "in": {
+          "s1": "qazwsx",
+          "s2": "wsxedc",
+          "baseStr": "cxswaq"
+        },
+        "out": "ccaeae"
+      },
+      {
+        "name": "case26",
+        "in": {
+          "s1": "lkjhgf",
+          "s2": "asdfgh",
+          "baseStr": "lkhgfd"
+        },
+        "out": "akfgfd"
+      },
+      {
+        "name": "case27",
+        "in": {
+          "s1": "aaabbb",
+          "s2": "bbbaaa",
+          "baseStr": "ababab"
+        },
+        "out": "aaaaaa"
+      },
+      {
+        "name": "case28",
+        "in": {
+          "s1": "acacac",
+          "s2": "bdbdbd",
+          "baseStr": "cabdab"
+        },
+        "out": "caacaa"
+      },
+      {
+        "name": "case29",
+        "in": {
+          "s1": "abcdefgh",
+          "s2": "hgfedcba",
+          "baseStr": "hgfedcba"
+        },
+        "out": "abcddcba"
+      },
+      {
+        "name": "case30",
+        "in": {
+          "s1": "klmnopqrst",
+          "s2": "mnopqrstuv",
+          "baseStr": "uvwxyzklmn"
+        },
+        "out": "klwxyzklkl"
+      },
+      {
+        "name": "case31",
+        "in": {
+          "s1": "abcdeabcde",
+          "s2": "bcdefbcdef",
+          "baseStr": "edcbaedcba"
+        },
+        "out": "aaaaaaaaaa"
+      },
+      {
+        "name": "case32",
+        "in": {
+          "s1": "mnopmnop",
+          "s2": "nopqnopq",
+          "baseStr": "ponmponm"
+        },
+        "out": "mmmmmmmm"
+      },
+      {
+        "name": "case33",
+        "in": {
+          "s1": "uvwxyz",
+          "s2": "vwxyza",
+          "baseStr": "azbycx"
+        },
+        "out": "aabaca"
+      },
+      {
+        "name": "case34",
+        "in": {
+          "s1": "azbycxdwevfugthsirjqkplomn",
+          "s2": "bycxdwevfugthsirjqkplomnaz",
+          "baseStr": "mnopqrstuvwxyzabcdefghij"
+        },
+        "out": "annnnnnnnnnnnnaaaaaaaaaa"
+      },
+      {
+        "name": "case35",
+        "in": {
+          "s1": "abcdefghijklm",
+          "s2": "bcdefghijklmn",
+          "baseStr": "nmlkjihgfedcba"
+        },
+        "out": "aaaaaaaaaaaaaa"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s1 = \"parker\"\ns2 = \"morris\"\nbaseStr = \"parser\"",
+      "output": "\"makkek\""
+    },
+    {
+      "input": "s1 = \"hello\"\ns2 = \"world\"\nbaseStr = \"hold\"",
+      "output": "\"hdld\""
+    },
+    {
+      "input": "s1 = \"leetcode\"\ns2 = \"programs\"\nbaseStr = \"sourcecode\"",
+      "output": "\"aauaaaaada\""
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"abc\"\nbaseStr = \"abcabc\"",
+      "output": "\"abcabc\""
+    },
+    {
+      "input": "s1 = \"abcdef\"\ns2 = \"bcdefg\"\nbaseStr = \"gfedcba\"",
+      "output": "\"aaaaaaa\""
+    },
+    {
+      "input": "s1 = \"azby\"\ns2 = \"bycx\"\nbaseStr = \"xyzabc\"",
+      "output": "\"xxxaaa\""
+    },
+    {
+      "input": "s1 = \"az\"\ns2 = \"by\"\nbaseStr = \"zayb\"",
+      "output": "\"yaya\""
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"bcd\"\nbaseStr = \"ddddcccbbaaa\"",
+      "output": "\"aaaaaaaaaaaa\""
+    }
+  ]
+}

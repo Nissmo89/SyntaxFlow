@@ -1,0 +1,942 @@
+{
+  "id": "next_greater_element_i",
+  "title": "Next Greater Element I",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "description": "<p>The <strong>next greater element</strong> of some element <code>x</code> in an array is the <strong>first greater</strong> element that is <strong>to the right</strong> of <code>x</code> in the same array.</p> <p>You are given two <strong>distinct 0-indexed</strong> integer arrays <code>nums1</code> and <code>nums2</code>, where <code>nums1</code> is a subset of <code>nums2</code>.</p> <p>For each <code>0 &lt;= i &lt; nums1.length</code>, find the index <code>j</code> such that <code>nums1[i] == nums2[j]</code> and determine the <strong>next greater element</strong> of <code>nums2[j]</code> in <code>nums2</code>. If there is no next greater element, then the answer for this query is <code>-1</code>.</p> <p>Return <em>an array </em><code>ans</code><em> of length </em><code>nums1.length</code><em> such that </em><code>ans[i]</code><em> is the <strong>next greater element</strong> as described above.</em></p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums1 = [4,1,2], nums2 = [1,3,4,2]\n<strong>Output:</strong> [-1,3,-1]\n<strong>Explanation:</strong> The next greater element for each value of nums1 is as follows:\n- 4 is underlined in nums2 = [1,3,<u>4</u>,2]. There is no next greater element, so the answer is -1.\n- 1 is underlined in nums2 = [<u>1</u>,3,4,2]. The next greater element is 3.\n- 2 is underlined in nums2 = [1,3,4,<u>2</u>]. There is no next greater element, so the answer is -1.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums1 = [2,4], nums2 = [1,2,3,4]\n<strong>Output:</strong> [3,-1]\n<strong>Explanation:</strong> The next greater element for each value of nums1 is as follows:\n- 2 is underlined in nums2 = [1,<u>2</u>,3,4]. The next greater element is 3.\n- 4 is underlined in nums2 = [1,2,3,<u>4</u>]. There is no next greater element, so the answer is -1.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= nums1.length &lt;= nums2.length &lt;= 1000</code></li> <li><code>0 &lt;= nums1[i], nums2[i] &lt;= 10<sup>4</sup></code></li> <li>All integers in <code>nums1</code> and <code>nums2</code> are <strong>unique</strong>.</li> <li>All the integers of <code>nums1</code> also appear in <code>nums2</code>.</li> </ul> <p> </p> <strong>Follow up:</strong> Could you find an <code>O(nums1.length + nums2.length)</code> solution?",
+  "hints": [],
+  "method": {
+    "name": "nextGreaterElement",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "array"
+      },
+      {
+        "name": "nums2",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 496,
+      "title": "next-greater-element-i",
+      "params": {
+        "nums1": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "nums2": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "rust": "Solution::next_greater_element({nums1}, {nums2})",
+        "python3": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "python2": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "ruby": "next_greater_element({nums1}, {nums2})",
+        "java": "new Solution().nextGreaterElement({nums1}, {nums2})",
+        "csharp": "new Solution().NextGreaterElement({nums1}, {nums2})",
+        "kotlin": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "go": "nextGreaterElement({nums1}, {nums2})",
+        "dart": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "swift": "Solution().nextGreaterElement({nums1}, {nums2})",
+        "typescript": "nextGreaterElement({nums1}, {nums2})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().nextGreaterElement(nums1, nums2, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def nextGreaterElement(self, nums1: List[int], nums2: List[int], result: Any) -> bool:\n        if not isinstance(result, list):\n            return False\n        if len(result) != len(nums1):\n            return False\n        positions = {}\n        for i, num in enumerate(nums2):\n            if num in positions:\n                return False\n            positions[num] = i\n        if len(set(nums1)) != len(nums1):\n            return False\n        if not set(nums1).issubset(set(nums2)):\n            return False\n        for i, num in enumerate(nums1):\n            idx = positions.get(num)\n            if idx is None:\n                return False\n            expected = -1\n            for j in range(idx + 1, len(nums2)):\n                if nums2[j] > num:\n                    expected = nums2[j]\n                    break\n            if result[i] != expected:\n                return False\n        return True\n"
+      }
+    },
+    "seed": 496,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums1": [
+            4,
+            1,
+            2
+          ],
+          "nums2": [
+            1,
+            3,
+            4,
+            2
+          ]
+        },
+        "out": [
+          -1,
+          3,
+          -1
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums1": [
+            2,
+            4
+          ],
+          "nums2": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": [
+          3,
+          -1
+        ]
+      },
+      {
+        "name": "single_last",
+        "in": {
+          "nums1": [
+            1
+          ],
+          "nums2": [
+            2,
+            3,
+            1
+          ]
+        },
+        "out": [
+          -1
+        ]
+      },
+      {
+        "name": "single_first",
+        "in": {
+          "nums1": [
+            2
+          ],
+          "nums2": [
+            2,
+            1
+          ]
+        },
+        "out": [
+          -1
+        ]
+      },
+      {
+        "name": "increasing_pair",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          2,
+          -1
+        ]
+      },
+      {
+        "name": "decreasing_pair",
+        "in": {
+          "nums1": [
+            2,
+            1
+          ],
+          "nums2": [
+            2,
+            1
+          ]
+        },
+        "out": [
+          -1,
+          -1
+        ]
+      },
+      {
+        "name": "all_have_next",
+        "in": {
+          "nums1": [
+            1,
+            3,
+            5
+          ],
+          "nums2": [
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": [
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "name": "no_next_anywhere",
+        "in": {
+          "nums1": [
+            7,
+            5,
+            3
+          ],
+          "nums2": [
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": [
+          -1,
+          7,
+          5
+        ]
+      },
+      {
+        "name": "mixed_middle",
+        "in": {
+          "nums1": [
+            3,
+            1,
+            4
+          ],
+          "nums2": [
+            2,
+            1,
+            3,
+            4
+          ]
+        },
+        "out": [
+          4,
+          3,
+          -1
+        ]
+      },
+      {
+        "name": "sample_spread",
+        "in": {
+          "nums1": [
+            2,
+            5,
+            1
+          ],
+          "nums2": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            7
+          ]
+        },
+        "out": [
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "name": "descending_with_tail",
+        "in": {
+          "nums1": [
+            8,
+            4,
+            2
+          ],
+          "nums2": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": [
+          -1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "name": "ascending_with_subset",
+        "in": {
+          "nums1": [
+            2,
+            4,
+            6,
+            8
+          ],
+          "nums2": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "out": [
+          3,
+          5,
+          7,
+          -1
+        ]
+      },
+      {
+        "name": "first_element_greater",
+        "in": {
+          "nums1": [
+            1,
+            4
+          ],
+          "nums2": [
+            1,
+            5,
+            4,
+            6
+          ]
+        },
+        "out": [
+          5,
+          6
+        ]
+      },
+      {
+        "name": "immediate_next",
+        "in": {
+          "nums1": [
+            3,
+            2
+          ],
+          "nums2": [
+            1,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "far_next",
+        "in": {
+          "nums1": [
+            4,
+            2,
+            1
+          ],
+          "nums2": [
+            4,
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        "out": [
+          5,
+          3,
+          2
+        ]
+      },
+      {
+        "name": "alternating_peaks",
+        "in": {
+          "nums1": [
+            1,
+            3,
+            5
+          ],
+          "nums2": [
+            1,
+            4,
+            2,
+            5,
+            3,
+            6
+          ]
+        },
+        "out": [
+          4,
+          6,
+          6
+        ]
+      },
+      {
+        "name": "nums1_prefix",
+        "in": {
+          "nums1": [
+            10,
+            9,
+            8
+          ],
+          "nums2": [
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            11
+          ]
+        },
+        "out": [
+          11,
+          11,
+          11
+        ]
+      },
+      {
+        "name": "nums1_suffix",
+        "in": {
+          "nums1": [
+            7,
+            6,
+            5
+          ],
+          "nums2": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": [
+          -1,
+          7,
+          6
+        ]
+      },
+      {
+        "name": "random_small_1",
+        "in": {
+          "nums1": [
+            9,
+            1,
+            7
+          ],
+          "nums2": [
+            4,
+            9,
+            2,
+            1,
+            6,
+            7,
+            8
+          ]
+        },
+        "out": [
+          -1,
+          6,
+          8
+        ]
+      },
+      {
+        "name": "random_small_2",
+        "in": {
+          "nums1": [
+            6,
+            0,
+            4
+          ],
+          "nums2": [
+            0,
+            6,
+            1,
+            4,
+            2,
+            3,
+            5
+          ]
+        },
+        "out": [
+          -1,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "random_small_3",
+        "in": {
+          "nums1": [
+            11,
+            3,
+            8
+          ],
+          "nums2": [
+            3,
+            11,
+            2,
+            8,
+            7,
+            9
+          ]
+        },
+        "out": [
+          -1,
+          11,
+          9
+        ]
+      },
+      {
+        "name": "random_small_4",
+        "in": {
+          "nums1": [
+            12,
+            5,
+            2
+          ],
+          "nums2": [
+            5,
+            1,
+            12,
+            2,
+            8,
+            3
+          ]
+        },
+        "out": [
+          -1,
+          12,
+          8
+        ]
+      },
+      {
+        "name": "random_small_5",
+        "in": {
+          "nums1": [
+            14,
+            10,
+            13
+          ],
+          "nums2": [
+            10,
+            14,
+            9,
+            13,
+            15,
+            11
+          ]
+        },
+        "out": [
+          15,
+          14,
+          15
+        ]
+      },
+      {
+        "name": "edge_low_values",
+        "in": {
+          "nums1": [
+            0,
+            1
+          ],
+          "nums2": [
+            0,
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "edge_high_values",
+        "in": {
+          "nums1": [
+            9999,
+            10000
+          ],
+          "nums2": [
+            9998,
+            9999,
+            10000
+          ]
+        },
+        "out": [
+          10000,
+          -1
+        ]
+      },
+      {
+        "name": "middle_plateau",
+        "in": {
+          "nums1": [
+            5,
+            2,
+            8
+          ],
+          "nums2": [
+            9,
+            5,
+            1,
+            2,
+            7,
+            8,
+            6
+          ]
+        },
+        "out": [
+          7,
+          7,
+          -1
+        ]
+      },
+      {
+        "name": "left_greater_right_none",
+        "in": {
+          "nums1": [
+            2,
+            4,
+            6
+          ],
+          "nums2": [
+            6,
+            4,
+            2,
+            8
+          ]
+        },
+        "out": [
+          8,
+          8,
+          8
+        ]
+      },
+      {
+        "name": "rightmost_selected",
+        "in": {
+          "nums1": [
+            3,
+            6
+          ],
+          "nums2": [
+            1,
+            3,
+            2,
+            4,
+            6,
+            5
+          ]
+        },
+        "out": [
+          4,
+          -1
+        ]
+      },
+      {
+        "name": "sparse_subset",
+        "in": {
+          "nums1": [
+            7,
+            1,
+            9
+          ],
+          "nums2": [
+            7,
+            2,
+            1,
+            8,
+            3,
+            9,
+            4
+          ]
+        },
+        "out": [
+          8,
+          8,
+          -1
+        ]
+      },
+      {
+        "name": "near_end_immediate",
+        "in": {
+          "nums1": [
+            4,
+            1,
+            3
+          ],
+          "nums2": [
+            2,
+            4,
+            1,
+            3
+          ]
+        },
+        "out": [
+          -1,
+          3,
+          -1
+        ]
+      },
+      {
+        "name": "zigzag",
+        "in": {
+          "nums1": [
+            2,
+            5,
+            8
+          ],
+          "nums2": [
+            2,
+            9,
+            5,
+            1,
+            8,
+            7,
+            10
+          ]
+        },
+        "out": [
+          9,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "valley",
+        "in": {
+          "nums1": [
+            1,
+            4,
+            2
+          ],
+          "nums2": [
+            4,
+            2,
+            1,
+            3,
+            5
+          ]
+        },
+        "out": [
+          3,
+          5,
+          3
+        ]
+      },
+      {
+        "name": "peak_then_drop",
+        "in": {
+          "nums1": [
+            9,
+            7,
+            3
+          ],
+          "nums2": [
+            1,
+            9,
+            8,
+            7,
+            6,
+            3,
+            2
+          ]
+        },
+        "out": [
+          -1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "name": "long_increasing_prefix",
+        "in": {
+          "nums1": [
+            3,
+            6,
+            9
+          ],
+          "nums2": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": [
+          4,
+          7,
+          10
+        ]
+      },
+      {
+        "name": "long_decreasing_prefix",
+        "in": {
+          "nums1": [
+            10,
+            8,
+            6
+          ],
+          "nums2": [
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": [
+          -1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "name": "mixed_signless_large_gap",
+        "in": {
+          "nums1": [
+            15,
+            20,
+            25
+          ],
+          "nums2": [
+            5,
+            15,
+            10,
+            20,
+            1,
+            25,
+            30
+          ]
+        },
+        "out": [
+          20,
+          25,
+          30
+        ]
+      },
+      {
+        "name": "multiple_candidates",
+        "in": {
+          "nums1": [
+            2,
+            3,
+            4
+          ],
+          "nums2": [
+            2,
+            1,
+            3,
+            0,
+            4,
+            5
+          ]
+        },
+        "out": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "final_element_max",
+        "in": {
+          "nums1": [
+            1,
+            2,
+            3
+          ],
+          "nums2": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": [
+          2,
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums1 = [4, 1, 2]\nnums2 = [1, 3, 4, 2]",
+      "output": "[-1, 3, -1]"
+    },
+    {
+      "input": "nums1 = [2, 4]\nnums2 = [1, 2, 3, 4]",
+      "output": "[3, -1]"
+    },
+    {
+      "input": "nums1 = [1]\nnums2 = [2, 3, 1]",
+      "output": "[-1]"
+    },
+    {
+      "input": "nums1 = [2]\nnums2 = [2, 1]",
+      "output": "[-1]"
+    },
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [1, 2]",
+      "output": "[2, -1]"
+    },
+    {
+      "input": "nums1 = [2, 1]\nnums2 = [2, 1]",
+      "output": "[-1, -1]"
+    },
+    {
+      "input": "nums1 = [1, 3, 5]\nnums2 = [1, 3, 5, 7]",
+      "output": "[3, 5, 7]"
+    },
+    {
+      "input": "nums1 = [7, 5, 3]\nnums2 = [1, 3, 5, 7]",
+      "output": "[-1, 7, 5]"
+    }
+  ]
+}

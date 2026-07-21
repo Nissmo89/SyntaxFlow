@@ -1,0 +1,1891 @@
+{
+  "id": "erect_the_fence",
+  "title": "Erect the Fence",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry"
+  ],
+  "description": "<p>You are given an array <code>trees</code> where <code>trees[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> represents the location of a tree in the garden.</p>\n\n<p>Fence the entire garden using the minimum length of rope, as it is expensive. The garden is well-fenced only if <strong>all the trees are enclosed</strong>.</p>\n\n<p>Return <em>the coordinates of trees that are exactly located on the fence perimeter</em>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/24/erect2-plane.jpg\" style=\"width: 400px; height: 393px;\" />\n<pre>\n<strong>Input:</strong> trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]\n<strong>Output:</strong> [[1,1],[2,0],[4,2],[3,3],[2,4]]\n<strong>Explanation:</strong> All the trees will be on the perimeter of the fence except the tree at [2, 2], which will be inside the fence.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/24/erect1-plane.jpg\" style=\"width: 400px; height: 393px;\" />\n<pre>\n<strong>Input:</strong> trees = [[1,2],[2,2],[4,2]]\n<strong>Output:</strong> [[4,2],[2,2],[1,2]]\n<strong>Explanation:</strong> The fence forms a line that passes through all the trees.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= trees.length &lt;= 3000</code></li>\n\t<li><code>trees[i].length == 2</code></li>\n\t<li><code>0 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= 100</code></li>\n\t<li>All the given positions are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Erect the Fence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= trees.length <= 3000",
+    "trees[i].length == 2",
+    "0 <= xi, yi <= 100",
+    "All the given positions are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "outerTrees",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "trees",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 587,
+      "title": "erect-the-fence",
+      "params": {
+        "trees": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().outerTrees({trees})",
+        "rust": "Solution::outer_trees({trees})",
+        "python3": "Solution().outerTrees({trees})",
+        "python2": "Solution().outerTrees({trees})",
+        "ruby": "outer_trees({trees})",
+        "java": "new Solution().outerTrees({trees})",
+        "csharp": "new Solution().OuterTrees({trees})",
+        "kotlin": "Solution().outerTrees({trees})",
+        "go": "outerTrees({trees})",
+        "dart": "Solution().outerTrees({trees})",
+        "swift": "Solution().outerTrees({trees})",
+        "typescript": "outerTrees({trees})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().outerTrees(trees, {result})",
+        "checker": "class Checker:\n    def outerTrees(self, trees, result):\n        try:\n            points = [tuple(p) for p in trees]\n            returned = [tuple(p) for p in result]\n        except Exception:\n            return False\n\n        if any(len(p) != 2 for p in returned):\n            return False\n        if len(set(returned)) != len(returned):\n            return False\n\n        all_points = set(points)\n        if not set(returned).issubset(all_points):\n            return False\n\n        expected = self.boundary_points(points)\n        return set(returned) == expected\n\n    def cross(self, o, a, b):\n        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])\n\n    def on_segment(self, a, b, p):\n        if self.cross(a, b, p) != 0:\n            return False\n        return (\n            min(a[0], b[0]) <= p[0] <= max(a[0], b[0]) and\n            min(a[1], b[1]) <= p[1] <= max(a[1], b[1])\n        )\n\n    def boundary_points(self, points):\n        pts = sorted(set(points))\n        if len(pts) <= 2:\n            return set(pts)\n\n        def build(seq):\n            hull = []\n            for p in seq:\n                while len(hull) >= 2 and self.cross(hull[-2], hull[-1], p) <= 0:\n                    hull.pop()\n                hull.append(p)\n            return hull\n\n        lower = build(pts)\n        upper = build(reversed(pts))\n        hull = lower[:-1] + upper[:-1]\n\n        vertices = []\n        seen = set()\n        for p in hull:\n            if p not in seen:\n                vertices.append(p)\n                seen.add(p)\n\n        if len(vertices) <= 2:\n            return set(pts)\n\n        boundary = set()\n        m = len(vertices)\n        for p in pts:\n            for i in range(m):\n                if self.on_segment(vertices[i], vertices[(i + 1) % m], p):\n                    boundary.add(p)\n                    break\n        return boundary\n"
+      }
+    },
+    "seed": 587,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "single-point",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two-points-horizontal",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two-points-vertical",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "simple-triangle",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "triangle-with-base-collinear",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "square-corners-only",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "square-with-center",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "square-with-edge-points",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "all-collinear-horizontal",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                5,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "all-collinear-vertical",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                0
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                7,
+                2
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                7,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "diamond-with-center",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "diamond-with-boundary-points",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "rectangle-with-interior",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                5,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "concave-cloud",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "bottom-edge-many-collinear",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "left-edge-many-collinear",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "top-edge-many-collinear",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "right-edge-many-collinear",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "near-coordinate-bounds",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                100
+              ],
+              [
+                100,
+                0
+              ],
+              [
+                100,
+                100
+              ],
+              [
+                50,
+                50
+              ],
+              [
+                25,
+                25
+              ],
+              [
+                75,
+                75
+              ],
+              [
+                50,
+                0
+              ],
+              [
+                100,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "multiple-same-y-levels",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "triangle-many-boundary-points",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "plus-shape-cloud",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "u-shape",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "octagon-like",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "diagonal-band",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "all-points-on-boundary-hexagon",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "horizontal-line-plus-apex",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "large-square-border",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                6,
+                6
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "large-rectangle-with-diagonal-interior",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                10,
+                1
+              ],
+              [
+                10,
+                3
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                10,
+                7
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                6,
+                6
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                7,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "dense-collinear-twenty",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                10
+              ],
+              [
+                1,
+                10
+              ],
+              [
+                2,
+                10
+              ],
+              [
+                3,
+                10
+              ],
+              [
+                4,
+                10
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                6,
+                10
+              ],
+              [
+                7,
+                10
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                9,
+                10
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                11,
+                10
+              ],
+              [
+                12,
+                10
+              ],
+              [
+                13,
+                10
+              ],
+              [
+                14,
+                10
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                17,
+                10
+              ],
+              [
+                18,
+                10
+              ],
+              [
+                19,
+                10
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "grid-corners-edges-and-interiors",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "irregular-hull-with-inner-cluster",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                8,
+                4
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                4,
+                9
+              ],
+              [
+                1,
+                8
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "slanted-outer-triangle",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                9,
+                3
+              ],
+              [
+                8,
+                7
+              ],
+              [
+                5,
+                8
+              ],
+              [
+                2,
+                9
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                6,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "border-heavy-rectangle",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                12
+              ],
+              [
+                10,
+                14
+              ],
+              [
+                10,
+                16
+              ],
+              [
+                12,
+                10
+              ],
+              [
+                14,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                18,
+                10
+              ],
+              [
+                18,
+                12
+              ],
+              [
+                18,
+                14
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                14,
+                16
+              ],
+              [
+                12,
+                16
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                13,
+                13
+              ],
+              [
+                14,
+                14
+              ],
+              [
+                15,
+                15
+              ],
+              [
+                16,
+                11
+              ],
+              [
+                15,
+                12
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "mixed-random-cloud",
+        "in": {
+          "trees": {
+            "elemType": "int",
+            "value": [
+              [
+                12,
+                3
+              ],
+              [
+                15,
+                1
+              ],
+              [
+                19,
+                2
+              ],
+              [
+                22,
+                6
+              ],
+              [
+                21,
+                11
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                11,
+                13
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                9,
+                5
+              ],
+              [
+                13,
+                7
+              ],
+              [
+                14,
+                8
+              ],
+              [
+                16,
+                9
+              ],
+              [
+                18,
+                8
+              ],
+              [
+                17,
+                6
+              ],
+              [
+                15,
+                5
+              ],
+              [
+                12,
+                10
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                19,
+                10
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[1, 1], [2, 2], [2, 0], [2, 4], [3, 3], [4, 2]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[1, 2], [2, 2], [4, 2]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[0, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[1, 1], [3, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[2, 2], [2, 5]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[0, 0], [2, 0], [1, 2]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[0, 0], [2, 0], [4, 0], [2, 2]]}",
+      "output": ""
+    },
+    {
+      "input": "trees = {\"elemType\": \"int\", \"value\": [[0, 0], [0, 2], [2, 0], [2, 2]]}",
+      "output": ""
+    }
+  ]
+}

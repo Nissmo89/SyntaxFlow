@@ -1,0 +1,724 @@
+{
+  "id": "letter_combinations_of_a_phone_number",
+  "title": "Letter Combinations of a Phone Number",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking"
+  ],
+  "description": "<p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent. Return the answer in <strong>any order</strong>.</p>\n\n<p>A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/03/15/1200px-telephone-keypad2svg.png\" style=\"width: 300px; height: 243px;\" />\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> digits = &quot;23&quot;\n<strong>Output:</strong> [&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> digits = &quot;2&quot;\n<strong>Output:</strong> [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= digits.length &lt;= 4</code></li>\n\t<li><code>digits[i]</code> is a digit in the range <code>[&#39;2&#39;, &#39;9&#39;]</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Letter Combinations of a Phone Number' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= digits.length <= 4",
+    "digits[i] is a digit in the range ['2', '9']."
+  ],
+  "hints": [],
+  "method": {
+    "name": "letterCombinations",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "digits",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 17,
+      "title": "letter-combinations-of-a-phone-number",
+      "params": {
+        "digits": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().letterCombinations({digits})",
+        "rust": "Solution::letter_combinations({digits})",
+        "python3": "Solution().letterCombinations({digits})",
+        "python2": "Solution().letterCombinations({digits})",
+        "ruby": "letter_combinations({digits})",
+        "java": "new Solution().letterCombinations({digits})",
+        "csharp": "new Solution().LetterCombinations({digits})",
+        "kotlin": "Solution().letterCombinations({digits})",
+        "go": "letterCombinations({digits})",
+        "dart": "Solution().letterCombinations({digits})",
+        "swift": "Solution().letterCombinations({digits})",
+        "typescript": "letterCombinations({digits})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().letterCombinations(digits, {result})",
+        "checker": "from itertools import product\n\nclass Checker:\n    def letterCombinations(self, digits, result):\n        if not isinstance(result, list):\n            return False\n        mapping = {\n            \"2\": \"abc\",\n            \"3\": \"def\",\n            \"4\": \"ghi\",\n            \"5\": \"jkl\",\n            \"6\": \"mno\",\n            \"7\": \"pqrs\",\n            \"8\": \"tuv\",\n            \"9\": \"wxyz\",\n        }\n        if not isinstance(digits, str) or not digits:\n            return False\n        try:\n            groups = [mapping[d] for d in digits]\n        except KeyError:\n            return False\n        expected = {\"\".join(chars) for chars in product(*groups)}\n        if len(result) != len(expected):\n            return False\n        if any(not isinstance(item, str) for item in result):\n            return False\n        if len(set(result)) != len(result):\n            return False\n        if set(result) != expected:\n            return False\n        return all(len(item) == len(digits) for item in result)\n"
+      }
+    },
+    "seed": 17,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "digits": "23"
+        },
+        "out": [
+          "ad",
+          "ae",
+          "af",
+          "bd",
+          "be",
+          "bf",
+          "cd",
+          "ce",
+          "cf"
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "digits": "2"
+        },
+        "out": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      {
+        "name": "single_7",
+        "in": {
+          "digits": "7"
+        },
+        "out": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      {
+        "name": "single_9",
+        "in": {
+          "digits": "9"
+        },
+        "out": [
+          "w",
+          "x",
+          "y",
+          "z"
+        ]
+      },
+      {
+        "name": "two_digits_with_four_letters",
+        "in": {
+          "digits": "79"
+        },
+        "out": [
+          "pw",
+          "px",
+          "py",
+          "pz",
+          "qw",
+          "qx",
+          "qy",
+          "qz",
+          "rw",
+          "rx",
+          "ry",
+          "rz",
+          "sw",
+          "sx",
+          "sy",
+          "sz"
+        ]
+      },
+      {
+        "name": "two_digits_mixed",
+        "in": {
+          "digits": "68"
+        },
+        "out": [
+          "mt",
+          "mu",
+          "mv",
+          "nt",
+          "nu",
+          "nv",
+          "ot",
+          "ou",
+          "ov"
+        ]
+      },
+      {
+        "name": "three_digits_small",
+        "in": {
+          "digits": "234"
+        },
+        "out": [
+          "adg",
+          "adh",
+          "adi",
+          "aeg",
+          "aeh",
+          "aei",
+          "afg",
+          "afh",
+          "afi",
+          "bdg",
+          "bdh",
+          "bdi",
+          "beg",
+          "beh",
+          "bei",
+          "bfg",
+          "bfh",
+          "bfi",
+          "cdg",
+          "cdh",
+          "cdi",
+          "ceg",
+          "ceh",
+          "cei",
+          "cfg",
+          "cfh",
+          "cfi"
+        ]
+      },
+      {
+        "name": "three_digits_all_four",
+        "in": {
+          "digits": "799"
+        },
+        "out": [
+          "pww",
+          "pwx",
+          "pwy",
+          "pwz",
+          "pxw",
+          "pxx",
+          "pxy",
+          "pxz",
+          "pyw",
+          "pyx",
+          "pyy",
+          "pyz",
+          "pzw",
+          "pzx",
+          "pzy",
+          "pzz",
+          "qww",
+          "qwx",
+          "qwy",
+          "qwz",
+          "qxw",
+          "qxx",
+          "qxy",
+          "qxz",
+          "qyw",
+          "qyx",
+          "qyy",
+          "qyz",
+          "qzw",
+          "qzx",
+          "qzy",
+          "qzz",
+          "rww",
+          "rwx",
+          "rwy",
+          "rwz",
+          "rxw",
+          "rxx",
+          "rxy",
+          "rxz",
+          "ryw",
+          "ryx",
+          "ryy",
+          "ryz",
+          "rzw",
+          "rzx",
+          "rzy",
+          "rzz",
+          "sww",
+          "swx",
+          "swy",
+          "swz",
+          "sxw",
+          "sxx",
+          "sxy",
+          "sxz",
+          "syw",
+          "syx",
+          "syy",
+          "syz",
+          "szw",
+          "szx",
+          "szy",
+          "szz"
+        ]
+      },
+      {
+        "name": "four_digits_min_mixed",
+        "in": {
+          "digits": "2222"
+        },
+        "out": [
+          "aaaa",
+          "aaab",
+          "aaac",
+          "aaba",
+          "aabb",
+          "aabc",
+          "aaca",
+          "aacb",
+          "aacc",
+          "abaa",
+          "abab",
+          "abac",
+          "abba",
+          "abbb",
+          "abbc",
+          "abca",
+          "abcb",
+          "abcc",
+          "acaa",
+          "acab",
+          "acac",
+          "acba",
+          "acbb",
+          "acbc",
+          "acca",
+          "accb",
+          "accc",
+          "baaa",
+          "baab",
+          "baac",
+          "baba",
+          "babb",
+          "babc",
+          "baca",
+          "bacb",
+          "bacc",
+          "bbaa",
+          "bbab",
+          "bbac",
+          "bbba",
+          "bbbb",
+          "bbbc",
+          "bbca",
+          "bbcb",
+          "bbcc",
+          "bcaa",
+          "bcab",
+          "bcac",
+          "bcba",
+          "bcbb",
+          "bcbc",
+          "bcca",
+          "bccb",
+          "bccc",
+          "caaa",
+          "caab",
+          "caac",
+          "caba",
+          "cabb",
+          "cabc",
+          "caca",
+          "cacb",
+          "cacc",
+          "cbaa",
+          "cbab",
+          "cbac",
+          "cbba",
+          "cbbb",
+          "cbbc",
+          "cbca",
+          "cbcb",
+          "cbcc",
+          "ccaa",
+          "ccab",
+          "ccac",
+          "ccba",
+          "ccbb",
+          "ccbc",
+          "ccca",
+          "cccb",
+          "cccc"
+        ]
+      },
+      {
+        "name": "gen_01",
+        "seed": 101,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "23456789"
+          }
+        }
+      },
+      {
+        "name": "gen_02",
+        "seed": 102,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "23456789"
+          }
+        }
+      },
+      {
+        "name": "gen_03",
+        "seed": 103,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "23456789"
+          }
+        }
+      },
+      {
+        "name": "gen_04",
+        "seed": 104,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "23456789"
+          }
+        }
+      },
+      {
+        "name": "gen_05",
+        "seed": 105,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "79"
+          }
+        }
+      },
+      {
+        "name": "gen_06",
+        "seed": 106,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "789"
+          }
+        }
+      },
+      {
+        "name": "gen_07",
+        "seed": 107,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "29"
+          }
+        }
+      },
+      {
+        "name": "gen_08",
+        "seed": 108,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "278"
+          }
+        }
+      },
+      {
+        "name": "gen_09",
+        "seed": 109,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "9"
+          }
+        }
+      },
+      {
+        "name": "gen_10",
+        "seed": 110,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "368"
+          }
+        }
+      },
+      {
+        "name": "gen_11",
+        "seed": 111,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "456"
+          }
+        }
+      },
+      {
+        "name": "gen_12",
+        "seed": 112,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "23"
+          }
+        }
+      },
+      {
+        "name": "gen_13",
+        "seed": 113,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "579"
+          }
+        }
+      },
+      {
+        "name": "gen_14",
+        "seed": 114,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "89"
+          }
+        }
+      },
+      {
+        "name": "gen_15",
+        "seed": 115,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "67"
+          }
+        }
+      },
+      {
+        "name": "gen_16",
+        "seed": 116,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "28"
+          }
+        }
+      },
+      {
+        "name": "gen_17",
+        "seed": 117,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "49"
+          }
+        }
+      },
+      {
+        "name": "gen_18",
+        "seed": 118,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "258"
+          }
+        }
+      },
+      {
+        "name": "gen_19",
+        "seed": 119,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "37"
+          }
+        }
+      },
+      {
+        "name": "gen_20",
+        "seed": 120,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "2468"
+          }
+        }
+      },
+      {
+        "name": "gen_21",
+        "seed": 121,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "2"
+          }
+        }
+      },
+      {
+        "name": "gen_22",
+        "seed": 122,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "7"
+          }
+        }
+      },
+      {
+        "name": "gen_23",
+        "seed": 123,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "9"
+          }
+        }
+      },
+      {
+        "name": "gen_24",
+        "seed": 124,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "3"
+          }
+        }
+      },
+      {
+        "name": "gen_25",
+        "seed": 125,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "69"
+          }
+        }
+      },
+      {
+        "name": "gen_26",
+        "seed": 126,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "237"
+          }
+        }
+      },
+      {
+        "name": "gen_27",
+        "seed": 127,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "29"
+          }
+        }
+      },
+      {
+        "name": "gen_28",
+        "seed": 128,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "89"
+          }
+        }
+      },
+      {
+        "name": "gen_29",
+        "seed": 129,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "47"
+          }
+        }
+      },
+      {
+        "name": "gen_30",
+        "seed": 130,
+        "in": {
+          "digits": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "567"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "digits = \"23\"",
+      "output": "[\"ad\", \"ae\", \"af\", \"bd\", \"be\", \"bf\", \"cd\", \"ce\", \"cf\"]"
+    },
+    {
+      "input": "digits = \"2\"",
+      "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "digits = \"7\"",
+      "output": "[\"p\", \"q\", \"r\", \"s\"]"
+    },
+    {
+      "input": "digits = \"9\"",
+      "output": "[\"w\", \"x\", \"y\", \"z\"]"
+    },
+    {
+      "input": "digits = \"79\"",
+      "output": "[\"pw\", \"px\", \"py\", \"pz\", \"qw\", \"qx\", \"qy\", \"qz\", \"rw\", \"rx\", \"ry\", \"rz\", \"sw\", \"sx\", \"sy\", \"sz\"]"
+    },
+    {
+      "input": "digits = \"68\"",
+      "output": "[\"mt\", \"mu\", \"mv\", \"nt\", \"nu\", \"nv\", \"ot\", \"ou\", \"ov\"]"
+    },
+    {
+      "input": "digits = \"234\"",
+      "output": "[\"adg\", \"adh\", \"adi\", \"aeg\", \"aeh\", \"aei\", \"afg\", \"afh\", \"afi\", \"bdg\", \"bdh\", \"bdi\", \"beg\", \"beh\", \"bei\", \"bfg\", \"bfh\", \"bfi\", \"cdg\", \"cdh\", \"cdi\", \"ceg\", \"ceh\", \"cei\", \"cfg\", \"cfh\", \"cfi\"]"
+    },
+    {
+      "input": "digits = \"799\"",
+      "output": "[\"pww\", \"pwx\", \"pwy\", \"pwz\", \"pxw\", \"pxx\", \"pxy\", \"pxz\", \"pyw\", \"pyx\", \"pyy\", \"pyz\", \"pzw\", \"pzx\", \"pzy\", \"pzz\", \"qww\", \"qwx\", \"qwy\", \"qwz\", \"qxw\", \"qxx\", \"qxy\", \"qxz\", \"qyw\", \"qyx\", \"qyy\", \"qyz\", \"qzw\", \"qzx\", \"qzy\", \"qzz\", \"rww\", \"rwx\", \"rwy\", \"rwz\", \"rxw\", \"rxx\", \"rxy\", \"rxz\", \"ryw\", \"ryx\", \"ryy\", \"ryz\", \"rzw\", \"rzx\", \"rzy\", \"rzz\", \"sww\", \"swx\", \"swy\", \"swz\", \"sxw\", \"sxx\", \"sxy\", \"sxz\", \"syw\", \"syx\", \"syy\", \"syz\", \"szw\", \"szx\", \"szy\", \"szz\"]"
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "id": "valid_permutations_for_di_sequence",
+  "title": "Valid Permutations for DI Sequence",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "description": "<p>You are given a string <code>s</code> of length <code>n</code> where <code>s[i]</code> is either:</p>\n\n<ul>\n\t<li><code>&#39;D&#39;</code> means decreasing, or</li>\n\t<li><code>&#39;I&#39;</code> means increasing.</li>\n</ul>\n\n<p>A permutation <code>perm</code> of <code>n + 1</code> integers of all the integers in the range <code>[0, n]</code> is called a <strong>valid permutation</strong> if for all valid <code>i</code>:</p>\n\n<ul>\n\t<li>If <code>s[i] == &#39;D&#39;</code>, then <code>perm[i] &gt; perm[i + 1]</code>, and</li>\n\t<li>If <code>s[i] == &#39;I&#39;</code>, then <code>perm[i] &lt; perm[i + 1]</code>.</li>\n</ul>\n\n<p>Return <em>the number of <strong>valid permutations</strong> </em><code>perm</code>. Since the answer may be large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;DID&quot;\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> The 5 valid permutations of (0, 1, 2, 3) are:\n(1, 0, 3, 2)\n(2, 0, 3, 1)\n(2, 1, 3, 0)\n(3, 0, 2, 1)\n(3, 1, 2, 0)\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;D&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == s.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 200</code></li>\n\t<li><code>s[i]</code> is either <code>&#39;I&#39;</code> or <code>&#39;D&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Valid Permutations for DI Sequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == s.length",
+    "1 <= n <= 200",
+    "s[i] is either 'I' or 'D'."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numPermsDISequence",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 903,
+      "title": "valid-permutations-for-di-sequence",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numPermsDISequence({s})",
+        "rust": "Solution::num_perms_di_sequence({s})",
+        "python3": "Solution().numPermsDISequence({s})",
+        "python2": "Solution().numPermsDISequence({s})",
+        "ruby": "num_perms_di_sequence({s})",
+        "java": "new Solution().numPermsDISequence({s})",
+        "csharp": "new Solution().NumPermsDISequence({s})",
+        "kotlin": "Solution().numPermsDISequence({s})",
+        "go": "numPermsDISequence({s})",
+        "dart": "Solution().numPermsDISequence({s})",
+        "swift": "Solution().numPermsDISequence({s})",
+        "typescript": "numPermsDISequence({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numPermsDISequence(s, {result})",
+        "checker": "class Checker:\n    def numPermsDISequence(self, s, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 903,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "DID"
+        },
+        "out": 5
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "D"
+        },
+        "out": 1
+      },
+      {
+        "name": "single-i",
+        "in": {
+          "s": "I"
+        },
+        "out": 1
+      },
+      {
+        "name": "double-ii",
+        "in": {
+          "s": "II"
+        },
+        "out": 1
+      },
+      {
+        "name": "double-dd",
+        "in": {
+          "s": "DD"
+        },
+        "out": 1
+      },
+      {
+        "name": "di",
+        "in": {
+          "s": "DI"
+        },
+        "out": 2
+      },
+      {
+        "name": "id",
+        "in": {
+          "s": "ID"
+        },
+        "out": 2
+      },
+      {
+        "name": "didi",
+        "in": {
+          "s": "DIDI"
+        },
+        "out": 16
+      },
+      {
+        "name": "idid",
+        "in": {
+          "s": "IDID"
+        },
+        "out": 16
+      },
+      {
+        "name": "iii",
+        "in": {
+          "s": "III"
+        },
+        "out": 1
+      },
+      {
+        "name": "ddd",
+        "in": {
+          "s": "DDD"
+        },
+        "out": 1
+      },
+      {
+        "name": "iidd",
+        "in": {
+          "s": "IIDD"
+        },
+        "out": 6
+      },
+      {
+        "name": "iidi",
+        "in": {
+          "s": "IIDI"
+        },
+        "out": 9
+      },
+      {
+        "name": "ddi",
+        "in": {
+          "s": "DDI"
+        },
+        "out": 3
+      },
+      {
+        "name": "didid",
+        "in": {
+          "s": "DIDID"
+        },
+        "out": 61
+      },
+      {
+        "name": "ididi",
+        "in": {
+          "s": "IDIDI"
+        },
+        "out": 61
+      },
+      {
+        "name": "iiii",
+        "in": {
+          "s": "IIII"
+        },
+        "out": 1
+      },
+      {
+        "name": "dddd",
+        "in": {
+          "s": "DDDD"
+        },
+        "out": 1
+      },
+      {
+        "name": "iiddi",
+        "in": {
+          "s": "IIDDI"
+        },
+        "out": 26
+      },
+      {
+        "name": "diid",
+        "in": {
+          "s": "DIID"
+        },
+        "out": 11
+      },
+      {
+        "name": "diii",
+        "in": {
+          "s": "DIII"
+        },
+        "out": 4
+      },
+      {
+        "name": "iddd",
+        "in": {
+          "s": "IDDD"
+        },
+        "out": 4
+      },
+      {
+        "name": "dii",
+        "in": {
+          "s": "DII"
+        },
+        "out": 3
+      },
+      {
+        "name": "dididid",
+        "in": {
+          "s": "DIDIDID"
+        },
+        "out": 1385
+      },
+      {
+        "name": "idididi",
+        "in": {
+          "s": "IDIDIDI"
+        },
+        "out": 1385
+      },
+      {
+        "name": "didiid",
+        "in": {
+          "s": "DIDIID"
+        },
+        "out": 181
+      },
+      {
+        "name": "ddiid",
+        "in": {
+          "s": "DDIID"
+        },
+        "out": 26
+      },
+      {
+        "name": "iiddd",
+        "in": {
+          "s": "IIDDD"
+        },
+        "out": 10
+      },
+      {
+        "name": "diddd",
+        "in": {
+          "s": "DIDDD"
+        },
+        "out": 14
+      },
+      {
+        "name": "iidii",
+        "in": {
+          "s": "IIDII"
+        },
+        "out": 19
+      },
+      {
+        "name": "ddiii",
+        "in": {
+          "s": "DDIII"
+        },
+        "out": 10
+      },
+      {
+        "name": "iddi",
+        "in": {
+          "s": "IDDI"
+        },
+        "out": 11
+      },
+      {
+        "name": "diidi",
+        "in": {
+          "s": "DIIDI"
+        },
+        "out": 40
+      },
+      {
+        "name": "long-alternating",
+        "in": {
+          "s": "DIDIDIDIDIDIDIDIDIDID"
+        },
+        "out": 907695790
+      },
+      {
+        "name": "long-blocks",
+        "in": {
+          "s": "IIIIIIIIIIIDDDDDDDDDD"
+        },
+        "out": 352716
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"DID\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"D\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"I\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"II\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"DD\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"DI\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"ID\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"DIDI\"",
+      "output": "16"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# ---- Build output ----
+build/
+build-linux/
+builds/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# ---- QScintilla local build artifacts ----
+libs/qscintilla/src/*.o
+libs/qscintilla/src/moc_*.cpp
+libs/qscintilla/src/moc_predefs.h
+libs/qscintilla/src/Makefile
+libs/qscintilla/src/.qmake.stash
+libs/qscintilla/src/libqscintilla2*
+libs/qscintilla/src/release/
+libs/qscintilla/src/debug/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
+# ---- Generated / scratch ----
+out.html
+temp.py
+scratch/
+
+# ---- IDE & OS ----
+.vscode/
+.idea/
+*.user
+*.autosave
+.DS_Store
+Thumbs.db
+*~
+
+# ---- Qt autogen (if generated outside build dir) ----
+*_autogen/

@@ -1,0 +1,823 @@
+{
+  "id": "minimum_cost_for_tickets",
+  "title": "Minimum Cost For Tickets",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You have planned some train traveling one year in advance. The days of the year in which you will travel are given as an integer array <code>days</code>. Each day is an integer from <code>1</code> to <code>365</code>.</p>\n\n<p>Train tickets are sold in <strong>three different ways</strong>:</p>\n\n<ul>\n\t<li>a <strong>1-day</strong> pass is sold for <code>costs[0]</code> dollars,</li>\n\t<li>a <strong>7-day</strong> pass is sold for <code>costs[1]</code> dollars, and</li>\n\t<li>a <strong>30-day</strong> pass is sold for <code>costs[2]</code> dollars.</li>\n</ul>\n\n<p>The passes allow that many days of consecutive travel.</p>\n\n<ul>\n\t<li>For example, if we get a <strong>7-day</strong> pass on day <code>2</code>, then we can travel for <code>7</code> days: <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, and <code>8</code>.</li>\n</ul>\n\n<p>Return <em>the minimum number of dollars you need to travel every day in the given list of days</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> days = [1,4,6,7,8,20], costs = [2,7,15]\n<strong>Output:</strong> 11\n<strong>Explanation:</strong> For example, here is one way to buy passes that lets you travel your travel plan:\nOn day 1, you bought a 1-day pass for costs[0] = $2, which covered day 1.\nOn day 3, you bought a 7-day pass for costs[1] = $7, which covered days 3, 4, ..., 9.\nOn day 20, you bought a 1-day pass for costs[0] = $2, which covered day 20.\nIn total, you spent $11 and covered all the days of your travel.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> days = [1,2,3,4,5,6,7,8,9,10,30,31], costs = [2,7,15]\n<strong>Output:</strong> 17\n<strong>Explanation:</strong> For example, here is one way to buy passes that lets you travel your travel plan:\nOn day 1, you bought a 30-day pass for costs[2] = $15 which covered days 1, 2, ..., 30.\nOn day 31, you bought a 1-day pass for costs[0] = $2 which covered day 31.\nIn total, you spent $17 and covered all the days of your travel.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= days.length &lt;= 365</code></li>\n\t<li><code>1 &lt;= days[i] &lt;= 365</code></li>\n\t<li><code>days</code> is in strictly increasing order.</li>\n\t<li><code>costs.length == 3</code></li>\n\t<li><code>1 &lt;= costs[i] &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Cost For Tickets' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= days.length <= 365",
+    "1 <= days[i] <= 365",
+    "days is in strictly increasing order.",
+    "costs.length == 3",
+    "1 <= costs[i] <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "mincostTickets",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "days",
+        "type": "array"
+      },
+      {
+        "name": "costs",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 983,
+      "title": "minimum-cost-for-tickets",
+      "params": {
+        "days": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().mincostTickets({days}, {costs})",
+        "rust": "Solution::mincost_tickets({days}, {costs})",
+        "python3": "Solution().mincostTickets({days}, {costs})",
+        "python2": "Solution().mincostTickets({days}, {costs})",
+        "ruby": "mincost_tickets({days}, {costs})",
+        "java": "new Solution().mincostTickets({days}, {costs})",
+        "csharp": "new Solution().MincostTickets({days}, {costs})",
+        "kotlin": "Solution().mincostTickets({days}, {costs})",
+        "go": "mincostTickets({days}, {costs})",
+        "dart": "Solution().mincostTickets({days}, {costs})",
+        "swift": "Solution().mincostTickets({days}, {costs})",
+        "typescript": "mincostTickets({days}, {costs})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 983,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "days": [
+            81,
+            86,
+            108,
+            115,
+            116,
+            165,
+            180
+          ],
+          "costs": [
+            15,
+            11,
+            12
+          ]
+        },
+        "out": 35
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "days": [
+            17,
+            28,
+            45,
+            63,
+            96,
+            179,
+            181,
+            196,
+            274,
+            318,
+            335,
+            343,
+            352,
+            363
+          ],
+          "costs": [
+            9,
+            4,
+            16
+          ]
+        },
+        "out": 52
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "days": [
+            18,
+            90,
+            101,
+            140,
+            149,
+            284,
+            290,
+            343
+          ],
+          "costs": [
+            12,
+            13,
+            5
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "days": [
+            21,
+            47,
+            106,
+            115,
+            121,
+            133,
+            169,
+            185,
+            215,
+            352,
+            357
+          ],
+          "costs": [
+            12,
+            28,
+            37
+          ]
+        },
+        "out": 121
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "days": [
+            33,
+            74,
+            134,
+            206,
+            260
+          ],
+          "costs": [
+            12,
+            6,
+            20
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "days": [
+            172
+          ],
+          "costs": [
+            4,
+            9,
+            37
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "days": [
+            9,
+            29,
+            43,
+            94,
+            167,
+            234,
+            239,
+            281,
+            282,
+            299,
+            350
+          ],
+          "costs": [
+            6,
+            21,
+            31
+          ]
+        },
+        "out": 66
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "days": [
+            35,
+            45,
+            75,
+            188,
+            229,
+            256,
+            266,
+            294,
+            330,
+            359
+          ],
+          "costs": [
+            19,
+            25,
+            48
+          ]
+        },
+        "out": 190
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "days": [
+            221,
+            274,
+            340
+          ],
+          "costs": [
+            20,
+            12,
+            15
+          ]
+        },
+        "out": 36
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "days": [
+            46,
+            79,
+            80,
+            153,
+            154,
+            161,
+            219,
+            258
+          ],
+          "costs": [
+            1,
+            21,
+            38
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "days": [
+            5,
+            78,
+            112,
+            118,
+            137,
+            144,
+            147,
+            204,
+            212,
+            236,
+            253
+          ],
+          "costs": [
+            18,
+            20,
+            20
+          ]
+        },
+        "out": 114
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "days": [
+            94,
+            98,
+            153,
+            241,
+            259,
+            344
+          ],
+          "costs": [
+            19,
+            25,
+            44
+          ]
+        },
+        "out": 101
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "days": [
+            47,
+            113,
+            117,
+            135,
+            273,
+            304
+          ],
+          "costs": [
+            19,
+            2,
+            26
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "days": [
+            10,
+            51,
+            62,
+            143,
+            258,
+            289
+          ],
+          "costs": [
+            12,
+            19,
+            17
+          ]
+        },
+        "out": 65
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "days": [
+            44,
+            83,
+            110,
+            120,
+            134,
+            156
+          ],
+          "costs": [
+            11,
+            10,
+            23
+          ]
+        },
+        "out": 53
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "days": [
+            86,
+            150,
+            154,
+            234,
+            304,
+            333,
+            350
+          ],
+          "costs": [
+            6,
+            14,
+            34
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "days": [
+            97,
+            105,
+            129,
+            163,
+            187,
+            210,
+            252,
+            255,
+            264,
+            265,
+            333,
+            361
+          ],
+          "costs": [
+            18,
+            21,
+            37
+          ]
+        },
+        "out": 181
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "days": [
+            2,
+            8,
+            21,
+            77,
+            98,
+            118,
+            128,
+            182,
+            213,
+            214,
+            225,
+            254,
+            271,
+            285,
+            300
+          ],
+          "costs": [
+            9,
+            27,
+            44
+          ]
+        },
+        "out": 135
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "days": [
+            184,
+            188
+          ],
+          "costs": [
+            1,
+            7,
+            49
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "days": [
+            350
+          ],
+          "costs": [
+            1,
+            2,
+            12
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "days": [
+            7,
+            74,
+            83,
+            88,
+            122,
+            160,
+            298
+          ],
+          "costs": [
+            7,
+            11,
+            4
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "days": [
+            28,
+            82,
+            102,
+            181,
+            197,
+            207,
+            235,
+            278,
+            321,
+            323,
+            349
+          ],
+          "costs": [
+            20,
+            27,
+            38
+          ]
+        },
+        "out": 174
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "days": [
+            9,
+            149,
+            171,
+            182,
+            236,
+            287,
+            290,
+            294,
+            343
+          ],
+          "costs": [
+            14,
+            13,
+            23
+          ]
+        },
+        "out": 98
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "days": [
+            3,
+            49,
+            108,
+            160,
+            210,
+            364
+          ],
+          "costs": [
+            9,
+            7,
+            22
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "days": [
+            167,
+            189,
+            220,
+            225,
+            229,
+            322,
+            337
+          ],
+          "costs": [
+            5,
+            10,
+            26
+          ]
+        },
+        "out": 35
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "days": [
+            42,
+            259
+          ],
+          "costs": [
+            7,
+            8,
+            26
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "days": [
+            1,
+            86,
+            132,
+            282,
+            291,
+            317,
+            337
+          ],
+          "costs": [
+            1,
+            10,
+            20
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "days": [
+            117
+          ],
+          "costs": [
+            11,
+            11,
+            31
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "days": [
+            14,
+            33,
+            49,
+            60,
+            86,
+            90,
+            98,
+            106,
+            114,
+            154,
+            220,
+            223,
+            243,
+            251,
+            317
+          ],
+          "costs": [
+            14,
+            26,
+            33
+          ]
+        },
+        "out": 155
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "days": [
+            121,
+            128,
+            254,
+            272,
+            308,
+            312
+          ],
+          "costs": [
+            10,
+            23,
+            28
+          ]
+        },
+        "out": 60
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "days": [
+            96,
+            132,
+            153,
+            222
+          ],
+          "costs": [
+            17,
+            6,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "days": [
+            301,
+            348
+          ],
+          "costs": [
+            10,
+            30,
+            11
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "days": [
+            5,
+            52,
+            60,
+            68,
+            112,
+            203,
+            269,
+            294,
+            359
+          ],
+          "costs": [
+            2,
+            27,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "days": [
+            19,
+            84,
+            103,
+            158,
+            165,
+            171,
+            214,
+            287,
+            323,
+            355
+          ],
+          "costs": [
+            5,
+            27,
+            34
+          ]
+        },
+        "out": 50
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "days": [
+            183,
+            323
+          ],
+          "costs": [
+            1,
+            26,
+            33
+          ]
+        },
+        "out": 2
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "days = [81, 86, 108, 115, 116, 165, 180]\ncosts = [15, 11, 12]",
+      "output": "35"
+    },
+    {
+      "input": "days = [17, 28, 45, 63, 96, 179, 181, 196, 274, 318, 335, 343, 352, 363]\ncosts = [9, 4, 16]",
+      "output": "52"
+    },
+    {
+      "input": "days = [18, 90, 101, 140, 149, 284, 290, 343]\ncosts = [12, 13, 5]",
+      "output": "25"
+    },
+    {
+      "input": "days = [21, 47, 106, 115, 121, 133, 169, 185, 215, 352, 357]\ncosts = [12, 28, 37]",
+      "output": "121"
+    },
+    {
+      "input": "days = [33, 74, 134, 206, 260]\ncosts = [12, 6, 20]",
+      "output": "30"
+    },
+    {
+      "input": "days = [172]\ncosts = [4, 9, 37]",
+      "output": "4"
+    },
+    {
+      "input": "days = [9, 29, 43, 94, 167, 234, 239, 281, 282, 299, 350]\ncosts = [6, 21, 31]",
+      "output": "66"
+    },
+    {
+      "input": "days = [35, 45, 75, 188, 229, 256, 266, 294, 330, 359]\ncosts = [19, 25, 48]",
+      "output": "190"
+    }
+  ]
+}

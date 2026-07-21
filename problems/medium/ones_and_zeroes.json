@@ -1,0 +1,643 @@
+{
+  "id": "ones_and_zeroes",
+  "title": "Ones and Zeroes",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given an array of binary strings <code>strs</code> and two integers <code>m</code> and <code>n</code>.</p>\n\n<p>Return <em>the size of the largest subset of <code>strs</code> such that there are <strong>at most</strong> </em><code>m</code><em> </em><code>0</code><em>&#39;s and </em><code>n</code><em> </em><code>1</code><em>&#39;s in the subset</em>.</p>\n\n<p>A set <code>x</code> is a <strong>subset</strong> of a set <code>y</code> if all elements of <code>x</code> are also elements of <code>y</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> strs = [&quot;10&quot;,&quot;0001&quot;,&quot;111001&quot;,&quot;1&quot;,&quot;0&quot;], m = 5, n = 3\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The largest subset with at most 5 0&#39;s and 3 1&#39;s is {&quot;10&quot;, &quot;0001&quot;, &quot;1&quot;, &quot;0&quot;}, so the answer is 4.\nOther valid but smaller subsets include {&quot;0001&quot;, &quot;1&quot;} and {&quot;10&quot;, &quot;1&quot;, &quot;0&quot;}.\n{&quot;111001&quot;} is an invalid subset because it contains 4 1&#39;s, greater than the maximum of 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> strs = [&quot;10&quot;,&quot;0&quot;,&quot;1&quot;], m = 1, n = 1\n<strong>Output:</strong> 2\n<b>Explanation:</b> The largest subset is {&quot;0&quot;, &quot;1&quot;}, so the answer is 2.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= strs.length &lt;= 600</code></li>\n\t<li><code>1 &lt;= strs[i].length &lt;= 100</code></li>\n\t<li><code>strs[i]</code> consists only of digits <code>&#39;0&#39;</code> and <code>&#39;1&#39;</code>.</li>\n\t<li><code>1 &lt;= m, n &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Ones and Zeroes' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= strs.length <= 600",
+    "1 <= strs[i].length <= 100",
+    "strs[i] consists only of digits '0' and '1'.",
+    "1 <= m, n <= 100"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findMaxForm",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "strs",
+        "type": "array"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 474,
+      "title": "ones-and-zeroes",
+      "params": {
+        "strs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "m": {
+          "type": "int"
+        },
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findMaxForm({strs}, {m}, {n})",
+        "rust": "Solution::find_max_form({strs}, {m}, {n})",
+        "python3": "Solution().findMaxForm({strs}, {m}, {n})",
+        "python2": "Solution().findMaxForm({strs}, {m}, {n})",
+        "ruby": "find_max_form({strs}, {m}, {n})",
+        "java": "new Solution().findMaxForm({strs}, {m}, {n})",
+        "csharp": "new Solution().FindMaxForm({strs}, {m}, {n})",
+        "kotlin": "Solution().findMaxForm({strs}, {m}, {n})",
+        "go": "findMaxForm({strs}, {m}, {n})",
+        "dart": "Solution().findMaxForm({strs}, {m}, {n})",
+        "swift": "Solution().findMaxForm({strs}, {m}, {n})",
+        "typescript": "findMaxForm({strs}, {m}, {n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findMaxForm(strs, m, n, {result})",
+        "checker": "class Checker:\n    def findMaxForm(self, strs, m, n, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 474,
+    "tests": [
+      {
+        "name": "ex1_basic",
+        "in": {
+          "strs": [
+            "10",
+            "0001",
+            "111001",
+            "1",
+            "0"
+          ],
+          "m": 5,
+          "n": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "ex2_basic",
+        "in": {
+          "strs": [
+            "10",
+            "0",
+            "1"
+          ],
+          "m": 1,
+          "n": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "strs": [
+            "0"
+          ],
+          "m": 1,
+          "n": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "strs": [
+            "1"
+          ],
+          "m": 0,
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "cannot_take_anything",
+        "in": {
+          "strs": [
+            "0",
+            "1"
+          ],
+          "m": 0,
+          "n": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "zero_budget_zeros_only",
+        "in": {
+          "strs": [
+            "0",
+            "1"
+          ],
+          "m": 1,
+          "n": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_budget_ones_only",
+        "in": {
+          "strs": [
+            "0",
+            "1"
+          ],
+          "m": 0,
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "two_twos_tight",
+        "in": {
+          "strs": [
+            "00",
+            "11"
+          ],
+          "m": 1,
+          "n": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "two_twos_fit",
+        "in": {
+          "strs": [
+            "00",
+            "11"
+          ],
+          "m": 2,
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "repeated_balanced",
+        "in": {
+          "strs": [
+            "10",
+            "10",
+            "10"
+          ],
+          "m": 3,
+          "n": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated_balanced_tight",
+        "in": {
+          "strs": [
+            "10",
+            "10",
+            "10"
+          ],
+          "m": 2,
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed_small_fit",
+        "in": {
+          "strs": [
+            "000",
+            "111",
+            "01",
+            "10"
+          ],
+          "m": 3,
+          "n": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed_small_tight",
+        "in": {
+          "strs": [
+            "000",
+            "111",
+            "01",
+            "10"
+          ],
+          "m": 2,
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "duplicates_with_center",
+        "in": {
+          "strs": [
+            "0",
+            "0",
+            "1",
+            "1",
+            "01"
+          ],
+          "m": 2,
+          "n": 2
+        },
+        "out": 4
+      },
+      {
+        "name": "duplicates_with_center_tight",
+        "in": {
+          "strs": [
+            "0",
+            "0",
+            "1",
+            "1",
+            "01"
+          ],
+          "m": 1,
+          "n": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "all_balanced",
+        "in": {
+          "strs": [
+            "01",
+            "01",
+            "01",
+            "01"
+          ],
+          "m": 4,
+          "n": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "all_balanced_tight",
+        "in": {
+          "strs": [
+            "01",
+            "01",
+            "01",
+            "01"
+          ],
+          "m": 3,
+          "n": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "varied_short_fit",
+        "in": {
+          "strs": [
+            "0001",
+            "0011",
+            "0101",
+            "0111",
+            "1111"
+          ],
+          "m": 5,
+          "n": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "varied_short_tight",
+        "in": {
+          "strs": [
+            "0001",
+            "0011",
+            "0101",
+            "0111",
+            "1111"
+          ],
+          "m": 4,
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "max_len_zero_only",
+        "in": {
+          "strs": [
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+          ],
+          "m": 100,
+          "n": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "max_len_one_only",
+        "in": {
+          "strs": [
+            "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 0,
+          "n": 100
+        },
+        "out": 1
+      },
+      {
+        "name": "max_len_pair_fit",
+        "in": {
+          "strs": [
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 100,
+          "n": 100
+        },
+        "out": 2
+      },
+      {
+        "name": "max_len_pair_with_mix",
+        "in": {
+          "strs": [
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+            "0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"
+          ],
+          "m": 100,
+          "n": 100
+        },
+        "out": 2
+      },
+      {
+        "name": "half_half_pair",
+        "in": {
+          "strs": [
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 100,
+          "n": 100
+        },
+        "out": 1
+      },
+      {
+        "name": "half_half_pair_tight",
+        "in": {
+          "strs": [
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+            "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 99,
+          "n": 99
+        },
+        "out": 0
+      },
+      {
+        "name": "many_small_balanced",
+        "in": {
+          "strs": [
+            "0000000000",
+            "0000000000",
+            "0000000000",
+            "1111111111",
+            "1111111111",
+            "1111111111"
+          ],
+          "m": 20,
+          "n": 20
+        },
+        "out": 4
+      },
+      {
+        "name": "many_small_balanced_tight",
+        "in": {
+          "strs": [
+            "0000000000",
+            "0000000000",
+            "0000000000",
+            "1111111111",
+            "1111111111",
+            "1111111111"
+          ],
+          "m": 15,
+          "n": 15
+        },
+        "out": 2
+      },
+      {
+        "name": "descending_lengths_fit",
+        "in": {
+          "strs": [
+            "0000",
+            "000",
+            "00",
+            "0",
+            "1111",
+            "111",
+            "11",
+            "1"
+          ],
+          "m": 10,
+          "n": 10
+        },
+        "out": 8
+      },
+      {
+        "name": "descending_lengths_tight",
+        "in": {
+          "strs": [
+            "0000",
+            "000",
+            "00",
+            "0",
+            "1111",
+            "111",
+            "11",
+            "1"
+          ],
+          "m": 6,
+          "n": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "cross_pairing",
+        "in": {
+          "strs": [
+            "01",
+            "10",
+            "0011",
+            "1100",
+            "0000",
+            "1111"
+          ],
+          "m": 4,
+          "n": 4
+        },
+        "out": 3
+      },
+      {
+        "name": "cross_pairing_tight",
+        "in": {
+          "strs": [
+            "01",
+            "10",
+            "0011",
+            "1100",
+            "0000",
+            "1111"
+          ],
+          "m": 3,
+          "n": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "all_powers_of_ten",
+        "in": {
+          "strs": [
+            "0",
+            "00",
+            "000",
+            "0000",
+            "1",
+            "11",
+            "111",
+            "1111"
+          ],
+          "m": 10,
+          "n": 10
+        },
+        "out": 8
+      },
+      {
+        "name": "all_powers_of_ten_tight",
+        "in": {
+          "strs": [
+            "0",
+            "00",
+            "000",
+            "0000",
+            "1",
+            "11",
+            "111",
+            "1111"
+          ],
+          "m": 5,
+          "n": 5
+        },
+        "out": 4
+      },
+      {
+        "name": "long_mixed_strings_fit",
+        "in": {
+          "strs": [
+            "010101",
+            "101010",
+            "001100",
+            "110011",
+            "000000",
+            "111111"
+          ],
+          "m": 6,
+          "n": 6
+        },
+        "out": 2
+      },
+      {
+        "name": "long_mixed_strings_tight",
+        "in": {
+          "strs": [
+            "010101",
+            "101010",
+            "001100",
+            "110011",
+            "000000",
+            "111111"
+          ],
+          "m": 4,
+          "n": 4
+        },
+        "out": 1
+      },
+      {
+        "name": "near_max_length_mix_fit",
+        "in": {
+          "strs": [
+            "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110",
+            "00000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111",
+            "00000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 100,
+          "n": 100
+        },
+        "out": 2
+      },
+      {
+        "name": "near_max_length_mix_tight",
+        "in": {
+          "strs": [
+            "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110",
+            "00000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111",
+            "00000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111"
+          ],
+          "m": 99,
+          "n": 99
+        },
+        "out": 2
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "strs = [\"10\", \"0001\", \"111001\", \"1\", \"0\"]\nm = 5\nn = 3",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"10\", \"0\", \"1\"]\nm = 1\nn = 1",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"0\"]\nm = 1\nn = 0",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"1\"]\nm = 0\nn = 1",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"0\", \"1\"]\nm = 0\nn = 0",
+      "output": "0"
+    },
+    {
+      "input": "strs = [\"0\", \"1\"]\nm = 1\nn = 0",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"0\", \"1\"]\nm = 0\nn = 1",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"00\", \"11\"]\nm = 1\nn = 1",
+      "output": "0"
+    }
+  ]
+}

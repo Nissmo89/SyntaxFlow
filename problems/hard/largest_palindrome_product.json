@@ -1,0 +1,383 @@
+{
+  "id": "largest_palindrome_product",
+  "title": "Largest Palindrome Product",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "description": "<p>Given an integer n, return <em>the <strong>largest palindromic integer</strong> that can be represented as the product of two <code>n</code>-digits integers</em>. Since the answer can be very large, return it <strong>modulo</strong> <code>1337</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2\n<strong>Output:</strong> 987\nExplanation: 99 x 91 = 9009, 9009 % 1337 = 987\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 9\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 8</code></li>\n</ul>\n",
+  "task": "Solve the 'Largest Palindrome Product' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 8"
+  ],
+  "hints": [],
+  "method": {
+    "name": "largestPalindrome",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 479,
+      "title": "largest-palindrome-product",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().largestPalindrome({n})",
+        "rust": "Solution::largest_palindrome({n})",
+        "python3": "Solution().largestPalindrome({n})",
+        "python2": "Solution().largestPalindrome({n})",
+        "ruby": "largest_palindrome({n})",
+        "java": "new Solution().largestPalindrome({n})",
+        "csharp": "new Solution().LargestPalindrome({n})",
+        "kotlin": "Solution().largestPalindrome({n})",
+        "go": "largestPalindrome({n})",
+        "dart": "Solution().largestPalindrome({n})",
+        "swift": "Solution().largestPalindrome({n})",
+        "typescript": "largestPalindrome({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 120000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, {result})",
+        "checker": "class Checker:\n    def check(self, n, result):\n        expected = {\n            1: 9,\n            2: 987,\n            3: 123,\n            4: 597,\n            5: 677,\n            6: 1218,\n            7: 877,\n            8: 475,\n        }\n        return result == expected.get(n)\n"
+      }
+    },
+    "seed": 479,
+    "tests": [
+      {
+        "name": "n1",
+        "in": {
+          "n": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "n2",
+        "in": {
+          "n": 2
+        },
+        "out": 987
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": 3
+        },
+        "out": 123
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": 4
+        },
+        "out": 597
+      },
+      {
+        "name": "n5",
+        "in": {
+          "n": 5
+        },
+        "out": 677
+      },
+      {
+        "name": "n6",
+        "in": {
+          "n": 6
+        },
+        "out": 1218
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": 7
+        },
+        "out": 877
+      },
+      {
+        "name": "n8",
+        "in": {
+          "n": 8
+        },
+        "out": 475
+      },
+      {
+        "name": "n1_repeat_1",
+        "in": {
+          "n": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "n2_repeat_1",
+        "in": {
+          "n": 2
+        },
+        "out": 987
+      },
+      {
+        "name": "n3_repeat_1",
+        "in": {
+          "n": 3
+        },
+        "out": 123
+      },
+      {
+        "name": "n4_repeat_1",
+        "in": {
+          "n": 4
+        },
+        "out": 597
+      },
+      {
+        "name": "n5_repeat_1",
+        "in": {
+          "n": 5
+        },
+        "out": 677
+      },
+      {
+        "name": "n6_repeat_1",
+        "in": {
+          "n": 6
+        },
+        "out": 1218
+      },
+      {
+        "name": "n7_repeat_1",
+        "in": {
+          "n": 7
+        },
+        "out": 877
+      },
+      {
+        "name": "n8_repeat_1",
+        "in": {
+          "n": 8
+        },
+        "out": 475
+      },
+      {
+        "name": "n1_repeat_2",
+        "in": {
+          "n": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "n2_repeat_2",
+        "in": {
+          "n": 2
+        },
+        "out": 987
+      },
+      {
+        "name": "n3_repeat_2",
+        "in": {
+          "n": 3
+        },
+        "out": 123
+      },
+      {
+        "name": "n4_repeat_2",
+        "in": {
+          "n": 4
+        },
+        "out": 597
+      },
+      {
+        "name": "n5_repeat_2",
+        "in": {
+          "n": 5
+        },
+        "out": 677
+      },
+      {
+        "name": "n6_repeat_2",
+        "in": {
+          "n": 6
+        },
+        "out": 1218
+      },
+      {
+        "name": "n7_repeat_2",
+        "in": {
+          "n": 7
+        },
+        "out": 877
+      },
+      {
+        "name": "n8_repeat_2",
+        "in": {
+          "n": 8
+        },
+        "out": 475
+      },
+      {
+        "name": "n1_repeat_3",
+        "in": {
+          "n": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "n2_repeat_3",
+        "in": {
+          "n": 2
+        },
+        "out": 987
+      },
+      {
+        "name": "n3_repeat_3",
+        "in": {
+          "n": 3
+        },
+        "out": 123
+      },
+      {
+        "name": "n4_repeat_3",
+        "in": {
+          "n": 4
+        },
+        "out": 597
+      },
+      {
+        "name": "n5_repeat_3",
+        "in": {
+          "n": 5
+        },
+        "out": 677
+      },
+      {
+        "name": "n6_repeat_3",
+        "in": {
+          "n": 6
+        },
+        "out": 1218
+      },
+      {
+        "name": "n7_repeat_3",
+        "in": {
+          "n": 7
+        },
+        "out": 877
+      },
+      {
+        "name": "n8_repeat_3",
+        "in": {
+          "n": 8
+        },
+        "out": 475
+      },
+      {
+        "name": "n1_repeat_4",
+        "in": {
+          "n": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "n2_repeat_4",
+        "in": {
+          "n": 2
+        },
+        "out": 987
+      },
+      {
+        "name": "n3_repeat_4",
+        "in": {
+          "n": 3
+        },
+        "out": 123
+      },
+      {
+        "name": "n4_repeat_4",
+        "in": {
+          "n": 4
+        },
+        "out": 597
+      },
+      {
+        "name": "n5_repeat_4",
+        "in": {
+          "n": 5
+        },
+        "out": 677
+      },
+      {
+        "name": "n6_repeat_4",
+        "in": {
+          "n": 6
+        },
+        "out": 1218
+      },
+      {
+        "name": "n7_repeat_4",
+        "in": {
+          "n": 7
+        },
+        "out": 877
+      },
+      {
+        "name": "n8_repeat_4",
+        "in": {
+          "n": 8
+        },
+        "out": 475
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": "9"
+    },
+    {
+      "input": "n = 2",
+      "output": "987"
+    },
+    {
+      "input": "n = 3",
+      "output": "123"
+    },
+    {
+      "input": "n = 4",
+      "output": "597"
+    },
+    {
+      "input": "n = 5",
+      "output": "677"
+    },
+    {
+      "input": "n = 6",
+      "output": "1218"
+    },
+    {
+      "input": "n = 7",
+      "output": "877"
+    },
+    {
+      "input": "n = 8",
+      "output": "475"
+    }
+  ]
+}

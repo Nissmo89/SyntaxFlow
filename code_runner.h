@@ -4,11 +4,7 @@
 #include <QObject>
 #include <QJsonArray>
 #include "language_config.h"
-#include "tcc_compiler.h"
-#ifdef SF_PYTHON_ENABLED
 #include "python_runner.h"
-#endif
-#include "quickjs_runner.h"
 #include "driver_generator.h"
 
 class LanguageRegistry;
@@ -52,16 +48,14 @@ private:
     bool m_running = false;
     bool m_stopRequested = false;
 
+    QJsonObject m_currentManifest;
 
     bool loadTestCases(const QString &problemId, QJsonArray &tests, MethodSchema &schema);
+    void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
 
     EmbeddedRunner* getRunner(const QString &languageId);
 
-    TccRunner       *m_tccRunner       = nullptr;
-    QuickJsRunner   *m_quickjsRunner   = nullptr;
-#ifdef SF_PYTHON_ENABLED
     PythonRunner    *m_pythonRunner    = nullptr;
-#endif
 };
 
 #endif // CODE_RUNNER_H

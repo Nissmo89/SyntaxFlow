@@ -1,0 +1,576 @@
+{
+  "id": "palindrome_linked_list",
+  "title": "Palindrome Linked List",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Linked List",
+    "Two Pointers",
+    "Stack",
+    "Recursion"
+  ],
+  "description": "<p>Given the <code>head</code> of a singly linked list, return <code>true</code><em> if it is a </em><span class=\"cursor-pointer relative text-dark-blue-s text-sm\" data-keyword=\"palindrome-sequence\"><button aria-controls=\"radix-_r_1m_\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"\" data-state=\"closed\" type=\"button\"><em>palindrome</em></button></span><em> or </em><code>false</code><em> otherwise</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg\" style=\"width: 422px; height: 62px;\"/> <pre><strong>Input:</strong> head = [1,2,2,1]\n<strong>Output:</strong> true\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg\" style=\"width: 182px; height: 62px;\"/> <pre><strong>Input:</strong> head = [1,2]\n<strong>Output:</strong> false\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li>The number of nodes in the list is in the range <code>[1, 10<sup>5</sup>]</code>.</li> <li><code>0 &lt;= Node.val &lt;= 9</code></li> </ul> <p> </p> <strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?",
+  "hints": [],
+  "method": {
+    "name": "isPalindrome",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "head",
+        "type": "list_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 234,
+      "title": "palindrome-linked-list",
+      "params": {
+        "head": {
+          "type": "list_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isPalindrome({head})",
+        "rust": "Solution::is_palindrome({head})",
+        "python3": "Solution().isPalindrome({head})",
+        "python2": "Solution().isPalindrome({head})",
+        "ruby": "is_palindrome({head})",
+        "java": "new Solution().isPalindrome({head})",
+        "csharp": "new Solution().IsPalindrome({head})",
+        "kotlin": "Solution().isPalindrome({head})",
+        "go": "isPalindrome({head})",
+        "dart": "Solution().isPalindrome({head})",
+        "swift": "Solution().isPalindrome({head})",
+        "typescript": "isPalindrome({head})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isPalindrome(head, {result})",
+        "checker": "from typing import Any\n\nclass Checker:\n    def isPalindrome(self, head: Any, result: Any) -> bool:\n        if not isinstance(result, bool):\n            return False\n\n        def to_values(node: Any) -> list:\n            if node is None:\n                return []\n            if hasattr(node, \"val\") and hasattr(node, \"next\"):\n                values = []\n                seen = 0\n                while node is not None:\n                    values.append(node.val)\n                    node = node.next\n                    seen += 1\n                    if seen > 100000:\n                        return []\n                return values\n            if isinstance(node, list) or isinstance(node, tuple):\n                if len(node) == 0:\n                    return []\n                if len(node) == 2 and not all(isinstance(x, (int, bool, float, str)) for x in node):\n                    return [node[0]] + to_values(node[1])\n                return list(node)\n            return []\n\n        values = to_values(head)\n        return result == (values == values[::-1])\n"
+      }
+    },
+    "seed": 234,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "head": [
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "head": [
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single_nine",
+        "in": {
+          "head": [
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two_equal",
+        "in": {
+          "head": [
+            4,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two_different",
+        "in": {
+          "head": [
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "odd_pal_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd_pal_2",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "even_pal_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "even_pal_2",
+        "in": {
+          "head": [
+            9,
+            8,
+            8,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd_nonpal_middle",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "even_nonpal_left",
+        "in": {
+          "head": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "even_nonpal_right",
+        "in": {
+          "head": [
+            1,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "leading_zero_pal",
+        "in": {
+          "head": [
+            0,
+            1,
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "trailing_zero_pal",
+        "in": {
+          "head": [
+            0,
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_same_len5",
+        "in": {
+          "head": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_same_len6",
+        "in": {
+          "head": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "near_pal_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "near_pal_2",
+        "in": {
+          "head": [
+            6,
+            5,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "near_pal_3",
+        "in": {
+          "head": [
+            8,
+            1,
+            0,
+            1,
+            9
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_pal_1",
+        "in": {
+          "head": [
+            2,
+            4,
+            6,
+            4,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_pal_2",
+        "in": {
+          "head": [
+            2,
+            4,
+            6,
+            6,
+            4,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_nonpal_1",
+        "in": {
+          "head": [
+            2,
+            4,
+            6,
+            4,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_nonpal_2",
+        "in": {
+          "head": [
+            2,
+            4,
+            6,
+            6,
+            4,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "generated_pal_1",
+        "seed": 101,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 11,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_pal_2",
+        "seed": 102,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_pal_3",
+        "seed": 103,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 31,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_pal_4",
+        "seed": 104,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 100,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_pal_5",
+        "seed": 105,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 99999,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "max_len_pal_even",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "max_len_nonpal_even",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "long_alt_nonpal_1",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "long_alt_nonpal_2",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 50001,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "long_zero_pal",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 75000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "long_nine_pal",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 75001,
+            "of": {
+              "gen": "int",
+              "min": 9,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "long_edge_nonpal",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "long_mixed_nonpal",
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 60000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "head = [1, 2, 2, 1]",
+      "output": "true"
+    },
+    {
+      "input": "head = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "head = [0]",
+      "output": "true"
+    },
+    {
+      "input": "head = [9]",
+      "output": "true"
+    },
+    {
+      "input": "head = [4, 4]",
+      "output": "true"
+    },
+    {
+      "input": "head = [4, 5]",
+      "output": "false"
+    },
+    {
+      "input": "head = [1, 2, 1]",
+      "output": "true"
+    },
+    {
+      "input": "head = [1, 2, 3, 2, 1]",
+      "output": "true"
+    }
+  ]
+}

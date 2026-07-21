@@ -1,0 +1,868 @@
+{
+  "id": "minimum_domino_rotations_for_equal_row",
+  "title": "Minimum Domino Rotations For Equal Row",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "description": "<p>In a row of dominoes, <code>tops[i]</code> and <code>bottoms[i]</code> represent the top and bottom halves of the <code>i<sup>th</sup></code> domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)</p>\n\n<p>We may rotate the <code>i<sup>th</sup></code> domino, so that <code>tops[i]</code> and <code>bottoms[i]</code> swap values.</p>\n\n<p>Return the minimum number of rotations so that all the values in <code>tops</code> are the same, or all the values in <code>bottoms</code> are the same.</p>\n\n<p>If it cannot be done, return <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/14/domino.png\" style=\"height: 300px; width: 421px;\" />\n<pre>\n<strong>Input:</strong> tops = [2,1,2,4,2,2], bottoms = [5,2,6,2,3,2]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> \nThe first figure represents the dominoes as given by tops and bottoms: before we do any rotations.\nIf we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the second figure.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> tops = [3,5,1,2,3], bottoms = [3,6,3,3,4]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> \nIn this case, it is not possible to rotate the dominoes to make one row of values equal.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= tops.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>bottoms.length == tops.length</code></li>\n\t<li><code>1 &lt;= tops[i], bottoms[i] &lt;= 6</code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Domino Rotations For Equal Row' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "2 <= tops.length <= 2 * 104",
+    "bottoms.length == tops.length",
+    "1 <= tops[i], bottoms[i] <= 6"
+  ],
+  "hints": [],
+  "method": {
+    "name": "minDominoRotations",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "tops",
+        "type": "array"
+      },
+      {
+        "name": "bottoms",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1007,
+      "title": "minimum-domino-rotations-for-equal-row",
+      "params": {
+        "tops": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "bottoms": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minDominoRotations({tops}, {bottoms})",
+        "rust": "Solution::min_domino_rotations({tops}, {bottoms})",
+        "python3": "Solution().minDominoRotations({tops}, {bottoms})",
+        "python2": "Solution().minDominoRotations({tops}, {bottoms})",
+        "ruby": "min_domino_rotations({tops}, {bottoms})",
+        "java": "new Solution().minDominoRotations({tops}, {bottoms})",
+        "csharp": "new Solution().MinDominoRotations({tops}, {bottoms})",
+        "kotlin": "Solution().minDominoRotations({tops}, {bottoms})",
+        "go": "minDominoRotations({tops}, {bottoms})",
+        "dart": "Solution().minDominoRotations({tops}, {bottoms})",
+        "swift": "Solution().minDominoRotations({tops}, {bottoms})",
+        "typescript": "minDominoRotations({tops}, {bottoms})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 1007,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "tops": [
+            4,
+            3,
+            6,
+            2,
+            1,
+            4,
+            4,
+            2,
+            1,
+            5
+          ],
+          "bottoms": [
+            1,
+            4,
+            6,
+            5,
+            2,
+            2,
+            5,
+            2,
+            3,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "tops": [
+            1,
+            5,
+            3,
+            6,
+            3,
+            4,
+            1,
+            6
+          ],
+          "bottoms": [
+            5,
+            6,
+            5,
+            4,
+            5,
+            1,
+            1,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "tops": [
+            5,
+            3,
+            3,
+            5
+          ],
+          "bottoms": [
+            4,
+            5,
+            5,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "tops": [
+            6,
+            2,
+            1,
+            4,
+            2,
+            2,
+            5,
+            6,
+            4
+          ],
+          "bottoms": [
+            5,
+            5,
+            4,
+            5,
+            1,
+            4,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "tops": [
+            4,
+            5,
+            1,
+            3,
+            6,
+            4,
+            4,
+            5,
+            6
+          ],
+          "bottoms": [
+            1,
+            3,
+            6,
+            1,
+            3,
+            6,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "tops": [
+            4,
+            3,
+            5
+          ],
+          "bottoms": [
+            1,
+            4,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "tops": [
+            1,
+            3,
+            4,
+            3,
+            6,
+            2,
+            6,
+            2
+          ],
+          "bottoms": [
+            3,
+            2,
+            5,
+            2,
+            6,
+            3,
+            2,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "tops": [
+            4,
+            4,
+            3,
+            5,
+            6,
+            2,
+            6,
+            3
+          ],
+          "bottoms": [
+            5,
+            2,
+            1,
+            6,
+            5,
+            5,
+            4,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "tops": [
+            6,
+            2,
+            3
+          ],
+          "bottoms": [
+            5,
+            4,
+            4
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "tops": [
+            1,
+            4,
+            3,
+            1,
+            2,
+            6,
+            3,
+            4,
+            1
+          ],
+          "bottoms": [
+            1,
+            1,
+            5,
+            5,
+            5,
+            3,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "tops": [
+            4,
+            2,
+            2,
+            4,
+            5,
+            6,
+            3,
+            5,
+            3
+          ],
+          "bottoms": [
+            4,
+            6,
+            4,
+            1,
+            4,
+            4,
+            4,
+            5,
+            1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "tops": [
+            5,
+            1,
+            1,
+            3,
+            2,
+            4,
+            6,
+            5,
+            4
+          ],
+          "bottoms": [
+            5,
+            3,
+            4,
+            6,
+            3,
+            3,
+            2,
+            6,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "tops": [
+            6,
+            1,
+            5,
+            4,
+            2,
+            1,
+            5,
+            6,
+            3
+          ],
+          "bottoms": [
+            2,
+            6,
+            1,
+            1,
+            6,
+            2,
+            6,
+            4,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "tops": [
+            4
+          ],
+          "bottoms": [
+            5
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "tops": [
+            1,
+            3,
+            3,
+            4,
+            1
+          ],
+          "bottoms": [
+            3,
+            5,
+            1,
+            4,
+            1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "tops": [
+            4,
+            2,
+            4,
+            1,
+            5,
+            3,
+            2,
+            3
+          ],
+          "bottoms": [
+            5,
+            6,
+            5,
+            5,
+            2,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "tops": [
+            3,
+            1,
+            3,
+            6,
+            4,
+            6
+          ],
+          "bottoms": [
+            5,
+            5,
+            1,
+            4,
+            3,
+            5
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "tops": [
+            1
+          ],
+          "bottoms": [
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "tops": [
+            3,
+            5,
+            4
+          ],
+          "bottoms": [
+            4,
+            6,
+            2
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "tops": [
+            2,
+            4,
+            6,
+            3,
+            2,
+            4,
+            6
+          ],
+          "bottoms": [
+            1,
+            5,
+            2,
+            6,
+            6,
+            6,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "tops": [
+            5,
+            1,
+            4
+          ],
+          "bottoms": [
+            4,
+            5,
+            2
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "tops": [
+            1,
+            6,
+            1
+          ],
+          "bottoms": [
+            2,
+            5,
+            1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "tops": [
+            1,
+            4,
+            5,
+            1,
+            2,
+            2
+          ],
+          "bottoms": [
+            2,
+            4,
+            6,
+            4,
+            5,
+            5
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "tops": [
+            1,
+            4,
+            5,
+            5,
+            2,
+            5
+          ],
+          "bottoms": [
+            4,
+            5,
+            6,
+            2,
+            1,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "tops": [
+            1,
+            2,
+            1,
+            4,
+            1,
+            5,
+            3,
+            5,
+            6
+          ],
+          "bottoms": [
+            4,
+            4,
+            1,
+            3,
+            6,
+            4,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "tops": [
+            6,
+            3,
+            4,
+            4
+          ],
+          "bottoms": [
+            2,
+            3,
+            6,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "tops": [
+            3,
+            2,
+            2,
+            2,
+            6,
+            2,
+            1,
+            5,
+            3,
+            6
+          ],
+          "bottoms": [
+            1,
+            2,
+            1,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            5
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "tops": [
+            6,
+            4,
+            6,
+            2
+          ],
+          "bottoms": [
+            4,
+            3,
+            5,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "tops": [
+            5,
+            1
+          ],
+          "bottoms": [
+            2,
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "tops": [
+            6,
+            6,
+            5,
+            5,
+            6
+          ],
+          "bottoms": [
+            5,
+            5,
+            5,
+            6,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "tops": [
+            4,
+            3,
+            2
+          ],
+          "bottoms": [
+            3,
+            3,
+            2
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "tops": [
+            3,
+            3,
+            6,
+            5,
+            2,
+            5,
+            5,
+            5,
+            2
+          ],
+          "bottoms": [
+            2,
+            5,
+            4,
+            5,
+            6,
+            6,
+            6,
+            6,
+            4
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "tops": [
+            6,
+            3
+          ],
+          "bottoms": [
+            3,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "tops": [
+            5,
+            4
+          ],
+          "bottoms": [
+            2,
+            1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "tops": [
+            1,
+            4,
+            4
+          ],
+          "bottoms": [
+            3,
+            3,
+            1
+          ]
+        },
+        "out": -1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "tops = [4, 3, 6, 2, 1, 4, 4, 2, 1, 5]\nbottoms = [1, 4, 6, 5, 2, 2, 5, 2, 3, 6]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [1, 5, 3, 6, 3, 4, 1, 6]\nbottoms = [5, 6, 5, 4, 5, 1, 1, 3]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [5, 3, 3, 5]\nbottoms = [4, 5, 5, 2]",
+      "output": "2"
+    },
+    {
+      "input": "tops = [6, 2, 1, 4, 2, 2, 5, 6, 4]\nbottoms = [5, 5, 4, 5, 1, 4, 3, 2, 2]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [4, 5, 1, 3, 6, 4, 4, 5, 6]\nbottoms = [1, 3, 6, 1, 3, 6, 1, 1, 1]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [4, 3, 5]\nbottoms = [1, 4, 6]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [1, 3, 4, 3, 6, 2, 6, 2]\nbottoms = [3, 2, 5, 2, 6, 3, 2, 6]",
+      "output": "-1"
+    },
+    {
+      "input": "tops = [4, 4, 3, 5, 6, 2, 6, 3]\nbottoms = [5, 2, 1, 6, 5, 5, 4, 3]",
+      "output": "-1"
+    }
+  ]
+}

@@ -1,0 +1,637 @@
+{
+  "id": "koko_eating_bananas",
+  "title": "Koko Eating Bananas",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "description": "<p>Koko loves to eat bananas. There are <code>n</code> piles of bananas, the <code>i<sup>th</sup></code> pile has <code>piles[i]</code> bananas. The guards have gone and will come back in <code>h</code> hours.</p>\n\n<p>Koko can decide her bananas-per-hour eating speed of <code>k</code>. Each hour, she chooses some pile of bananas and eats <code>k</code> bananas from that pile. If the pile has less than <code>k</code> bananas, she eats all of them instead and will not eat any more bananas during this hour.</p>\n\n<p>Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.</p>\n\n<p>Return <em>the minimum integer</em> <code>k</code> <em>such that she can eat all the bananas within</em> <code>h</code> <em>hours</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> piles = [3,6,7,11], h = 8\n<strong>Output:</strong> 4\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> piles = [30,11,23,4,20], h = 5\n<strong>Output:</strong> 30\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> piles = [30,11,23,4,20], h = 6\n<strong>Output:</strong> 23\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= piles.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>piles.length &lt;= h &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= piles[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Koko Eating Bananas' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= piles.length <= 104",
+    "piles.length <= h <= 109",
+    "1 <= piles[i] <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "minEatingSpeed",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "piles",
+        "type": "array"
+      },
+      {
+        "name": "h",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 875,
+      "title": "koko-eating-bananas",
+      "params": {
+        "piles": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "h": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().minEatingSpeed({piles}, {h})",
+        "rust": "Solution::min_eating_speed({piles}, {h})",
+        "python3": "Solution().minEatingSpeed({piles}, {h})",
+        "python2": "Solution().minEatingSpeed({piles}, {h})",
+        "ruby": "min_eating_speed({piles}, {h})",
+        "java": "new Solution().minEatingSpeed({piles}, {h})",
+        "csharp": "new Solution().MinEatingSpeed({piles}, {h})",
+        "kotlin": "Solution().minEatingSpeed({piles}, {h})",
+        "go": "minEatingSpeed({piles}, {h})",
+        "dart": "Solution().minEatingSpeed({piles}, {h})",
+        "swift": "Solution().minEatingSpeed({piles}, {h})",
+        "typescript": "minEatingSpeed({piles}, {h})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 400,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minEatingSpeed(piles, h, {result})",
+        "checker": "class Checker:\n    def minEatingSpeed(self, piles, h, result: Any) -> bool:\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 875,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "piles": [
+            3,
+            6,
+            7,
+            11
+          ],
+          "h": 8
+        },
+        "out": 4
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20
+          ],
+          "h": 5
+        },
+        "out": 30
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20
+          ],
+          "h": 6
+        },
+        "out": 23
+      },
+      {
+        "name": "single_pile_exact",
+        "in": {
+          "piles": [
+            1
+          ],
+          "h": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "single_pile_more_hours",
+        "in": {
+          "piles": [
+            9
+          ],
+          "h": 10
+        },
+        "out": 1
+      },
+      {
+        "name": "all_ones",
+        "in": {
+          "piles": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "h": 4
+        },
+        "out": 1
+      },
+      {
+        "name": "all_ones_extra_hours",
+        "in": {
+          "piles": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "h": 10
+        },
+        "out": 1
+      },
+      {
+        "name": "two_piles_tight",
+        "in": {
+          "piles": [
+            8,
+            8
+          ],
+          "h": 3
+        },
+        "out": 8
+      },
+      {
+        "name": "two_piles_loose",
+        "in": {
+          "piles": [
+            8,
+            8
+          ],
+          "h": 8
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed_small",
+        "in": {
+          "piles": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "h": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_small_2",
+        "in": {
+          "piles": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "h": 8
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed_small_3",
+        "in": {
+          "piles": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "h": 12
+        },
+        "out": 3
+      },
+      {
+        "name": "max_equals_len",
+        "in": {
+          "piles": [
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "h": 5
+        },
+        "out": 9
+      },
+      {
+        "name": "max_small_slack",
+        "in": {
+          "piles": [
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "h": 6
+        },
+        "out": 9
+      },
+      {
+        "name": "large_pile_single_hour",
+        "in": {
+          "piles": [
+            1000000000
+          ],
+          "h": 1
+        },
+        "out": 1000000000
+      },
+      {
+        "name": "large_pile_many_hours",
+        "in": {
+          "piles": [
+            1000000000
+          ],
+          "h": 1000000000
+        },
+        "out": 1
+      },
+      {
+        "name": "increasing_piles",
+        "in": {
+          "piles": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "h": 8
+        },
+        "out": 8
+      },
+      {
+        "name": "increasing_piles_slack",
+        "in": {
+          "piles": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "h": 10
+        },
+        "out": 6
+      },
+      {
+        "name": "increasing_piles_more_slack",
+        "in": {
+          "piles": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "h": 15
+        },
+        "out": 3
+      },
+      {
+        "name": "power_of_two",
+        "in": {
+          "piles": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32
+          ],
+          "h": 12
+        },
+        "out": 8
+      },
+      {
+        "name": "power_of_two_tight",
+        "in": {
+          "piles": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32
+          ],
+          "h": 6
+        },
+        "out": 32
+      },
+      {
+        "name": "random_small_1",
+        "in": {
+          "piles": [
+            19,
+            17,
+            13,
+            11
+          ],
+          "h": 8
+        },
+        "out": 10
+      },
+      {
+        "name": "random_small_2",
+        "in": {
+          "piles": [
+            19,
+            17,
+            13,
+            11
+          ],
+          "h": 5
+        },
+        "out": 17
+      },
+      {
+        "name": "random_small_3",
+        "in": {
+          "piles": [
+            19,
+            17,
+            13,
+            11
+          ],
+          "h": 12
+        },
+        "out": 6
+      },
+      {
+        "name": "boundary_mix",
+        "in": {
+          "piles": [
+            1000000000,
+            1,
+            1,
+            1
+          ],
+          "h": 4
+        },
+        "out": 1000000000
+      },
+      {
+        "name": "boundary_mix_more_hours",
+        "in": {
+          "piles": [
+            1000000000,
+            1,
+            1,
+            1
+          ],
+          "h": 5
+        },
+        "out": 500000000
+      },
+      {
+        "name": "boundary_mix_many_hours",
+        "in": {
+          "piles": [
+            1000000000,
+            1,
+            1,
+            1
+          ],
+          "h": 1000000000
+        },
+        "out": 2
+      },
+      {
+        "name": "medium_random_1",
+        "in": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20,
+            17,
+            19
+          ],
+          "h": 10
+        },
+        "out": 19
+      },
+      {
+        "name": "medium_random_2",
+        "in": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20,
+            17,
+            19
+          ],
+          "h": 7
+        },
+        "out": 30
+      },
+      {
+        "name": "medium_random_3",
+        "in": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20,
+            17,
+            19
+          ],
+          "h": 9
+        },
+        "out": 20
+      },
+      {
+        "name": "slower_best",
+        "in": {
+          "piles": [
+            5,
+            10,
+            15,
+            20,
+            25
+          ],
+          "h": 10
+        },
+        "out": 10
+      },
+      {
+        "name": "slower_best_2",
+        "in": {
+          "piles": [
+            5,
+            10,
+            15,
+            20,
+            25
+          ],
+          "h": 5
+        },
+        "out": 25
+      },
+      {
+        "name": "slower_best_3",
+        "in": {
+          "piles": [
+            5,
+            10,
+            15,
+            20,
+            25
+          ],
+          "h": 20
+        },
+        "out": 5
+      },
+      {
+        "name": "near_upper_bound_small_count",
+        "in": {
+          "piles": [
+            999999937,
+            999999938,
+            999999939
+          ],
+          "h": 3
+        },
+        "out": 999999939
+      },
+      {
+        "name": "near_upper_bound_medium",
+        "in": {
+          "piles": [
+            999999937,
+            999999938,
+            999999939
+          ],
+          "h": 6
+        },
+        "out": 499999970
+      },
+      {
+        "name": "near_upper_bound_large_h",
+        "in": {
+          "piles": [
+            999999937,
+            999999938,
+            999999939
+          ],
+          "h": 1000000000
+        },
+        "out": 3
+      },
+      {
+        "name": "many_piles_small_speed",
+        "in": {
+          "piles": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "h": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "many_piles_more_hours",
+        "in": {
+          "piles": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "h": 12
+        },
+        "out": 2
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "piles = [3, 6, 7, 11]\nh = 8",
+      "output": "4"
+    },
+    {
+      "input": "piles = [30, 11, 23, 4, 20]\nh = 5",
+      "output": "30"
+    },
+    {
+      "input": "piles = [30, 11, 23, 4, 20]\nh = 6",
+      "output": "23"
+    },
+    {
+      "input": "piles = [1]\nh = 1",
+      "output": "1"
+    },
+    {
+      "input": "piles = [9]\nh = 10",
+      "output": "1"
+    },
+    {
+      "input": "piles = [1, 1, 1, 1]\nh = 4",
+      "output": "1"
+    },
+    {
+      "input": "piles = [1, 1, 1, 1]\nh = 10",
+      "output": "1"
+    },
+    {
+      "input": "piles = [8, 8]\nh = 3",
+      "output": "8"
+    }
+  ]
+}

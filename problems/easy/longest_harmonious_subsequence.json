@@ -1,0 +1,675 @@
+{
+  "id": "longest_harmonious_subsequence",
+  "title": "Longest Harmonious Subsequence",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Sorting",
+    "Counting"
+  ],
+  "description": "<p>We define a harmonious array as an array where the difference between its maximum value and its minimum value is <b>exactly</b> <code>1</code>.</p> <p>Given an integer array <code>nums</code>, return the length of its longest harmonious <span class=\"cursor-pointer relative text-dark-blue-s text-sm\" data-keyword=\"subsequence-array\"><button aria-controls=\"radix-_r_1m_\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"\" data-state=\"closed\" type=\"button\">subsequence</button></span> among all its possible subsequences.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">nums = [1,3,2,2,5,2,3,7]</span></p> <p><strong>Output:</strong> <span class=\"example-io\">5</span></p> <p><strong>Explanation:</strong></p> <p>The longest harmonious subsequence is <code>[3,2,2,2,3]</code>.</p> </div> <p><strong class=\"example\">Example 2:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4]</span></p> <p><strong>Output:</strong> <span class=\"example-io\">2</span></p> <p><strong>Explanation:</strong></p> <p>The longest harmonious subsequences are <code>[1,2]</code>, <code>[2,3]</code>, and <code>[3,4]</code>, all of which have a length of 2.</p> </div> <p><strong class=\"example\">Example 3:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,1]</span></p> <p><strong>Output:</strong> <span class=\"example-io\">0</span></p> <p><strong>Explanation:</strong></p> <p>No harmonic subsequence exists.</p> </div> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li> <li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "findLHS",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 594,
+      "title": "longest-harmonious-subsequence",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findLHS({nums})",
+        "rust": "Solution::find_lhs({nums})",
+        "python3": "Solution().findLHS({nums})",
+        "python2": "Solution().findLHS({nums})",
+        "ruby": "find_lhs({nums})",
+        "java": "new Solution().findLHS({nums})",
+        "csharp": "new Solution().FindLHS({nums})",
+        "kotlin": "Solution().findLHS({nums})",
+        "go": "findLHS({nums})",
+        "dart": "Solution().findLHS({nums})",
+        "swift": "Solution().findLHS({nums})",
+        "typescript": "findLHS({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findLHS(nums, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def findLHS(self, nums, result):\n        counts = Counter(nums)\n        best = 0\n        for x in counts:\n            if x + 1 in counts:\n                best = max(best, counts[x] + counts[x + 1])\n        return result == best\n"
+      }
+    },
+    "seed": 594,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            3,
+            2,
+            2,
+            5,
+            2,
+            3,
+            7
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-element",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "minimal-harmonious",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two-and-three",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated-pair",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "negatives-and-zero",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            -1,
+            0,
+            -1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "best-is-lower-pair",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            -1,
+            -2,
+            -3
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "near-positive-boundary",
+        "in": {
+          "nums": [
+            1000000000,
+            999999999,
+            1000000000
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "near-negative-boundary",
+        "in": {
+          "nums": [
+            -1000000000,
+            -999999999,
+            -1000000000,
+            -999999999
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "isolated-values",
+        "in": {
+          "nums": [
+            1,
+            4,
+            1,
+            3,
+            1,
+            -14,
+            1,
+            -13
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "five-and-six",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "strictly-increasing",
+        "in": {
+          "nums": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "zeros-ones-twos",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pair-beats-tail",
+        "in": {
+          "nums": [
+            10,
+            11,
+            11,
+            10,
+            10,
+            11,
+            12
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "best-from-middle",
+        "in": {
+          "nums": [
+            3,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "negative-middle",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -4,
+            -4,
+            -3,
+            -3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "choose-nine-ten",
+        "in": {
+          "nums": [
+            8,
+            8,
+            9,
+            9,
+            9,
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "overlapping-pairs",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            1,
+            3,
+            3,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "almost-all-same",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            8
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "choose-eight-nine",
+        "in": {
+          "nums": [
+            7,
+            8,
+            8,
+            8,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "symmetrical-around-zero",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "dominant-middle-value",
+        "in": {
+          "nums": [
+            4,
+            5,
+            5,
+            5,
+            5,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "one-with-many-twos",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "pair-vs-upper-pair",
+        "in": {
+          "nums": [
+            9,
+            10,
+            9,
+            10,
+            9,
+            10,
+            11,
+            11
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "separated-best-pair",
+        "in": {
+          "nums": [
+            100,
+            101,
+            101,
+            100,
+            102,
+            103
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "descending-negatives",
+        "in": {
+          "nums": [
+            -10,
+            -9,
+            -9,
+            -8,
+            -8,
+            -8,
+            -7
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "zero-one-alternating",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "no-harmonious-large-constant",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "choose-two-three",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "far-apart-only",
+        "in": {
+          "nums": [
+            -1000000000,
+            1000000000
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "several-equal-best",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -1,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "choose-eight-nine-again",
+        "in": {
+          "nums": [
+            6,
+            7,
+            7,
+            8,
+            8,
+            8,
+            9,
+            9
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "choose-four-five",
+        "in": {
+          "nums": [
+            3,
+            3,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "all-gapped",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            7,
+            9
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "generated-small-random",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 64,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-random",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-nonnegative",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 19999,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-nonpositive",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 0
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 3, 2, 2, 5, 2, 3, 7]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 2, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [2, 2, 2, 3, 3]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [-1, 0, -1, 0, -1]",
+      "output": "5"
+    }
+  ]
+}

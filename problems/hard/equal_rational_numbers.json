@@ -1,0 +1,394 @@
+{
+  "id": "equal_rational_numbers",
+  "title": "Equal Rational Numbers",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "description": "<p>Given two strings <code>s</code> and <code>t</code>, each of which represents a non-negative rational number, return <code>true</code> if and only if they represent the same number. The strings may use parentheses to denote the repeating part of the rational number.</p>\n\n<p>A <strong>rational number</strong> can be represented using up to three parts: <code>&lt;IntegerPart&gt;</code>, <code>&lt;NonRepeatingPart&gt;</code>, and a <code>&lt;RepeatingPart&gt;</code>. The number will be represented in one of the following three ways:</p>\n\n<ul>\n\t<li><code>&lt;IntegerPart&gt;</code>\n\n\t<ul>\n\t\t<li>For example, <code>12</code>, <code>0</code>, and <code>123</code>.</li>\n\t</ul>\n\t</li>\n\t<li><code>&lt;IntegerPart&gt;<strong>&lt;.&gt;</strong>&lt;NonRepeatingPart&gt;</code>\n\t<ul>\n\t\t<li>For example, <code>0.5</code>, <code>1.</code>, <code>2.12</code>, and <code>123.0001</code>.</li>\n\t</ul>\n\t</li>\n\t<li><code>&lt;IntegerPart&gt;<strong>&lt;.&gt;</strong>&lt;NonRepeatingPart&gt;<strong>&lt;(&gt;</strong>&lt;RepeatingPart&gt;<strong>&lt;)&gt;</strong></code>\n\t<ul>\n\t\t<li>For example, <code>0.1(6)</code>, <code>1.(9)</code>, <code>123.00(1212)</code>.</li>\n\t</ul>\n\t</li>\n</ul>\n\n<p>The repeating portion of a decimal expansion is conventionally denoted within a pair of round brackets. For example:</p>\n\n<ul>\n\t<li><code>1/6 = 0.16666666... = 0.1(6) = 0.1666(6) = 0.166(66)</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;0.(52)&quot;, t = &quot;0.5(25)&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Because &quot;0.(52)&quot; represents 0.52525252..., and &quot;0.5(25)&quot; represents 0.52525252525..... , the strings represent the same number.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;0.1666(6)&quot;, t = &quot;0.166(66)&quot;\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;0.9(9)&quot;, t = &quot;1.&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &quot;0.9(9)&quot; represents 0.999999999... repeated forever, which equals 1.  [<a href=\"https://en.wikipedia.org/wiki/0.999...\" target=\"_blank\">See this link for an explanation.</a>]\n&quot;1.&quot; represents the number 1, which is formed correctly: (IntegerPart) = &quot;1&quot; and (NonRepeatingPart) = &quot;&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>Each part consists only of digits.</li>\n\t<li>The <code>&lt;IntegerPart&gt;</code> does not have leading zeros (except for the zero itself).</li>\n\t<li><code>1 &lt;= &lt;IntegerPart&gt;.length &lt;= 4</code></li>\n\t<li><code>0 &lt;= &lt;NonRepeatingPart&gt;.length &lt;= 4</code></li>\n\t<li><code>1 &lt;= &lt;RepeatingPart&gt;.length &lt;= 4</code></li>\n</ul>\n",
+  "task": "Solve the 'Equal Rational Numbers' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "Each part consists only of digits.",
+    "The <IntegerPart> does not have leading zeros (except for the zero itself).",
+    "1 <= <IntegerPart>.length <= 4",
+    "0 <= <NonRepeatingPart>.length <= 4",
+    "1 <= <RepeatingPart>.length <= 4"
+  ],
+  "hints": [],
+  "method": {
+    "name": "isRationalEqual",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "t",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 972,
+      "title": "equal-rational-numbers",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "t": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isRationalEqual({s}, {t})",
+        "rust": "Solution::is_rational_equal({s}, {t})",
+        "python3": "Solution().isRationalEqual({s}, {t})",
+        "python2": "Solution().isRationalEqual({s}, {t})",
+        "ruby": "is_rational_equal({s}, {t})",
+        "java": "new Solution().isRationalEqual({s}, {t})",
+        "csharp": "new Solution().IsRationalEqual({s}, {t})",
+        "kotlin": "Solution().isRationalEqual({s}, {t})",
+        "go": "isRationalEqual({s}, {t})",
+        "dart": "Solution().isRationalEqual({s}, {t})",
+        "swift": "Solution().isRationalEqual({s}, {t})",
+        "typescript": "isRationalEqual({s}, {t})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 972,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "s": "0.(52)",
+          "t": "0.5(25)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "s": "0.1666(6)",
+          "t": "0.166(66)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "s": "0.9(9)",
+          "t": "1."
+        },
+        "out": true
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "s": "1.0(0)",
+          "t": "1."
+        },
+        "out": true
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "s": "0.(3)",
+          "t": "0.3(3)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "s": "0.1(6)",
+          "t": "0.16(6)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "s": "2.12(34)",
+          "t": "2.1234(34)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "s": "0.0(9)",
+          "t": "0.1"
+        },
+        "out": true
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "s": "3.(142857)",
+          "t": "3.(142857)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "s": "0.2(9)",
+          "t": "0.3"
+        },
+        "out": true
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "s": "2.(11)",
+          "t": "1.65(4)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "s": "3.82(1)",
+          "t": "3.82(1)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "s": "0.9(24)",
+          "t": "0.9(24)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "s": "3.76(1)",
+          "t": "3.0(09)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "s": "2.(248)",
+          "t": "2.(239)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "s": "1.(28)",
+          "t": "0.4(036)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "s": "3.0(793)",
+          "t": "2.17(3)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "s": "2.(0)",
+          "t": "2.(58)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "s": "1.15(9)",
+          "t": "1.15(9)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "s": "2.2(346)",
+          "t": "0.(66)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "s": "0.36(8)",
+          "t": "0.36(8)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "s": "2.(1)",
+          "t": "2.73(6)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "s": "0.(589)",
+          "t": "0.8(296)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "s": "2.(209)",
+          "t": "3.0(1)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "s": "1.3(13)",
+          "t": "3.85(29)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "s": "1.(7)",
+          "t": "1.(7)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "s": "0.(2)",
+          "t": "0.3(21)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "s": "2.(720)",
+          "t": "3.05(9)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "s": "3.(535)",
+          "t": "0.44(765)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "s": "3.40(22)",
+          "t": "1.22(5)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "s": "2.04(257)",
+          "t": "2.04(257)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "s": "1.(5)",
+          "t": "1.5(8)"
+        },
+        "out": false
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "s": "2.88(27)",
+          "t": "2.88(27)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "s": "2.7(04)",
+          "t": "2.7(04)"
+        },
+        "out": true
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "s": "3.(76)",
+          "t": "2.(663)"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"0.(52)\"\nt = \"0.5(25)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.1666(6)\"\nt = \"0.166(66)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.9(9)\"\nt = \"1.\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"1.0(0)\"\nt = \"1.\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.(3)\"\nt = \"0.3(3)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.1(6)\"\nt = \"0.16(6)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"2.12(34)\"\nt = \"2.1234(34)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.0(9)\"\nt = \"0.1\"",
+      "output": "true"
+    }
+  ]
+}

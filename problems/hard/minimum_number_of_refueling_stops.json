@@ -1,0 +1,1231 @@
+{
+  "id": "minimum_number_of_refueling_stops",
+  "title": "Minimum Number of Refueling Stops",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "description": "<p>A car travels from a starting position to a destination which is <code>target</code> miles east of the starting position.</p>\n\n<p>There are gas stations along the way. The gas stations are represented as an array <code>stations</code> where <code>stations[i] = [position<sub>i</sub>, fuel<sub>i</sub>]</code> indicates that the <code>i<sup>th</sup></code> gas station is <code>position<sub>i</sub></code> miles east of the starting position and has <code>fuel<sub>i</sub></code> liters of gas.</p>\n\n<p>The car starts with an infinite tank of gas, which initially has <code>startFuel</code> liters of fuel in it. It uses one liter of gas per one mile that it drives. When the car reaches a gas station, it may stop and refuel, transferring all the gas from the station into the car.</p>\n\n<p>Return <em>the minimum number of refueling stops the car must make in order to reach its destination</em>. If it cannot reach the destination, return <code>-1</code>.</p>\n\n<p>Note that if the car reaches a gas station with <code>0</code> fuel left, the car can still refuel there. If the car reaches the destination with <code>0</code> fuel left, it is still considered to have arrived.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> target = 1, startFuel = 1, stations = []\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> We can reach the target without refueling.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> target = 100, startFuel = 1, stations = [[10,100]]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> We can not reach the target (or even the first gas station).\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> We start with 10 liters of fuel.\nWe drive to position 10, expending 10 liters of fuel.  We refuel from 0 liters to 60 liters of gas.\nThen, we drive from position 10 to position 60 (expending 50 liters of fuel),\nand refuel from 10 liters to 50 liters of gas.  We then drive to and reach the target.\nWe made 2 refueling stops along the way, so we return 2.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= target, startFuel &lt;= 10<sup>9</sup></code></li>\n\t<li><code>0 &lt;= stations.length &lt;= 500</code></li>\n\t<li><code>1 &lt;= position<sub>i</sub> &lt; position<sub>i+1</sub> &lt; target</code></li>\n\t<li><code>1 &lt;= fuel<sub>i</sub> &lt; 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Number of Refueling Stops' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= target, startFuel <= 109",
+    "0 <= stations.length <= 500",
+    "1 <= positioni < positioni+1 < target",
+    "1 <= fueli < 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "minRefuelStops",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "startFuel",
+        "type": "int"
+      },
+      {
+        "name": "stations",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 871,
+      "title": "minimum-number-of-refueling-stops",
+      "params": {
+        "target": {
+          "type": "int"
+        },
+        "startFuel": {
+          "type": "int"
+        },
+        "stations": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "rust": "Solution::min_refuel_stops({target}, {startFuel}, {stations})",
+        "python3": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "python2": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "ruby": "min_refuel_stops({target}, {startFuel}, {stations})",
+        "java": "new Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "csharp": "new Solution().MinRefuelStops({target}, {startFuel}, {stations})",
+        "kotlin": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "go": "minRefuelStops({target}, {startFuel}, {stations})",
+        "dart": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "swift": "Solution().minRefuelStops({target}, {startFuel}, {stations})",
+        "typescript": "minRefuelStops({target}, {startFuel}, {stations})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minRefuelStops(target, startFuel, stations, {result})",
+        "checker": "import heapq\nfrom typing import Any\n\nclass Checker:\n    def minRefuelStops(self, target: int, startFuel: int, stations: list[list[int]], result: Any) -> bool:\n        if not isinstance(result, int):\n            return False\n        arr = [list(s) for s in stations]\n        arr.append([target, 0])\n        fuel = startFuel\n        heap = []\n        stops = 0\n        idx = 0\n        while fuel < target:\n            while idx < len(arr) and arr[idx][0] <= fuel:\n                heapq.heappush(heap, -arr[idx][1])\n                idx += 1\n            if not heap:\n                expected = -1\n                return result == expected\n            fuel += -heapq.heappop(heap)\n            stops += 1\n        return result == stops\n"
+      }
+    },
+    "seed": 871871,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "target": 1,
+          "startFuel": 1,
+          "stations": []
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "target": 100,
+          "startFuel": 1,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "target": 100,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                60
+              ],
+              [
+                20,
+                30
+              ],
+              [
+                30,
+                30
+              ],
+              [
+                60,
+                40
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "no_stops_exact",
+        "in": {
+          "target": 50,
+          "startFuel": 50,
+          "stations": []
+        }
+      },
+      {
+        "name": "no_stops_over",
+        "in": {
+          "target": 50,
+          "startFuel": 60,
+          "stations": []
+        }
+      },
+      {
+        "name": "impossible_before_first",
+        "in": {
+          "target": 100,
+          "startFuel": 1,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                50
+              ],
+              [
+                10,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "one_stop_exact",
+        "in": {
+          "target": 100,
+          "startFuel": 50,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                25,
+                25
+              ],
+              [
+                50,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "one_stop_needed",
+        "in": {
+          "target": 100,
+          "startFuel": 25,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                25,
+                75
+              ],
+              [
+                50,
+                1
+              ],
+              [
+                75,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_stops_chain",
+        "in": {
+          "target": 100,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                60
+              ],
+              [
+                20,
+                30
+              ],
+              [
+                30,
+                30
+              ],
+              [
+                60,
+                40
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_stops_chain",
+        "in": {
+          "target": 120,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                20
+              ],
+              [
+                20,
+                30
+              ],
+              [
+                30,
+                40
+              ],
+              [
+                60,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "greedy_choice_1",
+        "in": {
+          "target": 90,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                60
+              ],
+              [
+                20,
+                20
+              ],
+              [
+                30,
+                30
+              ],
+              [
+                60,
+                40
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "greedy_choice_2",
+        "in": {
+          "target": 90,
+          "startFuel": 15,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                10
+              ],
+              [
+                10,
+                20
+              ],
+              [
+                20,
+                30
+              ],
+              [
+                40,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "zero_left_at_station",
+        "in": {
+          "target": 100,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10
+              ],
+              [
+                20,
+                10
+              ],
+              [
+                30,
+                10
+              ],
+              [
+                40,
+                10
+              ],
+              [
+                50,
+                10
+              ],
+              [
+                60,
+                10
+              ],
+              [
+                70,
+                10
+              ],
+              [
+                80,
+                10
+              ],
+              [
+                90,
+                10
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "exact_arrival_zero",
+        "in": {
+          "target": 70,
+          "startFuel": 20,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                20,
+                10
+              ],
+              [
+                30,
+                20
+              ],
+              [
+                50,
+                20
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "many_small_fuels",
+        "in": {
+          "target": 60,
+          "startFuel": 5,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                1
+              ],
+              [
+                10,
+                1
+              ],
+              [
+                15,
+                1
+              ],
+              [
+                20,
+                1
+              ],
+              [
+                25,
+                1
+              ],
+              [
+                30,
+                1
+              ],
+              [
+                35,
+                1
+              ],
+              [
+                40,
+                1
+              ],
+              [
+                45,
+                1
+              ],
+              [
+                50,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "large_fuel_first",
+        "in": {
+          "target": 1000,
+          "startFuel": 100,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                50,
+                900
+              ],
+              [
+                100,
+                1
+              ],
+              [
+                200,
+                1
+              ],
+              [
+                300,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "large_fuel_late",
+        "in": {
+          "target": 1000,
+          "startFuel": 100,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                20,
+                10
+              ],
+              [
+                40,
+                10
+              ],
+              [
+                60,
+                10
+              ],
+              [
+                80,
+                10
+              ],
+              [
+                100,
+                900
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "unreachable_gap",
+        "in": {
+          "target": 200,
+          "startFuel": 50,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                60,
+                50
+              ],
+              [
+                120,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "reachable_with_many",
+        "in": {
+          "target": 300,
+          "startFuel": 50,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                25,
+                25
+              ],
+              [
+                50,
+                25
+              ],
+              [
+                75,
+                25
+              ],
+              [
+                100,
+                25
+              ],
+              [
+                125,
+                25
+              ],
+              [
+                150,
+                25
+              ],
+              [
+                175,
+                25
+              ],
+              [
+                200,
+                25
+              ],
+              [
+                225,
+                25
+              ],
+              [
+                250,
+                25
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "dense_small",
+        "in": {
+          "target": 30,
+          "startFuel": 3,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                3
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                9,
+                3
+              ],
+              [
+                12,
+                3
+              ],
+              [
+                15,
+                3
+              ],
+              [
+                18,
+                3
+              ],
+              [
+                21,
+                3
+              ],
+              [
+                24,
+                3
+              ],
+              [
+                27,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "dense_medium",
+        "in": {
+          "target": 100,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                5
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                15,
+                5
+              ],
+              [
+                20,
+                5
+              ],
+              [
+                25,
+                5
+              ],
+              [
+                30,
+                5
+              ],
+              [
+                35,
+                5
+              ],
+              [
+                40,
+                5
+              ],
+              [
+                45,
+                5
+              ],
+              [
+                50,
+                5
+              ],
+              [
+                55,
+                5
+              ],
+              [
+                60,
+                5
+              ],
+              [
+                65,
+                5
+              ],
+              [
+                70,
+                5
+              ],
+              [
+                75,
+                5
+              ],
+              [
+                80,
+                5
+              ],
+              [
+                85,
+                5
+              ],
+              [
+                90,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "station_at_target_minus_one",
+        "in": {
+          "target": 100,
+          "startFuel": 99,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                50,
+                1
+              ],
+              [
+                99,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "station_at_first_reach",
+        "in": {
+          "target": 100,
+          "startFuel": 20,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                20,
+                20
+              ],
+              [
+                40,
+                20
+              ],
+              [
+                60,
+                20
+              ],
+              [
+                80,
+                20
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "stop_at_every_station",
+        "in": {
+          "target": 60,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10
+              ],
+              [
+                20,
+                10
+              ],
+              [
+                30,
+                10
+              ],
+              [
+                40,
+                10
+              ],
+              [
+                50,
+                10
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "skip_some_stations",
+        "in": {
+          "target": 60,
+          "startFuel": 15,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                5
+              ],
+              [
+                10,
+                50
+              ],
+              [
+                20,
+                1
+              ],
+              [
+                30,
+                1
+              ],
+              [
+                40,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "need_last_big_station",
+        "in": {
+          "target": 200,
+          "startFuel": 50,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                25,
+                10
+              ],
+              [
+                50,
+                10
+              ],
+              [
+                75,
+                10
+              ],
+              [
+                100,
+                100
+              ],
+              [
+                150,
+                10
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "no_station_needed_with_surplus",
+        "in": {
+          "target": 100,
+          "startFuel": 150,
+          "stations": {
+            "elemType": "int",
+            "value": []
+          }
+        }
+      },
+      {
+        "name": "sparse_large",
+        "in": {
+          "target": 1000,
+          "startFuel": 250,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                200,
+                100
+              ],
+              [
+                400,
+                100
+              ],
+              [
+                600,
+                100
+              ],
+              [
+                800,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_impossible",
+        "in": {
+          "target": 1000,
+          "startFuel": 200,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                250,
+                100
+              ],
+              [
+                500,
+                100
+              ],
+              [
+                750,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "exact_chain_with_final_zero",
+        "in": {
+          "target": 75,
+          "startFuel": 25,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                25,
+                25
+              ],
+              [
+                50,
+                25
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "end_with_one_stop",
+        "in": {
+          "target": 90,
+          "startFuel": 45,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                15,
+                15
+              ],
+              [
+                30,
+                15
+              ],
+              [
+                45,
+                45
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "end_with_two_stops",
+        "in": {
+          "target": 90,
+          "startFuel": 30,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10
+              ],
+              [
+                20,
+                10
+              ],
+              [
+                30,
+                30
+              ],
+              [
+                60,
+                30
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "end_with_three_stops",
+        "in": {
+          "target": 150,
+          "startFuel": 30,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                20
+              ],
+              [
+                20,
+                20
+              ],
+              [
+                30,
+                20
+              ],
+              [
+                60,
+                40
+              ],
+              [
+                100,
+                40
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "long_gap_but_possible",
+        "in": {
+          "target": 300,
+          "startFuel": 60,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                20,
+                20
+              ],
+              [
+                40,
+                20
+              ],
+              [
+                60,
+                20
+              ],
+              [
+                120,
+                100
+              ],
+              [
+                220,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "long_gap_impossible",
+        "in": {
+          "target": 300,
+          "startFuel": 60,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                20,
+                20
+              ],
+              [
+                40,
+                20
+              ],
+              [
+                61,
+                20
+              ],
+              [
+                120,
+                100
+              ],
+              [
+                220,
+                100
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "maxed_station_count_small_steps",
+        "in": {
+          "target": 500,
+          "startFuel": 50,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                50,
+                50
+              ],
+              [
+                100,
+                50
+              ],
+              [
+                150,
+                50
+              ],
+              [
+                200,
+                50
+              ],
+              [
+                250,
+                50
+              ],
+              [
+                300,
+                50
+              ],
+              [
+                350,
+                50
+              ],
+              [
+                400,
+                50
+              ],
+              [
+                450,
+                50
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "maxed_station_count_big_refuel",
+        "in": {
+          "target": 500,
+          "startFuel": 10,
+          "stations": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                100
+              ],
+              [
+                20,
+                100
+              ],
+              [
+                30,
+                100
+              ],
+              [
+                40,
+                100
+              ],
+              [
+                50,
+                100
+              ],
+              [
+                60,
+                100
+              ],
+              [
+                70,
+                100
+              ],
+              [
+                80,
+                100
+              ],
+              [
+                90,
+                100
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "target = 1\nstartFuel = 1\nstations = []",
+      "output": ""
+    },
+    {
+      "input": "target = 100\nstartFuel = 1\nstations = {\"elemType\": \"int\", \"value\": [[10, 100]]}",
+      "output": ""
+    },
+    {
+      "input": "target = 100\nstartFuel = 10\nstations = {\"elemType\": \"int\", \"value\": [[10, 60], [20, 30], [30, 30], [60, 40]]}",
+      "output": ""
+    },
+    {
+      "input": "target = 50\nstartFuel = 50\nstations = []",
+      "output": ""
+    },
+    {
+      "input": "target = 50\nstartFuel = 60\nstations = []",
+      "output": ""
+    },
+    {
+      "input": "target = 100\nstartFuel = 1\nstations = {\"elemType\": \"int\", \"value\": [[2, 50], [10, 100]]}",
+      "output": ""
+    },
+    {
+      "input": "target = 100\nstartFuel = 50\nstations = {\"elemType\": \"int\", \"value\": [[25, 25], [50, 50]]}",
+      "output": ""
+    },
+    {
+      "input": "target = 100\nstartFuel = 25\nstations = {\"elemType\": \"int\", \"value\": [[25, 75], [50, 1], [75, 1]]}",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "id": "binary_gap",
+  "title": "Binary Gap",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given a positive integer <code>n</code>, find and return <em>the <strong>longest distance</strong> between any two <strong>adjacent</strong> </em><code>1</code><em>'s in the binary representation of </em><code>n</code><em>. If there are no two adjacent </em><code>1</code><em>'s, return </em><code>0</code><em>.</em></p> <p>Two <code>1</code>'s are <strong>adjacent</strong> if there are only <code>0</code>'s separating them (possibly no <code>0</code>'s). The <b>distance</b> between two <code>1</code>'s is the absolute difference between their bit positions. For example, the two <code>1</code>'s in <code>\"1001\"</code> have a distance of 3.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> n = 22\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 22 in binary is \"10110\".\nThe first adjacent pair of 1's is \"<u>1</u>0<u>1</u>10\" with a distance of 2.\nThe second adjacent pair of 1's is \"10<u>11</u>0\" with a distance of 1.\nThe answer is the largest of these two distances, which is 2.\nNote that \"<u>1</u>01<u>1</u>0\" is not a valid pair since there is a 1 separating the two 1's underlined.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> n = 8\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> 8 in binary is \"1000\".\nThere are not any adjacent pairs of 1's in the binary representation of 8, so we return 0.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> n = 5\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 5 in binary is \"101\".\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "binaryGap",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 868,
+      "title": "binary-gap",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().binaryGap({n})",
+        "rust": "Solution::binary_gap({n})",
+        "python3": "Solution().binaryGap({n})",
+        "python2": "Solution().binaryGap({n})",
+        "ruby": "binary_gap({n})",
+        "java": "new Solution().binaryGap({n})",
+        "csharp": "new Solution().BinaryGap({n})",
+        "kotlin": "Solution().binaryGap({n})",
+        "go": "binaryGap({n})",
+        "dart": "Solution().binaryGap({n})",
+        "swift": "Solution().binaryGap({n})",
+        "typescript": "binaryGap({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().binaryGap(n, {result})",
+        "checker": "from typing import Any\n\nclass Checker:\n    def binaryGap(self, n: int, result: Any) -> bool:\n        if not isinstance(result, int):\n            return False\n        bits = []\n        x = n\n        while x > 0:\n            bits.append(x & 1)\n            x >>= 1\n        last = None\n        best = 0\n        for i, bit in enumerate(bits):\n            if bit == 1:\n                if last is not None:\n                    best = max(best, i - last)\n                last = i\n        return result == best\n"
+      }
+    },
+    "seed": 868868,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "n": 22
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n1",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "n2",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n9",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n10",
+        "in": {
+          "n": 10
+        }
+      },
+      {
+        "name": "n11",
+        "in": {
+          "n": 11
+        }
+      },
+      {
+        "name": "n13",
+        "in": {
+          "n": 13
+        }
+      },
+      {
+        "name": "n21",
+        "in": {
+          "n": 21
+        }
+      },
+      {
+        "name": "n42",
+        "in": {
+          "n": 42
+        }
+      },
+      {
+        "name": "n85",
+        "in": {
+          "n": 85
+        }
+      },
+      {
+        "name": "n170",
+        "in": {
+          "n": 170
+        }
+      },
+      {
+        "name": "n256",
+        "in": {
+          "n": 256
+        }
+      },
+      {
+        "name": "n257",
+        "in": {
+          "n": 257
+        }
+      },
+      {
+        "name": "n1023",
+        "in": {
+          "n": 1023
+        }
+      },
+      {
+        "name": "n1024",
+        "in": {
+          "n": 1024
+        }
+      },
+      {
+        "name": "n1025",
+        "in": {
+          "n": 1025
+        }
+      },
+      {
+        "name": "n2048",
+        "in": {
+          "n": 2048
+        }
+      },
+      {
+        "name": "n4097",
+        "in": {
+          "n": 4097
+        }
+      },
+      {
+        "name": "n65535",
+        "in": {
+          "n": 65535
+        }
+      },
+      {
+        "name": "n65536",
+        "in": {
+          "n": 65536
+        }
+      },
+      {
+        "name": "n99991",
+        "in": {
+          "n": 99991
+        }
+      },
+      {
+        "name": "n123456",
+        "in": {
+          "n": 123456
+        }
+      },
+      {
+        "name": "n1048575",
+        "in": {
+          "n": 1048575
+        }
+      },
+      {
+        "name": "n1048576",
+        "in": {
+          "n": 1048576
+        }
+      },
+      {
+        "name": "n999999999",
+        "in": {
+          "n": 999999999
+        }
+      },
+      {
+        "name": "n536870912",
+        "in": {
+          "n": 536870912
+        }
+      },
+      {
+        "name": "n268435456",
+        "in": {
+          "n": 268435456
+        }
+      },
+      {
+        "name": "n134217728",
+        "in": {
+          "n": 134217728
+        }
+      },
+      {
+        "name": "n67108864",
+        "in": {
+          "n": 67108864
+        }
+      },
+      {
+        "name": "n33554432",
+        "in": {
+          "n": 33554432
+        }
+      },
+      {
+        "name": "n16777216",
+        "in": {
+          "n": 16777216
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 22",
+      "output": ""
+    },
+    {
+      "input": "n = 8",
+      "output": ""
+    },
+    {
+      "input": "n = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    }
+  ]
+}

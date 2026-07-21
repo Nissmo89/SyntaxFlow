@@ -1,0 +1,370 @@
+{
+  "id": "smallest_good_base",
+  "title": "Smallest Good Base",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "description": "<p>Given an integer <code>n</code> represented as a string, return <em>the smallest <strong>good base</strong> of</em> <code>n</code>.</p>\n\n<p>We call <code>k &gt;= 2</code> a <strong>good base</strong> of <code>n</code>, if all digits of <code>n</code> base <code>k</code> are <code>1</code>&#39;s.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = &quot;13&quot;\n<strong>Output:</strong> &quot;3&quot;\n<strong>Explanation:</strong> 13 base 3 is 111.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = &quot;4681&quot;\n<strong>Output:</strong> &quot;8&quot;\n<strong>Explanation:</strong> 4681 base 8 is 11111.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = &quot;1000000000000000000&quot;\n<strong>Output:</strong> &quot;999999999999999999&quot;\n<strong>Explanation:</strong> 1000000000000000000 base 999999999999999999 is 11.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n</code> is an integer in the range <code>[3, 10<sup>18</sup>]</code>.</li>\n\t<li><code>n</code> does not contain any leading zeros.</li>\n</ul>\n",
+  "task": "Solve the 'Smallest Good Base' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n is an integer in the range [3, 1018].",
+    "n does not contain any leading zeros."
+  ],
+  "hints": [],
+  "method": {
+    "name": "smallestGoodBase",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 483,
+      "title": "smallest-good-base",
+      "params": {
+        "n": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().smallestGoodBase({n})",
+        "rust": "Solution::smallest_good_base({n})",
+        "python3": "Solution().smallestGoodBase({n})",
+        "python2": "Solution().smallestGoodBase({n})",
+        "ruby": "smallest_good_base({n})",
+        "java": "new Solution().smallestGoodBase({n})",
+        "csharp": "new Solution().SmallestGoodBase({n})",
+        "kotlin": "Solution().smallestGoodBase({n})",
+        "go": "smallestGoodBase({n})",
+        "dart": "Solution().smallestGoodBase({n})",
+        "swift": "Solution().smallestGoodBase({n})",
+        "typescript": "smallestGoodBase({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().smallestGoodBase(n, {result})",
+        "checker": "class Checker:\n    def smallestGoodBase(self, n, result):\n        if not isinstance(result, str):\n            return False\n        if not result.isdigit():\n            return False\n        target = int(n)\n        base = int(result)\n        if base < 2:\n            return False\n        value = 1\n        term = 1\n        for _ in range(60):\n            term *= base\n            value += term\n            if value == target:\n                break\n            if value > target:\n                return False\n        else:\n            return False\n\n        for k in range(2, base):\n            total = 1\n            term = 1\n            while total < target:\n                term *= k\n                total += term\n            if total == target:\n                return False\n        return True\n"
+      }
+    },
+    "seed": 483,
+    "tests": [
+      {
+        "name": "ex1_13",
+        "in": {
+          "n": "13"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "ex2_4681",
+        "in": {
+          "n": "4681"
+        },
+        "out": "\"8\""
+      },
+      {
+        "name": "ex3_large_boundary",
+        "in": {
+          "n": "1000000000000000000"
+        },
+        "out": "\"999999999999999999\""
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": "3"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": "4"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n5",
+        "in": {
+          "n": "5"
+        },
+        "out": "\"4\""
+      },
+      {
+        "name": "n6",
+        "in": {
+          "n": "6"
+        },
+        "out": "\"5\""
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": "7"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n8",
+        "in": {
+          "n": "8"
+        },
+        "out": "\"7\""
+      },
+      {
+        "name": "n9",
+        "in": {
+          "n": "9"
+        },
+        "out": "\"8\""
+      },
+      {
+        "name": "n10",
+        "in": {
+          "n": "10"
+        },
+        "out": "\"9\""
+      },
+      {
+        "name": "n15",
+        "in": {
+          "n": "15"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n16",
+        "in": {
+          "n": "16"
+        },
+        "out": "\"15\""
+      },
+      {
+        "name": "n21",
+        "in": {
+          "n": "21"
+        },
+        "out": "\"4\""
+      },
+      {
+        "name": "n31",
+        "in": {
+          "n": "31"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n40",
+        "in": {
+          "n": "40"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n43",
+        "in": {
+          "n": "43"
+        },
+        "out": "\"6\""
+      },
+      {
+        "name": "n63",
+        "in": {
+          "n": "63"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n73",
+        "in": {
+          "n": "73"
+        },
+        "out": "\"8\""
+      },
+      {
+        "name": "n91",
+        "in": {
+          "n": "91"
+        },
+        "out": "\"9\""
+      },
+      {
+        "name": "n121",
+        "in": {
+          "n": "121"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n127",
+        "in": {
+          "n": "127"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n156",
+        "in": {
+          "n": "156"
+        },
+        "out": "\"5\""
+      },
+      {
+        "name": "n183",
+        "in": {
+          "n": "183"
+        },
+        "out": "\"13\""
+      },
+      {
+        "name": "n255",
+        "in": {
+          "n": "255"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n259",
+        "in": {
+          "n": "259"
+        },
+        "out": "\"6\""
+      },
+      {
+        "name": "n364",
+        "in": {
+          "n": "364"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n511",
+        "in": {
+          "n": "511"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n8191",
+        "in": {
+          "n": "8191"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n3280",
+        "in": {
+          "n": "3280"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n4680",
+        "in": {
+          "n": "4680"
+        },
+        "out": "\"4679\""
+      },
+      {
+        "name": "n4682",
+        "in": {
+          "n": "4682"
+        },
+        "out": "\"4681\""
+      },
+      {
+        "name": "n999999999999999999",
+        "in": {
+          "n": "999999999999999999"
+        },
+        "out": "\"999999999999999998\""
+      },
+      {
+        "name": "n1023",
+        "in": {
+          "n": "1023"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n1048575",
+        "in": {
+          "n": "1048575"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n1073741823",
+        "in": {
+          "n": "1073741823"
+        },
+        "out": "\"2\""
+      },
+      {
+        "name": "n29524",
+        "in": {
+          "n": "29524"
+        },
+        "out": "\"3\""
+      },
+      {
+        "name": "n265720",
+        "in": {
+          "n": "265720"
+        },
+        "out": "\"3\""
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = \"13\"",
+      "output": "\"\\\"3\\\"\""
+    },
+    {
+      "input": "n = \"4681\"",
+      "output": "\"\\\"8\\\"\""
+    },
+    {
+      "input": "n = \"1000000000000000000\"",
+      "output": "\"\\\"999999999999999999\\\"\""
+    },
+    {
+      "input": "n = \"3\"",
+      "output": "\"\\\"2\\\"\""
+    },
+    {
+      "input": "n = \"4\"",
+      "output": "\"\\\"3\\\"\""
+    },
+    {
+      "input": "n = \"5\"",
+      "output": "\"\\\"4\\\"\""
+    },
+    {
+      "input": "n = \"6\"",
+      "output": "\"\\\"5\\\"\""
+    },
+    {
+      "input": "n = \"7\"",
+      "output": "\"\\\"2\\\"\""
+    }
+  ]
+}

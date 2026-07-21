@@ -1,0 +1,564 @@
+{
+  "id": "pyramid_transition_matrix",
+  "title": "Pyramid Transition Matrix",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "description": "<p>You are stacking blocks to form a pyramid. Each block has a color, which is represented by a single letter. Each row of blocks contains <strong>one less block</strong> than the row beneath it and is centered on top.</p>\n\n<p>To make the pyramid aesthetically pleasing, there are only specific <strong>triangular patterns</strong> that are allowed. A triangular pattern consists of a <strong>single block</strong> stacked on top of <strong>two blocks</strong>. The patterns are given&nbsp;as a list of&nbsp;three-letter strings <code>allowed</code>, where the first two characters of a pattern represent the left and right bottom blocks respectively, and the third character is the top block.</p>\n\n<ul>\n\t<li>For example, <code>&quot;ABC&quot;</code> represents a triangular pattern with a <code>&#39;C&#39;</code> block stacked on top of an <code>&#39;A&#39;</code> (left) and <code>&#39;B&#39;</code> (right) block. Note that this is different from <code>&quot;BAC&quot;</code> where <code>&#39;B&#39;</code> is on the left bottom and <code>&#39;A&#39;</code> is on the right bottom.</li>\n</ul>\n\n<p>You start with a bottom row of blocks <code>bottom</code>, given as a single string, that you <strong>must</strong> use as the base of the pyramid.</p>\n\n<p>Given <code>bottom</code> and <code>allowed</code>, return <code>true</code><em> if you can build the pyramid all the way to the top such that <strong>every triangular pattern</strong> in the pyramid is in </em><code>allowed</code><em>, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/08/26/pyramid1-grid.jpg\" style=\"width: 600px; height: 232px;\" />\n<pre>\n<strong>Input:</strong> bottom = &quot;BCD&quot;, allowed = [&quot;BCC&quot;,&quot;CDE&quot;,&quot;CEA&quot;,&quot;FFF&quot;]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 3), we can build &quot;CE&quot; on level 2 and then build &quot;A&quot; on level 1.\nThere are three triangular patterns in the pyramid, which are &quot;BCC&quot;, &quot;CDE&quot;, and &quot;CEA&quot;. All are allowed.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/08/26/pyramid2-grid.jpg\" style=\"width: 600px; height: 359px;\" />\n<pre>\n<strong>Input:</strong> bottom = &quot;AAAA&quot;, allowed = [&quot;AAB&quot;,&quot;AAC&quot;,&quot;BCD&quot;,&quot;BBE&quot;,&quot;DEF&quot;]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 4), there are multiple ways to build level 3, but trying all the possibilites, you will get always stuck before building level 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= bottom.length &lt;= 6</code></li>\n\t<li><code>0 &lt;= allowed.length &lt;= 216</code></li>\n\t<li><code>allowed[i].length == 3</code></li>\n\t<li>The letters in all input strings are from the set <code>{&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;}</code>.</li>\n\t<li>All the values of <code>allowed</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Pyramid Transition Matrix' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "2 <= bottom.length <= 6",
+    "0 <= allowed.length <= 216",
+    "allowed[i].length == 3",
+    "The letters in all input strings are from the set {'A', 'B', 'C', 'D', 'E', 'F'}.",
+    "All the values of allowed are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "pyramidTransition",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "bottom",
+        "type": "string"
+      },
+      {
+        "name": "allowed",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 756,
+      "title": "pyramid-transition-matrix",
+      "params": {
+        "bottom": {
+          "type": "string"
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().pyramidTransition({bottom}, {allowed})",
+        "rust": "Solution::pyramid_transition({bottom}, {allowed})",
+        "python3": "Solution().pyramidTransition({bottom}, {allowed})",
+        "python2": "Solution().pyramidTransition({bottom}, {allowed})",
+        "ruby": "pyramid_transition({bottom}, {allowed})",
+        "java": "new Solution().pyramidTransition({bottom}, {allowed})",
+        "csharp": "new Solution().PyramidTransition({bottom}, {allowed})",
+        "kotlin": "Solution().pyramidTransition({bottom}, {allowed})",
+        "go": "pyramidTransition({bottom}, {allowed})",
+        "dart": "Solution().pyramidTransition({bottom}, {allowed})",
+        "swift": "Solution().pyramidTransition({bottom}, {allowed})",
+        "typescript": "pyramidTransition({bottom}, {allowed})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().pyramidTransition(bottom, allowed, {result})",
+        "checker": "class Checker:\n    def pyramidTransition(self, bottom, allowed, result):\n        if not isinstance(result, bool):\n            return False\n        if not isinstance(bottom, str):\n            return False\n        if not isinstance(allowed, list):\n            return False\n\n        table = {}\n        for triple in allowed:\n            if not isinstance(triple, str) or len(triple) != 3:\n                return False\n            key = triple[:2]\n            if key not in table:\n                table[key] = set()\n            table[key].add(triple[2])\n\n        memo = {}\n\n        def can_build(row):\n            if len(row) == 1:\n                return True\n            if row in memo:\n                return memo[row]\n\n            next_rows = [\"\"]\n            for i in range(len(row) - 1):\n                tops = table.get(row[i:i + 2])\n                if not tops:\n                    memo[row] = False\n                    return False\n                built = []\n                for prefix in next_rows:\n                    for ch in tops:\n                        built.append(prefix + ch)\n                next_rows = built\n\n            for nxt in next_rows:\n                if can_build(nxt):\n                    memo[row] = True\n                    return True\n\n            memo[row] = False\n            return False\n\n        expected = can_build(bottom)\n        return result == expected\n"
+      }
+    },
+    "seed": 756,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "bottom": "BCD",
+          "allowed": [
+            "BCC",
+            "CDE",
+            "CEA",
+            "FFF"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "bottom": "AAAA",
+          "allowed": [
+            "AAB",
+            "AAC",
+            "BCD",
+            "BBE",
+            "DEF"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "len2_single_match",
+        "in": {
+          "bottom": "AB",
+          "allowed": [
+            "ABC"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "len2_no_match",
+        "in": {
+          "bottom": "AB",
+          "allowed": []
+        },
+        "out": false
+      },
+      {
+        "name": "len2_wrong_order",
+        "in": {
+          "bottom": "AB",
+          "allowed": [
+            "BAC"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "len3_single_path",
+        "in": {
+          "bottom": "BCD",
+          "allowed": [
+            "BCC",
+            "CDE",
+            "CEA"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "len3_missing_top",
+        "in": {
+          "bottom": "BCD",
+          "allowed": [
+            "BCC",
+            "CDE"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "len3_no_first_pair",
+        "in": {
+          "bottom": "BCD",
+          "allowed": [
+            "CDE",
+            "CEA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "aaa_all_same_true",
+        "in": {
+          "bottom": "AAA",
+          "allowed": [
+            "AAA"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "aaa_missing_upper",
+        "in": {
+          "bottom": "AAA",
+          "allowed": [
+            "AAB"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "aaaaaa_same_true",
+        "in": {
+          "bottom": "AAAAAA",
+          "allowed": [
+            "AAA"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "abcdef_empty",
+        "in": {
+          "bottom": "ABCDEF",
+          "allowed": []
+        },
+        "out": false
+      },
+      {
+        "name": "max_bottom_unique_chain_true",
+        "in": {
+          "bottom": "ABCDEF",
+          "allowed": [
+            "ABF",
+            "BCF",
+            "CDF",
+            "DEF",
+            "EFF",
+            "FFA",
+            "AAB",
+            "BBC",
+            "CCD"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_bottom_unique_chain_missing_top",
+        "in": {
+          "bottom": "ABCDEF",
+          "allowed": [
+            "ABF",
+            "BCF",
+            "CDF",
+            "DEF",
+            "EFF",
+            "FFA",
+            "AAB",
+            "BBC"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "bac_order_true",
+        "in": {
+          "bottom": "BAC",
+          "allowed": [
+            "BAA",
+            "ACA",
+            "AAA"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "bac_order_false",
+        "in": {
+          "bottom": "BAC",
+          "allowed": [
+            "ABA",
+            "CAA",
+            "AAA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "aba_center_true",
+        "in": {
+          "bottom": "ABA",
+          "allowed": [
+            "ABA",
+            "BAA",
+            "AAA"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "aabb_unique_chain_true",
+        "in": {
+          "bottom": "AABB",
+          "allowed": [
+            "AAC",
+            "ABD",
+            "BBE",
+            "CDF",
+            "DEA",
+            "FAB"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "aabb_unique_chain_missing_top",
+        "in": {
+          "bottom": "AABB",
+          "allowed": [
+            "AAC",
+            "ABD",
+            "BBE",
+            "CDF",
+            "DEA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "abcd_unique_top_true",
+        "in": {
+          "bottom": "ABCD",
+          "allowed": [
+            "ABE",
+            "BCF",
+            "CDA",
+            "EFA",
+            "FAA",
+            "AAB"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "abcd_unique_top_false",
+        "in": {
+          "bottom": "ABCD",
+          "allowed": [
+            "ABE",
+            "BCF",
+            "CDA",
+            "EFA",
+            "FAA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "aabc_unique_chain_true",
+        "in": {
+          "bottom": "AABC",
+          "allowed": [
+            "AAC",
+            "ABD",
+            "BCE",
+            "CDF",
+            "DEA",
+            "FAB"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "aabc_unique_chain_false",
+        "in": {
+          "bottom": "AABC",
+          "allowed": [
+            "AAC",
+            "ABD",
+            "BCE",
+            "CDF",
+            "DEA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "ffff_self_loop_true",
+        "in": {
+          "bottom": "FFFF",
+          "allowed": [
+            "FFF"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "ffff_to_a_false",
+        "in": {
+          "bottom": "FFFF",
+          "allowed": [
+            "FFA"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "multi_choice_true",
+        "in": {
+          "bottom": "AAAA",
+          "allowed": [
+            "AAB",
+            "AAC",
+            "BBB"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "multi_choice_false",
+        "in": {
+          "bottom": "AAAA",
+          "allowed": [
+            "AAB",
+            "AAC",
+            "BBC"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "dense_decoys_true",
+        "in": {
+          "bottom": "BDBD",
+          "allowed": [
+            "BDC",
+            "DBE",
+            "BDD",
+            "DBD",
+            "DDD",
+            "CEA",
+            "EAF",
+            "AFB"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "sparse_decoys_false",
+        "in": {
+          "bottom": "BDBD",
+          "allowed": [
+            "BDC",
+            "DBE",
+            "CEA",
+            "EAF"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "cccccc_true",
+        "in": {
+          "bottom": "CCCCCC",
+          "allowed": [
+            "CCC"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "cccccc_false",
+        "in": {
+          "bottom": "CCCCCC",
+          "allowed": [
+            "CCD"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "zigzag_len5_true",
+        "in": {
+          "bottom": "ABCBA",
+          "allowed": [
+            "ABD",
+            "BCE",
+            "CBF",
+            "BAE",
+            "DEA",
+            "EFB",
+            "FEB",
+            "ABC",
+            "BBD",
+            "CDE"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "zigzag_len5_false",
+        "in": {
+          "bottom": "ABCBA",
+          "allowed": [
+            "ABD",
+            "BCE",
+            "CBF",
+            "BAE",
+            "DEA",
+            "EFB",
+            "FEB",
+            "ABC",
+            "BBD"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "bcda_true",
+        "in": {
+          "bottom": "BCDA",
+          "allowed": [
+            "BCE",
+            "CDF",
+            "DAA",
+            "EFB",
+            "FAB",
+            "BBC"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "bcda_false",
+        "in": {
+          "bottom": "BCDA",
+          "allowed": [
+            "BCE",
+            "CDF",
+            "DAA",
+            "EFB",
+            "FAB"
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "bottom = \"BCD\"\nallowed = [\"BCC\", \"CDE\", \"CEA\", \"FFF\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AAAA\"\nallowed = [\"AAB\", \"AAC\", \"BCD\", \"BBE\", \"DEF\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"AB\"\nallowed = [\"ABC\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AB\"\nallowed = []",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"AB\"\nallowed = [\"BAC\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"BCD\"\nallowed = [\"BCC\", \"CDE\", \"CEA\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"BCD\"\nallowed = [\"BCC\", \"CDE\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"BCD\"\nallowed = [\"CDE\", \"CEA\"]",
+      "output": "false"
+    }
+  ]
+}

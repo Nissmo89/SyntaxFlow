@@ -1,0 +1,534 @@
+{
+  "id": "binary_trees_with_factors",
+  "title": "Binary Trees With Factors",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "description": "<p>Given an array of unique integers, <code>arr</code>, where each integer <code>arr[i]</code> is strictly greater than <code>1</code>.</p>\n\n<p>We make a binary tree using these integers, and each number may be used for any number of times. Each non-leaf node&#39;s value should be equal to the product of the values of its children.</p>\n\n<p>Return <em>the number of binary trees we can make</em>. The answer may be too large so return the answer <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [2,4]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We can make these trees: <code>[2], [4], [4, 2, 2]</code></pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [2,4,5,10]\n<strong>Output:</strong> 7\n<strong>Explanation:</strong> We can make these trees: <code>[2], [4], [5], [10], [4, 2, 2], [10, 2, 5], [10, 5, 2]</code>.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= arr.length &lt;= 1000</code></li>\n\t<li><code>2 &lt;= arr[i] &lt;= 10<sup>9</sup></code></li>\n\t<li>All the values of <code>arr</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Binary Trees With Factors' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= arr.length <= 1000",
+    "2 <= arr[i] <= 109",
+    "All the values of arr are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numFactoredBinaryTrees",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "arr",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 823,
+      "title": "binary-trees-with-factors",
+      "params": {
+        "arr": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numFactoredBinaryTrees({arr})",
+        "rust": "Solution::num_factored_binary_trees({arr})",
+        "python3": "Solution().numFactoredBinaryTrees({arr})",
+        "python2": "Solution().numFactoredBinaryTrees({arr})",
+        "ruby": "num_factored_binary_trees({arr})",
+        "java": "new Solution().numFactoredBinaryTrees({arr})",
+        "csharp": "new Solution().NumFactoredBinaryTrees({arr})",
+        "kotlin": "Solution().numFactoredBinaryTrees({arr})",
+        "go": "numFactoredBinaryTrees({arr})",
+        "dart": "Solution().numFactoredBinaryTrees({arr})",
+        "swift": "Solution().numFactoredBinaryTrees({arr})",
+        "typescript": "numFactoredBinaryTrees({arr})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(arr, {result})",
+        "checker": "class Checker:\n    def check(self, arr, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 823,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "arr": [
+            2,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "arr": [
+            2,
+            4,
+            5,
+            10
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "single_small",
+        "in": {
+          "arr": [
+            18
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "pair_two_three",
+        "in": {
+          "arr": [
+            2,
+            3,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "chain_12",
+        "in": {
+          "arr": [
+            2,
+            3,
+            4,
+            6,
+            12
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "powers_two",
+        "in": {
+          "arr": [
+            2,
+            4,
+            8,
+            16
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "five_values",
+        "in": {
+          "arr": [
+            2,
+            5,
+            10,
+            20,
+            25,
+            50
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "mixed_chain",
+        "in": {
+          "arr": [
+            3,
+            6,
+            9,
+            18
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "longer_chain",
+        "in": {
+          "arr": [
+            2,
+            6,
+            12,
+            24,
+            48
+          ]
+        },
+        "out": 27
+      },
+      {
+        "name": "another_mixed",
+        "in": {
+          "arr": [
+            2,
+            4,
+            5,
+            8,
+            10,
+            20
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "prime_only",
+        "in": {
+          "arr": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "two_primes",
+        "in": {
+          "arr": [
+            17,
+            19
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "sorted_input",
+        "in": {
+          "arr": [
+            2,
+            8,
+            4
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "no_factors",
+        "in": {
+          "arr": [
+            2,
+            7,
+            11
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "simple_mult",
+        "in": {
+          "arr": [
+            2,
+            4,
+            8
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "three_chain",
+        "in": {
+          "arr": [
+            2,
+            6,
+            18
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "squares",
+        "in": {
+          "arr": [
+            2,
+            3,
+            9,
+            27
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_small2",
+        "in": {
+          "arr": [
+            2,
+            3,
+            6,
+            9,
+            18
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "mixed_small3",
+        "in": {
+          "arr": [
+            2,
+            4,
+            16
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "mixed_small4",
+        "in": {
+          "arr": [
+            2,
+            6
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed_small5",
+        "in": {
+          "arr": [
+            2,
+            5
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed_small6",
+        "in": {
+          "arr": [
+            4,
+            16
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_small7",
+        "in": {
+          "arr": [
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_small8",
+        "in": {
+          "arr": [
+            2,
+            3,
+            5,
+            15
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_small9",
+        "in": {
+          "arr": [
+            2,
+            4,
+            10,
+            20
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "mixed_small10",
+        "in": {
+          "arr": [
+            3,
+            6,
+            12
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_small11",
+        "in": {
+          "arr": [
+            2,
+            9,
+            18
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed_small12",
+        "in": {
+          "arr": [
+            2,
+            3,
+            5,
+            6,
+            10,
+            15,
+            30
+          ]
+        },
+        "out": 31
+      },
+      {
+        "name": "mixed_small13",
+        "in": {
+          "arr": [
+            2,
+            4,
+            6,
+            12,
+            24
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "mixed_small14",
+        "in": {
+          "arr": [
+            2,
+            3,
+            9
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_small15",
+        "in": {
+          "arr": [
+            2,
+            4,
+            5,
+            25,
+            50
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "mixed_small16",
+        "in": {
+          "arr": [
+            2,
+            8,
+            32
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_small17",
+        "in": {
+          "arr": [
+            2,
+            3,
+            4,
+            12
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_small18",
+        "in": {
+          "arr": [
+            2,
+            4,
+            8,
+            32
+          ]
+        },
+        "out": 29
+      },
+      {
+        "name": "mixed_small19",
+        "in": {
+          "arr": [
+            2,
+            4,
+            6,
+            8,
+            24
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "mixed_small20",
+        "in": {
+          "arr": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13
+          ]
+        },
+        "out": 6
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "arr = [2, 4]",
+      "output": "3"
+    },
+    {
+      "input": "arr = [2, 4, 5, 10]",
+      "output": "7"
+    },
+    {
+      "input": "arr = [18]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [2, 3, 6]",
+      "output": "5"
+    },
+    {
+      "input": "arr = [2, 3, 4, 6, 12]",
+      "output": "18"
+    },
+    {
+      "input": "arr = [2, 4, 8, 16]",
+      "output": "23"
+    },
+    {
+      "input": "arr = [2, 5, 10, 20, 25, 50]",
+      "output": "25"
+    },
+    {
+      "input": "arr = [3, 6, 9, 18]",
+      "output": "7"
+    }
+  ]
+}

@@ -1,0 +1,564 @@
+{
+  "id": "permutations_ii",
+  "title": "Permutations II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Sorting"
+  ],
+  "description": "<p>Given a collection of numbers, <code>nums</code>,&nbsp;that might contain duplicates, return <em>all possible unique permutations <strong>in any order</strong>.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,2]\n<strong>Output:</strong>\n[[1,1,2],\n [1,2,1],\n [2,1,1]]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 8</code></li>\n\t<li><code>-10 &lt;= nums[i] &lt;= 10</code></li>\n</ul>\n",
+  "task": "Solve the 'Permutations II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 8",
+    "-10 <= nums[i] <= 10"
+  ],
+  "hints": [],
+  "method": {
+    "name": "permuteUnique",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 47,
+      "title": "permutations-ii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().permuteUnique({nums})",
+        "rust": "Solution::permute_unique({nums})",
+        "python3": "Solution().permuteUnique({nums})",
+        "python2": "Solution().permuteUnique({nums})",
+        "ruby": "permute_unique({nums})",
+        "java": "new Solution().permuteUnique({nums})",
+        "csharp": "new Solution().PermuteUnique({nums})",
+        "kotlin": "Solution().permuteUnique({nums})",
+        "go": "permuteUnique({nums})",
+        "dart": "Solution().permuteUnique({nums})",
+        "swift": "Solution().permuteUnique({nums})",
+        "typescript": "permuteUnique({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().permuteUnique(nums, {result})",
+        "checker": "from collections import Counter\nfrom math import factorial\n\nclass Checker:\n    def permuteUnique(self, nums, result):\n        if not isinstance(result, list):\n            return False\n\n        n = len(nums)\n        counts = Counter(nums)\n        expected = factorial(n)\n        for c in counts.values():\n            expected //= factorial(c)\n\n        seen = set()\n        for perm in result:\n            if not isinstance(perm, list):\n                return False\n            if len(perm) != n:\n                return False\n            if Counter(perm) != counts:\n                return False\n            seen.add(tuple(perm))\n\n        return len(seen) == expected and len(result) == expected\n"
+      }
+    },
+    "seed": 47,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "single-positive",
+        "in": {
+          "nums": [
+            7
+          ]
+        }
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        }
+      },
+      {
+        "name": "single-negative",
+        "in": {
+          "nums": [
+            -10
+          ]
+        }
+      },
+      {
+        "name": "two-equal",
+        "in": {
+          "nums": [
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "two-distinct",
+        "in": {
+          "nums": [
+            -1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "three-all-equal",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "one-pair-one-single",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "pair-with-negative",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "pair-symmetric",
+        "in": {
+          "nums": [
+            -2,
+            0,
+            -2
+          ]
+        }
+      },
+      {
+        "name": "three-distinct-small",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "four-with-duplicate-pair",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "four-two-pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "four-three-equal-one-different",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "four-negative-mix",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "five-two-pairs-and-single",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "five-many-duplicates",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "five-negative-mix",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "five-distinct",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "six-three-pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "six-four-equal-two-single",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "name": "six-mixed",
+        "in": {
+          "nums": [
+            -3,
+            -3,
+            -1,
+            0,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "six-distinct",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "seven-with-triplet",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "seven-two-pairs",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            0,
+            0,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "seven-mixed",
+        "in": {
+          "nums": [
+            10,
+            10,
+            9,
+            8,
+            8,
+            7,
+            6
+          ]
+        }
+      },
+      {
+        "name": "seven-distinct",
+        "in": {
+          "nums": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "eight-all-equal",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "eight-four-pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ]
+        }
+      },
+      {
+        "name": "eight-three-pairs-and-two-single",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -1,
+            -1,
+            0,
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "eight-half-duplicate",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "eight-distinct-low",
+        "in": {
+          "nums": [
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1
+          ]
+        }
+      },
+      {
+        "name": "eight-distinct-high",
+        "in": {
+          "nums": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "name": "eight-heavy-dup",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "alternating-duplicates",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "mixed-sign-repeat",
+        "in": {
+          "nums": [
+            -10,
+            -10,
+            0,
+            0,
+            10,
+            10
+          ]
+        }
+      },
+      {
+        "name": "near-boundary-values",
+        "in": {
+          "nums": [
+            -10,
+            -9,
+            -9,
+            0,
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 1, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [7]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-10]",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, 5]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, 1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": ""
+    }
+  ]
+}

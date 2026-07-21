@@ -1,0 +1,459 @@
+{
+  "id": "longest_palindromic_substring",
+  "title": "Longest Palindromic Substring",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>Given a string <code>s</code>, return <em>the longest</em> <span data-keyword=\"palindromic-string\"><em>palindromic</em></span> <span data-keyword=\"substring-nonempty\"><em>substring</em></span> in <code>s</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;babad&quot;\n<strong>Output:</strong> &quot;bab&quot;\n<strong>Explanation:</strong> &quot;aba&quot; is also a valid answer.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;cbbd&quot;\n<strong>Output:</strong> &quot;bb&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>s</code> consist of only digits and English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Longest Palindromic Substring' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consist of only digits and English letters."
+  ],
+  "hints": [
+    "How can we reuse a previously computed palindrome to compute a larger palindrome?",
+    "If \u201caba\u201d is a palindrome, is \u201cxabax\u201d a palindrome? Similarly is \u201cxabay\u201d a palindrome?",
+    "Complexity based hint:</br>\r\nIf we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation."
+  ],
+  "method": {
+    "name": "longestPalindrome",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 5,
+      "title": "longest-palindromic-substring",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().longestPalindrome({s})",
+        "rust": "Solution::longest_palindrome({s})",
+        "python3": "Solution().longestPalindrome({s})",
+        "python2": "Solution().longestPalindrome({s})",
+        "ruby": "longest_palindrome({s})",
+        "java": "new Solution().longestPalindrome({s})",
+        "csharp": "new Solution().LongestPalindrome({s})",
+        "kotlin": "Solution().longestPalindrome({s})",
+        "go": "longestPalindrome({s})",
+        "dart": "Solution().longestPalindrome({s})",
+        "swift": "Solution().longestPalindrome({s})",
+        "typescript": "longestPalindrome({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().longestPalindrome(s, {result})",
+        "checker": "class Checker:\n    def longestPalindrome(self, s, result):\n        if not isinstance(result, str):\n            return False\n        if len(result) == 0 or len(result) > len(s):\n            return False\n        if result not in s:\n            return False\n        if result != result[::-1]:\n            return False\n\n        def best_length(text):\n            best = 1\n            n = len(text)\n            for center in range(n):\n                left = right = center\n                while left >= 0 and right < n and text[left] == text[right]:\n                    best = max(best, right - left + 1)\n                    left -= 1\n                    right += 1\n                left = center\n                right = center + 1\n                while left >= 0 and right < n and text[left] == text[right]:\n                    best = max(best, right - left + 1)\n                    left -= 1\n                    right += 1\n            return best\n\n        return len(result) == best_length(s)\n"
+      }
+    },
+    "seed": 20240620,
+    "tests": [
+      {
+        "name": "example_babad",
+        "in": {
+          "s": "babad"
+        }
+      },
+      {
+        "name": "example_cbbd",
+        "in": {
+          "s": "cbbd"
+        }
+      },
+      {
+        "name": "single_char_a",
+        "in": {
+          "s": "a"
+        }
+      },
+      {
+        "name": "single_char_z",
+        "in": {
+          "s": "z"
+        }
+      },
+      {
+        "name": "two_equal_chars",
+        "in": {
+          "s": "aa"
+        }
+      },
+      {
+        "name": "two_different_chars",
+        "in": {
+          "s": "ab"
+        }
+      },
+      {
+        "name": "all_same_short",
+        "in": {
+          "s": "aaaaa"
+        }
+      },
+      {
+        "name": "even_palindrome_middle",
+        "in": {
+          "s": "abba"
+        }
+      },
+      {
+        "name": "odd_palindrome_middle",
+        "in": {
+          "s": "racecar"
+        }
+      },
+      {
+        "name": "no_long_palindrome",
+        "in": {
+          "s": "abcde"
+        }
+      },
+      {
+        "name": "gen_small_01",
+        "seed": 101,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_02",
+        "seed": 102,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_03",
+        "seed": 103,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_04",
+        "seed": 104,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_05",
+        "seed": 105,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 5,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_06",
+        "seed": 106,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 6,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_07",
+        "seed": 107,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 7,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_08",
+        "seed": 108,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 8,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_09",
+        "seed": 109,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 9,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_small_10",
+        "seed": 110,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 10,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_01",
+        "seed": 201,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 25,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_02",
+        "seed": 202,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 31,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_03",
+        "seed": 203,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 47,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_04",
+        "seed": 204,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 63,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_05",
+        "seed": 205,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 79,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_06",
+        "seed": 206,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 101,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_07",
+        "seed": 207,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 137,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_08",
+        "seed": 208,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 173,
+            "alphabet": "abcde"
+          }
+        }
+      },
+      {
+        "name": "gen_structured_01",
+        "in": {
+          "s": "abacdfgdcaba"
+        }
+      },
+      {
+        "name": "gen_structured_02",
+        "in": {
+          "s": "forgeeksskeegfor"
+        }
+      },
+      {
+        "name": "gen_structured_03",
+        "in": {
+          "s": "abccbaqwerty"
+        }
+      },
+      {
+        "name": "gen_structured_04",
+        "in": {
+          "s": "qwertytrewq"
+        }
+      },
+      {
+        "name": "gen_structured_05",
+        "in": {
+          "s": "abcddcbae"
+        }
+      },
+      {
+        "name": "gen_structured_06",
+        "in": {
+          "s": "xyzzyxabc"
+        }
+      },
+      {
+        "name": "gen_structured_07",
+        "in": {
+          "s": "noonmadam"
+        }
+      },
+      {
+        "name": "gen_structured_08",
+        "in": {
+          "s": "aaaaabaaaaa"
+        }
+      },
+      {
+        "name": "gen_large_01",
+        "seed": 301,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abcdef"
+          }
+        }
+      },
+      {
+        "name": "gen_large_02",
+        "seed": 302,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "012345"
+          }
+        }
+      },
+      {
+        "name": "gen_large_03",
+        "seed": 303,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 257,
+            "alphabet": "abcdefgh"
+          }
+        }
+      },
+      {
+        "name": "gen_large_04",
+        "seed": 304,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 389,
+            "alphabet": "abcdefgh"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"babad\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"cbbd\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"z\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaaa\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"abba\"",
+      "output": ""
+    }
+  ]
+}

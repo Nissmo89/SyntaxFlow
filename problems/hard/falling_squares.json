@@ -1,0 +1,1194 @@
+{
+  "id": "falling_squares",
+  "title": "Falling Squares",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "description": "<p>There are several squares being dropped onto the X-axis of a 2D plane.</p>\n\n<p>You are given a 2D integer array <code>positions</code> where <code>positions[i] = [left<sub>i</sub>, sideLength<sub>i</sub>]</code> represents the <code>i<sup>th</sup></code> square with a side length of <code>sideLength<sub>i</sub></code> that is dropped with its left edge aligned with X-coordinate <code>left<sub>i</sub></code>.</p>\n\n<p>Each square is dropped one at a time from a height above any landed squares. It then falls downward (negative Y direction) until it either lands <strong>on the top side of another square</strong> or <strong>on the X-axis</strong>. A square brushing the left/right side of another square does not count as landing on it. Once it lands, it freezes in place and cannot be moved.</p>\n\n<p>After each square is dropped, you must record the <strong>height of the current tallest stack of squares</strong>.</p>\n\n<p>Return <em>an integer array </em><code>ans</code><em> where </em><code>ans[i]</code><em> represents the height described above after dropping the </em><code>i<sup>th</sup></code><em> square</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/28/fallingsq1-plane.jpg\" style=\"width: 500px; height: 505px;\" />\n<pre>\n<strong>Input:</strong> positions = [[1,2],[2,3],[6,1]]\n<strong>Output:</strong> [2,5,5]\n<strong>Explanation:</strong>\nAfter the first drop, the tallest stack is square 1 with a height of 2.\nAfter the second drop, the tallest stack is squares 1 and 2 with a height of 5.\nAfter the third drop, the tallest stack is still squares 1 and 2 with a height of 5.\nThus, we return an answer of [2, 5, 5].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> positions = [[100,100],[200,100]]\n<strong>Output:</strong> [100,100]\n<strong>Explanation:</strong>\nAfter the first drop, the tallest stack is square 1 with a height of 100.\nAfter the second drop, the tallest stack is either square 1 or square 2, both with heights of 100.\nThus, we return an answer of [100, 100].\nNote that square 2 only brushes the right side of square 1, which does not count as landing on it.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= positions.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= left<sub>i</sub> &lt;= 10<sup>8</sup></code></li>\n\t<li><code>1 &lt;= sideLength<sub>i</sub> &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Falling Squares' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= positions.length <= 1000",
+    "1 <= lefti <= 108",
+    "1 <= sideLengthi <= 106"
+  ],
+  "hints": [
+    "If positions = [[10, 20], [20, 30]], this is the same as [[1, 2], [2, 3]].  Currently, the values of positions are very large.  Can you generalize this approach so as to make the values in positions manageable?"
+  ],
+  "method": {
+    "name": "fallingSquares",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "positions",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 699,
+      "title": "falling-squares",
+      "params": {
+        "positions": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().fallingSquares({positions})",
+        "rust": "Solution::falling_squares({positions})",
+        "python3": "Solution().fallingSquares({positions})",
+        "python2": "Solution().fallingSquares({positions})",
+        "ruby": "falling_squares({positions})",
+        "java": "new Solution().fallingSquares({positions})",
+        "csharp": "new Solution().FallingSquares({positions})",
+        "kotlin": "Solution().fallingSquares({positions})",
+        "go": "fallingSquares({positions})",
+        "dart": "Solution().fallingSquares({positions})",
+        "swift": "Solution().fallingSquares({positions})",
+        "typescript": "fallingSquares({positions})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().fallingSquares(positions, result)",
+        "checker": "class Checker:\n    def fallingSquares(self, positions, result):\n        if not isinstance(result, list):\n            return False\n        if len(result) != len(positions):\n            return False\n        cur = []\n        expected = []\n        best = 0\n        for left, side in positions:\n            right = left + side\n            height = 0\n            for l, r, h in cur:\n                if l < right and left < r:\n                    if h > height:\n                        height = h\n            height += side\n            cur.append((left, right, height))\n            if height > best:\n                best = height\n            expected.append(best)\n        return expected == result\n"
+      }
+    },
+    "seed": 699,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        "out": [
+          2,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "positions": [
+            [
+              100,
+              100
+            ],
+            [
+              200,
+              100
+            ]
+          ]
+        },
+        "out": [
+          100,
+          100
+        ]
+      },
+      {
+        "name": "single-square",
+        "in": {
+          "positions": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "two-disjoint",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        "out": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "touch-not-overlap-right",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        "out": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "touch-not-overlap-left",
+        "in": {
+          "positions": [
+            [
+              5,
+              4
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        "out": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "full-overlap-later",
+        "in": {
+          "positions": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "nested-stack",
+        "in": {
+          "positions": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": [
+          10,
+          18,
+          24,
+          28
+        ]
+      },
+      {
+        "name": "alternating-overlap",
+        "in": {
+          "positions": [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        "out": [
+          3,
+          3,
+          7,
+          7
+        ]
+      },
+      {
+        "name": "same-left",
+        "in": {
+          "positions": [
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "out": [
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "same-right-edge-touch",
+        "in": {
+          "positions": [
+            [
+              10,
+              5
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              19,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "chain-growth",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": [
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      {
+        "name": "tall-first-wide-later",
+        "in": {
+          "positions": [
+            [
+              50,
+              20
+            ],
+            [
+              40,
+              50
+            ],
+            [
+              60,
+              5
+            ]
+          ]
+        },
+        "out": [
+          20,
+          70,
+          75
+        ]
+      },
+      {
+        "name": "non-overlap-many",
+        "in": {
+          "positions": [
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "increasing-lefts",
+        "in": {
+          "positions": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        },
+        "out": [
+          4,
+          7,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "decreasing-lefts",
+        "in": {
+          "positions": [
+            [
+              20,
+              4
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        "out": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "name": "bridge-over-gap",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "out": [
+          2,
+          2,
+          6
+        ]
+      },
+      {
+        "name": "exact-coverage",
+        "in": {
+          "positions": [
+            [
+              10,
+              10
+            ],
+            [
+              11,
+              8
+            ],
+            [
+              12,
+              6
+            ]
+          ]
+        },
+        "out": [
+          10,
+          18,
+          24
+        ]
+      },
+      {
+        "name": "separated-by-one",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        "out": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "large-values-simple",
+        "in": {
+          "positions": [
+            [
+              100000000,
+              1000000
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1000000,
+          1000000
+        ]
+      },
+      {
+        "name": "large-values-overlap",
+        "in": {
+          "positions": [
+            [
+              99999000,
+              1000
+            ],
+            [
+              99999500,
+              1000
+            ],
+            [
+              100000000,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1000,
+          2000,
+          2001
+        ]
+      },
+      {
+        "name": "staircase",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              8,
+              16
+            ]
+          ]
+        },
+        "out": [
+          2,
+          6,
+          14,
+          30
+        ]
+      },
+      {
+        "name": "reverse-staircase",
+        "in": {
+          "positions": [
+            [
+              8,
+              16
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "out": [
+          16,
+          24,
+          28,
+          30
+        ]
+      },
+      {
+        "name": "all-overlap-same-span",
+        "in": {
+          "positions": [
+            [
+              10,
+              5
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              10,
+              5
+            ]
+          ]
+        },
+        "out": [
+          5,
+          10,
+          15
+        ]
+      },
+      {
+        "name": "partial-overlap-right",
+        "in": {
+          "positions": [
+            [
+              1,
+              5
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        "out": [
+          5,
+          8,
+          8
+        ]
+      },
+      {
+        "name": "partial-overlap-left",
+        "in": {
+          "positions": [
+            [
+              10,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        "out": [
+          5,
+          11,
+          18
+        ]
+      },
+      {
+        "name": "many-small-disjoint",
+        "in": {
+          "positions": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "many-small-chain",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        "out": [
+          2,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "name": "center-pile",
+        "in": {
+          "positions": [
+            [
+              50,
+              10
+            ],
+            [
+              45,
+              20
+            ],
+            [
+              40,
+              30
+            ],
+            [
+              35,
+              40
+            ]
+          ]
+        },
+        "out": [
+          10,
+          30,
+          60,
+          100
+        ]
+      },
+      {
+        "name": "edge-touch-mixed",
+        "in": {
+          "positions": [
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        "out": [
+          3,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "overlapping-intervals",
+        "in": {
+          "positions": [
+            [
+              1,
+              6
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        "out": [
+          6,
+          10,
+          12,
+          17
+        ]
+      },
+      {
+        "name": "long-disjoint-run",
+        "in": {
+          "positions": [
+            [
+              10,
+              1
+            ],
+            [
+              20,
+              1
+            ],
+            [
+              30,
+              1
+            ],
+            [
+              40,
+              1
+            ],
+            [
+              50,
+              1
+            ],
+            [
+              60,
+              1
+            ],
+            [
+              70,
+              1
+            ],
+            [
+              80,
+              1
+            ],
+            [
+              90,
+              1
+            ],
+            [
+              100,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "alternating-large-small",
+        "in": {
+          "positions": [
+            [
+              1000,
+              100
+            ],
+            [
+              1050,
+              10
+            ],
+            [
+              1010,
+              20
+            ],
+            [
+              990,
+              30
+            ]
+          ]
+        },
+        "out": [
+          100,
+          110,
+          120,
+          150
+        ]
+      },
+      {
+        "name": "single-big",
+        "in": {
+          "positions": [
+            [
+              1,
+              1000000
+            ]
+          ]
+        },
+        "out": [
+          1000000
+        ]
+      },
+      {
+        "name": "two-big-separated",
+        "in": {
+          "positions": [
+            [
+              1,
+              500000
+            ],
+            [
+              1000000,
+              500000
+            ]
+          ]
+        },
+        "out": [
+          500000,
+          500000
+        ]
+      },
+      {
+        "name": "two-big-overlap",
+        "in": {
+          "positions": [
+            [
+              1,
+              500000
+            ],
+            [
+              250000,
+              500000
+            ]
+          ]
+        },
+        "out": [
+          500000,
+          1000000
+        ]
+      },
+      {
+        "name": "midrange-mix",
+        "in": {
+          "positions": [
+            [
+              13,
+              7
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              20,
+              3
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              17,
+              8
+            ]
+          ]
+        },
+        "out": [
+          7,
+          17,
+          17,
+          21,
+          21
+        ]
+      },
+      {
+        "name": "broad-overlap",
+        "in": {
+          "positions": [
+            [
+              100,
+              40
+            ],
+            [
+              120,
+              40
+            ],
+            [
+              140,
+              40
+            ]
+          ]
+        },
+        "out": [
+          40,
+          80,
+          120
+        ]
+      },
+      {
+        "name": "boundary-adjacent",
+        "in": {
+          "positions": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "max-count-compact",
+        "in": {
+          "positions": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        "out": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "positions = [[1, 2], [2, 3], [6, 1]]",
+      "output": "[2, 5, 5]"
+    },
+    {
+      "input": "positions = [[100, 100], [200, 100]]",
+      "output": "[100, 100]"
+    },
+    {
+      "input": "positions = [[1, 1]]",
+      "output": "[1]"
+    },
+    {
+      "input": "positions = [[1, 2], [4, 3]]",
+      "output": "[2, 3]"
+    },
+    {
+      "input": "positions = [[1, 2], [3, 2]]",
+      "output": "[2, 2]"
+    },
+    {
+      "input": "positions = [[5, 4], [1, 4]]",
+      "output": "[4, 4]"
+    },
+    {
+      "input": "positions = [[2, 5], [3, 2], [4, 1]]",
+      "output": "[5, 7, 8]"
+    },
+    {
+      "input": "positions = [[1, 10], [2, 8], [3, 6], [4, 4]]",
+      "output": "[10, 18, 24, 28]"
+    }
+  ]
+}

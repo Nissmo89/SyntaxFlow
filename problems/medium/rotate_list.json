@@ -1,0 +1,774 @@
+{
+  "id": "rotate_list",
+  "title": "Rotate List",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "description": "<p>Given the <code>head</code> of a linked&nbsp;list, rotate the list to the right by <code>k</code> places.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg\" style=\"width: 450px; height: 191px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2,3,4,5], k = 2\n<strong>Output:</strong> [4,5,1,2,3]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/11/13/roate2.jpg\" style=\"width: 305px; height: 350px;\" />\n<pre>\n<strong>Input:</strong> head = [0,1,2], k = 4\n<strong>Output:</strong> [2,0,1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is in the range <code>[0, 500]</code>.</li>\n\t<li><code>-100 &lt;= Node.val &lt;= 100</code></li>\n\t<li><code>0 &lt;= k &lt;= 2 * 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Rotate List' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 500].",
+    "-100 <= Node.val <= 100",
+    "0 <= k <= 2 * 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "rotateRight",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "head",
+        "type": "list_node"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 61,
+      "title": "rotate-list",
+      "params": {
+        "head": {
+          "type": "list_node"
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "listNodeToArray(Solution().rotateRight({head}, {k}))",
+        "rust": "ListNode::list_node_to_array(Solution::rotate_right({head}, {k}))",
+        "python3": "list_node_to_array(Solution().rotateRight({head}, {k}))",
+        "python2": "list_node_to_array(Solution().rotateRight({head}, {k}))",
+        "ruby": "list_node_to_array(rotate_right({head}, {k}))",
+        "java": "ListNode.listNodeToArray(new Solution().rotateRight({head}, {k}))",
+        "csharp": "ListNode.ListNodeToArray(new Solution().RotateRight({head}, {k}))",
+        "kotlin": "listNodeToArray(Solution().rotateRight({head}, {k}))",
+        "go": "listNodeToArray(rotateRight({head}, {k}))",
+        "dart": "list_node_to_array(Solution().rotateRight({head}, {k}))",
+        "swift": "list_node_to_array(Solution().rotateRight({head}, {k}))",
+        "typescript": "listNodeToArray(rotateRight({head}, {k}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().rotateRight(head, k, {result})",
+        "checker": "class Checker:\n    def rotateRight(self, head, k, result):\n        vals = list(head)\n        if not isinstance(result, list):\n            return False\n        n = len(vals)\n        if n == 0:\n            return result == []\n        shift = k % n\n        if shift == 0:\n            expected = vals\n        else:\n            expected = vals[-shift:] + vals[:-shift]\n        return result == expected\n"
+      }
+    },
+    "seed": 61,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "out": [
+          4,
+          5,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "head": [
+            0,
+            1,
+            2
+          ],
+          "k": 4
+        },
+        "out": [
+          2,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "empty_k0",
+        "in": {
+          "head": [],
+          "k": 0
+        },
+        "out": []
+      },
+      {
+        "name": "empty_large_k",
+        "in": {
+          "head": [],
+          "k": 2000000000
+        },
+        "out": []
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "head": [
+            0
+          ],
+          "k": 7
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "two_nodes_k0",
+        "in": {
+          "head": [
+            1,
+            2
+          ],
+          "k": 0
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "two_nodes_k1",
+        "in": {
+          "head": [
+            1,
+            2
+          ],
+          "k": 1
+        },
+        "out": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "two_nodes_k2",
+        "in": {
+          "head": [
+            1,
+            2
+          ],
+          "k": 2
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "three_nodes_k1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3
+          ],
+          "k": 1
+        },
+        "out": [
+          3,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "three_nodes_k2",
+        "in": {
+          "head": [
+            1,
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          2,
+          3,
+          1
+        ]
+      },
+      {
+        "name": "three_nodes_k3",
+        "in": {
+          "head": [
+            1,
+            2,
+            3
+          ],
+          "k": 3
+        },
+        "out": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "three_nodes_large_k",
+        "in": {
+          "head": [
+            1,
+            2,
+            3
+          ],
+          "k": 100
+        },
+        "out": [
+          3,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "four_nodes_k1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "k": 1
+        },
+        "out": [
+          4,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "four_nodes_k2",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          3,
+          4,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "four_nodes_k3",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "k": 3
+        },
+        "out": [
+          2,
+          3,
+          4,
+          1
+        ]
+      },
+      {
+        "name": "five_nodes_k5",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 5
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "five_nodes_k6",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 6
+        },
+        "out": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "negatives_and_zero",
+        "in": {
+          "head": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "k": 3
+        },
+        "out": [
+          -1,
+          0,
+          1,
+          -3,
+          -2
+        ]
+      },
+      {
+        "name": "duplicates",
+        "in": {
+          "head": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "k": 2
+        },
+        "out": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "head": [
+            9,
+            8,
+            9,
+            8,
+            9,
+            8,
+            9
+          ],
+          "k": 3
+        },
+        "out": [
+          9,
+          8,
+          9,
+          9,
+          8,
+          9,
+          8
+        ]
+      },
+      {
+        "name": "length_8_k4",
+        "in": {
+          "head": [
+            8,
+            6,
+            7,
+            5,
+            3,
+            0,
+            9,
+            1
+          ],
+          "k": 4
+        },
+        "out": [
+          3,
+          0,
+          9,
+          1,
+          8,
+          6,
+          7,
+          5
+        ]
+      },
+      {
+        "name": "length_10_k9",
+        "in": {
+          "head": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "k": 9
+        },
+        "out": [
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100,
+          10
+        ]
+      },
+      {
+        "name": "length_10_k10",
+        "in": {
+          "head": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "k": 10
+        },
+        "out": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "name": "length_15_k7",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "k": 7
+        },
+        "out": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "descending_k13",
+        "in": {
+          "head": [
+            20,
+            19,
+            18,
+            17,
+            16,
+            15,
+            14,
+            13,
+            12,
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "k": 13
+        },
+        "out": [
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          20,
+          19,
+          18,
+          17,
+          16,
+          15,
+          14
+        ]
+      },
+      {
+        "name": "generated_len12_k2",
+        "seed": 611,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": -20,
+              "max": 20
+            }
+          },
+          "k": 2
+        }
+      },
+      {
+        "name": "generated_len15_k3",
+        "seed": 612,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 15,
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            }
+          },
+          "k": 3
+        }
+      },
+      {
+        "name": "generated_len20_k4",
+        "seed": 613,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            }
+          },
+          "k": 4
+        }
+      },
+      {
+        "name": "generated_len25_k5",
+        "seed": 614,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 25,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            }
+          },
+          "k": 5
+        }
+      },
+      {
+        "name": "generated_len40_k7",
+        "seed": 615,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 40,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            }
+          },
+          "k": 7
+        }
+      },
+      {
+        "name": "generated_len80_k11",
+        "seed": 616,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 80,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            }
+          },
+          "k": 11
+        }
+      },
+      {
+        "name": "generated_len120_k17",
+        "seed": 617,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 120,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            }
+          },
+          "k": 17
+        }
+      },
+      {
+        "name": "generated_len200_k49",
+        "seed": 618,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            }
+          },
+          "k": 49
+        }
+      },
+      {
+        "name": "generated_len500_k1",
+        "seed": 619,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 500,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            }
+          },
+          "k": 1
+        }
+      },
+      {
+        "name": "generated_len500_large_k",
+        "seed": 620,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 500,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            }
+          },
+          "k": 123456789
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "head = [1, 2, 3, 4, 5]\nk = 2",
+      "output": "[4, 5, 1, 2, 3]"
+    },
+    {
+      "input": "head = [0, 1, 2]\nk = 4",
+      "output": "[2, 0, 1]"
+    },
+    {
+      "input": "head = []\nk = 0",
+      "output": "[]"
+    },
+    {
+      "input": "head = []\nk = 2000000000",
+      "output": "[]"
+    },
+    {
+      "input": "head = [0]\nk = 7",
+      "output": "[0]"
+    },
+    {
+      "input": "head = [1, 2]\nk = 0",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "head = [1, 2]\nk = 1",
+      "output": "[2, 1]"
+    },
+    {
+      "input": "head = [1, 2]\nk = 2",
+      "output": "[1, 2]"
+    }
+  ]
+}

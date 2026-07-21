@@ -1,0 +1,349 @@
+{
+  "id": "rotate_string",
+  "title": "Rotate String",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "String Matching"
+  ],
+  "description": "<p>Given two strings <code>s</code> and <code>goal</code>, return <code>true</code> <em>if and only if</em> <code>s</code> <em>can become</em> <code>goal</code> <em>after some number of <strong>shifts</strong> on</em> <code>s</code>.</p> <p>A <strong>shift</strong> on <code>s</code> consists of moving the leftmost character of <code>s</code> to the rightmost position.</p> <ul> <li>For example, if <code>s = \"abcde\"</code>, then it will be <code>\"bcdea\"</code> after one shift.</li> </ul> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"abcde\", goal = \"cdeab\"\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"abcde\", goal = \"abced\"\n<strong>Output:</strong> false\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length, goal.length &lt;= 100</code></li> <li><code>s</code> and <code>goal</code> consist of lowercase English letters.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "rotateString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "goal",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 796,
+      "title": "rotate-string",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "goal": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().rotateString({s}, {goal})",
+        "rust": "Solution::rotate_string({s}, {goal})",
+        "python3": "Solution().rotateString({s}, {goal})",
+        "python2": "Solution().rotateString({s}, {goal})",
+        "ruby": "rotate_string({s}, {goal})",
+        "java": "new Solution().rotateString({s}, {goal})",
+        "csharp": "new Solution().RotateString({s}, {goal})",
+        "kotlin": "Solution().rotateString({s}, {goal})",
+        "go": "rotateString({s}, {goal})",
+        "dart": "Solution().rotateString({s}, {goal})",
+        "swift": "Solution().rotateString({s}, {goal})",
+        "typescript": "rotateString({s}, {goal})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(s, goal, {result})",
+        "checker": "class Checker:\n    def check(self, s, goal, result):\n        expected = len(s) == len(goal) and goal in (s + s)\n        return bool(result) == expected\n"
+      }
+    },
+    "seed": 796,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "abcde",
+          "goal": "cdeab"
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "abcde",
+          "goal": "abced"
+        }
+      },
+      {
+        "name": "single_true",
+        "in": {
+          "s": "a",
+          "goal": "a"
+        }
+      },
+      {
+        "name": "single_false",
+        "in": {
+          "s": "a",
+          "goal": "b"
+        }
+      },
+      {
+        "name": "two_true_1",
+        "in": {
+          "s": "ab",
+          "goal": "ab"
+        }
+      },
+      {
+        "name": "two_true_2",
+        "in": {
+          "s": "ab",
+          "goal": "ba"
+        }
+      },
+      {
+        "name": "two_false",
+        "in": {
+          "s": "ab",
+          "goal": "aa"
+        }
+      },
+      {
+        "name": "repeated_true",
+        "in": {
+          "s": "aaaa",
+          "goal": "aaaa"
+        }
+      },
+      {
+        "name": "repeated_false",
+        "in": {
+          "s": "aaaa",
+          "goal": "aaab"
+        }
+      },
+      {
+        "name": "no_rotation_match",
+        "in": {
+          "s": "waterbottle",
+          "goal": "erbottlewat"
+        }
+      },
+      {
+        "name": "no_rotation_mismatch",
+        "in": {
+          "s": "waterbottle",
+          "goal": "erbottlewta"
+        }
+      },
+      {
+        "name": "prefix_shift_1",
+        "in": {
+          "s": "rotation",
+          "goal": "otationr"
+        }
+      },
+      {
+        "name": "prefix_shift_2",
+        "in": {
+          "s": "rotation",
+          "goal": "tationro"
+        }
+      },
+      {
+        "name": "prefix_shift_3",
+        "in": {
+          "s": "rotation",
+          "goal": "ationrot"
+        }
+      },
+      {
+        "name": "prefix_shift_false",
+        "in": {
+          "s": "rotation",
+          "goal": "ationrto"
+        }
+      },
+      {
+        "name": "all_same_length_1",
+        "in": {
+          "s": "xyzxyz",
+          "goal": "zxyzxy"
+        }
+      },
+      {
+        "name": "all_same_length_2",
+        "in": {
+          "s": "xyzxyz",
+          "goal": "xyzxyz"
+        }
+      },
+      {
+        "name": "all_same_length_false",
+        "in": {
+          "s": "xyzxyz",
+          "goal": "xzyxzy"
+        }
+      },
+      {
+        "name": "mixed_true_1",
+        "in": {
+          "s": "aabca",
+          "goal": "caaab"
+        }
+      },
+      {
+        "name": "mixed_true_2",
+        "in": {
+          "s": "aabca",
+          "goal": "baaac"
+        }
+      },
+      {
+        "name": "mixed_false_1",
+        "in": {
+          "s": "aabca",
+          "goal": "caaba"
+        }
+      },
+      {
+        "name": "long_shift_1",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "goal": "bcdefghijklmnopqrstuvwxyza"
+        }
+      },
+      {
+        "name": "long_shift_2",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "goal": "zabcdefghijklmnopqrstuvwxy"
+        }
+      },
+      {
+        "name": "long_false_1",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "goal": "bcdefghijklmnopqrstuvwxyzz"
+        }
+      },
+      {
+        "name": "boundary_len_100_true",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      {
+        "name": "boundary_len_100_false",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+        }
+      },
+      {
+        "name": "wrap_true",
+        "in": {
+          "s": "cab",
+          "goal": "abc"
+        }
+      },
+      {
+        "name": "wrap_false",
+        "in": {
+          "s": "cab",
+          "goal": "acb"
+        }
+      },
+      {
+        "name": "distinct_false_1",
+        "in": {
+          "s": "qwerty",
+          "goal": "yqwert"
+        }
+      },
+      {
+        "name": "distinct_true_1",
+        "in": {
+          "s": "qwerty",
+          "goal": "ertyqw"
+        }
+      },
+      {
+        "name": "distinct_false_2",
+        "in": {
+          "s": "rotation",
+          "goal": "rotationn"
+        }
+      },
+      {
+        "name": "repeated_pattern_true",
+        "in": {
+          "s": "abababab",
+          "goal": "babababa"
+        }
+      },
+      {
+        "name": "repeated_pattern_false",
+        "in": {
+          "s": "abababab",
+          "goal": "abababaa"
+        }
+      },
+      {
+        "name": "pal_true",
+        "in": {
+          "s": "level",
+          "goal": "level"
+        }
+      },
+      {
+        "name": "pal_false",
+        "in": {
+          "s": "level",
+          "goal": "elvel"
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abcde\"\ngoal = \"cdeab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcde\"\ngoal = \"abced\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"\ngoal = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"\ngoal = \"b\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"\ngoal = \"ab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"\ngoal = \"ba\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"\ngoal = \"aa\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaa\"\ngoal = \"aaaa\"",
+      "output": ""
+    }
+  ]
+}

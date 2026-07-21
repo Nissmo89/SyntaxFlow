@@ -1,0 +1,877 @@
+{
+  "id": "walking_robot_simulation",
+  "title": "Walking Robot Simulation",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Simulation"
+  ],
+  "description": "<p>A robot on an infinite XY-plane starts at point <code>(0, 0)</code> facing north. The robot receives an array of integers <code>commands</code>, which represents a sequence of moves that it needs to execute. There are only three possible types of instructions the robot can receive:</p>\n\n<ul>\n\t<li><code>-2</code>: Turn left <code>90</code> degrees.</li>\n\t<li><code>-1</code>: Turn right <code>90</code> degrees.</li>\n\t<li><code>1 &lt;= k &lt;= 9</code>: Move forward <code>k</code> units, one unit at a time.</li>\n</ul>\n\n<p>Some of the grid squares are <code>obstacles</code>. The <code>i<sup>th</sup></code> obstacle is at grid point <code>obstacles[i] = (x<sub>i</sub>, y<sub>i</sub>)</code>. If the robot runs into an obstacle, it will stay in its current location (on the block adjacent to the obstacle) and move onto the next command.</p>\n\n<p>Return the <strong>maximum squared Euclidean distance</strong> that the robot reaches at any point in its path (i.e. if the distance is <code>5</code>, return <code>25</code>).</p>\n\n<p><strong>Note:</strong></p>\n\n<ul>\n\t<li>There can be an obstacle at <code>(0, 0)</code>. If this happens, the robot will ignore the obstacle until it has moved off the origin. However, it will be unable to return to <code>(0, 0)</code> due to the obstacle.</li>\n\t<li>North means +Y direction.</li>\n\t<li>East means +X direction.</li>\n\t<li>South means -Y direction.</li>\n\t<li>West means -X direction.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">commands = [4,-1,3], obstacles = []</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">25</span></p>\n\n<p><strong>Explanation: </strong></p>\n\n<p>The robot starts at <code>(0, 0)</code>:</p>\n\n<ol>\n\t<li>Move north 4 units to <code>(0, 4)</code>.</li>\n\t<li>Turn right.</li>\n\t<li>Move east 3 units to <code>(3, 4)</code>.</li>\n</ol>\n\n<p>The furthest point the robot ever gets from the origin is <code>(3, 4)</code>, which squared is <code>3<sup>2</sup> + 4<sup>2 </sup>= 25</code> units away.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">commands = [4,-1,4,-2,4], obstacles = [[2,4]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">65</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The robot starts at <code>(0, 0)</code>:</p>\n\n<ol>\n\t<li>Move north 4 units to <code>(0, 4)</code>.</li>\n\t<li>Turn right.</li>\n\t<li>Move east 1 unit and get blocked by the obstacle at <code>(2, 4)</code>, robot is at <code>(1, 4)</code>.</li>\n\t<li>Turn left.</li>\n\t<li>Move north 4 units to <code>(1, 8)</code>.</li>\n</ol>\n\n<p>The furthest point the robot ever gets from the origin is <code>(1, 8)</code>, which squared is <code>1<sup>2</sup> + 8<sup>2</sup> = 65</code> units away.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">commands = [6,-1,-1,6], obstacles = [[0,0]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">36</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The robot starts at <code>(0, 0)</code>:</p>\n\n<ol>\n\t<li>Move north 6 units to <code>(0, 6)</code>.</li>\n\t<li>Turn right.</li>\n\t<li>Turn right.</li>\n\t<li>Move south 5 units and get blocked by the obstacle at <code>(0,0)</code>, robot is at <code>(0, 1)</code>.</li>\n</ol>\n\n<p>The furthest point the robot ever gets from the origin is <code>(0, 6)</code>, which squared is <code>6<sup>2</sup> = 36</code> units away.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= commands.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>commands[i]</code> is either <code>-2</code>, <code>-1</code>, or an integer in the range <code>[1, 9]</code>.</li>\n\t<li><code>0 &lt;= obstacles.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-3 * 10<sup>4</sup> &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li>The answer is guaranteed to be less than <code>2<sup>31</sup></code>.</li>\n</ul>\n",
+  "task": "Solve the 'Walking Robot Simulation' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= commands.length <= 104",
+    "commands[i] is either -2, -1, or an integer in the range [1, 9].",
+    "0 <= obstacles.length <= 104",
+    "-3 * 104 <= xi, yi <= 3 * 104",
+    "The answer is guaranteed to be less than 231."
+  ],
+  "hints": [],
+  "method": {
+    "name": "robotSim",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "commands",
+        "type": "array"
+      },
+      {
+        "name": "obstacles",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 874,
+      "title": "walking-robot-simulation",
+      "params": {
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "obstacles": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().robotSim({commands}, {obstacles})",
+        "rust": "Solution::robot_sim({commands}, {obstacles})",
+        "python3": "Solution().robotSim({commands}, {obstacles})",
+        "python2": "Solution().robotSim({commands}, {obstacles})",
+        "ruby": "robot_sim({commands}, {obstacles})",
+        "java": "new Solution().robotSim({commands}, {obstacles})",
+        "csharp": "new Solution().RobotSim({commands}, {obstacles})",
+        "kotlin": "Solution().robotSim({commands}, {obstacles})",
+        "go": "robotSim({commands}, {obstacles})",
+        "dart": "Solution().robotSim({commands}, {obstacles})",
+        "swift": "Solution().robotSim({commands}, {obstacles})",
+        "typescript": "robotSim({commands}, {obstacles})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 400,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().robotSim(commands, obstacles, {result})",
+        "checker": "class Checker:\n    def robotSim(self, commands, obstacles, result: Any) -> bool:\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 874,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "commands": [
+            4,
+            -1,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 25
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "commands": [
+            4,
+            -1,
+            4,
+            -2,
+            4
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                4
+              ]
+            ]
+          }
+        },
+        "out": 65
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "commands": [
+            6,
+            -1,
+            -1,
+            6
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 36
+      },
+      {
+        "name": "no_obstacles_straight",
+        "in": {
+          "commands": [
+            1,
+            2,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 36
+      },
+      {
+        "name": "turn_only",
+        "in": {
+          "commands": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "turn_left_then_move",
+        "in": {
+          "commands": [
+            -2,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 4
+      },
+      {
+        "name": "immediate_block_north",
+        "in": {
+          "commands": [
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "block_after_one_step",
+        "in": {
+          "commands": [
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "block_after_turn",
+        "in": {
+          "commands": [
+            2,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ]
+            ]
+          }
+        },
+        "out": 4
+      },
+      {
+        "name": "obstacle_far_ignored",
+        "in": {
+          "commands": [
+            2,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10
+              ]
+            ]
+          }
+        },
+        "out": 8
+      },
+      {
+        "name": "obstacle_on_path",
+        "in": {
+          "commands": [
+            3,
+            -1,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                3
+              ]
+            ]
+          }
+        },
+        "out": 9
+      },
+      {
+        "name": "origin_obstacle",
+        "in": {
+          "commands": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "origin_obstacle_block_return",
+        "in": {
+          "commands": [
+            1,
+            -1,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "large_square",
+        "in": {
+          "commands": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 1296
+      },
+      {
+        "name": "zigzag_no_block",
+        "in": {
+          "commands": [
+            4,
+            -1,
+            4,
+            -1,
+            4,
+            -1,
+            4
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 32
+      },
+      {
+        "name": "zigzag_block",
+        "in": {
+          "commands": [
+            4,
+            -1,
+            4,
+            -1,
+            4,
+            -1,
+            4
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 32
+      },
+      {
+        "name": "repeated_turns",
+        "in": {
+          "commands": [
+            -2,
+            -2,
+            5
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 25
+      },
+      {
+        "name": "repeated_turns_block",
+        "in": {
+          "commands": [
+            -2,
+            -2,
+            5
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                -1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "obstacle_negative",
+        "in": {
+          "commands": [
+            3,
+            -1,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                -3
+              ]
+            ]
+          }
+        },
+        "out": 18
+      },
+      {
+        "name": "obstacle_negative_block",
+        "in": {
+          "commands": [
+            3,
+            -1,
+            3,
+            -1,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                -3
+              ]
+            ]
+          }
+        },
+        "out": 18
+      },
+      {
+        "name": "loop_return",
+        "in": {
+          "commands": [
+            2,
+            -1,
+            2,
+            -1,
+            2,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 8
+      },
+      {
+        "name": "loop_return_block",
+        "in": {
+          "commands": [
+            2,
+            -1,
+            2,
+            -1,
+            2,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        },
+        "out": 5
+      },
+      {
+        "name": "long_path_no_block",
+        "in": {
+          "commands": [
+            9,
+            -1,
+            9,
+            -1,
+            9,
+            -1,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 162
+      },
+      {
+        "name": "long_path_with_block",
+        "in": {
+          "commands": [
+            9,
+            -1,
+            9,
+            -1,
+            9,
+            -1,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                5
+              ]
+            ]
+          }
+        },
+        "out": 106
+      },
+      {
+        "name": "one_step_each_dir",
+        "in": {
+          "commands": [
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 2
+      },
+      {
+        "name": "one_step_each_dir_block",
+        "in": {
+          "commands": [
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 2
+      },
+      {
+        "name": "origin_and_far",
+        "in": {
+          "commands": [
+            6,
+            -1,
+            -1,
+            6,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 36
+      },
+      {
+        "name": "multiple_obstacles_sparse",
+        "in": {
+          "commands": [
+            5,
+            -1,
+            5,
+            -2,
+            5,
+            -1,
+            5
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                5,
+                5
+              ]
+            ]
+          }
+        },
+        "out": 116
+      },
+      {
+        "name": "obstacle_on_second_leg",
+        "in": {
+          "commands": [
+            5,
+            -1,
+            5,
+            -2,
+            5
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                3
+              ]
+            ]
+          }
+        },
+        "out": 125
+      },
+      {
+        "name": "obstacle_on_third_leg",
+        "in": {
+          "commands": [
+            5,
+            -1,
+            5,
+            -2,
+            5,
+            -1,
+            5
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "out": 149
+      },
+      {
+        "name": "max_distance_early",
+        "in": {
+          "commands": [
+            9,
+            9,
+            -1,
+            1
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": []
+          }
+        },
+        "out": 325
+      },
+      {
+        "name": "max_distance_after_block",
+        "in": {
+          "commands": [
+            9,
+            9,
+            -1,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                10
+              ]
+            ]
+          }
+        },
+        "out": 162
+      },
+      {
+        "name": "no_move_after_block",
+        "in": {
+          "commands": [
+            9,
+            -1,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                9
+              ]
+            ]
+          }
+        },
+        "out": 81
+      },
+      {
+        "name": "no_move_after_block_2",
+        "in": {
+          "commands": [
+            9,
+            -1,
+            9
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                9
+              ]
+            ]
+          }
+        },
+        "out": 145
+      },
+      {
+        "name": "large_obstacle_set_simple",
+        "in": {
+          "commands": [
+            3,
+            3,
+            3
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                100,
+                100
+              ],
+              [
+                -100,
+                -100
+              ]
+            ]
+          }
+        },
+        "out": 81
+      },
+      {
+        "name": "near_origin_obstacle",
+        "in": {
+          "commands": [
+            2,
+            -2,
+            2,
+            -2,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_side",
+        "in": {
+          "commands": [
+            2,
+            -1,
+            2,
+            -1,
+            2,
+            -1,
+            2
+          ],
+          "obstacles": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        },
+        "out": 5
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "commands = [4, -1, 3]\nobstacles = {\"elemType\": \"int\", \"value\": []}",
+      "output": "25"
+    },
+    {
+      "input": "commands = [4, -1, 4, -2, 4]\nobstacles = {\"elemType\": \"int\", \"value\": [[2, 4]]}",
+      "output": "65"
+    },
+    {
+      "input": "commands = [6, -1, -1, 6]\nobstacles = {\"elemType\": \"int\", \"value\": [[0, 0]]}",
+      "output": "36"
+    },
+    {
+      "input": "commands = [1, 2, 3]\nobstacles = {\"elemType\": \"int\", \"value\": []}",
+      "output": "36"
+    },
+    {
+      "input": "commands = [-1, -1, -1, -1]\nobstacles = {\"elemType\": \"int\", \"value\": []}",
+      "output": "0"
+    },
+    {
+      "input": "commands = [-2, 2]\nobstacles = {\"elemType\": \"int\", \"value\": []}",
+      "output": "4"
+    },
+    {
+      "input": "commands = [2]\nobstacles = {\"elemType\": \"int\", \"value\": [[0, 1]]}",
+      "output": "0"
+    },
+    {
+      "input": "commands = [2]\nobstacles = {\"elemType\": \"int\", \"value\": [[0, 2]]}",
+      "output": "1"
+    }
+  ]
+}

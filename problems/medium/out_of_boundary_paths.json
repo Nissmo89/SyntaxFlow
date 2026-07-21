@@ -1,0 +1,533 @@
+{
+  "id": "out_of_boundary_paths",
+  "title": "Out of Boundary Paths",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "description": "<p>There is an <code>m x n</code> grid with a ball. The ball is initially at the position <code>[startRow, startColumn]</code>. You are allowed to move the ball to one of the four adjacent cells in the grid (possibly out of the grid crossing the grid boundary). You can apply <strong>at most</strong> <code>maxMove</code> moves to the ball.</p>\n\n<p>Given the five integers <code>m</code>, <code>n</code>, <code>maxMove</code>, <code>startRow</code>, <code>startColumn</code>, return the number of paths to move the ball out of the grid boundary. Since the answer can be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/28/out_of_boundary_paths_1.png\" style=\"width: 500px; height: 296px;\" />\n<pre>\n<strong>Input:</strong> m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0\n<strong>Output:</strong> 6\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/28/out_of_boundary_paths_2.png\" style=\"width: 500px; height: 293px;\" />\n<pre>\n<strong>Input:</strong> m = 1, n = 3, maxMove = 3, startRow = 0, startColumn = 1\n<strong>Output:</strong> 12\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= m, n &lt;= 50</code></li>\n\t<li><code>0 &lt;= maxMove &lt;= 50</code></li>\n\t<li><code>0 &lt;= startRow &lt; m</code></li>\n\t<li><code>0 &lt;= startColumn &lt; n</code></li>\n</ul>\n",
+  "task": "Solve the 'Out of Boundary Paths' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= m, n <= 50",
+    "0 <= maxMove <= 50",
+    "0 <= startRow < m",
+    "0 <= startColumn < n"
+  ],
+  "hints": [
+    "Is traversing every path feasible? There are many possible paths for a small matrix. Try to optimize it.",
+    "Can we use some space to store the number of paths and update them after every move?",
+    "One obvious thing: the ball will go out of the boundary only by crossing it. Also, there is only one possible way the ball can go out of the boundary from the boundary cell except for corner cells. From the corner cell, the ball can go out in two different ways.\r\n\r\nCan you use this thing to solve the problem?"
+  ],
+  "method": {
+    "name": "findPaths",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "maxMove",
+        "type": "int"
+      },
+      {
+        "name": "startRow",
+        "type": "int"
+      },
+      {
+        "name": "startColumn",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 576,
+      "title": "out-of-boundary-paths",
+      "params": {
+        "m": {
+          "type": "int"
+        },
+        "n": {
+          "type": "int"
+        },
+        "maxMove": {
+          "type": "int"
+        },
+        "startRow": {
+          "type": "int"
+        },
+        "startColumn": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "rust": "Solution::find_paths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "python3": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "python2": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "ruby": "find_paths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "java": "new Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "csharp": "new Solution().FindPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "kotlin": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "go": "findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "dart": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "swift": "Solution().findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})",
+        "typescript": "findPaths({m}, {n}, {maxMove}, {startRow}, {startColumn})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1200,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findPaths(m, n, maxMove, startRow, startColumn, {result})",
+        "checker": "class Checker:\n    def findPaths(self, m, n, maxMove, startRow, startColumn, result):\n        mod = 10**9 + 7\n        dp = [[0] * n for _ in range(m)]\n        for _ in range(maxMove):\n            ndp = [[0] * n for _ in range(m)]\n            for i in range(m):\n                for j in range(n):\n                    val = 0\n                    for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        x = i + di\n                        y = j + dj\n                        if x < 0 or x >= m or y < 0 or y >= n:\n                            val += 1\n                        else:\n                            val += dp[x][y]\n                    ndp[i][j] = val % mod\n            dp = ndp\n        return isinstance(result, int) and result == dp[startRow][startColumn]\n"
+      }
+    },
+    "seed": 576,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "maxMove": 2,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 6
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "m": 1,
+          "n": 3,
+          "maxMove": 3,
+          "startRow": 0,
+          "startColumn": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "zero-move-single",
+        "in": {
+          "m": 1,
+          "n": 1,
+          "maxMove": 0,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "one-move-single",
+        "in": {
+          "m": 1,
+          "n": 1,
+          "maxMove": 1,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 4
+      },
+      {
+        "name": "two-move-single",
+        "in": {
+          "m": 1,
+          "n": 1,
+          "maxMove": 2,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 4
+      },
+      {
+        "name": "center-no-exit",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "maxMove": 1,
+          "startRow": 1,
+          "startColumn": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "corner-one-move",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "maxMove": 1,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "edge-one-move",
+        "in": {
+          "m": 3,
+          "n": 4,
+          "maxMove": 1,
+          "startRow": 0,
+          "startColumn": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "center-two-moves",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "maxMove": 2,
+          "startRow": 1,
+          "startColumn": 1
+        },
+        "out": 4
+      },
+      {
+        "name": "edge-two-moves",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "maxMove": 2,
+          "startRow": 0,
+          "startColumn": 1
+        },
+        "out": 6
+      },
+      {
+        "name": "corner-two-moves",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "maxMove": 2,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 5
+      },
+      {
+        "name": "rect-center-three",
+        "in": {
+          "m": 2,
+          "n": 4,
+          "maxMove": 3,
+          "startRow": 1,
+          "startColumn": 2
+        },
+        "out": 16
+      },
+      {
+        "name": "row-end",
+        "in": {
+          "m": 1,
+          "n": 5,
+          "maxMove": 4,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 16
+      },
+      {
+        "name": "row-middle",
+        "in": {
+          "m": 1,
+          "n": 5,
+          "maxMove": 4,
+          "startRow": 0,
+          "startColumn": 2
+        },
+        "out": 28
+      },
+      {
+        "name": "col-end",
+        "in": {
+          "m": 5,
+          "n": 1,
+          "maxMove": 4,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 16
+      },
+      {
+        "name": "col-middle",
+        "in": {
+          "m": 5,
+          "n": 1,
+          "maxMove": 4,
+          "startRow": 2,
+          "startColumn": 0
+        },
+        "out": 28
+      },
+      {
+        "name": "zero-moves-corner-large",
+        "in": {
+          "m": 5,
+          "n": 7,
+          "maxMove": 0,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "two-by-two-four-moves",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "maxMove": 4,
+          "startRow": 1,
+          "startColumn": 1
+        },
+        "out": 30
+      },
+      {
+        "name": "two-by-two-five-moves",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "maxMove": 5,
+          "startRow": 0,
+          "startColumn": 1
+        },
+        "out": 62
+      },
+      {
+        "name": "symmetry-upper-left",
+        "in": {
+          "m": 4,
+          "n": 4,
+          "maxMove": 3,
+          "startRow": 1,
+          "startColumn": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "symmetry-lower-right",
+        "in": {
+          "m": 4,
+          "n": 4,
+          "maxMove": 3,
+          "startRow": 2,
+          "startColumn": 2
+        },
+        "out": 12
+      },
+      {
+        "name": "near-boundary-four-moves",
+        "in": {
+          "m": 4,
+          "n": 5,
+          "maxMove": 4,
+          "startRow": 0,
+          "startColumn": 3
+        },
+        "out": 32
+      },
+      {
+        "name": "deep-center-five",
+        "in": {
+          "m": 5,
+          "n": 5,
+          "maxMove": 5,
+          "startRow": 2,
+          "startColumn": 2
+        },
+        "out": 136
+      },
+      {
+        "name": "deep-corner-five",
+        "in": {
+          "m": 5,
+          "n": 5,
+          "maxMove": 5,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 64
+      },
+      {
+        "name": "thin-row-wide",
+        "in": {
+          "m": 2,
+          "n": 50,
+          "maxMove": 5,
+          "startRow": 1,
+          "startColumn": 25
+        },
+        "out": 121
+      },
+      {
+        "name": "thin-col-tall",
+        "in": {
+          "m": 50,
+          "n": 2,
+          "maxMove": 5,
+          "startRow": 25,
+          "startColumn": 1
+        },
+        "out": 121
+      },
+      {
+        "name": "max-grid-zero",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 0,
+          "startRow": 25,
+          "startColumn": 25
+        },
+        "out": 0
+      },
+      {
+        "name": "max-grid-corner-one",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 1,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "max-grid-center-one",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 1,
+          "startRow": 25,
+          "startColumn": 25
+        },
+        "out": 0
+      },
+      {
+        "name": "max-grid-edge-two",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 2,
+          "startRow": 0,
+          "startColumn": 25
+        },
+        "out": 3
+      },
+      {
+        "name": "max-grid-center-five",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 5,
+          "startRow": 25,
+          "startColumn": 25
+        },
+        "out": 0
+      },
+      {
+        "name": "max-grid-corner-ten",
+        "in": {
+          "m": 50,
+          "n": 50,
+          "maxMove": 10,
+          "startRow": 0,
+          "startColumn": 0
+        },
+        "out": 15604
+      },
+      {
+        "name": "mid-grid-ten-moves",
+        "in": {
+          "m": 8,
+          "n": 7,
+          "maxMove": 10,
+          "startRow": 3,
+          "startColumn": 3
+        },
+        "out": 64943
+      },
+      {
+        "name": "asym-eight-moves",
+        "in": {
+          "m": 6,
+          "n": 9,
+          "maxMove": 8,
+          "startRow": 5,
+          "startColumn": 4
+        },
+        "out": 2453
+      },
+      {
+        "name": "near-max-moves-small-grid",
+        "in": {
+          "m": 3,
+          "n": 4,
+          "maxMove": 12,
+          "startRow": 1,
+          "startColumn": 2
+        },
+        "out": 406276
+      },
+      {
+        "name": "high-paths-mod",
+        "in": {
+          "m": 8,
+          "n": 8,
+          "maxMove": 20,
+          "startRow": 3,
+          "startColumn": 3
+        },
+        "out": 920657225
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "m = 2\nn = 2\nmaxMove = 2\nstartRow = 0\nstartColumn = 0",
+      "output": "6"
+    },
+    {
+      "input": "m = 1\nn = 3\nmaxMove = 3\nstartRow = 0\nstartColumn = 1",
+      "output": "12"
+    },
+    {
+      "input": "m = 1\nn = 1\nmaxMove = 0\nstartRow = 0\nstartColumn = 0",
+      "output": "0"
+    },
+    {
+      "input": "m = 1\nn = 1\nmaxMove = 1\nstartRow = 0\nstartColumn = 0",
+      "output": "4"
+    },
+    {
+      "input": "m = 1\nn = 1\nmaxMove = 2\nstartRow = 0\nstartColumn = 0",
+      "output": "4"
+    },
+    {
+      "input": "m = 3\nn = 3\nmaxMove = 1\nstartRow = 1\nstartColumn = 1",
+      "output": "0"
+    },
+    {
+      "input": "m = 3\nn = 3\nmaxMove = 1\nstartRow = 0\nstartColumn = 0",
+      "output": "2"
+    },
+    {
+      "input": "m = 3\nn = 4\nmaxMove = 1\nstartRow = 0\nstartColumn = 2",
+      "output": "1"
+    }
+  ]
+}

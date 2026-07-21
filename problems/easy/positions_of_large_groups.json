@@ -1,0 +1,650 @@
+{
+  "id": "positions_of_large_groups",
+  "title": "Positions of Large Groups",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>In a string <code><font face=\"monospace\">s</font></code> of lowercase letters, these letters form consecutive groups of the same character.</p> <p>For example, a string like <code>s = \"abbxxxxzyy\"</code> has the groups <code>\"a\"</code>, <code>\"bb\"</code>, <code>\"xxxx\"</code>, <code>\"z\"</code>, and <code>\"yy\"</code>.</p> <p>A group is identified by an interval <code>[start, end]</code>, where <code>start</code> and <code>end</code> denote the start and end indices (inclusive) of the group. In the above example, <code>\"xxxx\"</code> has the interval <code>[3,6]</code>.</p> <p>A group is considered <strong>large</strong> if it has 3 or more characters.</p> <p>Return <em>the intervals of every <strong>large</strong> group sorted in <strong>increasing order by start index</strong></em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"abbxxxxzzy\"\n<strong>Output:</strong> [[3,6]]\n<strong>Explanation:</strong> <code>\"xxxx\" is the only </code>large group with start index 3 and end index 6.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"abc\"\n<strong>Output:</strong> []\n<strong>Explanation:</strong> We have groups \"a\", \"b\", and \"c\", none of which are large groups.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> s = \"abcdddeeeeaabbbcd\"\n<strong>Output:</strong> [[3,5],[6,9],[12,14]]\n<strong>Explanation:</strong> The large groups are \"ddd\", \"eeee\", and \"bbb\".\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 1000</code></li> <li><code>s</code> contains lowercase English letters only.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "largeGroupPositions",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 830,
+      "title": "positions-of-large-groups",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().largeGroupPositions({s})",
+        "rust": "Solution::large_group_positions({s})",
+        "python3": "Solution().largeGroupPositions({s})",
+        "python2": "Solution().largeGroupPositions({s})",
+        "ruby": "large_group_positions({s})",
+        "java": "new Solution().largeGroupPositions({s})",
+        "csharp": "new Solution().LargeGroupPositions({s})",
+        "kotlin": "Solution().largeGroupPositions({s})",
+        "go": "largeGroupPositions({s})",
+        "dart": "Solution().largeGroupPositions({s})",
+        "swift": "Solution().largeGroupPositions({s})",
+        "typescript": "largeGroupPositions({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return isinstance(result, list)\n"
+      }
+    },
+    "seed": 830,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "abbxxxxzzy"
+        },
+        "out": [
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "abc"
+        },
+        "out": []
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "s": "abcdddeeeeaabbbcd"
+        },
+        "out": [
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            12,
+            14
+          ]
+        ]
+      },
+      {
+        "name": "single",
+        "in": {
+          "s": "a"
+        },
+        "out": []
+      },
+      {
+        "name": "pair",
+        "in": {
+          "s": "aa"
+        },
+        "out": []
+      },
+      {
+        "name": "triple",
+        "in": {
+          "s": "aaa"
+        },
+        "out": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "four",
+        "in": {
+          "s": "aaaa"
+        },
+        "out": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "mixed1",
+        "in": {
+          "s": "aabbbcc"
+        },
+        "out": [
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "mixed2",
+        "in": {
+          "s": "abbbccd"
+        },
+        "out": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "mixed3",
+        "in": {
+          "s": "aaabaaa"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "mixed4",
+        "in": {
+          "s": "qqqwweeeeerrr"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "mixed5",
+        "in": {
+          "s": "zzzzz"
+        },
+        "out": [
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "mixed6",
+        "in": {
+          "s": "abcdeffffg"
+        },
+        "out": [
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "mixed7",
+        "in": {
+          "s": "aabbcccdddde"
+        },
+        "out": [
+          [
+            4,
+            6
+          ],
+          [
+            7,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "mixed8",
+        "in": {
+          "s": "xxyyyzzzz"
+        },
+        "out": [
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "mixed9",
+        "in": {
+          "s": "pppqqrrrssst"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "mixed10",
+        "in": {
+          "s": "aaabcccdeeee"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "mixed11",
+        "in": {
+          "s": "aaaaab"
+        },
+        "out": [
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "mixed12",
+        "in": {
+          "s": "baaaa"
+        },
+        "out": [
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "mixed13",
+        "in": {
+          "s": "aabaaaa"
+        },
+        "out": [
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "mixed14",
+        "in": {
+          "s": "aaabbaaa"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "mixed15",
+        "in": {
+          "s": "abcdd"
+        },
+        "out": []
+      },
+      {
+        "name": "mixed16",
+        "in": {
+          "s": "abccc"
+        },
+        "out": [
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "mixed17",
+        "in": {
+          "s": "zzzyyyxxx"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "mixed18",
+        "in": {
+          "s": "aabccccdde"
+        },
+        "out": [
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "mixed19",
+        "in": {
+          "s": "aaaabbbbcccc"
+        },
+        "out": [
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "mixed20",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz"
+        },
+        "out": []
+      },
+      {
+        "name": "mixed21",
+        "in": {
+          "s": "aaabbbcccddd"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            9,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "mixed22",
+        "in": {
+          "s": "bbbbbaaaaccc"
+        },
+        "out": [
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            9,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "mixed23",
+        "in": {
+          "s": "cccdddde"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "mixed24",
+        "in": {
+          "s": "mmmmmnnn"
+        },
+        "out": [
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "mixed25",
+        "in": {
+          "s": "ttuuuvvvww"
+        },
+        "out": [
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "edge_leading_group",
+        "in": {
+          "s": "aaabc"
+        },
+        "out": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "edge_trailing_group",
+        "in": {
+          "s": "cabbb"
+        },
+        "out": [
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "edge_two_groups",
+        "in": {
+          "s": "aaabccc"
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "edge_separated",
+        "in": {
+          "s": "aabcccddde"
+        },
+        "out": [
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "edge_long_middle",
+        "in": {
+          "s": "xyzttttuvw"
+        },
+        "out": [
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "edge_alternating",
+        "in": {
+          "s": "abababab"
+        },
+        "out": []
+      },
+      {
+        "name": "edge_long_run",
+        "in": {
+          "s": "hhhhhhhhh"
+        },
+        "out": [
+          [
+            0,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "edge_small_big_small",
+        "in": {
+          "s": "aabbbbbcc"
+        },
+        "out": [
+          [
+            2,
+            6
+          ]
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abbxxxxzzy\"",
+      "output": "[[3, 6]]"
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"abcdddeeeeaabbbcd\"",
+      "output": "[[3, 5], [6, 9], [12, 14]]"
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"aaa\"",
+      "output": "[[0, 2]]"
+    },
+    {
+      "input": "s = \"aaaa\"",
+      "output": "[[0, 3]]"
+    },
+    {
+      "input": "s = \"aabbbcc\"",
+      "output": "[[2, 4]]"
+    }
+  ]
+}

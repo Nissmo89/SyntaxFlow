@@ -1,0 +1,584 @@
+{
+  "id": "optimal_division",
+  "title": "Optimal Division",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code>. The adjacent integers in <code>nums</code> will perform the float division.</p>\n\n<ul>\n\t<li>For example, for <code>nums = [2,3,4]</code>, we will evaluate the expression <code>&quot;2/3/4&quot;</code>.</li>\n</ul>\n\n<p>However, you can add any number of parenthesis at any position to change the priority of operations. You want to add these parentheses such the value of the expression after the evaluation is maximum.</p>\n\n<p>Return <em>the corresponding expression that has the maximum value in string format</em>.</p>\n\n<p><strong>Note:</strong> your expression should not contain redundant parenthesis.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1000,100,10,2]\n<strong>Output:</strong> &quot;1000/(100/10/2)&quot;\n<strong>Explanation:</strong> 1000/(100/10/2) = 1000/((100/10)/2) = 200\nHowever, the bold parenthesis in &quot;1000/(<strong>(</strong>100/10<strong>)</strong>/2)&quot; are redundant since they do not influence the operation priority.\nSo you should return &quot;1000/(100/10/2)&quot;.\nOther cases:\n1000/(100/10)/2 = 50\n1000/(100/(10/2)) = 50\n1000/100/10/2 = 0.5\n1000/100/(10/2) = 2\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,3,4]\n<strong>Output:</strong> &quot;2/(3/4)&quot;\n<strong>Explanation:</strong> (2/(3/4)) = 8/3 = 2.667\nIt can be shown that after trying all possibilities, we cannot get an expression with evaluation greater than 2.667\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10</code></li>\n\t<li><code>2 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li>There is only one optimal division for the given input.</li>\n</ul>\n",
+  "task": "Solve the 'Optimal Division' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 10",
+    "2 <= nums[i] <= 1000",
+    "There is only one optimal division for the given input."
+  ],
+  "hints": [],
+  "method": {
+    "name": "optimalDivision",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 553,
+      "title": "optimal-division",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().optimalDivision({nums})",
+        "rust": "Solution::optimal_division({nums})",
+        "python3": "Solution().optimalDivision({nums})",
+        "python2": "Solution().optimalDivision({nums})",
+        "ruby": "optimal_division({nums})",
+        "java": "new Solution().optimalDivision({nums})",
+        "csharp": "new Solution().OptimalDivision({nums})",
+        "kotlin": "Solution().optimalDivision({nums})",
+        "go": "optimalDivision({nums})",
+        "dart": "Solution().optimalDivision({nums})",
+        "swift": "Solution().optimalDivision({nums})",
+        "typescript": "optimalDivision({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(nums, {result})",
+        "checker": "import json\n\nclass Checker:\n    def check(self, nums, result):\n        if not isinstance(result, str):\n            return False\n        try:\n            decoded = json.loads(result)\n            if isinstance(decoded, str):\n                result = decoded\n        except Exception:\n            pass\n        if len(nums) == 1:\n            expected = str(nums[0])\n        elif len(nums) == 2:\n            expected = str(nums[0]) + \"/\" + str(nums[1])\n        else:\n            expected = str(nums[0]) + \"/(\" + \"/\".join(str(value) for value in nums[1:]) + \")\"\n        return result == expected\n"
+      }
+    },
+    "seed": 553,
+    "tests": [
+      {
+        "name": "example_four_values",
+        "in": {
+          "nums": [
+            1000,
+            100,
+            10,
+            2
+          ]
+        }
+      },
+      {
+        "name": "example_three_values",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "single_min",
+        "in": {
+          "nums": [
+            2
+          ]
+        }
+      },
+      {
+        "name": "single_max",
+        "in": {
+          "nums": [
+            1000
+          ]
+        }
+      },
+      {
+        "name": "pair_small",
+        "in": {
+          "nums": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "pair_large",
+        "in": {
+          "nums": [
+            1000,
+            999
+          ]
+        }
+      },
+      {
+        "name": "triple_equal",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "triple_desc",
+        "in": {
+          "nums": [
+            9,
+            3,
+            2
+          ]
+        }
+      },
+      {
+        "name": "triple_asc",
+        "in": {
+          "nums": [
+            2,
+            10,
+            100
+          ]
+        }
+      },
+      {
+        "name": "four_equal",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7
+          ]
+        }
+      },
+      {
+        "name": "four_mixed",
+        "in": {
+          "nums": [
+            8,
+            2,
+            5,
+            10
+          ]
+        }
+      },
+      {
+        "name": "five_sequence",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "name": "five_large",
+        "in": {
+          "nums": [
+            1000,
+            500,
+            250,
+            125,
+            2
+          ]
+        }
+      },
+      {
+        "name": "six_all_twos",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "six_mixed",
+        "in": {
+          "nums": [
+            3,
+            1000,
+            2,
+            999,
+            4,
+            998
+          ]
+        }
+      },
+      {
+        "name": "seven_primes",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17
+          ]
+        }
+      },
+      {
+        "name": "seven_desc",
+        "in": {
+          "nums": [
+            1000,
+            900,
+            800,
+            700,
+            600,
+            500,
+            400
+          ]
+        }
+      },
+      {
+        "name": "eight_alternating",
+        "in": {
+          "nums": [
+            2,
+            1000,
+            2,
+            1000,
+            2,
+            1000,
+            2,
+            1000
+          ]
+        }
+      },
+      {
+        "name": "eight_progression",
+        "in": {
+          "nums": [
+            12,
+            6,
+            3,
+            9,
+            27,
+            81,
+            243,
+            729
+          ]
+        }
+      },
+      {
+        "name": "nine_equal",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        }
+      },
+      {
+        "name": "nine_mixed",
+        "in": {
+          "nums": [
+            100,
+            10,
+            5,
+            2,
+            8,
+            4,
+            16,
+            32,
+            64
+          ]
+        }
+      },
+      {
+        "name": "ten_all_twos",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "ten_increasing",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      },
+      {
+        "name": "ten_decreasing",
+        "in": {
+          "nums": [
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2
+          ]
+        }
+      },
+      {
+        "name": "ten_large_varied",
+        "in": {
+          "nums": [
+            1000,
+            2,
+            999,
+            3,
+            998,
+            4,
+            997,
+            5,
+            996,
+            6
+          ]
+        }
+      },
+      {
+        "name": "repeats_with_tail",
+        "in": {
+          "nums": [
+            50,
+            50,
+            10,
+            10,
+            2
+          ]
+        }
+      },
+      {
+        "name": "powers_of_two",
+        "in": {
+          "nums": [
+            512,
+            256,
+            128,
+            64,
+            32,
+            16,
+            8,
+            4,
+            2
+          ]
+        }
+      },
+      {
+        "name": "alternating_small",
+        "in": {
+          "nums": [
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "randomish_four",
+        "in": {
+          "nums": [
+            321,
+            123,
+            456,
+            234
+          ]
+        }
+      },
+      {
+        "name": "near_max_values",
+        "in": {
+          "nums": [
+            1000,
+            1000,
+            999,
+            999,
+            998,
+            998,
+            997,
+            997,
+            996,
+            996
+          ]
+        }
+      },
+      {
+        "name": "generated_len_1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 1,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 55301
+      },
+      {
+        "name": "generated_len_2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 55302
+      },
+      {
+        "name": "generated_len_5",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 55303
+      },
+      {
+        "name": "generated_len_9",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 9,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 55304
+      },
+      {
+        "name": "generated_len_10",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 10,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 55305
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1000, 100, 10, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 3, 4]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1000]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1000, 999]",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, 5, 5]",
+      "output": ""
+    },
+    {
+      "input": "nums = [9, 3, 2]",
+      "output": ""
+    }
+  ]
+}

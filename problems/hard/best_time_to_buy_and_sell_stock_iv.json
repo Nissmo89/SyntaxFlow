@@ -1,0 +1,793 @@
+{
+  "id": "best_time_to_buy_and_sell_stock_iv",
+  "title": "Best Time to Buy and Sell Stock IV",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given an integer array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>i<sup>th</sup></code> day, and an integer <code>k</code>.</p>\n\n<p>Find the maximum profit you can achieve. You may complete at most <code>k</code> transactions: i.e. you may buy at most <code>k</code> times and sell at most <code>k</code> times.</p>\n\n<p><strong>Note:</strong> You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 2, prices = [2,4,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 2, prices = [3,2,6,5,0,3]\n<strong>Output:</strong> 7\n<strong>Explanation:</strong> Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n\t<li><code>1 &lt;= prices.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= prices[i] &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Best Time to Buy and Sell Stock IV' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= k <= 100",
+    "1 <= prices.length <= 1000",
+    "0 <= prices[i] <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxProfit",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "prices",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 188,
+      "title": "best-time-to-buy-and-sell-stock-iv",
+      "params": {
+        "k": {
+          "type": "int"
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxProfit({k}, {prices})",
+        "rust": "Solution::max_profit({k}, {prices})",
+        "python3": "Solution().maxProfit({k}, {prices})",
+        "python2": "Solution().maxProfit({k}, {prices})",
+        "ruby": "max_profit({k}, {prices})",
+        "java": "new Solution().maxProfit({k}, {prices})",
+        "csharp": "new Solution().MaxProfit({k}, {prices})",
+        "kotlin": "Solution().maxProfit({k}, {prices})",
+        "go": "maxProfit({k}, {prices})",
+        "dart": "Solution().maxProfit({k}, {prices})",
+        "swift": "Solution().maxProfit({k}, {prices})",
+        "typescript": "maxProfit({k}, {prices})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxProfit(k, prices, {result})",
+        "checker": "class Checker:\n    def maxProfit(self, k, prices, result) -> bool:\n        if not isinstance(result, int):\n            return False\n        n = len(prices)\n        if k < 0 or n < 0:\n            return False\n        if k == 0 or n < 2:\n            return result == 0\n        if k >= n // 2:\n            expected = sum(max(0, prices[i] - prices[i - 1]) for i in range(1, n))\n            return result == expected\n        hold = [-(10**18)] * (k + 1)\n        free = [0] * (k + 1)\n        for price in prices:\n            for t in range(1, k + 1):\n                hold[t] = max(hold[t], free[t - 1] - price)\n                free[t] = max(free[t], hold[t] + price)\n        expected = max(free)\n        return result == expected\n"
+      }
+    },
+    "seed": 188,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "k": 2,
+          "prices": [
+            2,
+            4,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "k": 2,
+          "prices": [
+            3,
+            2,
+            6,
+            5,
+            0,
+            3
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "single_day",
+        "in": {
+          "k": 1,
+          "prices": [
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_days_up",
+        "in": {
+          "k": 1,
+          "prices": [
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_days_down",
+        "in": {
+          "k": 1,
+          "prices": [
+            2,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "strictly_increasing_small_k",
+        "in": {
+          "k": 1,
+          "prices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "strictly_decreasing",
+        "in": {
+          "k": 1,
+          "prices": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_transactions_on_rise",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "all_equal",
+        "in": {
+          "k": 3,
+          "prices": [
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "classic_two_peaks",
+        "in": {
+          "k": 2,
+          "prices": [
+            3,
+            3,
+            5,
+            0,
+            0,
+            3,
+            1,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "k_equals_one_with_multiple_peaks",
+        "in": {
+          "k": 1,
+          "prices": [
+            1,
+            2,
+            4,
+            2,
+            5,
+            7,
+            2,
+            4,
+            9,
+            0
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "k_equals_two_with_multiple_peaks",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            2,
+            4,
+            2,
+            5,
+            7,
+            2,
+            4,
+            9,
+            0
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "k_large_triggers_greedy",
+        "in": {
+          "k": 100,
+          "prices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "small_wave",
+        "in": {
+          "k": 3,
+          "prices": [
+            2,
+            1,
+            2,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "zigzag_short",
+        "in": {
+          "k": 2,
+          "prices": [
+            6,
+            1,
+            3,
+            2,
+            4,
+            7
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "zigzag_longer",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            2,
+            4,
+            2,
+            5,
+            7,
+            2,
+            4,
+            9,
+            0
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "low_high_low",
+        "in": {
+          "k": 4,
+          "prices": [
+            2,
+            4,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "sawtooth_three_days",
+        "in": {
+          "k": 2,
+          "prices": [
+            2,
+            1,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "spike_at_end",
+        "in": {
+          "k": 2,
+          "prices": [
+            2,
+            4,
+            1,
+            7
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "two_big_moves",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            3,
+            2,
+            8,
+            4,
+            9
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "three_transactions_possible",
+        "in": {
+          "k": 3,
+          "prices": [
+            1,
+            3,
+            7,
+            5,
+            10,
+            3
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "tight_k_with_three_peaks",
+        "in": {
+          "k": 3,
+          "prices": [
+            2,
+            4,
+            1,
+            5,
+            2,
+            9,
+            7
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "k_more_than_needed",
+        "in": {
+          "k": 5,
+          "prices": [
+            3,
+            2,
+            6,
+            5,
+            0,
+            3
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "flat_zeroes",
+        "in": {
+          "k": 100,
+          "prices": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_small",
+        "in": {
+          "k": 50,
+          "prices": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "big_single_transaction",
+        "in": {
+          "k": 2,
+          "prices": [
+            5,
+            11,
+            3,
+            50,
+            60,
+            90
+          ]
+        },
+        "out": 93
+      },
+      {
+        "name": "up_down_up",
+        "in": {
+          "k": 3,
+          "prices": [
+            1,
+            2,
+            3,
+            0,
+            2,
+            5
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "descending_then_rise",
+        "in": {
+          "k": 2,
+          "prices": [
+            9,
+            8,
+            7,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "one_transaction_best_late",
+        "in": {
+          "k": 1,
+          "prices": [
+            1,
+            3,
+            2,
+            8,
+            4,
+            9
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "no_profit_with_large_k",
+        "in": {
+          "k": 10,
+          "prices": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "almost_every_day_trade",
+        "in": {
+          "k": 99,
+          "prices": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "two_transactions_with_reuse_trap",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "huge_prices",
+        "in": {
+          "k": 3,
+          "prices": [
+            1000,
+            0,
+            1000,
+            0,
+            1000
+          ]
+        },
+        "out": 2000
+      },
+      {
+        "name": "max_k_small_n",
+        "in": {
+          "k": 100,
+          "prices": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000,
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "large_alternating_20",
+        "in": {
+          "k": 49,
+          "prices": [
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000
+          ]
+        },
+        "out": 9990
+      },
+      {
+        "name": "k_two_on_repeating_pattern",
+        "in": {
+          "k": 2,
+          "prices": [
+            1,
+            5,
+            2,
+            3,
+            7,
+            2,
+            6,
+            4,
+            9
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "k_four_on_spread_peaks",
+        "in": {
+          "k": 4,
+          "prices": [
+            1,
+            3,
+            2,
+            8,
+            4,
+            9,
+            0,
+            10
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "long_monotone_greedy",
+        "in": {
+          "k": 20,
+          "prices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        "out": 19
+      },
+      {
+        "name": "two_days_zero_profit",
+        "in": {
+          "k": 2,
+          "prices": [
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "borderline_k_switch",
+        "in": {
+          "k": 5,
+          "prices": [
+            1,
+            2,
+            4,
+            2,
+            5,
+            7,
+            2,
+            4,
+            9,
+            0
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "generated_medium_random",
+        "seed": 188001,
+        "in": {
+          "k": {
+            "gen": "int",
+            "min": 1,
+            "max": 25
+          },
+          "prices": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 40,
+              "max": 40
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_large_random",
+        "seed": 188002,
+        "in": {
+          "k": {
+            "gen": "int",
+            "min": 1,
+            "max": 50
+          },
+          "prices": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100,
+              "max": 100
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "k = 2\nprices = [2, 4, 1]",
+      "output": "2"
+    },
+    {
+      "input": "k = 2\nprices = [3, 2, 6, 5, 0, 3]",
+      "output": "7"
+    },
+    {
+      "input": "k = 1\nprices = [1]",
+      "output": "0"
+    },
+    {
+      "input": "k = 1\nprices = [1, 2]",
+      "output": "1"
+    },
+    {
+      "input": "k = 1\nprices = [2, 1]",
+      "output": "0"
+    },
+    {
+      "input": "k = 1\nprices = [1, 2, 3, 4, 5]",
+      "output": "4"
+    },
+    {
+      "input": "k = 1\nprices = [5, 4, 3, 2, 1]",
+      "output": "0"
+    },
+    {
+      "input": "k = 2\nprices = [1, 2, 3, 4, 5]",
+      "output": "4"
+    }
+  ]
+}

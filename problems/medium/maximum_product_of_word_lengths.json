@@ -1,0 +1,529 @@
+{
+  "id": "maximum_product_of_word_lengths",
+  "title": "Maximum Product of Word Lengths",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String",
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given a string array <code>words</code>, return <em>the maximum value of</em> <code>length(word[i]) * length(word[j])</code> <em>where the two words do not share common letters</em>. If no such two words exist, return <code>0</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;abcw&quot;,&quot;baz&quot;,&quot;foo&quot;,&quot;bar&quot;,&quot;xtfn&quot;,&quot;abcdef&quot;]\n<strong>Output:</strong> 16\n<strong>Explanation:</strong> The two words can be &quot;abcw&quot;, &quot;xtfn&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;a&quot;,&quot;ab&quot;,&quot;abc&quot;,&quot;d&quot;,&quot;cd&quot;,&quot;bcd&quot;,&quot;abcd&quot;]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The two words can be &quot;ab&quot;, &quot;cd&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;a&quot;,&quot;aa&quot;,&quot;aaa&quot;,&quot;aaaa&quot;]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> No such pair of words.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= words.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 1000</code></li>\n\t<li><code>words[i]</code> consists only of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Maximum Product of Word Lengths' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "2 <= words.length <= 1000",
+    "1 <= words[i].length <= 1000",
+    "words[i] consists only of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxProduct",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 318,
+      "title": "maximum-product-of-word-lengths",
+      "params": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxProduct({words})",
+        "rust": "Solution::max_product({words})",
+        "python3": "Solution().maxProduct({words})",
+        "python2": "Solution().maxProduct({words})",
+        "ruby": "max_product({words})",
+        "java": "new Solution().maxProduct({words})",
+        "csharp": "new Solution().MaxProduct({words})",
+        "kotlin": "Solution().maxProduct({words})",
+        "go": "maxProduct({words})",
+        "dart": "Solution().maxProduct({words})",
+        "swift": "Solution().maxProduct({words})",
+        "typescript": "maxProduct({words})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(words, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def check(self, words: Any, result: Any) -> bool:\n        if not isinstance(words, list) or not isinstance(result, int):\n            return False\n        if len(words) < 2:\n            return False\n        bitmasks = []\n        for w in words:\n            if not isinstance(w, str):\n                return False\n            if not (1 <= len(w) <= 1000):\n                return False\n            mask = 0\n            seen = set()\n            for ch in w:\n                if not isinstance(ch, str) or len(ch) != 1 or not ('a' <= ch <= 'z'):\n                    return False\n                if ch not in seen:\n                    seen.add(ch)\n                    mask |= 1 << (ord(ch) - ord('a'))\n            bitmasks.append(mask)\n        expected = 0\n        for i in range(len(words)):\n            for j in range(i + 1, len(words)):\n                if bitmasks[i] & bitmasks[j] == 0:\n                    expected = max(expected, len(words[i]) * len(words[j]))\n        return result == expected\n"
+      }
+    },
+    "seed": 318,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "words": [
+            "abcw",
+            "baz",
+            "foo",
+            "bar",
+            "xtfn",
+            "abcdef"
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "words": [
+            "a",
+            "ab",
+            "abc",
+            "d",
+            "cd",
+            "bcd",
+            "abcd"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "words": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_single_letters",
+        "in": {
+          "words": [
+            "a",
+            "b"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_same_letters",
+        "in": {
+          "words": [
+            "aa",
+            "bb"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "all_disjoint_small",
+        "in": {
+          "words": [
+            "ab",
+            "cd",
+            "ef",
+            "gh"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "all_overlap",
+        "in": {
+          "words": [
+            "abc",
+            "cde",
+            "def"
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "duplicate_long_same_letters",
+        "in": {
+          "words": [
+            "aaaaa",
+            "bbbbb",
+            "ccccc",
+            "ddddd"
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "repeated_word_and_disjoint_pair",
+        "in": {
+          "words": [
+            "abc",
+            "abc",
+            "abc",
+            "def"
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "full_alphabet_and_single_letter",
+        "in": {
+          "words": [
+            "abcdefghijklmnopqrstuvwxyz",
+            "a"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "five_disjoint_fives",
+        "in": {
+          "words": [
+            "abcde",
+            "fghij",
+            "klmno",
+            "pqrst",
+            "uvwxyz"
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "overlapping_prefix_variants",
+        "in": {
+          "words": [
+            "abca",
+            "bcdb",
+            "cdec",
+            "defd",
+            "efge"
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "seven_disjoint_words",
+        "in": {
+          "words": [
+            "abcd",
+            "efgh",
+            "ijkl",
+            "mnop",
+            "qrst",
+            "uvwx",
+            "yz"
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "mixed_repeated_blocks",
+        "in": {
+          "words": [
+            "aaab",
+            "bccd",
+            "eeff",
+            "ghii"
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "moderate_disjoint_mixture",
+        "in": {
+          "words": [
+            "longword",
+            "another",
+            "zzz",
+            "yyy",
+            "xxx"
+          ]
+        },
+        "out": 24
+      },
+      {
+        "name": "five_small_disjointish",
+        "in": {
+          "words": [
+            "abc",
+            "defg",
+            "hij",
+            "klmn",
+            "opqrs"
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "alternating_letters",
+        "in": {
+          "words": [
+            "ace",
+            "bdf",
+            "ghj",
+            "ikm",
+            "lnp"
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "shared_prefix_many",
+        "in": {
+          "words": [
+            "abcd",
+            "aefg",
+            "ahij",
+            "aklm"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "common_but_not_all",
+        "in": {
+          "words": [
+            "qwerty",
+            "asdf",
+            "zxcv",
+            "poiuy"
+          ]
+        },
+        "out": 24
+      },
+      {
+        "name": "mixed_lengths_small",
+        "in": {
+          "words": [
+            "abcxyz",
+            "lmnop",
+            "rstuv",
+            "ghijk"
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "large_single_letter_runs",
+        "in": {
+          "words": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          ]
+        },
+        "out": 436320
+      },
+      {
+        "name": "large_mixed_runs",
+        "in": {
+          "words": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          ]
+        },
+        "out": 518694
+      },
+      {
+        "name": "all_disjoint_four_hundred",
+        "in": {
+          "words": [
+            "ababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+            "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+            "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+            "ghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghgh"
+          ]
+        },
+        "out": 72216
+      },
+      {
+        "name": "full_alphabet_overlap",
+        "in": {
+          "words": [
+            "abcdefghijklmnopqrstuvwxyz",
+            "bcdefghijklmnopqrstuvwxyza",
+            "zzzz",
+            "yyyy"
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "triple_repeated_blocks",
+        "in": {
+          "words": [
+            "abcabcabcabcabcabcabcabcabcabc",
+            "defdefdefdefdefdefdefdefdefdef",
+            "ghaghaghaghaghaghaghaghaghagha",
+            "ijkijkijkijkijkijkijkijkijkijk"
+          ]
+        },
+        "out": 900
+      },
+      {
+        "name": "two_max_length_single_letters",
+        "in": {
+          "words": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          ]
+        },
+        "out": 451552
+      },
+      {
+        "name": "large_overlap_then_disjoint",
+        "in": {
+          "words": [
+            "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
+            "defdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdef",
+            "ghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijkghijk"
+          ]
+        },
+        "out": 99225
+      },
+      {
+        "name": "large_three_disjoint_max",
+        "in": {
+          "words": [
+            "lmno",
+            "pqrs",
+            "tuvw",
+            "xyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxy"
+          ]
+        },
+        "out": 864
+      },
+      {
+        "name": "pair_with_overlap_and_disjoint",
+        "in": {
+          "words": [
+            "ab",
+            "cd",
+            "ae",
+            "fg"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "three_one_letter_words",
+        "in": {
+          "words": [
+            "a",
+            "c",
+            "e"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "no_disjoint_pair_among_many",
+        "in": {
+          "words": [
+            "ab",
+            "bc",
+            "cd",
+            "de"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "best_pair_not_first",
+        "in": {
+          "words": [
+            "aaa",
+            "bbb",
+            "cdef",
+            "gh"
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "same_mask_different_lengths",
+        "in": {
+          "words": [
+            "abc",
+            "ab",
+            "def",
+            "ghij"
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "long_single_and_short_disjoint",
+        "in": {
+          "words": [
+            "zzzzzzzzzz",
+            "a",
+            "bc",
+            "def"
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "multiple_pairs_same_best",
+        "in": {
+          "words": [
+            "abcd",
+            "efgh",
+            "ij",
+            "kl"
+          ]
+        },
+        "out": 16
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = [\"abcw\", \"baz\", \"foo\", \"bar\", \"xtfn\", \"abcdef\"]",
+      "output": "16"
+    },
+    {
+      "input": "words = [\"a\", \"ab\", \"abc\", \"d\", \"cd\", \"bcd\", \"abcd\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"a\", \"aa\", \"aaa\", \"aaaa\"]",
+      "output": "0"
+    },
+    {
+      "input": "words = [\"a\", \"b\"]",
+      "output": "1"
+    },
+    {
+      "input": "words = [\"aa\", \"bb\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"ab\", \"cd\", \"ef\", \"gh\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"abc\", \"cde\", \"def\"]",
+      "output": "9"
+    },
+    {
+      "input": "words = [\"aaaaa\", \"bbbbb\", \"ccccc\", \"ddddd\"]",
+      "output": "25"
+    }
+  ]
+}

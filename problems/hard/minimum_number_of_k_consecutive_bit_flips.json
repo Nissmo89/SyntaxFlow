@@ -1,0 +1,616 @@
+{
+  "id": "minimum_number_of_k_consecutive_bit_flips",
+  "title": "Minimum Number of K Consecutive Bit Flips",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "description": "<p>You are given a binary array <code>nums</code> and an integer <code>k</code>.</p>\n\n<p>A <strong>k-bit flip</strong> is choosing a <strong>subarray</strong> of length <code>k</code> from <code>nums</code> and simultaneously changing every <code>0</code> in the subarray to <code>1</code>, and every <code>1</code> in the subarray to <code>0</code>.</p>\n\n<p>Return <em>the minimum number of <strong>k-bit flips</strong> required so that there is no </em><code>0</code><em> in the array</em>. If it is not possible, return <code>-1</code>.</p>\n\n<p>A <strong>subarray</strong> is a <strong>contiguous</strong> part of an array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,0], k = 1\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Flip nums[0], then flip nums[2].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,0], k = 2\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> No matter how we flip subarrays of size 2, we cannot make the array become [1,1,1].\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0,1,0,1,1,0], k = 3\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> \nFlip nums[0],nums[1],nums[2]: nums becomes [1,1,1,1,0,1,1,0]\nFlip nums[4],nums[5],nums[6]: nums becomes [1,1,1,1,1,0,0,0]\nFlip nums[5],nums[6],nums[7]: nums becomes [1,1,1,1,1,1,1,1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= nums.length</code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Number of K Consecutive Bit Flips' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= k <= nums.length"
+  ],
+  "hints": [],
+  "method": {
+    "name": "minKBitFlips",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 995,
+      "title": "minimum-number-of-k-consecutive-bit-flips",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().minKBitFlips({nums}, {k})",
+        "rust": "Solution::min_k_bit_flips({nums}, {k})",
+        "python3": "Solution().minKBitFlips({nums}, {k})",
+        "python2": "Solution().minKBitFlips({nums}, {k})",
+        "ruby": "min_k_bit_flips({nums}, {k})",
+        "java": "new Solution().minKBitFlips({nums}, {k})",
+        "csharp": "new Solution().MinKBitFlips({nums}, {k})",
+        "kotlin": "Solution().minKBitFlips({nums}, {k})",
+        "go": "minKBitFlips({nums}, {k})",
+        "dart": "Solution().minKBitFlips({nums}, {k})",
+        "swift": "Solution().minKBitFlips({nums}, {k})",
+        "typescript": "minKBitFlips({nums}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 995,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "nums": [
+            0,
+            1
+          ],
+          "k": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "nums": [
+            0,
+            1
+          ],
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "k": 9
+        },
+        "out": -1
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 8
+        },
+        "out": -1
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "nums": [
+            0,
+            1
+          ],
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "k": 1
+        },
+        "out": 5
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "nums": [
+            1
+          ],
+          "k": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0
+          ],
+          "k": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "nums": [
+            1
+          ],
+          "k": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "k": 1
+        },
+        "out": 6
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "k": 1
+        },
+        "out": 3
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          "k": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "nums": [
+            0,
+            1
+          ],
+          "k": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "k": 2
+        },
+        "out": 3
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "k": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "k": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "k": 8
+        },
+        "out": -1
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "k": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0
+          ],
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "nums": [
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "k": 3
+        },
+        "out": 1
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "k": 1
+        },
+        "out": 3
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "nums": [
+            0
+          ],
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "nums": [
+            0,
+            1
+          ],
+          "k": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          "k": 7
+        },
+        "out": -1
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "k": 5
+        },
+        "out": 3
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [0, 1]\nk = 2",
+      "output": "-1"
+    },
+    {
+      "input": "nums = [0, 1]\nk = 1",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0, 1, 0, 1, 0, 0, 1, 0, 0]\nk = 9",
+      "output": "-1"
+    },
+    {
+      "input": "nums = [1, 1, 1]\nk = 2",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 0, 0, 1, 1, 1, 1, 1]\nk = 8",
+      "output": "-1"
+    },
+    {
+      "input": "nums = [0, 1]\nk = 1",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 0, 0, 0, 0, 1]\nk = 5",
+      "output": "-1"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0]\nk = 1",
+      "output": "5"
+    }
+  ]
+}

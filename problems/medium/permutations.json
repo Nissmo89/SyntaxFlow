@@ -1,0 +1,645 @@
+{
+  "id": "permutations",
+  "title": "Permutations",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Backtracking"
+  ],
+  "description": "<p>Given an array <code>nums</code> of distinct integers, return all the possible <span data-keyword=\"permutation-array\">permutations</span>. You can return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [0,1]\n<strong>Output:</strong> [[0,1],[1,0]]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> nums = [1]\n<strong>Output:</strong> [[1]]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 6</code></li>\n\t<li><code>-10 &lt;= nums[i] &lt;= 10</code></li>\n\t<li>All the integers of <code>nums</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Permutations' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 6",
+    "-10 <= nums[i] <= 10",
+    "All the integers of nums are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "permute",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 46,
+      "title": "permutations",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().permute({nums})",
+        "rust": "Solution::permute({nums})",
+        "python3": "Solution().permute({nums})",
+        "python2": "Solution().permute({nums})",
+        "ruby": "permute({nums})",
+        "java": "new Solution().permute({nums})",
+        "csharp": "new Solution().Permute({nums})",
+        "kotlin": "Solution().permute({nums})",
+        "go": "permute({nums})",
+        "dart": "Solution().permute({nums})",
+        "swift": "Solution().permute({nums})",
+        "typescript": "permute({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().permute(nums, {result})",
+        "checker": "class Checker:\n    def permute(self, nums, result):\n        if not isinstance(result, list):\n            return False\n\n        n = len(nums)\n        expected_count = 1\n        for i in range(2, n + 1):\n            expected_count *= i\n\n        seen = set()\n        for perm in result:\n            if not isinstance(perm, list) or len(perm) != n:\n                return False\n            if any(not isinstance(x, int) for x in perm):\n                return False\n            if sorted(perm) != sorted(nums):\n                return False\n            tup = tuple(perm)\n            if tup in seen:\n                return False\n            seen.add(tup)\n\n        if len(seen) != expected_count:\n            return False\n\n        return seen == {tuple(p) for p in __import__(\"itertools\").permutations(nums)}\n"
+      }
+    },
+    "seed": 46,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "seed": 101
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            0,
+            1
+          ]
+        },
+        "seed": 102
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "seed": 103
+      },
+      {
+        "name": "two_elements_negative",
+        "in": {
+          "nums": [
+            -1,
+            2
+          ]
+        },
+        "seed": 104
+      },
+      {
+        "name": "two_elements_swapped_order",
+        "in": {
+          "nums": [
+            5,
+            -3
+          ]
+        },
+        "seed": 105
+      },
+      {
+        "name": "three_elements_mixed_sign",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            2
+          ]
+        },
+        "seed": 106
+      },
+      {
+        "name": "three_elements_descending",
+        "in": {
+          "nums": [
+            3,
+            2,
+            1
+          ]
+        },
+        "seed": 107
+      },
+      {
+        "name": "four_elements_small",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "seed": 108
+      },
+      {
+        "name": "four_elements_with_zero",
+        "in": {
+          "nums": [
+            0,
+            2,
+            -2,
+            5
+          ]
+        },
+        "seed": 109
+      },
+      {
+        "name": "four_elements_negative_heavy",
+        "in": {
+          "nums": [
+            -4,
+            -3,
+            1,
+            2
+          ]
+        },
+        "seed": 110
+      },
+      {
+        "name": "five_elements_nearly_sorted",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            5,
+            4
+          ]
+        },
+        "seed": 111
+      },
+      {
+        "name": "five_elements_with_extremes",
+        "in": {
+          "nums": [
+            -10,
+            -1,
+            0,
+            1,
+            10
+          ]
+        },
+        "seed": 112
+      },
+      {
+        "name": "five_elements_reverse_order",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "seed": 113
+      },
+      {
+        "name": "six_elements_example_scale",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "seed": 114
+      },
+      {
+        "name": "six_elements_mixed_signs",
+        "in": {
+          "nums": [
+            -3,
+            -1,
+            0,
+            2,
+            4,
+            6
+          ]
+        },
+        "seed": 115
+      },
+      {
+        "name": "six_elements_sparse",
+        "in": {
+          "nums": [
+            -10,
+            -5,
+            1,
+            3,
+            7,
+            10
+          ]
+        },
+        "seed": 116
+      },
+      {
+        "name": "six_elements_random_order",
+        "in": {
+          "nums": [
+            8,
+            -2,
+            4,
+            -6,
+            1,
+            0
+          ]
+        },
+        "seed": 117
+      },
+      {
+        "name": "six_elements_negative_to_positive",
+        "in": {
+          "nums": [
+            -6,
+            -4,
+            -2,
+            1,
+            3,
+            5
+          ]
+        },
+        "seed": 118
+      },
+      {
+        "name": "generated_len_3_a",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 201
+      },
+      {
+        "name": "generated_len_4_a",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 202
+      },
+      {
+        "name": "generated_len_5_a",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 203
+      },
+      {
+        "name": "generated_len_6_a",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 204
+      },
+      {
+        "name": "generated_len_6_b",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 205
+      },
+      {
+        "name": "edge_min_values",
+        "in": {
+          "nums": [
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5
+          ]
+        },
+        "seed": 301
+      },
+      {
+        "name": "edge_max_values",
+        "in": {
+          "nums": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "seed": 302
+      },
+      {
+        "name": "alternating_signs",
+        "in": {
+          "nums": [
+            -1,
+            1,
+            -2,
+            2,
+            -3,
+            3
+          ]
+        },
+        "seed": 303
+      },
+      {
+        "name": "almost_sorted_with_tail_swap",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            5
+          ]
+        },
+        "seed": 304
+      },
+      {
+        "name": "center_zero_mix",
+        "in": {
+          "nums": [
+            4,
+            0,
+            -4,
+            2,
+            -2,
+            6
+          ]
+        },
+        "seed": 305
+      },
+      {
+        "name": "wide_range_small",
+        "in": {
+          "nums": [
+            -10,
+            -3,
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        "seed": 306
+      },
+      {
+        "name": "wide_range_medium",
+        "in": {
+          "nums": [
+            -8,
+            -4,
+            -1,
+            3,
+            5,
+            10
+          ]
+        },
+        "seed": 307
+      },
+      {
+        "name": "six_descending",
+        "in": {
+          "nums": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "seed": 308
+      },
+      {
+        "name": "six_mixed_far_apart",
+        "in": {
+          "nums": [
+            -10,
+            -2,
+            1,
+            4,
+            8,
+            9
+          ]
+        },
+        "seed": 309
+      },
+      {
+        "name": "six_sparse_centered",
+        "in": {
+          "nums": [
+            -9,
+            -1,
+            0,
+            1,
+            8,
+            10
+          ]
+        },
+        "seed": 310
+      },
+      {
+        "name": "generated_len_3_b",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 401
+      },
+      {
+        "name": "generated_len_4_b",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 402
+      },
+      {
+        "name": "generated_len_5_b",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 403
+      },
+      {
+        "name": "generated_len_6_c",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 404
+      },
+      {
+        "name": "generated_len_6_d",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": -10,
+              "max": 10
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 405
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0, 1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, -3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, 0, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [3, 2, 1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": ""
+    }
+  ]
+}

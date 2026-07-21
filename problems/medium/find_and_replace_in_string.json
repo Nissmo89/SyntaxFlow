@@ -1,0 +1,821 @@
+{
+  "id": "find_and_replace_in_string",
+  "title": "Find And Replace in String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "description": "<p>You are given a <strong>0-indexed</strong> string <code>s</code> that you must perform <code>k</code> replacement operations on. The replacement operations are given as three <strong>0-indexed</strong> parallel arrays, <code>indices</code>, <code>sources</code>, and <code>targets</code>, all of length <code>k</code>.</p>\n\n<p>To complete the <code>i<sup>th</sup></code> replacement operation:</p>\n\n<ol>\n\t<li>Check if the <strong>substring</strong> <code>sources[i]</code> occurs at index <code>indices[i]</code> in the <strong>original string</strong> <code>s</code>.</li>\n\t<li>If it does not occur, <strong>do nothing</strong>.</li>\n\t<li>Otherwise if it does occur, <strong>replace</strong> that substring with <code>targets[i]</code>.</li>\n</ol>\n\n<p>For example, if <code>s = &quot;<u>ab</u>cd&quot;</code>, <code>indices[i] = 0</code>, <code>sources[i] = &quot;ab&quot;</code>, and <code>targets[i] = &quot;eee&quot;</code>, then the result of this replacement will be <code>&quot;<u>eee</u>cd&quot;</code>.</p>\n\n<p>All replacement operations must occur <strong>simultaneously</strong>, meaning the replacement operations should not affect the indexing of each other. The testcases will be generated such that the replacements will <strong>not overlap</strong>.</p>\n\n<ul>\n\t<li>For example, a testcase with <code>s = &quot;abc&quot;</code>, <code>indices = [0, 1]</code>, and <code>sources = [&quot;ab&quot;,&quot;bc&quot;]</code> will not be generated because the <code>&quot;ab&quot;</code> and <code>&quot;bc&quot;</code> replacements overlap.</li>\n</ul>\n\n<p>Return <em>the <strong>resulting string</strong> after performing all replacement operations on </em><code>s</code>.</p>\n\n<p>A <strong>substring</strong> is a contiguous sequence of characters in a string.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/12/833-ex1.png\" style=\"width: 411px; height: 251px;\" />\n<pre>\n<strong>Input:</strong> s = &quot;abcd&quot;, indices = [0, 2], sources = [&quot;a&quot;, &quot;cd&quot;], targets = [&quot;eee&quot;, &quot;ffff&quot;]\n<strong>Output:</strong> &quot;eeebffff&quot;\n<strong>Explanation:</strong>\n&quot;a&quot; occurs at index 0 in s, so we replace it with &quot;eee&quot;.\n&quot;cd&quot; occurs at index 2 in s, so we replace it with &quot;ffff&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/12/833-ex2-1.png\" style=\"width: 411px; height: 251px;\" />\n<pre>\n<strong>Input:</strong> s = &quot;abcd&quot;, indices = [0, 2], sources = [&quot;ab&quot;,&quot;ec&quot;], targets = [&quot;eee&quot;,&quot;ffff&quot;]\n<strong>Output:</strong> &quot;eeecd&quot;\n<strong>Explanation:</strong>\n&quot;ab&quot; occurs at index 0 in s, so we replace it with &quot;eee&quot;.\n&quot;ec&quot; does not occur at index 2 in s, so we do nothing.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>k == indices.length == sources.length == targets.length</code></li>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n\t<li><code>0 &lt;= indexes[i] &lt; s.length</code></li>\n\t<li><code>1 &lt;= sources[i].length, targets[i].length &lt;= 50</code></li>\n\t<li><code>s</code> consists of only lowercase English letters.</li>\n\t<li><code>sources[i]</code> and <code>targets[i]</code> consist of only lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Find And Replace in String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "k == indices.length == sources.length == targets.length",
+    "1 <= k <= 100",
+    "0 <= indexes[i] < s.length",
+    "1 <= sources[i].length, targets[i].length <= 50",
+    "s consists of only lowercase English letters.",
+    "sources[i] and targets[i] consist of only lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findReplaceString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "indices",
+        "type": "array"
+      },
+      {
+        "name": "sources",
+        "type": "array"
+      },
+      {
+        "name": "targets",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 833,
+      "title": "find-and-replace-in-string",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "indices": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "rust": "Solution::find_replace_string({s}, {indices}, {sources}, {targets})",
+        "python3": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "python2": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "ruby": "find_replace_string({s}, {indices}, {sources}, {targets})",
+        "java": "new Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "csharp": "new Solution().FindReplaceString({s}, {indices}, {sources}, {targets})",
+        "kotlin": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "go": "findReplaceString({s}, {indices}, {sources}, {targets})",
+        "dart": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "swift": "Solution().findReplaceString({s}, {indices}, {sources}, {targets})",
+        "typescript": "findReplaceString({s}, {indices}, {sources}, {targets})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 833,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "abcd",
+          "indices": [
+            0,
+            2
+          ],
+          "sources": [
+            "a",
+            "cd"
+          ],
+          "targets": [
+            "eee",
+            "ffff"
+          ]
+        },
+        "out": "eeebffff"
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "abcd",
+          "indices": [
+            0,
+            2
+          ],
+          "sources": [
+            "ab",
+            "ec"
+          ],
+          "targets": [
+            "eee",
+            "ffff"
+          ]
+        },
+        "out": "eeecd"
+      },
+      {
+        "name": "no_replacements",
+        "in": {
+          "s": "abcdef",
+          "indices": [
+            1,
+            3
+          ],
+          "sources": [
+            "zz",
+            "yy"
+          ],
+          "targets": [
+            "qq",
+            "ww"
+          ]
+        },
+        "out": "abcdef"
+      },
+      {
+        "name": "one_replacement_middle",
+        "in": {
+          "s": "helloworld",
+          "indices": [
+            5
+          ],
+          "sources": [
+            "world"
+          ],
+          "targets": [
+            "earth"
+          ]
+        },
+        "out": "helloearth"
+      },
+      {
+        "name": "adjacent_non_overlap",
+        "in": {
+          "s": "abcxyz",
+          "indices": [
+            0,
+            3
+          ],
+          "sources": [
+            "abc",
+            "xyz"
+          ],
+          "targets": [
+            "mm",
+            "nn"
+          ]
+        },
+        "out": "mmnn"
+      },
+      {
+        "name": "replace_with_longer",
+        "in": {
+          "s": "aaaaaa",
+          "indices": [
+            0,
+            2,
+            4
+          ],
+          "sources": [
+            "aa",
+            "aa",
+            "aa"
+          ],
+          "targets": [
+            "bb",
+            "cc",
+            "dd"
+          ]
+        },
+        "out": "bbccdd"
+      },
+      {
+        "name": "replace_with_shorter",
+        "in": {
+          "s": "thequickbrownfox",
+          "indices": [
+            3,
+            8
+          ],
+          "sources": [
+            "quick",
+            "brown"
+          ],
+          "targets": [
+            "qq",
+            "bb"
+          ]
+        },
+        "out": "theqqbbfox"
+      },
+      {
+        "name": "mixed_match_and_miss",
+        "in": {
+          "s": "abcabcabc",
+          "indices": [
+            0,
+            3,
+            6
+          ],
+          "sources": [
+            "ab",
+            "bc",
+            "abc"
+          ],
+          "targets": [
+            "xx",
+            "yy",
+            "zz"
+          ]
+        },
+        "out": "xxcabczz"
+      },
+      {
+        "name": "full_replace",
+        "in": {
+          "s": "leetcode",
+          "indices": [
+            0,
+            4
+          ],
+          "sources": [
+            "leet",
+            "code"
+          ],
+          "targets": [
+            "see",
+            "do"
+          ]
+        },
+        "out": "seedo"
+      },
+      {
+        "name": "prefix_only",
+        "in": {
+          "s": "abcdef",
+          "indices": [
+            0
+          ],
+          "sources": [
+            "ab"
+          ],
+          "targets": [
+            "zz"
+          ]
+        },
+        "out": "zzcdef"
+      },
+      {
+        "name": "suffix_only",
+        "in": {
+          "s": "abcdef",
+          "indices": [
+            4
+          ],
+          "sources": [
+            "ef"
+          ],
+          "targets": [
+            "zz"
+          ]
+        },
+        "out": "abcdzz"
+      },
+      {
+        "name": "three_matches_gap",
+        "in": {
+          "s": "xxabyycdzz",
+          "indices": [
+            2,
+            6
+          ],
+          "sources": [
+            "ab",
+            "cd"
+          ],
+          "targets": [
+            "QQ",
+            "RR"
+          ]
+        },
+        "out": "xxQQyyRRzz"
+      },
+      {
+        "name": "repeated_letters",
+        "in": {
+          "s": "aaaaabaaaa",
+          "indices": [
+            0,
+            5
+          ],
+          "sources": [
+            "aaaaa",
+            "ba"
+          ],
+          "targets": [
+            "XX",
+            "YY"
+          ]
+        },
+        "out": "XXYYaaa"
+      },
+      {
+        "name": "replace_entire_string",
+        "in": {
+          "s": "abc",
+          "indices": [
+            0
+          ],
+          "sources": [
+            "abc"
+          ],
+          "targets": [
+            "xyz"
+          ]
+        },
+        "out": "xyz"
+      },
+      {
+        "name": "no_match_single_char",
+        "in": {
+          "s": "xyz",
+          "indices": [
+            1
+          ],
+          "sources": [
+            "a"
+          ],
+          "targets": [
+            "bb"
+          ]
+        },
+        "out": "xyz"
+      },
+      {
+        "name": "alternating_misses",
+        "in": {
+          "s": "abcdefgh",
+          "indices": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "sources": [
+            "ab",
+            "xx",
+            "ef",
+            "yy"
+          ],
+          "targets": [
+            "MM",
+            "NN",
+            "OO",
+            "PP"
+          ]
+        },
+        "out": "MMcdOOgh"
+      },
+      {
+        "name": "longer_targets",
+        "in": {
+          "s": "foobarbaz",
+          "indices": [
+            0,
+            3
+          ],
+          "sources": [
+            "foo",
+            "bar"
+          ],
+          "targets": [
+            "start",
+            "middle"
+          ]
+        },
+        "out": "startmiddlebaz"
+      },
+      {
+        "name": "shorter_targets",
+        "in": {
+          "s": "programming",
+          "indices": [
+            0,
+            3
+          ],
+          "sources": [
+            "pro",
+            "gr"
+          ],
+          "targets": [
+            "PP",
+            "GG"
+          ]
+        },
+        "out": "PPGGamming"
+      },
+      {
+        "name": "mixed_case_like",
+        "in": {
+          "s": "aBcDeF",
+          "indices": [
+            1,
+            3,
+            5
+          ],
+          "sources": [
+            "B",
+            "D",
+            "F"
+          ],
+          "targets": [
+            "bb",
+            "dd",
+            "ff"
+          ]
+        },
+        "out": "abbcddeff"
+      },
+      {
+        "name": "touch_near_end",
+        "in": {
+          "s": "abcdefg",
+          "indices": [
+            5
+          ],
+          "sources": [
+            "fg"
+          ],
+          "targets": [
+            "ZZ"
+          ]
+        },
+        "out": "abcdeZZ"
+      },
+      {
+        "name": "touch_near_beginning",
+        "in": {
+          "s": "abcdefg",
+          "indices": [
+            0
+          ],
+          "sources": [
+            "abc"
+          ],
+          "targets": [
+            "QQ"
+          ]
+        },
+        "out": "QQdefg"
+      },
+      {
+        "name": "two_disjoint_long",
+        "in": {
+          "s": "mississippi",
+          "indices": [
+            1,
+            4,
+            7
+          ],
+          "sources": [
+            "iss",
+            "iss",
+            "ipp"
+          ],
+          "targets": [
+            "AA",
+            "BB",
+            "CC"
+          ]
+        },
+        "out": "mAABBCCi"
+      },
+      {
+        "name": "exact_no_gap",
+        "in": {
+          "s": "abcabc",
+          "indices": [
+            0,
+            3
+          ],
+          "sources": [
+            "abc",
+            "abc"
+          ],
+          "targets": [
+            "aa",
+            "bb"
+          ]
+        },
+        "out": "aabb"
+      },
+      {
+        "name": "match_after_miss",
+        "in": {
+          "s": "zzzabczzz",
+          "indices": [
+            0,
+            3,
+            6
+          ],
+          "sources": [
+            "yy",
+            "abc",
+            "yy"
+          ],
+          "targets": [
+            "xx",
+            "QQ",
+            "yy"
+          ]
+        },
+        "out": "zzzQQzzz"
+      },
+      {
+        "name": "same_length_targets",
+        "in": {
+          "s": "library",
+          "indices": [
+            0,
+            4
+          ],
+          "sources": [
+            "lib",
+            "ary"
+          ],
+          "targets": [
+            "cat",
+            "dog"
+          ]
+        },
+        "out": "catrdog"
+      },
+      {
+        "name": "three_block_replacements",
+        "in": {
+          "s": "abcdxyzuvw",
+          "indices": [
+            0,
+            4,
+            7
+          ],
+          "sources": [
+            "ab",
+            "xyz",
+            "uv"
+          ],
+          "targets": [
+            "AA",
+            "BB",
+            "CC"
+          ]
+        },
+        "out": "AAcdBBCCw"
+      },
+      {
+        "name": "overlapping_input_not_allowed_effective",
+        "in": {
+          "s": "abcdef",
+          "indices": [
+            0,
+            1
+          ],
+          "sources": [
+            "ab",
+            "bc"
+          ],
+          "targets": [
+            "XX",
+            "YY"
+          ]
+        },
+        "out": "XXcdef"
+      },
+      {
+        "name": "empty_change_prefix_and_suffix",
+        "in": {
+          "s": "hello",
+          "indices": [
+            0,
+            4
+          ],
+          "sources": [
+            "he",
+            "o"
+          ],
+          "targets": [
+            "HH",
+            "OO"
+          ]
+        },
+        "out": "HHllOO"
+      },
+      {
+        "name": "repeated_index_style",
+        "in": {
+          "s": "banana",
+          "indices": [
+            1,
+            3
+          ],
+          "sources": [
+            "an",
+            "an"
+          ],
+          "targets": [
+            "XX",
+            "YY"
+          ]
+        },
+        "out": "bXXYYa"
+      },
+      {
+        "name": "all_miss_long",
+        "in": {
+          "s": "qwertyuiop",
+          "indices": [
+            0,
+            2,
+            4
+          ],
+          "sources": [
+            "zz",
+            "xx",
+            "vv"
+          ],
+          "targets": [
+            "aa",
+            "bb",
+            "cc"
+          ]
+        },
+        "out": "qwertyuiop"
+      },
+      {
+        "name": "dense_small",
+        "in": {
+          "s": "abracadabra",
+          "indices": [
+            0,
+            3,
+            5,
+            7
+          ],
+          "sources": [
+            "a",
+            "a",
+            "d",
+            "a"
+          ],
+          "targets": [
+            "XX",
+            "YY",
+            "ZZ",
+            "WW"
+          ]
+        },
+        "out": "XXbrYYcadWWbra"
+      },
+      {
+        "name": "end_to_end",
+        "in": {
+          "s": "abcdefghij",
+          "indices": [
+            0,
+            3,
+            6,
+            9
+          ],
+          "sources": [
+            "abc",
+            "def",
+            "ghi",
+            "j"
+          ],
+          "targets": [
+            "aa",
+            "bb",
+            "cc",
+            "dd"
+          ]
+        },
+        "out": "aabbccdd"
+      },
+      {
+        "name": "mid_string_miss_then_hit",
+        "in": {
+          "s": "xxxyyyzzz",
+          "indices": [
+            0,
+            3,
+            6
+          ],
+          "sources": [
+            "xxx",
+            "yyy",
+            "aaa"
+          ],
+          "targets": [
+            "AA",
+            "BB",
+            "CC"
+          ]
+        },
+        "out": "AABBzzz"
+      },
+      {
+        "name": "short_prefix_replace",
+        "in": {
+          "s": "testcase",
+          "indices": [
+            0
+          ],
+          "sources": [
+            "test"
+          ],
+          "targets": [
+            "ok"
+          ]
+        },
+        "out": "okcase"
+      },
+      {
+        "name": "short_suffix_replace",
+        "in": {
+          "s": "testcase",
+          "indices": [
+            4
+          ],
+          "sources": [
+            "case"
+          ],
+          "targets": [
+            "done"
+          ]
+        },
+        "out": "testdone"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abcd\"\nindices = [0, 2]\nsources = [\"a\", \"cd\"]\ntargets = [\"eee\", \"ffff\"]",
+      "output": "\"eeebffff\""
+    },
+    {
+      "input": "s = \"abcd\"\nindices = [0, 2]\nsources = [\"ab\", \"ec\"]\ntargets = [\"eee\", \"ffff\"]",
+      "output": "\"eeecd\""
+    },
+    {
+      "input": "s = \"abcdef\"\nindices = [1, 3]\nsources = [\"zz\", \"yy\"]\ntargets = [\"qq\", \"ww\"]",
+      "output": "\"abcdef\""
+    },
+    {
+      "input": "s = \"helloworld\"\nindices = [5]\nsources = [\"world\"]\ntargets = [\"earth\"]",
+      "output": "\"helloearth\""
+    },
+    {
+      "input": "s = \"abcxyz\"\nindices = [0, 3]\nsources = [\"abc\", \"xyz\"]\ntargets = [\"mm\", \"nn\"]",
+      "output": "\"mmnn\""
+    },
+    {
+      "input": "s = \"aaaaaa\"\nindices = [0, 2, 4]\nsources = [\"aa\", \"aa\", \"aa\"]\ntargets = [\"bb\", \"cc\", \"dd\"]",
+      "output": "\"bbccdd\""
+    },
+    {
+      "input": "s = \"thequickbrownfox\"\nindices = [3, 8]\nsources = [\"quick\", \"brown\"]\ntargets = [\"qq\", \"bb\"]",
+      "output": "\"theqqbbfox\""
+    },
+    {
+      "input": "s = \"abcabcabc\"\nindices = [0, 3, 6]\nsources = [\"ab\", \"bc\", \"abc\"]\ntargets = [\"xx\", \"yy\", \"zz\"]",
+      "output": "\"xxcabczz\""
+    }
+  ]
+}

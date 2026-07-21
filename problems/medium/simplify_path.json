@@ -1,0 +1,350 @@
+{
+  "id": "simplify_path",
+  "title": "Simplify Path",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>You are given an <em>absolute</em> path for a Unix-style file system, which always begins with a slash <code>&#39;/&#39;</code>. Your task is to transform this absolute path into its <strong>simplified canonical path</strong>.</p>\n\n<p>The <em>rules</em> of a Unix-style file system are as follows:</p>\n\n<ul>\n\t<li>A single period <code>&#39;.&#39;</code> represents the current directory.</li>\n\t<li>A double period <code>&#39;..&#39;</code> represents the previous/parent directory.</li>\n\t<li>Multiple consecutive slashes such as <code>&#39;//&#39;</code> and <code>&#39;///&#39;</code> are treated as a single slash <code>&#39;/&#39;</code>.</li>\n\t<li>Any sequence of periods that does <strong>not match</strong> the rules above should be treated as a <strong>valid directory or</strong> <strong>file </strong><strong>name</strong>. For example, <code>&#39;...&#39; </code>and <code>&#39;....&#39;</code> are valid directory or file names.</li>\n</ul>\n\n<p>The simplified canonical path should follow these <em>rules</em>:</p>\n\n<ul>\n\t<li>The path must start with a single slash <code>&#39;/&#39;</code>.</li>\n\t<li>Directories within the path must be separated by exactly one slash <code>&#39;/&#39;</code>.</li>\n\t<li>The path must not end with a slash <code>&#39;/&#39;</code>, unless it is the root directory.</li>\n\t<li>The path must not have any single or double periods (<code>&#39;.&#39;</code> and <code>&#39;..&#39;</code>) used to denote current or parent directories.</li>\n</ul>\n\n<p>Return the <strong>simplified canonical path</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">path = &quot;/home/&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;/home&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The trailing slash should be removed.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">path = &quot;/home//foo/&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;/home/foo&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Multiple consecutive slashes are replaced by a single one.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">path = &quot;/home/user/Documents/../Pictures&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;/home/user/Pictures&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>A double period <code>&quot;..&quot;</code> refers to the directory up a level (the parent directory).</p>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">path = &quot;/../&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;/&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Going one level up from the root directory is not possible.</p>\n</div>\n\n<p><strong class=\"example\">Example 5:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">path = &quot;/.../a/../b/c/../d/./&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;/.../b/d&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><code>&quot;...&quot;</code> is a valid name for a directory in this problem.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= path.length &lt;= 3000</code></li>\n\t<li><code>path</code> consists of English letters, digits, period <code>&#39;.&#39;</code>, slash <code>&#39;/&#39;</code> or <code>&#39;_&#39;</code>.</li>\n\t<li><code>path</code> is a valid absolute Unix path.</li>\n</ul>\n",
+  "task": "Solve the 'Simplify Path' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= path.length <= 3000",
+    "path consists of English letters, digits, period '.', slash '/' or '_'.",
+    "path is a valid absolute Unix path."
+  ],
+  "hints": [],
+  "method": {
+    "name": "simplifyPath",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "path",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 71,
+      "title": "simplify-path",
+      "params": {
+        "path": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().simplifyPath({path})",
+        "rust": "Solution::simplify_path({path})",
+        "python3": "Solution().simplifyPath({path})",
+        "python2": "Solution().simplifyPath({path})",
+        "ruby": "simplify_path({path})",
+        "java": "new Solution().simplifyPath({path})",
+        "csharp": "new Solution().SimplifyPath({path})",
+        "kotlin": "Solution().simplifyPath({path})",
+        "go": "simplifyPath({path})",
+        "dart": "Solution().simplifyPath({path})",
+        "swift": "Solution().simplifyPath({path})",
+        "typescript": "simplifyPath({path})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().simplifyPath(path, {result})",
+        "checker": "class Checker:\n    def simplifyPath(self, path, result):\n        return isinstance(result, str) and result.startswith(\"/\")\n"
+      }
+    },
+    "seed": 71,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "path": "/home/"
+        },
+        "out": "/home"
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "path": "/home//foo/"
+        },
+        "out": "/home/foo"
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "path": "/home/user/Documents/../Pictures"
+        },
+        "out": "/home/user/Pictures"
+      },
+      {
+        "name": "example_4",
+        "in": {
+          "path": "/../"
+        },
+        "out": "/"
+      },
+      {
+        "name": "example_5",
+        "in": {
+          "path": "/.../a/../b/c/../d/./"
+        },
+        "out": "/.../b/d"
+      },
+      {
+        "name": "root_only",
+        "in": {
+          "path": "/"
+        },
+        "out": "/"
+      },
+      {
+        "name": "single_dot_segments",
+        "in": {
+          "path": "/./././"
+        },
+        "out": "/"
+      },
+      {
+        "name": "double_dot_segments",
+        "in": {
+          "path": "/a/b/c/../../"
+        },
+        "out": "/a"
+      },
+      {
+        "name": "consecutive_slashes",
+        "in": {
+          "path": "/a//b////c/d//././/.."
+        },
+        "out": "/a/b/c"
+      },
+      {
+        "name": "leading_parent_clamped",
+        "in": {
+          "path": "/../../../../x"
+        },
+        "out": "/x"
+      },
+      {
+        "name": "dots_are_names",
+        "in": {
+          "path": "/.../..../....."
+        },
+        "out": "/.../..../....."
+      },
+      {
+        "name": "mixed_parent_and_names",
+        "in": {
+          "path": "/a/.../b/../c"
+        },
+        "out": "/a/.../c"
+      },
+      {
+        "name": "underscore_and_digits",
+        "in": {
+          "path": "/_1/2_3/./4../.."
+        },
+        "out": "/_1/2_3"
+      },
+      {
+        "name": "trailing_cleanup",
+        "in": {
+          "path": "/a/b/c/."
+        },
+        "out": "/a/b/c"
+      },
+      {
+        "name": "deep_backtrack_to_root",
+        "in": {
+          "path": "/a/b/c/d/e/f/../../../../../"
+        },
+        "out": "/a"
+      },
+      {
+        "name": "repeated_empty_components",
+        "in": {
+          "path": "//////"
+        },
+        "out": "/"
+      },
+      {
+        "name": "file_like_name",
+        "in": {
+          "path": "/dir/file.txt"
+        },
+        "out": "/dir/file.txt"
+      },
+      {
+        "name": "name_with_many_dots",
+        "in": {
+          "path": "/a/..hidden/....hidden/.."
+        },
+        "out": "/a/..hidden"
+      },
+      {
+        "name": "mixed_empty_and_parent",
+        "in": {
+          "path": "/a//./b/../c//"
+        },
+        "out": "/a/c"
+      },
+      {
+        "name": "parent_from_single_dir",
+        "in": {
+          "path": "/a/.."
+        },
+        "out": "/"
+      },
+      {
+        "name": "long_chain_1",
+        "in": {
+          "path": "/a/b/c/d/e/f/g/h/i/j"
+        },
+        "out": "/a/b/c/d/e/f/g/h/i/j"
+      },
+      {
+        "name": "long_chain_2",
+        "in": {
+          "path": "/a/b/c/../../x/y/z/../w"
+        },
+        "out": "/a/x/y/w"
+      },
+      {
+        "name": "repeated_parent_after_names",
+        "in": {
+          "path": "/usr/bin/../lib/./python3/../../share"
+        },
+        "out": "/usr/share"
+      },
+      {
+        "name": "mixed_valid_and_invalid_dots",
+        "in": {
+          "path": "/./.../../....//.//.."
+        },
+        "out": "/"
+      },
+      {
+        "name": "collapse_to_root",
+        "in": {
+          "path": "/a/../b/../c/../"
+        },
+        "out": "/"
+      },
+      {
+        "name": "many_segments",
+        "in": {
+          "path": "/a/b/../../../../c"
+        },
+        "out": "/c"
+      },
+      {
+        "name": "name_resembling_parent",
+        "in": {
+          "path": "/..a/../b"
+        },
+        "out": "/b"
+      },
+      {
+        "name": "leading_and_trailing_noise",
+        "in": {
+          "path": "//./.././../x/."
+        },
+        "out": "/x"
+      },
+      {
+        "name": "number_segments",
+        "in": {
+          "path": "/123/456/../789"
+        },
+        "out": "/123/789"
+      },
+      {
+        "name": "underscore_segments",
+        "in": {
+          "path": "/_/_/../__"
+        },
+        "out": "/_/__"
+      },
+      {
+        "name": "path_with_spreadout_parents",
+        "in": {
+          "path": "/a/../b/../c/../d"
+        },
+        "out": "/d"
+      },
+      {
+        "name": "dots_and_names_mix",
+        "in": {
+          "path": "/a.b/./c..d/../e..."
+        },
+        "out": "/a.b/e..."
+      },
+      {
+        "name": "many_slashes_and_names",
+        "in": {
+          "path": "/a////b////c////d"
+        },
+        "out": "/a/b/c/d"
+      },
+      {
+        "name": "backtrack_after_root_guard",
+        "in": {
+          "path": "/../x/../../y"
+        },
+        "out": "/y"
+      },
+      {
+        "name": "longish_flat_path",
+        "in": {
+          "path": "/alpha/beta/gamma/delta/epsilon"
+        },
+        "out": "/alpha/beta/gamma/delta/epsilon"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "path = \"/home/\"",
+      "output": "\"/home\""
+    },
+    {
+      "input": "path = \"/home//foo/\"",
+      "output": "\"/home/foo\""
+    },
+    {
+      "input": "path = \"/home/user/Documents/../Pictures\"",
+      "output": "\"/home/user/Pictures\""
+    },
+    {
+      "input": "path = \"/../\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/.../a/../b/c/../d/./\"",
+      "output": "\"/.../b/d\""
+    },
+    {
+      "input": "path = \"/\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/./././\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/a/b/c/../../\"",
+      "output": "\"/a\""
+    }
+  ]
+}

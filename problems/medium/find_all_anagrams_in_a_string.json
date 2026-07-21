@@ -1,0 +1,571 @@
+{
+  "id": "find_all_anagrams_in_a_string",
+  "title": "Find All Anagrams in a String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "description": "<p>Given two strings <code>s</code> and <code>p</code>, return an array of all the start indices of <code>p</code>&#39;s <span data-keyword=\"anagram\">anagrams</span> in <code>s</code>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;cbaebabacd&quot;, p = &quot;abc&quot;\n<strong>Output:</strong> [0,6]\n<strong>Explanation:</strong>\nThe substring with start index = 0 is &quot;cba&quot;, which is an anagram of &quot;abc&quot;.\nThe substring with start index = 6 is &quot;bac&quot;, which is an anagram of &quot;abc&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abab&quot;, p = &quot;ab&quot;\n<strong>Output:</strong> [0,1,2]\n<strong>Explanation:</strong>\nThe substring with start index = 0 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.\nThe substring with start index = 1 is &quot;ba&quot;, which is an anagram of &quot;ab&quot;.\nThe substring with start index = 2 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length, p.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> and <code>p</code> consist of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Find All Anagrams in a String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length, p.length <= 3 * 104",
+    "s and p consist of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findAnagrams",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "p",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 438,
+      "title": "find-all-anagrams-in-a-string",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "p": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findAnagrams({s}, {p})",
+        "rust": "Solution::find_anagrams({s}, {p})",
+        "python3": "Solution().findAnagrams({s}, {p})",
+        "python2": "Solution().findAnagrams({s}, {p})",
+        "ruby": "find_anagrams({s}, {p})",
+        "java": "new Solution().findAnagrams({s}, {p})",
+        "csharp": "new Solution().FindAnagrams({s}, {p})",
+        "kotlin": "Solution().findAnagrams({s}, {p})",
+        "go": "findAnagrams({s}, {p})",
+        "dart": "Solution().findAnagrams({s}, {p})",
+        "swift": "Solution().findAnagrams({s}, {p})",
+        "typescript": "findAnagrams({s}, {p})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findAnagrams(s, p, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def findAnagrams(self, s: str, p: str, result: Any) -> bool:\n        if not isinstance(result, list):\n            return False\n        if not all(isinstance(x, int) for x in result):\n            return False\n        n1 = len(s)\n        n2 = len(p)\n        if n1 < n2:\n            return result == []\n        need = [0] * 26\n        for ch in p:\n            need[ord(ch) - 97] += 1\n        expected = []\n        for i in range(n1 - n2 + 1):\n            window = [0] * 26\n            for ch in s[i:i + n2]:\n                window[ord(ch) - 97] += 1\n            if window == need:\n                expected.append(i)\n        return sorted(result) == expected\n"
+      }
+    },
+    "seed": 438,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "cbaebabacd",
+          "p": "abc"
+        },
+        "out": [
+          0,
+          6
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "abab",
+          "p": "ab"
+        },
+        "out": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "single_match_start",
+        "in": {
+          "s": "abcd",
+          "p": "abc"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "single_match_end",
+        "in": {
+          "s": "zzabc",
+          "p": "abc"
+        },
+        "out": [
+          2
+        ]
+      },
+      {
+        "name": "no_match_distinct",
+        "in": {
+          "s": "abcdef",
+          "p": "gh"
+        },
+        "out": []
+      },
+      {
+        "name": "p_equals_s",
+        "in": {
+          "s": "aaaa",
+          "p": "aaaa"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "overlapping_many",
+        "in": {
+          "s": "aabaa",
+          "p": "aa"
+        },
+        "out": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "repeated_pattern",
+        "in": {
+          "s": "bbbbb",
+          "p": "bb"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "alternating_windows",
+        "in": {
+          "s": "abcabcabc",
+          "p": "bca"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "empty_result_short_s",
+        "in": {
+          "s": "a",
+          "p": "aa"
+        },
+        "out": []
+      },
+      {
+        "name": "two_letter_swap",
+        "in": {
+          "s": "ba",
+          "p": "ab"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "no_anagram_due_counts",
+        "in": {
+          "s": "aaabbb",
+          "p": "aab"
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "edge_window_at_end",
+        "in": {
+          "s": "qqqwq",
+          "p": "qwq"
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "all_positions_same_char",
+        "in": {
+          "s": "aaaaa",
+          "p": "a"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "one_char_no_match",
+        "in": {
+          "s": "aaaaa",
+          "p": "b"
+        },
+        "out": []
+      },
+      {
+        "name": "mixed_duplicates_1",
+        "in": {
+          "s": "cabcba",
+          "p": "abc"
+        },
+        "out": [
+          0,
+          1,
+          3
+        ]
+      },
+      {
+        "name": "mixed_duplicates_2",
+        "in": {
+          "s": "ccccabcc",
+          "p": "ccb"
+        },
+        "out": [
+          5
+        ]
+      },
+      {
+        "name": "non_overlapping_hits",
+        "in": {
+          "s": "xyzabcuvwabc",
+          "p": "abc"
+        },
+        "out": [
+          3,
+          9
+        ]
+      },
+      {
+        "name": "many_prefix_noise",
+        "in": {
+          "s": "zzzzzabczz",
+          "p": "cab"
+        },
+        "out": [
+          5
+        ]
+      },
+      {
+        "name": "many_suffix_noise",
+        "in": {
+          "s": "abczzzzzzz",
+          "p": "bca"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "alternating_noise",
+        "in": {
+          "s": "abxaba",
+          "p": "ab"
+        },
+        "out": [
+          0,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "repeated_triple",
+        "in": {
+          "s": "aaabaaa",
+          "p": "aaa"
+        },
+        "out": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "near_boundary_left",
+        "in": {
+          "s": "xabc",
+          "p": "cba"
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "near_boundary_right",
+        "in": {
+          "s": "cabx",
+          "p": "abc"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "small_duplicate_case",
+        "in": {
+          "s": "aab",
+          "p": "aba"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "letter_gap",
+        "in": {
+          "s": "abcdedcba",
+          "p": "bed"
+        },
+        "out": []
+      },
+      {
+        "name": "repeating_blocks",
+        "in": {
+          "s": "abcxabcxabc",
+          "p": "cxa"
+        },
+        "out": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "single_letter_long",
+        "in": {
+          "s": "mmmmmmmm",
+          "p": "m"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "single_letter_absent",
+        "in": {
+          "s": "mmmmmmmm",
+          "p": "n"
+        },
+        "out": []
+      },
+      {
+        "name": "long_run_a_then_b",
+        "in": {
+          "s": "aaaaaaaaaab",
+          "p": "aaab"
+        },
+        "out": [
+          7
+        ]
+      },
+      {
+        "name": "long_run_b_then_a",
+        "in": {
+          "s": "baaaaaaaaaa",
+          "p": "aaab"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "count_match_only_once",
+        "in": {
+          "s": "abcda",
+          "p": "aabc"
+        },
+        "out": []
+      },
+      {
+        "name": "count_match_middle",
+        "in": {
+          "s": "zzzaabczz",
+          "p": "abca"
+        },
+        "out": [
+          3
+        ]
+      },
+      {
+        "name": "repeated_with_gaps",
+        "in": {
+          "s": "aaxaaaxaaa",
+          "p": "aaa"
+        },
+        "out": [
+          3,
+          7
+        ]
+      },
+      {
+        "name": "many_false_positives",
+        "in": {
+          "s": "abcacbabc",
+          "p": "cab"
+        },
+        "out": [
+          0,
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "boundary_large_left",
+        "in": {
+          "s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzabc",
+          "p": "abc"
+        },
+        "out": [
+          31
+        ]
+      },
+      {
+        "name": "boundary_large_right",
+        "in": {
+          "s": "abczzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          "p": "cba"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "long_exact_repeat",
+        "in": {
+          "s": "abcabcabcabc",
+          "p": "abcabc"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "long_window_same_counts",
+        "in": {
+          "s": "aabbaabb",
+          "p": "abba"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "alternating_two_chars",
+        "in": {
+          "s": "babaabab",
+          "p": "aab"
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "no_overlap_counts",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "p": "zyx"
+        },
+        "out": [
+          23
+        ]
+      },
+      {
+        "name": "final_case",
+        "in": {
+          "s": "qwertyqwerty",
+          "p": "tre"
+        },
+        "out": [
+          2,
+          8
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"cbaebabacd\"\np = \"abc\"",
+      "output": "[0, 6]"
+    },
+    {
+      "input": "s = \"abab\"\np = \"ab\"",
+      "output": "[0, 1, 2]"
+    },
+    {
+      "input": "s = \"abcd\"\np = \"abc\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"zzabc\"\np = \"abc\"",
+      "output": "[2]"
+    },
+    {
+      "input": "s = \"abcdef\"\np = \"gh\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"aaaa\"\np = \"aaaa\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"aabaa\"\np = \"aa\"",
+      "output": "[0, 3]"
+    },
+    {
+      "input": "s = \"bbbbb\"\np = \"bb\"",
+      "output": "[0, 1, 2, 3]"
+    }
+  ]
+}

@@ -1,0 +1,687 @@
+{
+  "id": "split_array_largest_sum",
+  "title": "Split Array Largest Sum",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, split <code>nums</code> into <code>k</code> non-empty subarrays such that the largest sum of any subarray is <strong>minimized</strong>.</p>\n\n<p>Return <em>the minimized largest sum of the split</em>.</p>\n\n<p>A <strong>subarray</strong> is a contiguous part of the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,2,5,10,8], k = 2\n<strong>Output:</strong> 18\n<strong>Explanation:</strong> There are four ways to split nums into two subarrays.\nThe best way is to split it into [7,2,5] and [10,8], where the largest sum among the two subarrays is only 18.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5], k = 2\n<strong>Output:</strong> 9\n<strong>Explanation:</strong> There are four ways to split nums into two subarrays.\nThe best way is to split it into [1,2,3] and [4,5], where the largest sum among the two subarrays is only 9.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>6</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= min(50, nums.length)</code></li>\n</ul>\n",
+  "task": "Solve the 'Split Array Largest Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] <= 106",
+    "1 <= k <= min(50, nums.length)"
+  ],
+  "hints": [],
+  "method": {
+    "name": "splitArray",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 410,
+      "title": "split-array-largest-sum",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().splitArray({nums}, {k})",
+        "rust": "Solution::split_array({nums}, {k})",
+        "python3": "Solution().splitArray({nums}, {k})",
+        "python2": "Solution().splitArray({nums}, {k})",
+        "ruby": "split_array({nums}, {k})",
+        "java": "new Solution().splitArray({nums}, {k})",
+        "csharp": "new Solution().SplitArray({nums}, {k})",
+        "kotlin": "Solution().splitArray({nums}, {k})",
+        "go": "splitArray({nums}, {k})",
+        "dart": "Solution().splitArray({nums}, {k})",
+        "swift": "Solution().splitArray({nums}, {k})",
+        "typescript": "splitArray({nums}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().splitArray(nums, k, {result})",
+        "checker": "class Checker:\n    def splitArray(self, nums, k, result):\n        if not isinstance(result, int):\n            return False\n        low = max(nums)\n        high = sum(nums)\n        ans = high\n        while low <= high:\n            mid = low + (high - low) // 2\n            groups = 1\n            curr = 0\n            for num in nums:\n                if curr + num > mid:\n                    groups += 1\n                    curr = num\n                else:\n                    curr += num\n            if groups <= k:\n                ans = mid\n                high = mid - 1\n            else:\n                low = mid + 1\n        return result == ans\n"
+      }
+    },
+    "seed": 410,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            7,
+            2,
+            5,
+            10,
+            8
+          ],
+          "k": 2
+        },
+        "out": 18
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "out": 9
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            1,
+            4,
+            4
+          ],
+          "k": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "single-element",
+        "in": {
+          "nums": [
+            10
+          ],
+          "k": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "all-in-one",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "k": 1
+        },
+        "out": 20
+      },
+      {
+        "name": "each-alone",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "k": 4
+        },
+        "out": 5
+      },
+      {
+        "name": "small-1",
+        "in": {
+          "nums": [
+            2,
+            3
+          ],
+          "k": 1
+        },
+        "out": 5
+      },
+      {
+        "name": "small-2",
+        "in": {
+          "nums": [
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "out": 3
+      },
+      {
+        "name": "increasing-1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "increasing-2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "all-zeroes",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "k": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "zero-heavy",
+        "in": {
+          "nums": [
+            0,
+            0,
+            10,
+            0,
+            0
+          ],
+          "k": 3
+        },
+        "out": 10
+      },
+      {
+        "name": "balanced-halves",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "balanced-thirds",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "large-head",
+        "in": {
+          "nums": [
+            100,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 3
+        },
+        "out": 100
+      },
+      {
+        "name": "large-tail",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            100
+          ],
+          "k": 3
+        },
+        "out": 100
+      },
+      {
+        "name": "middle-spike",
+        "in": {
+          "nums": [
+            1,
+            1,
+            50,
+            1,
+            1
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "k-near-n",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            6,
+            5
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "many-small",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "nums": [
+            9,
+            1,
+            9,
+            1,
+            9,
+            1,
+            9,
+            1
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "alternating-2",
+        "in": {
+          "nums": [
+            1,
+            9,
+            1,
+            9,
+            1,
+            9,
+            1,
+            9
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "monotone-large",
+        "in": {
+          "nums": [
+            1000000,
+            1000000,
+            1000000,
+            1000000
+          ],
+          "k": 2
+        },
+        "out": 2000000
+      },
+      {
+        "name": "monotone-large-3",
+        "in": {
+          "nums": [
+            1000000,
+            1000000,
+            1000000,
+            1000000
+          ],
+          "k": 3
+        },
+        "out": 2000000
+      },
+      {
+        "name": "exact-triples",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "k": 3
+        },
+        "out": 9
+      },
+      {
+        "name": "exact-triples-2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "k": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "uneven-buckets",
+        "in": {
+          "nums": [
+            7,
+            2,
+            5,
+            10,
+            8,
+            1,
+            1
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "descending",
+        "in": {
+          "nums": [
+            10,
+            9,
+            8,
+            7,
+            6,
+            5
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "sparse-big",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            100,
+            1,
+            1,
+            1,
+            100,
+            1
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "long-flat",
+        "in": {
+          "nums": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "k-equals-length-minus-1",
+        "in": {
+          "nums": [
+            8,
+            1,
+            7,
+            2,
+            6
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "long-mix-1",
+        "in": {
+          "nums": [
+            5,
+            1,
+            2,
+            7,
+            3,
+            4,
+            8,
+            6,
+            9
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "long-mix-2",
+        "in": {
+          "nums": [
+            9,
+            2,
+            5,
+            1,
+            7,
+            3,
+            8,
+            4,
+            6
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "zero-and-big",
+        "in": {
+          "nums": [
+            0,
+            1000000,
+            0,
+            1000000,
+            0,
+            1000000
+          ],
+          "k": 3
+        },
+        "out": 1000000
+      },
+      {
+        "name": "prefix-heavy",
+        "in": {
+          "nums": [
+            20,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "suffix-heavy",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            20
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "twenty-ones",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 6
+        }
+      },
+      {
+        "name": "hundred-window",
+        "in": {
+          "nums": [
+            100,
+            99,
+            98,
+            97,
+            96,
+            95,
+            94,
+            93,
+            92,
+            91
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "thousand-like",
+        "in": {
+          "nums": [
+            1000,
+            2000,
+            3000,
+            4000,
+            5000,
+            6000
+          ],
+          "k": 2
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [7, 2, 5, 10, 8]\nk = 2",
+      "output": "18"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5]\nk = 2",
+      "output": "9"
+    },
+    {
+      "input": "nums = [1, 4, 4]\nk = 3",
+      "output": "4"
+    },
+    {
+      "input": "nums = [10]\nk = 1",
+      "output": "10"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]\nk = 1",
+      "output": "20"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]\nk = 4",
+      "output": "5"
+    },
+    {
+      "input": "nums = [2, 3]\nk = 1",
+      "output": "5"
+    },
+    {
+      "input": "nums = [2, 3]\nk = 2",
+      "output": "3"
+    }
+  ]
+}

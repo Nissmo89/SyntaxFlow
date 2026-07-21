@@ -1,0 +1,315 @@
+{
+  "id": "reverse_only_letters",
+  "title": "Reverse Only Letters",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>Given a string <code>s</code>, reverse the string according to the following rules:</p> <ul> <li>All the characters that are not English letters remain in the same position.</li> <li>All the English letters (lowercase or uppercase) should be reversed.</li> </ul> <p>Return <code>s</code><em> after reversing it</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"ab-cd\"\n<strong>Output:</strong> \"dc-ba\"\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"a-bC-dEf-ghIj\"\n<strong>Output:</strong> \"j-Ih-gfE-dCba\"\n</pre><p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> s = \"Test1ng-Leet=code-Q!\"\n<strong>Output:</strong> \"Qedo1ct-eeLg=ntse-T!\"\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 100</code></li> <li><code>s</code> consists of characters with ASCII values in the range <code>[33, 122]</code>.</li> <li><code>s</code> does not contain <code>'\\\"'</code> or <code>'\\\\'</code>.</li> </ul>",
+  "hints": [
+    "This problem is exactly like reversing a normal string except that there are certain characters that we have to simply skip. That should be easy enough to do if you know how to reverse a string using the two-pointer approach."
+  ],
+  "method": {
+    "name": "reverseOnlyLetters",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 917,
+      "title": "reverse-only-letters",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().reverseOnlyLetters({s})",
+        "rust": "Solution::reverse_only_letters({s})",
+        "python3": "Solution().reverseOnlyLetters({s})",
+        "python2": "Solution().reverseOnlyLetters({s})",
+        "ruby": "reverse_only_letters({s})",
+        "java": "new Solution().reverseOnlyLetters({s})",
+        "csharp": "new Solution().ReverseOnlyLetters({s})",
+        "kotlin": "Solution().reverseOnlyLetters({s})",
+        "go": "reverseOnlyLetters({s})",
+        "dart": "Solution().reverseOnlyLetters({s})",
+        "swift": "Solution().reverseOnlyLetters({s})",
+        "typescript": "reverseOnlyLetters({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().reverseOnlyLetters(s, {result})",
+        "checker": "class Checker:\n    def reverseOnlyLetters(self, s, result):\n        if not isinstance(result, str):\n            return False\n        letters = [ch for ch in s if ch.isalpha()]\n        expected = []\n        idx = len(letters) - 1\n        for ch in s:\n            if ch.isalpha():\n                expected.append(letters[idx])\n                idx -= 1\n            else:\n                expected.append(ch)\n        return ''.join(expected) == result\n"
+      }
+    },
+    "seed": 917,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "ab-cd"
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "a-bC-dEf-ghIj"
+        }
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "s": "Test1ng-Leet=code-Q!"
+        }
+      },
+      {
+        "name": "single-letter",
+        "in": {
+          "s": "a"
+        }
+      },
+      {
+        "name": "single-digit",
+        "in": {
+          "s": "1a"
+        }
+      },
+      {
+        "name": "two-letters",
+        "in": {
+          "s": "ab"
+        }
+      },
+      {
+        "name": "letter-digit",
+        "in": {
+          "s": "a1"
+        }
+      },
+      {
+        "name": "dash-letters",
+        "in": {
+          "s": "-A"
+        }
+      },
+      {
+        "name": "all-nonletters",
+        "in": {
+          "s": "7_28]"
+        }
+      },
+      {
+        "name": "all-upper",
+        "in": {
+          "s": "ABC"
+        }
+      },
+      {
+        "name": "all-lower",
+        "in": {
+          "s": "abc"
+        }
+      },
+      {
+        "name": "mixed-short-1",
+        "in": {
+          "s": "a-b-c-d"
+        }
+      },
+      {
+        "name": "mixed-short-2",
+        "in": {
+          "s": "Aa"
+        }
+      },
+      {
+        "name": "mixed-short-3",
+        "in": {
+          "s": "aA"
+        }
+      },
+      {
+        "name": "punctuation-prefix",
+        "in": {
+          "s": "!@#abc"
+        }
+      },
+      {
+        "name": "punctuation-infix",
+        "in": {
+          "s": "a---b"
+        }
+      },
+      {
+        "name": "digits-mix",
+        "in": {
+          "s": "abc123xyz"
+        }
+      },
+      {
+        "name": "digits-mix-2",
+        "in": {
+          "s": "123abc456"
+        }
+      },
+      {
+        "name": "trailing-punct",
+        "in": {
+          "s": "a-bC-dEf-ghIj-"
+        }
+      },
+      {
+        "name": "repeated-letters",
+        "in": {
+          "s": "QwErTy"
+        }
+      },
+      {
+        "name": "hyphenated",
+        "in": {
+          "s": "a-bC-dEf-ghIj-123"
+        }
+      },
+      {
+        "name": "symmetric-1",
+        "in": {
+          "s": "xYz"
+        }
+      },
+      {
+        "name": "symmetric-2",
+        "in": {
+          "s": "A0B1C2"
+        }
+      },
+      {
+        "name": "symmetric-3",
+        "in": {
+          "s": "z9Y8x7"
+        }
+      },
+      {
+        "name": "long-letters-1",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        }
+      },
+      {
+        "name": "long-letters-2",
+        "in": {
+          "s": "aBcDeFgHiJkLmNoPqRsTuVwXyZ"
+        }
+      },
+      {
+        "name": "mixed-1",
+        "in": {
+          "s": "1a2b3c4d5e"
+        }
+      },
+      {
+        "name": "mixed-2",
+        "in": {
+          "s": "a1b2c3d4"
+        }
+      },
+      {
+        "name": "mixed-3",
+        "in": {
+          "s": "-a-b-"
+        }
+      },
+      {
+        "name": "mixed-4",
+        "in": {
+          "s": "!abc!"
+        }
+      },
+      {
+        "name": "mixed-5",
+        "in": {
+          "s": "Mno-pqr"
+        }
+      },
+      {
+        "name": "mixed-6",
+        "in": {
+          "s": "a-b-c-D-E-F"
+        }
+      },
+      {
+        "name": "long-boundary-1",
+        "in": {
+          "s": "abcdefghij1234567890!@#klmnopqrstuvwx"
+        }
+      },
+      {
+        "name": "long-boundary-2",
+        "in": {
+          "s": "zyxwvutsrqponmlkjihgfedcba9876543210"
+        }
+      },
+      {
+        "name": "long-boundary-3",
+        "in": {
+          "s": "TheQuickBrownFoxJumpsOverTheLazyDog"
+        }
+      },
+      {
+        "name": "long-boundary-4",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"ab-cd\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a-bC-dEf-ghIj\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"Test1ng-Leet=code-Q!\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"1a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a1\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"-A\"",
+      "output": ""
+    }
+  ]
+}

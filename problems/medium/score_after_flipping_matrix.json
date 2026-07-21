@@ -1,0 +1,966 @@
+{
+  "id": "score_after_flipping_matrix",
+  "title": "Score After Flipping Matrix",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "description": "<p>You are given an <code>m x n</code> binary matrix <code>grid</code>.</p>\n\n<p>A <strong>move</strong> consists of choosing any row or column and toggling each value in that row or column (i.e., changing all <code>0</code>&#39;s to <code>1</code>&#39;s, and all <code>1</code>&#39;s to <code>0</code>&#39;s).</p>\n\n<p>Every row of the matrix is interpreted as a binary number, and the <strong>score</strong> of the matrix is the sum of these numbers.</p>\n\n<p>Return <em>the highest possible <strong>score</strong> after making any number of <strong>moves</strong> (including zero moves)</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/07/23/lc-toogle1.jpg\" style=\"width: 500px; height: 299px;\" />\n<pre>\n<strong>Input:</strong> grid = [[0,0,1,1],[1,0,1,0],[1,1,0,0]]\n<strong>Output:</strong> 39\n<strong>Explanation:</strong> 0b1111 + 0b1001 + 0b1111 = 15 + 9 + 15 = 39\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[0]]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 20</code></li>\n\t<li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Score After Flipping Matrix' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 20",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [],
+  "method": {
+    "name": "matrixScore",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "grid",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 861,
+      "title": "score-after-flipping-matrix",
+      "params": {
+        "grid": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().matrixScore({grid})",
+        "rust": "Solution::matrix_score({grid})",
+        "python3": "Solution().matrixScore({grid})",
+        "python2": "Solution().matrixScore({grid})",
+        "ruby": "matrix_score({grid})",
+        "java": "new Solution().matrixScore({grid})",
+        "csharp": "new Solution().MatrixScore({grid})",
+        "kotlin": "Solution().matrixScore({grid})",
+        "go": "matrixScore({grid})",
+        "dart": "Solution().matrixScore({grid})",
+        "swift": "Solution().matrixScore({grid})",
+        "typescript": "matrixScore({grid})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().matrixScore(grid, {result})",
+        "checker": "class Checker:\n    def matrixScore(self, grid, result):\n        g = [row[:] for row in grid]\n        rows = len(g)\n        cols = len(g[0])\n        for i in range(rows):\n            if g[i][0] == 0:\n                for j in range(cols):\n                    g[i][j] ^= 1\n        total = 0\n        for j in range(cols):\n            ones = sum(g[i][j] for i in range(rows))\n            best = max(ones, rows - ones)\n            total += best * (1 << (cols - j - 1))\n        return total == result\n"
+      }
+    },
+    "seed": 861,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t3",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t4",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t5",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t6",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t7",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t8",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t9",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t10",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t11",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t12",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t13",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t14",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t15",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t16",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t17",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t18",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t19",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t20",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t21",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t22",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t23",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t24",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t25",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t26",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t27",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t28",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t29",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t30",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t31",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t32",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t33",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t34",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "t35",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 1, 0], [1, 1, 0, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0], [0, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1], [1, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 1], [1, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 0], [0, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 0, 1]]}",
+      "output": ""
+    }
+  ]
+}

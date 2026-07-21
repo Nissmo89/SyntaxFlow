@@ -1,0 +1,406 @@
+{
+  "id": "unique_binary_search_trees",
+  "title": "Unique Binary Search Trees",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return <em>the number of structurally unique <strong>BST&#39;</strong>s (binary search trees) which has exactly </em><code>n</code><em> nodes of unique values from</em> <code>1</code> <em>to</em> <code>n</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/18/uniquebstn3.jpg\" style=\"width: 600px; height: 148px;\" />\n<pre>\n<strong>Input:</strong> n = 3\n<strong>Output:</strong> 5\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 19</code></li>\n</ul>\n",
+  "task": "Solve the 'Unique Binary Search Trees' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 19"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numTrees",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 96,
+      "title": "unique-binary-search-trees",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numTrees({n})",
+        "rust": "Solution::num_trees({n})",
+        "python3": "Solution().numTrees({n})",
+        "python2": "Solution().numTrees({n})",
+        "ruby": "num_trees({n})",
+        "java": "new Solution().numTrees({n})",
+        "csharp": "new Solution().NumTrees({n})",
+        "kotlin": "Solution().numTrees({n})",
+        "go": "numTrees({n})",
+        "dart": "Solution().numTrees({n})",
+        "swift": "Solution().numTrees({n})",
+        "typescript": "numTrees({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numTrees(n, {result})",
+        "checker": "class Checker:\n    def numTrees(self, n, result):\n        try:\n            result = int(result)\n        except Exception:\n            return False\n        dp = [0] * (n + 1)\n        dp[0] = 1\n        if n >= 1:\n            dp[1] = 1\n        for nodes in range(2, n + 1):\n            total = 0\n            for root in range(1, nodes + 1):\n                total += dp[root - 1] * dp[nodes - root]\n            dp[nodes] = total\n        return dp[n] == result\n"
+      }
+    },
+    "seed": 42,
+    "tests": [
+      {
+        "name": "n_1",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n_2",
+        "in": {
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "n_3",
+        "in": {
+          "n": 3
+        },
+        "out": 5
+      },
+      {
+        "name": "n_4",
+        "in": {
+          "n": 4
+        },
+        "out": 14
+      },
+      {
+        "name": "n_5",
+        "in": {
+          "n": 5
+        },
+        "out": 42
+      },
+      {
+        "name": "n_6",
+        "in": {
+          "n": 6
+        },
+        "out": 132
+      },
+      {
+        "name": "n_7",
+        "in": {
+          "n": 7
+        },
+        "out": 429
+      },
+      {
+        "name": "n_8",
+        "in": {
+          "n": 8
+        },
+        "out": 1430
+      },
+      {
+        "name": "n_9",
+        "in": {
+          "n": 9
+        },
+        "out": 4862
+      },
+      {
+        "name": "n_10",
+        "in": {
+          "n": 10
+        },
+        "out": 16796
+      },
+      {
+        "name": "n_11",
+        "in": {
+          "n": 11
+        },
+        "out": 58786
+      },
+      {
+        "name": "n_12",
+        "in": {
+          "n": 12
+        },
+        "out": 208012
+      },
+      {
+        "name": "n_13",
+        "in": {
+          "n": 13
+        },
+        "out": 742900
+      },
+      {
+        "name": "n_14",
+        "in": {
+          "n": 14
+        },
+        "out": 2674440
+      },
+      {
+        "name": "n_15",
+        "in": {
+          "n": 15
+        },
+        "out": 9694845
+      },
+      {
+        "name": "n_16",
+        "in": {
+          "n": 16
+        },
+        "out": 35357670
+      },
+      {
+        "name": "n_17",
+        "in": {
+          "n": 17
+        },
+        "out": 129644790
+      },
+      {
+        "name": "n_18",
+        "in": {
+          "n": 18
+        },
+        "out": 477638700
+      },
+      {
+        "name": "n_19",
+        "in": {
+          "n": 19
+        },
+        "out": 1767263190
+      },
+      {
+        "name": "gen_1",
+        "seed": 1,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 19
+          }
+        }
+      },
+      {
+        "name": "gen_2",
+        "seed": 2,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 19
+          }
+        }
+      },
+      {
+        "name": "gen_3",
+        "seed": 3,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 19
+          }
+        }
+      },
+      {
+        "name": "gen_4",
+        "seed": 4,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 19
+          }
+        }
+      },
+      {
+        "name": "gen_5",
+        "seed": 5,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 19
+          }
+        }
+      },
+      {
+        "name": "extra_1",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "extra_2",
+        "in": {
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "extra_3",
+        "in": {
+          "n": 3
+        },
+        "out": 5
+      },
+      {
+        "name": "extra_4",
+        "in": {
+          "n": 4
+        },
+        "out": 14
+      },
+      {
+        "name": "extra_5",
+        "in": {
+          "n": 5
+        },
+        "out": 42
+      },
+      {
+        "name": "extra_6",
+        "in": {
+          "n": 6
+        },
+        "out": 132
+      },
+      {
+        "name": "extra_7",
+        "in": {
+          "n": 7
+        },
+        "out": 429
+      },
+      {
+        "name": "extra_8",
+        "in": {
+          "n": 8
+        },
+        "out": 1430
+      },
+      {
+        "name": "extra_9",
+        "in": {
+          "n": 9
+        },
+        "out": 4862
+      },
+      {
+        "name": "extra_10",
+        "in": {
+          "n": 10
+        },
+        "out": 16796
+      },
+      {
+        "name": "extra_11",
+        "in": {
+          "n": 11
+        },
+        "out": 58786
+      },
+      {
+        "name": "extra_12",
+        "in": {
+          "n": 12
+        },
+        "out": 208012
+      },
+      {
+        "name": "extra_13",
+        "in": {
+          "n": 13
+        },
+        "out": 742900
+      },
+      {
+        "name": "extra_14",
+        "in": {
+          "n": 14
+        },
+        "out": 2674440
+      },
+      {
+        "name": "extra_15",
+        "in": {
+          "n": 15
+        },
+        "out": 9694845
+      },
+      {
+        "name": "extra_16",
+        "in": {
+          "n": 16
+        },
+        "out": 35357670
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "2"
+    },
+    {
+      "input": "n = 3",
+      "output": "5"
+    },
+    {
+      "input": "n = 4",
+      "output": "14"
+    },
+    {
+      "input": "n = 5",
+      "output": "42"
+    },
+    {
+      "input": "n = 6",
+      "output": "132"
+    },
+    {
+      "input": "n = 7",
+      "output": "429"
+    },
+    {
+      "input": "n = 8",
+      "output": "1430"
+    }
+  ]
+}

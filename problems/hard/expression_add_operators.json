@@ -1,0 +1,401 @@
+{
+  "id": "expression_add_operators",
+  "title": "Expression Add Operators",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Backtracking"
+  ],
+  "description": "<p>Given a string <code>num</code> that contains only digits and an integer <code>target</code>, return <em><strong>all possibilities</strong> to insert the binary operators </em><code>&#39;+&#39;</code><em>, </em><code>&#39;-&#39;</code><em>, and/or </em><code>&#39;*&#39;</code><em> between the digits of </em><code>num</code><em> so that the resultant expression evaluates to the </em><code>target</code><em> value</em>.</p>\n\n<p>Note that operands in the returned expressions <strong>should not</strong> contain leading zeros.</p>\n\n<p><strong>Note</strong> that a number can contain multiple digits.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = &quot;123&quot;, target = 6\n<strong>Output:</strong> [&quot;1*2*3&quot;,&quot;1+2+3&quot;]\n<strong>Explanation:</strong> Both &quot;1*2*3&quot; and &quot;1+2+3&quot; evaluate to 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = &quot;232&quot;, target = 8\n<strong>Output:</strong> [&quot;2*3+2&quot;,&quot;2+3*2&quot;]\n<strong>Explanation:</strong> Both &quot;2*3+2&quot; and &quot;2+3*2&quot; evaluate to 8.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = &quot;3456237490&quot;, target = 9191\n<strong>Output:</strong> []\n<strong>Explanation:</strong> There are no expressions that can be created from &quot;3456237490&quot; to evaluate to 9191.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num.length &lt;= 10</code></li>\n\t<li><code>num</code> consists of only digits.</li>\n\t<li><code>-2<sup>31</sup> &lt;= target &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Expression Add Operators' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= num.length <= 10",
+    "num consists of only digits.",
+    "-231 <= target <= 231 - 1"
+  ],
+  "hints": [
+    "Note that a number can contain multiple digits.",
+    "Since the question asks us to find <b>all</b> of the valid expressions, we need a way to iterate over all of them. (<b>Hint:</b> Recursion!)",
+    "We can keep track of the expression string and evaluate it at the very end. But that would take a lot of time. Can we keep track of the expression's value as well so as to avoid the evaluation at the very end of recursion?",
+    "Think carefully about the multiply operator. It has a higher precedence than the addition and subtraction operators. \r\n\r\n<br> 1 + 2 = 3  <br>\r\n1 + 2 - 4 --> 3 - 4 --> -1 <br>\r\n1 + 2 - 4 * 12 --> -1 * 12 --> -12 (WRONG!) <br>\r\n1 + 2 - 4 * 12 --> -1 - (-4) + (-4 * 12) --> 3 + (-48) --> -45 (CORRECT!)",
+    "We simply need to keep track of the last operand in our expression and reverse it's effect on the expression's value while considering the multiply operator."
+  ],
+  "method": {
+    "name": "addOperators",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "num",
+        "type": "string"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 282,
+      "title": "expression-add-operators",
+      "params": {
+        "num": {
+          "type": "string"
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().addOperators({num}, {target})",
+        "rust": "Solution::add_operators({num}, {target})",
+        "python3": "Solution().addOperators({num}, {target})",
+        "python2": "Solution().addOperators({num}, {target})",
+        "ruby": "add_operators({num}, {target})",
+        "java": "new Solution().addOperators({num}, {target})",
+        "csharp": "new Solution().AddOperators({num}, {target})",
+        "kotlin": "Solution().addOperators({num}, {target})",
+        "go": "addOperators({num}, {target})",
+        "dart": "Solution().addOperators({num}, {target})",
+        "swift": "Solution().addOperators({num}, {target})",
+        "typescript": "addOperators({num}, {target})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().addOperators(num, target, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def addOperators(self, num: str, target: int, result: Any) -> bool:\n        if not isinstance(result, list) or any(not isinstance(x, str) for x in result):\n            return False\n\n        expected = set()\n        n = len(num)\n\n        def dfs(idx: int, path: str, curr: int, prev: int) -> None:\n            if idx == n:\n                if curr == target:\n                    expected.add(path)\n                return\n            for i in range(idx, n):\n                if i > idx and num[idx] == \"0\":\n                    break\n                part = num[idx : i + 1]\n                val = int(part)\n                if idx == 0:\n                    dfs(i + 1, part, val, val)\n                else:\n                    dfs(i + 1, path + \"+\" + part, curr + val, val)\n                    dfs(i + 1, path + \"-\" + part, curr - val, -val)\n                    dfs(i + 1, path + \"*\" + part, (curr - prev) + prev * val, prev * val)\n\n        dfs(0, \"\", 0, 0)\n        return set(result) == expected\n"
+      }
+    },
+    "seed": 282,
+    "tests": [
+      {
+        "name": "ex1_123_6",
+        "in": {
+          "num": "123",
+          "target": 6
+        },
+        "out": [
+          "1*2*3",
+          "1+2+3"
+        ]
+      },
+      {
+        "name": "ex2_232_8",
+        "in": {
+          "num": "232",
+          "target": 8
+        },
+        "out": [
+          "2*3+2",
+          "2+3*2"
+        ]
+      },
+      {
+        "name": "ex3_none",
+        "in": {
+          "num": "3456237490",
+          "target": 9191
+        },
+        "out": []
+      },
+      {
+        "name": "single_digit_hit",
+        "in": {
+          "num": "5",
+          "target": 5
+        }
+      },
+      {
+        "name": "single_digit_miss",
+        "in": {
+          "num": "5",
+          "target": 6
+        }
+      },
+      {
+        "name": "two_digits_concat",
+        "in": {
+          "num": "12",
+          "target": 12
+        }
+      },
+      {
+        "name": "two_digits_add",
+        "in": {
+          "num": "12",
+          "target": 3
+        }
+      },
+      {
+        "name": "two_digits_sub",
+        "in": {
+          "num": "12",
+          "target": -1
+        }
+      },
+      {
+        "name": "zero_chain_0",
+        "in": {
+          "num": "00",
+          "target": 0
+        }
+      },
+      {
+        "name": "zero_chain_1",
+        "in": {
+          "num": "00",
+          "target": 1
+        }
+      },
+      {
+        "name": "leading_zero_block",
+        "in": {
+          "num": "105",
+          "target": 5
+        }
+      },
+      {
+        "name": "leading_zero_block_neg",
+        "in": {
+          "num": "105",
+          "target": -5
+        }
+      },
+      {
+        "name": "all_fives_25",
+        "in": {
+          "num": "55",
+          "target": 25
+        }
+      },
+      {
+        "name": "all_fives_10",
+        "in": {
+          "num": "55",
+          "target": 10
+        }
+      },
+      {
+        "name": "all_fives_0",
+        "in": {
+          "num": "55",
+          "target": 0
+        }
+      },
+      {
+        "name": "small_branching_1234_10",
+        "in": {
+          "num": "1234",
+          "target": 10
+        }
+      },
+      {
+        "name": "small_branching_1234_24",
+        "in": {
+          "num": "1234",
+          "target": 24
+        }
+      },
+      {
+        "name": "small_branching_1234_9",
+        "in": {
+          "num": "1234",
+          "target": 9
+        }
+      },
+      {
+        "name": "repeated_digits_222_6",
+        "in": {
+          "num": "222",
+          "target": 6
+        }
+      },
+      {
+        "name": "repeated_digits_222_8",
+        "in": {
+          "num": "222",
+          "target": 8
+        }
+      },
+      {
+        "name": "repeated_digits_222_2",
+        "in": {
+          "num": "222",
+          "target": 2
+        }
+      },
+      {
+        "name": "zero_middle_1005_5",
+        "in": {
+          "num": "1005",
+          "target": 5
+        }
+      },
+      {
+        "name": "zero_middle_1005_0",
+        "in": {
+          "num": "1005",
+          "target": 0
+        }
+      },
+      {
+        "name": "zero_middle_1005_6",
+        "in": {
+          "num": "1005",
+          "target": 6
+        }
+      },
+      {
+        "name": "zeros_000_0",
+        "in": {
+          "num": "000",
+          "target": 0
+        }
+      },
+      {
+        "name": "zeros_000_1",
+        "in": {
+          "num": "000",
+          "target": 1
+        }
+      },
+      {
+        "name": "ascending_12345_15",
+        "in": {
+          "num": "12345",
+          "target": 15
+        }
+      },
+      {
+        "name": "ascending_12345_120",
+        "in": {
+          "num": "12345",
+          "target": 120
+        }
+      },
+      {
+        "name": "ascending_12345_6",
+        "in": {
+          "num": "12345",
+          "target": 6
+        }
+      },
+      {
+        "name": "all_nines_81",
+        "in": {
+          "num": "999",
+          "target": 81
+        }
+      },
+      {
+        "name": "all_nines_27",
+        "in": {
+          "num": "999",
+          "target": 27
+        }
+      },
+      {
+        "name": "all_nines_0",
+        "in": {
+          "num": "999",
+          "target": 0
+        }
+      },
+      {
+        "name": "alternating_909_9",
+        "in": {
+          "num": "909",
+          "target": 9
+        }
+      },
+      {
+        "name": "alternating_909_0",
+        "in": {
+          "num": "909",
+          "target": 0
+        }
+      },
+      {
+        "name": "alternating_909_81",
+        "in": {
+          "num": "909",
+          "target": 81
+        }
+      },
+      {
+        "name": "max_len_1234567890_45",
+        "in": {
+          "num": "1234567890",
+          "target": 45
+        }
+      },
+      {
+        "name": "max_len_1234567890_0",
+        "in": {
+          "num": "1234567890",
+          "target": 0
+        }
+      },
+      {
+        "name": "max_len_1234567890_100",
+        "in": {
+          "num": "1234567890",
+          "target": 100
+        }
+      },
+      {
+        "name": "max_len_2147483647",
+        "in": {
+          "num": "2147483647",
+          "target": 2147483647
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "num = \"123\"\ntarget = 6",
+      "output": "[\"1*2*3\", \"1+2+3\"]"
+    },
+    {
+      "input": "num = \"232\"\ntarget = 8",
+      "output": "[\"2*3+2\", \"2+3*2\"]"
+    },
+    {
+      "input": "num = \"3456237490\"\ntarget = 9191",
+      "output": "[]"
+    },
+    {
+      "input": "num = \"5\"\ntarget = 5",
+      "output": ""
+    },
+    {
+      "input": "num = \"5\"\ntarget = 6",
+      "output": ""
+    },
+    {
+      "input": "num = \"12\"\ntarget = 12",
+      "output": ""
+    },
+    {
+      "input": "num = \"12\"\ntarget = 3",
+      "output": ""
+    },
+    {
+      "input": "num = \"12\"\ntarget = -1",
+      "output": ""
+    }
+  ]
+}

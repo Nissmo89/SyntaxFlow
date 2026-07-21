@@ -1,0 +1,552 @@
+{
+  "id": "split_array_with_same_average",
+  "title": "Split Array With Same Average",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>You should move each element of <code>nums</code> into one of the two arrays <code>A</code> and <code>B</code> such that <code>A</code> and <code>B</code> are non-empty, and <code>average(A) == average(B)</code>.</p>\n\n<p>Return <code>true</code> if it is possible to achieve that and <code>false</code> otherwise.</p>\n\n<p><strong>Note</strong> that for an array <code>arr</code>, <code>average(arr)</code> is the sum of all the elements of <code>arr</code> over the length of <code>arr</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5,6,7,8]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have an average of 4.5.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,1]\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 30</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Split Array With Same Average' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 30",
+    "0 <= nums[i] <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "splitArraySameAverage",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 805,
+      "title": "split-array-with-same-average",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().splitArraySameAverage({nums})",
+        "rust": "Solution::split_array_same_average({nums})",
+        "python3": "Solution().splitArraySameAverage({nums})",
+        "python2": "Solution().splitArraySameAverage({nums})",
+        "ruby": "split_array_same_average({nums})",
+        "java": "new Solution().splitArraySameAverage({nums})",
+        "csharp": "new Solution().SplitArraySameAverage({nums})",
+        "kotlin": "Solution().splitArraySameAverage({nums})",
+        "go": "splitArraySameAverage({nums})",
+        "dart": "Solution().splitArraySameAverage({nums})",
+        "swift": "Solution().splitArraySameAverage({nums})",
+        "typescript": "splitArraySameAverage({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(nums, {result})",
+        "checker": "class Checker:\n    def check(self, nums, result):\n        n = len(nums)\n        total = sum(nums)\n        nums = sorted(nums)\n\n        possible = [set() for _ in range(n // 2 + 1)]\n        possible[0].add(0)\n        for x in nums:\n            for size in range(len(possible) - 1, 0, -1):\n                for prev in list(possible[size - 1]):\n                    possible[size].add(prev + x)\n\n        expected = False\n        for size in range(1, n // 2 + 1):\n            if (total * size) % n == 0 and (total * size) // n in possible[size]:\n                expected = True\n                break\n        return bool(result) == expected\n"
+      }
+    },
+    "seed": 805,
+    "tests": [
+      {
+        "name": "case01",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "case02",
+        "in": {
+          "nums": [
+            3,
+            1
+          ]
+        }
+      },
+      {
+        "name": "case03",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "case04",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "case05",
+        "in": {
+          "nums": [
+            1,
+            2,
+            5
+          ]
+        }
+      },
+      {
+        "name": "case06",
+        "in": {
+          "nums": [
+            2,
+            0,
+            5,
+            6,
+            16,
+            12,
+            15,
+            7
+          ]
+        }
+      },
+      {
+        "name": "case07",
+        "in": {
+          "nums": [
+            1,
+            3,
+            2,
+            4,
+            6
+          ]
+        }
+      },
+      {
+        "name": "case08",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "case09",
+        "in": {
+          "nums": [
+            18,
+            0,
+            16,
+            2
+          ]
+        }
+      },
+      {
+        "name": "case10",
+        "in": {
+          "nums": [
+            3,
+            1,
+            4,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "case11",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "case12",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "case13",
+        "in": {
+          "nums": [
+            1,
+            5,
+            7,
+            11
+          ]
+        }
+      },
+      {
+        "name": "case14",
+        "in": {
+          "nums": [
+            6,
+            8,
+            2,
+            4,
+            10,
+            12
+          ]
+        }
+      },
+      {
+        "name": "case15",
+        "in": {
+          "nums": [
+            1,
+            7,
+            15,
+            29,
+            11,
+            9
+          ]
+        }
+      },
+      {
+        "name": "case16",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "case17",
+        "in": {
+          "nums": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60
+          ]
+        }
+      },
+      {
+        "name": "case18",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32
+          ]
+        }
+      },
+      {
+        "name": "case19",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            8,
+            8,
+            8
+          ]
+        }
+      },
+      {
+        "name": "case20",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13
+          ]
+        }
+      },
+      {
+        "name": "case21",
+        "in": {
+          "nums": [
+            9,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "name": "case22",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            4,
+            6,
+            6,
+            6,
+            6
+          ]
+        }
+      },
+      {
+        "name": "case23",
+        "in": {
+          "nums": [
+            1,
+            9,
+            17,
+            25,
+            33
+          ]
+        }
+      },
+      {
+        "name": "case24",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            5,
+            8,
+            13
+          ]
+        }
+      },
+      {
+        "name": "case25",
+        "in": {
+          "nums": [
+            12,
+            12,
+            12,
+            12,
+            18,
+            18
+          ]
+        }
+      },
+      {
+        "name": "case26",
+        "in": {
+          "nums": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16
+          ]
+        }
+      },
+      {
+        "name": "case27",
+        "in": {
+          "nums": [
+            1,
+            100,
+            2,
+            99,
+            3,
+            98
+          ]
+        }
+      },
+      {
+        "name": "case28",
+        "in": {
+          "nums": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35
+          ]
+        }
+      },
+      {
+        "name": "case29",
+        "in": {
+          "nums": [
+            1,
+            2,
+            6,
+            14,
+            30
+          ]
+        }
+      },
+      {
+        "name": "case30",
+        "in": {
+          "nums": [
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21
+          ]
+        }
+      },
+      {
+        "name": "case31",
+        "in": {
+          "nums": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      },
+      {
+        "name": "case32",
+        "in": {
+          "nums": [
+            11,
+            22,
+            33,
+            44,
+            55,
+            66
+          ]
+        }
+      },
+      {
+        "name": "case33",
+        "in": {
+          "nums": [
+            1,
+            4,
+            9,
+            16,
+            25,
+            36
+          ]
+        }
+      },
+      {
+        "name": "case34",
+        "in": {
+          "nums": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            9
+          ]
+        }
+      },
+      {
+        "name": "case35",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [3, 1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 5]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 0, 5, 6, 16, 12, 15, 7]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 3, 2, 4, 6]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 1]",
+      "output": ""
+    }
+  ]
+}

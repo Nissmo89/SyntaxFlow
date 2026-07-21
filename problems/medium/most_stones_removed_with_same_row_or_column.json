@@ -1,0 +1,1045 @@
+{
+  "id": "most_stones_removed_with_same_row_or_column",
+  "title": "Most Stones Removed with Same Row or Column",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "Depth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "description": "<p>On a 2D plane, we place <code>n</code> stones at some integer coordinate points. Each coordinate point may have at most one stone.</p>\n\n<p>A stone can be removed if it shares either <strong>the same row or the same column</strong> as another stone that has not been removed.</p>\n\n<p>Given an array <code>stones</code> of length <code>n</code> where <code>stones[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> represents the location of the <code>i<sup>th</sup></code> stone, return <em>the largest possible number of stones that can be removed</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> One way to remove 5 stones is as follows:\n1. Remove stone [2,2] because it shares the same row as [2,1].\n2. Remove stone [2,1] because it shares the same column as [0,1].\n3. Remove stone [1,2] because it shares the same row as [1,0].\n4. Remove stone [1,0] because it shares the same column as [0,0].\n5. Remove stone [0,1] because it shares the same row as [0,0].\nStone [0,0] cannot be removed since it does not share a row/column with another stone still on the plane.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [[0,0],[0,2],[1,1],[2,0],[2,2]]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> One way to make 3 moves is as follows:\n1. Remove stone [2,2] because it shares the same row as [2,0].\n2. Remove stone [2,0] because it shares the same column as [0,0].\n3. Remove stone [0,2] because it shares the same row as [0,0].\nStones [0,0] and [1,1] cannot be removed since they do not share a row/column with another stone still on the plane.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [[0,0]]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> [0,0] is the only stone on the plane, so you cannot remove it.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= stones.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= 10<sup>4</sup></code></li>\n\t<li>No two stones are at the same coordinate point.</li>\n</ul>\n",
+  "task": "Solve the 'Most Stones Removed with Same Row or Column' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= stones.length <= 1000",
+    "0 <= xi, yi <= 104",
+    "No two stones are at the same coordinate point."
+  ],
+  "hints": [],
+  "method": {
+    "name": "removeStones",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "stones",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 947,
+      "title": "most-stones-removed-with-same-row-or-column",
+      "params": {
+        "stones": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().removeStones({stones})",
+        "rust": "Solution::remove_stones({stones})",
+        "python3": "Solution().removeStones({stones})",
+        "python2": "Solution().removeStones({stones})",
+        "ruby": "remove_stones({stones})",
+        "java": "new Solution().removeStones({stones})",
+        "csharp": "new Solution().RemoveStones({stones})",
+        "kotlin": "Solution().removeStones({stones})",
+        "go": "removeStones({stones})",
+        "dart": "Solution().removeStones({stones})",
+        "swift": "Solution().removeStones({stones})",
+        "typescript": "removeStones({stones})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 947,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "stones": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "stones": [
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "stones": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "stones": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "stones": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "stones": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "stones": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "stones": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "stones": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "stones": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "stones": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "stones": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "stones": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "stones": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "stones": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "stones": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "stones": [
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "stones": [
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "stones": [
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "stones": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "stones": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": 6
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "stones = [[0, 0], [1, 3], [2, 2], [2, 4], [3, 1], [4, 0]]",
+      "output": "2"
+    },
+    {
+      "input": "stones = [[0, 2], [2, 2]]",
+      "output": "1"
+    },
+    {
+      "input": "stones = [[0, 3], [3, 0], [3, 1], [4, 0], [4, 4]]",
+      "output": "3"
+    },
+    {
+      "input": "stones = [[0, 0], [0, 3], [1, 3], [2, 0], [2, 2], [2, 3], [3, 0], [3, 1]]",
+      "output": "7"
+    },
+    {
+      "input": "stones = [[1, 3], [3, 2]]",
+      "output": "0"
+    },
+    {
+      "input": "stones = [[1, 1], [2, 0], [4, 1], [4, 2]]",
+      "output": "2"
+    },
+    {
+      "input": "stones = [[0, 1], [1, 3], [2, 1], [2, 3], [3, 0], [4, 0]]",
+      "output": "4"
+    },
+    {
+      "input": "stones = [[0, 2], [3, 1], [3, 2], [4, 4]]",
+      "output": "2"
+    }
+  ]
+}

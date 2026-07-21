@@ -1,0 +1,679 @@
+{
+  "id": "sum_root_to_leaf_numbers",
+  "title": "Sum Root to Leaf Numbers",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>You are given the <code>root</code> of a binary tree containing digits from <code>0</code> to <code>9</code> only.</p>\n\n<p>Each root-to-leaf path in the tree represents a number.</p>\n\n<ul>\n\t<li>For example, the root-to-leaf path <code>1 -&gt; 2 -&gt; 3</code> represents the number <code>123</code>.</li>\n</ul>\n\n<p>Return <em>the total sum of all root-to-leaf numbers</em>. Test cases are generated so that the answer will fit in a <strong>32-bit</strong> integer.</p>\n\n<p>A <strong>leaf</strong> node is a node with no children.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/19/num1tree.jpg\" style=\"width: 212px; height: 182px;\" />\n<pre>\n<strong>Input:</strong> root = [1,2,3]\n<strong>Output:</strong> 25\n<strong>Explanation:</strong>\nThe root-to-leaf path <code>1-&gt;2</code> represents the number <code>12</code>.\nThe root-to-leaf path <code>1-&gt;3</code> represents the number <code>13</code>.\nTherefore, sum = 12 + 13 = <code>25</code>.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/19/num2tree.jpg\" style=\"width: 292px; height: 302px;\" />\n<pre>\n<strong>Input:</strong> root = [4,9,0,5,1]\n<strong>Output:</strong> 1026\n<strong>Explanation:</strong>\nThe root-to-leaf path <code>4-&gt;9-&gt;5</code> represents the number 495.\nThe root-to-leaf path <code>4-&gt;9-&gt;1</code> represents the number 491.\nThe root-to-leaf path <code>4-&gt;0</code> represents the number 40.\nTherefore, sum = 495 + 491 + 40 = <code>1026</code>.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>\n\t<li><code>0 &lt;= Node.val &lt;= 9</code></li>\n\t<li>The depth of the tree will not exceed <code>10</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Sum Root to Leaf Numbers' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 1000].",
+    "0 <= Node.val <= 9",
+    "The depth of the tree will not exceed 10."
+  ],
+  "hints": [],
+  "method": {
+    "name": "sumNumbers",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 129,
+      "title": "sum-root-to-leaf-numbers",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().sumNumbers({root})",
+        "rust": "Solution::sum_numbers({root})",
+        "python3": "Solution().sumNumbers({root})",
+        "python2": "Solution().sumNumbers({root})",
+        "ruby": "sum_numbers({root})",
+        "java": "new Solution().sumNumbers({root})",
+        "csharp": "new Solution().SumNumbers({root})",
+        "kotlin": "Solution().sumNumbers({root})",
+        "go": "sumNumbers({root})",
+        "dart": "Solution().sumNumbers({root})",
+        "swift": "Solution().sumNumbers({root})",
+        "typescript": "sumNumbers({root})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().sumNumbers(root, {result})",
+        "checker": "class Node:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Checker:\n    def _to_tree(self, root):\n        if root is None or root == []:\n            return None\n        if hasattr(root, 'val'):\n            return root\n        if not isinstance(root, list) or not root or root[0] is None:\n            return None\n        tree_root = Node(root[0])\n        queue = [tree_root]\n        i = 1\n        while queue and i < len(root):\n            node = queue.pop(0)\n            if i < len(root) and root[i] is not None:\n                node.left = Node(root[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(root) and root[i] is not None:\n                node.right = Node(root[i])\n                queue.append(node.right)\n            i += 1\n        return tree_root\n\n    def sumNumbers(self, root, result):\n        if not isinstance(result, int):\n            return False\n        root = self._to_tree(root)\n        def dfs(node, current):\n            if node is None:\n                return 0\n            current = current * 10 + node.val\n            if node.left is None and node.right is None:\n                return current\n            return dfs(node.left, current) + dfs(node.right, current)\n        return result == dfs(root, 0)\n"
+      }
+    },
+    "seed": 129,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            4,
+            9,
+            0,
+            5,
+            1
+          ]
+        },
+        "out": 1026
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "root": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_nine",
+        "in": {
+          "root": [
+            9
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "two_nodes_left",
+        "in": {
+          "root": [
+            1,
+            2
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "two_nodes_right",
+        "in": {
+          "root": [
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "full_depth_3",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 522
+      },
+      {
+        "name": "left_chain_depth_4",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4
+          ]
+        },
+        "out": 1234
+      },
+      {
+        "name": "right_chain_depth_4",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3,
+            null,
+            4
+          ]
+        },
+        "out": 1234
+      },
+      {
+        "name": "zeros_full_tree",
+        "in": {
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "zeros_sparse_tree",
+        "in": {
+          "root": [
+            0,
+            1,
+            0,
+            null,
+            null,
+            0,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example_shape_with_missing_left",
+        "in": {
+          "root": [
+            4,
+            9,
+            0,
+            5,
+            1,
+            null,
+            null
+          ]
+        },
+        "out": 1026
+      },
+      {
+        "name": "example_shape_with_missing_right",
+        "in": {
+          "root": [
+            4,
+            9,
+            0,
+            null,
+            1
+          ]
+        },
+        "out": 531
+      },
+      {
+        "name": "mixed_digits_small",
+        "in": {
+          "root": [
+            2,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 902
+      },
+      {
+        "name": "deeper_left_leaf",
+        "in": {
+          "root": [
+            8,
+            4,
+            9,
+            1,
+            3,
+            7,
+            2
+          ]
+        },
+        "out": 3473
+      },
+      {
+        "name": "deeper_right_leaf",
+        "in": {
+          "root": [
+            8,
+            4,
+            9,
+            1,
+            3,
+            7,
+            2,
+            null,
+            6
+          ]
+        },
+        "out": 11048
+      },
+      {
+        "name": "balanced_with_missing_interior",
+        "in": {
+          "root": [
+            3,
+            1,
+            5,
+            0,
+            2,
+            null,
+            4
+          ]
+        },
+        "out": 976
+      },
+      {
+        "name": "all_nines_depth_3",
+        "in": {
+          "root": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": 3996
+      },
+      {
+        "name": "all_ones_depth_4",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 8888
+      },
+      {
+        "name": "left_heavy_with_right_leaf",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            5,
+            6
+          ]
+        },
+        "out": 395
+      },
+      {
+        "name": "right_heavy_with_left_leaf",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            null,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 395
+      },
+      {
+        "name": "internal_nodes_do_not_count",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            null,
+            5
+          ]
+        },
+        "out": 259
+      },
+      {
+        "name": "leaf_on_one_side_only",
+        "in": {
+          "root": [
+            5,
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 512
+      },
+      {
+        "name": "depth_5_left_spine",
+        "in": {
+          "root": [
+            7,
+            8,
+            null,
+            9,
+            null,
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 78912
+      },
+      {
+        "name": "depth_5_right_spine",
+        "in": {
+          "root": [
+            7,
+            null,
+            8,
+            null,
+            9,
+            null,
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 78912
+      },
+      {
+        "name": "sparse_three_leaves",
+        "in": {
+          "root": [
+            1,
+            0,
+            4,
+            5,
+            6,
+            null,
+            7
+          ]
+        },
+        "out": 358
+      },
+      {
+        "name": "sparse_with_zero_branch",
+        "in": {
+          "root": [
+            2,
+            0,
+            1,
+            0,
+            9,
+            null,
+            3
+          ]
+        },
+        "out": 622
+      },
+      {
+        "name": "narrow_tree_depth_6",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            null,
+            5,
+            null,
+            6
+          ]
+        },
+        "out": 123456
+      },
+      {
+        "name": "narrow_tree_depth_7",
+        "in": {
+          "root": [
+            9,
+            null,
+            8,
+            null,
+            7,
+            null,
+            6,
+            null,
+            5
+          ]
+        },
+        "out": 98765
+      },
+      {
+        "name": "larger_complete_tree",
+        "in": {
+          "root": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 17776
+      },
+      {
+        "name": "another_large_complete_tree",
+        "in": {
+          "root": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 26664
+      },
+      {
+        "name": "alternating_digits_tree",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 422
+      },
+      {
+        "name": "path_sum_with_multiple_leaves",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 444
+      },
+      {
+        "name": "path_sum_with_mixed_depths",
+        "in": {
+          "root": [
+            2,
+            2,
+            2,
+            2,
+            null,
+            2,
+            2
+          ]
+        },
+        "out": 666
+      },
+      {
+        "name": "max_depth_ten_shape",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            null,
+            5,
+            null,
+            6
+          ]
+        },
+        "out": 123456
+      },
+      {
+        "name": "generated_full_tree_digits_15",
+        "seed": 129001,
+        "in": {
+          "root": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 15,
+              "max": 15
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_full_tree_digits_31",
+        "seed": 129002,
+        "in": {
+          "root": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 31,
+              "max": 31
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [1, 2, 3]",
+      "output": "25"
+    },
+    {
+      "input": "root = [4, 9, 0, 5, 1]",
+      "output": "1026"
+    },
+    {
+      "input": "root = [0]",
+      "output": "0"
+    },
+    {
+      "input": "root = [9]",
+      "output": "9"
+    },
+    {
+      "input": "root = [1, 2]",
+      "output": "12"
+    },
+    {
+      "input": "root = [1, null, 2]",
+      "output": "12"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]",
+      "output": "522"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4]",
+      "output": "1234"
+    }
+  ]
+}

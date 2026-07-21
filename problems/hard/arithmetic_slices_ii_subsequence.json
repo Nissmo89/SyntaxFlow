@@ -1,0 +1,586 @@
+{
+  "id": "arithmetic_slices_ii_subsequence",
+  "title": "Arithmetic Slices II - Subsequence",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>Given an integer array <code>nums</code>, return <em>the number of all the <strong>arithmetic subsequences</strong> of</em> <code>nums</code>.</p>\n\n<p>A sequence of numbers is called arithmetic if it consists of <strong>at least three elements</strong> and if the difference between any two consecutive elements is the same.</p>\n\n<ul>\n\t<li>For example, <code>[1, 3, 5, 7, 9]</code>, <code>[7, 7, 7, 7]</code>, and <code>[3, -1, -5, -9]</code> are arithmetic sequences.</li>\n\t<li>For example, <code>[1, 1, 2, 5, 7]</code> is not an arithmetic sequence.</li>\n</ul>\n\n<p>A <strong>subsequence</strong> of an array is a sequence that can be formed by removing some elements (possibly none) of the array.</p>\n\n<ul>\n\t<li>For example, <code>[2,5,10]</code> is a subsequence of <code>[1,2,1,<strong><u>2</u></strong>,4,1,<u><strong>5</strong></u>,<u><strong>10</strong></u>]</code>.</li>\n</ul>\n\n<p>The test cases are generated so that the answer fits in <strong>32-bit</strong> integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,4,6,8,10]\n<strong>Output:</strong> 7\n<strong>Explanation:</strong> All arithmetic subsequence slices are:\n[2,4,6]\n[4,6,8]\n[6,8,10]\n[2,4,6,8]\n[4,6,8,10]\n[2,4,6,8,10]\n[2,6,10]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,7,7,7,7]\n<strong>Output:</strong> 16\n<strong>Explanation:</strong> Any subsequence of this array is arithmetic.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1&nbsp; &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Arithmetic Slices II - Subsequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1\u00a0 <= nums.length <= 1000",
+    "-231 <= nums[i] <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numberOfArithmeticSlices",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 446,
+      "title": "arithmetic-slices-ii-subsequence",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numberOfArithmeticSlices({nums})",
+        "rust": "Solution::number_of_arithmetic_slices({nums})",
+        "python3": "Solution().numberOfArithmeticSlices({nums})",
+        "python2": "Solution().numberOfArithmeticSlices({nums})",
+        "ruby": "number_of_arithmetic_slices({nums})",
+        "java": "new Solution().numberOfArithmeticSlices({nums})",
+        "csharp": "new Solution().NumberOfArithmeticSlices({nums})",
+        "kotlin": "Solution().numberOfArithmeticSlices({nums})",
+        "go": "numberOfArithmeticSlices({nums})",
+        "dart": "Solution().numberOfArithmeticSlices({nums})",
+        "swift": "Solution().numberOfArithmeticSlices({nums})",
+        "typescript": "numberOfArithmeticSlices({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numberOfArithmeticSlices(nums, {result})",
+        "checker": "from collections import defaultdict\n\nclass Checker:\n    def numberOfArithmeticSlices(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        n = len(nums)\n        total_count = 0\n        dp = [defaultdict(int) for _ in range(n)]\n        for i in range(1, n):\n            for j in range(i):\n                diff = nums[i] - nums[j]\n                dp[i][diff] += 1\n                if diff in dp[j]:\n                    dp[i][diff] += dp[j][diff]\n                    total_count += dp[j][diff]\n        return result == total_count\n"
+      }
+    },
+    "seed": 446,
+    "tests": [
+      {
+        "name": "single-element",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two-elements",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "smallest-ap",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "odd-step-ap",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "all-equal-three",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all-equal-four",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "duplicate-pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "negative-step",
+        "in": {
+          "nums": [
+            3,
+            -1,
+            -5,
+            -9
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "simple-progressive",
+        "in": {
+          "nums": [
+            1,
+            5,
+            9,
+            13
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "no-ap-four",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            7,
+            11
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "increasing-four",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "increasing-five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "increasing-six",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "zero-six",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "consecutive-seven",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "equal-six",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "descending-five",
+        "in": {
+          "nums": [
+            1,
+            0,
+            -1,
+            -2,
+            -3
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "fibonacci-like",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "centered-five",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            7,
+            9
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "reverse-centered-five",
+        "in": {
+          "nums": [
+            9,
+            7,
+            5,
+            3,
+            1
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "int-boundary-no-ap",
+        "in": {
+          "nums": [
+            2147483647,
+            0,
+            -2147483648
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "int-boundary-ap-low",
+        "in": {
+          "nums": [
+            -2147483648,
+            -2147483647,
+            -2147483646
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "int-boundary-ap-high",
+        "in": {
+          "nums": [
+            2147483645,
+            2147483646,
+            2147483647
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed-duplicates",
+        "in": {
+          "nums": [
+            10,
+            10,
+            20,
+            30,
+            40
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "sparse-growth",
+        "in": {
+          "nums": [
+            5,
+            1,
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "arithmetic-seven-step",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            10,
+            13,
+            16
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "arithmetic-seven-elements",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            10,
+            13,
+            16,
+            19
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "arithmetic-eight-elements",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            10,
+            13,
+            16,
+            19,
+            22
+          ]
+        },
+        "out": 29
+      },
+      {
+        "name": "first-ten",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 55
+      },
+      {
+        "name": "zeros-ten",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 968
+      },
+      {
+        "name": "evens-ten",
+        "in": {
+          "nums": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18
+          ]
+        },
+        "out": 55
+      },
+      {
+        "name": "large-generated-999",
+        "seed": 999,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 999,
+              "max": 999
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-generated-1000",
+        "seed": 1000,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 1000
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 3, 5]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 4, 6, 8, 10]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [7, 7, 7, 7, 7]",
+      "output": "16"
+    },
+    {
+      "input": "nums = [1, 1, 1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1]",
+      "output": "5"
+    }
+  ]
+}

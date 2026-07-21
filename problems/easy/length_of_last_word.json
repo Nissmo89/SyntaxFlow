@@ -1,0 +1,383 @@
+{
+  "id": "length_of_last_word",
+  "title": "Length of Last Word",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>Given a string <code>s</code> consisting of words and spaces, return <em>the length of the <strong>last</strong> word in the string.</em></p> <p>A <strong>word</strong> is a maximal <span class=\"cursor-pointer relative text-dark-blue-s text-sm\" data-keyword=\"substring-nonempty\"><button aria-controls=\"radix-_r_1m_\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"\" data-state=\"closed\" type=\"button\">substring</button></span> consisting of non-space characters only.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"Hello World\"\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> The last word is \"World\" with length 5.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"   fly me   to   the moon  \"\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The last word is \"moon\" with length 4.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> s = \"luffy is still joyboy\"\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The last word is \"joyboy\" with length 6.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li> <li><code>s</code> consists of only English letters and spaces <code>' '</code>.</li> <li>There will be at least one word in <code>s</code>.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "lengthOfLastWord",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 58,
+      "title": "length-of-last-word",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().lengthOfLastWord({s})",
+        "rust": "Solution::length_of_last_word({s})",
+        "python3": "Solution().lengthOfLastWord({s})",
+        "python2": "Solution().lengthOfLastWord({s})",
+        "ruby": "length_of_last_word({s})",
+        "java": "new Solution().lengthOfLastWord({s})",
+        "csharp": "new Solution().LengthOfLastWord({s})",
+        "kotlin": "Solution().lengthOfLastWord({s})",
+        "go": "lengthOfLastWord({s})",
+        "dart": "Solution().lengthOfLastWord({s})",
+        "swift": "Solution().lengthOfLastWord({s})",
+        "typescript": "lengthOfLastWord({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().lengthOfLastWord(s, {result})",
+        "checker": "import json\n\nclass Checker:\n    def lengthOfLastWord(self, s, result):\n        try:\n            result = json.loads(result) if isinstance(result, str) else result\n        except Exception:\n            return False\n        if not isinstance(s, str):\n            return False\n        if not isinstance(result, int):\n            return False\n        if any(ch not in \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz \" for ch in s):\n            return False\n        if len(s) < 1 or len(s) > 10000:\n            return False\n        words = s.split()\n        expected = len(words[-1]) if words else 0\n        return expected == result\n"
+      }
+    },
+    "seed": 58,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "s": "Hello World"
+        },
+        "out": 5
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "s": "   fly me   to   the moon  "
+        },
+        "out": 4
+      },
+      {
+        "name": "Example 3",
+        "in": {
+          "s": "luffy is still joyboy"
+        },
+        "out": 6
+      },
+      {
+        "name": "Single letter",
+        "in": {
+          "s": "a"
+        },
+        "out": 1
+      },
+      {
+        "name": "Single word",
+        "in": {
+          "s": "algorithm"
+        },
+        "out": 9
+      },
+      {
+        "name": "Two words",
+        "in": {
+          "s": "ab cd"
+        },
+        "out": 2
+      },
+      {
+        "name": "Leading spaces",
+        "in": {
+          "s": "   hello"
+        },
+        "out": 5
+      },
+      {
+        "name": "Trailing spaces",
+        "in": {
+          "s": "hello   "
+        },
+        "out": 5
+      },
+      {
+        "name": "Leading and trailing spaces",
+        "in": {
+          "s": "   hello   "
+        },
+        "out": 5
+      },
+      {
+        "name": "Multiple internal spaces",
+        "in": {
+          "s": "a   bb    ccc"
+        },
+        "out": 3
+      },
+      {
+        "name": "Many words",
+        "in": {
+          "s": "one two three four five"
+        },
+        "out": 4
+      },
+      {
+        "name": "Mixed word lengths",
+        "in": {
+          "s": "a bb ccc dddd eeeee"
+        },
+        "out": 5
+      },
+      {
+        "name": "Short last word",
+        "in": {
+          "s": "word x"
+        },
+        "out": 1
+      },
+      {
+        "name": "Long first word",
+        "in": {
+          "s": "supercalifragilisticexpialidocious x"
+        },
+        "out": 1
+      },
+      {
+        "name": "Space before last word",
+        "in": {
+          "s": "abc def "
+        },
+        "out": 3
+      },
+      {
+        "name": "Two trailing spaces",
+        "in": {
+          "s": "abc def  "
+        },
+        "out": 3
+      },
+      {
+        "name": "Many trailing spaces",
+        "in": {
+          "s": "abc def      "
+        },
+        "out": 3
+      },
+      {
+        "name": "Single word with padding",
+        "in": {
+          "s": "     zzz     "
+        },
+        "out": 3
+      },
+      {
+        "name": "Alternating spaces",
+        "in": {
+          "s": "a b c d e f"
+        },
+        "out": 1
+      },
+      {
+        "name": "Final long word",
+        "in": {
+          "s": "a bb ccc dddd"
+        },
+        "out": 4
+      },
+      {
+        "name": "Entire alphabet",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz"
+        },
+        "out": 26
+      },
+      {
+        "name": "Uppercase word",
+        "in": {
+          "s": "PYTHON"
+        },
+        "out": 6
+      },
+      {
+        "name": "Mixed case word",
+        "in": {
+          "s": "OpenAI"
+        },
+        "out": 6
+      },
+      {
+        "name": "Last word with same prefix",
+        "in": {
+          "s": "test testcase"
+        },
+        "out": 8
+      },
+      {
+        "name": "Ends with one-char word",
+        "in": {
+          "s": "test a"
+        },
+        "out": 1
+      },
+      {
+        "name": "Ends with two-char word",
+        "in": {
+          "s": "test ab"
+        },
+        "out": 2
+      },
+      {
+        "name": "Ends with three-char word",
+        "in": {
+          "s": "test abc"
+        },
+        "out": 3
+      },
+      {
+        "name": "All spaces around word",
+        "in": {
+          "s": "      q      "
+        },
+        "out": 1
+      },
+      {
+        "name": "Max length all one word",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "a"
+          }
+        }
+      },
+      {
+        "name": "Max length word plus spaces",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "ab "
+          }
+        }
+      },
+      {
+        "name": "Generated mixed string 1",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 256,
+            "alphabet": "abc "
+          }
+        }
+      },
+      {
+        "name": "Generated mixed string 2",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 512,
+            "alphabet": "xyz "
+          }
+        }
+      },
+      {
+        "name": "Generated mixed string 3",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 999,
+            "alphabet": "pqr "
+          }
+        }
+      },
+      {
+        "name": "Generated mixed string 4",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1234,
+            "alphabet": "lmno "
+          }
+        }
+      },
+      {
+        "name": "Generated mixed string 5",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 2048,
+            "alphabet": "stuv "
+          }
+        }
+      },
+      {
+        "name": "Word separated by large spaces",
+        "in": {
+          "s": "x                                                                                                   y"
+        },
+        "out": 1
+      },
+      {
+        "name": "Large tail spaces after short word",
+        "in": {
+          "s": "abc                                                                                                   "
+        },
+        "out": 3
+      },
+      {
+        "name": "Large head spaces before short word",
+        "in": {
+          "s": "                                                                                                   abc"
+        },
+        "out": 3
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"Hello World\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"   fly me   to   the moon  \"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"luffy is still joyboy\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"algorithm\"",
+      "output": "9"
+    },
+    {
+      "input": "s = \"ab cd\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"   hello\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"hello   \"",
+      "output": "5"
+    }
+  ]
+}

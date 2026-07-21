@@ -1,0 +1,957 @@
+{
+  "id": "bus_routes",
+  "title": "Bus Routes",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Breadth-First Search"
+  ],
+  "description": "<p>You are given an array <code>routes</code> representing bus routes where <code>routes[i]</code> is a bus route that the <code>i<sup>th</sup></code> bus repeats forever.</p>\n\n<ul>\n\t<li>For example, if <code>routes[0] = [1, 5, 7]</code>, this means that the <code>0<sup>th</sup></code> bus travels in the sequence <code>1 -&gt; 5 -&gt; 7 -&gt; 1 -&gt; 5 -&gt; 7 -&gt; 1 -&gt; ...</code> forever.</li>\n</ul>\n\n<p>You will start at the bus stop <code>source</code> (You are not on any bus initially), and you want to go to the bus stop <code>target</code>. You can travel between bus stops by buses only.</p>\n\n<p>Return <em>the least number of buses you must take to travel from </em><code>source</code><em> to </em><code>target</code>. Return <code>-1</code> if it is not possible.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> routes = [[1,2,7],[3,6,7]], source = 1, target = 6\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The best strategy is take the first bus to the bus stop 7, then take the second bus to the bus stop 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> routes = [[7,12],[4,5,15],[6],[15,19],[9,12,13]], source = 15, target = 12\n<strong>Output:</strong> -1\n</pre>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= routes.length &lt;= 500</code>.</li>\n\t<li><code>1 &lt;= routes[i].length &lt;= 10<sup>5</sup></code></li>\n\t<li>All the values of <code>routes[i]</code> are <strong>unique</strong>.</li>\n\t<li><code>sum(routes[i].length) &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= routes[i][j] &lt; 10<sup>6</sup></code></li>\n\t<li><code>0 &lt;= source, target &lt; 10<sup>6</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Bus Routes' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= routes.length <= 500.",
+    "1 <= routes[i].length <= 105",
+    "All the values of routes[i] are unique.",
+    "sum(routes[i].length) <= 105",
+    "0 <= routes[i][j] < 106",
+    "0 <= source, target < 106"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numBusesToDestination",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "routes",
+        "type": "array"
+      },
+      {
+        "name": "source",
+        "type": "int"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 815,
+      "title": "bus-routes",
+      "params": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "source": {
+          "type": "int"
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "rust": "Solution::num_buses_to_destination({routes}, {source}, {target})",
+        "python3": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "python2": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "ruby": "num_buses_to_destination({routes}, {source}, {target})",
+        "java": "new Solution().numBusesToDestination({routes}, {source}, {target})",
+        "csharp": "new Solution().NumBusesToDestination({routes}, {source}, {target})",
+        "kotlin": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "go": "numBusesToDestination({routes}, {source}, {target})",
+        "dart": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "swift": "Solution().numBusesToDestination({routes}, {source}, {target})",
+        "typescript": "numBusesToDestination({routes}, {source}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(routes, source, target, {result})",
+        "checker": "from collections import defaultdict, deque\n\nclass Checker:\n    def check(self, routes, source, target, result):\n        if source == target:\n            return result == 0\n        adj = defaultdict(set)\n        for bus, locations in enumerate(routes):\n            for location in locations:\n                adj[location].add(bus)\n        queue = deque(adj[target])\n        visited = set()\n        cost = 0\n        while queue:\n            cost += 1\n            for _ in range(len(queue)):\n                node = queue.popleft()\n                if node in visited:\n                    continue\n                visited.add(node)\n                if source in routes[node]:\n                    return result == cost\n                for location in routes[node]:\n                    for bus in adj[location]:\n                        if bus not in visited:\n                            queue.append(bus)\n        return result == -1\n"
+      }
+    },
+    "seed": 815,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              7
+            ],
+            [
+              3,
+              6,
+              7
+            ]
+          ],
+          "source": 1,
+          "target": 6
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "routes": [
+            [
+              7,
+              12
+            ],
+            [
+              4,
+              5,
+              15
+            ],
+            [
+              6
+            ],
+            [
+              15,
+              19
+            ],
+            [
+              9,
+              12,
+              13
+            ]
+          ],
+          "source": 15,
+          "target": 12
+        }
+      },
+      {
+        "name": "same-source-target",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "source": 2,
+          "target": 2
+        }
+      },
+      {
+        "name": "direct-one-bus",
+        "in": {
+          "routes": [
+            [
+              1,
+              5,
+              7
+            ],
+            [
+              9,
+              10
+            ]
+          ],
+          "source": 1,
+          "target": 7
+        }
+      },
+      {
+        "name": "two-buses-chain",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              7
+            ],
+            [
+              7,
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ]
+          ],
+          "source": 1,
+          "target": 10
+        }
+      },
+      {
+        "name": "no-path-disconnected",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          "source": 1,
+          "target": 6
+        }
+      },
+      {
+        "name": "multiple-intersections",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              6,
+              7,
+              8
+            ],
+            [
+              8,
+              9,
+              10
+            ]
+          ],
+          "source": 1,
+          "target": 10
+        }
+      },
+      {
+        "name": "source-on-later-bus",
+        "in": {
+          "routes": [
+            [
+              11,
+              12,
+              13
+            ],
+            [
+              1,
+              2,
+              11
+            ],
+            [
+              13,
+              14,
+              15
+            ]
+          ],
+          "source": 1,
+          "target": 15
+        }
+      },
+      {
+        "name": "target-unreachable-but-present",
+        "in": {
+          "routes": [
+            [
+              100,
+              200
+            ],
+            [
+              300,
+              400
+            ],
+            [
+              500,
+              600
+            ]
+          ],
+          "source": 100,
+          "target": 500
+        }
+      },
+      {
+        "name": "hub-and-spokes",
+        "in": {
+          "routes": [
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              4,
+              9
+            ]
+          ],
+          "source": 1,
+          "target": 4
+        }
+      },
+      {
+        "name": "repeated-stop-on-many-routes",
+        "in": {
+          "routes": [
+            [
+              1,
+              5,
+              9
+            ],
+            [
+              9,
+              13,
+              17
+            ],
+            [
+              17,
+              21,
+              25
+            ],
+            [
+              25,
+              29,
+              33
+            ]
+          ],
+          "source": 1,
+          "target": 33
+        }
+      },
+      {
+        "name": "longer-chain",
+        "in": {
+          "routes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "source": 1,
+          "target": 6
+        }
+      },
+      {
+        "name": "one-bus-many-stops",
+        "in": {
+          "routes": [
+            [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11
+            ]
+          ],
+          "source": 3,
+          "target": 11
+        }
+      },
+      {
+        "name": "overlapping-with-detour",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              5,
+              6,
+              7
+            ],
+            [
+              2,
+              8,
+              9
+            ]
+          ],
+          "source": 1,
+          "target": 7
+        }
+      },
+      {
+        "name": "source-only-route",
+        "in": {
+          "routes": [
+            [
+              1,
+              4,
+              7
+            ],
+            [
+              2,
+              5,
+              8
+            ]
+          ],
+          "source": 4,
+          "target": 8
+        }
+      },
+      {
+        "name": "target-on-source-route",
+        "in": {
+          "routes": [
+            [
+              10,
+              20,
+              30
+            ],
+            [
+              30,
+              40
+            ]
+          ],
+          "source": 10,
+          "target": 30
+        }
+      },
+      {
+        "name": "two-hop-through-hub",
+        "in": {
+          "routes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "source": 1,
+          "target": 4
+        }
+      },
+      {
+        "name": "long-spoke-chain",
+        "in": {
+          "routes": [
+            [
+              5,
+              6,
+              7
+            ],
+            [
+              7,
+              8,
+              9
+            ],
+            [
+              9,
+              10,
+              11
+            ],
+            [
+              11,
+              12,
+              13
+            ]
+          ],
+          "source": 5,
+          "target": 13
+        }
+      },
+      {
+        "name": "sparse-disconnected-many",
+        "in": {
+          "routes": [
+            [
+              1,
+              100
+            ],
+            [
+              200,
+              300
+            ],
+            [
+              400,
+              500
+            ],
+            [
+              600,
+              700
+            ]
+          ],
+          "source": 1,
+          "target": 700
+        }
+      },
+      {
+        "name": "shared-stop-ladder",
+        "in": {
+          "routes": [
+            [
+              1,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "source": 1,
+          "target": 12
+        }
+      },
+      {
+        "name": "branching-via-middle",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              3,
+              6,
+              9
+            ],
+            [
+              9,
+              12,
+              15
+            ],
+            [
+              2,
+              8,
+              14
+            ]
+          ],
+          "source": 1,
+          "target": 15
+        }
+      },
+      {
+        "name": "cycle-like-overlap",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              5,
+              1,
+              6
+            ]
+          ],
+          "source": 2,
+          "target": 6
+        }
+      },
+      {
+        "name": "route-with-target-as-source-hop",
+        "in": {
+          "routes": [
+            [
+              7,
+              8,
+              9
+            ],
+            [
+              9,
+              10,
+              11
+            ],
+            [
+              11,
+              12,
+              13
+            ]
+          ],
+          "source": 7,
+          "target": 13
+        }
+      },
+      {
+        "name": "isolated-source",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          "source": 9,
+          "target": 6
+        }
+      },
+      {
+        "name": "isolated-target",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          "source": 1,
+          "target": 9
+        }
+      },
+      {
+        "name": "zero-stop-values",
+        "in": {
+          "routes": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "source": 0,
+          "target": 4
+        }
+      },
+      {
+        "name": "many-small-routes",
+        "in": {
+          "routes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "source": 1,
+          "target": 7
+        }
+      },
+      {
+        "name": "shared-target-hub",
+        "in": {
+          "routes": [
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "source": 1,
+          "target": 5
+        }
+      },
+      {
+        "name": "source-and-target-appear-multiple-times",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              7,
+              8,
+              9,
+              1
+            ]
+          ],
+          "source": 2,
+          "target": 9
+        }
+      },
+      {
+        "name": "long-route-direct",
+        "in": {
+          "routes": [
+            [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11,
+              13,
+              15
+            ]
+          ],
+          "source": 1,
+          "target": 15
+        }
+      },
+      {
+        "name": "dense-overlap",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ],
+          "source": 1,
+          "target": 7
+        }
+      },
+      {
+        "name": "late-start-shortcut",
+        "in": {
+          "routes": [
+            [
+              10,
+              20,
+              30
+            ],
+            [
+              30,
+              40,
+              50
+            ],
+            [
+              50,
+              60,
+              70
+            ],
+            [
+              70,
+              80,
+              90
+            ]
+          ],
+          "source": 20,
+          "target": 90
+        }
+      },
+      {
+        "name": "three-hop-middle",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              3,
+              6,
+              9
+            ],
+            [
+              9,
+              12,
+              15
+            ]
+          ],
+          "source": 1,
+          "target": 15
+        }
+      },
+      {
+        "name": "unreachable-after-one-hop",
+        "in": {
+          "routes": [
+            [
+              1,
+              5
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              20,
+              30
+            ]
+          ],
+          "source": 1,
+          "target": 30
+        }
+      },
+      {
+        "name": "direct-via-shared-stop",
+        "in": {
+          "routes": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              3,
+              4,
+              5
+            ]
+          ],
+          "source": 1,
+          "target": 5
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "routes = [[1, 2, 7], [3, 6, 7]]\nsource = 1\ntarget = 6",
+      "output": ""
+    },
+    {
+      "input": "routes = [[7, 12], [4, 5, 15], [6], [15, 19], [9, 12, 13]]\nsource = 15\ntarget = 12",
+      "output": ""
+    },
+    {
+      "input": "routes = [[1, 2, 3]]\nsource = 2\ntarget = 2",
+      "output": ""
+    },
+    {
+      "input": "routes = [[1, 5, 7], [9, 10]]\nsource = 1\ntarget = 7",
+      "output": ""
+    },
+    {
+      "input": "routes = [[1, 2, 7], [7, 8, 9], [9, 10]]\nsource = 1\ntarget = 10",
+      "output": ""
+    },
+    {
+      "input": "routes = [[1, 2, 3], [4, 5, 6]]\nsource = 1\ntarget = 6",
+      "output": ""
+    },
+    {
+      "input": "routes = [[1, 2, 3, 4], [4, 5, 6], [6, 7, 8], [8, 9, 10]]\nsource = 1\ntarget = 10",
+      "output": ""
+    },
+    {
+      "input": "routes = [[11, 12, 13], [1, 2, 11], [13, 14, 15]]\nsource = 1\ntarget = 15",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,1963 @@
+{
+  "id": "grid_illumination",
+  "title": "Grid Illumination",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "description": "<p>There is a 2D <code>grid</code> of size <code>n x n</code> where each cell of this grid has a lamp that is initially <strong>turned off</strong>.</p>\n\n<p>You are given a 2D array of lamp positions <code>lamps</code>, where <code>lamps[i] = [row<sub>i</sub>, col<sub>i</sub>]</code> indicates that the lamp at <code>grid[row<sub>i</sub>][col<sub>i</sub>]</code> is <strong>turned on</strong>. Even if the same lamp is listed more than once, it is turned on.</p>\n\n<p>When a lamp is turned on, it <strong>illuminates its cell</strong> and <strong>all other cells</strong> in the same <strong>row, column, or diagonal</strong>.</p>\n\n<p>You are also given another 2D array <code>queries</code>, where <code>queries[j] = [row<sub>j</sub>, col<sub>j</sub>]</code>. For the <code>j<sup>th</sup></code> query, determine whether <code>grid[row<sub>j</sub>][col<sub>j</sub>]</code> is illuminated or not. After answering the <code>j<sup>th</sup></code> query, <strong>turn off</strong> the lamp at <code>grid[row<sub>j</sub>][col<sub>j</sub>]</code> and its <strong>8 adjacent lamps</strong> if they exist. A lamp is adjacent if its cell shares either a side or corner with <code>grid[row<sub>j</sub>][col<sub>j</sub>]</code>.</p>\n\n<p>Return <em>an array of integers </em><code>ans</code><em>,</em><em> where </em><code>ans[j]</code><em> should be </em><code>1</code><em> if the cell in the </em><code>j<sup>th</sup></code><em> query was illuminated, or </em><code>0</code><em> if the lamp was not.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/08/19/illu_1.jpg\" style=\"width: 750px; height: 209px;\" />\n<pre>\n<strong>Input:</strong> n = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,0]]\n<strong>Output:</strong> [1,0]\n<strong>Explanation:</strong> We have the initial grid with all lamps turned off. In the above picture we see the grid after turning on the lamp at grid[0][0] then turning on the lamp at grid[4][4].\nThe 0<sup>th</sup>&nbsp;query asks if the lamp at grid[1][1] is illuminated or not (the blue square). It is illuminated, so set ans[0] = 1. Then, we turn off all lamps in the red square.\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/08/19/illu_step1.jpg\" style=\"width: 500px; height: 218px;\" />\nThe 1<sup>st</sup>&nbsp;query asks if the lamp at grid[1][0] is illuminated or not (the blue square). It is not illuminated, so set ans[1] = 0. Then, we turn off all lamps in the red rectangle.\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/08/19/illu_step2.jpg\" style=\"width: 500px; height: 219px;\" />\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,1]]\n<strong>Output:</strong> [1,1]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 5, lamps = [[0,0],[0,4]], queries = [[0,4],[0,1],[1,4]]\n<strong>Output:</strong> [1,1,0]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li>\n\t<li><code>0 &lt;= lamps.length &lt;= 20000</code></li>\n\t<li><code>0 &lt;= queries.length &lt;= 20000</code></li>\n\t<li><code>lamps[i].length == 2</code></li>\n\t<li><code>0 &lt;= row<sub>i</sub>, col<sub>i</sub> &lt; n</code></li>\n\t<li><code>queries[j].length == 2</code></li>\n\t<li><code>0 &lt;= row<sub>j</sub>, col<sub>j</sub> &lt; n</code></li>\n</ul>\n",
+  "task": "Solve the 'Grid Illumination' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 109",
+    "0 <= lamps.length <= 20000",
+    "0 <= queries.length <= 20000",
+    "lamps[i].length == 2",
+    "0 <= rowi, coli < n",
+    "queries[j].length == 2",
+    "0 <= rowj, colj < n"
+  ],
+  "hints": [],
+  "method": {
+    "name": "gridIllumination",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "lamps",
+        "type": "array"
+      },
+      {
+        "name": "queries",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1001,
+      "title": "grid-illumination",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "lamps": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "rust": "Solution::grid_illumination({n}, {lamps}, {queries})",
+        "python3": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "python2": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "ruby": "grid_illumination({n}, {lamps}, {queries})",
+        "java": "new Solution().gridIllumination({n}, {lamps}, {queries})",
+        "csharp": "new Solution().GridIllumination({n}, {lamps}, {queries})",
+        "kotlin": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "go": "gridIllumination({n}, {lamps}, {queries})",
+        "dart": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "swift": "Solution().gridIllumination({n}, {lamps}, {queries})",
+        "typescript": "gridIllumination({n}, {lamps}, {queries})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 1001,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "queries": [
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "n": 7,
+          "lamps": [],
+          "queries": [
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "n": 2,
+          "lamps": [],
+          "queries": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "n": 4,
+          "lamps": [
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "n": 3,
+          "lamps": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              3,
+              5
+            ]
+          ],
+          "queries": [
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "n": 5,
+          "lamps": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "queries": [
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "n": 4,
+          "lamps": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "queries": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              1,
+              4
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "n": 1,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "n": 1,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "n": 5,
+          "lamps": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "queries": [
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              5,
+              3
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "out": [
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              4,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              2,
+              4
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        "out": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              6,
+              6
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "queries": [
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "n": 3,
+          "lamps": [],
+          "queries": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "queries": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "out": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "n": 8,
+          "lamps": [
+            [
+              5,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "queries": [
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        "out": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "n": 1,
+          "lamps": [
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "n": 4,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "queries": [
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "n": 8,
+          "lamps": [
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "queries": [
+            [
+              6,
+              4
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "n": 3,
+          "lamps": [],
+          "queries": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              0,
+              3
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "n": 6,
+          "lamps": [
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "queries": [
+            [
+              1,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "n": 2,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "n": 5,
+          "lamps": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "n": 8,
+          "lamps": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              2,
+              7
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "n": 7,
+          "lamps": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "queries": [
+            [
+              5,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "n": 1,
+          "lamps": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "queries": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 7\nlamps = [[0, 6], [1, 0], [6, 2], [3, 3]]\nqueries = [[5, 4], [4, 1], [3, 2], [2, 5], [6, 4], [0, 3], [1, 2], [2, 1]]",
+      "output": "[1, 0, 1, 0, 1, 1, 1, 1]"
+    },
+    {
+      "input": "n = 2\nlamps = [[1, 1], [1, 1], [1, 1], [1, 0], [1, 0], [1, 0]]\nqueries = [[1, 0], [0, 0]]",
+      "output": "[1, 0]"
+    },
+    {
+      "input": "n = 7\nlamps = []\nqueries = [[6, 0], [5, 3], [3, 5], [5, 1], [2, 0], [4, 2], [5, 5]]",
+      "output": "[0, 0, 0, 0, 0, 0, 0]"
+    },
+    {
+      "input": "n = 2\nlamps = []\nqueries = [[1, 1]]",
+      "output": "[0]"
+    },
+    {
+      "input": "n = 4\nlamps = [[1, 0], [3, 0], [2, 2], [3, 0], [0, 0], [2, 1]]\nqueries = [[1, 3], [2, 3], [3, 0], [2, 2], [1, 0], [3, 0], [3, 1]]",
+      "output": "[1, 1, 1, 1, 1, 0, 0]"
+    },
+    {
+      "input": "n = 2\nlamps = [[0, 1], [0, 0], [0, 0], [1, 1], [0, 0]]\nqueries = [[1, 0], [1, 1], [1, 0]]",
+      "output": "[1, 0, 0]"
+    },
+    {
+      "input": "n = 3\nlamps = [[0, 2], [1, 1]]\nqueries = [[0, 1], [0, 2], [2, 0], [1, 1]]",
+      "output": "[1, 0, 0, 0]"
+    },
+    {
+      "input": "n = 7\nlamps = [[3, 5]]\nqueries = [[3, 6], [3, 1], [2, 0]]",
+      "output": "[1, 0, 0]"
+    }
+  ]
+}

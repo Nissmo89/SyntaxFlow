@@ -1,0 +1,1103 @@
+{
+  "id": "russian_doll_envelopes",
+  "title": "Russian Doll Envelopes",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "description": "<p>You are given a 2D array of integers <code>envelopes</code> where <code>envelopes[i] = [w<sub>i</sub>, h<sub>i</sub>]</code> represents the width and the height of an envelope.</p>\n\n<p>One envelope can fit into another if and only if both the width and height of one envelope are greater than the other envelope&#39;s width and height.</p>\n\n<p>Return <em>the maximum number of envelopes you can Russian doll (i.e., put one inside the other)</em>.</p>\n\n<p><strong>Note:</strong> You cannot rotate an envelope.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> envelopes = [[5,4],[6,4],[6,7],[2,3]]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The maximum number of envelopes you can Russian doll is <code>3</code> ([2,3] =&gt; [5,4] =&gt; [6,7]).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> envelopes = [[1,1],[1,1],[1,1]]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= envelopes.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>envelopes[i].length == 2</code></li>\n\t<li><code>1 &lt;= w<sub>i</sub>, h<sub>i</sub> &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Russian Doll Envelopes' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= envelopes.length <= 105",
+    "envelopes[i].length == 2",
+    "1 <= wi, hi <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxEnvelopes",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "envelopes",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 354,
+      "title": "russian-doll-envelopes",
+      "params": {
+        "envelopes": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxEnvelopes({envelopes})",
+        "rust": "Solution::max_envelopes({envelopes})",
+        "python3": "Solution().maxEnvelopes({envelopes})",
+        "python2": "Solution().maxEnvelopes({envelopes})",
+        "ruby": "max_envelopes({envelopes})",
+        "java": "new Solution().maxEnvelopes({envelopes})",
+        "csharp": "new Solution().MaxEnvelopes({envelopes})",
+        "kotlin": "Solution().maxEnvelopes({envelopes})",
+        "go": "maxEnvelopes({envelopes})",
+        "dart": "Solution().maxEnvelopes({envelopes})",
+        "swift": "Solution().maxEnvelopes({envelopes})",
+        "typescript": "maxEnvelopes({envelopes})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxEnvelopes(envelopes, {result})",
+        "checker": "from bisect import bisect_left\nfrom typing import Any, List\n\nclass Checker:\n    def maxEnvelopes(self, envelopes: List[List[int]], result: Any) -> bool:\n        if not isinstance(result, int):\n            return False\n        envs = [list(e) for e in envelopes]\n        envs.sort(key=lambda x: (x[0], -x[1]))\n        lis = []\n        for _, h in envs:\n            i = bisect_left(lis, h)\n            if i == len(lis):\n                lis.append(h)\n            else:\n                lis[i] = h\n        return result == len(lis)\n"
+      }
+    },
+    "seed": 354,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "envelopes": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_small",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_increasing",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two_same_width",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_same_height",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "strict_chain_3",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example_with_extra_duplicates",
+        "in": {
+          "envelopes": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "unsorted_mixed",
+        "in": {
+          "envelopes": [
+            [
+              7,
+              8
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "width_ties_break_chain",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "height_ties_break_chain",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "descending_widths",
+        "in": {
+          "envelopes": [
+            [
+              6,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "descending_heights",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              5
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "duplicate_block",
+        "in": {
+          "envelopes": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "width_plateau",
+        "in": {
+          "envelopes": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "height_plateau",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "zigzag_1",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "zigzag_2",
+        "in": {
+          "envelopes": [
+            [
+              8,
+              1
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "local_replacements",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              100
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "many_equal_widths",
+        "in": {
+          "envelopes": [
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              11,
+              5
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "many_equal_heights",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              5,
+              11
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "chain_with_noise",
+        "in": {
+          "envelopes": [
+            [
+              4,
+              4
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "gap_in_width",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "gap_in_height",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "repeated_pairs_mix",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "non_chainable_same_widths",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "non_chainable_same_heights",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "sorted_by_width_not_height",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "long_small_chain",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "tall_skinny_mix",
+        "in": {
+          "envelopes": [
+            [
+              2,
+              100
+            ],
+            [
+              3,
+              99
+            ],
+            [
+              4,
+              98
+            ],
+            [
+              5,
+              97
+            ],
+            [
+              6,
+              96
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "wide_short_mix",
+        "in": {
+          "envelopes": [
+            [
+              100,
+              2
+            ],
+            [
+              99,
+              3
+            ],
+            [
+              98,
+              4
+            ],
+            [
+              97,
+              5
+            ],
+            [
+              96,
+              6
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "medium_chain",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "medium_plateau_then_chain",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              10
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "max_width_small_heights",
+        "in": {
+          "envelopes": [
+            [
+              100000,
+              1
+            ],
+            [
+              99999,
+              2
+            ],
+            [
+              99998,
+              3
+            ],
+            [
+              99997,
+              4
+            ],
+            [
+              99996,
+              5
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "max_height_small_widths",
+        "in": {
+          "envelopes": [
+            [
+              1,
+              100000
+            ],
+            [
+              2,
+              99999
+            ],
+            [
+              3,
+              99998
+            ],
+            [
+              4,
+              99997
+            ],
+            [
+              5,
+              99996
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "generated_large_spread_1",
+        "seed": 10001,
+        "in": {
+          "envelopes": {
+            "gen": "array",
+            "elemType": "int",
+            "distinct": false,
+            "sorted": false,
+            "len": {
+              "gen": "int",
+              "min": 10000,
+              "max": 10000
+            },
+            "of": {
+              "gen": "array",
+              "elemType": "int",
+              "distinct": false,
+              "sorted": false,
+              "len": 2,
+              "of": {
+                "gen": "int",
+                "min": 1,
+                "max": 100000
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_spread_2",
+        "seed": 10002,
+        "in": {
+          "envelopes": {
+            "gen": "array",
+            "elemType": "int",
+            "distinct": false,
+            "sorted": false,
+            "len": {
+              "gen": "int",
+              "min": 20000,
+              "max": 20000
+            },
+            "of": {
+              "gen": "array",
+              "elemType": "int",
+              "distinct": false,
+              "sorted": false,
+              "len": 2,
+              "of": {
+                "gen": "int",
+                "min": 1,
+                "max": 100000
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "envelopes = [[5, 4], [6, 4], [6, 7], [2, 3]]",
+      "output": "3"
+    },
+    {
+      "input": "envelopes = [[1, 1], [1, 1], [1, 1]]",
+      "output": "1"
+    },
+    {
+      "input": "envelopes = [[1, 1]]",
+      "output": "1"
+    },
+    {
+      "input": "envelopes = [[1, 2], [2, 3]]",
+      "output": "2"
+    },
+    {
+      "input": "envelopes = [[2, 3], [2, 4]]",
+      "output": "1"
+    },
+    {
+      "input": "envelopes = [[2, 5], [3, 5]]",
+      "output": "1"
+    },
+    {
+      "input": "envelopes = [[2, 3], [5, 4], [6, 7]]",
+      "output": "3"
+    },
+    {
+      "input": "envelopes = [[5, 4], [6, 4], [6, 7], [2, 3], [6, 7], [2, 3]]",
+      "output": "3"
+    }
+  ]
+}

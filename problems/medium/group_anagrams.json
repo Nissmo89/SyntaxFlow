@@ -1,0 +1,564 @@
+{
+  "id": "group_anagrams",
+  "title": "Group Anagrams",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "description": "<p>Given an array of strings <code>strs</code>, group the <span data-keyword=\"anagram\">anagrams</span> together. You can return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;eat&quot;,&quot;tea&quot;,&quot;tan&quot;,&quot;ate&quot;,&quot;nat&quot;,&quot;bat&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>There is no string in strs that can be rearranged to form <code>&quot;bat&quot;</code>.</li>\n\t<li>The strings <code>&quot;nat&quot;</code> and <code>&quot;tan&quot;</code> are anagrams as they can be rearranged to form each other.</li>\n\t<li>The strings <code>&quot;ate&quot;</code>, <code>&quot;eat&quot;</code>, and <code>&quot;tea&quot;</code> are anagrams as they can be rearranged to form each other.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;&quot;]]</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;a&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;a&quot;]]</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= strs.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>\n\t<li><code>strs[i]</code> consists of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Group Anagrams' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= strs.length <= 104",
+    "0 <= strs[i].length <= 100",
+    "strs[i] consists of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "groupAnagrams",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "strs",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 49,
+      "title": "group-anagrams",
+      "params": {
+        "strs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().groupAnagrams({strs})",
+        "rust": "Solution::group_anagrams({strs})",
+        "python3": "Solution().groupAnagrams({strs})",
+        "python2": "Solution().groupAnagrams({strs})",
+        "ruby": "group_anagrams({strs})",
+        "java": "new Solution().groupAnagrams({strs})",
+        "csharp": "new Solution().GroupAnagrams({strs})",
+        "kotlin": "Solution().groupAnagrams({strs})",
+        "go": "groupAnagrams({strs})",
+        "dart": "Solution().groupAnagrams({strs})",
+        "swift": "Solution().groupAnagrams({strs})",
+        "typescript": "groupAnagrams({strs})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().groupAnagrams(strs, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def groupAnagrams(self, strs, result):\n        if not isinstance(result, list):\n            return False\n\n        input_counts = Counter(strs)\n        output_counts = Counter()\n        groups = Counter()\n\n        for group in result:\n            if not isinstance(group, list) or len(group) == 0:\n                return False\n\n            for word in group:\n                if not isinstance(word, str):\n                    return False\n                output_counts[word] += 1\n\n            signature = \"\".join(sorted(group[0]))\n            for word in group[1:]:\n                if \"\".join(sorted(word)) != signature:\n                    return False\n\n            groups[tuple(sorted(group))] += 1\n\n        if output_counts != input_counts:\n            return False\n\n        expected_groups = Counter()\n        buckets = {}\n        for word in strs:\n            signature = \"\".join(sorted(word))\n            buckets.setdefault(signature, []).append(word)\n\n        for bucket in buckets.values():\n            expected_groups[tuple(sorted(bucket))] += 1\n\n        return groups == expected_groups\n"
+      }
+    },
+    "seed": 49,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "strs": [
+            "eat",
+            "tea",
+            "tan",
+            "ate",
+            "nat",
+            "bat"
+          ]
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "strs": [
+            ""
+          ]
+        }
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "strs": [
+            "a"
+          ]
+        }
+      },
+      {
+        "name": "single_empty_string",
+        "in": {
+          "strs": [
+            "",
+            "",
+            ""
+          ]
+        }
+      },
+      {
+        "name": "all_unique_single_chars",
+        "in": {
+          "strs": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j"
+          ]
+        }
+      },
+      {
+        "name": "simple_pairs",
+        "in": {
+          "strs": [
+            "ab",
+            "ba",
+            "cd",
+            "dc",
+            "ef",
+            "fe"
+          ]
+        }
+      },
+      {
+        "name": "duplicates_and_groups",
+        "in": {
+          "strs": [
+            "abc",
+            "bca",
+            "cab",
+            "abc",
+            "xyz",
+            "yzx",
+            "zxy",
+            "xyz"
+          ]
+        }
+      },
+      {
+        "name": "mixed_lengths",
+        "in": {
+          "strs": [
+            "a",
+            "aa",
+            "aaa",
+            "b",
+            "bb",
+            "bbb",
+            "ab",
+            "ba",
+            "aab",
+            "aba"
+          ]
+        }
+      },
+      {
+        "name": "includes_repeated_word",
+        "in": {
+          "strs": [
+            "listen",
+            "silent",
+            "enlist",
+            "listen",
+            "tinsel",
+            "inlets"
+          ]
+        }
+      },
+      {
+        "name": "two_groups_with_noise",
+        "in": {
+          "strs": [
+            "dormitory",
+            "dirtyroom",
+            "schoolmaster",
+            "theclassroom",
+            "cat",
+            "act",
+            "tac"
+          ]
+        }
+      },
+      {
+        "name": "palindrome_like",
+        "in": {
+          "strs": [
+            "noon",
+            "onon",
+            "abba",
+            "baab",
+            "aabb",
+            "bbaa"
+          ]
+        }
+      },
+      {
+        "name": "long_common_signature",
+        "in": {
+          "strs": [
+            "aab",
+            "aba",
+            "baa",
+            "abb",
+            "bab",
+            "bba"
+          ]
+        }
+      },
+      {
+        "name": "many_small_buckets",
+        "in": {
+          "strs": [
+            "abcd",
+            "bcda",
+            "cdab",
+            "efgh",
+            "ghef",
+            "hgfe",
+            "ijkl",
+            "ljik",
+            "klij",
+            "mnop",
+            "ponm",
+            "opmn"
+          ]
+        }
+      },
+      {
+        "name": "with_empty_and_nonempty",
+        "in": {
+          "strs": [
+            "",
+            "a",
+            "",
+            "b",
+            "c",
+            ""
+          ]
+        }
+      },
+      {
+        "name": "single_long_word_bucket",
+        "in": {
+          "strs": [
+            "abcde",
+            "edcba",
+            "baced"
+          ]
+        }
+      },
+      {
+        "name": "triples_and_singles",
+        "in": {
+          "strs": [
+            "rat",
+            "tar",
+            "art",
+            "star",
+            "tsar",
+            "arts",
+            "car",
+            "arc",
+            "scar"
+          ]
+        }
+      },
+      {
+        "name": "repeated_triples",
+        "in": {
+          "strs": [
+            "abc",
+            "bac",
+            "cab",
+            "abc",
+            "bac",
+            "cab"
+          ]
+        }
+      },
+      {
+        "name": "mosaic_groups",
+        "in": {
+          "strs": [
+            "ab",
+            "ba",
+            "abc",
+            "bca",
+            "cab",
+            "abcd",
+            "bcad",
+            "cdab",
+            "dabc"
+          ]
+        }
+      },
+      {
+        "name": "case_dense_lower_bound",
+        "in": {
+          "strs": [
+            "aabc",
+            "abac",
+            "caba",
+            "bcda",
+            "bdca",
+            "cabd"
+          ]
+        }
+      },
+      {
+        "name": "five_way_group",
+        "in": {
+          "strs": [
+            "abcde",
+            "bcdea",
+            "cdeab",
+            "deabc",
+            "eabcd"
+          ]
+        }
+      },
+      {
+        "name": "longer_words_mixed",
+        "in": {
+          "strs": [
+            "stop",
+            "pots",
+            "tops",
+            "spot",
+            "post",
+            "opts"
+          ]
+        }
+      },
+      {
+        "name": "same_signature_many_duplicates",
+        "in": {
+          "strs": [
+            "aab",
+            "aba",
+            "baa",
+            "aab",
+            "aba",
+            "baa",
+            "aab",
+            "aba"
+          ]
+        }
+      },
+      {
+        "name": "extra_1",
+        "in": {
+          "strs": [
+            "abc",
+            "cba",
+            "bac",
+            "xyz",
+            "yzx",
+            "zxy"
+          ]
+        }
+      },
+      {
+        "name": "extra_2",
+        "in": {
+          "strs": [
+            "aa",
+            "aa",
+            "aa",
+            "bb",
+            "bb",
+            "cc"
+          ]
+        }
+      },
+      {
+        "name": "extra_3",
+        "in": {
+          "strs": [
+            "abcd",
+            "abdc",
+            "adcb",
+            "bcad",
+            "dcba"
+          ]
+        }
+      },
+      {
+        "name": "extra_4",
+        "in": {
+          "strs": [
+            "a",
+            "ab",
+            "abc",
+            "abcd",
+            "abcde"
+          ]
+        }
+      },
+      {
+        "name": "extra_5",
+        "in": {
+          "strs": [
+            "z",
+            "zz",
+            "zzz",
+            "zzzz"
+          ]
+        }
+      },
+      {
+        "name": "extra_6",
+        "in": {
+          "strs": [
+            "one",
+            "eno",
+            "neo",
+            "two",
+            "wto",
+            "owt"
+          ]
+        }
+      },
+      {
+        "name": "extra_7",
+        "in": {
+          "strs": [
+            "face",
+            "cafe",
+            "acer",
+            "race",
+            "care",
+            "acre"
+          ]
+        }
+      },
+      {
+        "name": "extra_8",
+        "in": {
+          "strs": [
+            "bca",
+            "cab",
+            "abc",
+            "bac",
+            "acb"
+          ]
+        }
+      },
+      {
+        "name": "extra_9",
+        "in": {
+          "strs": [
+            "ab",
+            "ba",
+            "aba",
+            "baa",
+            "aab"
+          ]
+        }
+      },
+      {
+        "name": "extra_10",
+        "in": {
+          "strs": [
+            "qwerty",
+            "ytrewq",
+            "asdfgh",
+            "hgfdsa",
+            "qaz",
+            "zaq"
+          ]
+        }
+      },
+      {
+        "name": "extra_11",
+        "in": {
+          "strs": [
+            "moon",
+            "noom",
+            "omon",
+            "sun",
+            "nus",
+            "uns"
+          ]
+        }
+      },
+      {
+        "name": "extra_12",
+        "in": {
+          "strs": [
+            "note",
+            "tone",
+            "stone",
+            "tones"
+          ]
+        }
+      },
+      {
+        "name": "extra_13",
+        "in": {
+          "strs": [
+            "loop",
+            "pool",
+            "polo",
+            "lopo",
+            "opol"
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"a\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"\", \"\", \"\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"ab\", \"ba\", \"cd\", \"dc\", \"ef\", \"fe\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"abc\", \"bca\", \"cab\", \"abc\", \"xyz\", \"yzx\", \"zxy\", \"xyz\"]",
+      "output": ""
+    },
+    {
+      "input": "strs = [\"a\", \"aa\", \"aaa\", \"b\", \"bb\", \"bbb\", \"ab\", \"ba\", \"aab\", \"aba\"]",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,771 @@
+{
+  "id": "predict_the_winner",
+  "title": "Predict the Winner",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Recursion",
+    "Game Theory"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code>. Two players are playing a game with this array: player 1 and player 2.</p>\n\n<p>Player 1 and player 2 take turns, with player 1 starting first. Both players start the game with a score of <code>0</code>. At each turn, the player takes one of the numbers from either end of the array (i.e., <code>nums[0]</code> or <code>nums[nums.length - 1]</code>) which reduces the size of the array by <code>1</code>. The player adds the chosen number to their score. The game ends when there are no more elements in the array.</p>\n\n<p>Return <code>true</code> if Player 1 can win the game. If the scores of both players are equal, then player 1 is still the winner, and you should also return <code>true</code>. You may assume that both players are playing optimally.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,2]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Initially, player 1 can choose between 1 and 2. \nIf he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). \nSo, final score of player 1 is 1 + 2 = 3, and player 2 is 5. \nHence, player 1 will never be the winner and you need to return false.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,233,7]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Player 1 first chooses 1. Then player 2 has to choose between 5 and 7. No matter which number player 2 choose, player 1 can choose 233.\nFinally, player 1 has more score (234) than player 2 (12), so you need to return True representing player1 can win.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 20</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>7</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Predict the Winner' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 20",
+    "0 <= nums[i] <= 107"
+  ],
+  "hints": [],
+  "method": {
+    "name": "predictTheWinner",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 486,
+      "title": "predict-the-winner",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().predictTheWinner({nums})",
+        "rust": "Solution::predict_the_winner({nums})",
+        "python3": "Solution().predictTheWinner({nums})",
+        "python2": "Solution().predictTheWinner({nums})",
+        "ruby": "predict_the_winner({nums})",
+        "java": "new Solution().predictTheWinner({nums})",
+        "csharp": "new Solution().PredictTheWinner({nums})",
+        "kotlin": "Solution().predictTheWinner({nums})",
+        "go": "predictTheWinner({nums})",
+        "dart": "Solution().predictTheWinner({nums})",
+        "swift": "Solution().predictTheWinner({nums})",
+        "typescript": "predictTheWinner({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().predictTheWinner(nums, {result})",
+        "checker": "class Checker:\n    def _norm(self, result):\n        if isinstance(result, str):\n            low = result.strip().lower()\n            if low == \"true\":\n                return True\n            if low == \"false\":\n                return False\n        return result\n\n    def predictTheWinner(self, nums, result):\n        result = self._norm(result)\n        n = len(nums)\n        dp = [[0] * n for _ in range(n)]\n        for i in range(n):\n            dp[i][i] = nums[i]\n        for length in range(2, n + 1):\n            for left in range(0, n - length + 1):\n                right = left + length - 1\n                take_left = nums[left] - dp[left + 1][right]\n                take_right = nums[right] - dp[left][right - 1]\n                dp[left][right] = max(take_left, take_right)\n        expected = dp[0][n - 1] >= 0\n        return expected == result\n"
+      }
+    },
+    "seed": 486,
+    "tests": [
+      {
+        "name": "example 1",
+        "in": {
+          "nums": [
+            1,
+            5,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "example 2",
+        "in": {
+          "nums": [
+            1,
+            5,
+            233,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single positive",
+        "in": {
+          "nums": [
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two equal",
+        "in": {
+          "nums": [
+            4,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two descending",
+        "in": {
+          "nums": [
+            9,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "three increasing",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "three equal",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "zero mix",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "alternating small",
+        "in": {
+          "nums": [
+            1,
+            100,
+            1,
+            100
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example like trap",
+        "in": {
+          "nums": [
+            1,
+            5,
+            2,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "symmetric highs",
+        "in": {
+          "nums": [
+            10,
+            1,
+            1,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "losing middle peak",
+        "in": {
+          "nums": [
+            1,
+            100,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd length close",
+        "in": {
+          "nums": [
+            8,
+            15,
+            3,
+            7,
+            9
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all zeros",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "increasing five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "decreasing five",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "sawtooth",
+        "in": {
+          "nums": [
+            2,
+            9,
+            1,
+            8,
+            1,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "plateau middle",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            1,
+            3,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "center high",
+        "in": {
+          "nums": [
+            1,
+            2,
+            100,
+            2,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "high ends",
+        "in": {
+          "nums": [
+            100,
+            1,
+            1,
+            1,
+            100
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "alternating zeros",
+        "in": {
+          "nums": [
+            0,
+            10,
+            0,
+            10,
+            0,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "mixed medium",
+        "in": {
+          "nums": [
+            20,
+            30,
+            2,
+            2,
+            2,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "even length balanced",
+        "in": {
+          "nums": [
+            6,
+            9,
+            1,
+            2,
+            16,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd length balanced",
+        "in": {
+          "nums": [
+            6,
+            9,
+            1,
+            2,
+            16,
+            8,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max length all same",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max length increasing",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max length decreasing",
+        "in": {
+          "nums": [
+            20,
+            19,
+            18,
+            17,
+            16,
+            15,
+            14,
+            13,
+            12,
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max length alternating highs",
+        "in": {
+          "nums": [
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max length alternating lows",
+        "in": {
+          "nums": [
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000,
+            1,
+            10000000
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "large center spike",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            10000000,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "large edge spike",
+        "in": {
+          "nums": [
+            10000000,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            10000000
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "long randomish 1",
+        "in": {
+          "nums": [
+            7,
+            2,
+            9,
+            4,
+            1,
+            8,
+            3,
+            6,
+            5,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "long randomish 2",
+        "in": {
+          "nums": [
+            20,
+            1,
+            19,
+            2,
+            18,
+            3,
+            17,
+            4,
+            16,
+            5,
+            15,
+            6,
+            14,
+            7,
+            13,
+            8,
+            12,
+            9,
+            11,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "nearly uniform odd",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            6,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "nearly uniform even",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            6,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "edge zeroes",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            10,
+            0,
+            0
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "anti-greedy",
+        "in": {
+          "nums": [
+            1,
+            100,
+            1,
+            1,
+            100,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "end bait",
+        "in": {
+          "nums": [
+            2,
+            100,
+            2,
+            2,
+            2,
+            100,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max length mixed",
+        "in": {
+          "nums": [
+            3,
+            14,
+            15,
+            9,
+            26,
+            5,
+            35,
+            8,
+            97,
+            9,
+            3,
+            2,
+            3,
+            8,
+            4,
+            6,
+            2,
+            6,
+            4,
+            3
+          ]
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 5, 2]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 5, 233, 7]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [7]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [4, 4]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [9, 1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": "true"
+    }
+  ]
+}

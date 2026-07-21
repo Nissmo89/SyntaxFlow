@@ -1,0 +1,540 @@
+{
+  "id": "minimum_moves_to_equal_array_elements",
+  "title": "Minimum Moves to Equal Array Elements",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> of size <code>n</code>, return <em>the minimum number of moves required to make all array elements equal</em>.</p>\n\n<p>In one move, you can increment <code>n - 1</code> elements of the array by <code>1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Only three moves are needed (remember each move increments two elements):\n[1,2,3]  =&gt;  [2,3,3]  =&gt;  [3,4,3]  =&gt;  [4,4,4]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,1]\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li>The answer is guaranteed to fit in a <strong>32-bit</strong> integer.</li>\n</ul>\n",
+  "task": "Solve the 'Minimum Moves to Equal Array Elements' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == nums.length",
+    "1 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109",
+    "The answer is guaranteed to fit in a 32-bit integer."
+  ],
+  "hints": [],
+  "method": {
+    "name": "minMoves",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 453,
+      "title": "minimum-moves-to-equal-array-elements",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minMoves({nums})",
+        "rust": "Solution::min_moves({nums})",
+        "python3": "Solution().minMoves({nums})",
+        "python2": "Solution().minMoves({nums})",
+        "ruby": "min_moves({nums})",
+        "java": "new Solution().minMoves({nums})",
+        "csharp": "new Solution().MinMoves({nums})",
+        "kotlin": "Solution().minMoves({nums})",
+        "go": "minMoves({nums})",
+        "dart": "Solution().minMoves({nums})",
+        "swift": "Solution().minMoves({nums})",
+        "typescript": "minMoves({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minMoves(nums, {result})",
+        "checker": "class Checker:\n    def minMoves(self, nums, result) -> bool:\n        if not isinstance(nums, list):\n            return False\n        if not isinstance(result, int):\n            return False\n        if len(nums) == 0:\n            return False\n        expected = sum(nums) - len(nums) * min(nums)\n        return result == expected\n"
+      }
+    },
+    "seed": 453,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_negative",
+        "in": {
+          "nums": [
+            -7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "pair_equal",
+        "in": {
+          "nums": [
+            5,
+            5
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "pair_diff",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "already_equal_four",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "small_mixed_2",
+        "in": {
+          "nums": [
+            3,
+            3,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "contains_zero",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "contains_negative",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "all_negative",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "wide_spread_1",
+        "in": {
+          "nums": [
+            -1000000000,
+            0,
+            1
+          ]
+        },
+        "out": 2000000001
+      },
+      {
+        "name": "wide_spread_2",
+        "in": {
+          "nums": [
+            1000000000,
+            999999999,
+            999999998
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "wide_spread_3",
+        "in": {
+          "nums": [
+            -1000000000,
+            -1000000000,
+            1000000000
+          ]
+        },
+        "out": 2000000000
+      },
+      {
+        "name": "four_elements_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "four_elements_2",
+        "in": {
+          "nums": [
+            4,
+            1,
+            7,
+            10
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "four_elements_3",
+        "in": {
+          "nums": [
+            8,
+            6,
+            7,
+            5
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "five_elements_1",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            10
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "five_elements_2",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "five_elements_3",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "increasing_6",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "decreasing_6",
+        "in": {
+          "nums": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "nums": [
+            10,
+            -10,
+            5,
+            -5,
+            0,
+            15
+          ]
+        },
+        "out": 75
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "nums": [
+            7,
+            7,
+            1,
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 36
+      },
+      {
+        "name": "mixed_8",
+        "in": {
+          "nums": [
+            100,
+            1,
+            100,
+            1,
+            100,
+            1,
+            100,
+            1
+          ]
+        },
+        "out": 396
+      },
+      {
+        "name": "varied_1",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            7,
+            9
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "varied_2",
+        "in": {
+          "nums": [
+            -10,
+            -10,
+            -10,
+            10
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "varied_3",
+        "in": {
+          "nums": [
+            2,
+            8,
+            4,
+            6,
+            10,
+            12
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "varied_4",
+        "in": {
+          "nums": [
+            -2,
+            4,
+            0,
+            6,
+            8
+          ]
+        },
+        "out": 26
+      },
+      {
+        "name": "varied_5",
+        "in": {
+          "nums": [
+            1000000000,
+            -1000000000
+          ]
+        },
+        "out": 2000000000
+      },
+      {
+        "name": "six_equal_large",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_extremes",
+        "in": {
+          "nums": [
+            -100,
+            100,
+            -100,
+            100,
+            -100,
+            100
+          ]
+        },
+        "out": 600
+      },
+      {
+        "name": "long_arithmetic",
+        "in": {
+          "nums": [
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21
+          ]
+        },
+        "out": 63
+      },
+      {
+        "name": "mixed_10_elements",
+        "in": {
+          "nums": [
+            5,
+            -1,
+            9,
+            0,
+            3,
+            8,
+            -2,
+            7,
+            4,
+            6
+          ]
+        },
+        "out": 59
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 1, 1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [-7]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [5, 5]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [9, 9, 9, 9]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 4]",
+      "output": "4"
+    }
+  ]
+}

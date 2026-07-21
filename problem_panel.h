@@ -2,11 +2,10 @@
 #define PROBLEM_PANEL_H
 
 #include <QWidget>
-#include <QLabel>
-#include <QScrollArea>
+#include <QTextBrowser>
+#include "networkbrowser.h"
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QPushButton>
 
 class ProblemPanel : public QWidget
 {
@@ -31,36 +30,8 @@ protected:
 
 private:
     void buildUI();
-    QString buildStyleSheet();
-    QString buildHtmlWrapper(const QString &content, const QString &additionalCss = "");
-    QString formatText(const QString &text);
 
-    QScrollArea *scrollArea;
-    QWidget *contentWidget;
-
-    // Header
-    QLabel *titleLabel;
-    QLabel *idLabel;
-    QLabel *difficultyBadge;
-    QLabel *categoryLabel;
-    QWidget *tagsContainer;
-
-    // Content sections
-    QLabel *descriptionLabel;
-    QLabel *taskLabel;
-    QLabel *inputFormatLabel;
-    QLabel *outputFormatLabel;
-    QWidget *constraintsWidget;
-
-    // Sample I/O
-    QLabel *sampleInputLabel;
-    QLabel *sampleOutputLabel;
-    QLabel *sampleExplanationLabel;
-
-    // Hints
-    QWidget *hintsWidget;
-    QWidget *hintsContent;
-    QPushButton *hintsToggle;
+    NetworkBrowser *markdownViewer;
 
     // Problem data
     QString problemId;
@@ -68,6 +39,7 @@ private:
     QString difficulty;
     QString category;
     QStringList tags;
+    QString currentFilePath;
 
     QJsonArray cachedTestCases;
 };

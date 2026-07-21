@@ -1,0 +1,1041 @@
+{
+  "id": "word_break_ii",
+  "title": "Word Break II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Trie",
+    "Memoization"
+  ],
+  "description": "<p>Given a string <code>s</code> and a dictionary of strings <code>wordDict</code>, add spaces in <code>s</code> to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in <strong>any order</strong>.</p>\n\n<p><strong>Note</strong> that the same word in the dictionary may be reused multiple times in the segmentation.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;catsanddog&quot;, wordDict = [&quot;cat&quot;,&quot;cats&quot;,&quot;and&quot;,&quot;sand&quot;,&quot;dog&quot;]\n<strong>Output:</strong> [&quot;cats and dog&quot;,&quot;cat sand dog&quot;]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;pineapplepenapple&quot;, wordDict = [&quot;apple&quot;,&quot;pen&quot;,&quot;applepen&quot;,&quot;pine&quot;,&quot;pineapple&quot;]\n<strong>Output:</strong> [&quot;pine apple pen apple&quot;,&quot;pineapple pen apple&quot;,&quot;pine applepen apple&quot;]\n<strong>Explanation:</strong> Note that you are allowed to reuse a dictionary word.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;,&quot;dog&quot;,&quot;sand&quot;,&quot;and&quot;,&quot;cat&quot;]\n<strong>Output:</strong> []\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 20</code></li>\n\t<li><code>1 &lt;= wordDict.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= wordDict[i].length &lt;= 10</code></li>\n\t<li><code>s</code> and <code>wordDict[i]</code> consist of only lowercase English letters.</li>\n\t<li>All the strings of <code>wordDict</code> are <strong>unique</strong>.</li>\n\t<li>Input is generated in a way that the length of the answer doesn&#39;t exceed&nbsp;10<sup>5</sup>.</li>\n</ul>\n",
+  "task": "Solve the 'Word Break II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "1 <= wordDict.length <= 1000",
+    "1 <= wordDict[i].length <= 10",
+    "s and wordDict[i] consist of only lowercase English letters.",
+    "All the strings of wordDict are unique.",
+    "Input is generated in a way that the length of the answer doesn't exceed\u00a0105."
+  ],
+  "hints": [],
+  "method": {
+    "name": "wordBreak",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "wordDict",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 140,
+      "title": "word-break-ii",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "wordDict": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().wordBreak({s}, {wordDict})",
+        "rust": "Solution::word_break({s}, {wordDict})",
+        "python3": "Solution().wordBreak({s}, {wordDict})",
+        "python2": "Solution().wordBreak({s}, {wordDict})",
+        "ruby": "word_break({s}, {wordDict})",
+        "java": "new Solution().wordBreak({s}, {wordDict})",
+        "csharp": "new Solution().WordBreak({s}, {wordDict})",
+        "kotlin": "Solution().wordBreak({s}, {wordDict})",
+        "go": "wordBreak({s}, {wordDict})",
+        "dart": "Solution().wordBreak({s}, {wordDict})",
+        "swift": "Solution().wordBreak({s}, {wordDict})",
+        "typescript": "wordBreak({s}, {wordDict})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().wordBreak(s, wordDict, {result})",
+        "checker": "import copy\n\n\nfrom typing import *\nfrom collections import *\nimport copy\nimport json\nimport math\nimport bisect\nimport heapq\nimport itertools\nimport functools\n\ndef fun(s,dc,memo):\n    if(s in memo):\n        return memo[s]\n    ans=[]\n    if(dc[s]==1):\n        ans=[s]\n    for i in range(1,len(s)):\n        if(dc[s[:i]]==1):\n            a=fun(s[i:],dc,memo)\n            for x in a:\n                ans.append(s[:i]+\" \"+x)\n    memo[s]=ans\n    return ans\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        dc=defaultdict(lambda:0)\n        for a in wordDict:\n            dc[a]=1\n        return(fun(s,dc,{}))\n\n\ndef array_to_list_node_local(values):\n    dummy = ListNode(0)\n    tail = dummy\n    for value in values:\n        tail.next = ListNode(value)\n        tail = tail.next\n    return dummy.next\n\ndef array_to_tree_node_local(values):\n    if not values:\n        return None\n    root = TreeNode(values[0])\n    queue = deque([root])\n    index = 1\n    while queue and index < len(values):\n        node = queue.popleft()\n        if index < len(values) and values[index] is not None:\n            node.left = TreeNode(values[index])\n            queue.append(node.left)\n        index += 1\n        if index < len(values) and values[index] is not None:\n            node.right = TreeNode(values[index])\n            queue.append(node.right)\n        index += 1\n    return root\n\ndef list_node_to_array_local(node):\n    out = []\n    seen = 0\n    while node is not None and seen < 100000:\n        out.append(node.val)\n        node = node.next\n        seen += 1\n    return out\n\ndef tree_node_to_array_local(root):\n    if root is None:\n        return []\n    out = []\n    q = deque([root])\n    while q:\n        node = q.popleft()\n        if node is None:\n            out.append(None)\n            continue\n        out.append(node.val)\n        q.append(node.left)\n        q.append(node.right)\n    while out and out[-1] is None:\n        out.pop()\n    return out\n\ndef deep_sort(value):\n    if isinstance(value, list):\n        normalized = [deep_sort(item) for item in value]\n        return sorted(normalized, key=lambda item: json.dumps(item, sort_keys=True))\n    if isinstance(value, dict):\n        return {key: deep_sort(val) for key, val in sorted(value.items())}\n    return value\n\ndef normalize_expected(value):\n    kind = \"array[string]\"\n    if kind == \"list_node\":\n        return list_node_to_array_local(value)\n    if kind == \"tree_node\":\n        return tree_node_to_array_local(value)\n    return value\n\ndef normalize_actual(value):\n    return value\n\ndef prepare_input(value, kind):\n    if kind == \"tree_node\":\n        return array_to_tree_node_local(value)\n    if kind == \"list_node\":\n        return array_to_list_node_local(value)\n    return copy.deepcopy(value)\n\nclass Checker:\n    def wordBreak(self, s, wordDict, result):\n        prepared_s = prepare_input(s, \"string\"); prepared_wordDict = prepare_input(wordDict, \"array[string]\")\n        expected = Solution().wordBreak(prepared_s, prepared_wordDict)\n        expected = normalize_expected(expected)\n        actual = normalize_actual(result)\n        return deep_sort(expected) == deep_sort(actual)\n"
+      }
+    },
+    "seed": 140,
+    "tests": [
+      {
+        "name": "case_01",
+        "in": {
+          "s": "catsanddog",
+          "wordDict": [
+            "cat",
+            "cats",
+            "and",
+            "sand",
+            "dog"
+          ]
+        }
+      },
+      {
+        "name": "case_02",
+        "in": {
+          "s": "pineapplepenapple",
+          "wordDict": [
+            "apple",
+            "pen",
+            "applepen",
+            "pine",
+            "pineapple"
+          ]
+        }
+      },
+      {
+        "name": "case_03",
+        "in": {
+          "s": "catsandog",
+          "wordDict": [
+            "cats",
+            "dog",
+            "sand",
+            "and",
+            "cat"
+          ]
+        }
+      },
+      {
+        "name": "case_04",
+        "in": {
+          "s": "aaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ab"
+          ]
+        }
+      },
+      {
+        "name": "case_05",
+        "in": {
+          "s": "bbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_06",
+        "in": {
+          "s": "cccccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_07",
+        "in": {
+          "s": "bbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bbbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_08",
+        "in": {
+          "s": "bbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bc"
+          ]
+        }
+      },
+      {
+        "name": "case_09",
+        "in": {
+          "s": "bbbb",
+          "wordDict": [
+            "b",
+            "ba",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "s": "bbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bbbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "s": "ccccccc",
+          "wordDict": [
+            "ac",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "s": "ccccccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "s": "ccccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "s": "aaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "s": "cccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "s": "aaaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "aaaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "s": "aaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "s": "bbbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bbbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "s": "cccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc",
+            "ccccc"
+          ]
+        }
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "s": "bbbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "s": "bbbbbbbb",
+          "wordDict": [
+            "b",
+            "ba",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "s": "bbbbbbbbb",
+          "wordDict": [
+            "ab",
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "s": "aaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "s": "ccccccc",
+          "wordDict": [
+            "c",
+            "cb",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "s": "bbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "cb"
+          ]
+        }
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ba"
+          ]
+        }
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "s": "cccccc",
+          "wordDict": [
+            "c",
+            "ca",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "s": "cccccccc",
+          "wordDict": [
+            "c",
+            "ca",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "s": "bbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "s": "aaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ab"
+          ]
+        }
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "s": "bbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "s": "aaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ca"
+          ]
+        }
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "s": "ccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "s": "ccccccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc",
+            "ccccc"
+          ]
+        }
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "s": "cccc",
+          "wordDict": [
+            "c",
+            "ca",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_36",
+        "in": {
+          "s": "bbbbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bc"
+          ]
+        }
+      },
+      {
+        "name": "case_37",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_38",
+        "in": {
+          "s": "bbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "cb"
+          ]
+        }
+      },
+      {
+        "name": "case_39",
+        "in": {
+          "s": "ccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc",
+            "ccccc"
+          ]
+        }
+      },
+      {
+        "name": "case_40",
+        "in": {
+          "s": "aaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ab"
+          ]
+        }
+      },
+      {
+        "name": "case_41",
+        "in": {
+          "s": "cccccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_42",
+        "in": {
+          "s": "ccccccccc",
+          "wordDict": [
+            "ac",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_43",
+        "in": {
+          "s": "bbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_44",
+        "in": {
+          "s": "bbbbbb",
+          "wordDict": [
+            "b",
+            "ba",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_45",
+        "in": {
+          "s": "aaaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_46",
+        "in": {
+          "s": "bbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bbbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_47",
+        "in": {
+          "s": "aaaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ac"
+          ]
+        }
+      },
+      {
+        "name": "case_48",
+        "in": {
+          "s": "ccccc",
+          "wordDict": [
+            "bc",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_49",
+        "in": {
+          "s": "bbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bc"
+          ]
+        }
+      },
+      {
+        "name": "case_50",
+        "in": {
+          "s": "aaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_51",
+        "in": {
+          "s": "bbbbbbb",
+          "wordDict": [
+            "ab",
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_52",
+        "in": {
+          "s": "bbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_53",
+        "in": {
+          "s": "bbbbbbbb",
+          "wordDict": [
+            "ab",
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_54",
+        "in": {
+          "s": "aaaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ab"
+          ]
+        }
+      },
+      {
+        "name": "case_55",
+        "in": {
+          "s": "bbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bc"
+          ]
+        }
+      },
+      {
+        "name": "case_56",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ab"
+          ]
+        }
+      },
+      {
+        "name": "case_57",
+        "in": {
+          "s": "bbbb",
+          "wordDict": [
+            "ab",
+            "b",
+            "bb",
+            "bbb",
+            "bbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_58",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ac"
+          ]
+        }
+      },
+      {
+        "name": "case_59",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "aaaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_60",
+        "in": {
+          "s": "aaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "aaaaa"
+          ]
+        }
+      },
+      {
+        "name": "case_61",
+        "in": {
+          "s": "ccccccccc",
+          "wordDict": [
+            "c",
+            "ca",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_62",
+        "in": {
+          "s": "aaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ca"
+          ]
+        }
+      },
+      {
+        "name": "case_63",
+        "in": {
+          "s": "aaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ca"
+          ]
+        }
+      },
+      {
+        "name": "case_64",
+        "in": {
+          "s": "bbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "bbbbb"
+          ]
+        }
+      },
+      {
+        "name": "case_65",
+        "in": {
+          "s": "cccc",
+          "wordDict": [
+            "c",
+            "cc",
+            "ccc",
+            "cccc",
+            "ccccc"
+          ]
+        }
+      },
+      {
+        "name": "case_66",
+        "in": {
+          "s": "bbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "cb"
+          ]
+        }
+      },
+      {
+        "name": "case_67",
+        "in": {
+          "s": "bbbbbbb",
+          "wordDict": [
+            "b",
+            "bb",
+            "bbb",
+            "bbbb",
+            "cb"
+          ]
+        }
+      },
+      {
+        "name": "case_68",
+        "in": {
+          "s": "cccc",
+          "wordDict": [
+            "ac",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_69",
+        "in": {
+          "s": "cccccc",
+          "wordDict": [
+            "ac",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_70",
+        "in": {
+          "s": "aaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ca"
+          ]
+        }
+      },
+      {
+        "name": "case_71",
+        "in": {
+          "s": "ccccc",
+          "wordDict": [
+            "ac",
+            "c",
+            "cc",
+            "ccc",
+            "cccc"
+          ]
+        }
+      },
+      {
+        "name": "case_72",
+        "in": {
+          "s": "aaaaaaaaa",
+          "wordDict": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "ca"
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"catsanddog\"\nwordDict = [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"pineapplepenapple\"\nwordDict = [\"apple\", \"pen\", \"applepen\", \"pine\", \"pineapple\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"catsandog\"\nwordDict = [\"cats\", \"dog\", \"sand\", \"and\", \"cat\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaaaaaa\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"ab\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"bbbb\"\nwordDict = [\"b\", \"bb\", \"bbb\", \"bbbb\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"cccccccc\"\nwordDict = [\"c\", \"cc\", \"ccc\", \"cccc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"bbbbbbb\"\nwordDict = [\"b\", \"bb\", \"bbb\", \"bbbb\", \"bbbbb\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"bbbbbbbb\"\nwordDict = [\"b\", \"bb\", \"bbb\", \"bbbb\", \"bc\"]",
+      "output": ""
+    }
+  ]
+}

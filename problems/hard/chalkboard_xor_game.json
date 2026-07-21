@@ -1,0 +1,535 @@
+{
+  "id": "chalkboard_xor_game",
+  "title": "Chalkboard XOR Game",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Brainteaser",
+    "Game Theory"
+  ],
+  "description": "<p>You are given an array of integers <code>nums</code> represents the numbers written on a chalkboard.</p>\n\n<p>Alice and Bob take turns erasing exactly one number from the chalkboard, with Alice starting first. If erasing a number causes the bitwise XOR of all the elements of the chalkboard to become <code>0</code>, then that player loses. The bitwise XOR of one element is that element itself, and the bitwise XOR of no elements is <code>0</code>.</p>\n\n<p>Also, if any player starts their turn with the bitwise XOR of all the elements of the chalkboard equal to <code>0</code>, then that player wins.</p>\n\n<p>Return <code>true</code> <em>if and only if Alice wins the game, assuming both players play optimally</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,2]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> \nAlice has two choices: erase 1 or erase 2. \nIf she erases 1, the nums array becomes [1, 2]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 2 = 3. Now Bob can remove any element he wants, because Alice will be the one to erase the last element and she will lose. \nIf Alice erases 2 first, now nums become [1, 1]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 1 = 0. Alice will lose.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1]\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> true\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums[i] &lt; 2<sup>16</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Chalkboard XOR Game' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] < 216"
+  ],
+  "hints": [],
+  "method": {
+    "name": "xorGame",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 810,
+      "title": "chalkboard-xor-game",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().xorGame({nums})",
+        "rust": "Solution::xor_game({nums})",
+        "python3": "Solution().xorGame({nums})",
+        "python2": "Solution().xorGame({nums})",
+        "ruby": "xor_game({nums})",
+        "java": "new Solution().xorGame({nums})",
+        "csharp": "new Solution().XorGame({nums})",
+        "kotlin": "Solution().xorGame({nums})",
+        "go": "xorGame({nums})",
+        "dart": "Solution().xorGame({nums})",
+        "swift": "Solution().xorGame({nums})",
+        "typescript": "xorGame({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().xorGame(nums, {result})",
+        "checker": "class Checker:\n    def xorGame(self, nums, result):\n        total = 0\n        for value in nums:\n            total ^= value\n        expected = (total == 0) or (len(nums) % 2 == 0)\n        return result == expected\n"
+      }
+    },
+    "seed": 810,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        }
+      },
+      {
+        "name": "single-nonzero",
+        "in": {
+          "nums": [
+            7
+          ]
+        }
+      },
+      {
+        "name": "pair-equal",
+        "in": {
+          "nums": [
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "pair-different",
+        "in": {
+          "nums": [
+            1,
+            3
+          ]
+        }
+      },
+      {
+        "name": "odd-zero-xor",
+        "in": {
+          "nums": [
+            2,
+            4,
+            6
+          ]
+        }
+      },
+      {
+        "name": "odd-nonzero-xor",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "many-equal-even",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        }
+      },
+      {
+        "name": "many-equal-odd",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        }
+      },
+      {
+        "name": "zero-heavy-odd",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "zero-heavy-even",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "pair-cancel-even",
+        "in": {
+          "nums": [
+            12,
+            34,
+            12,
+            34,
+            56,
+            56
+          ]
+        }
+      },
+      {
+        "name": "pair-cancel-odd",
+        "in": {
+          "nums": [
+            12,
+            34,
+            12,
+            34,
+            56
+          ]
+        }
+      },
+      {
+        "name": "generated-odd",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 9,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1024
+            },
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-even",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 10,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1024
+            },
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "pair-zero-xor-even",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single-positive",
+        "in": {
+          "nums": [
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "triple-equal",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "mixed-even-xor-nonzero",
+        "in": {
+          "nums": [
+            7,
+            8,
+            7,
+            8,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "alternating-zero-xor-even",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "xor-zero-odd",
+        "in": {
+          "nums": [
+            15,
+            1,
+            2,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all-same-odd",
+        "in": {
+          "nums": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two-elements-nonzero",
+        "in": {
+          "nums": [
+            9,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-pairs-odd",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "powers-of-two-even",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "zero-and-one",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "large-xor-odd",
+        "in": {
+          "nums": [
+            1024,
+            512,
+            256
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "even-length-nonzero-xor",
+        "in": {
+          "nums": [
+            5,
+            10,
+            5,
+            10,
+            5,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd-length-nonzero-xor-2",
+        "in": {
+          "nums": [
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all-equal-even",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "zero-xor-odd-length",
+        "in": {
+          "nums": [
+            3,
+            5,
+            6,
+            9,
+            10,
+            12,
+            15
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "larger-even-sample",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400,
+            500,
+            600
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-pattern-odd",
+        "in": {
+          "nums": [
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "triple-eight",
+        "in": {
+          "nums": [
+            8,
+            8,
+            8
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 1, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0, 1]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0]",
+      "output": ""
+    },
+    {
+      "input": "nums = [7]",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, 5]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 4, 6]",
+      "output": ""
+    }
+  ]
+}

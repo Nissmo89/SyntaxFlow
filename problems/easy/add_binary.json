@@ -1,0 +1,358 @@
+{
+  "id": "add_binary",
+  "title": "Add Binary",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Bit Manipulation",
+    "Simulation"
+  ],
+  "description": "<p>Given two binary strings <code>a</code> and <code>b</code>, return <em>their sum as a binary string</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> a = \"11\", b = \"1\"\n<strong>Output:</strong> \"100\"\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> a = \"1010\", b = \"1011\"\n<strong>Output:</strong> \"10101\"\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= a.length, b.length &lt;= 10<sup>4</sup></code></li> <li><code>a</code> and <code>b</code> consist only of <code>'0'</code> or <code>'1'</code> characters.</li> <li>Each string does not contain leading zeros except for the zero itself.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "addBinary",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "a",
+        "type": "string"
+      },
+      {
+        "name": "b",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 67,
+      "title": "add-binary",
+      "params": {
+        "a": {
+          "type": "string"
+        },
+        "b": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().addBinary({a}, {b})",
+        "rust": "Solution::add_binary({a}, {b})",
+        "python3": "Solution().addBinary({a}, {b})",
+        "python2": "Solution().addBinary({a}, {b})",
+        "ruby": "add_binary({a}, {b})",
+        "java": "new Solution().addBinary({a}, {b})",
+        "csharp": "new Solution().AddBinary({a}, {b})",
+        "kotlin": "Solution().addBinary({a}, {b})",
+        "go": "addBinary({a}, {b})",
+        "dart": "Solution().addBinary({a}, {b})",
+        "swift": "Solution().addBinary({a}, {b})",
+        "typescript": "addBinary({a}, {b})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 67,
+    "tests": [
+      {
+        "name": "zero_plus_zero",
+        "in": {
+          "a": "0",
+          "b": "0"
+        }
+      },
+      {
+        "name": "zero_plus_one",
+        "in": {
+          "a": "0",
+          "b": "1"
+        }
+      },
+      {
+        "name": "one_plus_zero",
+        "in": {
+          "a": "1",
+          "b": "0"
+        }
+      },
+      {
+        "name": "one_plus_one",
+        "in": {
+          "a": "1",
+          "b": "1"
+        }
+      },
+      {
+        "name": "carry_simple_1",
+        "in": {
+          "a": "10",
+          "b": "1"
+        }
+      },
+      {
+        "name": "carry_simple_2",
+        "in": {
+          "a": "11",
+          "b": "1"
+        }
+      },
+      {
+        "name": "example_1",
+        "in": {
+          "a": "1010",
+          "b": "1011"
+        }
+      },
+      {
+        "name": "all_ones_plus_one_4",
+        "in": {
+          "a": "1111",
+          "b": "1"
+        }
+      },
+      {
+        "name": "same_length_carry",
+        "in": {
+          "a": "1000",
+          "b": "1000"
+        }
+      },
+      {
+        "name": "mixed_bits_1",
+        "in": {
+          "a": "101010",
+          "b": "110011"
+        }
+      },
+      {
+        "name": "different_length_with_carry",
+        "in": {
+          "a": "100000",
+          "b": "1"
+        }
+      },
+      {
+        "name": "all_ones_double",
+        "in": {
+          "a": "111111",
+          "b": "111111"
+        }
+      },
+      {
+        "name": "palindromic_pair",
+        "in": {
+          "a": "101",
+          "b": "101"
+        }
+      },
+      {
+        "name": "carry_into_new_digit",
+        "in": {
+          "a": "1001",
+          "b": "111"
+        }
+      },
+      {
+        "name": "wide_carry_chain",
+        "in": {
+          "a": "10000",
+          "b": "1111"
+        }
+      },
+      {
+        "name": "uneven_length_1",
+        "in": {
+          "a": "110010",
+          "b": "101101"
+        }
+      },
+      {
+        "name": "one_and_long_ones",
+        "in": {
+          "a": "1",
+          "b": "1111111111111111"
+        }
+      },
+      {
+        "name": "alternating_bits",
+        "in": {
+          "a": "1010101010101010",
+          "b": "0101010101010101"
+        }
+      },
+      {
+        "name": "power_of_two_double",
+        "in": {
+          "a": "1000000000000000",
+          "b": "1000000000000000"
+        }
+      },
+      {
+        "name": "repeated_pattern",
+        "in": {
+          "a": "111000111000",
+          "b": "111000111000"
+        }
+      },
+      {
+        "name": "large_sparse_1",
+        "in": {
+          "a": "100000000000000000000",
+          "b": "1"
+        }
+      },
+      {
+        "name": "mixed_long_1",
+        "in": {
+          "a": "10101111000011110000",
+          "b": "1111000011110000"
+        }
+      },
+      {
+        "name": "add_zero_right",
+        "in": {
+          "a": "101",
+          "b": "0"
+        }
+      },
+      {
+        "name": "add_zero_left",
+        "in": {
+          "a": "0",
+          "b": "101"
+        }
+      },
+      {
+        "name": "single_carry_middle",
+        "in": {
+          "a": "100",
+          "b": "100"
+        }
+      },
+      {
+        "name": "increment_small",
+        "in": {
+          "a": "1001",
+          "b": "1"
+        }
+      },
+      {
+        "name": "carry_with_zero_suffix",
+        "in": {
+          "a": "1110",
+          "b": "10"
+        }
+      },
+      {
+        "name": "carry_to_next_width",
+        "in": {
+          "a": "1000001",
+          "b": "111111"
+        }
+      },
+      {
+        "name": "very_large_sparse",
+        "in": {
+          "a": "1000000000000000000000000000000",
+          "b": "1"
+        }
+      },
+      {
+        "name": "all_ones_31_plus_one",
+        "in": {
+          "a": "1111111111111111111111111111111",
+          "b": "1"
+        }
+      },
+      {
+        "name": "symmetric_long_pattern",
+        "in": {
+          "a": "1010101010101010101010101010101",
+          "b": "1010101010101010101010101010101"
+        }
+      },
+      {
+        "name": "sparse_large_double",
+        "in": {
+          "a": "1000000000000000000000000000000",
+          "b": "1000000000000000000000000000000"
+        }
+      },
+      {
+        "name": "mixed_long_2",
+        "in": {
+          "a": "110110110110110110110",
+          "b": "101001011010010110100"
+        }
+      },
+      {
+        "name": "mixed_long_3",
+        "in": {
+          "a": "100110011001100110011",
+          "b": "111000111000111000111"
+        }
+      },
+      {
+        "name": "sixty_four_ones_plus_one",
+        "in": {
+          "a": "1111111111111111111111111111111111111111111111111111111111111111",
+          "b": "1"
+        }
+      },
+      {
+        "name": "sixty_four_ones_minus_one_plus_one",
+        "in": {
+          "a": "1111111111111111111111111111111111111111111111111111111111111110",
+          "b": "1"
+        }
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().addBinary(a, b, {result})",
+        "checker": "class Checker:\n    def addBinary(self, a, b, result):\n        if not isinstance(a, str) or not isinstance(b, str) or not isinstance(result, str):\n            return False\n        if not a or not b or not result:\n            return False\n        if any(ch not in \"01\" for ch in a):\n            return False\n        if any(ch not in \"01\" for ch in b):\n            return False\n        if any(ch not in \"01\" for ch in result):\n            return False\n        return result == bin(int(a, 2) + int(b, 2))[2:]\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "a = \"0\"\nb = \"0\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"0\"\nb = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"1\"\nb = \"0\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"1\"\nb = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"10\"\nb = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"11\"\nb = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"1010\"\nb = \"1011\"",
+      "output": ""
+    },
+    {
+      "input": "a = \"1111\"\nb = \"1\"",
+      "output": ""
+    }
+  ]
+}

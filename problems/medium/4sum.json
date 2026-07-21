@@ -1,0 +1,688 @@
+{
+  "id": "4sum",
+  "title": "4Sum",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "description": "<p>Given an array <code>nums</code> of <code>n</code> integers, return <em>an array of all the <strong>unique</strong> quadruplets</em> <code>[nums[a], nums[b], nums[c], nums[d]]</code> such that:</p>\n\n<ul>\n\t<li><code>0 &lt;= a, b, c, d&nbsp;&lt; n</code></li>\n\t<li><code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> are <strong>distinct</strong>.</li>\n\t<li><code>nums[a] + nums[b] + nums[c] + nums[d] == target</code></li>\n</ul>\n\n<p>You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,-1,0,-2,2], target = 0\n<strong>Output:</strong> [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,2,2,2,2], target = 8\n<strong>Output:</strong> [[2,2,2,2]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 200</code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the '4Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 200",
+    "-109 <= nums[i] <= 109",
+    "-109 <= target <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "fourSum",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 18,
+      "title": "4sum",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().fourSum({nums}, {target})",
+        "rust": "Solution::four_sum({nums}, {target})",
+        "python3": "Solution().fourSum({nums}, {target})",
+        "python2": "Solution().fourSum({nums}, {target})",
+        "ruby": "four_sum({nums}, {target})",
+        "java": "new Solution().fourSum({nums}, {target})",
+        "csharp": "new Solution().FourSum({nums}, {target})",
+        "kotlin": "Solution().fourSum({nums}, {target})",
+        "go": "fourSum({nums}, {target})",
+        "dart": "Solution().fourSum({nums}, {target})",
+        "swift": "Solution().fourSum({nums}, {target})",
+        "typescript": "fourSum({nums}, {target})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 5000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().fourSum(nums, target, {result})",
+        "checker": "class Checker:\n    def fourSum(self, nums, target, result):\n        if not isinstance(result, list):\n            return False\n\n        normalized = []\n        seen = set()\n        for quad in result:\n            if not isinstance(quad, list) or len(quad) != 4:\n                return False\n            if any(not isinstance(x, int) for x in quad):\n                return False\n            if quad != sorted(quad):\n                return False\n            t = tuple(quad)\n            if t in seen:\n                return False\n            seen.add(t)\n            if sum(quad) != target:\n                return False\n            normalized.append(t)\n\n        nums = sorted(nums)\n        expected = set()\n        n = len(nums)\n        for i in range(n - 3):\n            if i > 0 and nums[i] == nums[i - 1]:\n                continue\n            for j in range(i + 1, n - 2):\n                if j > i + 1 and nums[j] == nums[j - 1]:\n                    continue\n                left = j + 1\n                right = n - 1\n                while left < right:\n                    s = nums[i] + nums[j] + nums[left] + nums[right]\n                    if s == target:\n                        expected.add((nums[i], nums[j], nums[left], nums[right]))\n                        left += 1\n                        right -= 1\n                        while left < right and nums[left] == nums[left - 1]:\n                            left += 1\n                        while left < right and nums[right] == nums[right + 1]:\n                            right -= 1\n                    elif s < target:\n                        left += 1\n                    else:\n                        right -= 1\n\n        return set(normalized) == expected\n"
+      }
+    },
+    "seed": 18,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            0,
+            -1,
+            0,
+            -2,
+            2
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "target": 8
+        }
+      },
+      {
+        "name": "too-short",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ],
+          "target": 6
+        }
+      },
+      {
+        "name": "exactly-four-hit",
+        "in": {
+          "nums": [
+            -3,
+            -1,
+            2,
+            7
+          ],
+          "target": 5
+        }
+      },
+      {
+        "name": "exactly-four-miss",
+        "in": {
+          "nums": [
+            -3,
+            -1,
+            2,
+            7
+          ],
+          "target": 4
+        }
+      },
+      {
+        "name": "all-zeroes-four",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "all-zeroes-five",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "all-same-positive",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "target": 20
+        }
+      },
+      {
+        "name": "all-same-negative",
+        "in": {
+          "nums": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4
+          ],
+          "target": -16
+        }
+      },
+      {
+        "name": "no-solution-large-sum",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "target": 100
+        }
+      },
+      {
+        "name": "no-solution-negative-target",
+        "in": {
+          "nums": [
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "target": -10
+        }
+      },
+      {
+        "name": "mixed-sign-one-solution",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -3,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "duplicates-and-multiplicity",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            -1,
+            1,
+            1,
+            2,
+            2
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "repeated-values-many-quads",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            0,
+            0,
+            1,
+            2,
+            2,
+            3
+          ],
+          "target": 2
+        }
+      },
+      {
+        "name": "sample-with-zeroes",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            0,
+            0,
+            1,
+            2,
+            2,
+            2
+          ],
+          "target": 3
+        }
+      },
+      {
+        "name": "boundary-values-positive",
+        "in": {
+          "nums": [
+            1000000000,
+            1000000000,
+            -1000000000,
+            -1000000000,
+            1,
+            -1
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "boundary-values-negative",
+        "in": {
+          "nums": [
+            1000000000,
+            999999999,
+            -1000000000,
+            -999999999,
+            0,
+            0
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "many-same-with-one-distinct",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "target": 5
+        }
+      },
+      {
+        "name": "many-same-with-two-distinct",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            1,
+            1,
+            2
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "dense-small-range",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            0,
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": 1
+        }
+      },
+      {
+        "name": "dense-small-range-2",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target": 2
+        }
+      },
+      {
+        "name": "symmetric-8",
+        "in": {
+          "nums": [
+            -4,
+            -3,
+            -2,
+            -1,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target": 0
+        }
+      },
+      {
+        "name": "symmetric-9",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "target": 1
+        }
+      },
+      {
+        "name": "generated-wide-range-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": {
+            "gen": "int",
+            "min": -50,
+            "max": 50
+          }
+        }
+      },
+      {
+        "name": "generated-wide-range-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 60,
+            "of": {
+              "gen": "int",
+              "min": -200,
+              "max": 200,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": {
+            "gen": "int",
+            "min": -100,
+            "max": 100
+          }
+        }
+      },
+      {
+        "name": "generated-many-duplicates",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 80,
+            "of": {
+              "gen": "int",
+              "min": -8,
+              "max": 8,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": {
+            "gen": "int",
+            "min": -8,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated-max-size-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": {
+            "gen": "int",
+            "min": -1000000000,
+            "max": 1000000000
+          }
+        }
+      },
+      {
+        "name": "generated-max-size-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": {
+            "gen": "int",
+            "min": -1000000000,
+            "max": 1000000000
+          }
+        }
+      },
+      {
+        "name": "generated-balanced-small",
+        "seed": 1806,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": -5,
+              "max": 5,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 0
+        }
+      },
+      {
+        "name": "generated-balanced-medium",
+        "seed": 1807,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": -20,
+              "max": 20,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 3
+        }
+      },
+      {
+        "name": "generated-nonnegative",
+        "seed": 1808,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 16,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 30,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 40
+        }
+      },
+      {
+        "name": "generated-nonpositive",
+        "seed": 1809,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 16,
+            "of": {
+              "gen": "int",
+              "min": -30,
+              "max": 0,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": -40
+        }
+      },
+      {
+        "name": "generated-duplicates-heavy",
+        "seed": 1810,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": -3,
+              "max": 3,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 2
+        }
+      },
+      {
+        "name": "generated-large-near-zero",
+        "seed": 1811,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 80,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 0
+        }
+      },
+      {
+        "name": "generated-large-wide-target",
+        "seed": 1812,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 120,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          },
+          "target": 12345
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 0, -1, 0, -2, 2]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 2, 2, 2, 2]\ntarget = 8",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3]\ntarget = 6",
+      "output": ""
+    },
+    {
+      "input": "nums = [-3, -1, 2, 7]\ntarget = 5",
+      "output": ""
+    },
+    {
+      "input": "nums = [-3, -1, 2, 7]\ntarget = 4",
+      "output": ""
+    },
+    {
+      "input": "nums = [0, 0, 0, 0]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [5, 5, 5, 5, 5, 5]\ntarget = 20",
+      "output": ""
+    }
+  ]
+}

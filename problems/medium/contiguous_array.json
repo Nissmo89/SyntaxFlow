@@ -1,0 +1,624 @@
+{
+  "id": "contiguous_array",
+  "title": "Contiguous Array",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "description": "<p>Given a binary array <code>nums</code>, return <em>the maximum length of a contiguous subarray with an equal number of </em><code>0</code><em> and </em><code>1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,0]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,1,1,1,1,0,0,0]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> [1,1,1,0,0,0] is the longest contiguous subarray with equal number of 0 and 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Contiguous Array' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "nums[i] is either 0 or 1."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findMaxLength",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 525,
+      "title": "contiguous-array",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findMaxLength({nums})",
+        "rust": "Solution::find_max_length({nums})",
+        "python3": "Solution().findMaxLength({nums})",
+        "python2": "Solution().findMaxLength({nums})",
+        "ruby": "find_max_length({nums})",
+        "java": "new Solution().findMaxLength({nums})",
+        "csharp": "new Solution().FindMaxLength({nums})",
+        "kotlin": "Solution().findMaxLength({nums})",
+        "go": "findMaxLength({nums})",
+        "dart": "Solution().findMaxLength({nums})",
+        "swift": "Solution().findMaxLength({nums})",
+        "typescript": "findMaxLength({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findMaxLength(nums, {result})",
+        "checker": "class Checker:\n    def findMaxLength(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        count = 0\n        first = {0: -1}\n        best = 0\n        for i, x in enumerate(nums):\n            count += 1 if x == 1 else -1\n            if count in first:\n                best = max(best, i - first[count])\n            else:\n                first[count] = i\n        return result == best\n"
+      }
+    },
+    "seed": 525,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-one",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two-zeroes",
+        "in": {
+          "nums": [
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two-ones",
+        "in": {
+          "nums": [
+            1,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating-even",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "alternating-odd",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "balanced-whole-array",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "balanced-middle-window",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "balanced-prefix-window",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "balanced-suffix-window",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "many-zeroes-then-ones",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "many-ones-then-zeroes",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "nested-best-not-full",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "repeated-pattern",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "zero-heavy",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "one-heavy",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "best-window-inside",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "prefix-map-repeat-early",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "long-balanced-tail",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "long-balanced-head",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "multiple-equal-best",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "unbalanced-small",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "balanced-with-center-bias",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "full-array-length-10",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "best-length-2-only",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "early-and-late-balance",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "many-repeated-counts",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "large-100000-alternating",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-all-zeroes",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-all-ones",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "medium-random-binary-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4096,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "medium-random-binary-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 8192,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-random-binary-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 99999,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [0, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 1, 0]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 1, 1, 1, 1, 1, 0, 0, 0]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0, 1, 0, 1, 0, 1]",
+      "output": "6"
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "id": "h_index_ii",
+  "title": "H-Index II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "description": "<p>Given an array of integers <code>citations</code> where <code>citations[i]</code> is the number of citations a researcher received for their <code>i<sup>th</sup></code> paper and <code>citations</code> is sorted in <strong>non-descending order</strong>, return <em>the researcher&#39;s h-index</em>.</p>\n\n<p>According to the <a href=\"https://en.wikipedia.org/wiki/H-index\" target=\"_blank\">definition of h-index on Wikipedia</a>: The h-index is defined as the maximum value of <code>h</code> such that the given researcher has published at least <code>h</code> papers that have each been cited at least <code>h</code> times.</p>\n\n<p>You must write an algorithm that runs in logarithmic time.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> citations = [0,1,3,5,6]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> [0,1,3,5,6] means the researcher has 5 papers in total and each of them had received 0, 1, 3, 5, 6 citations respectively.\nSince the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> citations = [1,2,100]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == citations.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= citations[i] &lt;= 1000</code></li>\n\t<li><code>citations</code> is sorted in <strong>ascending order</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'H-Index II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == citations.length",
+    "1 <= n <= 105",
+    "0 <= citations[i] <= 1000",
+    "citations is sorted in ascending order."
+  ],
+  "hints": [
+    "Expected runtime complexity is in <i>O</i>(log <i>n</i>) and the input is sorted."
+  ],
+  "method": {
+    "name": "hIndex",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "citations",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 275,
+      "title": "h-index-ii",
+      "params": {
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().hIndex({citations})",
+        "rust": "Solution::h_index({citations})",
+        "python3": "Solution().hIndex({citations})",
+        "python2": "Solution().hIndex({citations})",
+        "ruby": "h_index({citations})",
+        "java": "new Solution().hIndex({citations})",
+        "csharp": "new Solution().HIndex({citations})",
+        "kotlin": "Solution().hIndex({citations})",
+        "go": "hIndex({citations})",
+        "dart": "Solution().hIndex({citations})",
+        "swift": "Solution().hIndex({citations})",
+        "typescript": "hIndex({citations})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().hIndex(citations, {result})",
+        "checker": "class Checker:\n    def hIndex(self, citations, result):\n        if not isinstance(result, int):\n            return False\n        n = len(citations)\n        if result < 0 or result > n:\n            return False\n        if any(citations[i] > citations[i + 1] for i in range(n - 1)):\n            return False\n        cnt = sum(1 for c in citations if c >= result)\n        if cnt < result:\n            return False\n        if result < n and sum(1 for c in citations if c >= result + 1) >= result + 1:\n            return False\n        return True\n"
+      }
+    },
+    "seed": 275,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "citations": [
+            0,
+            1,
+            3,
+            5,
+            6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "citations": [
+            1,
+            2,
+            100
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "citations": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-one",
+        "in": {
+          "citations": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all-zero-two",
+        "in": {
+          "citations": [
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "all-one-two",
+        "in": {
+          "citations": [
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-high",
+        "in": {
+          "citations": [
+            10,
+            10
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "boundary-step",
+        "in": {
+          "citations": [
+            0,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "ascending-low",
+        "in": {
+          "citations": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "ascending-mid",
+        "in": {
+          "citations": [
+            0,
+            1,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "sorted-plateau",
+        "in": {
+          "citations": [
+            0,
+            0,
+            1,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "increasing-small",
+        "in": {
+          "citations": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "no-higher-than-n",
+        "in": {
+          "citations": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "exact-middle",
+        "in": {
+          "citations": [
+            0,
+            0,
+            0,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "h-equals-n-minus-one",
+        "in": {
+          "citations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            100
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "h-equals-n",
+        "in": {
+          "citations": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "all-high-five",
+        "in": {
+          "citations": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed-threshold",
+        "in": {
+          "citations": [
+            0,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed-threshold-2",
+        "in": {
+          "citations": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "sharp-jump",
+        "in": {
+          "citations": [
+            0,
+            0,
+            0,
+            0,
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "many-twos",
+        "in": {
+          "citations": [
+            0,
+            0,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-variant",
+        "in": {
+          "citations": [
+            0,
+            1,
+            4,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "high-tail",
+        "in": {
+          "citations": [
+            0,
+            1,
+            2,
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "long-prefix-zeroes",
+        "in": {
+          "citations": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-plateau",
+        "in": {
+          "citations": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "generated-all-zero",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-all-1000",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-ascending-100k",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-small-random-1",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-small-random-2",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-small-random-3",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-small-random-4",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-small-random-5",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-mid",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 500,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-low",
+        "in": {
+          "citations": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 100000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 5
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "citations = [0, 1, 3, 5, 6]",
+      "output": "3"
+    },
+    {
+      "input": "citations = [1, 2, 100]",
+      "output": "2"
+    },
+    {
+      "input": "citations = [0]",
+      "output": "0"
+    },
+    {
+      "input": "citations = [1]",
+      "output": "1"
+    },
+    {
+      "input": "citations = [0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "citations = [1, 1]",
+      "output": "1"
+    },
+    {
+      "input": "citations = [10, 10]",
+      "output": "2"
+    },
+    {
+      "input": "citations = [0, 1]",
+      "output": "1"
+    }
+  ]
+}

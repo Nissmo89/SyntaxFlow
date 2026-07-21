@@ -1,0 +1,594 @@
+{
+  "id": "odd_even_jump",
+  "title": "Odd Even Jump",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Sorting",
+    "Monotonic Stack",
+    "Ordered Set"
+  ],
+  "description": "<p>You are given an integer array <code>arr</code>. From some starting index, you can make a series of jumps. The (1<sup>st</sup>, 3<sup>rd</sup>, 5<sup>th</sup>, ...) jumps in the series are called <strong>odd-numbered jumps</strong>, and the (2<sup>nd</sup>, 4<sup>th</sup>, 6<sup>th</sup>, ...) jumps in the series are called <strong>even-numbered jumps</strong>. Note that the <strong>jumps</strong> are numbered, not the indices.</p>\n\n<p>You may jump forward from index <code>i</code> to index <code>j</code> (with <code>i &lt; j</code>) in the following way:</p>\n\n<ul>\n\t<li>During <strong>odd-numbered jumps</strong> (i.e., jumps 1, 3, 5, ...), you jump to the index <code>j</code> such that <code>arr[i] &lt;= arr[j]</code> and <code>arr[j]</code> is the smallest possible value. If there are multiple such indices <code>j</code>, you can only jump to the <strong>smallest</strong> such index <code>j</code>.</li>\n\t<li>During <strong>even-numbered jumps</strong> (i.e., jumps 2, 4, 6, ...), you jump to the index <code>j</code> such that <code>arr[i] &gt;= arr[j]</code> and <code>arr[j]</code> is the largest possible value. If there are multiple such indices <code>j</code>, you can only jump to the <strong>smallest</strong> such index <code>j</code>.</li>\n\t<li>It may be the case that for some index <code>i</code>, there are no legal jumps.</li>\n</ul>\n\n<p>A starting index is <strong>good</strong> if, starting from that index, you can reach the end of the array (index <code>arr.length - 1</code>) by jumping some number of times (possibly 0 or more than once).</p>\n\n<p>Return <em>the number of <strong>good</strong> starting indices</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [10,13,12,14,15]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> \nFrom starting index i = 0, we can make our 1st jump to i = 2 (since arr[2] is the smallest among arr[1], arr[2], arr[3], arr[4] that is greater or equal to arr[0]), then we cannot jump any more.\nFrom starting index i = 1 and i = 2, we can make our 1st jump to i = 3, then we cannot jump any more.\nFrom starting index i = 3, we can make our 1st jump to i = 4, so we have reached the end.\nFrom starting index i = 4, we have reached the end already.\nIn total, there are 2 different starting indices i = 3 and i = 4, where we can reach the end with some number of\njumps.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [2,3,1,1,4]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> \nFrom starting index i = 0, we make jumps to i = 1, i = 2, i = 3:\nDuring our 1st jump (odd-numbered), we first jump to i = 1 because arr[1] is the smallest value in [arr[1], arr[2], arr[3], arr[4]] that is greater than or equal to arr[0].\nDuring our 2nd jump (even-numbered), we jump from i = 1 to i = 2 because arr[2] is the largest value in [arr[2], arr[3], arr[4]] that is less than or equal to arr[1]. arr[3] is also the largest value, but 2 is a smaller index, so we can only jump to i = 2 and not i = 3\nDuring our 3rd jump (odd-numbered), we jump from i = 2 to i = 3 because arr[3] is the smallest value in [arr[3], arr[4]] that is greater than or equal to arr[2].\nWe can&#39;t jump from i = 3 to i = 4, so the starting index i = 0 is not good.\nIn a similar manner, we can deduce that:\nFrom starting index i = 1, we jump to i = 4, so we reach the end.\nFrom starting index i = 2, we jump to i = 3, and then we can&#39;t jump anymore.\nFrom starting index i = 3, we jump to i = 4, so we reach the end.\nFrom starting index i = 4, we are already at the end.\nIn total, there are 3 different starting indices i = 1, i = 3, and i = 4, where we can reach the end with some\nnumber of jumps.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [5,1,3,4,2]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We can reach the end from starting indices 1, 2, and 4.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= arr.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= arr[i] &lt; 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Odd Even Jump' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= arr.length <= 2 * 104",
+    "0 <= arr[i] < 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "oddEvenJumps",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "arr",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 975,
+      "title": "odd-even-jump",
+      "params": {
+        "arr": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().oddEvenJumps({arr})",
+        "rust": "Solution::odd_even_jumps({arr})",
+        "python3": "Solution().oddEvenJumps({arr})",
+        "python2": "Solution().oddEvenJumps({arr})",
+        "ruby": "odd_even_jumps({arr})",
+        "java": "new Solution().oddEvenJumps({arr})",
+        "csharp": "new Solution().OddEvenJumps({arr})",
+        "kotlin": "Solution().oddEvenJumps({arr})",
+        "go": "oddEvenJumps({arr})",
+        "dart": "Solution().oddEvenJumps({arr})",
+        "swift": "Solution().oddEvenJumps({arr})",
+        "typescript": "oddEvenJumps({arr})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 975,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "arr": [
+            8,
+            13,
+            14,
+            17
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "arr": [
+            2,
+            3,
+            3,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "arr": [
+            2,
+            18
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "arr": [
+            8,
+            20,
+            18
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "arr": [
+            6
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "arr": [
+            7
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "arr": [
+            9,
+            20,
+            18,
+            11,
+            1,
+            3,
+            5,
+            14,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "arr": [
+            0,
+            2,
+            10,
+            18,
+            8,
+            3,
+            18,
+            6,
+            6,
+            1,
+            13,
+            20
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "arr": [
+            5,
+            19,
+            6,
+            19,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "arr": [
+            14,
+            6,
+            14,
+            12,
+            1,
+            11,
+            15,
+            0,
+            10
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "arr": [
+            7,
+            10,
+            0,
+            2,
+            15,
+            20,
+            4,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "arr": [
+            4,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "arr": [
+            16,
+            14,
+            12
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "arr": [
+            12,
+            10,
+            2,
+            0,
+            5,
+            7,
+            3
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "arr": [
+            7,
+            6,
+            11,
+            20,
+            6,
+            5,
+            17,
+            8,
+            12
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "arr": [
+            8,
+            10,
+            8,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "arr": [
+            16,
+            18,
+            4,
+            10,
+            17,
+            9,
+            12,
+            16,
+            11
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "arr": [
+            2,
+            8,
+            10,
+            19
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "arr": [
+            11,
+            9,
+            4,
+            9,
+            17
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "arr": [
+            7
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "arr": [
+            16,
+            1,
+            4,
+            19,
+            20,
+            19,
+            4,
+            15,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "arr": [
+            12,
+            0,
+            4,
+            1,
+            18,
+            1,
+            12,
+            3,
+            19
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "arr": [
+            2,
+            10,
+            17,
+            10,
+            7,
+            12,
+            9,
+            16,
+            15,
+            5,
+            18
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "arr": [
+            2,
+            14,
+            18,
+            5,
+            7,
+            18,
+            13,
+            20,
+            17,
+            16,
+            18,
+            20
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "arr": [
+            4,
+            14,
+            5,
+            3,
+            14,
+            0,
+            18
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "arr": [
+            7,
+            19,
+            3,
+            12,
+            4,
+            3,
+            10,
+            0,
+            18,
+            1,
+            18,
+            12
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "arr": [
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "arr": [
+            13,
+            16,
+            19,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "arr": [
+            13,
+            16,
+            0,
+            7
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "arr": [
+            4,
+            10,
+            13,
+            18
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "arr": [
+            18,
+            14,
+            10
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "arr": [
+            20,
+            11,
+            16,
+            0,
+            14
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "arr": [
+            11,
+            2,
+            8,
+            14,
+            11,
+            20,
+            4,
+            8,
+            11,
+            15
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "arr": [
+            2,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "arr": [
+            6,
+            13,
+            4,
+            10,
+            11
+          ]
+        },
+        "out": 2
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "arr = [8, 13, 14, 17]",
+      "output": "2"
+    },
+    {
+      "input": "arr = [2, 3, 3, 10]",
+      "output": "3"
+    },
+    {
+      "input": "arr = [2, 18]",
+      "output": "2"
+    },
+    {
+      "input": "arr = [8, 20, 18]",
+      "output": "2"
+    },
+    {
+      "input": "arr = [6]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [7]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [9, 20, 18, 11, 1, 3, 5, 14, 0]",
+      "output": "6"
+    },
+    {
+      "input": "arr = [0, 2, 10, 18, 8, 3, 18, 6, 6, 1, 13, 20]",
+      "output": "4"
+    }
+  ]
+}

@@ -1,0 +1,968 @@
+{
+  "id": "vowel_spellchecker",
+  "title": "Vowel Spellchecker",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "description": "<p>Given a <code>wordlist</code>, we want to implement a spellchecker that converts a query word into a correct word.</p>\n\n<p>For a given <code>query</code> word, the spell checker handles two categories of spelling mistakes:</p>\n\n<ul>\n\t<li>Capitalization: If the query matches a word in the wordlist (<strong>case-insensitive</strong>), then the query word is returned with the same case as the case in the wordlist.\n\n\t<ul>\n\t\t<li>Example: <code>wordlist = [&quot;yellow&quot;]</code>, <code>query = &quot;YellOw&quot;</code>: <code>correct = &quot;yellow&quot;</code></li>\n\t\t<li>Example: <code>wordlist = [&quot;Yellow&quot;]</code>, <code>query = &quot;yellow&quot;</code>: <code>correct = &quot;Yellow&quot;</code></li>\n\t\t<li>Example: <code>wordlist = [&quot;yellow&quot;]</code>, <code>query = &quot;yellow&quot;</code>: <code>correct = &quot;yellow&quot;</code></li>\n\t</ul>\n\t</li>\n\t<li>Vowel Errors: If after replacing the vowels <code>(&#39;a&#39;, &#39;e&#39;, &#39;i&#39;, &#39;o&#39;, &#39;u&#39;)</code> of the query word with any vowel individually, it matches a word in the wordlist (<strong>case-insensitive</strong>), then the query word is returned with the same case as the match in the wordlist.\n\t<ul>\n\t\t<li>Example: <code>wordlist = [&quot;YellOw&quot;]</code>, <code>query = &quot;yollow&quot;</code>: <code>correct = &quot;YellOw&quot;</code></li>\n\t\t<li>Example: <code>wordlist = [&quot;YellOw&quot;]</code>, <code>query = &quot;yeellow&quot;</code>: <code>correct = &quot;&quot;</code> (no match)</li>\n\t\t<li>Example: <code>wordlist = [&quot;YellOw&quot;]</code>, <code>query = &quot;yllw&quot;</code>: <code>correct = &quot;&quot;</code> (no match)</li>\n\t</ul>\n\t</li>\n</ul>\n\n<p>In addition, the spell checker operates under the following precedence rules:</p>\n\n<ul>\n\t<li>When the query exactly matches a word in the wordlist (<strong>case-sensitive</strong>), you should return the same word back.</li>\n\t<li>When the query matches a word up to capitalization, you should return the first such match in the wordlist.</li>\n\t<li>When the query matches a word up to vowel errors, you should return the first such match in the wordlist.</li>\n\t<li>If the query has no matches in the wordlist, you should return the empty string.</li>\n</ul>\n\n<p>Given some <code>queries</code>, return a list of words <code>answer</code>, where <code>answer[i]</code> is the correct word for <code>query = queries[i]</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> wordlist = [\"KiTe\",\"kite\",\"hare\",\"Hare\"], queries = [\"kite\",\"Kite\",\"KiTe\",\"Hare\",\"HARE\",\"Hear\",\"hear\",\"keti\",\"keet\",\"keto\"]\n<strong>Output:</strong> [\"kite\",\"KiTe\",\"KiTe\",\"Hare\",\"hare\",\"\",\"\",\"KiTe\",\"\",\"KiTe\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> wordlist = [\"yellow\"], queries = [\"YellOw\"]\n<strong>Output:</strong> [\"yellow\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= wordlist.length, queries.length &lt;= 5000</code></li>\n\t<li><code>1 &lt;= wordlist[i].length, queries[i].length &lt;= 7</code></li>\n\t<li><code>wordlist[i]</code> and <code>queries[i]</code> consist only of only English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Vowel Spellchecker' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= wordlist.length, queries.length <= 5000",
+    "1 <= wordlist[i].length, queries[i].length <= 7",
+    "wordlist[i] and queries[i] consist only of only English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "spellchecker",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "wordlist",
+        "type": "array"
+      },
+      {
+        "name": "queries",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 966,
+      "title": "vowel-spellchecker",
+      "params": {
+        "wordlist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().spellchecker({wordlist}, {queries})",
+        "rust": "Solution::spellchecker({wordlist}, {queries})",
+        "python3": "Solution().spellchecker({wordlist}, {queries})",
+        "python2": "Solution().spellchecker({wordlist}, {queries})",
+        "ruby": "spellchecker({wordlist}, {queries})",
+        "java": "new Solution().spellchecker({wordlist}, {queries})",
+        "csharp": "new Solution().Spellchecker({wordlist}, {queries})",
+        "kotlin": "Solution().spellchecker({wordlist}, {queries})",
+        "go": "spellchecker({wordlist}, {queries})",
+        "dart": "Solution().spellchecker({wordlist}, {queries})",
+        "swift": "Solution().spellchecker({wordlist}, {queries})",
+        "typescript": "spellchecker({wordlist}, {queries})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 966,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "wordlist": [
+            "a",
+            "dccba"
+          ],
+          "queries": [
+            "cebD",
+            "da",
+            "Ccc"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "wordlist": [
+            "ccca",
+            "dccbd",
+            "aca",
+            "cddac",
+            "d"
+          ],
+          "queries": [
+            "BDADC",
+            "aBc"
+          ]
+        },
+        "out": [
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "wordlist": [
+            "baadd",
+            "c",
+            "dcd",
+            "db",
+            "baddb",
+            "cdc",
+            "ca"
+          ],
+          "queries": [
+            "CB",
+            "BaEC",
+            "eb",
+            "DD",
+            "Ddb"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "wordlist": [
+            "dd",
+            "dcb",
+            "d",
+            "b",
+            "dbdb"
+          ],
+          "queries": [
+            "CA",
+            "Bacbb",
+            "BcCE"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "wordlist": [
+            "cbaaa",
+            "ab",
+            "aa",
+            "a",
+            "bdd",
+            "a",
+            "dddbd",
+            "dbdca"
+          ],
+          "queries": [
+            "AE",
+            "bC"
+          ]
+        },
+        "out": [
+          "aa",
+          ""
+        ]
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "wordlist": [
+            "ac",
+            "a",
+            "cbc"
+          ],
+          "queries": [
+            "b",
+            "CE",
+            "d"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "wordlist": [
+            "cdb",
+            "dcdd",
+            "cd",
+            "dbab"
+          ],
+          "queries": [
+            "ccED",
+            "EDcca",
+            "bb"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "wordlist": [
+            "cb",
+            "bad",
+            "cac",
+            "d"
+          ],
+          "queries": [
+            "dDa",
+            "DAAD",
+            "cdB",
+            "CC",
+            "ccCa",
+            "Dd"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "wordlist": [
+            "dddbb",
+            "babca",
+            "bdcbb",
+            "c",
+            "bcb",
+            "dddac"
+          ],
+          "queries": [
+            "EACA",
+            "E",
+            "cCAEe",
+            "bBDA",
+            "C",
+            "A"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "c",
+          ""
+        ]
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "wordlist": [
+            "cdb",
+            "cc",
+            "ddadd",
+            "bac"
+          ],
+          "queries": [
+            "CB",
+            "bdD",
+            "BE",
+            "EDA",
+            "EADd",
+            "ceCd",
+            "cAaEB",
+            "DBAd"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "wordlist": [
+            "ccacc"
+          ],
+          "queries": [
+            "dBd"
+          ]
+        },
+        "out": [
+          ""
+        ]
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "wordlist": [
+            "bd",
+            "baaba",
+            "da",
+            "bd",
+            "baaaa",
+            "dccca"
+          ],
+          "queries": [
+            "Dae",
+            "CaEDB",
+            "CCae",
+            "aCC"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "wordlist": [
+            "ccc",
+            "dbab"
+          ],
+          "queries": [
+            "DC",
+            "Acea",
+            "AdC",
+            "aAe",
+            "CbDe"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "wordlist": [
+            "abdc",
+            "ddca"
+          ],
+          "queries": [
+            "CE",
+            "b",
+            "adBE",
+            "eBec",
+            "c",
+            "Eacd",
+            "a"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "wordlist": [
+            "aab",
+            "aab",
+            "dd",
+            "cdada",
+            "adc",
+            "abcc",
+            "d",
+            "aaab"
+          ],
+          "queries": [
+            "eDDb",
+            "dEc",
+            "baAe",
+            "DB",
+            "D",
+            "ECBDa"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "d",
+          ""
+        ]
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "wordlist": [
+            "bdcaa",
+            "b",
+            "badaa",
+            "adca",
+            "dd",
+            "bdb"
+          ],
+          "queries": [
+            "Bc"
+          ]
+        },
+        "out": [
+          ""
+        ]
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "wordlist": [
+            "bdc",
+            "ab",
+            "cbcd",
+            "c",
+            "cd",
+            "ccbd"
+          ],
+          "queries": [
+            "a",
+            "e",
+            "CE",
+            "EEA"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "wordlist": [
+            "ca",
+            "bddb",
+            "daaba",
+            "a",
+            "c",
+            "c"
+          ],
+          "queries": [
+            "Cb",
+            "Cddea",
+            "beeb",
+            "BAc",
+            "bc",
+            "Db",
+            "BC"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "wordlist": [
+            "cca",
+            "ca"
+          ],
+          "queries": [
+            "aBbED",
+            "bdE",
+            "Dee"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "wordlist": [
+            "cdc",
+            "abaad",
+            "dcbc",
+            "cdcd",
+            "d"
+          ],
+          "queries": [
+            "eDdBB",
+            "c",
+            "eaAe",
+            "DbaED",
+            "ccA",
+            "bb"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "wordlist": [
+            "ca",
+            "aa",
+            "dd"
+          ],
+          "queries": [
+            "Dba",
+            "DB",
+            "aCcEc",
+            "AEbBb",
+            "bAe",
+            "dABCe",
+            "ceA",
+            "Baaa"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "wordlist": [
+            "acdc",
+            "d",
+            "bad",
+            "cb",
+            "c",
+            "ac",
+            "a"
+          ],
+          "queries": [
+            "E",
+            "eABcE",
+            "bAe",
+            "EabEB",
+            "DdeeC"
+          ]
+        },
+        "out": [
+          "a",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "wordlist": [
+            "b",
+            "a",
+            "a",
+            "b",
+            "acbdb",
+            "ca"
+          ],
+          "queries": [
+            "B",
+            "eEDAc",
+            "e",
+            "Dc"
+          ]
+        },
+        "out": [
+          "b",
+          "",
+          "a",
+          ""
+        ]
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "wordlist": [
+            "dcda",
+            "aabc",
+            "cdac",
+            "cbdda",
+            "bbacd",
+            "a"
+          ],
+          "queries": [
+            "AE",
+            "C",
+            "dbe"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "wordlist": [
+            "caacd",
+            "b",
+            "dc"
+          ],
+          "queries": [
+            "D",
+            "Cd",
+            "aAcd"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "wordlist": [
+            "ad",
+            "da",
+            "aaac",
+            "b",
+            "baacd",
+            "db",
+            "aacb",
+            "c"
+          ],
+          "queries": [
+            "aB",
+            "Ecbc",
+            "ae",
+            "CBC"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "wordlist": [
+            "a",
+            "dcb",
+            "bbdb",
+            "dca",
+            "bab",
+            "cbb",
+            "c"
+          ],
+          "queries": [
+            "dE",
+            "A",
+            "cEE",
+            "cbab",
+            "DCA"
+          ]
+        },
+        "out": [
+          "",
+          "a",
+          "",
+          "",
+          "dca"
+        ]
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "wordlist": [
+            "cacbc",
+            "bca",
+            "dba",
+            "b",
+            "bbcdc",
+            "c",
+            "a"
+          ],
+          "queries": [
+            "EAe",
+            "C"
+          ]
+        },
+        "out": [
+          "",
+          "c"
+        ]
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "wordlist": [
+            "bd",
+            "bdcb",
+            "b",
+            "adad",
+            "d",
+            "dacbb"
+          ],
+          "queries": [
+            "EeA"
+          ]
+        },
+        "out": [
+          ""
+        ]
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "wordlist": [
+            "cd"
+          ],
+          "queries": [
+            "b",
+            "aad",
+            "aa"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "wordlist": [
+            "bc",
+            "dabd",
+            "adabd"
+          ],
+          "queries": [
+            "E",
+            "CDa",
+            "aDBD",
+            "cC",
+            "adcC",
+            "CbdDb"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "wordlist": [
+            "ba",
+            "ccdac",
+            "baa",
+            "ada",
+            "bacb",
+            "ac"
+          ],
+          "queries": [
+            "Ed",
+            "DBEEe",
+            "eE"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "wordlist": [
+            "bbbba",
+            "bcda",
+            "adacd",
+            "adbad",
+            "c",
+            "dacad",
+            "daccd",
+            "bcb"
+          ],
+          "queries": [
+            "debCe",
+            "EaBBA",
+            "da",
+            "cd",
+            "cD",
+            "BdEeb",
+            "Ca"
+          ]
+        },
+        "out": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "wordlist": [
+            "b",
+            "ca",
+            "cdaad",
+            "dc",
+            "dcc",
+            "acbaa",
+            "bbb"
+          ],
+          "queries": [
+            "eeAE",
+            "abadE"
+          ]
+        },
+        "out": [
+          "",
+          ""
+        ]
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "wordlist": [
+            "ba",
+            "aac",
+            "acb",
+            "dcc",
+            "cdba",
+            "c",
+            "c",
+            "acbab"
+          ],
+          "queries": [
+            "E",
+            "A"
+          ]
+        },
+        "out": [
+          "",
+          ""
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "wordlist = [\"a\", \"dccba\"]\nqueries = [\"cebD\", \"da\", \"Ccc\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ccca\", \"dccbd\", \"aca\", \"cddac\", \"d\"]\nqueries = [\"BDADC\", \"aBc\"]",
+      "output": "[\"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"baadd\", \"c\", \"dcd\", \"db\", \"baddb\", \"cdc\", \"ca\"]\nqueries = [\"CB\", \"BaEC\", \"eb\", \"DD\", \"Ddb\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"dd\", \"dcb\", \"d\", \"b\", \"dbdb\"]\nqueries = [\"CA\", \"Bacbb\", \"BcCE\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cbaaa\", \"ab\", \"aa\", \"a\", \"bdd\", \"a\", \"dddbd\", \"dbdca\"]\nqueries = [\"AE\", \"bC\"]",
+      "output": "[\"aa\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ac\", \"a\", \"cbc\"]\nqueries = [\"b\", \"CE\", \"d\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cdb\", \"dcdd\", \"cd\", \"dbab\"]\nqueries = [\"ccED\", \"EDcca\", \"bb\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cb\", \"bad\", \"cac\", \"d\"]\nqueries = [\"dDa\", \"DAAD\", \"cdB\", \"CC\", \"ccCa\", \"Dd\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\"]"
+    }
+  ]
+}

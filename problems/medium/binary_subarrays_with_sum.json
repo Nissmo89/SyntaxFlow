@@ -1,0 +1,684 @@
+{
+  "id": "binary_subarrays_with_sum",
+  "title": "Binary Subarrays With Sum",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "description": "<p>Given a binary array <code>nums</code> and an integer <code>goal</code>, return <em>the number of non-empty <strong>subarrays</strong> with a sum</em> <code>goal</code>.</p>\n\n<p>A <strong>subarray</strong> is a contiguous part of the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,1,0,1], goal = 2\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The 4 subarrays are bolded and underlined below:\n[<u><strong>1,0,1</strong></u>,0,1]\n[<u><strong>1,0,1,0</strong></u>,1]\n[1,<u><strong>0,1,0,1</strong></u>]\n[1,0,<u><strong>1,0,1</strong></u>]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0,0,0], goal = 0\n<strong>Output:</strong> 15\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li>\n\t<li><code>0 &lt;= goal &lt;= nums.length</code></li>\n</ul>\n",
+  "task": "Solve the 'Binary Subarrays With Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 104",
+    "nums[i] is either 0 or 1.",
+    "0 <= goal <= nums.length"
+  ],
+  "hints": [
+    "Can you transform the problem into finding two prefix sums whose difference equals <code>goal</code>?",
+    "While iterating through the array, keep track of how many times each prefix sum has appeared so far.",
+    "If the current prefix sum is <code>curr</code>, how many previous prefix sums equal to <code>curr - goal</code> exist?"
+  ],
+  "method": {
+    "name": "numSubarraysWithSum",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "goal",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 930,
+      "title": "binary-subarrays-with-sum",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "goal": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "rust": "Solution::num_subarrays_with_sum({nums}, {goal})",
+        "python3": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "python2": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "ruby": "num_subarrays_with_sum({nums}, {goal})",
+        "java": "new Solution().numSubarraysWithSum({nums}, {goal})",
+        "csharp": "new Solution().NumSubarraysWithSum({nums}, {goal})",
+        "kotlin": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "go": "numSubarraysWithSum({nums}, {goal})",
+        "dart": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "swift": "Solution().numSubarraysWithSum({nums}, {goal})",
+        "typescript": "numSubarraysWithSum({nums}, {goal})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 930,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 4
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "goal": 0
+        },
+        "out": 15
+      },
+      {
+        "name": "t1",
+        "in": {
+          "nums": [
+            1
+          ],
+          "goal": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "t2",
+        "in": {
+          "nums": [
+            0
+          ],
+          "goal": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "t3",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 5
+      },
+      {
+        "name": "t4",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "t5",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "goal": 1
+        },
+        "out": 8
+      },
+      {
+        "name": "t6",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "goal": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "t7",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 8
+      },
+      {
+        "name": "t8",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "goal": 1
+        },
+        "out": 8
+      },
+      {
+        "name": "t9",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "t10",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "t11",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "t12",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "t13",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 5
+      },
+      {
+        "name": "t14",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "goal": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "t15",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "goal": 1
+        },
+        "out": 5
+      },
+      {
+        "name": "t16",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 12
+      },
+      {
+        "name": "t17",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 1
+        },
+        "out": 21
+      },
+      {
+        "name": "t18",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 12
+      },
+      {
+        "name": "t19",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "t20",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "goal": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "t21",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "goal": 1
+        },
+        "out": 4
+      },
+      {
+        "name": "t22",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 12
+      },
+      {
+        "name": "t23",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 9
+      },
+      {
+        "name": "t24",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "goal": 3
+        },
+        "out": 1
+      },
+      {
+        "name": "t25",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 9
+      },
+      {
+        "name": "t26",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "goal": 0
+        },
+        "out": 28
+      },
+      {
+        "name": "t27",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1
+          ],
+          "goal": 1
+        },
+        "out": 4
+      },
+      {
+        "name": "t28",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1
+          ],
+          "goal": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "t29",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 4
+      },
+      {
+        "name": "t30",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "t31",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          "goal": 2
+        },
+        "out": 9
+      },
+      {
+        "name": "t32",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "goal": 3
+        },
+        "out": 8
+      },
+      {
+        "name": "t33",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "goal": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "t34",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "goal": 3
+        },
+        "out": 10
+      },
+      {
+        "name": "t35",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "goal": 5
+        },
+        "out": 4
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 0, 1, 0, 1]\ngoal = 2",
+      "output": "4"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0]\ngoal = 0",
+      "output": "15"
+    },
+    {
+      "input": "nums = [1]\ngoal = 1",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0]\ngoal = 0",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 0, 0, 1, 0, 1]\ngoal = 2",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1, 1, 1]\ngoal = 2",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 1, 0, 1, 0]\ngoal = 1",
+      "output": "8"
+    },
+    {
+      "input": "nums = [1, 0, 1, 1, 0, 1]\ngoal = 3",
+      "output": "4"
+    }
+  ]
+}

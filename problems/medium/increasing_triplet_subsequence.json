@@ -1,0 +1,629 @@
+{
+  "id": "increasing_triplet_subsequence",
+  "title": "Increasing Triplet Subsequence",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "description": "<p>Given an integer array <code>nums</code>, return <code>true</code><em> if there exists a triple of indices </em><code>(i, j, k)</code><em> such that </em><code>i &lt; j &lt; k</code><em> and </em><code>nums[i] &lt; nums[j] &lt; nums[k]</code>. If no such indices exists, return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Any triplet where i &lt; j &lt; k is valid.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5,4,3,2,1]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> No triplet exists.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,1,5,0,4,6]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> One of the valid triplet is (1, 4, 5), because nums[1] == 1 &lt; nums[4] == 4 &lt; nums[5] == 6.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you implement a solution that runs in <code>O(n)</code> time complexity and <code>O(1)</code> space complexity?",
+  "task": "Solve the 'Increasing Triplet Subsequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 5 * 105",
+    "-231 <= nums[i] <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "increasingTriplet",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 334,
+      "title": "increasing-triplet-subsequence",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().increasingTriplet({nums})",
+        "rust": "Solution::increasing_triplet({nums})",
+        "python3": "Solution().increasingTriplet({nums})",
+        "python2": "Solution().increasingTriplet({nums})",
+        "ruby": "increasing_triplet({nums})",
+        "java": "new Solution().increasingTriplet({nums})",
+        "csharp": "new Solution().IncreasingTriplet({nums})",
+        "kotlin": "Solution().increasingTriplet({nums})",
+        "go": "increasingTriplet({nums})",
+        "dart": "Solution().increasingTriplet({nums})",
+        "swift": "Solution().increasingTriplet({nums})",
+        "typescript": "increasingTriplet({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().increasingTriplet(nums, {result})",
+        "checker": "class Checker:\n    def increasingTriplet(self, nums, result):\n        first = float('inf')\n        second = float('inf')\n        expected = False\n        for x in nums:\n            if x <= first:\n                first = x\n            elif x <= second:\n                second = x\n            else:\n                expected = True\n                break\n        return expected == result\n"
+      }
+    },
+    "seed": 334,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "nums": [
+            2,
+            1,
+            5,
+            0,
+            4,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single",
+        "in": {
+          "nums": [
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two_inc",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "three_inc",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "three_dec",
+        "in": {
+          "nums": [
+            3,
+            2,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_equal",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "dup_then_inc",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "dup_blocks",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "early_triplet",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            -1,
+            -2,
+            -3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "late_triplet",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            1,
+            5,
+            0,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "no_triplet_zigzag",
+        "in": {
+          "nums": [
+            5,
+            1,
+            5,
+            0,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "classic_true",
+        "in": {
+          "nums": [
+            2,
+            4,
+            -2,
+            -3,
+            1,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "classic_false",
+        "in": {
+          "nums": [
+            2,
+            1,
+            0,
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "negatives_true",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "negatives_false",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "min_ints",
+        "in": {
+          "nums": [
+            -2147483648,
+            -2147483648,
+            -2147483647
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "min_max_true",
+        "in": {
+          "nums": [
+            -2147483648,
+            0,
+            2147483647
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_then_min_then_mid",
+        "in": {
+          "nums": [
+            2147483647,
+            -2147483648,
+            0,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "valley_true",
+        "in": {
+          "nums": [
+            10,
+            9,
+            8,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "valley_false",
+        "in": {
+          "nums": [
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "delayed_second",
+        "in": {
+          "nums": [
+            1,
+            5,
+            0,
+            4,
+            1,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "long_false_plateau",
+        "in": {
+          "nums": [
+            4,
+            4,
+            3,
+            3,
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "long_true_plateau",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_small_false",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "repeated_small_true",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "prefix_noise_true",
+        "in": {
+          "nums": [
+            100,
+            99,
+            98,
+            1,
+            2,
+            1000
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "prefix_noise_false",
+        "in": {
+          "nums": [
+            100,
+            99,
+            98,
+            97,
+            96,
+            95
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "alternating_true",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "alternating_false",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "negative_mix_true",
+        "in": {
+          "nums": [
+            -10,
+            -20,
+            -30,
+            -5,
+            -4,
+            -3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "negative_mix_false",
+        "in": {
+          "nums": [
+            -10,
+            -20,
+            -30,
+            -40
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_true_tail",
+        "in": {
+          "nums": [
+            8,
+            7,
+            1,
+            2,
+            0,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_false_tail",
+        "in": {
+          "nums": [
+            8,
+            7,
+            1,
+            2,
+            0,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "generated_mixed_medium",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 10,
+              "max": 30
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_sorted_increasing",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 50000
+            },
+            "distinct": true,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_plateau_heavy",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 7
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 3, 4, 5]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [5, 4, 3, 2, 1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [2, 1, 5, 0, 4, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [7]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [3, 2, 1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2]",
+      "output": "false"
+    }
+  ]
+}

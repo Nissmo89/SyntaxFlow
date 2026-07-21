@@ -1,0 +1,1227 @@
+{
+  "id": "word_ladder",
+  "title": "Word Ladder",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search"
+  ],
+  "description": "<p>A <strong>transformation sequence</strong> from word <code>beginWord</code> to word <code>endWord</code> using a dictionary <code>wordList</code> is a sequence of words <code>beginWord -&gt; s<sub>1</sub> -&gt; s<sub>2</sub> -&gt; ... -&gt; s<sub>k</sub></code> such that:</p>\n\n<ul>\n\t<li>Every adjacent pair of words differs by a single letter.</li>\n\t<li>Every <code>s<sub>i</sub></code> for <code>1 &lt;= i &lt;= k</code> is in <code>wordList</code>. Note that <code>beginWord</code> does not need to be in <code>wordList</code>.</li>\n\t<li><code>s<sub>k</sub> == endWord</code></li>\n</ul>\n\n<p>Given two words, <code>beginWord</code> and <code>endWord</code>, and a dictionary <code>wordList</code>, return <em>the <strong>number of words</strong> in the <strong>shortest transformation sequence</strong> from</em> <code>beginWord</code> <em>to</em> <code>endWord</code><em>, or </em><code>0</code><em> if no such sequence exists.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> One shortest transformation sequence is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; cog&quot;, which is 5 words long.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The endWord &quot;cog&quot; is not in wordList, therefore there is no valid transformation sequence.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= beginWord.length &lt;= 10</code></li>\n\t<li><code>endWord.length == beginWord.length</code></li>\n\t<li><code>1 &lt;= wordList.length &lt;= 5000</code></li>\n\t<li><code>wordList[i].length == beginWord.length</code></li>\n\t<li><code>beginWord</code>, <code>endWord</code>, and <code>wordList[i]</code> consist of lowercase English letters.</li>\n\t<li><code>beginWord != endWord</code></li>\n\t<li>All the words in <code>wordList</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Word Ladder' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= beginWord.length <= 10",
+    "endWord.length == beginWord.length",
+    "1 <= wordList.length <= 5000",
+    "wordList[i].length == beginWord.length",
+    "beginWord, endWord, and wordList[i] consist of lowercase English letters.",
+    "beginWord != endWord",
+    "All the words in wordList are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "ladderLength",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "beginWord",
+        "type": "string"
+      },
+      {
+        "name": "endWord",
+        "type": "string"
+      },
+      {
+        "name": "wordList",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 127,
+      "title": "word-ladder",
+      "params": {
+        "beginWord": {
+          "type": "string"
+        },
+        "endWord": {
+          "type": "string"
+        },
+        "wordList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "rust": "Solution::ladder_length({beginWord}, {endWord}, {wordList})",
+        "python3": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "python2": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "ruby": "ladder_length({beginWord}, {endWord}, {wordList})",
+        "java": "new Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "csharp": "new Solution().LadderLength({beginWord}, {endWord}, {wordList})",
+        "kotlin": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "go": "ladderLength({beginWord}, {endWord}, {wordList})",
+        "dart": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "swift": "Solution().ladderLength({beginWord}, {endWord}, {wordList})",
+        "typescript": "ladderLength({beginWord}, {endWord}, {wordList})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().ladderLength(beginWord, endWord, wordList, {result})",
+        "checker": "import copy\n\nfrom typing import List\n\nfrom collections import deque\n\n\nclass Solution:\n    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:\n        word_set = set(wordList)\n        if endWord not in word_set:\n            return 0\n\n        queue = deque([(beginWord, 1)])\n        while queue:\n            word, steps = queue.popleft()\n            if word == endWord:\n                return steps\n\n            for i in range(len(word)):\n                prefix = word[:i]\n                suffix = word[i + 1 :]\n                for code in range(ord(\"a\"), ord(\"z\") + 1):\n                    candidate = prefix + chr(code) + suffix\n                    if candidate in word_set:\n                        word_set.remove(candidate)\n                        queue.append((candidate, steps + 1))\n\n        return 0\n\ndef array_to_list_node_local(values):\n    dummy = ListNode(0)\n    tail = dummy\n    for value in values:\n        tail.next = ListNode(value)\n        tail = tail.next\n    return dummy.next\n\ndef array_to_tree_node_local(values):\n    if not values:\n        return None\n    root = TreeNode(values[0])\n    queue = deque([root])\n    index = 1\n    while queue and index < len(values):\n        node = queue.popleft()\n        if index < len(values) and values[index] is not None:\n            node.left = TreeNode(values[index])\n            queue.append(node.left)\n        index += 1\n        if index < len(values) and values[index] is not None:\n            node.right = TreeNode(values[index])\n            queue.append(node.right)\n        index += 1\n    return root\n\ndef list_node_to_array_local(node):\n    out = []\n    seen = 0\n    while node is not None and seen < 100000:\n        out.append(node.val)\n        node = node.next\n        seen += 1\n    return out\n\ndef tree_node_to_array_local(root):\n    if root is None:\n        return []\n    out = []\n    q = deque([root])\n    while q:\n        node = q.popleft()\n        if node is None:\n            out.append(None)\n            continue\n        out.append(node.val)\n        q.append(node.left)\n        q.append(node.right)\n    while out and out[-1] is None:\n        out.pop()\n    return out\n\ndef deep_sort(value):\n    if isinstance(value, list):\n        normalized = [deep_sort(item) for item in value]\n        return sorted(normalized, key=lambda item: json.dumps(item, sort_keys=True))\n    if isinstance(value, dict):\n        return {key: deep_sort(val) for key, val in sorted(value.items())}\n    return value\n\ndef normalize_expected(value):\n    kind = \"int\"\n    if kind == \"list_node\":\n        return list_node_to_array_local(value)\n    if kind == \"tree_node\":\n        return tree_node_to_array_local(value)\n    return value\n\ndef normalize_actual(value):\n    return value\n\ndef prepare_input(value, kind):\n    if kind == \"tree_node\":\n        return array_to_tree_node_local(value)\n    if kind == \"list_node\":\n        return array_to_list_node_local(value)\n    return copy.deepcopy(value)\n\nclass Checker:\n    def ladderLength(self, beginWord, endWord, wordList, result):\n        prepared_beginWord = prepare_input(beginWord, \"string\"); prepared_endWord = prepare_input(endWord, \"string\"); prepared_wordList = prepare_input(wordList, \"array[string]\")\n        expected = Solution().ladderLength(prepared_beginWord, prepared_endWord, prepared_wordList)\n        expected = normalize_expected(expected)\n        actual = normalize_actual(result)\n        return deep_sort(expected) == deep_sort(actual)\n"
+      }
+    },
+    "seed": 127,
+    "tests": [
+      {
+        "name": "case_01",
+        "in": {
+          "beginWord": "hit",
+          "endWord": "cog",
+          "wordList": [
+            "hot",
+            "dot",
+            "dog",
+            "lot",
+            "log",
+            "cog"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_02",
+        "in": {
+          "beginWord": "hit",
+          "endWord": "cog",
+          "wordList": [
+            "hot",
+            "dot",
+            "dog",
+            "lot",
+            "log"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_03",
+        "in": {
+          "beginWord": "cdacc",
+          "endWord": "adbcd",
+          "wordList": [
+            "becdc",
+            "adacd",
+            "adbcd",
+            "adacc",
+            "edacc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_04",
+        "in": {
+          "beginWord": "eeb",
+          "endWord": "ecb",
+          "wordList": [
+            "deb",
+            "ebb",
+            "ecb"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_05",
+        "in": {
+          "beginWord": "bae",
+          "endWord": "abe",
+          "wordList": [
+            "abe",
+            "cde",
+            "ace",
+            "bce",
+            "eeb",
+            "ccc",
+            "eda"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_06",
+        "in": {
+          "beginWord": "baaed",
+          "endWord": "eaebd",
+          "wordList": [
+            "eaaed",
+            "eaebd",
+            "cdedb",
+            "eaeed",
+            "cbaed"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_07",
+        "in": {
+          "beginWord": "dbde",
+          "endWord": "cbda",
+          "wordList": [
+            "bcca",
+            "dbda",
+            "cbda"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_08",
+        "in": {
+          "beginWord": "abdb",
+          "endWord": "ecdc",
+          "wordList": [
+            "ebdc",
+            "daae",
+            "baed",
+            "bbee",
+            "adcd",
+            "ebde",
+            "bcee",
+            "ebdb",
+            "ecdc",
+            "dbcc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_09",
+        "in": {
+          "beginWord": "cbbc",
+          "endWord": "bbeb",
+          "wordList": [
+            "accd",
+            "bbbc",
+            "bbeb",
+            "bbec",
+            "bacb",
+            "abce"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "beginWord": "eace",
+          "endWord": "becd",
+          "wordList": [
+            "bdeb",
+            "becd",
+            "bece",
+            "bace",
+            "beca",
+            "baea",
+            "bcde",
+            "abac"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "beginWord": "eaaa",
+          "endWord": "aaba",
+          "wordList": [
+            "bdaa",
+            "aaba",
+            "daaa",
+            "aaaa"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "beginWord": "dca",
+          "endWord": "ade",
+          "wordList": [
+            "adc",
+            "bec",
+            "ced",
+            "ace",
+            "aca",
+            "cca",
+            "eeb",
+            "ade"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "beginWord": "dde",
+          "endWord": "ace",
+          "wordList": [
+            "dce",
+            "eda",
+            "dba",
+            "ade"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "beginWord": "dace",
+          "endWord": "bbbc",
+          "wordList": [
+            "babc",
+            "ebcc",
+            "babe",
+            "dabe",
+            "bbbc"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "beginWord": "eeebd",
+          "endWord": "debdd",
+          "wordList": [
+            "dedea",
+            "eebbd",
+            "bacdd",
+            "abcae",
+            "eebdd"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "beginWord": "eadea",
+          "endWord": "dabeb",
+          "wordList": [
+            "dabeb",
+            "eabeb",
+            "beeae",
+            "aabbc",
+            "eadeb",
+            "dadaa"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "beginWord": "cae",
+          "endWord": "dbe",
+          "wordList": [
+            "bce",
+            "dae",
+            "dad",
+            "aac",
+            "dbe"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "beginWord": "bbe",
+          "endWord": "bdb",
+          "wordList": [
+            "bbb",
+            "cbc",
+            "ceb",
+            "ebb",
+            "cdc",
+            "bdb"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "beginWord": "bab",
+          "endWord": "ccb",
+          "wordList": [
+            "daa",
+            "bcb",
+            "beb",
+            "ccb",
+            "aee",
+            "ddc"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "beginWord": "aedae",
+          "endWord": "cadad",
+          "wordList": [
+            "cceae",
+            "eedae",
+            "eedad",
+            "cedad"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "beginWord": "bdda",
+          "endWord": "aada",
+          "wordList": [
+            "bada",
+            "aeca"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "beginWord": "aedc",
+          "endWord": "eadd",
+          "wordList": [
+            "aedd",
+            "aadd",
+            "ccaa",
+            "eadd",
+            "bacd",
+            "eebc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "beginWord": "acdcd",
+          "endWord": "acdba",
+          "wordList": [
+            "acdba",
+            "eaadd",
+            "acdbd",
+            "aaeeb"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "beginWord": "aac",
+          "endWord": "eab",
+          "wordList": [
+            "cab",
+            "dae",
+            "aab",
+            "bdd",
+            "ddb",
+            "eda",
+            "eab"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "beginWord": "cac",
+          "endWord": "ceb",
+          "wordList": [
+            "ceb",
+            "bbd",
+            "cab",
+            "dcb",
+            "cbb",
+            "dec",
+            "aee"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "beginWord": "cbacd",
+          "endWord": "ebaac",
+          "wordList": [
+            "ebaad",
+            "cddde",
+            "ebacd",
+            "bbeed"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "beginWord": "caaa",
+          "endWord": "edad",
+          "wordList": [
+            "edad",
+            "cdcc",
+            "eaad",
+            "eaaa",
+            "caab"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "beginWord": "cbcc",
+          "endWord": "dbec",
+          "wordList": [
+            "ccbc",
+            "dbec",
+            "cbec",
+            "cdad",
+            "dbaa"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "beginWord": "dbc",
+          "endWord": "eac",
+          "wordList": [
+            "cbc",
+            "cac",
+            "dcd"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "beginWord": "bdaac",
+          "endWord": "bdacd",
+          "wordList": [
+            "acaea",
+            "bdacc",
+            "dcaeb",
+            "acabc",
+            "beada"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "beginWord": "bdb",
+          "endWord": "bcc",
+          "wordList": [
+            "ede",
+            "bca",
+            "bcc",
+            "bcb",
+            "cda"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "beginWord": "baea",
+          "endWord": "daca",
+          "wordList": [
+            "bbcd",
+            "daee",
+            "daea",
+            "eccd",
+            "daca",
+            "eaea"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "beginWord": "aadc",
+          "endWord": "cedc",
+          "wordList": [
+            "cada",
+            "cadc",
+            "ceca",
+            "ceda",
+            "cdde"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "beginWord": "ecad",
+          "endWord": "abed",
+          "wordList": [
+            "abed",
+            "ebed",
+            "ebbe",
+            "eced",
+            "eeed",
+            "eaad"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "beginWord": "bebdc",
+          "endWord": "ceaaa",
+          "wordList": [
+            "dacce",
+            "aacec",
+            "ceaaa",
+            "bebac",
+            "beaaa",
+            "dcbeb",
+            "eaecb",
+            "bebaa"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_36",
+        "in": {
+          "beginWord": "bbdcc",
+          "endWord": "ebbca",
+          "wordList": [
+            "ebdcc",
+            "dedbd",
+            "ebbca",
+            "ddddb",
+            "ebbcc",
+            "cabdc",
+            "eeacb",
+            "babad"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_37",
+        "in": {
+          "beginWord": "daddd",
+          "endWord": "bbead",
+          "wordList": [
+            "daead",
+            "bbead",
+            "baead",
+            "dadad",
+            "cecbb"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_38",
+        "in": {
+          "beginWord": "daab",
+          "endWord": "baaa",
+          "wordList": [
+            "bead",
+            "cdae",
+            "baab",
+            "beeb",
+            "dadc",
+            "baaa"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_39",
+        "in": {
+          "beginWord": "bdccd",
+          "endWord": "bbcdb",
+          "wordList": [
+            "ccaba",
+            "bbbcc",
+            "bebab",
+            "bbccb",
+            "bbcdb",
+            "bdccb",
+            "bdccc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_40",
+        "in": {
+          "beginWord": "ddca",
+          "endWord": "dddd",
+          "wordList": [
+            "ccde",
+            "ebec",
+            "dddd",
+            "cdbd",
+            "cbde",
+            "ddda"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_41",
+        "in": {
+          "beginWord": "aac",
+          "endWord": "aab",
+          "wordList": [
+            "daa",
+            "aad"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_42",
+        "in": {
+          "beginWord": "ebb",
+          "endWord": "adb",
+          "wordList": [
+            "aba",
+            "eea",
+            "abb",
+            "adb",
+            "cbe",
+            "bcd",
+            "aca"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_43",
+        "in": {
+          "beginWord": "cbec",
+          "endWord": "cbeb",
+          "wordList": [
+            "cbeb",
+            "ddbe",
+            "ceab"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_44",
+        "in": {
+          "beginWord": "bcb",
+          "endWord": "ade",
+          "wordList": [
+            "bdb",
+            "cbd",
+            "bcb",
+            "adb",
+            "bde"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_45",
+        "in": {
+          "beginWord": "dceb",
+          "endWord": "aced",
+          "wordList": [
+            "ecad",
+            "baad",
+            "aceb"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_46",
+        "in": {
+          "beginWord": "dbeca",
+          "endWord": "dcaca",
+          "wordList": [
+            "dbbca",
+            "dcbca",
+            "acebc",
+            "eadaa"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_47",
+        "in": {
+          "beginWord": "cccad",
+          "endWord": "accca",
+          "wordList": [
+            "ccccd",
+            "accca",
+            "acccd",
+            "cddad"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_48",
+        "in": {
+          "beginWord": "cae",
+          "endWord": "ace",
+          "wordList": [
+            "bcc",
+            "ace",
+            "aed",
+            "aae"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_49",
+        "in": {
+          "beginWord": "aadad",
+          "endWord": "aeadd",
+          "wordList": [
+            "bdeec",
+            "daacd",
+            "aaadd",
+            "edacd",
+            "aaaad"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_50",
+        "in": {
+          "beginWord": "dadd",
+          "endWord": "bcdd",
+          "wordList": [
+            "bcdd",
+            "adbc",
+            "acdd",
+            "cada",
+            "adab",
+            "dcdd"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_51",
+        "in": {
+          "beginWord": "dbc",
+          "endWord": "cdc",
+          "wordList": [
+            "cdc",
+            "cbc",
+            "cce",
+            "bed"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_52",
+        "in": {
+          "beginWord": "dadbc",
+          "endWord": "adbbc",
+          "wordList": [
+            "adbbc",
+            "aeabc",
+            "cbacb",
+            "abcdd",
+            "dabbc",
+            "cbcec",
+            "ddbbc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_53",
+        "in": {
+          "beginWord": "ceebd",
+          "endWord": "caebd",
+          "wordList": [
+            "dbadd",
+            "cdebd",
+            "cbebd",
+            "caedd",
+            "abdde",
+            "ccccb"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_54",
+        "in": {
+          "beginWord": "eebc",
+          "endWord": "ebcc",
+          "wordList": [
+            "ebed",
+            "edbc",
+            "eabc",
+            "ecae",
+            "ebbc",
+            "ebcc",
+            "caab"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_55",
+        "in": {
+          "beginWord": "ccbbd",
+          "endWord": "ccecd",
+          "wordList": [
+            "ccedd",
+            "cccdd",
+            "cccbd",
+            "bdacc"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_56",
+        "in": {
+          "beginWord": "aec",
+          "endWord": "ebc",
+          "wordList": [
+            "bbc",
+            "abe",
+            "abc"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_57",
+        "in": {
+          "beginWord": "edea",
+          "endWord": "edbd",
+          "wordList": [
+            "ecbc",
+            "edec",
+            "edbc",
+            "edbd"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_58",
+        "in": {
+          "beginWord": "bbb",
+          "endWord": "bdb",
+          "wordList": [
+            "beb",
+            "cad",
+            "eca",
+            "aaa",
+            "bdb"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_59",
+        "in": {
+          "beginWord": "eaec",
+          "endWord": "cabc",
+          "wordList": [
+            "dabc",
+            "daec",
+            "dabe",
+            "cabc",
+            "abbd",
+            "babc",
+            "cdde"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_60",
+        "in": {
+          "beginWord": "eedad",
+          "endWord": "eeeaa",
+          "wordList": [
+            "cabea",
+            "eedaa",
+            "caadc",
+            "ddded"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_61",
+        "in": {
+          "beginWord": "bdaa",
+          "endWord": "cddc",
+          "wordList": [
+            "edda",
+            "cddd",
+            "cdaa",
+            "cdda",
+            "aada"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_62",
+        "in": {
+          "beginWord": "eae",
+          "endWord": "aae",
+          "wordList": [
+            "ccd",
+            "aae",
+            "eda",
+            "abd",
+            "bae"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_63",
+        "in": {
+          "beginWord": "bcc",
+          "endWord": "dbb",
+          "wordList": [
+            "dcb",
+            "eba",
+            "dad",
+            "ecb",
+            "eee",
+            "eae",
+            "bcb",
+            "dbb",
+            "eea"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_64",
+        "in": {
+          "beginWord": "abcc",
+          "endWord": "aecb",
+          "wordList": [
+            "eccd",
+            "bade",
+            "bced",
+            "adde",
+            "abcb"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_65",
+        "in": {
+          "beginWord": "ebdbc",
+          "endWord": "bcebd",
+          "wordList": [
+            "bbdbd",
+            "bcebb",
+            "cbcdd",
+            "bcebd",
+            "bcdbd",
+            "bbdbc"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "case_66",
+        "in": {
+          "beginWord": "dac",
+          "endWord": "ebc",
+          "wordList": [
+            "cac",
+            "aea",
+            "ebc",
+            "eac",
+            "bcc",
+            "aaa"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_67",
+        "in": {
+          "beginWord": "daeda",
+          "endWord": "cddda",
+          "wordList": [
+            "cddda",
+            "cadda",
+            "caecd",
+            "dadda",
+            "baaec"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_68",
+        "in": {
+          "beginWord": "bbdbc",
+          "endWord": "badbd",
+          "wordList": [
+            "bedbd",
+            "badbd",
+            "dadac",
+            "bedbc"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "case_69",
+        "in": {
+          "beginWord": "adaad",
+          "endWord": "beaaa",
+          "wordList": [
+            "eadbd",
+            "aeaad",
+            "beaad"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_70",
+        "in": {
+          "beginWord": "bdc",
+          "endWord": "eab",
+          "wordList": [
+            "bab",
+            "eae",
+            "bda",
+            "dae",
+            "bac",
+            "edb"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_71",
+        "in": {
+          "beginWord": "aebac",
+          "endWord": "adbdc",
+          "wordList": [
+            "bdeea",
+            "adbac",
+            "decad",
+            "adbdc",
+            "bcdcc"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "case_72",
+        "in": {
+          "beginWord": "dceaa",
+          "endWord": "ecebc",
+          "wordList": [
+            "eeaab",
+            "ecebc",
+            "dceac",
+            "eceac",
+            "bedde",
+            "dceae"
+          ]
+        },
+        "out": 4
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "beginWord = \"hit\"\nendWord = \"cog\"\nwordList = [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"]",
+      "output": "5"
+    },
+    {
+      "input": "beginWord = \"hit\"\nendWord = \"cog\"\nwordList = [\"hot\", \"dot\", \"dog\", \"lot\", \"log\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"cdacc\"\nendWord = \"adbcd\"\nwordList = [\"becdc\", \"adacd\", \"adbcd\", \"adacc\", \"edacc\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"eeb\"\nendWord = \"ecb\"\nwordList = [\"deb\", \"ebb\", \"ecb\"]",
+      "output": "2"
+    },
+    {
+      "input": "beginWord = \"bae\"\nendWord = \"abe\"\nwordList = [\"abe\", \"cde\", \"ace\", \"bce\", \"eeb\", \"ccc\", \"eda\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"baaed\"\nendWord = \"eaebd\"\nwordList = [\"eaaed\", \"eaebd\", \"cdedb\", \"eaeed\", \"cbaed\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"dbde\"\nendWord = \"cbda\"\nwordList = [\"bcca\", \"dbda\", \"cbda\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"abdb\"\nendWord = \"ecdc\"\nwordList = [\"ebdc\", \"daae\", \"baed\", \"bbee\", \"adcd\", \"ebde\", \"bcee\", \"ebdb\", \"ecdc\", \"dbcc\"]",
+      "output": "4"
+    }
+  ]
+}

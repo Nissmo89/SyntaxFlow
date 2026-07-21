@@ -1,0 +1,356 @@
+{
+  "id": "tag_validator",
+  "title": "Tag Validator",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>Given a string representing a code snippet, implement a tag validator to parse the code and return whether it is valid.</p>\n\n<p>A code snippet is valid if all the following rules hold:</p>\n\n<ol>\n\t<li>The code must be wrapped in a <b>valid closed tag</b>. Otherwise, the code is invalid.</li>\n\t<li>A <b>closed tag</b> (not necessarily valid) has exactly the following format : <code>&lt;TAG_NAME&gt;TAG_CONTENT&lt;/TAG_NAME&gt;</code>. Among them, <code>&lt;TAG_NAME&gt;</code> is the start tag, and <code>&lt;/TAG_NAME&gt;</code> is the end tag. The TAG_NAME in start and end tags should be the same. A closed tag is <b>valid</b> if and only if the TAG_NAME and TAG_CONTENT are valid.</li>\n\t<li>A <b>valid</b> <code>TAG_NAME</code> only contain <b>upper-case letters</b>, and has length in range [1,9]. Otherwise, the <code>TAG_NAME</code> is <b>invalid</b>.</li>\n\t<li>A <b>valid</b> <code>TAG_CONTENT</code> may contain other <b>valid closed tags</b>, <b>cdata</b> and any characters (see note1) <b>EXCEPT</b> unmatched <code>&lt;</code>, unmatched start and end tag, and unmatched or closed tags with invalid TAG_NAME. Otherwise, the <code>TAG_CONTENT</code> is <b>invalid</b>.</li>\n\t<li>A start tag is unmatched if no end tag exists with the same TAG_NAME, and vice versa. However, you also need to consider the issue of unbalanced when tags are nested.</li>\n\t<li>A <code>&lt;</code> is unmatched if you cannot find a subsequent <code>&gt;</code>. And when you find a <code>&lt;</code> or <code>&lt;/</code>, all the subsequent characters until the next <code>&gt;</code> should be parsed as TAG_NAME (not necessarily valid).</li>\n\t<li>The cdata has the following format : <code>&lt;![CDATA[CDATA_CONTENT]]&gt;</code>. The range of <code>CDATA_CONTENT</code> is defined as the characters between <code>&lt;![CDATA[</code> and the <b>first subsequent</b> <code>]]&gt;</code>.</li>\n\t<li><code>CDATA_CONTENT</code> may contain <b>any characters</b>. The function of cdata is to forbid the validator to parse <code>CDATA_CONTENT</code>, so even it has some characters that can be parsed as tag (no matter valid or invalid), you should treat it as <b>regular characters</b>.</li>\n</ol>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> code = &quot;&lt;DIV&gt;This is the first line &lt;![CDATA[&lt;div&gt;]]&gt;&lt;/DIV&gt;&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> \nThe code is wrapped in a closed tag : &lt;DIV&gt; and &lt;/DIV&gt;. \nThe TAG_NAME is valid, the TAG_CONTENT consists of some characters and cdata. \nAlthough CDATA_CONTENT has an unmatched start tag with invalid TAG_NAME, it should be considered as plain text, not parsed as a tag.\nSo TAG_CONTENT is valid, and then the code is valid. Thus return true.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> code = &quot;&lt;DIV&gt;&gt;&gt;  ![cdata[]] &lt;![CDATA[&lt;div&gt;]&gt;]]&gt;]]&gt;&gt;]&lt;/DIV&gt;&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong>\nWe first separate the code into : start_tag|tag_content|end_tag.\nstart_tag -&gt; <b>&quot;&lt;DIV&gt;&quot;</b>\nend_tag -&gt; <b>&quot;&lt;/DIV&gt;&quot;</b>\ntag_content could also be separated into : text1|cdata|text2.\ntext1 -&gt; <b>&quot;&gt;&gt;  ![cdata[]] &quot;</b>\ncdata -&gt; <b>&quot;&lt;![CDATA[&lt;div&gt;]&gt;]]&gt;&quot;</b>, where the CDATA_CONTENT is <b>&quot;&lt;div&gt;]&gt;&quot;</b>\ntext2 -&gt; <b>&quot;]]&gt;&gt;]&quot;</b>\nThe reason why start_tag is NOT <b>&quot;&lt;DIV&gt;&gt;&gt;&quot;</b> is because of the rule 6.\nThe reason why cdata is NOT <b>&quot;&lt;![CDATA[&lt;div&gt;]&gt;]]&gt;]]&gt;&quot;</b> is because of the rule 7.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> code = &quot;&lt;A&gt;  &lt;B&gt; &lt;/A&gt;   &lt;/B&gt;&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Unbalanced. If &quot;&lt;A&gt;&quot; is closed, then &quot;&lt;B&gt;&quot; must be unmatched, and vice versa.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= code.length &lt;= 500</code></li>\n\t<li><code>code</code> consists of English letters, digits, <code>&#39;&lt;&#39;</code>, <code>&#39;&gt;&#39;</code>, <code>&#39;/&#39;</code>, <code>&#39;!&#39;</code>, <code>&#39;[&#39;</code>, <code>&#39;]&#39;</code>, <code>&#39;.&#39;</code>, and <code>&#39; &#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Tag Validator' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= code.length <= 500",
+    "code consists of English letters, digits, '<', '>', '/', '!', '[', ']', '.', and ' '."
+  ],
+  "hints": [],
+  "method": {
+    "name": "isValid",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "code",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 591,
+      "title": "tag-validator",
+      "params": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isValid({code})",
+        "rust": "Solution::is_valid({code})",
+        "python3": "Solution().isValid({code})",
+        "python2": "Solution().isValid({code})",
+        "ruby": "is_valid({code})",
+        "java": "new Solution().isValid({code})",
+        "csharp": "new Solution().IsValid({code})",
+        "kotlin": "Solution().isValid({code})",
+        "go": "isValid({code})",
+        "dart": "Solution().isValid({code})",
+        "swift": "Solution().isValid({code})",
+        "typescript": "isValid({code})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isValid(code, {result})",
+        "checker": "import re\n\nclass Checker:\n    def isValid(self, code, result):\n        tag_pat = r\"<(/?)([A-Z]{1,9})>\"\n        open_cdata = \"<![CDATA[\"\n        close_cdata = \"]]>\"\n        stack = []\n        first_tag_seen = False\n        i = 0\n        n = len(code)\n\n        while i <= n:\n            s = code.find(\"<\", i)\n            if s == -1:\n                break\n            e = code.find(\">\", s + 1)\n            if e == -1:\n                return result is False\n\n            candidate = code[s:e + 1]\n            match = re.fullmatch(tag_pat, candidate)\n            if match:\n                closing, tag = match.groups()\n                if closing == \"\":\n                    if not first_tag_seen and s != 0:\n                        return result is False\n                    stack.append(tag)\n                    first_tag_seen = True\n                else:\n                    if not stack or stack[-1] != tag:\n                        return result is False\n                    if len(stack) == 1 and e != n - 1:\n                        return result is False\n                    stack.pop()\n                i = e + 1\n            elif code.startswith(open_cdata, s):\n                k = code.find(close_cdata, s + len(open_cdata))\n                if k == -1:\n                    return result is False\n                i = k + len(close_cdata)\n            else:\n                return result is False\n\n        expected = (not stack) and first_tag_seen\n        return result == expected\n"
+      }
+    },
+    "seed": 591,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "code": "<DIV>This is the first line <![CDATA[<div>]]></DIV>"
+        },
+        "out": true
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "code": "<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>"
+        },
+        "out": true
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "code": "<A>  <B> </A>   </B>"
+        },
+        "out": false
+      },
+      {
+        "name": "minimal-valid",
+        "in": {
+          "code": "<A></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "simple-text-content",
+        "in": {
+          "code": "<A>text</A>"
+        },
+        "out": true
+      },
+      {
+        "name": "nested-single-tag",
+        "in": {
+          "code": "<A><B></B></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "nested-siblings",
+        "in": {
+          "code": "<A><B></B><C></C></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "cdata-only-content",
+        "in": {
+          "code": "<A><![CDATA[xyz]]></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "nine-char-tag",
+        "in": {
+          "code": "<ABCDEFGHI>ok</ABCDEFGHI>"
+        },
+        "out": true
+      },
+      {
+        "name": "ten-char-tag",
+        "in": {
+          "code": "<ABCDEFGHIJ>bad</ABCDEFGHIJ>"
+        },
+        "out": false
+      },
+      {
+        "name": "mismatched-close",
+        "in": {
+          "code": "<A></B>"
+        },
+        "out": false
+      },
+      {
+        "name": "text-before-root",
+        "in": {
+          "code": "text<A></A>"
+        },
+        "out": false
+      },
+      {
+        "name": "text-after-root",
+        "in": {
+          "code": "<A></A>text"
+        },
+        "out": false
+      },
+      {
+        "name": "unmatched-angle-inside",
+        "in": {
+          "code": "<A><</A>"
+        },
+        "out": false
+      },
+      {
+        "name": "malformed-cdata-start",
+        "in": {
+          "code": "<A><!CDATA[abc]]></A>"
+        },
+        "out": false
+      },
+      {
+        "name": "cdata-without-root",
+        "in": {
+          "code": "<![CDATA[abc]]>"
+        },
+        "out": false
+      },
+      {
+        "name": "unterminated-cdata",
+        "in": {
+          "code": "<A><![CDATA[abc]</A>"
+        },
+        "out": false
+      },
+      {
+        "name": "missing-root-close",
+        "in": {
+          "code": "<A><B></B>"
+        },
+        "out": false
+      },
+      {
+        "name": "two-top-level-roots",
+        "in": {
+          "code": "<A></A><B></B>"
+        },
+        "out": false
+      },
+      {
+        "name": "mismatched-nested-close",
+        "in": {
+          "code": "<A><B></C></A>"
+        },
+        "out": false
+      },
+      {
+        "name": "extra-trailing-angle",
+        "in": {
+          "code": "<A><B></B></A>>"
+        },
+        "out": false
+      },
+      {
+        "name": "text-plus-valid-child",
+        "in": {
+          "code": "<A>123<Z></Z></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "long-uppercase-tag-invalid",
+        "in": {
+          "code": "<LONGTAGNAME></LONGTAGNAME>"
+        },
+        "out": false
+      },
+      {
+        "name": "cdata-hides-close-tag",
+        "in": {
+          "code": "<A><B><![CDATA[</B>]]></B></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "cdata-before-sibling",
+        "in": {
+          "code": "<A><![CDATA[<B></B>]]><C></C></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "empty-cdata-inside",
+        "in": {
+          "code": "<A><B><![CDATA[]]></B><C>ok</C></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "comment-like-construct",
+        "in": {
+          "code": "<A><B></B><!----></A>"
+        },
+        "out": false
+      },
+      {
+        "name": "cdata-as-sibling-content",
+        "in": {
+          "code": "<A><B></B><![CDATA[test]]></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "cdata-with-tag-like-text",
+        "in": {
+          "code": "<A><B><![CDATA[<tag>]]></B></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "missing-final-angle",
+        "in": {
+          "code": "<A><B></B></A"
+        },
+        "out": false
+      },
+      {
+        "name": "self-closing-not-supported",
+        "in": {
+          "code": "<A/>"
+        },
+        "out": false
+      },
+      {
+        "name": "empty-tag-name",
+        "in": {
+          "code": "<>"
+        },
+        "out": false
+      },
+      {
+        "name": "multi-char-uppercase-nesting",
+        "in": {
+          "code": "<A><AA></AA><B></B></A>"
+        },
+        "out": true
+      },
+      {
+        "name": "crossing-close-order",
+        "in": {
+          "code": "<A><AA></A></AA>"
+        },
+        "out": false
+      },
+      {
+        "name": "dangling-opening-angle",
+        "in": {
+          "code": "<A>text</A><"
+        },
+        "out": false
+      },
+      {
+        "name": "complex-valid-root",
+        "in": {
+          "code": "<ROOT><CHILD>data</CHILD><INNER><![CDATA[<bad></bad>]]></INNER></ROOT>"
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "code = \"<DIV>This is the first line <![CDATA[<div>]]></DIV>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A>  <B> </A>   </B>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A>text</A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B></B></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B></B><C></C></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><![CDATA[xyz]]></A>\"",
+      "output": "true"
+    }
+  ]
+}

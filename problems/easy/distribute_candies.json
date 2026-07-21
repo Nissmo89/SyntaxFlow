@@ -1,0 +1,681 @@
+{
+  "id": "distribute_candies",
+  "title": "Distribute Candies",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "description": "<p>Alice has <code>n</code> candies, where the <code>i<sup>th</sup></code> candy is of type <code>candyType[i]</code>. Alice noticed that she started to gain weight, so she visited a doctor.</p> <p>The doctor advised Alice to only eat <code>n / 2</code> of the candies she has (<code>n</code> is always even). Alice likes her candies very much, and she wants to eat the maximum number of different types of candies while still following the doctor's advice.</p> <p>Given the integer array <code>candyType</code> of length <code>n</code>, return <em>the <strong>maximum</strong> number of different types of candies she can eat if she only eats </em><code>n / 2</code><em> of them</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> candyType = [1,1,2,2,3,3]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Alice can only eat 6 / 2 = 3 candies. Since there are only 3 types, she can eat one of each type.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> candyType = [1,1,2,3]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Alice can only eat 4 / 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> candyType = [6,6,6,6]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>n == candyType.length</code></li> <li><code>2 &lt;= n &lt;= 10<sup>4</sup></code></li> <li><code>n</code> is even.</li> <li><code>-10<sup>5</sup> &lt;= candyType[i] &lt;= 10<sup>5</sup></code></li> </ul>",
+  "hints": [
+    "To maximize the number of kinds of candies, we should try to distribute candies such that Alice will gain all kinds.",
+    "What is the upper limit of the number of kinds of candies Alice will gain? Remember candies are to distributed equally.",
+    "Which data structure is the most suitable for finding the number of kinds of candies?",
+    "Will hashset solves the problem? Inserting all candies kind in the hashset and then checking its size with upper limit."
+  ],
+  "method": {
+    "name": "distributeCandies",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "candyType",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 575,
+      "title": "distribute-candies",
+      "params": {
+        "candyType": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().distributeCandies({candyType})",
+        "rust": "Solution::distribute_candies({candyType})",
+        "python3": "Solution().distributeCandies({candyType})",
+        "python2": "Solution().distributeCandies({candyType})",
+        "ruby": "distribute_candies({candyType})",
+        "java": "new Solution().distributeCandies({candyType})",
+        "csharp": "new Solution().DistributeCandies({candyType})",
+        "kotlin": "Solution().distributeCandies({candyType})",
+        "go": "distributeCandies({candyType})",
+        "dart": "Solution().distributeCandies({candyType})",
+        "swift": "Solution().distributeCandies({candyType})",
+        "typescript": "distributeCandies({candyType})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().distributeCandies(candyType, {result})",
+        "checker": "class Checker:\n    def distributeCandies(self, candyType, result):\n        if not isinstance(result, (int, float)):\n            return False\n        if not isinstance(candyType, list):\n            return False\n        n = len(candyType)\n        if n < 2 or n > 10000 or n % 2 != 0:\n            return False\n        for value in candyType:\n            if not isinstance(value, int) or value < -100000 or value > 100000:\n                return False\n        expected = min(n // 2, len(set(candyType)))\n        return result == expected\n"
+      }
+    },
+    "seed": 575,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "candyType": [
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "min-two-distinct",
+        "in": {
+          "candyType": [
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "min-two-same",
+        "in": {
+          "candyType": [
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all-distinct-four",
+        "in": {
+          "candyType": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two-types-evenly-split",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three-types-six-candies",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "negatives-zero-positive",
+        "in": {
+          "candyType": [
+            -1,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "eight-distinct",
+        "in": {
+          "candyType": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "one-heavy-type",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "enough-types-for-half",
+        "in": {
+          "candyType": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "boundary-values-short",
+        "in": {
+          "candyType": [
+            -100000,
+            100000
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "boundary-values-paired",
+        "in": {
+          "candyType": [
+            -100000,
+            -100000,
+            100000,
+            100000
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all-same-ten",
+        "in": {
+          "candyType": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all-distinct-ten",
+        "in": {
+          "candyType": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "repeated-four-types",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "five-types-but-half-four",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed-signs-many-types",
+        "in": {
+          "candyType": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "alternating-duplicates",
+        "in": {
+          "candyType": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "sparse-large-values",
+        "in": {
+          "candyType": [
+            -99999,
+            0,
+            99999,
+            100000,
+            -100000,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "half-limited-by-types",
+        "in": {
+          "candyType": [
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10,
+            11,
+            11,
+            12,
+            12
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "types-less-than-half",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "types-equal-half",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "exactly-half-distinct",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "more-types-than-half",
+        "in": {
+          "candyType": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "zero-heavy",
+        "in": {
+          "candyType": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "negative-heavy",
+        "in": {
+          "candyType": [
+            -5,
+            -5,
+            -5,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "two-types-many-copies",
+        "in": {
+          "candyType": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            8,
+            8,
+            8,
+            8
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three-types-twelve-candies",
+        "in": {
+          "candyType": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "wide-range-sixteen",
+        "in": {
+          "candyType": [
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "generated-max-random",
+        "in": {
+          "candyType": {
+            "gen": "array",
+            "len": 10000,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 575001
+      },
+      {
+        "name": "generated-dense-duplicates",
+        "in": {
+          "candyType": {
+            "gen": "array",
+            "len": 10000,
+            "of": {
+              "gen": "int",
+              "min": -20,
+              "max": 20
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 575002
+      },
+      {
+        "name": "generated-distinct-near-max",
+        "in": {
+          "candyType": {
+            "gen": "array",
+            "len": 9998,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            },
+            "distinct": true,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 575003
+      },
+      {
+        "name": "generated-nonnegative",
+        "in": {
+          "candyType": {
+            "gen": "array",
+            "len": 8000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 575004
+      },
+      {
+        "name": "generated-sorted-large",
+        "in": {
+          "candyType": {
+            "gen": "array",
+            "len": 10000,
+            "of": {
+              "gen": "int",
+              "min": -100000,
+              "max": 100000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        },
+        "seed": 575005
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "candyType = [1, 1, 2, 2, 3, 3]",
+      "output": "3"
+    },
+    {
+      "input": "candyType = [1, 1, 2, 3]",
+      "output": "2"
+    },
+    {
+      "input": "candyType = [6, 6, 6, 6]",
+      "output": "1"
+    },
+    {
+      "input": "candyType = [1, 2]",
+      "output": "1"
+    },
+    {
+      "input": "candyType = [1, 1]",
+      "output": "1"
+    },
+    {
+      "input": "candyType = [1, 2, 3, 4]",
+      "output": "2"
+    },
+    {
+      "input": "candyType = [1, 1, 2, 2]",
+      "output": "2"
+    },
+    {
+      "input": "candyType = [1, 1, 1, 2, 2, 3]",
+      "output": "3"
+    }
+  ]
+}

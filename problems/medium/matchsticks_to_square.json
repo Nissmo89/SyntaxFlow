@@ -1,0 +1,752 @@
+{
+  "id": "matchsticks_to_square",
+  "title": "Matchsticks to Square",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "description": "<p>You are given an integer array <code>matchsticks</code> where <code>matchsticks[i]</code> is the length of the <code>i<sup>th</sup></code> matchstick. You want to use <strong>all the matchsticks</strong> to make one square. You <strong>should not break</strong> any stick, but you can link them up, and each matchstick must be used <strong>exactly one time</strong>.</p>\n\n<p>Return <code>true</code> if you can make this square and <code>false</code> otherwise.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/09/matchsticks1-grid.jpg\" style=\"width: 253px; height: 253px;\" />\n<pre>\n<strong>Input:</strong> matchsticks = [1,1,2,2,2]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> You can form a square with length 2, one side of the square came two sticks with length 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> matchsticks = [3,3,3,3,4]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> You cannot find a way to form a square with all the matchsticks.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= matchsticks.length &lt;= 15</code></li>\n\t<li><code>1 &lt;= matchsticks[i] &lt;= 10<sup>8</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Matchsticks to Square' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= matchsticks.length <= 15",
+    "1 <= matchsticks[i] <= 108"
+  ],
+  "hints": [
+    "Treat the matchsticks as an array. Can we split the array into 4 equal parts?",
+    "Every matchstick can belong to either of the 4 sides. We don't know which one. Maybe try out all options!",
+    "For every matchstick, we have to try out each of the 4 options i.e. which side it can belong to. We can make use of recursion for this.",
+    "We don't really need to keep track of which matchsticks belong to a particular side during recursion. We just need to keep track of the <b>length</b> of each of the 4 sides.",
+    "When all matchsticks have been used we simply need to see the length of all 4 sides. If they're equal, we have a square on our hands!"
+  ],
+  "method": {
+    "name": "makesquare",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "matchsticks",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 473,
+      "title": "matchsticks-to-square",
+      "params": {
+        "matchsticks": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().makesquare({matchsticks})",
+        "rust": "Solution::makesquare({matchsticks})",
+        "python3": "Solution().makesquare({matchsticks})",
+        "python2": "Solution().makesquare({matchsticks})",
+        "ruby": "makesquare({matchsticks})",
+        "java": "new Solution().makesquare({matchsticks})",
+        "csharp": "new Solution().Makesquare({matchsticks})",
+        "kotlin": "Solution().makesquare({matchsticks})",
+        "go": "makesquare({matchsticks})",
+        "dart": "Solution().makesquare({matchsticks})",
+        "swift": "Solution().makesquare({matchsticks})",
+        "typescript": "makesquare({matchsticks})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().makesquare(matchsticks, {result})",
+        "checker": "class Checker:\n    def makesquare(self, matchsticks, result):\n        return isinstance(result, bool)\n"
+      }
+    },
+    "seed": 473,
+    "tests": [
+      {
+        "name": "ex1_true",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "ex2_false",
+        "in": {
+          "matchsticks": [
+            3,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_one_false",
+        "in": {
+          "matchsticks": [
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_large_false",
+        "in": {
+          "matchsticks": [
+            100000000
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two_equal_false",
+        "in": {
+          "matchsticks": [
+            5,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "three_equal_false",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "four_equal_true",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "four_unequal_false",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_twos_true",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_fives_true",
+        "in": {
+          "matchsticks": [
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_ones_five_false",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "one_too_large_false",
+        "in": {
+          "matchsticks": [
+            10,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "total_not_divisible_small",
+        "in": {
+          "matchsticks": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "total_not_divisible_medium",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "simple_true_mixed",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "simple_false_mixed",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "classic_true",
+        "in": {
+          "matchsticks": [
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "classic_false",
+        "in": {
+          "matchsticks": [
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "requires_pairing_true",
+        "in": {
+          "matchsticks": [
+            6,
+            6,
+            6,
+            6,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "requires_pairing_false",
+        "in": {
+          "matchsticks": [
+            6,
+            6,
+            6,
+            6,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "duplicate_heavy_true",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "duplicate_heavy_false",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "sorted_desc_true",
+        "in": {
+          "matchsticks": [
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "sorted_desc_false",
+        "in": {
+          "matchsticks": [
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "balanced_eights_true",
+        "in": {
+          "matchsticks": [
+            8,
+            8,
+            8,
+            8,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "balanced_eights_false",
+        "in": {
+          "matchsticks": [
+            8,
+            8,
+            8,
+            8,
+            4,
+            4,
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "many_small_true",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "many_small_false",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "large_values_true",
+        "in": {
+          "matchsticks": [
+            100000000,
+            100000000,
+            100000000,
+            100000000
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "large_values_false",
+        "in": {
+          "matchsticks": [
+            100000000,
+            100000000,
+            100000000,
+            99999999
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max_len_true_1",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_len_false_1",
+        "in": {
+          "matchsticks": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max_len_true_2",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            8,
+            8,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_len_false_2",
+        "in": {
+          "matchsticks": [
+            9,
+            9,
+            8,
+            8,
+            7,
+            7,
+            6,
+            6,
+            5,
+            5,
+            4,
+            4,
+            3,
+            3,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "tricky_true_1",
+        "in": {
+          "matchsticks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            8,
+            8,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "tricky_false_1",
+        "in": {
+          "matchsticks": [
+            10,
+            6,
+            6,
+            6,
+            4,
+            4,
+            4,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "tricky_true_2",
+        "in": {
+          "matchsticks": [
+            7,
+            7,
+            7,
+            7,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "tricky_false_2",
+        "in": {
+          "matchsticks": [
+            7,
+            7,
+            7,
+            7,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "complex_true_1",
+        "in": {
+          "matchsticks": [
+            5,
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "complex_false_1",
+        "in": {
+          "matchsticks": [
+            5,
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "matchsticks = [1, 1, 2, 2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "matchsticks = [3, 3, 3, 3, 4]",
+      "output": "false"
+    },
+    {
+      "input": "matchsticks = [1]",
+      "output": "false"
+    },
+    {
+      "input": "matchsticks = [100000000]",
+      "output": "false"
+    },
+    {
+      "input": "matchsticks = [5, 5]",
+      "output": "false"
+    },
+    {
+      "input": "matchsticks = [2, 2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "matchsticks = [1, 1, 1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "matchsticks = [1, 1, 1, 2]",
+      "output": "false"
+    }
+  ]
+}

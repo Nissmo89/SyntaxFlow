@@ -1,0 +1,898 @@
+{
+  "id": "largest_values_from_labels",
+  "title": "Largest Values From Labels",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "description": "<p>You are given <code>n</code> item&#39;s value and label as two integer arrays <code>values</code> and <code>labels</code>. You are also given two integers <code>numWanted</code> and <code>useLimit</code>.</p>\n\n<p>Your task is to find a subset of items with the <strong>maximum sum</strong> of their values such that:</p>\n\n<ul>\n\t<li>The number of items is <strong>at most</strong> <code>numWanted</code>.</li>\n\t<li>The number of items with the same label is <strong>at most</strong> <code>useLimit</code>.</li>\n</ul>\n\n<p>Return the maximum sum.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">values = [5,4,3,2,1], labels = [1,1,2,2,3], numWanted = 3, useLimit = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">9</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The subset chosen is the first, third, and fifth items with the sum of values 5 + 3 + 1.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">values = [5,4,3,2,1], labels = [1,3,3,3,2], numWanted = 3, useLimit = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">12</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The subset chosen is the first, second, and third items with the sum of values 5 + 4 + 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">values = [9,8,8,7,6], labels = [0,0,0,1,1], numWanted = 3, useLimit = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">16</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The subset chosen is the first and fourth items with the sum of values 9 + 7.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == values.length == labels.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= values[i], labels[i] &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= numWanted, useLimit &lt;= n</code></li>\n</ul>\n",
+  "task": "Solve the 'Largest Values From Labels' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == values.length == labels.length",
+    "1 <= n <= 2 * 104",
+    "0 <= values[i], labels[i] <= 2 * 104",
+    "1 <= numWanted, useLimit <= n"
+  ],
+  "hints": [
+    "Consider the items in order from largest to smallest value, and greedily take the items if they fall under the use_limit.  We can keep track of how many items of each label are used by using a hash table."
+  ],
+  "method": {
+    "name": "largestValsFromLabels",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "values",
+        "type": "array"
+      },
+      {
+        "name": "labels",
+        "type": "array"
+      },
+      {
+        "name": "numWanted",
+        "type": "int"
+      },
+      {
+        "name": "useLimit",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1090,
+      "title": "largest-values-from-labels",
+      "params": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "numWanted": {
+          "type": "int"
+        },
+        "useLimit": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "rust": "Solution::largest_vals_from_labels({values}, {labels}, {numWanted}, {useLimit})",
+        "python3": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "python2": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "ruby": "largest_vals_from_labels({values}, {labels}, {numWanted}, {useLimit})",
+        "java": "new Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "csharp": "new Solution().LargestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "kotlin": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "go": "largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "dart": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "swift": "Solution().largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})",
+        "typescript": "largestValsFromLabels({values}, {labels}, {numWanted}, {useLimit})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().largestValsFromLabels(values, labels, numWanted, useLimit, {result})",
+        "checker": "class Checker:\n    def largestValsFromLabels(self, values, labels, numWanted, useLimit, result):\n        pairs = sorted(zip(values, labels), reverse=True)\n        res = 0\n        freq = {}\n        for value, label in pairs:\n            if numWanted == 0:\n                break\n            if freq.get(label, 0) < useLimit:\n                res += value\n                freq[label] = freq.get(label, 0) + 1\n                numWanted -= 1\n        return res == result\n"
+      }
+    },
+    "seed": 1090,
+    "tests": [
+      {
+        "name": "t01",
+        "in": {
+          "values": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "t02",
+        "in": {
+          "values": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            3,
+            3,
+            3,
+            2
+          ],
+          "numWanted": 3,
+          "useLimit": 2
+        },
+        "out": 12
+      },
+      {
+        "name": "t03",
+        "in": {
+          "values": [
+            9,
+            8,
+            8,
+            7,
+            6
+          ],
+          "labels": [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 16
+      },
+      {
+        "name": "t04",
+        "in": {
+          "values": [
+            1
+          ],
+          "labels": [
+            1
+          ],
+          "numWanted": 1,
+          "useLimit": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "t05",
+        "in": {
+          "values": [
+            10
+          ],
+          "labels": [
+            0
+          ],
+          "numWanted": 1,
+          "useLimit": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "t06",
+        "in": {
+          "values": [
+            10,
+            9
+          ],
+          "labels": [
+            0,
+            0
+          ],
+          "numWanted": 1,
+          "useLimit": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "t07",
+        "in": {
+          "values": [
+            10,
+            9
+          ],
+          "labels": [
+            0,
+            0
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "t08",
+        "in": {
+          "values": [
+            10,
+            9
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "numWanted": 1,
+          "useLimit": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "t09",
+        "in": {
+          "values": [
+            10,
+            9
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 19
+      },
+      {
+        "name": "t10",
+        "in": {
+          "values": [
+            5,
+            5,
+            5
+          ],
+          "labels": [
+            1,
+            1,
+            1
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 5
+      },
+      {
+        "name": "t11",
+        "in": {
+          "values": [
+            5,
+            5,
+            5
+          ],
+          "labels": [
+            1,
+            2,
+            3
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "t12",
+        "in": {
+          "values": [
+            8,
+            7,
+            6,
+            5
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 14
+      },
+      {
+        "name": "t13",
+        "in": {
+          "values": [
+            8,
+            7,
+            6,
+            5
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "numWanted": 3,
+          "useLimit": 2
+        },
+        "out": 21
+      },
+      {
+        "name": "t14",
+        "in": {
+          "values": [
+            100,
+            1,
+            1,
+            1
+          ],
+          "labels": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 100
+      },
+      {
+        "name": "t15",
+        "in": {
+          "values": [
+            100,
+            1,
+            1,
+            1
+          ],
+          "labels": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 101
+      },
+      {
+        "name": "t16",
+        "in": {
+          "values": [
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "numWanted": 3,
+          "useLimit": 2
+        },
+        "out": 7
+      },
+      {
+        "name": "t17",
+        "in": {
+          "values": [
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 7
+      },
+      {
+        "name": "t18",
+        "in": {
+          "values": [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "numWanted": 4,
+          "useLimit": 1
+        },
+        "out": 22
+      },
+      {
+        "name": "t19",
+        "in": {
+          "values": [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3,
+            1
+          ],
+          "numWanted": 4,
+          "useLimit": 2
+        },
+        "out": 22
+      },
+      {
+        "name": "t20",
+        "in": {
+          "values": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "labels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "numWanted": 3,
+          "useLimit": 2
+        },
+        "out": 6
+      },
+      {
+        "name": "t21",
+        "in": {
+          "values": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "labels": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "t22",
+        "in": {
+          "values": [
+            20,
+            19,
+            18,
+            17,
+            16,
+            15
+          ],
+          "labels": [
+            9,
+            9,
+            8,
+            8,
+            7,
+            7
+          ],
+          "numWanted": 4,
+          "useLimit": 1
+        },
+        "out": 54
+      },
+      {
+        "name": "t23",
+        "in": {
+          "values": [
+            20,
+            19,
+            18,
+            17,
+            16,
+            15
+          ],
+          "labels": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4
+          ],
+          "numWanted": 4,
+          "useLimit": 2
+        },
+        "out": 74
+      },
+      {
+        "name": "t24",
+        "in": {
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          "numWanted": 5,
+          "useLimit": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "t25",
+        "in": {
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          "numWanted": 2,
+          "useLimit": 2
+        },
+        "out": 11
+      },
+      {
+        "name": "t26",
+        "in": {
+          "values": [
+            11,
+            10,
+            9,
+            8,
+            7
+          ],
+          "labels": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 21
+      },
+      {
+        "name": "t27",
+        "in": {
+          "values": [
+            11,
+            10,
+            9,
+            8,
+            7
+          ],
+          "labels": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "numWanted": 5,
+          "useLimit": 2
+        },
+        "out": 38
+      },
+      {
+        "name": "t28",
+        "in": {
+          "values": [
+            9,
+            9,
+            9,
+            8,
+            8,
+            8
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          "numWanted": 4,
+          "useLimit": 1
+        },
+        "out": 26
+      },
+      {
+        "name": "t29",
+        "in": {
+          "values": [
+            9,
+            9,
+            9,
+            8,
+            8,
+            8
+          ],
+          "labels": [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3
+          ],
+          "numWanted": 4,
+          "useLimit": 2
+        },
+        "out": 35
+      },
+      {
+        "name": "t30",
+        "in": {
+          "values": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "t31",
+        "in": {
+          "values": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "labels": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "numWanted": 4,
+          "useLimit": 2
+        },
+        "out": 16
+      },
+      {
+        "name": "t32",
+        "in": {
+          "values": [
+            50,
+            40,
+            30,
+            20,
+            10
+          ],
+          "labels": [
+            4,
+            4,
+            4,
+            5,
+            5
+          ],
+          "numWanted": 3,
+          "useLimit": 2
+        },
+        "out": 110
+      },
+      {
+        "name": "t33",
+        "in": {
+          "values": [
+            50,
+            40,
+            30,
+            20,
+            10
+          ],
+          "labels": [
+            4,
+            4,
+            5,
+            5,
+            6
+          ],
+          "numWanted": 3,
+          "useLimit": 1
+        },
+        "out": 90
+      },
+      {
+        "name": "t34",
+        "in": {
+          "values": [
+            3,
+            1,
+            2,
+            4,
+            5
+          ],
+          "labels": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "numWanted": 2,
+          "useLimit": 1
+        },
+        "out": 9
+      },
+      {
+        "name": "t35",
+        "in": {
+          "values": [
+            3,
+            1,
+            2,
+            4,
+            5
+          ],
+          "labels": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "numWanted": 4,
+          "useLimit": 2
+        },
+        "out": 13
+      },
+      {
+        "name": "t36",
+        "in": {
+          "values": [
+            100,
+            99,
+            98,
+            97,
+            96,
+            95,
+            94
+          ],
+          "labels": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "numWanted": 5,
+          "useLimit": 1
+        },
+        "out": 388
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "values = [5, 4, 3, 2, 1]\nlabels = [1, 1, 2, 2, 3]\nnumWanted = 3\nuseLimit = 1",
+      "output": "9"
+    },
+    {
+      "input": "values = [5, 4, 3, 2, 1]\nlabels = [1, 3, 3, 3, 2]\nnumWanted = 3\nuseLimit = 2",
+      "output": "12"
+    },
+    {
+      "input": "values = [9, 8, 8, 7, 6]\nlabels = [0, 0, 0, 1, 1]\nnumWanted = 3\nuseLimit = 1",
+      "output": "16"
+    },
+    {
+      "input": "values = [1]\nlabels = [1]\nnumWanted = 1\nuseLimit = 1",
+      "output": "1"
+    },
+    {
+      "input": "values = [10]\nlabels = [0]\nnumWanted = 1\nuseLimit = 1",
+      "output": "10"
+    },
+    {
+      "input": "values = [10, 9]\nlabels = [0, 0]\nnumWanted = 1\nuseLimit = 1",
+      "output": "10"
+    },
+    {
+      "input": "values = [10, 9]\nlabels = [0, 0]\nnumWanted = 2\nuseLimit = 1",
+      "output": "10"
+    },
+    {
+      "input": "values = [10, 9]\nlabels = [0, 1]\nnumWanted = 1\nuseLimit = 1",
+      "output": "10"
+    }
+  ]
+}

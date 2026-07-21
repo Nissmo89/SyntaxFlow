@@ -1,0 +1,673 @@
+{
+  "id": "binary_tree_maximum_path_sum",
+  "title": "Binary Tree Maximum Path Sum",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>A <strong>path</strong> in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence <strong>at most once</strong>. Note that the path does not need to pass through the root.</p>\n\n<p>The <strong>path sum</strong> of a path is the sum of the node&#39;s values in the path.</p>\n\n<p>Given the <code>root</code> of a binary tree, return <em>the maximum <strong>path sum</strong> of any <strong>non-empty</strong> path</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/13/exx1.jpg\" style=\"width: 322px; height: 182px;\" />\n<pre>\n<strong>Input:</strong> root = [1,2,3]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The optimal path is 2 -&gt; 1 -&gt; 3 with a path sum of 2 + 1 + 3 = 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg\" />\n<pre>\n<strong>Input:</strong> root = [-10,9,20,null,null,15,7]\n<strong>Output:</strong> 42\n<strong>Explanation:</strong> The optimal path is 15 -&gt; 20 -&gt; 7 with a path sum of 15 + 20 + 7 = 42.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[1, 3 * 10<sup>4</sup>]</code>.</li>\n\t<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Binary Tree Maximum Path Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 3 * 104].",
+    "-1000 <= Node.val <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxPathSum",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 124,
+      "title": "binary-tree-maximum-path-sum",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxPathSum({root})",
+        "rust": "Solution::max_path_sum({root})",
+        "python3": "Solution().maxPathSum({root})",
+        "python2": "Solution().maxPathSum({root})",
+        "ruby": "max_path_sum({root})",
+        "java": "new Solution().maxPathSum({root})",
+        "csharp": "new Solution().MaxPathSum({root})",
+        "kotlin": "Solution().maxPathSum({root})",
+        "go": "maxPathSum({root})",
+        "dart": "Solution().maxPathSum({root})",
+        "swift": "Solution().maxPathSum({root})",
+        "typescript": "maxPathSum({root})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxPathSum(root, {result})",
+        "checker": "class Checker:\n    def maxPathSum(self, root, result):\n        if not isinstance(result, int):\n            return False\n\n        best = -10**18\n\n        def dfs(node):\n            nonlocal best\n            if node is None:\n                return 0\n            left = max(dfs(node.left), 0)\n            right = max(dfs(node.right), 0)\n            best = max(best, node.val + left + right)\n            return node.val + max(left, right)\n\n        dfs(root)\n        return result == best\n"
+      }
+    },
+    "seed": 124,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            -10,
+            9,
+            20,
+            null,
+            null,
+            15,
+            7
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "single_positive_node",
+        "in": {
+          "root": [
+            5
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "single_negative_node",
+        "in": {
+          "root": [
+            -7
+          ]
+        },
+        "out": -7
+      },
+      {
+        "name": "two_nodes_left_chain_positive",
+        "in": {
+          "root": [
+            1,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "two_nodes_right_chain_positive",
+        "in": {
+          "root": [
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "two_nodes_with_negative_child",
+        "in": {
+          "root": [
+            2,
+            -1,
+            null
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all_negative_three_nodes",
+        "in": {
+          "root": [
+            -3,
+            -2,
+            -5
+          ]
+        },
+        "out": -2
+      },
+      {
+        "name": "all_zero_three_nodes",
+        "in": {
+          "root": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "root_with_one_positive_branch",
+        "in": {
+          "root": [
+            -2,
+            3,
+            -4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "path_through_root_better_than_any_branch",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "best_path_inside_left_subtree",
+        "in": {
+          "root": [
+            -10,
+            9,
+            20,
+            null,
+            null,
+            15,
+            7
+          ]
+        },
+        "out": 42
+      },
+      {
+        "name": "best_path_inside_right_subtree",
+        "in": {
+          "root": [
+            5,
+            -3,
+            9,
+            -10,
+            4,
+            8,
+            10
+          ]
+        },
+        "out": 27
+      },
+      {
+        "name": "best_leaf_to_leaf_path_not_through_root",
+        "in": {
+          "root": [
+            10,
+            2,
+            10,
+            20,
+            1,
+            -25,
+            -3,
+            4,
+            5,
+            null,
+            null,
+            3,
+            4
+          ]
+        },
+        "out": 47
+      },
+      {
+        "name": "negative_root_positive_children",
+        "in": {
+          "root": [
+            -1,
+            4,
+            5,
+            -2,
+            3,
+            6,
+            -7
+          ]
+        },
+        "out": 17
+      },
+      {
+        "name": "skew_left_all_positive",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            null
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "skew_right_all_positive",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3,
+            null,
+            4
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "skew_left_with_negative_prefix",
+        "in": {
+          "root": [
+            -2,
+            -1,
+            null,
+            4,
+            null,
+            5
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "skew_right_with_negative_prefix",
+        "in": {
+          "root": [
+            -2,
+            null,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "balanced_small_with_negative_root",
+        "in": {
+          "root": [
+            -10,
+            9,
+            20,
+            15,
+            7,
+            null,
+            null
+          ]
+        },
+        "out": 34
+      },
+      {
+        "name": "balanced_small_with_zero_root",
+        "in": {
+          "root": [
+            0,
+            -2,
+            3,
+            4,
+            5,
+            -6,
+            7
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "path_uses_both_children_of_internal_node",
+        "in": {
+          "root": [
+            2,
+            -1,
+            -2,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "path_skips_negative_children",
+        "in": {
+          "root": [
+            8,
+            -4,
+            10,
+            -5,
+            -6,
+            9,
+            11
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "deep_left_branch_with_positive_sibling",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            null,
+            5,
+            6,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            7
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "deep_right_branch_with_positive_sibling",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            null,
+            4,
+            5,
+            null,
+            null,
+            null,
+            6,
+            null,
+            null,
+            null,
+            7
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "mixed_tree_one",
+        "in": {
+          "root": [
+            1,
+            -2,
+            3,
+            4,
+            5,
+            -6,
+            2
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_tree_two",
+        "in": {
+          "root": [
+            9,
+            6,
+            -3,
+            4,
+            -2,
+            7,
+            1
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "larger_complete_tree_all_ones",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "larger_complete_tree_all_neg_ones",
+        "in": {
+          "root": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "complete_tree_positive_root_negative_internal",
+        "in": {
+          "root": [
+            5,
+            -2,
+            -3,
+            4,
+            6,
+            7,
+            8,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "complete_tree_mixed_large_branching",
+        "in": {
+          "root": [
+            10,
+            2,
+            10,
+            20,
+            1,
+            -25,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            null,
+            1
+          ]
+        },
+        "out": 51
+      },
+      {
+        "name": "root_value_clipped_by_negative_children",
+        "in": {
+          "root": [
+            3,
+            -5,
+            -6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "long_positive_spine_then_branch",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            5,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            6
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "negative_root_with_single_good_leaf",
+        "in": {
+          "root": [
+            -8,
+            -3,
+            4,
+            null,
+            null,
+            2,
+            6
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "mixed_branching_with_internal_best_path",
+        "in": {
+          "root": [
+            7,
+            3,
+            4,
+            -2,
+            5,
+            -1,
+            6
+          ]
+        },
+        "out": 25
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [1, 2, 3]",
+      "output": "6"
+    },
+    {
+      "input": "root = [-10, 9, 20, null, null, 15, 7]",
+      "output": "42"
+    },
+    {
+      "input": "root = [5]",
+      "output": "5"
+    },
+    {
+      "input": "root = [-7]",
+      "output": "-7"
+    },
+    {
+      "input": "root = [1, 2]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, null, 2]",
+      "output": "3"
+    },
+    {
+      "input": "root = [2, -1, null]",
+      "output": "2"
+    },
+    {
+      "input": "root = [-3, -2, -5]",
+      "output": "-2"
+    }
+  ]
+}

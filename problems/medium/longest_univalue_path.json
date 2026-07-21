@@ -1,0 +1,663 @@
+{
+  "id": "longest_univalue_path",
+  "title": "Longest Univalue Path",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>Given the <code>root</code> of a binary tree, return <em>the length of the longest path, where each node in the path has the same value</em>. This path may or may not pass through the root.</p>\n\n<p><strong>The length of the path</strong> between two nodes is represented by the number of edges between them.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/13/ex1.jpg\" style=\"width: 450px; height: 238px;\" />\n<pre>\n<strong>Input:</strong> root = [5,4,5,1,1,null,5]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The shown image shows that the longest path of the same value (i.e. 5).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/13/ex2.jpg\" style=\"width: 450px; height: 238px;\" />\n<pre>\n<strong>Input:</strong> root = [1,4,5,4,4,null,5]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The shown image shows that the longest path of the same value (i.e. 4).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[0, 10<sup>4</sup>]</code>.</li>\n\t<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>\n\t<li>The depth of the tree will not exceed <code>1000</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Longest Univalue Path' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 104].",
+    "-1000 <= Node.val <= 1000",
+    "The depth of the tree will not exceed 1000."
+  ],
+  "hints": [],
+  "method": {
+    "name": "longestUnivaluePath",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 687,
+      "title": "longest-univalue-path",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().longestUnivaluePath({root})",
+        "rust": "Solution::longest_univalue_path({root})",
+        "python3": "Solution().longestUnivaluePath({root})",
+        "python2": "Solution().longestUnivaluePath({root})",
+        "ruby": "longest_univalue_path({root})",
+        "java": "new Solution().longestUnivaluePath({root})",
+        "csharp": "new Solution().LongestUnivaluePath({root})",
+        "kotlin": "Solution().longestUnivaluePath({root})",
+        "go": "longestUnivaluePath({root})",
+        "dart": "Solution().longestUnivaluePath({root})",
+        "swift": "Solution().longestUnivaluePath({root})",
+        "typescript": "longestUnivaluePath({root})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().longestUnivaluePath(root, {result})",
+        "checker": "class Checker:\n    class _Node:\n        __slots__ = (\"val\", \"left\", \"right\")\n\n        def __init__(self, val=0, left=None, right=None):\n            self.val = val\n            self.left = left\n            self.right = right\n\n    def _build(self, root):\n        if root is None:\n            return None\n        if hasattr(root, \"val\"):\n            return root\n        if not isinstance(root, list) or not root:\n            return None\n        it = iter(root)\n        first = next(it, None)\n        if first is None:\n            return None\n        head = self._Node(first)\n        queue = [head]\n        for node in queue:\n            left = next(it, None)\n            if left is not None:\n                node.left = self._Node(left)\n                queue.append(node.left)\n            right = next(it, None)\n            if right is not None:\n                node.right = self._Node(right)\n                queue.append(node.right)\n        return head\n\n    def longestUnivaluePath(self, root, result):\n        root = self._build(root)\n\n        ans = 0\n\n        def dfs(node):\n            nonlocal ans\n            if node is None:\n                return 0\n            left = dfs(node.left)\n            right = dfs(node.right)\n            lp = 0\n            rp = 0\n            if node.left is not None and node.left.val == node.val:\n                lp = left + 1\n            if node.right is not None and node.right.val == node.val:\n                rp = right + 1\n            if lp + rp > ans:\n                ans = lp + rp\n            return lp if lp > rp else rp\n\n        dfs(root)\n        return isinstance(result, int) and result == ans\n"
+      }
+    },
+    "seed": 687,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            5,
+            4,
+            5,
+            1,
+            1,
+            null,
+            5
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            1,
+            4,
+            5,
+            4,
+            4,
+            null,
+            5
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "empty_tree",
+        "in": {
+          "root": null
+        },
+        "out": 0
+      },
+      {
+        "name": "single_node",
+        "in": {
+          "root": [
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_same_left",
+        "in": {
+          "root": [
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_same_right",
+        "in": {
+          "root": [
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_different",
+        "in": {
+          "root": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "chain_three_same",
+        "in": {
+          "root": [
+            1,
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "chain_three_mixed",
+        "in": {
+          "root": [
+            1,
+            1,
+            null,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "balanced_same_three_levels",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "root_breaks_path",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "left_subtree_longer",
+        "in": {
+          "root": [
+            5,
+            5,
+            1,
+            5,
+            5,
+            null,
+            1,
+            5,
+            null,
+            null,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "right_subtree_longer",
+        "in": {
+          "root": [
+            2,
+            1,
+            2,
+            null,
+            null,
+            2,
+            2,
+            null,
+            null,
+            2,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "all_distinct_complete",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "deeper_left_chain",
+        "in": {
+          "root": [
+            1,
+            1,
+            null,
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "deeper_right_chain",
+        "in": {
+          "root": [
+            1,
+            null,
+            1,
+            null,
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_with_root_not_included",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            null,
+            null,
+            2,
+            2,
+            null,
+            null,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "long_right_spine_same",
+        "in": {
+          "root": [
+            4,
+            null,
+            4,
+            null,
+            4,
+            null,
+            4,
+            null,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "long_left_spine_same",
+        "in": {
+          "root": [
+            4,
+            4,
+            null,
+            4,
+            null,
+            4,
+            null,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "root_and_children_same",
+        "in": {
+          "root": [
+            9,
+            9,
+            9
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "one_side_match",
+        "in": {
+          "root": [
+            8,
+            8,
+            7,
+            8,
+            8,
+            7,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "no_match_with_duplicates_elsewhere",
+        "in": {
+          "root": [
+            1,
+            2,
+            2,
+            2,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "alternating_levels",
+        "in": {
+          "root": [
+            1,
+            1,
+            2,
+            1,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "full_same_height_four",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "asymmetric_bridge",
+        "in": {
+          "root": [
+            3,
+            3,
+            3,
+            3,
+            null,
+            null,
+            3,
+            3,
+            null,
+            null,
+            null,
+            null,
+            null,
+            3,
+            3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "center_breaks_long_path",
+        "in": {
+          "root": [
+            6,
+            6,
+            6,
+            6,
+            7,
+            6,
+            6,
+            6,
+            null,
+            null,
+            7,
+            6,
+            6,
+            null,
+            null
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "isolated_equal_pairs",
+        "in": {
+          "root": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "root_single_branch_same",
+        "in": {
+          "root": [
+            2,
+            2,
+            null,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "root_single_branch_diff",
+        "in": {
+          "root": [
+            2,
+            2,
+            null,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_zeros",
+        "in": {
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "negative_values_same",
+        "in": {
+          "root": [
+            -1,
+            -1,
+            -1,
+            -1,
+            null,
+            null,
+            -1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "negative_values_mixed",
+        "in": {
+          "root": [
+            -2,
+            -2,
+            3,
+            -2,
+            -2,
+            3,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "sparse_same_path",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            null,
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "path_in_right_subtree",
+        "in": {
+          "root": [
+            10,
+            11,
+            10,
+            11,
+            11,
+            10,
+            10,
+            null,
+            null,
+            null,
+            null,
+            10,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "path_crosses_subtree_root",
+        "in": {
+          "root": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            5,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "wide_same_bottom",
+        "in": {
+          "root": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            null,
+            null,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 6
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [5, 4, 5, 1, 1, null, 5]",
+      "output": "2"
+    },
+    {
+      "input": "root = [1, 4, 5, 4, 4, null, 5]",
+      "output": "2"
+    },
+    {
+      "input": "root = null",
+      "output": "0"
+    },
+    {
+      "input": "root = [7]",
+      "output": "0"
+    },
+    {
+      "input": "root = [1, 1]",
+      "output": "1"
+    },
+    {
+      "input": "root = [1, null, 1]",
+      "output": "1"
+    },
+    {
+      "input": "root = [1, 2, 3]",
+      "output": "0"
+    },
+    {
+      "input": "root = [1, 1, null, 1]",
+      "output": "2"
+    }
+  ]
+}

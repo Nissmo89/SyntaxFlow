@@ -1,0 +1,350 @@
+{
+  "id": "integer_replacement",
+  "title": "Integer Replacement",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming",
+    "Greedy",
+    "Bit Manipulation",
+    "Memoization"
+  ],
+  "description": "<p>Given a positive integer <code>n</code>,&nbsp;you can apply one of the following&nbsp;operations:</p>\n\n<ol>\n\t<li>If <code>n</code> is even, replace <code>n</code> with <code>n / 2</code>.</li>\n\t<li>If <code>n</code> is odd, replace <code>n</code> with either <code>n + 1</code> or <code>n - 1</code>.</li>\n</ol>\n\n<p>Return <em>the minimum number of operations needed for</em> <code>n</code> <em>to become</em> <code>1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 8\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> 8 -&gt; 4 -&gt; 2 -&gt; 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 7\n<strong>Output:</strong> 4\n<strong>Explanation: </strong>7 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1\nor 7 -&gt; 6 -&gt; 3 -&gt; 2 -&gt; 1\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Integer Replacement' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "integerReplacement",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 397,
+      "title": "integer-replacement",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().integerReplacement({n})",
+        "rust": "Solution::integer_replacement({n})",
+        "python3": "Solution().integerReplacement({n})",
+        "python2": "Solution().integerReplacement({n})",
+        "ruby": "integer_replacement({n})",
+        "java": "new Solution().integerReplacement({n})",
+        "csharp": "new Solution().IntegerReplacement({n})",
+        "kotlin": "Solution().integerReplacement({n})",
+        "go": "integerReplacement({n})",
+        "dart": "Solution().integerReplacement({n})",
+        "swift": "Solution().integerReplacement({n})",
+        "typescript": "integerReplacement({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().integerReplacement(n, {result})",
+        "checker": "import json\n\nclass Checker:\n    def integerReplacement(self, n, result):\n        try:\n            result = json.loads(result) if isinstance(result, str) else result\n        except Exception:\n            return False\n        if not isinstance(result, int):\n            return False\n        def helper(x):\n            if x == 1:\n                return 0\n            if x % 2 == 0:\n                return 1 + helper(x // 2)\n            return 1 + min(helper(x - 1), helper(x + 1))\n        return result == helper(n)\n"
+      }
+    },
+    "seed": 42,
+    "tests": [
+      {
+        "name": "example 1",
+        "in": {
+          "n": 8
+        },
+        "out": 3
+      },
+      {
+        "name": "example 2",
+        "in": {
+          "n": 7
+        },
+        "out": 4
+      },
+      {
+        "name": "example 3",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "min n",
+        "in": {
+          "n": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "n equals 2",
+        "in": {
+          "n": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "n equals 3",
+        "in": {
+          "n": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "n equals 5",
+        "in": {
+          "n": 5
+        },
+        "out": 3
+      },
+      {
+        "name": "n equals 6",
+        "in": {
+          "n": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "n equals 9",
+        "in": {
+          "n": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "n equals 10",
+        "in": {
+          "n": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "n equals 11",
+        "in": {
+          "n": 11
+        },
+        "out": 5
+      },
+      {
+        "name": "n equals 12",
+        "in": {
+          "n": 12
+        },
+        "out": 4
+      },
+      {
+        "name": "n equals 15",
+        "in": {
+          "n": 15
+        },
+        "out": 5
+      },
+      {
+        "name": "power of two 16",
+        "in": {
+          "n": 16
+        },
+        "out": 4
+      },
+      {
+        "name": "n equals 31",
+        "in": {
+          "n": 31
+        },
+        "out": 6
+      },
+      {
+        "name": "power of two 32",
+        "in": {
+          "n": 32
+        },
+        "out": 5
+      },
+      {
+        "name": "n equals 33",
+        "in": {
+          "n": 33
+        },
+        "out": 6
+      },
+      {
+        "name": "n equals 63",
+        "in": {
+          "n": 63
+        },
+        "out": 7
+      },
+      {
+        "name": "power of two 64",
+        "in": {
+          "n": 64
+        },
+        "out": 6
+      },
+      {
+        "name": "n equals 65",
+        "in": {
+          "n": 65
+        },
+        "out": 7
+      },
+      {
+        "name": "n equals 127",
+        "in": {
+          "n": 127
+        },
+        "out": 8
+      },
+      {
+        "name": "power of two 128",
+        "in": {
+          "n": 128
+        },
+        "out": 7
+      },
+      {
+        "name": "n equals 129",
+        "in": {
+          "n": 129
+        },
+        "out": 8
+      },
+      {
+        "name": "n equals 255",
+        "in": {
+          "n": 255
+        },
+        "out": 9
+      },
+      {
+        "name": "power of two 256",
+        "in": {
+          "n": 256
+        },
+        "out": 8
+      },
+      {
+        "name": "n equals 257",
+        "in": {
+          "n": 257
+        },
+        "out": 9
+      },
+      {
+        "name": "n equals 1023",
+        "in": {
+          "n": 1023
+        },
+        "out": 11
+      },
+      {
+        "name": "power of two 1024",
+        "in": {
+          "n": 1024
+        },
+        "out": 10
+      },
+      {
+        "name": "n equals 1025",
+        "in": {
+          "n": 1025
+        },
+        "out": 11
+      },
+      {
+        "name": "large odd max",
+        "in": {
+          "n": 2147483647
+        },
+        "out": 32
+      },
+      {
+        "name": "large even near max",
+        "in": {
+          "n": 2147483646
+        },
+        "out": 32
+      },
+      {
+        "name": "large odd near max",
+        "in": {
+          "n": 2147483645
+        },
+        "out": 33
+      },
+      {
+        "name": "one billion",
+        "in": {
+          "n": 1000000000
+        },
+        "out": 38
+      },
+      {
+        "name": "near one billion odd",
+        "in": {
+          "n": 999999999
+        },
+        "out": 39
+      },
+      {
+        "name": "large power minus one",
+        "in": {
+          "n": 536870911
+        },
+        "out": 30
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 8",
+      "output": "3"
+    },
+    {
+      "input": "n = 7",
+      "output": "4"
+    },
+    {
+      "input": "n = 4",
+      "output": "2"
+    },
+    {
+      "input": "n = 1",
+      "output": "0"
+    },
+    {
+      "input": "n = 2",
+      "output": "1"
+    },
+    {
+      "input": "n = 3",
+      "output": "2"
+    },
+    {
+      "input": "n = 5",
+      "output": "3"
+    },
+    {
+      "input": "n = 6",
+      "output": "3"
+    }
+  ]
+}

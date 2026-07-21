@@ -1,0 +1,1222 @@
+{
+  "id": "video_stitching",
+  "title": "Video Stitching",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "description": "<p>You are given a series of video clips from a sporting event that lasted <code>time</code> seconds. These video clips can be overlapping with each other and have varying lengths.</p>\n\n<p>Each video clip is described by an array <code>clips</code> where <code>clips[i] = [start<sub>i</sub>, end<sub>i</sub>]</code> indicates that the ith clip started at <code>start<sub>i</sub></code> and ended at <code>end<sub>i</sub></code>.</p>\n\n<p>We can cut these clips into segments freely.</p>\n\n<ul>\n\t<li>For example, a clip <code>[0, 7]</code> can be cut into segments <code>[0, 1] + [1, 3] + [3, 7]</code>.</li>\n</ul>\n\n<p>Return <em>the minimum number of clips needed so that we can cut the clips into segments that cover the entire sporting event</em> <code>[0, time]</code>. If the task is impossible, return <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], time = 10\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We take the clips [0,2], [8,10], [1,9]; a total of 3 clips.\nThen, we can reconstruct the sporting event as follows:\nWe cut [1,9] into segments [1,2] + [2,8] + [8,9].\nNow we have segments [0,2] + [2,8] + [8,10] which cover the sporting event [0, 10].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> clips = [[0,1],[1,2]], time = 5\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> We cannot cover [0,5] with only [0,1] and [1,2].\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> clips = [[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], time = 9\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We can take clips [0,4], [4,7], and [6,9].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= clips.length &lt;= 100</code></li>\n\t<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 100</code></li>\n\t<li><code>1 &lt;= time &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Video Stitching' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= clips.length <= 100",
+    "0 <= starti <= endi <= 100",
+    "1 <= time <= 100"
+  ],
+  "hints": [
+    "What if we sort the intervals?  Considering the sorted intervals, how can we solve the problem with dynamic programming?",
+    "Let's consider a DP(pos, limit) where pos represents the position of the current interval we are gonna take the decision and limit is the current covered area from [0 - limit]. This DP returns the minimum number of taken intervals or infinite if it's not possible to cover the [0 - T] section."
+  ],
+  "method": {
+    "name": "videoStitching",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "clips",
+        "type": "array"
+      },
+      {
+        "name": "time",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1024,
+      "title": "video-stitching",
+      "params": {
+        "clips": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "time": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().videoStitching({clips}, {time})",
+        "rust": "Solution::video_stitching({clips}, {time})",
+        "python3": "Solution().videoStitching({clips}, {time})",
+        "python2": "Solution().videoStitching({clips}, {time})",
+        "ruby": "video_stitching({clips}, {time})",
+        "java": "new Solution().videoStitching({clips}, {time})",
+        "csharp": "new Solution().VideoStitching({clips}, {time})",
+        "kotlin": "Solution().videoStitching({clips}, {time})",
+        "go": "videoStitching({clips}, {time})",
+        "dart": "Solution().videoStitching({clips}, {time})",
+        "swift": "Solution().videoStitching({clips}, {time})",
+        "typescript": "videoStitching({clips}, {time})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 1024,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                1,
+                9
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "time": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                6,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 3
+      },
+      {
+        "name": "single_clip_exact",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "time": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "single_clip_short",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "time": 2
+        },
+        "out": -1
+      },
+      {
+        "name": "gap_impossible_1",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "time": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "gap_impossible_2",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "time": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "direct_cover_1",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                5
+              ]
+            ]
+          },
+          "time": 5
+        },
+        "out": 1
+      },
+      {
+        "name": "direct_cover_2",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                10
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 1
+      },
+      {
+        "name": "chain_1",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                4,
+                6
+              ]
+            ]
+          },
+          "time": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "chain_2",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                5
+              ]
+            ]
+          },
+          "time": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "chain_3",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                8
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_1",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                4,
+                8
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_2",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_3",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                4,
+                9
+              ],
+              [
+                8,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_4",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_5",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_6",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                7
+              ]
+            ]
+          },
+          "time": 7
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_7",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 5
+      },
+      {
+        "name": "overlap_8",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                4,
+                6
+              ]
+            ]
+          },
+          "time": 6
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_9",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                4,
+                8
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_10",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                5
+              ]
+            ]
+          },
+          "time": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_11",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                1,
+                9
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_12",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_13",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_14",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                4,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_15",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                6,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_16",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                7
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_17",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                4,
+                9
+              ],
+              [
+                8,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_18",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_19",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                5
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_20",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                5,
+                8
+              ],
+              [
+                8,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_21",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                8
+              ],
+              [
+                8,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_22",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "overlap_23",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                6
+              ],
+              [
+                5,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_24",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                7
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_25",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                8
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_26",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                9
+              ],
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "overlap_27",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ]
+          },
+          "time": 9
+        },
+        "out": 3
+      },
+      {
+        "name": "overlap_28",
+        "in": {
+          "clips": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          },
+          "time": 10
+        },
+        "out": 3
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 2], [4, 6], [8, 10], [1, 9], [1, 5], [5, 9]]}\ntime = 10",
+      "output": "3"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 1], [1, 2]]}\ntime = 5",
+      "output": "-1"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 1], [6, 8], [0, 2], [5, 6], [0, 4], [0, 3], [6, 7], [1, 3], [4, 7], [1, 4], [2, 5], [2, 6], [3, 4], [4, 5], [5, 7], [6, 9]]}\ntime = 9",
+      "output": "3"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 1]]}\ntime = 1",
+      "output": "1"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 1]]}\ntime = 2",
+      "output": "-1"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 2], [3, 4]]}\ntime = 4",
+      "output": "-1"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[1, 2], [2, 3]]}\ntime = 3",
+      "output": "-1"
+    },
+    {
+      "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 5]]}\ntime = 5",
+      "output": "1"
+    }
+  ]
+}

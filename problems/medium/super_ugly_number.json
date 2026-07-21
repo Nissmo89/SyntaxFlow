@@ -1,0 +1,1152 @@
+{
+  "id": "super_ugly_number",
+  "title": "Super Ugly Number",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "description": "<p>A <strong>super ugly number</strong> is a positive integer whose prime factors are in the array <code>primes</code>.</p>\n\n<p>Given an integer <code>n</code> and an array of integers <code>primes</code>, return <em>the</em> <code>n<sup>th</sup></code> <em><strong>super ugly number</strong></em>.</p>\n\n<p>The <code>n<sup>th</sup></code> <strong>super ugly number</strong> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> signed integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 12, primes = [2,7,13,19]\n<strong>Output:</strong> 32\n<strong>Explanation:</strong> [1,2,4,7,8,13,14,16,19,26,28,32] is the sequence of the first 12 super ugly numbers given primes = [2,7,13,19].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1, primes = [2,3,5]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> 1 has no prime factors, therefore all of its prime factors are in the array primes = [2,3,5].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= primes.length &lt;= 100</code></li>\n\t<li><code>2 &lt;= primes[i] &lt;= 1000</code></li>\n\t<li><code>primes[i]</code> is <strong>guaranteed</strong> to be a prime number.</li>\n\t<li>All the values of <code>primes</code> are <strong>unique</strong> and sorted in <strong>ascending order</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Super Ugly Number' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 105",
+    "1 <= primes.length <= 100",
+    "2 <= primes[i] <= 1000",
+    "primes[i] is guaranteed to be a prime number.",
+    "All the values of primes are unique and sorted in ascending order."
+  ],
+  "hints": [],
+  "method": {
+    "name": "nthSuperUglyNumber",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "primes",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 313,
+      "title": "super-ugly-number",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "primes": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "rust": "Solution::nth_super_ugly_number({n}, {primes})",
+        "python3": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "python2": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "ruby": "nth_super_ugly_number({n}, {primes})",
+        "java": "new Solution().nthSuperUglyNumber({n}, {primes})",
+        "csharp": "new Solution().NthSuperUglyNumber({n}, {primes})",
+        "kotlin": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "go": "nthSuperUglyNumber({n}, {primes})",
+        "dart": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "swift": "Solution().nthSuperUglyNumber({n}, {primes})",
+        "typescript": "nthSuperUglyNumber({n}, {primes})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().nthSuperUglyNumber(n, primes, {result})",
+        "checker": "class Checker:\n    def nthSuperUglyNumber(self, n, primes, result):\n        if not isinstance(n, int) or not isinstance(primes, list) or not isinstance(result, int):\n            return False\n        if n < 1 or len(primes) < 1:\n            return False\n        if primes != sorted(primes) or len(set(primes)) != len(primes):\n            return False\n        if any((not isinstance(p, int) or p < 2) for p in primes):\n            return False\n        ugly = [1] * n\n        idx = [0] * len(primes)\n        val = primes[:]\n        for i in range(1, n):\n            m = min(val)\n            ugly[i] = m\n            for j, p in enumerate(primes):\n                if val[j] == m:\n                    idx[j] += 1\n                    val[j] = ugly[idx[j]] * p\n        return ugly[-1] == result\n"
+      }
+    },
+    "seed": 313,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "n": 12,
+          "primes": [
+            2,
+            7,
+            13,
+            19
+          ]
+        },
+        "out": 32
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "n": 1,
+          "primes": [
+            2,
+            3,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "n1_single_prime",
+        "in": {
+          "n": 1,
+          "primes": [
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "n2_single_prime",
+        "in": {
+          "n": 2,
+          "primes": [
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "n10_single_prime",
+        "in": {
+          "n": 10,
+          "primes": [
+            2
+          ]
+        },
+        "out": 512
+      },
+      {
+        "name": "small_3_5_7_n5",
+        "in": {
+          "n": 5,
+          "primes": [
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "small_3_5_7_n7",
+        "in": {
+          "n": 7,
+          "primes": [
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "small_3_5_7_n10",
+        "in": {
+          "n": 10,
+          "primes": [
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 35
+      },
+      {
+        "name": "dense_2357_n8",
+        "in": {
+          "n": 8,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "dense_2357_n9",
+        "in": {
+          "n": 9,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "dense_2357_n10",
+        "in": {
+          "n": 10,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "dense_2357_n11",
+        "in": {
+          "n": 11,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "dense_2357_n12",
+        "in": {
+          "n": 12,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "dense_2357_n20",
+        "in": {
+          "n": 20,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 27
+      },
+      {
+        "name": "dense_2357_n25",
+        "in": {
+          "n": 25,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 36
+      },
+      {
+        "name": "dense_2357_n30",
+        "in": {
+          "n": 30,
+          "primes": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": 49
+      },
+      {
+        "name": "skew_2113_n15",
+        "in": {
+          "n": 15,
+          "primes": [
+            2,
+            11,
+            13
+          ]
+        },
+        "out": 104
+      },
+      {
+        "name": "skew_2113_n20",
+        "in": {
+          "n": 20,
+          "primes": [
+            2,
+            11,
+            13
+          ]
+        },
+        "out": 176
+      },
+      {
+        "name": "skew_211317_n18",
+        "in": {
+          "n": 18,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 104
+      },
+      {
+        "name": "skew_211317_n25",
+        "in": {
+          "n": 25,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 187
+      },
+      {
+        "name": "skew_211317_n40",
+        "in": {
+          "n": 40,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 544
+      },
+      {
+        "name": "skew_211317_n50",
+        "in": {
+          "n": 50,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 1088
+      },
+      {
+        "name": "skew_211317_n60",
+        "in": {
+          "n": 60,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 1859
+      },
+      {
+        "name": "skew_211317_n75",
+        "in": {
+          "n": 75,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 3179
+      },
+      {
+        "name": "skew_211317_n100",
+        "in": {
+          "n": 100,
+          "primes": [
+            2,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": 7744
+      },
+      {
+        "name": "far_713293137_n100",
+        "in": {
+          "n": 100,
+          "primes": [
+            7,
+            13,
+            29,
+            31,
+            37
+          ]
+        },
+        "out": 170723
+      },
+      {
+        "name": "far_713293137_n150",
+        "in": {
+          "n": 150,
+          "primes": [
+            7,
+            13,
+            29,
+            31,
+            37
+          ]
+        },
+        "out": 808201
+      },
+      {
+        "name": "far_713293137_n200",
+        "in": {
+          "n": 200,
+          "primes": [
+            7,
+            13,
+            29,
+            31,
+            37
+          ]
+        },
+        "out": 2481997
+      },
+      {
+        "name": "far_713293137_n250",
+        "in": {
+          "n": 250,
+          "primes": [
+            7,
+            13,
+            29,
+            31,
+            37
+          ]
+        },
+        "out": 6964321
+      },
+      {
+        "name": "far_713293137_n300",
+        "in": {
+          "n": 300,
+          "primes": [
+            7,
+            13,
+            29,
+            31,
+            37
+          ]
+        },
+        "out": 15535793
+      },
+      {
+        "name": "p100a_n500",
+        "in": {
+          "n": 500,
+          "primes": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+            101,
+            103,
+            107,
+            109,
+            113,
+            127,
+            131,
+            137,
+            139,
+            149,
+            151,
+            157,
+            163,
+            167,
+            173,
+            179,
+            181,
+            191,
+            193,
+            197,
+            199,
+            211,
+            223,
+            227,
+            229,
+            233,
+            239,
+            241,
+            251,
+            257,
+            263,
+            269,
+            271,
+            277,
+            281,
+            283,
+            293,
+            307,
+            311,
+            313,
+            317,
+            331,
+            337,
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541
+          ]
+        },
+        "out": 500
+      },
+      {
+        "name": "p100a_n1000",
+        "in": {
+          "n": 1000,
+          "primes": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+            101,
+            103,
+            107,
+            109,
+            113,
+            127,
+            131,
+            137,
+            139,
+            149,
+            151,
+            157,
+            163,
+            167,
+            173,
+            179,
+            181,
+            191,
+            193,
+            197,
+            199,
+            211,
+            223,
+            227,
+            229,
+            233,
+            239,
+            241,
+            251,
+            257,
+            263,
+            269,
+            271,
+            277,
+            281,
+            283,
+            293,
+            307,
+            311,
+            313,
+            317,
+            331,
+            337,
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541
+          ]
+        },
+        "out": 1080
+      },
+      {
+        "name": "p100a_n5000",
+        "in": {
+          "n": 5000,
+          "primes": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+            101,
+            103,
+            107,
+            109,
+            113,
+            127,
+            131,
+            137,
+            139,
+            149,
+            151,
+            157,
+            163,
+            167,
+            173,
+            179,
+            181,
+            191,
+            193,
+            197,
+            199,
+            211,
+            223,
+            227,
+            229,
+            233,
+            239,
+            241,
+            251,
+            257,
+            263,
+            269,
+            271,
+            277,
+            281,
+            283,
+            293,
+            307,
+            311,
+            313,
+            317,
+            331,
+            337,
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541
+          ]
+        },
+        "out": 7032
+      },
+      {
+        "name": "p100a_n10000",
+        "in": {
+          "n": 10000,
+          "primes": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+            101,
+            103,
+            107,
+            109,
+            113,
+            127,
+            131,
+            137,
+            139,
+            149,
+            151,
+            157,
+            163,
+            167,
+            173,
+            179,
+            181,
+            191,
+            193,
+            197,
+            199,
+            211,
+            223,
+            227,
+            229,
+            233,
+            239,
+            241,
+            251,
+            257,
+            263,
+            269,
+            271,
+            277,
+            281,
+            283,
+            293,
+            307,
+            311,
+            313,
+            317,
+            331,
+            337,
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541
+          ]
+        },
+        "out": 16125
+      },
+      {
+        "name": "p100a_n100000",
+        "in": {
+          "n": 100000,
+          "primes": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+            101,
+            103,
+            107,
+            109,
+            113,
+            127,
+            131,
+            137,
+            139,
+            149,
+            151,
+            157,
+            163,
+            167,
+            173,
+            179,
+            181,
+            191,
+            193,
+            197,
+            199,
+            211,
+            223,
+            227,
+            229,
+            233,
+            239,
+            241,
+            251,
+            257,
+            263,
+            269,
+            271,
+            277,
+            281,
+            283,
+            293,
+            307,
+            311,
+            313,
+            317,
+            331,
+            337,
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541
+          ]
+        },
+        "out": 284445
+      },
+      {
+        "name": "p100b_n100000",
+        "in": {
+          "n": 100000,
+          "primes": [
+            347,
+            349,
+            353,
+            359,
+            367,
+            373,
+            379,
+            383,
+            389,
+            397,
+            401,
+            409,
+            419,
+            421,
+            431,
+            433,
+            439,
+            443,
+            449,
+            457,
+            461,
+            463,
+            467,
+            479,
+            487,
+            491,
+            499,
+            503,
+            509,
+            521,
+            523,
+            541,
+            547,
+            557,
+            563,
+            569,
+            571,
+            577,
+            587,
+            593,
+            599,
+            601,
+            607,
+            613,
+            617,
+            619,
+            631,
+            641,
+            643,
+            647,
+            653,
+            659,
+            661,
+            673,
+            677,
+            683,
+            691,
+            701,
+            709,
+            719,
+            727,
+            733,
+            739,
+            743,
+            751,
+            757,
+            761,
+            769,
+            773,
+            787,
+            797,
+            809,
+            811,
+            821,
+            823,
+            827,
+            829,
+            839,
+            853,
+            857,
+            859,
+            863,
+            877,
+            881,
+            883,
+            887,
+            907,
+            911,
+            919,
+            929,
+            937,
+            941,
+            947,
+            953,
+            967,
+            971,
+            977,
+            983,
+            991,
+            997
+          ]
+        },
+        "out": 274598347
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 12\nprimes = [2, 7, 13, 19]",
+      "output": "32"
+    },
+    {
+      "input": "n = 1\nprimes = [2, 3, 5]",
+      "output": "1"
+    },
+    {
+      "input": "n = 1\nprimes = [2]",
+      "output": "1"
+    },
+    {
+      "input": "n = 2\nprimes = [2]",
+      "output": "2"
+    },
+    {
+      "input": "n = 10\nprimes = [2]",
+      "output": "512"
+    },
+    {
+      "input": "n = 5\nprimes = [3, 5, 7]",
+      "output": "9"
+    },
+    {
+      "input": "n = 7\nprimes = [3, 5, 7]",
+      "output": "21"
+    },
+    {
+      "input": "n = 10\nprimes = [3, 5, 7]",
+      "output": "35"
+    }
+  ]
+}

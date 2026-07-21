@@ -1,0 +1,313 @@
+{
+  "id": "n_queens",
+  "title": "N-Queens",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Backtracking"
+  ],
+  "description": "<p>The <strong>n-queens</strong> puzzle is the problem of placing <code>n</code> queens on an <code>n x n</code> chessboard such that no two queens attack each other.</p>\n\n<p>Given an integer <code>n</code>, return <em>all distinct solutions to the <strong>n-queens puzzle</strong></em>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>Each solution contains a distinct board configuration of the n-queens&#39; placement, where <code>&#39;Q&#39;</code> and <code>&#39;.&#39;</code> both indicate a queen and an empty space, respectively.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/11/13/queens.jpg\" style=\"width: 600px; height: 268px;\" />\n<pre>\n<strong>Input:</strong> n = 4\n<strong>Output:</strong> [[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]\n<strong>Explanation:</strong> There exist two distinct solutions to the 4-queens puzzle as shown above\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> [[&quot;Q&quot;]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 9</code></li>\n</ul>\n",
+  "task": "Solve the 'N-Queens' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 9"
+  ],
+  "hints": [],
+  "method": {
+    "name": "solveNQueens",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 51,
+      "title": "n-queens",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().solveNQueens({n})",
+        "rust": "Solution::solve_n_queens({n})",
+        "python3": "Solution().solveNQueens({n})",
+        "python2": "Solution().solveNQueens({n})",
+        "ruby": "solve_n_queens({n})",
+        "java": "new Solution().solveNQueens({n})",
+        "csharp": "new Solution().SolveNQueens({n})",
+        "kotlin": "Solution().solveNQueens({n})",
+        "go": "solveNQueens({n})",
+        "dart": "Solution().solveNQueens({n})",
+        "swift": "Solution().solveNQueens({n})",
+        "typescript": "solveNQueens({n})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().solveNQueens(n, {result})",
+        "checker": "class Checker:\n    def solveNQueens(self, n, result):\n        if not isinstance(n, int):\n            return False\n        if not isinstance(result, list):\n            return False\n\n        expected = self._solve(n)\n        actual = self._normalize(result, n)\n        return actual is not None and actual == expected\n\n    def _solve(self, n):\n        res = []\n        cols = [False] * n\n        diag1 = [False] * (2 * n)\n        diag2 = [False] * (2 * n)\n        board = [[\".\"] * n for _ in range(n)]\n\n        def backtrack(row):\n            if row == n:\n                res.append(tuple(\"\".join(r) for r in board))\n                return\n            for col in range(n):\n                d1 = row + col\n                d2 = row - col + n - 1\n                if cols[col] or diag1[d1] or diag2[d2]:\n                    continue\n                cols[col] = diag1[d1] = diag2[d2] = True\n                board[row][col] = \"Q\"\n                backtrack(row + 1)\n                board[row][col] = \".\"\n                cols[col] = diag1[d1] = diag2[d2] = False\n\n        backtrack(0)\n        return tuple(sorted(res))\n\n    def _normalize(self, result, n):\n        normalized = []\n        for board in result:\n            if not isinstance(board, list) or len(board) != n:\n                return None\n            rows = []\n            queen_count = 0\n            seen_cols = set()\n            diag1 = set()\n            diag2 = set()\n            for i, row in enumerate(board):\n                if not isinstance(row, str) or len(row) != n:\n                    return None\n                if row.count(\"Q\") != 1:\n                    return None\n                j = row.index(\"Q\")\n                if row[j] != \"Q\":\n                    return None\n                queen_count += 1\n                if j in seen_cols or (i + j) in diag1 or (i - j) in diag2:\n                    return None\n                seen_cols.add(j)\n                diag1.add(i + j)\n                diag2.add(i - j)\n                rows.append(row)\n            if queen_count != n:\n                return None\n            normalized.append(tuple(rows))\n        return tuple(sorted(normalized))\n"
+      }
+    },
+    "seed": 51,
+    "tests": [
+      {
+        "name": "n=1 example",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "n=2 no solution",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "n=3 no solution",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "n=4 example",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n=5 baseline",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n=6 baseline",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n=7 baseline",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n=8 baseline",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 max baseline",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n=4 repeat 1",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n=5 repeat 1",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n=6 repeat 1",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n=7 repeat 1",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n=8 repeat 1",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 repeat 1",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n=4 repeat 2",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n=5 repeat 2",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n=6 repeat 2",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n=7 repeat 2",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n=8 repeat 2",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 repeat 2",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n=4 repeat 3",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n=5 repeat 3",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n=6 repeat 3",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n=7 repeat 3",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n=8 repeat 3",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 repeat 3",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n=4 repeat 4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n=5 repeat 4",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n=6 repeat 4",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n=7 repeat 4",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n=8 repeat 4",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 repeat 4",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n=8 final stress",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n=9 final stress",
+        "in": {
+          "n": 9
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    },
+    {
+      "input": "n = 8",
+      "output": ""
+    }
+  ]
+}

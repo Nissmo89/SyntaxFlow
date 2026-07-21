@@ -1,0 +1,715 @@
+{
+  "id": "plus_one",
+  "title": "Plus One",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "description": "<p>You are given a <strong>large integer</strong> represented as an integer array <code>digits</code>, where each <code>digits[i]</code> is the <code>i<sup>th</sup></code> digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading <code>0</code>'s.</p> <p>Increment the large integer by one and return <em>the resulting array of digits</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> digits = [1,2,3]\n<strong>Output:</strong> [1,2,4]\n<strong>Explanation:</strong> The array represents the integer 123.\nIncrementing by one gives 123 + 1 = 124.\nThus, the result should be [1,2,4].\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> digits = [4,3,2,1]\n<strong>Output:</strong> [4,3,2,2]\n<strong>Explanation:</strong> The array represents the integer 4321.\nIncrementing by one gives 4321 + 1 = 4322.\nThus, the result should be [4,3,2,2].\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> digits = [9]\n<strong>Output:</strong> [1,0]\n<strong>Explanation:</strong> The array represents the integer 9.\nIncrementing by one gives 9 + 1 = 10.\nThus, the result should be [1,0].\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= digits.length &lt;= 100</code></li> <li><code>0 &lt;= digits[i] &lt;= 9</code></li> <li><code>digits</code> does not contain any leading <code>0</code>'s.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "plusOne",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "digits",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 66,
+      "title": "plus-one",
+      "params": {
+        "digits": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().plusOne({digits})",
+        "rust": "Solution::plus_one({digits})",
+        "python3": "Solution().plusOne({digits})",
+        "python2": "Solution().plusOne({digits})",
+        "ruby": "plus_one({digits})",
+        "java": "new Solution().plusOne({digits})",
+        "csharp": "new Solution().PlusOne({digits})",
+        "kotlin": "Solution().plusOne({digits})",
+        "go": "plusOne({digits})",
+        "dart": "Solution().plusOne({digits})",
+        "swift": "Solution().plusOne({digits})",
+        "typescript": "plusOne({digits})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(digits, {result})",
+        "checker": "class Checker:\n    def check(self, digits, result):\n        expected = digits[:]\n        for i in range(len(expected) - 1, -1, -1):\n            if expected[i] + 1 != 10:\n                expected[i] += 1\n                return result == expected\n            expected[i] = 0\n\n        return result == [1] + expected\n"
+      }
+    },
+    "seed": 66,
+    "tests": [
+      {
+        "name": "single_zero",
+        "in": {
+          "digits": [
+            0
+          ]
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "single_nine",
+        "in": {
+          "digits": [
+            9
+          ]
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "single_small_digit",
+        "in": {
+          "digits": [
+            1
+          ]
+        },
+        "out": [
+          2
+        ]
+      },
+      {
+        "name": "single_eight",
+        "in": {
+          "digits": [
+            8
+          ]
+        },
+        "out": [
+          9
+        ]
+      },
+      {
+        "name": "two_digits_no_carry",
+        "in": {
+          "digits": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "two_digits_carry",
+        "in": {
+          "digits": [
+            1,
+            9
+          ]
+        },
+        "out": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "two_nines",
+        "in": {
+          "digits": [
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "leading_zero_like",
+        "in": {
+          "digits": [
+            0,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "ends_with_carry_chain_1",
+        "in": {
+          "digits": [
+            2,
+            3,
+            4
+          ]
+        },
+        "out": [
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "ends_with_carry_chain_2",
+        "in": {
+          "digits": [
+            2,
+            3,
+            9
+          ]
+        },
+        "out": [
+          2,
+          4,
+          0
+        ]
+      },
+      {
+        "name": "middle_nine",
+        "in": {
+          "digits": [
+            4,
+            9,
+            3
+          ]
+        },
+        "out": [
+          4,
+          9,
+          4
+        ]
+      },
+      {
+        "name": "middle_nine_carry",
+        "in": {
+          "digits": [
+            4,
+            9,
+            9
+          ]
+        },
+        "out": [
+          5,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "all_nines_three",
+        "in": {
+          "digits": [
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "all_nines_four",
+        "in": {
+          "digits": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "mixed_small",
+        "in": {
+          "digits": [
+            1,
+            0,
+            0
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "mixed_small_carry",
+        "in": {
+          "digits": [
+            1,
+            0,
+            9
+          ]
+        },
+        "out": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "carry_into_middle",
+        "in": {
+          "digits": [
+            1,
+            9,
+            8
+          ]
+        },
+        "out": [
+          1,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "carry_into_middle_chain",
+        "in": {
+          "digits": [
+            1,
+            9,
+            9
+          ]
+        },
+        "out": [
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "long_no_carry_1",
+        "in": {
+          "digits": [
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": [
+          3,
+          4,
+          5,
+          7
+        ]
+      },
+      {
+        "name": "long_no_carry_2",
+        "in": {
+          "digits": [
+            7,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": [
+          7,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "name": "long_single_carry",
+        "in": {
+          "digits": [
+            7,
+            0,
+            0,
+            9
+          ]
+        },
+        "out": [
+          7,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "long_carry_chain_1",
+        "in": {
+          "digits": [
+            5,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          6,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "long_carry_chain_2",
+        "in": {
+          "digits": [
+            1,
+            2,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          3,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "long_carry_chain_3",
+        "in": {
+          "digits": [
+            1,
+            9,
+            9,
+            0
+          ]
+        },
+        "out": [
+          1,
+          9,
+          9,
+          1
+        ]
+      },
+      {
+        "name": "five_digits_mixed",
+        "in": {
+          "digits": [
+            9,
+            0,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          9,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "five_digits_all_nines",
+        "in": {
+          "digits": [
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "five_digits_trailing_carry",
+        "in": {
+          "digits": [
+            2,
+            4,
+            6,
+            8,
+            9
+          ]
+        },
+        "out": [
+          2,
+          4,
+          6,
+          9,
+          0
+        ]
+      },
+      {
+        "name": "five_digits_no_carry",
+        "in": {
+          "digits": [
+            2,
+            4,
+            6,
+            8,
+            0
+          ]
+        },
+        "out": [
+          2,
+          4,
+          6,
+          8,
+          1
+        ]
+      },
+      {
+        "name": "six_digits_carry_chain",
+        "in": {
+          "digits": [
+            1,
+            0,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "six_digits_internal_nines",
+        "in": {
+          "digits": [
+            8,
+            9,
+            9,
+            9,
+            1,
+            2
+          ]
+        },
+        "out": [
+          8,
+          9,
+          9,
+          9,
+          1,
+          3
+        ]
+      },
+      {
+        "name": "six_digits_all_nines",
+        "in": {
+          "digits": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "seven_digits_no_carry",
+        "in": {
+          "digits": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      {
+        "name": "seven_digits_mid_carry",
+        "in": {
+          "digits": [
+            1,
+            2,
+            3,
+            9,
+            9,
+            9,
+            8
+          ]
+        },
+        "out": [
+          1,
+          2,
+          3,
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "seven_digits_tail_carry",
+        "in": {
+          "digits": [
+            1,
+            2,
+            3,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          2,
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "eight_digits_no_carry",
+        "in": {
+          "digits": [
+            4,
+            3,
+            2,
+            1,
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "eight_digits_all_nines",
+        "in": {
+          "digits": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "digits = [0]",
+      "output": "[1]"
+    },
+    {
+      "input": "digits = [9]",
+      "output": "[1, 0]"
+    },
+    {
+      "input": "digits = [1]",
+      "output": "[2]"
+    },
+    {
+      "input": "digits = [8]",
+      "output": "[9]"
+    },
+    {
+      "input": "digits = [1, 2]",
+      "output": "[1, 3]"
+    },
+    {
+      "input": "digits = [1, 9]",
+      "output": "[2, 0]"
+    },
+    {
+      "input": "digits = [9, 9]",
+      "output": "[1, 0, 0]"
+    },
+    {
+      "input": "digits = [0, 9]",
+      "output": "[1, 0]"
+    }
+  ]
+}

@@ -1,0 +1,792 @@
+{
+  "id": "odd_even_linked_list",
+  "title": "Odd Even Linked List",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Linked List"
+  ],
+  "description": "<p>Given the <code>head</code> of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return <em>the reordered list</em>.</p>\n\n<p>The <strong>first</strong> node is considered <strong>odd</strong>, and the <strong>second</strong> node is <strong>even</strong>, and so on.</p>\n\n<p>Note that the relative order inside both the even and odd groups should remain as it was in the input.</p>\n\n<p>You must solve the problem&nbsp;in <code>O(1)</code>&nbsp;extra space complexity and <code>O(n)</code> time complexity.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/10/oddeven-linked-list.jpg\" style=\"width: 300px; height: 123px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2,3,4,5]\n<strong>Output:</strong> [1,3,5,2,4]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/10/oddeven2-linked-list.jpg\" style=\"width: 500px; height: 142px;\" />\n<pre>\n<strong>Input:</strong> head = [2,1,3,5,6,4,7]\n<strong>Output:</strong> [2,3,6,7,1,5,4]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the linked list is in the range <code>[0, 10<sup>4</sup>]</code>.</li>\n\t<li><code>-10<sup>6</sup> &lt;= Node.val &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Odd Even Linked List' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the linked list is in the range [0, 104].",
+    "-106 <= Node.val <= 106"
+  ],
+  "hints": [],
+  "method": {
+    "name": "oddEvenList",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "head",
+        "type": "list_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 328,
+      "title": "odd-even-linked-list",
+      "params": {
+        "head": {
+          "type": "list_node"
+        }
+      },
+      "call": {
+        "cpp": "listNodeToArray(Solution().oddEvenList({head}))",
+        "rust": "ListNode::list_node_to_array(Solution::odd_even_list({head}))",
+        "python3": "list_node_to_array(Solution().oddEvenList({head}))",
+        "python2": "list_node_to_array(Solution().oddEvenList({head}))",
+        "ruby": "list_node_to_array(odd_even_list({head}))",
+        "java": "ListNode.listNodeToArray(new Solution().oddEvenList({head}))",
+        "csharp": "ListNode.ListNodeToArray(new Solution().OddEvenList({head}))",
+        "kotlin": "listNodeToArray(Solution().oddEvenList({head}))",
+        "go": "listNodeToArray(oddEvenList({head}))",
+        "dart": "list_node_to_array(Solution().oddEvenList({head}))",
+        "swift": "list_node_to_array(Solution().oddEvenList({head}))",
+        "typescript": "listNodeToArray(oddEvenList({head}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(head, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def _to_values(self, node: Any) -> List[int]:\n        if node is None:\n            return []\n        if isinstance(node, (list, tuple)):\n            return list(node)\n        values = []\n        seen = 0\n        while node is not None:\n            if not hasattr(node, \"val\") or not hasattr(node, \"next\"):\n                return []\n            values.append(node.val)\n            node = node.next\n            seen += 1\n            if seen > 200000:\n                return []\n        return values\n\n    def check(self, head: Any, result: Any) -> bool:\n        src = self._to_values(head)\n        got = self._to_values(result)\n        if len(src) != len(got):\n            return False\n        expected = src[::2] + src[1::2]\n        return got == expected\n"
+      }
+    },
+    "seed": 328328,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": [
+          1,
+          3,
+          5,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "head": [
+            2,
+            1,
+            3,
+            5,
+            6,
+            4,
+            7
+          ]
+        },
+        "out": [
+          2,
+          3,
+          6,
+          7,
+          1,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "empty_list",
+        "in": {
+          "head": []
+        },
+        "out": []
+      },
+      {
+        "name": "single_node",
+        "in": {
+          "head": [
+            9
+          ]
+        },
+        "out": [
+          9
+        ]
+      },
+      {
+        "name": "two_nodes",
+        "in": {
+          "head": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "three_nodes",
+        "in": {
+          "head": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": [
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "name": "four_nodes",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "six_nodes",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": [
+          1,
+          3,
+          5,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "seven_nodes",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": [
+          1,
+          3,
+          5,
+          7,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "all_same_len_5",
+        "in": {
+          "head": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "name": "alternating_small",
+        "in": {
+          "head": [
+            1,
+            9,
+            2,
+            8,
+            3,
+            7
+          ]
+        },
+        "out": [
+          1,
+          2,
+          3,
+          9,
+          8,
+          7
+        ]
+      },
+      {
+        "name": "negatives",
+        "in": {
+          "head": [
+            -1,
+            -2,
+            -3,
+            -4,
+            -5
+          ]
+        },
+        "out": [
+          -1,
+          -3,
+          -5,
+          -2,
+          -4
+        ]
+      },
+      {
+        "name": "zeros_and_ones",
+        "in": {
+          "head": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "increasing_len_8",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "out": [
+          1,
+          3,
+          5,
+          7,
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      {
+        "name": "decreasing_len_9",
+        "in": {
+          "head": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": [
+          9,
+          7,
+          5,
+          3,
+          1,
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "repeated_pairs",
+        "in": {
+          "head": [
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8
+          ]
+        },
+        "out": [
+          5,
+          6,
+          7,
+          8,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "mixed_signs",
+        "in": {
+          "head": [
+            10,
+            -10,
+            20,
+            -20,
+            30,
+            -30,
+            40
+          ]
+        },
+        "out": [
+          10,
+          20,
+          30,
+          40,
+          -10,
+          -20,
+          -30
+        ]
+      },
+      {
+        "name": "large_gap_values",
+        "in": {
+          "head": [
+            1000000,
+            -1000000,
+            500000,
+            -500000,
+            250000,
+            -250000
+          ]
+        },
+        "out": [
+          1000000,
+          500000,
+          250000,
+          -1000000,
+          -500000,
+          -250000
+        ]
+      },
+      {
+        "name": "two_equal",
+        "in": {
+          "head": [
+            4,
+            4
+          ]
+        },
+        "out": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "two_equal_negative",
+        "in": {
+          "head": [
+            -3,
+            -3
+          ]
+        },
+        "out": [
+          -3,
+          -3
+        ]
+      },
+      {
+        "name": "odd_length_11",
+        "in": {
+          "head": [
+            1,
+            4,
+            2,
+            5,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "out": [
+          1,
+          2,
+          3,
+          7,
+          9,
+          11,
+          4,
+          5,
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "even_length_12",
+        "in": {
+          "head": [
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "out": [
+          11,
+          9,
+          7,
+          5,
+          3,
+          1,
+          10,
+          8,
+          6,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "name": "palindromic_values",
+        "in": {
+          "head": [
+            1,
+            2,
+            3,
+            2,
+            1,
+            2,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": [
+          1,
+          3,
+          1,
+          3,
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "zeros_then_nonzeros",
+        "in": {
+          "head": [
+            0,
+            0,
+            0,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": [
+          0,
+          0,
+          5,
+          7,
+          0,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "edge_pattern_1",
+        "in": {
+          "head": [
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2
+          ]
+        },
+        "out": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "edge_pattern_2",
+        "in": {
+          "head": [
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8
+          ]
+        },
+        "out": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "head": [
+            0
+          ]
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "three_same",
+        "in": {
+          "head": [
+            6,
+            6,
+            6
+          ]
+        },
+        "out": [
+          6,
+          6,
+          6
+        ]
+      },
+      {
+        "name": "longish_even_small",
+        "in": {
+          "head": [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6,
+            5,
+            3
+          ]
+        },
+        "out": [
+          3,
+          4,
+          5,
+          2,
+          5,
+          1,
+          1,
+          9,
+          6,
+          3
+        ]
+      },
+      {
+        "name": "generated_large_1",
+        "seed": 328001,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_2",
+        "seed": 328002,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 99999,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_3",
+        "seed": 328003,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_4",
+        "seed": 328004,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 75000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_5",
+        "seed": 328005,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 60001,
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_6",
+        "seed": 328006,
+        "in": {
+          "head": {
+            "gen": "array",
+            "len": 80000,
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": 1
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "head = [1, 2, 3, 4, 5]",
+      "output": "[1, 3, 5, 2, 4]"
+    },
+    {
+      "input": "head = [2, 1, 3, 5, 6, 4, 7]",
+      "output": "[2, 3, 6, 7, 1, 5, 4]"
+    },
+    {
+      "input": "head = []",
+      "output": "[]"
+    },
+    {
+      "input": "head = [9]",
+      "output": "[9]"
+    },
+    {
+      "input": "head = [1, 2]",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "head = [1, 2, 3]",
+      "output": "[1, 3, 2]"
+    },
+    {
+      "input": "head = [1, 2, 3, 4]",
+      "output": "[1, 3, 2, 4]"
+    },
+    {
+      "input": "head = [1, 2, 3, 4, 5, 6]",
+      "output": "[1, 3, 5, 2, 4, 6]"
+    }
+  ]
+}

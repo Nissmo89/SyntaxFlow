@@ -1,0 +1,654 @@
+{
+  "id": "three_equal_parts",
+  "title": "Three Equal Parts",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "description": "<p>You are given an array <code>arr</code> which consists of only zeros and ones, divide the array into <strong>three non-empty parts</strong> such that all of these parts represent the same binary value.</p>\n\n<p>If it is possible, return any <code>[i, j]</code> with <code>i + 1 &lt; j</code>, such that:</p>\n\n<ul>\n\t<li><code>arr[0], arr[1], ..., arr[i]</code> is the first part,</li>\n\t<li><code>arr[i + 1], arr[i + 2], ..., arr[j - 1]</code> is the second part, and</li>\n\t<li><code>arr[j], arr[j + 1], ..., arr[arr.length - 1]</code> is the third part.</li>\n\t<li>All three parts have equal binary values.</li>\n</ul>\n\n<p>If it is not possible, return <code>[-1, -1]</code>.</p>\n\n<p>Note that the entire part is used when considering what binary value it represents. For example, <code>[1,1,0]</code> represents <code>6</code> in decimal, not <code>3</code>. Also, leading zeros <strong>are allowed</strong>, so <code>[0,1,1]</code> and <code>[1,1]</code> represent the same value.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> arr = [1,0,1,0,1]\n<strong>Output:</strong> [0,3]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> arr = [1,1,0,1,1]\n<strong>Output:</strong> [-1,-1]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> arr = [1,1,0,0,1]\n<strong>Output:</strong> [0,2]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= arr.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>arr[i]</code> is <code>0</code> or <code>1</code></li>\n</ul>\n",
+  "task": "Solve the 'Three Equal Parts' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "3 <= arr.length <= 3 * 104",
+    "arr[i] is 0 or 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "threeEqualParts",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "arr",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 927,
+      "title": "three-equal-parts",
+      "params": {
+        "arr": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().threeEqualParts({arr})",
+        "rust": "Solution::three_equal_parts({arr})",
+        "python3": "Solution().threeEqualParts({arr})",
+        "python2": "Solution().threeEqualParts({arr})",
+        "ruby": "three_equal_parts({arr})",
+        "java": "new Solution().threeEqualParts({arr})",
+        "csharp": "new Solution().ThreeEqualParts({arr})",
+        "kotlin": "Solution().threeEqualParts({arr})",
+        "go": "threeEqualParts({arr})",
+        "dart": "Solution().threeEqualParts({arr})",
+        "swift": "Solution().threeEqualParts({arr})",
+        "typescript": "threeEqualParts({arr})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().threeEqualParts(arr, {result})",
+        "checker": "class Checker:\n    def threeEqualParts(self, arr, result):\n        if not isinstance(result, list) or len(result) != 2:\n            return False\n        n = len(arr)\n        if result == [-1, -1]:\n            for i in range(n):\n                for j in range(i + 2, n):\n                    a = arr[:i + 1]\n                    b = arr[i + 1:j]\n                    c = arr[j:]\n                    def norm(x):\n                        k = 0\n                        while k < len(x) and x[k] == 0:\n                            k += 1\n                        return x[k:]\n                    if len(a) and len(b) and len(c) and norm(a) == norm(b) == norm(c):\n                        return False\n            return True\n        i, j = result\n        if not (0 <= i < j - 1 < n):\n            return False\n        a = arr[:i + 1]\n        b = arr[i + 1:j]\n        c = arr[j:]\n        def norm(x):\n            k = 0\n            while k < len(x) and x[k] == 0:\n                k += 1\n            return x[k:]\n        return len(a) > 0 and len(b) > 0 and len(c) > 0 and norm(a) == norm(b) == norm(c)\n"
+      }
+    },
+    "seed": 927,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "arr": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "arr": [
+            1,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "all_zeros_3",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "all_zeros_6",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "one_one_exact",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "two_ones_impossible",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "simple_possible_1",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "simple_possible_2",
+        "in": {
+          "arr": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "simple_impossible_1",
+        "in": {
+          "arr": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "simple_impossible_2",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "trailing_zeros_1",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "trailing_zeros_2",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "leading_zeros_1",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "leading_zeros_2",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "arr": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "arr": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "arr": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_8",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_9",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_10",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_11",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_12",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_13",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_14",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_15",
+        "in": {
+          "arr": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_16",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_17",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_18",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_19",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_20",
+        "in": {
+          "arr": [
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_21",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_22",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "mixed_23",
+        "in": {
+          "arr": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "arr = [1, 0, 1, 0, 1]",
+      "output": ""
+    },
+    {
+      "input": "arr = [1, 1, 0, 1, 1]",
+      "output": ""
+    },
+    {
+      "input": "arr = [1, 1, 0, 0, 1]",
+      "output": ""
+    },
+    {
+      "input": "arr = [0, 0, 0]",
+      "output": ""
+    },
+    {
+      "input": "arr = [0, 0, 0, 0, 0, 0]",
+      "output": ""
+    },
+    {
+      "input": "arr = [1, 0, 0]",
+      "output": ""
+    },
+    {
+      "input": "arr = [1, 0, 1]",
+      "output": ""
+    },
+    {
+      "input": "arr = [1, 0, 0, 1, 0, 0, 1]",
+      "output": ""
+    }
+  ]
+}

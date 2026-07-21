@@ -1,0 +1,945 @@
+{
+  "id": "partition_equal_subset_sum",
+  "title": "Partition Equal Subset Sum",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>Given an integer array <code>nums</code>, return <code>true</code> <em>if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,11,5]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The array can be partitioned as [1, 5, 5] and [11].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,5]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The array cannot be partitioned into equal sum subsets.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 200</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Partition Equal Subset Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 200",
+    "1 <= nums[i] <= 100"
+  ],
+  "hints": [],
+  "method": {
+    "name": "canPartition",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 416,
+      "title": "partition-equal-subset-sum",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().canPartition({nums})",
+        "rust": "Solution::can_partition({nums})",
+        "python3": "Solution().canPartition({nums})",
+        "python2": "Solution().canPartition({nums})",
+        "ruby": "can_partition({nums})",
+        "java": "new Solution().canPartition({nums})",
+        "csharp": "new Solution().CanPartition({nums})",
+        "kotlin": "Solution().canPartition({nums})",
+        "go": "canPartition({nums})",
+        "dart": "Solution().canPartition({nums})",
+        "swift": "Solution().canPartition({nums})",
+        "typescript": "canPartition({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().canPartition(nums, {result})",
+        "checker": "class Checker:\n    def canPartition(self, nums, result):\n        if not isinstance(result, bool):\n            return False\n        total_sum = sum(nums)\n        if total_sum % 2 != 0:\n            return result is False\n        target = total_sum // 2\n        dp = [False] * (target + 1)\n        dp[0] = True\n        for num in nums:\n            for curr_sum in range(target, num - 1, -1):\n                dp[curr_sum] = dp[curr_sum] or dp[curr_sum - num]\n        return result == dp[target]\n"
+      }
+    },
+    "seed": 416,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            5,
+            11,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_odd",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_even",
+        "in": {
+          "nums": [
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "pair_equal_ones",
+        "in": {
+          "nums": [
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "pair_equal_twos",
+        "in": {
+          "nums": [
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "pair_unequal",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "pair_odd_sum",
+        "in": {
+          "nums": [
+            1,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "pair_even_unreachable",
+        "in": {
+          "nums": [
+            2,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_true_mix",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_false_mix",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_false_three",
+        "in": {
+          "nums": [
+            1,
+            2,
+            5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "small_true_four",
+        "in": {
+          "nums": [
+            1,
+            1,
+            3,
+            4,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_true_three",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_ones_six",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "balanced_mixed_five",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            6,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_tens_four",
+        "in": {
+          "nums": [
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single_hundred",
+        "in": {
+          "nums": [
+            100
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "double_hundred",
+        "in": {
+          "nums": [
+            100,
+            100
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "hundred_and_one",
+        "in": {
+          "nums": [
+            99,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "four_fifties",
+        "in": {
+          "nums": [
+            50,
+            50,
+            50,
+            50
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "six_twos",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "medium_true",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "medium_false",
+        "in": {
+          "nums": [
+            8,
+            6,
+            7,
+            5,
+            3,
+            10
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "medium_true_two",
+        "in": {
+          "nums": [
+            1,
+            2,
+            5,
+            10,
+            12
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "medium_false_two",
+        "in": {
+          "nums": [
+            23,
+            13,
+            11,
+            7,
+            6,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "classic_true",
+        "in": {
+          "nums": [
+            3,
+            34,
+            4,
+            12,
+            5,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "classic_true_all_nines",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "duplicate_balance",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "multi_choice_true",
+        "in": {
+          "nums": [
+            14,
+            9,
+            8,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "consecutive_true",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "scaled_true",
+        "in": {
+          "nums": [
+            20,
+            30,
+            40,
+            50,
+            60
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_size_all_hundreds",
+        "in": {
+          "nums": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_size_odd_sum",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max_size_mixed_true",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max_size_even_all_twos",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "max_size_even_all_ones",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 5, 11, 5]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 5]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [2]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 3]",
+      "output": "false"
+    }
+  ]
+}

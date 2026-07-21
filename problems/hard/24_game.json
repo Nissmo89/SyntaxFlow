@@ -1,0 +1,552 @@
+{
+  "id": "24_game",
+  "title": "24 Game",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Backtracking"
+  ],
+  "description": "<p>You are given an integer array <code>cards</code> of length <code>4</code>. You have four cards, each containing a number in the range <code>[1, 9]</code>. You should arrange the numbers on these cards in a mathematical expression using the operators <code>[&#39;+&#39;, &#39;-&#39;, &#39;*&#39;, &#39;/&#39;]</code> and the parentheses <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code> to get the value 24.</p>\n\n<p>You are restricted with the following rules:</p>\n\n<ul>\n\t<li>The division operator <code>&#39;/&#39;</code> represents real division, not integer division.\n\n\t<ul>\n\t\t<li>For example, <code>4 / (1 - 2 / 3) = 4 / (1 / 3) = 12</code>.</li>\n\t</ul>\n\t</li>\n\t<li>Every operation done is between two numbers. In particular, we cannot use <code>&#39;-&#39;</code> as a unary operator.\n\t<ul>\n\t\t<li>For example, if <code>cards = [1, 1, 1, 1]</code>, the expression <code>&quot;-1 - 1 - 1 - 1&quot;</code> is <strong>not allowed</strong>.</li>\n\t</ul>\n\t</li>\n\t<li>You cannot concatenate numbers together\n\t<ul>\n\t\t<li>For example, if <code>cards = [1, 2, 1, 2]</code>, the expression <code>&quot;12 + 12&quot;</code> is not valid.</li>\n\t</ul>\n\t</li>\n</ul>\n\n<p>Return <code>true</code> if you can get such expression that evaluates to <code>24</code>, and <code>false</code> otherwise.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> cards = [4,1,8,7]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> (8-4) * (7-1) = 24\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> cards = [1,2,1,2]\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>cards.length == 4</code></li>\n\t<li><code>1 &lt;= cards[i] &lt;= 9</code></li>\n</ul>\n",
+  "task": "Solve the '24 Game' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "cards.length == 4",
+    "1 <= cards[i] <= 9"
+  ],
+  "hints": [],
+  "method": {
+    "name": "judgePoint24",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "cards",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 679,
+      "title": "24-game",
+      "params": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().judgePoint24({cards})",
+        "rust": "Solution::judge_point24({cards})",
+        "python3": "Solution().judgePoint24({cards})",
+        "python2": "Solution().judgePoint24({cards})",
+        "ruby": "judge_point24({cards})",
+        "java": "new Solution().judgePoint24({cards})",
+        "csharp": "new Solution().JudgePoint24({cards})",
+        "kotlin": "Solution().judgePoint24({cards})",
+        "go": "judgePoint24({cards})",
+        "dart": "Solution().judgePoint24({cards})",
+        "swift": "Solution().judgePoint24({cards})",
+        "typescript": "judgePoint24({cards})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().judgePoint24(cards, {result})",
+        "checker": "class Checker:\n    def judgePoint24(self, cards, result):\n        if not isinstance(result, bool):\n            return False\n\n        EPS = 1e-6\n\n        def dfs(nums):\n            if len(nums) == 1:\n                return abs(nums[0] - 24.0) < EPS\n\n            for i in range(len(nums)):\n                for j in range(len(nums)):\n                    if i == j:\n                        continue\n                    next_nums = [nums[k] for k in range(len(nums)) if k != i and k != j]\n                    a, b = nums[i], nums[j]\n                    candidates = [a + b, a - b, b - a, a * b]\n                    if abs(b) > EPS:\n                        candidates.append(a / b)\n                    if abs(a) > EPS:\n                        candidates.append(b / a)\n\n                    for val in candidates:\n                        if dfs(next_nums + [val]):\n                            return True\n            return False\n\n        return result == dfs([float(x) for x in cards])\n"
+      }
+    },
+    "seed": 679,
+    "tests": [
+      {
+        "name": "example_true",
+        "in": {
+          "cards": [
+            4,
+            1,
+            8,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_false",
+        "in": {
+          "cards": [
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_same_low",
+        "in": {
+          "cards": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_same_high",
+        "in": {
+          "cards": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "simple_mul",
+        "in": {
+          "cards": [
+            3,
+            3,
+            8,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "simple_add_mul",
+        "in": {
+          "cards": [
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "division_chain_true",
+        "in": {
+          "cards": [
+            3,
+            4,
+            6,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "division_chain_false",
+        "in": {
+          "cards": [
+            1,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "subtraction_true",
+        "in": {
+          "cards": [
+            7,
+            7,
+            3,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "subtraction_false",
+        "in": {
+          "cards": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "example_variant_true",
+        "in": {
+          "cards": [
+            4,
+            1,
+            8,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_variant_false",
+        "in": {
+          "cards": [
+            1,
+            1,
+            8,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_1",
+        "in": {
+          "cards": [
+            1,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_2",
+        "in": {
+          "cards": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_3",
+        "in": {
+          "cards": [
+            2,
+            4,
+            6,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_4",
+        "in": {
+          "cards": [
+            5,
+            5,
+            5,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_5",
+        "in": {
+          "cards": [
+            1,
+            3,
+            4,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_6",
+        "in": {
+          "cards": [
+            2,
+            2,
+            6,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_7",
+        "in": {
+          "cards": [
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_true_8",
+        "in": {
+          "cards": [
+            1,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_1",
+        "in": {
+          "cards": [
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "permutation_false_2",
+        "in": {
+          "cards": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_3",
+        "in": {
+          "cards": [
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "permutation_false_4",
+        "in": {
+          "cards": [
+            1,
+            3,
+            3,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_5",
+        "in": {
+          "cards": [
+            2,
+            2,
+            3,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_6",
+        "in": {
+          "cards": [
+            2,
+            3,
+            7,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_7",
+        "in": {
+          "cards": [
+            1,
+            2,
+            8,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_8",
+        "in": {
+          "cards": [
+            1,
+            4,
+            4,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_9",
+        "in": {
+          "cards": [
+            2,
+            5,
+            5,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_10",
+        "in": {
+          "cards": [
+            1,
+            6,
+            6,
+            6
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_11",
+        "in": {
+          "cards": [
+            1,
+            2,
+            5,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_12",
+        "in": {
+          "cards": [
+            3,
+            3,
+            7,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_13",
+        "in": {
+          "cards": [
+            1,
+            1,
+            7,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "permutation_false_14",
+        "in": {
+          "cards": [
+            2,
+            4,
+            4,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_15",
+        "in": {
+          "cards": [
+            3,
+            5,
+            5,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_16",
+        "in": {
+          "cards": [
+            4,
+            4,
+            7,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "permutation_false_17",
+        "in": {
+          "cards": [
+            1,
+            3,
+            7,
+            9
+          ]
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "cards = [4, 1, 8, 7]",
+      "output": "true"
+    },
+    {
+      "input": "cards = [1, 2, 1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "cards = [1, 1, 1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "cards = [9, 9, 9, 9]",
+      "output": "false"
+    },
+    {
+      "input": "cards = [3, 3, 8, 8]",
+      "output": "true"
+    },
+    {
+      "input": "cards = [6, 6, 6, 6]",
+      "output": "true"
+    },
+    {
+      "input": "cards = [3, 4, 6, 8]",
+      "output": "true"
+    },
+    {
+      "input": "cards = [1, 5, 5, 5]",
+      "output": "true"
+    }
+  ]
+}

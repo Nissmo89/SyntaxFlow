@@ -1,0 +1,766 @@
+{
+  "id": "rotting_oranges",
+  "title": "Rotting Oranges",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "description": "<p>You are given an <code>m x n</code> <code>grid</code> where each cell can have one of three values:</p>\n\n<ul>\n\t<li><code>0</code> representing an empty cell,</li>\n\t<li><code>1</code> representing a fresh orange, or</li>\n\t<li><code>2</code> representing a rotten orange.</li>\n</ul>\n\n<p>Every minute, any fresh orange that is <strong>4-directionally adjacent</strong> to a rotten orange becomes rotten.</p>\n\n<p>Return <em>the minimum number of minutes that must elapse until no cell has a fresh orange</em>. If <em>this is impossible, return</em> <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/02/16/oranges.png\" style=\"width: 650px; height: 137px;\" />\n<pre>\n<strong>Input:</strong> grid = [[2,1,1],[1,1,0],[0,1,1]]\n<strong>Output:</strong> 4\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[2,1,1],[0,1,1],[1,0,1]]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens 4-directionally.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[0,2]]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> Since there are already no fresh oranges at minute 0, the answer is just 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 10</code></li>\n\t<li><code>grid[i][j]</code> is <code>0</code>, <code>1</code>, or <code>2</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Rotting Oranges' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 10",
+    "grid[i][j] is 0, 1, or 2."
+  ],
+  "hints": [],
+  "method": {
+    "name": "orangesRotting",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "grid",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 994,
+      "title": "rotting-oranges",
+      "params": {
+        "grid": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().orangesRotting({grid})",
+        "rust": "Solution::oranges_rotting({grid})",
+        "python3": "Solution().orangesRotting({grid})",
+        "python2": "Solution().orangesRotting({grid})",
+        "ruby": "oranges_rotting({grid})",
+        "java": "new Solution().orangesRotting({grid})",
+        "csharp": "new Solution().OrangesRotting({grid})",
+        "kotlin": "Solution().orangesRotting({grid})",
+        "go": "orangesRotting({grid})",
+        "dart": "Solution().orangesRotting({grid})",
+        "swift": "Solution().orangesRotting({grid})",
+        "typescript": "orangesRotting({grid})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 994,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "grid": [
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "grid": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "grid": [
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "grid": [
+            [
+              2
+            ],
+            [
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "grid": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "grid": [
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "grid": [
+            [
+              2
+            ],
+            [
+              1
+            ],
+            [
+              0
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "grid": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "grid": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "grid": [
+            [
+              2,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "grid": [
+            [
+              2
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "grid": [
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              2
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "grid": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "grid": [
+            [
+              2
+            ],
+            [
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "grid": [
+            [
+              2,
+              0,
+              0
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "grid": [
+            [
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "grid": [
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              1
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "grid": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "grid": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "grid": [
+            [
+              2
+            ]
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              2,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "grid": [
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "grid": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "grid": [
+            [
+              2,
+              0,
+              2
+            ],
+            [
+              2,
+              2,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "grid": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "grid": [
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "grid": [
+            [
+              2
+            ],
+            [
+              0
+            ]
+          ]
+        },
+        "out": 0
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "grid = [[0], [0], [1], [2]]",
+      "output": "1"
+    },
+    {
+      "input": "grid = [[1, 0, 0], [1, 2, 2]]",
+      "output": "2"
+    },
+    {
+      "input": "grid = [[0, 1, 0, 1], [1, 2, 0, 0], [0, 1, 0, 0]]",
+      "output": "-1"
+    },
+    {
+      "input": "grid = [[1, 1]]",
+      "output": "-1"
+    },
+    {
+      "input": "grid = [[2, 0]]",
+      "output": "0"
+    },
+    {
+      "input": "grid = [[2], [0]]",
+      "output": "0"
+    },
+    {
+      "input": "grid = [[1, 0], [2, 1], [1, 1]]",
+      "output": "2"
+    },
+    {
+      "input": "grid = [[0, 2, 1]]",
+      "output": "1"
+    }
+  ]
+}

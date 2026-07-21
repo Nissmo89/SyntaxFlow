@@ -1,0 +1,641 @@
+{
+  "id": "3sum_with_multiplicity",
+  "title": "3Sum With Multiplicity",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Sorting",
+    "Counting"
+  ],
+  "description": "<p>Given an integer array <code>arr</code>, and an integer <code>target</code>, return the number of tuples <code>i, j, k</code> such that <code>i &lt; j &lt; k</code> and <code>arr[i] + arr[j] + arr[k] == target</code>.</p>\n\n<p>As the answer can be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [1,1,2,2,3,3,4,4,5,5], target = 8\n<strong>Output:</strong> 20\n<strong>Explanation: </strong>\nEnumerating by the values (arr[i], arr[j], arr[k]):\n(1, 2, 5) occurs 8 times;\n(1, 3, 4) occurs 8 times;\n(2, 2, 4) occurs 2 times;\n(2, 3, 3) occurs 2 times.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [1,1,2,2,2,2], target = 5\n<strong>Output:</strong> 12\n<strong>Explanation: </strong>\narr[i] = 1, arr[j] = arr[k] = 2 occurs 12 times:\nWe choose one 1 from [1,1] in 2 ways,\nand two 2s from [2,2,2,2] in 6 ways.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [2,1,3], target = 6\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> (1, 2, 3) occured one time in the array so we return 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= arr.length &lt;= 3000</code></li>\n\t<li><code>0 &lt;= arr[i] &lt;= 100</code></li>\n\t<li><code>0 &lt;= target &lt;= 300</code></li>\n</ul>\n",
+  "task": "Solve the '3Sum With Multiplicity' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "3 <= arr.length <= 3000",
+    "0 <= arr[i] <= 100",
+    "0 <= target <= 300"
+  ],
+  "hints": [],
+  "method": {
+    "name": "threeSumMulti",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "arr",
+        "type": "array"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 923,
+      "title": "3sum-with-multiplicity",
+      "params": {
+        "arr": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().threeSumMulti({arr}, {target})",
+        "rust": "Solution::three_sum_multi({arr}, {target})",
+        "python3": "Solution().threeSumMulti({arr}, {target})",
+        "python2": "Solution().threeSumMulti({arr}, {target})",
+        "ruby": "three_sum_multi({arr}, {target})",
+        "java": "new Solution().threeSumMulti({arr}, {target})",
+        "csharp": "new Solution().ThreeSumMulti({arr}, {target})",
+        "kotlin": "Solution().threeSumMulti({arr}, {target})",
+        "go": "threeSumMulti({arr}, {target})",
+        "dart": "Solution().threeSumMulti({arr}, {target})",
+        "swift": "Solution().threeSumMulti({arr}, {target})",
+        "typescript": "threeSumMulti({arr}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().threeSumMulti(arr, target, {result})",
+        "checker": "class Checker:\n    def threeSumMulti(self, arr, target, result):\n        mod = 10 ** 9 + 7\n        n = len(arr)\n        count = 0\n        for i in range(n):\n            for j in range(i + 1, n):\n                for k in range(j + 1, n):\n                    if arr[i] + arr[j] + arr[k] == target:\n                        count += 1\n        return result == count % mod\n"
+      }
+    },
+    "seed": 923,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ],
+          "target": 8
+        },
+        "out": 20
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          "target": 5
+        },
+        "out": 12
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "arr": [
+            2,
+            1,
+            3
+          ],
+          "target": 6
+        },
+        "out": 1
+      },
+      {
+        "name": "all_same_small",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "all_same_four",
+        "in": {
+          "arr": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "no_solution",
+        "in": {
+          "arr": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": 10
+        },
+        "out": 0
+      },
+      {
+        "name": "two_of_kind",
+        "in": {
+          "arr": [
+            2,
+            2,
+            2,
+            3,
+            3
+          ],
+          "target": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_pairs",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            1,
+            2,
+            2
+          ],
+          "target": 3
+        },
+        "out": 8
+      },
+      {
+        "name": "triple_zero_one",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "target": 2
+        },
+        "out": 9
+      },
+      {
+        "name": "target_zero",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "target": 0
+        },
+        "out": 4
+      },
+      {
+        "name": "target_max_single",
+        "in": {
+          "arr": [
+            100,
+            100,
+            100
+          ],
+          "target": 300
+        },
+        "out": 1
+      },
+      {
+        "name": "many_duplicates",
+        "in": {
+          "arr": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "target": 6
+        },
+        "out": 15
+      },
+      {
+        "name": "offset_mix",
+        "in": {
+          "arr": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "target": 18
+        },
+        "out": 3
+      },
+      {
+        "name": "double_count_case",
+        "in": {
+          "arr": [
+            2,
+            2,
+            2,
+            2,
+            4,
+            4
+          ],
+          "target": 8
+        },
+        "out": 12
+      },
+      {
+        "name": "balanced_small",
+        "in": {
+          "arr": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ],
+          "target": 12
+        },
+        "out": 8
+      },
+      {
+        "name": "all_zero_four",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "out": 4
+      },
+      {
+        "name": "all_one_five",
+        "in": {
+          "arr": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 3
+        },
+        "out": 10
+      },
+      {
+        "name": "all_twos_six",
+        "in": {
+          "arr": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "target": 6
+        },
+        "out": 20
+      },
+      {
+        "name": "mixed_simple_a",
+        "in": {
+          "arr": [
+            0,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "target": 4
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_simple_b",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          "target": 3
+        },
+        "out": 10
+      },
+      {
+        "name": "consecutive_range",
+        "in": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "target": 10
+        },
+        "out": 3
+      },
+      {
+        "name": "larger_values",
+        "in": {
+          "arr": [
+            4,
+            4,
+            4,
+            5,
+            5,
+            6
+          ],
+          "target": 14
+        },
+        "out": 6
+      },
+      {
+        "name": "two_triplets",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": 3
+        },
+        "out": 6
+      },
+      {
+        "name": "max_value_triplet",
+        "in": {
+          "arr": [
+            100,
+            100,
+            100
+          ],
+          "target": 300
+        },
+        "out": 1
+      },
+      {
+        "name": "target_too_large",
+        "in": {
+          "arr": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target": 50
+        },
+        "out": 0
+      },
+      {
+        "name": "no_zero_solution",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          "target": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "triple_middle",
+        "in": {
+          "arr": [
+            2,
+            2,
+            2,
+            3,
+            3,
+            3
+          ],
+          "target": 8
+        },
+        "out": 9
+      },
+      {
+        "name": "symmetric_pairs",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            2,
+            4,
+            4
+          ],
+          "target": 7
+        },
+        "out": 8
+      },
+      {
+        "name": "all_equal_eight",
+        "in": {
+          "arr": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "target": 9
+        },
+        "out": 56
+      },
+      {
+        "name": "one_each",
+        "in": {
+          "arr": [
+            2,
+            3,
+            4
+          ],
+          "target": 9
+        },
+        "out": 1
+      },
+      {
+        "name": "duplicate_edge",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "target": 8
+        },
+        "out": 4
+      },
+      {
+        "name": "zero_heavy",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2
+          ],
+          "target": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "distinct_unreachable",
+        "in": {
+          "arr": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "target": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "large_oracle_a",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 500,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          },
+          "target": {
+            "gen": "int",
+            "min": 0,
+            "max": 300
+          }
+        }
+      },
+      {
+        "name": "large_oracle_b",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 499,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          },
+          "target": {
+            "gen": "int",
+            "min": 0,
+            "max": 300
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]\ntarget = 8",
+      "output": "20"
+    },
+    {
+      "input": "arr = [1, 1, 2, 2, 2, 2]\ntarget = 5",
+      "output": "12"
+    },
+    {
+      "input": "arr = [2, 1, 3]\ntarget = 6",
+      "output": "1"
+    },
+    {
+      "input": "arr = [0, 0, 0]\ntarget = 0",
+      "output": "1"
+    },
+    {
+      "input": "arr = [1, 1, 1, 1]\ntarget = 3",
+      "output": "4"
+    },
+    {
+      "input": "arr = [0, 1, 2, 3]\ntarget = 10",
+      "output": "0"
+    },
+    {
+      "input": "arr = [2, 2, 2, 3, 3]\ntarget = 7",
+      "output": "6"
+    },
+    {
+      "input": "arr = [0, 0, 1, 1, 2, 2]\ntarget = 3",
+      "output": "8"
+    }
+  ]
+}

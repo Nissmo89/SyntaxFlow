@@ -1,0 +1,654 @@
+{
+  "id": "number_of_matching_subsequences",
+  "title": "Number of Matching Subsequences",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Dynamic Programming",
+    "Trie",
+    "Sorting"
+  ],
+  "description": "<p>Given a string <code>s</code> and an array of strings <code>words</code>, return <em>the number of</em> <code>words[i]</code> <em>that is a subsequence of</em> <code>s</code>.</p>\n\n<p>A <strong>subsequence</strong> of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.</p>\n\n<ul>\n\t<li>For example, <code>&quot;ace&quot;</code> is a subsequence of <code>&quot;abcde&quot;</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcde&quot;, words = [&quot;a&quot;,&quot;bb&quot;,&quot;acd&quot;,&quot;ace&quot;]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> There are three strings in words that are a subsequence of s: &quot;a&quot;, &quot;acd&quot;, &quot;ace&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;dsahjpjauf&quot;, words = [&quot;ahjpjau&quot;,&quot;ja&quot;,&quot;ahbwzgqnuk&quot;,&quot;tnmlanowax&quot;]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= words.length &lt;= 5000</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 50</code></li>\n\t<li><code>s</code> and <code>words[i]</code> consist of only lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Number of Matching Subsequences' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 5 * 104",
+    "1 <= words.length <= 5000",
+    "1 <= words[i].length <= 50",
+    "s and words[i] consist of only lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numMatchingSubseq",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "words",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 792,
+      "title": "number-of-matching-subsequences",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numMatchingSubseq({s}, {words})",
+        "rust": "Solution::num_matching_subseq({s}, {words})",
+        "python3": "Solution().numMatchingSubseq({s}, {words})",
+        "python2": "Solution().numMatchingSubseq({s}, {words})",
+        "ruby": "num_matching_subseq({s}, {words})",
+        "java": "new Solution().numMatchingSubseq({s}, {words})",
+        "csharp": "new Solution().NumMatchingSubseq({s}, {words})",
+        "kotlin": "Solution().numMatchingSubseq({s}, {words})",
+        "go": "numMatchingSubseq({s}, {words})",
+        "dart": "Solution().numMatchingSubseq({s}, {words})",
+        "swift": "Solution().numMatchingSubseq({s}, {words})",
+        "typescript": "numMatchingSubseq({s}, {words})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numMatchingSubseq(s, words, {result})",
+        "checker": "class Checker(object):\n    def numMatchingSubseq(self, s, words, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 792,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "abcde",
+          "words": [
+            "a",
+            "bb",
+            "acd",
+            "ace"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "dsahjpjauf",
+          "words": [
+            "ahjpjau",
+            "ja",
+            "ahbwzgqnuk",
+            "tnmlanowax"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "single-char-match",
+        "in": {
+          "s": "a",
+          "words": [
+            "a"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-char-no-match",
+        "in": {
+          "s": "a",
+          "words": [
+            "b"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "repeated-single-letter",
+        "in": {
+          "s": "aaaaa",
+          "words": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "aaaaa",
+            "aaaaaa"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "all-distinct-basic",
+        "in": {
+          "s": "zyxwv",
+          "words": [
+            "z",
+            "yx",
+            "zw",
+            "zyx",
+            "vw"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "empty-matches",
+        "in": {
+          "s": "abc",
+          "words": [
+            "d",
+            "ee",
+            "fff",
+            "gggg"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "duplicates-count-separately",
+        "in": {
+          "s": "abcabc",
+          "words": [
+            "abc",
+            "abc",
+            "abc",
+            "ac",
+            "ac",
+            "ca"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "prefix-subsequence",
+        "in": {
+          "s": "abcd",
+          "words": [
+            "ab",
+            "abc",
+            "abcd",
+            "a",
+            "bcd",
+            "d"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "interleaved-matches",
+        "in": {
+          "s": "banana",
+          "words": [
+            "ban",
+            "nan",
+            "ana",
+            "baa",
+            "bna",
+            "nanaa"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "requires-ordering",
+        "in": {
+          "s": "abcde",
+          "words": [
+            "ace",
+            "cae",
+            "eca",
+            "abde",
+            "edcba"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "repeated-characters-and-gaps",
+        "in": {
+          "s": "aabccdeeff",
+          "words": [
+            "abc",
+            "aabbcc",
+            "ace",
+            "aaccee",
+            "adef",
+            "aabccdeeff"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "words-longer-than-s",
+        "in": {
+          "s": "abc",
+          "words": [
+            "abcd",
+            "aabc",
+            "abcabc",
+            "cba"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "many-same-word",
+        "in": {
+          "s": "abracadabra",
+          "words": [
+            "aba",
+            "aba",
+            "aba",
+            "abra",
+            "cad",
+            "ra"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed-lengths",
+        "in": {
+          "s": "xyzxyz",
+          "words": [
+            "x",
+            "yy",
+            "z",
+            "xy",
+            "yz",
+            "zx",
+            "xyz",
+            "xyy",
+            "xxz"
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "all-letters-once",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "words": [
+            "abc",
+            "xyz",
+            "aceg",
+            "zyx",
+            "mnopq",
+            "aaaaa"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "sparse-subsequence",
+        "in": {
+          "s": "axbyczdwevfugthsirjqkplomn",
+          "words": [
+            "abcdef",
+            "aeiou",
+            "az",
+            "xwv",
+            "ajk",
+            "an"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "repeated-blocks",
+        "in": {
+          "s": "abcabcabcabc",
+          "words": [
+            "abcabc",
+            "acac",
+            "bcabca",
+            "ccc",
+            "abccba"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "high-duplication",
+        "in": {
+          "s": "aabbaaabbb",
+          "words": [
+            "ab",
+            "aab",
+            "abb",
+            "aaabbb",
+            "bbb",
+            "aaaab"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "edge-prefix-suffix",
+        "in": {
+          "s": "qwerty",
+          "words": [
+            "q",
+            "ry",
+            "qy",
+            "wy",
+            "qwe",
+            "ty",
+            "qwerty"
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "impossible-reverse",
+        "in": {
+          "s": "abcdef",
+          "words": [
+            "fed",
+            "edc",
+            "cba",
+            "bdf"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-word-at-limit",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "words": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "b"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "near-max-s-all-a",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "words": [
+            "a",
+            "aa",
+            "aaa",
+            "aaaa",
+            "aaaaa",
+            "aaaaaa",
+            "aaaaaaa",
+            "aaaaaaaa",
+            "aaaaaaaaa",
+            "aaaaaaaaaa"
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "near-max-s-mixed-run",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx",
+          "words": [
+            "abcdefghijklmnopqrstuvwxyz",
+            "zyx",
+            "acegikmoqsuwy",
+            "aaaaaaaaaa",
+            "mnopqrstuvwxyz",
+            "uvwxyzabcdef"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "many-short-positives",
+        "in": {
+          "s": "abcabcabc",
+          "words": [
+            "a",
+            "b",
+            "c",
+            "ab",
+            "bc",
+            "ca",
+            "abc",
+            "acb",
+            "bac"
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "many-short-negatives",
+        "in": {
+          "s": "bbbbbbbbb",
+          "words": [
+            "a",
+            "ab",
+            "ba",
+            "bb",
+            "bbb",
+            "c",
+            "bc"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "alternating-pattern",
+        "in": {
+          "s": "ababababab",
+          "words": [
+            "ababab",
+            "baba",
+            "aa",
+            "bb",
+            "abababa",
+            "bbb"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "random-like-1",
+        "in": {
+          "s": "mnbvcxzlkjhgfdsapoiuytrewq",
+          "words": [
+            "mnv",
+            "mnb",
+            "zlk",
+            "asd",
+            "poi",
+            "qwe"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "random-like-2",
+        "in": {
+          "s": "thequickbrownfoxjumpsoveralazydog",
+          "words": [
+            "quick",
+            "brown",
+            "fox",
+            "jumps",
+            "over",
+            "lazy",
+            "dog",
+            "qbfjod"
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "random-like-3",
+        "in": {
+          "s": "hellotheregeneralkenobi",
+          "words": [
+            "hello",
+            "there",
+            "general",
+            "kenobi",
+            "her",
+            "leg",
+            "obi"
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "disjoint-characters",
+        "in": {
+          "s": "abcabcabc",
+          "words": [
+            "d",
+            "e",
+            "f",
+            "dg",
+            "xyz"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "repeated-endings",
+        "in": {
+          "s": "zzxyzzxyzzxy",
+          "words": [
+            "zzx",
+            "zzy",
+            "zxyz",
+            "yzz",
+            "zzxyzz"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "nested-repetitions",
+        "in": {
+          "s": "cabcabca",
+          "words": [
+            "ca",
+            "cab",
+            "caba",
+            "cabca",
+            "cabcab",
+            "cabcaba"
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed-repeats-and-misses",
+        "in": {
+          "s": "abacabadabacaba",
+          "words": [
+            "aba",
+            "abac",
+            "abad",
+            "cab",
+            "ddc",
+            "aaaa"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "long-misses-among-positives",
+        "in": {
+          "s": "pqrstuvwxyz",
+          "words": [
+            "pqr",
+            "pstu",
+            "tvw",
+            "wxyz",
+            "pqq",
+            "uvwxy"
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "max-words-small-s",
+        "in": {
+          "s": "abcde",
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "ab",
+            "bc",
+            "cd",
+            "de",
+            "abcde",
+            "edcba"
+          ]
+        },
+        "out": 10
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abcde\"\nwords = [\"a\", \"bb\", \"acd\", \"ace\"]",
+      "output": "3"
+    },
+    {
+      "input": "s = \"dsahjpjauf\"\nwords = [\"ahjpjau\", \"ja\", \"ahbwzgqnuk\", \"tnmlanowax\"]",
+      "output": "2"
+    },
+    {
+      "input": "s = \"a\"\nwords = [\"a\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a\"\nwords = [\"b\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"aaaaa\"\nwords = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"zyxwv\"\nwords = [\"z\", \"yx\", \"zw\", \"zyx\", \"vw\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"abc\"\nwords = [\"d\", \"ee\", \"fff\", \"gggg\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"abcabc\"\nwords = [\"abc\", \"abc\", \"abc\", \"ac\", \"ac\", \"ca\"]",
+      "output": "6"
+    }
+  ]
+}

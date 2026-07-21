@@ -1,0 +1,1079 @@
+{
+  "id": "escape_a_large_maze",
+  "title": "Escape a Large Maze",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "description": "<p>There is a 1 million by 1 million grid on an XY-plane, and the coordinates of each grid square are <code>(x, y)</code>.</p>\n\n<p>We start at the <code>source = [s<sub>x</sub>, s<sub>y</sub>]</code> square and want to reach the <code>target = [t<sub>x</sub>, t<sub>y</sub>]</code> square. There is also an array of <code>blocked</code> squares, where each <code>blocked[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> represents a blocked square with coordinates <code>(x<sub>i</sub>, y<sub>i</sub>)</code>.</p>\n\n<p>Each move, we can walk one square north, east, south, or west if the square is <strong>not</strong> in the array of <code>blocked</code> squares. We are also not allowed to walk outside of the grid.</p>\n\n<p>Return <code>true</code><em> if and only if it is possible to reach the </em><code>target</code><em> square from the </em><code>source</code><em> square through a sequence of valid moves</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The target square is inaccessible starting from the source square because we cannot move.\nWe cannot move north or east because those squares are blocked.\nWe cannot move south or west because we cannot go outside of the grid.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> blocked = [], source = [0,0], target = [999999,999999]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Because there are no blocked cells, it is possible to reach the target square.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= blocked.length &lt;= 200</code></li>\n\t<li><code>blocked[i].length == 2</code></li>\n\t<li><code>0 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt; 10<sup>6</sup></code></li>\n\t<li><code>source.length == target.length == 2</code></li>\n\t<li><code>0 &lt;= s<sub>x</sub>, s<sub>y</sub>, t<sub>x</sub>, t<sub>y</sub> &lt; 10<sup>6</sup></code></li>\n\t<li><code>source != target</code></li>\n\t<li>It is guaranteed that <code>source</code> and <code>target</code> are not blocked.</li>\n</ul>\n",
+  "task": "Solve the 'Escape a Large Maze' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= blocked.length <= 200",
+    "blocked[i].length == 2",
+    "0 <= xi, yi < 106",
+    "source.length == target.length == 2",
+    "0 <= sx, sy, tx, ty < 106",
+    "source != target",
+    "It is guaranteed that source and target are not blocked."
+  ],
+  "hints": [
+    "If we become stuck, there's either a loop around the source or around the target.",
+    "If there is a loop around say, the source, what is the maximum number of squares it can have?"
+  ],
+  "method": {
+    "name": "isEscapePossible",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "blocked",
+        "type": "array"
+      },
+      {
+        "name": "source",
+        "type": "array"
+      },
+      {
+        "name": "target",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1036,
+      "title": "escape-a-large-maze",
+      "params": {
+        "blocked": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "rust": "Solution::is_escape_possible({blocked}, {source}, {target})",
+        "python3": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "python2": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "ruby": "is_escape_possible({blocked}, {source}, {target})",
+        "java": "new Solution().isEscapePossible({blocked}, {source}, {target})",
+        "csharp": "new Solution().IsEscapePossible({blocked}, {source}, {target})",
+        "kotlin": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "go": "isEscapePossible({blocked}, {source}, {target})",
+        "dart": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "swift": "Solution().isEscapePossible({blocked}, {source}, {target})",
+        "typescript": "isEscapePossible({blocked}, {source}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isEscapePossible(blocked, source, target, {result})",
+        "checker": "from collections import deque\n\nclass Checker:\n    def isEscapePossible(self, blocked, source, target, result):\n        blocked_set = {tuple(p) for p in blocked}\n        limit = len(blocked) * len(blocked) // 2\n\n        def bfs(start, end):\n            start = tuple(start)\n            end = tuple(end)\n            q = deque([start])\n            seen = {start}\n            explored = 0\n            while q:\n                x, y = q.popleft()\n                if (x, y) == end:\n                    return True\n                if explored > limit:\n                    return True\n                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                    nx = x + dx\n                    ny = y + dy\n                    if 0 <= nx < 10 ** 6 and 0 <= ny < 10 ** 6:\n                        pos = (nx, ny)\n                        if pos not in seen and pos not in blocked_set:\n                            seen.add(pos)\n                            q.append(pos)\n                explored += 1\n            return False\n\n        expected = bfs(source, target) and bfs(target, source)\n        return expected == result\n"
+      }
+    },
+    "seed": 1036,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "blocked": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            0,
+            2
+          ]
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "blocked": [],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            999999,
+            999999
+          ]
+        }
+      },
+      {
+        "name": "no_blocks_near_origin",
+        "in": {
+          "blocked": [],
+          "source": [
+            12,
+            34
+          ],
+          "target": [
+            56,
+            78
+          ]
+        }
+      },
+      {
+        "name": "one_wall_two_cells",
+        "in": {
+          "blocked": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "name": "three_block_corner",
+        "in": {
+          "blocked": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "open_path_small",
+        "in": {
+          "blocked": [
+            [
+              1,
+              1
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "target_adjacent",
+        "in": {
+          "blocked": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "source_corner_far",
+        "in": {
+          "blocked": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "straight_line_clear",
+        "in": {
+          "blocked": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            4,
+            4
+          ]
+        }
+      },
+      {
+        "name": "sparse_blocks",
+        "in": {
+          "blocked": [
+            [
+              10,
+              10
+            ],
+            [
+              20,
+              20
+            ],
+            [
+              30,
+              30
+            ]
+          ],
+          "source": [
+            5,
+            5
+          ],
+          "target": [
+            40,
+            40
+          ]
+        }
+      },
+      {
+        "name": "sparse_near_source",
+        "in": {
+          "blocked": [
+            [
+              6,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "source": [
+            5,
+            5
+          ],
+          "target": [
+            7,
+            7
+          ]
+        }
+      },
+      {
+        "name": "sparse_near_target",
+        "in": {
+          "blocked": [
+            [
+              98,
+              98
+            ],
+            [
+              98,
+              99
+            ],
+            [
+              99,
+              98
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            99,
+            99
+          ]
+        }
+      },
+      {
+        "name": "corridor_left_open",
+        "in": {
+          "blocked": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "corridor_right_open",
+        "in": {
+          "blocked": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            3,
+            0
+          ]
+        }
+      },
+      {
+        "name": "diagonal_fence",
+        "in": {
+          "blocked": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "zigzag_blocks",
+        "in": {
+          "blocked": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "source": [
+            1,
+            1
+          ],
+          "target": [
+            5,
+            3
+          ]
+        }
+      },
+      {
+        "name": "boxed_target",
+        "in": {
+          "blocked": [
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              9
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            9,
+            9
+          ]
+        }
+      },
+      {
+        "name": "boxed_source",
+        "in": {
+          "blocked": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "long_open_walk",
+        "in": {
+          "blocked": [
+            [
+              100,
+              100
+            ],
+            [
+              200,
+              200
+            ]
+          ],
+          "source": [
+            10,
+            10
+          ],
+          "target": [
+            999990,
+            999990
+          ]
+        }
+      },
+      {
+        "name": "far_apart_clear",
+        "in": {
+          "blocked": [
+            [
+              123,
+              456
+            ],
+            [
+              456,
+              123
+            ]
+          ],
+          "source": [
+            1,
+            999998
+          ],
+          "target": [
+            999998,
+            1
+          ]
+        }
+      },
+      {
+        "name": "blocked_far_away",
+        "in": {
+          "blocked": [
+            [
+              400000,
+              400000
+            ],
+            [
+              400001,
+              400000
+            ],
+            [
+              400000,
+              400001
+            ]
+          ],
+          "source": [
+            2,
+            2
+          ],
+          "target": [
+            999997,
+            999997
+          ]
+        }
+      },
+      {
+        "name": "open_edge_travel",
+        "in": {
+          "blocked": [
+            [
+              1,
+              999998
+            ],
+            [
+              2,
+              999998
+            ]
+          ],
+          "source": [
+            0,
+            999999
+          ],
+          "target": [
+            999999,
+            999999
+          ]
+        }
+      },
+      {
+        "name": "open_top_boundary",
+        "in": {
+          "blocked": [
+            [
+              500000,
+              500000
+            ],
+            [
+              500001,
+              500000
+            ]
+          ],
+          "source": [
+            0,
+            999999
+          ],
+          "target": [
+            999999,
+            999998
+          ]
+        }
+      },
+      {
+        "name": "open_bottom_boundary",
+        "in": {
+          "blocked": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            999999,
+            0
+          ]
+        }
+      },
+      {
+        "name": "open_left_boundary",
+        "in": {
+          "blocked": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            0,
+            999999
+          ]
+        }
+      },
+      {
+        "name": "open_right_boundary",
+        "in": {
+          "blocked": [
+            [
+              999998,
+              2
+            ],
+            [
+              999998,
+              3
+            ]
+          ],
+          "source": [
+            999999,
+            0
+          ],
+          "target": [
+            999999,
+            999999
+          ]
+        }
+      },
+      {
+        "name": "medium_wall",
+        "in": {
+          "blocked": [
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              11
+            ],
+            [
+              12,
+              11
+            ],
+            [
+              13,
+              11
+            ],
+            [
+              14,
+              11
+            ],
+            [
+              15,
+              11
+            ]
+          ],
+          "source": [
+            10,
+            10
+          ],
+          "target": [
+            16,
+            12
+          ]
+        }
+      },
+      {
+        "name": "medium_gap",
+        "in": {
+          "blocked": [
+            [
+              20,
+              20
+            ],
+            [
+              21,
+              20
+            ],
+            [
+              22,
+              20
+            ],
+            [
+              23,
+              20
+            ],
+            [
+              24,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              26,
+              20
+            ]
+          ],
+          "source": [
+            19,
+            19
+          ],
+          "target": [
+            27,
+            21
+          ]
+        }
+      },
+      {
+        "name": "snake",
+        "in": {
+          "blocked": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            6,
+            4
+          ]
+        }
+      },
+      {
+        "name": "near_blocked_target",
+        "in": {
+          "blocked": [
+            [
+              50,
+              49
+            ],
+            [
+              49,
+              50
+            ],
+            [
+              51,
+              50
+            ],
+            [
+              50,
+              51
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            50,
+            50
+          ]
+        }
+      },
+      {
+        "name": "near_blocked_source",
+        "in": {
+          "blocked": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "sparse_large_target",
+        "in": {
+          "blocked": [
+            [
+              12345,
+              54321
+            ],
+            [
+              54321,
+              12345
+            ],
+            [
+              22222,
+              33333
+            ]
+          ],
+          "source": [
+            100,
+            100
+          ],
+          "target": [
+            999900,
+            999901
+          ]
+        }
+      },
+      {
+        "name": "sparse_large_source",
+        "in": {
+          "blocked": [
+            [
+              999900,
+              999900
+            ],
+            [
+              999901,
+              999900
+            ],
+            [
+              999900,
+              999901
+            ]
+          ],
+          "source": [
+            100,
+            100
+          ],
+          "target": [
+            999899,
+            999899
+          ]
+        }
+      },
+      {
+        "name": "isolated_pair",
+        "in": {
+          "blocked": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "source": [
+            1,
+            2
+          ],
+          "target": [
+            4,
+            2
+          ]
+        }
+      },
+      {
+        "name": "open_all_the_way",
+        "in": {
+          "blocked": [
+            [
+              100,
+              0
+            ],
+            [
+              100,
+              1
+            ],
+            [
+              100,
+              2
+            ]
+          ],
+          "source": [
+            0,
+            0
+          ],
+          "target": [
+            999999,
+            999999
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "blocked = [[0, 1], [1, 0]]\nsource = [0, 0]\ntarget = [0, 2]",
+      "output": ""
+    },
+    {
+      "input": "blocked = []\nsource = [0, 0]\ntarget = [999999, 999999]",
+      "output": ""
+    },
+    {
+      "input": "blocked = []\nsource = [12, 34]\ntarget = [56, 78]",
+      "output": ""
+    },
+    {
+      "input": "blocked = [[1, 0], [1, 1]]\nsource = [0, 0]\ntarget = [2, 0]",
+      "output": ""
+    },
+    {
+      "input": "blocked = [[0, 1], [1, 0], [1, 1]]\nsource = [0, 0]\ntarget = [2, 2]",
+      "output": ""
+    },
+    {
+      "input": "blocked = [[1, 1]]\nsource = [0, 0]\ntarget = [2, 2]",
+      "output": ""
+    },
+    {
+      "input": "blocked = [[2, 1], [1, 2]]\nsource = [0, 0]\ntarget = [2, 2]",
+      "output": ""
+    },
+    {
+      "input": "blocked = [[0, 1], [1, 1], [1, 0]]\nsource = [0, 0]\ntarget = [3, 3]",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,1688 @@
+{
+  "id": "pacific_atlantic_water_flow",
+  "title": "Pacific Atlantic Water Flow",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "description": "<p>There is an <code>m x n</code> rectangular island that borders both the <strong>Pacific Ocean</strong> and <strong>Atlantic Ocean</strong>. The <strong>Pacific Ocean</strong> touches the island&#39;s left and top edges, and the <strong>Atlantic Ocean</strong> touches the island&#39;s right and bottom edges.</p>\n\n<p>The island is partitioned into a grid of square cells. You are given an <code>m x n</code> integer matrix <code>heights</code> where <code>heights[r][c]</code> represents the <strong>height above sea level</strong> of the cell at coordinate <code>(r, c)</code>.</p>\n\n<p>The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell&#39;s height is <strong>less than or equal to</strong> the current cell&#39;s height. Water can flow from any cell adjacent to an ocean into the ocean.</p>\n\n<p>Return <em>a <strong>2D list</strong> of grid coordinates </em><code>result</code><em> where </em><code>result[i] = [r<sub>i</sub>, c<sub>i</sub>]</code><em> denotes that rain water can flow from cell </em><code>(r<sub>i</sub>, c<sub>i</sub>)</code><em> to <strong>both</strong> the Pacific and Atlantic oceans</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/08/waterflow-grid.jpg\" style=\"width: 400px; height: 400px;\" />\n<pre>\n<strong>Input:</strong> heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\n<strong>Output:</strong> [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]\n<strong>Explanation:</strong> The following cells can flow to the Pacific and Atlantic oceans, as shown below:\n[0,4]: [0,4] -&gt; Pacific Ocean \n&nbsp;      [0,4] -&gt; Atlantic Ocean\n[1,3]: [1,3] -&gt; [0,3] -&gt; Pacific Ocean \n&nbsp;      [1,3] -&gt; [1,4] -&gt; Atlantic Ocean\n[1,4]: [1,4] -&gt; [1,3] -&gt; [0,3] -&gt; Pacific Ocean \n&nbsp;      [1,4] -&gt; Atlantic Ocean\n[2,2]: [2,2] -&gt; [1,2] -&gt; [0,2] -&gt; Pacific Ocean \n&nbsp;      [2,2] -&gt; [2,3] -&gt; [2,4] -&gt; Atlantic Ocean\n[3,0]: [3,0] -&gt; Pacific Ocean \n&nbsp;      [3,0] -&gt; [4,0] -&gt; Atlantic Ocean\n[3,1]: [3,1] -&gt; [3,0] -&gt; Pacific Ocean \n&nbsp;      [3,1] -&gt; [4,1] -&gt; Atlantic Ocean\n[4,0]: [4,0] -&gt; Pacific Ocean \n       [4,0] -&gt; Atlantic Ocean\nNote that there are other possible paths for these cells to flow to the Pacific and Atlantic oceans.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> heights = [[1]]\n<strong>Output:</strong> [[0,0]]\n<strong>Explanation:</strong> The water can flow from the only cell to the Pacific and Atlantic oceans.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == heights.length</code></li>\n\t<li><code>n == heights[r].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 200</code></li>\n\t<li><code>0 &lt;= heights[r][c] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Pacific Atlantic Water Flow' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == heights.length",
+    "n == heights[r].length",
+    "1 <= m, n <= 200",
+    "0 <= heights[r][c] <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "pacificAtlantic",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "heights",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 417,
+      "title": "pacific-atlantic-water-flow",
+      "params": {
+        "heights": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().pacificAtlantic({heights})",
+        "rust": "Solution::pacific_atlantic({heights})",
+        "python3": "Solution().pacificAtlantic({heights})",
+        "python2": "Solution().pacificAtlantic({heights})",
+        "ruby": "pacific_atlantic({heights})",
+        "java": "new Solution().pacificAtlantic({heights})",
+        "csharp": "new Solution().PacificAtlantic({heights})",
+        "kotlin": "Solution().pacificAtlantic({heights})",
+        "go": "pacificAtlantic({heights})",
+        "dart": "Solution().pacificAtlantic({heights})",
+        "swift": "Solution().pacificAtlantic({heights})",
+        "typescript": "pacificAtlantic({heights})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().pacificAtlantic(heights, {result})",
+        "checker": "class Checker:\n    def pacificAtlantic(self, heights, result):\n        if not isinstance(result, list):\n            return False\n        if not heights or not heights[0]:\n            return result == []\n\n        m = len(heights)\n        n = len(heights[0])\n        for row in heights:\n            if not isinstance(row, list) or len(row) != n:\n                return False\n\n        seen = set()\n        for cell in result:\n            if not isinstance(cell, list) or len(cell) != 2:\n                return False\n            r, c = cell\n            if not isinstance(r, int) or not isinstance(c, int):\n                return False\n            if r < 0 or r >= m or c < 0 or c >= n:\n                return False\n            seen.add((r, c))\n        if len(seen) != len(result):\n            return False\n\n        def reachable(starts):\n            stack = list(starts)\n            visited = set(starts)\n            while stack:\n                r, c = stack.pop()\n                h = heights[r][c]\n                if r > 0 and (r - 1, c) not in visited and heights[r - 1][c] >= h:\n                    visited.add((r - 1, c))\n                    stack.append((r - 1, c))\n                if r + 1 < m and (r + 1, c) not in visited and heights[r + 1][c] >= h:\n                    visited.add((r + 1, c))\n                    stack.append((r + 1, c))\n                if c > 0 and (r, c - 1) not in visited and heights[r][c - 1] >= h:\n                    visited.add((r, c - 1))\n                    stack.append((r, c - 1))\n                if c + 1 < n and (r, c + 1) not in visited and heights[r][c + 1] >= h:\n                    visited.add((r, c + 1))\n                    stack.append((r, c + 1))\n            return visited\n\n        pacific = reachable([(0, c) for c in range(n)] + [(r, 0) for r in range(m)])\n        atlantic = reachable([(m - 1, c) for c in range(n)] + [(r, n - 1) for r in range(m)])\n        expected = pacific & atlantic\n        return seen == expected\n"
+      }
+    },
+    "seed": 417,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                2,
+                3,
+                5
+              ],
+              [
+                3,
+                2,
+                3,
+                4,
+                4
+              ],
+              [
+                2,
+                4,
+                5,
+                3,
+                1
+              ],
+              [
+                6,
+                7,
+                1,
+                4,
+                5
+              ],
+              [
+                5,
+                1,
+                1,
+                2,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "single_row_increasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "single_row_decreasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                4,
+                3,
+                2,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "single_column_increasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "single_column_decreasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                4
+              ],
+              [
+                3
+              ],
+              [
+                2
+              ],
+              [
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_by_two_flat",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                7
+              ],
+              [
+                7,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_by_two_peak",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                4,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_by_three_plateau",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_by_three_increasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                4,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_by_three_decreasing",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                8,
+                7
+              ],
+              [
+                8,
+                7,
+                6
+              ],
+              [
+                7,
+                6,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_by_three_center_basin",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                5,
+                1,
+                5
+              ],
+              [
+                5,
+                5,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_by_four_mixed",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                2,
+                3
+              ],
+              [
+                3,
+                2,
+                3,
+                4
+              ],
+              [
+                2,
+                4,
+                5,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "four_by_four_valley",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                1,
+                2,
+                10
+              ],
+              [
+                10,
+                2,
+                1,
+                10
+              ],
+              [
+                10,
+                10,
+                10,
+                10
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "four_by_five_sample_variant",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                16,
+                17,
+                18,
+                19,
+                6
+              ],
+              [
+                15,
+                24,
+                25,
+                20,
+                7
+              ],
+              [
+                14,
+                23,
+                22,
+                21,
+                8
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "four_by_five_random_plateaus",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                3,
+                4,
+                5,
+                5
+              ],
+              [
+                3,
+                2,
+                2,
+                4,
+                6
+              ],
+              [
+                1,
+                2,
+                2,
+                4,
+                6
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "five_by_five_ridge",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              [
+                3,
+                4,
+                9,
+                6,
+                7
+              ],
+              [
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              [
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "five_by_five_lake",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                1,
+                1,
+                1,
+                9
+              ],
+              [
+                9,
+                1,
+                5,
+                1,
+                9
+              ],
+              [
+                9,
+                1,
+                1,
+                1,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9,
+                9
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "five_by_six_wave",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                3,
+                2,
+                3,
+                2,
+                3
+              ],
+              [
+                1,
+                2,
+                4,
+                4,
+                2,
+                1
+              ],
+              [
+                2,
+                3,
+                4,
+                4,
+                3,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2,
+                1,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "six_by_six_random",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5
+              ],
+              [
+                11,
+                12,
+                13,
+                14,
+                15,
+                4
+              ],
+              [
+                20,
+                19,
+                18,
+                17,
+                16,
+                3
+              ],
+              [
+                21,
+                22,
+                23,
+                24,
+                25,
+                2
+              ],
+              [
+                30,
+                29,
+                28,
+                27,
+                26,
+                1
+              ],
+              [
+                31,
+                32,
+                33,
+                34,
+                35,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "six_by_seven_border_gradient",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              [
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "seven_by_seven_cross",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                9,
+                9,
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                1,
+                2,
+                3,
+                2,
+                1,
+                9
+              ],
+              [
+                9,
+                2,
+                3,
+                4,
+                3,
+                2,
+                9
+              ],
+              [
+                9,
+                3,
+                4,
+                5,
+                4,
+                3,
+                9
+              ],
+              [
+                9,
+                2,
+                3,
+                4,
+                3,
+                2,
+                9
+              ],
+              [
+                9,
+                1,
+                2,
+                3,
+                2,
+                1,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9,
+                9,
+                9,
+                9
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "eight_by_eight_checkerboard",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10
+              ],
+              [
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0
+              ],
+              [
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10
+              ],
+              [
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0
+              ],
+              [
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10
+              ],
+              [
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0
+              ],
+              [
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10
+              ],
+              [
+                10,
+                0,
+                10,
+                0,
+                10,
+                0,
+                10,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "eight_by_nine_bowl",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8
+              ],
+              [
+                8,
+                7,
+                6,
+                5,
+                5,
+                5,
+                6,
+                7,
+                8
+              ],
+              [
+                8,
+                6,
+                5,
+                4,
+                3,
+                4,
+                5,
+                6,
+                8
+              ],
+              [
+                8,
+                5,
+                4,
+                2,
+                1,
+                2,
+                4,
+                5,
+                8
+              ],
+              [
+                8,
+                5,
+                3,
+                1,
+                0,
+                1,
+                3,
+                5,
+                8
+              ],
+              [
+                8,
+                5,
+                4,
+                2,
+                1,
+                2,
+                4,
+                5,
+                8
+              ],
+              [
+                8,
+                6,
+                5,
+                4,
+                3,
+                4,
+                5,
+                6,
+                8
+              ],
+              [
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                8
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "nine_by_nine_stairs",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              [
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+              ],
+              [
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+              ],
+              [
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16
+              ],
+              [
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "ten_by_ten_mixed",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                50,
+                49,
+                48,
+                47,
+                46,
+                45,
+                44,
+                43,
+                42,
+                41
+              ],
+              [
+                51,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                40
+              ],
+              [
+                52,
+                60,
+                10,
+                10,
+                10,
+                10,
+                10,
+                10,
+                60,
+                39
+              ],
+              [
+                53,
+                60,
+                10,
+                20,
+                20,
+                20,
+                20,
+                10,
+                60,
+                38
+              ],
+              [
+                54,
+                60,
+                10,
+                20,
+                30,
+                30,
+                20,
+                10,
+                60,
+                37
+              ],
+              [
+                55,
+                60,
+                10,
+                20,
+                30,
+                30,
+                20,
+                10,
+                60,
+                36
+              ],
+              [
+                56,
+                60,
+                10,
+                20,
+                20,
+                20,
+                20,
+                10,
+                60,
+                35
+              ],
+              [
+                57,
+                60,
+                10,
+                10,
+                10,
+                10,
+                10,
+                10,
+                60,
+                34
+              ],
+              [
+                58,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                33
+              ],
+              [
+                59,
+                58,
+                57,
+                56,
+                55,
+                54,
+                53,
+                52,
+                51,
+                32
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "three_by_five_peak",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                9,
+                9,
+                9,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "four_by_six_spine",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                6,
+                5,
+                4,
+                3,
+                2,
+                1
+              ],
+              [
+                5,
+                6,
+                5,
+                4,
+                3,
+                2
+              ],
+              [
+                4,
+                5,
+                6,
+                5,
+                4,
+                3
+              ],
+              [
+                3,
+                4,
+                5,
+                6,
+                5,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "four_by_six_reverse_spine",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "five_by_four_hill",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                3,
+                4,
+                5,
+                6
+              ],
+              [
+                4,
+                5,
+                6,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "five_by_four_reverse_hill",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                6,
+                5,
+                4
+              ],
+              [
+                6,
+                5,
+                4,
+                3
+              ],
+              [
+                5,
+                4,
+                3,
+                2
+              ],
+              [
+                4,
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                1,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "six_by_five_canyon",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                8,
+                8,
+                8,
+                8
+              ],
+              [
+                8,
+                2,
+                2,
+                2,
+                8
+              ],
+              [
+                8,
+                2,
+                9,
+                2,
+                8
+              ],
+              [
+                8,
+                2,
+                2,
+                2,
+                8
+              ],
+              [
+                8,
+                8,
+                1,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                8,
+                8,
+                8
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "six_by_five_ramp",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                3,
+                5,
+                7,
+                9
+              ],
+              [
+                2,
+                4,
+                6,
+                8,
+                10
+              ],
+              [
+                3,
+                5,
+                7,
+                9,
+                11
+              ],
+              [
+                4,
+                6,
+                8,
+                10,
+                12
+              ],
+              [
+                5,
+                7,
+                9,
+                11,
+                13
+              ],
+              [
+                6,
+                8,
+                10,
+                12,
+                14
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "seven_by_four_steps",
+        "in": {
+          "heights": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                3,
+                3
+              ],
+              [
+                2,
+                3,
+                4,
+                4
+              ],
+              [
+                3,
+                4,
+                5,
+                5
+              ],
+              [
+                4,
+                5,
+                6,
+                6
+              ],
+              [
+                5,
+                6,
+                7,
+                7
+              ],
+              [
+                6,
+                7,
+                8,
+                8
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "generated_large_flat",
+        "in": {
+          "heights": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 200
+            },
+            "of": {
+              "gen": "array",
+              "len": {
+                "gen": "int",
+                "min": 200,
+                "max": 200
+              },
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 100000
+              },
+              "elemType": "int"
+            },
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_large_varied",
+        "in": {
+          "heights": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 200
+            },
+            "of": {
+              "gen": "array",
+              "len": {
+                "gen": "int",
+                "min": 200,
+                "max": 200
+              },
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 100000
+              },
+              "elemType": "int"
+            },
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[1]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4, 5]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[5, 4, 3, 2, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[1], [2], [3], [4]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[4], [3], [2], [1]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[7, 7], [7, 7]]}",
+      "output": ""
+    },
+    {
+      "input": "heights = {\"elemType\": \"int\", \"value\": [[1, 2], [4, 3]]}",
+      "output": ""
+    }
+  ]
+}

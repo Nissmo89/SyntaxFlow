@@ -1,0 +1,411 @@
+{
+  "id": "palindromic_substrings",
+  "title": "Palindromic Substrings",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>Given a string <code>s</code>, return <em>the number of <strong>palindromic substrings</strong> in it</em>.</p>\n\n<p>A string is a <strong>palindrome</strong> when it reads the same backward as forward.</p>\n\n<p>A <strong>substring</strong> is a contiguous sequence of characters within the string.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abc&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Three palindromic strings: &quot;a&quot;, &quot;b&quot;, &quot;c&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aaa&quot;\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> Six palindromic strings: &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;aa&quot;, &quot;aa&quot;, &quot;aaa&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>s</code> consists of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Palindromic Substrings' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "How can we reuse a previously computed palindrome to compute a larger palindrome?",
+    "If \u201caba\u201d is a palindrome, is \u201cxabax\u201d a palindrome? Similarly is \u201cxabay\u201d a palindrome?",
+    "Complexity based hint:</br>\r\nIf we use brute force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation?"
+  ],
+  "method": {
+    "name": "countSubstrings",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 647,
+      "title": "palindromic-substrings",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countSubstrings({s})",
+        "rust": "Solution::count_substrings({s})",
+        "python3": "Solution().countSubstrings({s})",
+        "python2": "Solution().countSubstrings({s})",
+        "ruby": "count_substrings({s})",
+        "java": "new Solution().countSubstrings({s})",
+        "csharp": "new Solution().CountSubstrings({s})",
+        "kotlin": "Solution().countSubstrings({s})",
+        "go": "countSubstrings({s})",
+        "dart": "Solution().countSubstrings({s})",
+        "swift": "Solution().countSubstrings({s})",
+        "typescript": "countSubstrings({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().countSubstrings(s, {result})",
+        "checker": "class Checker:\n    def countSubstrings(self, s, result):\n        if not isinstance(result, int):\n            return False\n        total = 0\n        n = len(s)\n        for center in range(n):\n            left = center\n            right = center\n            while left >= 0 and right < n and s[left] == s[right]:\n                total += 1\n                left -= 1\n                right += 1\n            left = center\n            right = center + 1\n            while left >= 0 and right < n and s[left] == s[right]:\n                total += 1\n                left -= 1\n                right += 1\n        return total == result\n"
+      }
+    },
+    "seed": 647,
+    "tests": [
+      {
+        "name": "example_abc",
+        "in": {
+          "s": "abc"
+        },
+        "out": 3
+      },
+      {
+        "name": "example_aaa",
+        "in": {
+          "s": "aaa"
+        },
+        "out": 6
+      },
+      {
+        "name": "single_a",
+        "in": {
+          "s": "a"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_b",
+        "in": {
+          "s": "b"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_z",
+        "in": {
+          "s": "z"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_same",
+        "in": {
+          "s": "aa"
+        },
+        "out": 3
+      },
+      {
+        "name": "two_different",
+        "in": {
+          "s": "ab"
+        },
+        "out": 2
+      },
+      {
+        "name": "odd_small",
+        "in": {
+          "s": "aba"
+        },
+        "out": 4
+      },
+      {
+        "name": "even_small",
+        "in": {
+          "s": "abba"
+        },
+        "out": 6
+      },
+      {
+        "name": "distinct_three",
+        "in": {
+          "s": "abc"
+        },
+        "out": 3
+      },
+      {
+        "name": "triplet_same",
+        "in": {
+          "s": "aaa"
+        },
+        "out": 6
+      },
+      {
+        "name": "repeated_prefix",
+        "in": {
+          "s": "aab"
+        },
+        "out": 4
+      },
+      {
+        "name": "repeated_suffix",
+        "in": {
+          "s": "baa"
+        },
+        "out": 4
+      },
+      {
+        "name": "no_extra_palindrome",
+        "in": {
+          "s": "abca"
+        },
+        "out": 4
+      },
+      {
+        "name": "all_distinct_four",
+        "in": {
+          "s": "abcd"
+        },
+        "out": 4
+      },
+      {
+        "name": "all_same_four",
+        "in": {
+          "s": "aaaa"
+        },
+        "out": 10
+      },
+      {
+        "name": "classic_odd",
+        "in": {
+          "s": "ababa"
+        },
+        "out": 9
+      },
+      {
+        "name": "classic_even",
+        "in": {
+          "s": "abcba"
+        },
+        "out": 7
+      },
+      {
+        "name": "pair_pairs",
+        "in": {
+          "s": "aabb"
+        },
+        "out": 6
+      },
+      {
+        "name": "three_pairs",
+        "in": {
+          "s": "aabbcc"
+        },
+        "out": 9
+      },
+      {
+        "name": "racecar",
+        "in": {
+          "s": "racecar"
+        },
+        "out": 10
+      },
+      {
+        "name": "level",
+        "in": {
+          "s": "level"
+        },
+        "out": 7
+      },
+      {
+        "name": "noon",
+        "in": {
+          "s": "noon"
+        },
+        "out": 6
+      },
+      {
+        "name": "banana",
+        "in": {
+          "s": "banana"
+        },
+        "out": 10
+      },
+      {
+        "name": "civic",
+        "in": {
+          "s": "civic"
+        },
+        "out": 7
+      },
+      {
+        "name": "rotator",
+        "in": {
+          "s": "rotator"
+        },
+        "out": 10
+      },
+      {
+        "name": "madamimadam",
+        "in": {
+          "s": "madamimadam"
+        },
+        "out": 20
+      },
+      {
+        "name": "two_cycles",
+        "in": {
+          "s": "abcdefghijabcdefghij"
+        },
+        "out": 20
+      },
+      {
+        "name": "fifty_same",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": 1275
+      },
+      {
+        "name": "alternating_max",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64730
+      },
+      {
+        "name": "almost_all_a_tail_b",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64731
+      },
+      {
+        "name": "head_b_then_a",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64732
+      },
+      {
+        "name": "repeated_abc_max",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab - c"
+          }
+        },
+        "seed": 64733
+      },
+      {
+        "name": "abba_repeat_max",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64734
+      },
+      {
+        "name": "repeated_abcd_max",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab - c - d"
+          }
+        },
+        "seed": 64735
+      },
+      {
+        "name": "aabbaa_repeat",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64736
+      },
+      {
+        "name": "all_z_max",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "z"
+          }
+        },
+        "seed": 64737
+      },
+      {
+        "name": "long_left_right_peak",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ab"
+          }
+        },
+        "seed": 64738
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abc\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"aaa\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"b\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"z\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"aba\"",
+      "output": "4"
+    }
+  ]
+}

@@ -1,0 +1,525 @@
+{
+  "id": "occurrences_after_bigram",
+  "title": "Occurrences After Bigram",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>Given two strings <code>first</code> and <code>second</code>, consider occurrences in some text of the form <code>\"first second third\"</code>, where <code>second</code> comes immediately after <code>first</code>, and <code>third</code> comes immediately after <code>second</code>.</p> <p>Return <em>an array of all the words</em> <code>third</code> <em>for each occurrence of</em> <code>\"first second third\"</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> text = \"alice is a good girl she is a good student\", first = \"a\", second = \"good\"\n<strong>Output:</strong> [\"girl\",\"student\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> text = \"we will we will rock you\", first = \"we\", second = \"will\"\n<strong>Output:</strong> [\"we\",\"rock\"]\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= text.length &lt;= 1000</code></li> <li><code>text</code> consists of lowercase English letters and spaces.</li> <li>All the words in <code>text</code> are separated by <strong>a single space</strong>.</li> <li><code>1 &lt;= first.length, second.length &lt;= 10</code></li> <li><code>first</code> and <code>second</code> consist of lowercase English letters.</li> <li><code>text</code> will not have any leading or trailing spaces.</li> </ul>",
+  "hints": [
+    "Split the string into words, then look at adjacent triples of words."
+  ],
+  "method": {
+    "name": "findOcurrences",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "text",
+        "type": "string"
+      },
+      {
+        "name": "first",
+        "type": "string"
+      },
+      {
+        "name": "second",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1078,
+      "title": "occurrences-after-bigram",
+      "params": {
+        "text": {
+          "type": "string"
+        },
+        "first": {
+          "type": "string"
+        },
+        "second": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findOcurrences({text}, {first}, {second})",
+        "rust": "Solution::find_ocurrences({text}, {first}, {second})",
+        "python3": "Solution().findOcurrences({text}, {first}, {second})",
+        "python2": "Solution().findOcurrences({text}, {first}, {second})",
+        "ruby": "find_ocurrences({text}, {first}, {second})",
+        "java": "new Solution().findOcurrences({text}, {first}, {second})",
+        "csharp": "new Solution().FindOcurrences({text}, {first}, {second})",
+        "kotlin": "Solution().findOcurrences({text}, {first}, {second})",
+        "go": "findOcurrences({text}, {first}, {second})",
+        "dart": "Solution().findOcurrences({text}, {first}, {second})",
+        "swift": "Solution().findOcurrences({text}, {first}, {second})",
+        "typescript": "findOcurrences({text}, {first}, {second})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result}, {text}, {first}, {second})",
+        "checker": "class Checker:\n    def check(self, result, text=None, first=None, second=None):\n        if not isinstance(result, list):\n            return False\n        words = text.split()\n        expected = []\n        for i in range(len(words) - 2):\n            if words[i] == first and words[i + 1] == second:\n                expected.append(words[i + 2])\n        return result == expected\n"
+      }
+    },
+    "seed": 1078,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "text": "alice is a good girl she is a good student",
+          "first": "a",
+          "second": "good"
+        },
+        "out": [
+          "girl",
+          "student"
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "text": "we will we will rock you",
+          "first": "we",
+          "second": "will"
+        },
+        "out": [
+          "we",
+          "rock"
+        ]
+      },
+      {
+        "name": "no_match",
+        "in": {
+          "text": "a b c d",
+          "first": "x",
+          "second": "y"
+        },
+        "out": []
+      },
+      {
+        "name": "single_triplet",
+        "in": {
+          "text": "a b c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c"
+        ]
+      },
+      {
+        "name": "overlapping_matches",
+        "in": {
+          "text": "a a a a",
+          "first": "a",
+          "second": "a"
+        },
+        "out": [
+          "a",
+          "a"
+        ]
+      },
+      {
+        "name": "repeated_three",
+        "in": {
+          "text": "a b c a b d",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "d"
+        ]
+      },
+      {
+        "name": "first_at_start",
+        "in": {
+          "text": "alpha beta gamma",
+          "first": "alpha",
+          "second": "beta"
+        },
+        "out": [
+          "gamma"
+        ]
+      },
+      {
+        "name": "first_at_end",
+        "in": {
+          "text": "foo bar baz",
+          "first": "bar",
+          "second": "baz"
+        },
+        "out": []
+      },
+      {
+        "name": "second_repeated",
+        "in": {
+          "text": "a b a b c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "a",
+          "c"
+        ]
+      },
+      {
+        "name": "three_occurrences",
+        "in": {
+          "text": "t u v t u w t u x",
+          "first": "t",
+          "second": "u"
+        },
+        "out": [
+          "v",
+          "w",
+          "x"
+        ]
+      },
+      {
+        "name": "many_words_1",
+        "in": {
+          "text": "one two three four five six",
+          "first": "two",
+          "second": "three"
+        },
+        "out": [
+          "four"
+        ]
+      },
+      {
+        "name": "many_words_2",
+        "in": {
+          "text": "red blue red blue green red blue yellow",
+          "first": "red",
+          "second": "blue"
+        },
+        "out": [
+          "red",
+          "green",
+          "yellow"
+        ]
+      },
+      {
+        "name": "many_words_3",
+        "in": {
+          "text": "p q r p q s p q t",
+          "first": "p",
+          "second": "q"
+        },
+        "out": [
+          "r",
+          "s",
+          "t"
+        ]
+      },
+      {
+        "name": "no_triplet_due_to_gap",
+        "in": {
+          "text": "a x b c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": []
+      },
+      {
+        "name": "multiple_same_third",
+        "in": {
+          "text": "a b c a b c a b d",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "name": "adjacent_repetitions",
+        "in": {
+          "text": "a b c a b c a b c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "c",
+          "c"
+        ]
+      },
+      {
+        "name": "two_word_text",
+        "in": {
+          "text": "a b",
+          "first": "a",
+          "second": "b"
+        },
+        "out": []
+      },
+      {
+        "name": "different_case_letters_not_allowed",
+        "in": {
+          "text": "abc def ghi",
+          "first": "abc",
+          "second": "def"
+        },
+        "out": [
+          "ghi"
+        ]
+      },
+      {
+        "name": "boundary_longish_1",
+        "in": {
+          "text": "a b c d e f g h i j k l",
+          "first": "d",
+          "second": "e"
+        },
+        "out": [
+          "f"
+        ]
+      },
+      {
+        "name": "boundary_longish_2",
+        "in": {
+          "text": "aa bb cc dd ee ff gg hh ii jj kk ll mm",
+          "first": "ee",
+          "second": "ff"
+        },
+        "out": [
+          "gg"
+        ]
+      },
+      {
+        "name": "boundary_longish_3",
+        "in": {
+          "text": "a b c a b d a b e a b f",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "d",
+          "e",
+          "f"
+        ]
+      },
+      {
+        "name": "boundary_longish_4",
+        "in": {
+          "text": "cat dog bird cat dog fish cat dog ant",
+          "first": "cat",
+          "second": "dog"
+        },
+        "out": [
+          "bird",
+          "fish",
+          "ant"
+        ]
+      },
+      {
+        "name": "boundary_longish_5",
+        "in": {
+          "text": "a b a c a b a d",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "a",
+          "a"
+        ]
+      },
+      {
+        "name": "many_matches_1",
+        "in": {
+          "text": "a b c a b c a b c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "c",
+          "c"
+        ]
+      },
+      {
+        "name": "many_matches_2",
+        "in": {
+          "text": "x y z x y z x y a x y b",
+          "first": "x",
+          "second": "y"
+        },
+        "out": [
+          "z",
+          "z",
+          "a",
+          "b"
+        ]
+      },
+      {
+        "name": "many_matches_3",
+        "in": {
+          "text": "p q r s p q r t p q r u",
+          "first": "p",
+          "second": "q"
+        },
+        "out": [
+          "r",
+          "r",
+          "r"
+        ]
+      },
+      {
+        "name": "many_matches_4",
+        "in": {
+          "text": "alpha beta gamma alpha beta delta alpha beta epsilon",
+          "first": "alpha",
+          "second": "beta"
+        },
+        "out": [
+          "gamma",
+          "delta",
+          "epsilon"
+        ]
+      },
+      {
+        "name": "many_matches_5",
+        "in": {
+          "text": "a a b a a c a a d",
+          "first": "a",
+          "second": "a"
+        },
+        "out": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "name": "not_enough_words",
+        "in": {
+          "text": "hello world",
+          "first": "hello",
+          "second": "world"
+        },
+        "out": []
+      },
+      {
+        "name": "trailing_match_absent",
+        "in": {
+          "text": "w x y z",
+          "first": "x",
+          "second": "y"
+        },
+        "out": [
+          "z"
+        ]
+      },
+      {
+        "name": "leading_match_absent",
+        "in": {
+          "text": "x y z",
+          "first": "y",
+          "second": "z"
+        },
+        "out": []
+      },
+      {
+        "name": "repeated_first_second",
+        "in": {
+          "text": "a b c a b d a b e",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "name": "varied_words_1",
+        "in": {
+          "text": "one one two one one three one one four",
+          "first": "one",
+          "second": "one"
+        },
+        "out": [
+          "two",
+          "three",
+          "four"
+        ]
+      },
+      {
+        "name": "varied_words_2",
+        "in": {
+          "text": "red red blue red red green red red yellow",
+          "first": "red",
+          "second": "red"
+        },
+        "out": [
+          "blue",
+          "green",
+          "yellow"
+        ]
+      },
+      {
+        "name": "varied_words_3",
+        "in": {
+          "text": "a b a b a b a c",
+          "first": "a",
+          "second": "b"
+        },
+        "out": [
+          "a",
+          "a",
+          "a"
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "text = \"alice is a good girl she is a good student\"\nfirst = \"a\"\nsecond = \"good\"",
+      "output": "[\"girl\", \"student\"]"
+    },
+    {
+      "input": "text = \"we will we will rock you\"\nfirst = \"we\"\nsecond = \"will\"",
+      "output": "[\"we\", \"rock\"]"
+    },
+    {
+      "input": "text = \"a b c d\"\nfirst = \"x\"\nsecond = \"y\"",
+      "output": "[]"
+    },
+    {
+      "input": "text = \"a b c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\"]"
+    },
+    {
+      "input": "text = \"a a a a\"\nfirst = \"a\"\nsecond = \"a\"",
+      "output": "[\"a\", \"a\"]"
+    },
+    {
+      "input": "text = \"a b c a b d\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"d\"]"
+    },
+    {
+      "input": "text = \"alpha beta gamma\"\nfirst = \"alpha\"\nsecond = \"beta\"",
+      "output": "[\"gamma\"]"
+    },
+    {
+      "input": "text = \"foo bar baz\"\nfirst = \"bar\"\nsecond = \"baz\"",
+      "output": "[]"
+    }
+  ]
+}

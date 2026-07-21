@@ -42,34 +42,7 @@ void LanguageRegistry::loadBuiltinDefaults() {
         m_languages[id] = config;
     };
 
-    addBuiltin(builtinC(), "c");
-    addBuiltin(builtinCpp(), "cpp");
     addBuiltin(builtinPython(), "python");
-    addBuiltin(builtinJavaScript(), "javascript");
-}
-
-QJsonObject LanguageRegistry::builtinC() {
-    return QJsonObject{
-        {"name", "C"},
-        {"extension", ".c"},
-        {"sourceFile", "solution.c"},
-        {"isEmbedded", true},
-        {"compiled", false},
-        {"timeout", 2000},
-        {"template", "#include <stdio.h>\n\nint main() {\n    \n    return 0;\n}\n"}
-    };
-}
-
-QJsonObject LanguageRegistry::builtinCpp() {
-    return QJsonObject{
-        {"name", "C++"},
-        {"extension", ".cpp"},
-        {"sourceFile", "solution.cpp"},
-        {"isEmbedded", false},
-        {"compiled", true},
-        {"timeout", 2000},
-        {"template", "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n"}
-    };
 }
 
 QJsonObject LanguageRegistry::builtinPython() {
@@ -78,26 +51,9 @@ QJsonObject LanguageRegistry::builtinPython() {
         {"extension", ".py"},
         {"sourceFile", "solution.py"},
         {"compiled", false},
-#ifdef SF_PYTHON_ENABLED
         {"isEmbedded", true},
-#else
-        {"isEmbedded", false},
-#endif
         {"timeout", 5000},
         {"template", "# Your code here\n"}
-    };
-}
-
-
-QJsonObject LanguageRegistry::builtinJavaScript() {
-    return QJsonObject{
-        {"name", "JavaScript"},
-        {"extension", ".js"},
-        {"sourceFile", "solution.js"},
-        {"isEmbedded", true},
-        {"compiled", false},
-        {"timeout", 3000},
-        {"template", "// Your code here\n"}
     };
 }
 

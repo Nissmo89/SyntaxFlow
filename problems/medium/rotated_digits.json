@@ -1,0 +1,403 @@
+{
+  "id": "rotated_digits",
+  "title": "Rotated Digits",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "description": "<p>An integer <code>x</code> is a <strong>good</strong> if after rotating each digit individually by 180 degrees, we get a valid number that is different from <code>x</code>. Each digit must be rotated - we cannot choose to leave it alone.</p>\n\n<p>A number is valid if each digit remains a digit after rotation. For example:</p>\n\n<ul>\n\t<li><code>0</code>, <code>1</code>, and <code>8</code> rotate to themselves,</li>\n\t<li><code>2</code> and <code>5</code> rotate to each other (in this case they are rotated in a different direction, in other words, <code>2</code> or <code>5</code> gets mirrored),</li>\n\t<li><code>6</code> and <code>9</code> rotate to each other, and</li>\n\t<li>the rest of the numbers do not rotate to any other number and become invalid.</li>\n</ul>\n\n<p>Given an integer <code>n</code>, return <em>the number of <strong>good</strong> integers in the range </em><code>[1, n]</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 10\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> There are four good numbers in the range [1, 10] : 2, 5, 6, 9.\nNote that 1 and 10 are not good numbers, since they remain unchanged after rotating.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Rotated Digits' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "rotatedDigits",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 788,
+      "title": "rotated-digits",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().rotatedDigits({n})",
+        "rust": "Solution::rotated_digits({n})",
+        "python3": "Solution().rotatedDigits({n})",
+        "python2": "Solution().rotatedDigits({n})",
+        "ruby": "rotated_digits({n})",
+        "java": "new Solution().rotatedDigits({n})",
+        "csharp": "new Solution().RotatedDigits({n})",
+        "kotlin": "Solution().rotatedDigits({n})",
+        "go": "rotatedDigits({n})",
+        "dart": "Solution().rotatedDigits({n})",
+        "swift": "Solution().rotatedDigits({n})",
+        "typescript": "rotatedDigits({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().rotatedDigits(n, {result})",
+        "checker": "class Checker(object):\n    def rotatedDigits(self, n, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 788,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "n": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "n-5",
+        "in": {
+          "n": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "n-6",
+        "in": {
+          "n": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "n-9",
+        "in": {
+          "n": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "n-12",
+        "in": {
+          "n": 12
+        },
+        "out": 5
+      },
+      {
+        "name": "n-19",
+        "in": {
+          "n": 19
+        },
+        "out": 8
+      },
+      {
+        "name": "n-21",
+        "in": {
+          "n": 21
+        },
+        "out": 10
+      },
+      {
+        "name": "n-25",
+        "in": {
+          "n": 25
+        },
+        "out": 12
+      },
+      {
+        "name": "n-30",
+        "in": {
+          "n": 30
+        },
+        "out": 15
+      },
+      {
+        "name": "n-39",
+        "in": {
+          "n": 39
+        },
+        "out": 15
+      },
+      {
+        "name": "n-40",
+        "in": {
+          "n": 40
+        },
+        "out": 15
+      },
+      {
+        "name": "n-49",
+        "in": {
+          "n": 49
+        },
+        "out": 15
+      },
+      {
+        "name": "n-50",
+        "in": {
+          "n": 50
+        },
+        "out": 16
+      },
+      {
+        "name": "n-55",
+        "in": {
+          "n": 55
+        },
+        "out": 19
+      },
+      {
+        "name": "n-60",
+        "in": {
+          "n": 60
+        },
+        "out": 23
+      },
+      {
+        "name": "n-68",
+        "in": {
+          "n": 68
+        },
+        "out": 28
+      },
+      {
+        "name": "n-69",
+        "in": {
+          "n": 69
+        },
+        "out": 29
+      },
+      {
+        "name": "n-70",
+        "in": {
+          "n": 70
+        },
+        "out": 29
+      },
+      {
+        "name": "n-79",
+        "in": {
+          "n": 79
+        },
+        "out": 29
+      },
+      {
+        "name": "n-80",
+        "in": {
+          "n": 80
+        },
+        "out": 29
+      },
+      {
+        "name": "n-88",
+        "in": {
+          "n": 88
+        },
+        "out": 32
+      },
+      {
+        "name": "n-89",
+        "in": {
+          "n": 89
+        },
+        "out": 33
+      },
+      {
+        "name": "n-90",
+        "in": {
+          "n": 90
+        },
+        "out": 34
+      },
+      {
+        "name": "n-98",
+        "in": {
+          "n": 98
+        },
+        "out": 39
+      },
+      {
+        "name": "n-99",
+        "in": {
+          "n": 99
+        },
+        "out": 40
+      },
+      {
+        "name": "n-100",
+        "in": {
+          "n": 100
+        },
+        "out": 40
+      },
+      {
+        "name": "n-101",
+        "in": {
+          "n": 101
+        },
+        "out": 40
+      },
+      {
+        "name": "n-108",
+        "in": {
+          "n": 108
+        },
+        "out": 43
+      },
+      {
+        "name": "n-109",
+        "in": {
+          "n": 109
+        },
+        "out": 44
+      },
+      {
+        "name": "n-110",
+        "in": {
+          "n": 110
+        },
+        "out": 44
+      },
+      {
+        "name": "n-111",
+        "in": {
+          "n": 111
+        },
+        "out": 44
+      },
+      {
+        "name": "n-500",
+        "in": {
+          "n": 500
+        },
+        "out": 130
+      },
+      {
+        "name": "n-999",
+        "in": {
+          "n": 999
+        },
+        "out": 316
+      },
+      {
+        "name": "n-1000",
+        "in": {
+          "n": 1000
+        },
+        "out": 316
+      },
+      {
+        "name": "n-1004",
+        "in": {
+          "n": 1004
+        },
+        "out": 317
+      },
+      {
+        "name": "n-5000",
+        "in": {
+          "n": 5000
+        },
+        "out": 976
+      },
+      {
+        "name": "n-9999",
+        "in": {
+          "n": 9999
+        },
+        "out": 2320
+      },
+      {
+        "name": "n-10000",
+        "in": {
+          "n": 10000
+        },
+        "out": 2320
+      },
+      {
+        "name": "generated-mid-n",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 5000
+          }
+        }
+      },
+      {
+        "name": "generated-high-n",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 5001,
+            "max": 10000
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 10",
+      "output": "4"
+    },
+    {
+      "input": "n = 1",
+      "output": "0"
+    },
+    {
+      "input": "n = 2",
+      "output": "1"
+    },
+    {
+      "input": "n = 5",
+      "output": "2"
+    },
+    {
+      "input": "n = 6",
+      "output": "3"
+    },
+    {
+      "input": "n = 9",
+      "output": "4"
+    },
+    {
+      "input": "n = 12",
+      "output": "5"
+    },
+    {
+      "input": "n = 19",
+      "output": "8"
+    }
+  ]
+}

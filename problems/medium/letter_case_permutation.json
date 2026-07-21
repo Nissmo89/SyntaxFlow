@@ -1,0 +1,390 @@
+{
+  "id": "letter_case_permutation",
+  "title": "Letter Case Permutation",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given a string <code>s</code>, you&nbsp;can transform every letter individually to be lowercase or uppercase to create another string.</p>\n\n<p>Return <em>a list of all possible strings we could create</em>. Return the output in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;a1b2&quot;\n<strong>Output:</strong> [&quot;a1b2&quot;,&quot;a1B2&quot;,&quot;A1b2&quot;,&quot;A1B2&quot;]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;3z4&quot;\n<strong>Output:</strong> [&quot;3z4&quot;,&quot;3Z4&quot;]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 12</code></li>\n\t<li><code>s</code> consists of lowercase English letters, uppercase English letters, and digits.</li>\n</ul>\n",
+  "task": "Solve the 'Letter Case Permutation' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 12",
+    "s consists of lowercase English letters, uppercase English letters, and digits."
+  ],
+  "hints": [],
+  "method": {
+    "name": "letterCasePermutation",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 784,
+      "title": "letter-case-permutation",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().letterCasePermutation({s})",
+        "rust": "Solution::letter_case_permutation({s})",
+        "python3": "Solution().letterCasePermutation({s})",
+        "python2": "Solution().letterCasePermutation({s})",
+        "ruby": "letter_case_permutation({s})",
+        "java": "new Solution().letterCasePermutation({s})",
+        "csharp": "new Solution().LetterCasePermutation({s})",
+        "kotlin": "Solution().letterCasePermutation({s})",
+        "go": "letterCasePermutation({s})",
+        "dart": "Solution().letterCasePermutation({s})",
+        "swift": "Solution().letterCasePermutation({s})",
+        "typescript": "letterCasePermutation({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().letterCasePermutation(s, {result})",
+        "checker": "class Checker:\n    def letterCasePermutation(self, s, result):\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, str) for x in result):\n            return False\n\n        expected = set()\n\n        def build(i: int, cur: str) -> None:\n            if i == len(s):\n                expected.add(cur)\n                return\n            ch = s[i]\n            if ch.isdigit():\n                build(i + 1, cur + ch)\n            elif ch.isalpha():\n                build(i + 1, cur + ch.lower())\n                build(i + 1, cur + ch.upper())\n            else:\n                return\n\n        build(0, \"\")\n        if len(expected) != len(result):\n            return False\n        if len(set(result)) != len(result):\n            return False\n        if set(result) != expected:\n            return False\n\n        for cand in result:\n            if len(cand) != len(s):\n                return False\n            for a, b in zip(s, cand):\n                if a.isdigit():\n                    if a != b:\n                        return False\n                elif a.isalpha():\n                    if a.lower() != b.lower():\n                        return False\n                else:\n                    return False\n        return True\n"
+      }
+    },
+    "seed": 784784,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "a1b2"
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "3z4"
+        }
+      },
+      {
+        "name": "single_lower",
+        "in": {
+          "s": "a"
+        }
+      },
+      {
+        "name": "single_upper",
+        "in": {
+          "s": "Z"
+        }
+      },
+      {
+        "name": "single_digit",
+        "in": {
+          "s": 7
+        }
+      },
+      {
+        "name": "two_letters",
+        "in": {
+          "s": "ab"
+        }
+      },
+      {
+        "name": "mixed_simple",
+        "in": {
+          "s": "aB3"
+        }
+      },
+      {
+        "name": "mixed_digits_edges",
+        "in": {
+          "s": "1a2B3"
+        }
+      },
+      {
+        "name": "all_digits_short",
+        "in": {
+          "s": 123456
+        }
+      },
+      {
+        "name": "all_letters_lower",
+        "in": {
+          "s": "abcdef"
+        }
+      },
+      {
+        "name": "all_letters_upper",
+        "in": {
+          "s": "ABCDEF"
+        }
+      },
+      {
+        "name": "alternating_cases",
+        "in": {
+          "s": "aBcDeF"
+        }
+      },
+      {
+        "name": "alpha_numeric_1",
+        "in": {
+          "s": "0a0"
+        }
+      },
+      {
+        "name": "alpha_numeric_2",
+        "in": {
+          "s": "9Z9"
+        }
+      },
+      {
+        "name": "alpha_numeric_3",
+        "in": {
+          "s": "a0b0c"
+        }
+      },
+      {
+        "name": "alpha_numeric_4",
+        "in": {
+          "s": "A1b2C3"
+        }
+      },
+      {
+        "name": "alpha_numeric_5",
+        "in": {
+          "s": "4q5"
+        }
+      },
+      {
+        "name": "alpha_numeric_6",
+        "in": {
+          "s": "m7N8"
+        }
+      },
+      {
+        "name": "alpha_numeric_7",
+        "in": {
+          "s": "x9y8z7"
+        }
+      },
+      {
+        "name": "alpha_numeric_8",
+        "in": {
+          "s": "P0q1R2"
+        }
+      },
+      {
+        "name": "alpha_numeric_9",
+        "in": {
+          "s": "tTtT"
+        }
+      },
+      {
+        "name": "alpha_numeric_10",
+        "in": {
+          "s": 0
+        }
+      },
+      {
+        "name": "alpha_numeric_11",
+        "in": {
+          "s": "b0"
+        }
+      },
+      {
+        "name": "alpha_numeric_12",
+        "in": {
+          "s": "0b"
+        }
+      },
+      {
+        "name": "alpha_numeric_13",
+        "in": {
+          "s": "b1c2d3"
+        }
+      },
+      {
+        "name": "alpha_numeric_14",
+        "in": {
+          "s": "1A2B3C"
+        }
+      },
+      {
+        "name": "gen_short_1",
+        "seed": 101,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "aB7"
+          }
+        }
+      },
+      {
+        "name": "gen_short_2",
+        "seed": 102,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 4,
+            "alphabet": "ab12CD"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_1",
+        "seed": 201,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 8,
+            "alphabet": "abcd01"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_2",
+        "seed": 202,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 10,
+            "alphabet": "mNoP34"
+          }
+        }
+      },
+      {
+        "name": "gen_max_1",
+        "seed": 301,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "aBcDeF01"
+          }
+        }
+      },
+      {
+        "name": "gen_max_2",
+        "seed": 302,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "xYz78"
+          }
+        }
+      },
+      {
+        "name": "gen_max_3",
+        "seed": 303,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "hIjKlM"
+          }
+        }
+      },
+      {
+        "name": "gen_max_4",
+        "seed": 304,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "0a1B2c3"
+          }
+        }
+      },
+      {
+        "name": "gen_max_5",
+        "seed": 305,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "pQrStU56"
+          }
+        }
+      },
+      {
+        "name": "edge_digits_then_letters",
+        "in": {
+          "s": "123a"
+        }
+      },
+      {
+        "name": "edge_letters_then_digits",
+        "in": {
+          "s": "a123"
+        }
+      },
+      {
+        "name": "edge_alternating_12",
+        "in": {
+          "s": "a1B2c3D4e5F6"
+        }
+      },
+      {
+        "name": "edge_all_same_letter",
+        "in": {
+          "s": "aaaaaa"
+        }
+      },
+      {
+        "name": "edge_all_same_upper",
+        "in": {
+          "s": "ZZZZZZ"
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"a1b2\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"3z4\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"Z\"",
+      "output": ""
+    },
+    {
+      "input": "s = 7",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aB3\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"1a2B3\"",
+      "output": ""
+    }
+  ]
+}

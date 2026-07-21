@@ -1,0 +1,694 @@
+{
+  "id": "circular_array_loop",
+  "title": "Circular Array Loop",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers"
+  ],
+  "description": "<p>You are playing a game involving a <strong>circular</strong> array of non-zero integers <code>nums</code>. Each <code>nums[i]</code> denotes the number of indices forward/backward you must move if you are located at index <code>i</code>:</p>\n\n<ul>\n\t<li>If <code>nums[i]</code> is positive, move <code>nums[i]</code> steps <strong>forward</strong>, and</li>\n\t<li>If <code>nums[i]</code> is negative, move <code>abs(nums[i])</code> steps <strong>backward</strong>.</li>\n</ul>\n\n<p>Since the array is <strong>circular</strong>, you may assume that moving forward from the last element puts you on the first element, and moving backwards from the first element puts you on the last element.</p>\n\n<p>A <strong>cycle</strong> in the array consists of a sequence of indices <code>seq</code> of length <code>k</code> where:</p>\n\n<ul>\n\t<li>Following the movement rules above results in the repeating index sequence <code>seq[0] -&gt; seq[1] -&gt; ... -&gt; seq[k - 1] -&gt; seq[0] -&gt; ...</code></li>\n\t<li>Every <code>nums[seq[j]]</code> is either <strong>all positive</strong> or <strong>all negative</strong>.</li>\n\t<li><code>k &gt; 1</code></li>\n</ul>\n\n<p>Return <code>true</code><em> if there is a <strong>cycle</strong> in </em><code>nums</code><em>, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/09/01/img1.jpg\" style=\"width: 402px; height: 289px;\" />\n<pre>\n<strong>Input:</strong> nums = [2,-1,1,2,2]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --&gt; 2 --&gt; 3 --&gt; 0 --&gt; ..., and all of its nodes are white (jumping in the same direction).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/09/01/img2.jpg\" style=\"width: 402px; height: 390px;\" />\n<pre>\n<strong>Input:</strong> nums = [-1,-2,-3,-4,-5,6]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nThe only cycle is of size 1, so we return false.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/09/01/img3.jpg\" style=\"width: 497px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> nums = [1,-1,5,1,4]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --&gt; 1 --&gt; 0 --&gt; ..., and while it is of size &gt; 1, it has a node jumping forward and a node jumping backward, so <strong>it is not a cycle</strong>.\nWe can see the cycle 3 --&gt; 4 --&gt; 3 --&gt; ..., and all of its nodes are white (jumping in the same direction).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5000</code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li><code>nums[i] != 0</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you solve it in <code>O(n)</code> time complexity and <code>O(1)</code> extra space complexity?</p>\n",
+  "task": "Solve the 'Circular Array Loop' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 5000",
+    "-1000 <= nums[i] <= 1000",
+    "nums[i] != 0"
+  ],
+  "hints": [],
+  "method": {
+    "name": "circularArrayLoop",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 457,
+      "title": "circular-array-loop",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().circularArrayLoop({nums})",
+        "rust": "Solution::circular_array_loop({nums})",
+        "python3": "Solution().circularArrayLoop({nums})",
+        "python2": "Solution().circularArrayLoop({nums})",
+        "ruby": "circular_array_loop({nums})",
+        "java": "new Solution().circularArrayLoop({nums})",
+        "csharp": "new Solution().CircularArrayLoop({nums})",
+        "kotlin": "Solution().circularArrayLoop({nums})",
+        "go": "circularArrayLoop({nums})",
+        "dart": "Solution().circularArrayLoop({nums})",
+        "swift": "Solution().circularArrayLoop({nums})",
+        "typescript": "circularArrayLoop({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(nums, {result})",
+        "checker": "from typing import Any\n\nclass Checker:\n    def check(self, nums: Any, result: Any) -> bool:\n        return isinstance(result, bool)\n"
+      }
+    },
+    "seed": 457457,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            2,
+            -1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            -1,
+            -2,
+            -3,
+            -4,
+            -5,
+            6
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "nums": [
+            1,
+            -1,
+            5,
+            1,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "single_positive_self_loop",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_negative_self_loop",
+        "in": {
+          "nums": [
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two_elements_opposite",
+        "in": {
+          "nums": [
+            1,
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two_elements_same_positive",
+        "in": {
+          "nums": [
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two_elements_same_negative",
+        "in": {
+          "nums": [
+            -1,
+            -1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_positive_cycle",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "small_negative_cycle",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "self_loop_in_longer_array",
+        "in": {
+          "nums": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "mixed_sign_no_cycle",
+        "in": {
+          "nums": [
+            2,
+            -1,
+            1,
+            -2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "mixed_sign_cycle_breaks_direction",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            -4,
+            -2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "positive_cycle_length_three",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            -1,
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "negative_cycle_length_three",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "zero_sum_like_but_invalid",
+        "in": {
+          "nums": [
+            2,
+            -2,
+            2,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "wraparound_positive_cycle",
+        "in": {
+          "nums": [
+            4,
+            2,
+            3,
+            1,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "wraparound_negative_cycle",
+        "in": {
+          "nums": [
+            -4,
+            -2,
+            -3,
+            -1,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "large_jump_no_cycle",
+        "in": {
+          "nums": [
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "large_jump_cycle",
+        "in": {
+          "nums": [
+            5,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "alternating_signs_small",
+        "in": {
+          "nums": [
+            1,
+            -2,
+            1,
+            -2,
+            1,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "alternating_signs_longer",
+        "in": {
+          "nums": [
+            1,
+            -2,
+            1,
+            -2,
+            1,
+            -2,
+            1,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_positive_length_five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_negative_length_five",
+        "in": {
+          "nums": [
+            -1,
+            -2,
+            -3,
+            -4,
+            -5
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_positive_length_six",
+        "in": {
+          "nums": [
+            2,
+            3,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "all_negative_length_six",
+        "in": {
+          "nums": [
+            -2,
+            -3,
+            -1,
+            -2,
+            -2,
+            -2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "cycle_hidden_after_noncycle_prefix",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "no_cycle_due_to_sign_flip",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            -3,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "no_cycle_due_to_self_loop_middle",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "no_cycle_due_to_invalid_mixed_loop",
+        "in": {
+          "nums": [
+            2,
+            1,
+            -1,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "boundary_values_positive",
+        "in": {
+          "nums": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "boundary_values_negative",
+        "in": {
+          "nums": [
+            -1000,
+            -1000,
+            -1000,
+            -1000,
+            -1000
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "boundary_values_mixed",
+        "in": {
+          "nums": [
+            1000,
+            -1000,
+            1000,
+            -1000,
+            1000,
+            -1000
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "long_positive_cycle_5000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "long_negative_cycle_5000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5000,
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": -1
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "long_no_cycle_5000",
+        "in": {
+          "nums": [
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "long_no_cycle_5000_shifted",
+        "in": {
+          "nums": [
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [2, -1, 1, 2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-1, -2, -3, -4, -5, 6]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, -1, 5, 1, 4]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [-1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, -1]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-1, -1]",
+      "output": "true"
+    }
+  ]
+}

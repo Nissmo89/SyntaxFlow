@@ -1,0 +1,360 @@
+{
+  "id": "fraction_addition_and_subtraction",
+  "title": "Fraction Addition and Subtraction",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "description": "<p>Given a string <code>expression</code> representing an expression of fraction addition and subtraction, return the calculation result in string format.</p>\n\n<p>The final result should be an <a href=\"https://en.wikipedia.org/wiki/Irreducible_fraction\" target=\"_blank\">irreducible fraction</a>. If your final result is an integer, change it to the format of a fraction that has a denominator <code>1</code>. So in this case, <code>2</code> should be converted to <code>2/1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> expression = &quot;-1/2+1/2&quot;\n<strong>Output:</strong> &quot;0/1&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> expression = &quot;-1/2+1/2+1/3&quot;\n<strong>Output:</strong> &quot;1/3&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> expression = &quot;1/3-1/2&quot;\n<strong>Output:</strong> &quot;-1/6&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The input string only contains <code>&#39;0&#39;</code> to <code>&#39;9&#39;</code>, <code>&#39;/&#39;</code>, <code>&#39;+&#39;</code> and <code>&#39;-&#39;</code>. So does the output.</li>\n\t<li>Each fraction (input and output) has the format <code>&plusmn;numerator/denominator</code>. If the first input fraction or the output is positive, then <code>&#39;+&#39;</code> will be omitted.</li>\n\t<li>The input only contains valid <strong>irreducible fractions</strong>, where the <strong>numerator</strong> and <strong>denominator</strong> of each fraction will always be in the range <code>[1, 10]</code>. If the denominator is <code>1</code>, it means this fraction is actually an integer in a fraction format defined above.</li>\n\t<li>The number of given fractions will be in the range <code>[1, 10]</code>.</li>\n\t<li>The numerator and denominator of the <strong>final result</strong> are guaranteed to be valid and in the range of <strong>32-bit</strong> int.</li>\n</ul>\n",
+  "task": "Solve the 'Fraction Addition and Subtraction' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The input string only contains '0' to '9', '/', '+' and '-'. So does the output.",
+    "Each fraction (input and output) has the format \u00b1numerator/denominator. If the first input fraction or the output is positive, then '+' will be omitted.",
+    "The input only contains valid irreducible fractions, where the numerator and denominator of each fraction will always be in the range [1, 10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.",
+    "The number of given fractions will be in the range [1, 10].",
+    "The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int."
+  ],
+  "hints": [],
+  "method": {
+    "name": "fractionAddition",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "expression",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 592,
+      "title": "fraction-addition-and-subtraction",
+      "params": {
+        "expression": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().fractionAddition({expression})",
+        "rust": "Solution::fraction_addition({expression})",
+        "python3": "Solution().fractionAddition({expression})",
+        "python2": "Solution().fractionAddition({expression})",
+        "ruby": "fraction_addition({expression})",
+        "java": "new Solution().fractionAddition({expression})",
+        "csharp": "new Solution().FractionAddition({expression})",
+        "kotlin": "Solution().fractionAddition({expression})",
+        "go": "fractionAddition({expression})",
+        "dart": "Solution().fractionAddition({expression})",
+        "swift": "Solution().fractionAddition({expression})",
+        "typescript": "fractionAddition({expression})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().fractionAddition(expression, {result})",
+        "checker": "class Checker:\n    def fractionAddition(self, expression, result):\n        def gcd(a, b):\n            while b:\n                a, b = b, a % b\n            return a\n\n        parts = []\n        i = 0\n        while i < len(expression):\n            sign = 1\n            if expression[i] in \"+-\":\n                sign = -1 if expression[i] == \"-\" else 1\n                i += 1\n            j = i\n            while expression[j] != \"/\":\n                j += 1\n            num = int(expression[i:j]) * sign\n            i = j + 1\n            j = i\n            while j < len(expression) and expression[j] not in \"+-\":\n                j += 1\n            den = int(expression[i:j])\n            parts.append((num, den))\n            i = j\n\n        common = 1\n        for _, den in parts:\n            common = common * den // gcd(common, den)\n\n        total = 0\n        for num, den in parts:\n            total += num * (common // den)\n\n        g = gcd(abs(total), common)\n        expected = str(total // g) + \"/\" + str(common // g)\n        return result == expected\n"
+      }
+    },
+    "seed": 592,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "expression": "-1/2+1/2"
+        },
+        "out": "0/1"
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "expression": "-1/2+1/2+1/3"
+        },
+        "out": "1/3"
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "expression": "1/3-1/2"
+        },
+        "out": "-1/6"
+      },
+      {
+        "name": "whole-number-sum",
+        "in": {
+          "expression": "5/3+1/3"
+        },
+        "out": "2/1"
+      },
+      {
+        "name": "half-plus-half",
+        "in": {
+          "expression": "1/2+1/2"
+        },
+        "out": "1/1"
+      },
+      {
+        "name": "classic-unity",
+        "in": {
+          "expression": "1/2+1/3+1/6"
+        },
+        "out": "1/1"
+      },
+      {
+        "name": "repeated-tenths",
+        "in": {
+          "expression": "1/10+1/10+1/10+1/10+1/10"
+        },
+        "out": "1/2"
+      },
+      {
+        "name": "negative-half",
+        "in": {
+          "expression": "1/2-1/2-1/2"
+        },
+        "out": "-1/2"
+      },
+      {
+        "name": "mixed-fifths-and-tenths",
+        "in": {
+          "expression": "7/10-3/10+2/5"
+        },
+        "out": "4/5"
+      },
+      {
+        "name": "seven-sevenths",
+        "in": {
+          "expression": "1/7+1/7+1/7+1/7+1/7+1/7+1/7"
+        },
+        "out": "1/1"
+      },
+      {
+        "name": "tiny-positive",
+        "in": {
+          "expression": "1/9-1/10"
+        },
+        "out": "1/90"
+      },
+      {
+        "name": "tiny-negative",
+        "in": {
+          "expression": "-1/9-1/10"
+        },
+        "out": "-19/90"
+      },
+      {
+        "name": "eighths-and-quarter",
+        "in": {
+          "expression": "3/8+5/8-1/4"
+        },
+        "out": "3/4"
+      },
+      {
+        "name": "exact-zero-mixed",
+        "in": {
+          "expression": "9/10-1/2-2/5"
+        },
+        "out": "0/1"
+      },
+      {
+        "name": "another-zero",
+        "in": {
+          "expression": "2/3-1/6-1/2"
+        },
+        "out": "0/1"
+      },
+      {
+        "name": "ninths-sixths",
+        "in": {
+          "expression": "4/9+2/3-5/6"
+        },
+        "out": "5/18"
+      },
+      {
+        "name": "long-alternating-small",
+        "in": {
+          "expression": "1/2+1/3-1/4+1/5-1/6+1/7"
+        },
+        "out": "319/420"
+      },
+      {
+        "name": "reduce-after-cancel",
+        "in": {
+          "expression": "10/9-1/9-1/3"
+        },
+        "out": "2/3"
+      },
+      {
+        "name": "negative-reduce-after-cancel",
+        "in": {
+          "expression": "-10/9+1/9+1/3"
+        },
+        "out": "-2/3"
+      },
+      {
+        "name": "alternating-integers",
+        "in": {
+          "expression": "1/1-1/1+1/1-1/1+1/1"
+        },
+        "out": "1/1"
+      },
+      {
+        "name": "ten-halves",
+        "in": {
+          "expression": "1/2+1/2+1/2+1/2+1/2+1/2+1/2+1/2+1/2+1/2"
+        },
+        "out": "5/1"
+      },
+      {
+        "name": "max-terms-alternating",
+        "in": {
+          "expression": "1/10-1/9+1/8-1/7+1/6-1/5+1/4-1/3+1/2-1/1"
+        },
+        "out": "-1627/2520"
+      },
+      {
+        "name": "improper-positive",
+        "in": {
+          "expression": "2/5+2/5+2/5"
+        },
+        "out": "6/5"
+      },
+      {
+        "name": "cancel-inside",
+        "in": {
+          "expression": "3/7-2/7+1/7-1/7"
+        },
+        "out": "1/7"
+      },
+      {
+        "name": "power-of-two-denominators",
+        "in": {
+          "expression": "1/4-3/8+5/16"
+        },
+        "out": "3/16"
+      },
+      {
+        "name": "lcm-thirty",
+        "in": {
+          "expression": "1/6+1/10+1/15"
+        },
+        "out": "1/3"
+      },
+      {
+        "name": "alternating-larger",
+        "in": {
+          "expression": "1/2-2/3+3/4-4/5+5/6"
+        },
+        "out": "37/60"
+      },
+      {
+        "name": "exact-zero-quarter-eighth",
+        "in": {
+          "expression": "7/8-1/8-1/4-1/2"
+        },
+        "out": "0/1"
+      },
+      {
+        "name": "improper-to-integer",
+        "in": {
+          "expression": "9/2-4/3-7/6"
+        },
+        "out": "2/1"
+      },
+      {
+        "name": "broad-lcm",
+        "in": {
+          "expression": "1/10+2/9+3/8+4/7+5/6"
+        },
+        "out": "5297/2520"
+      },
+      {
+        "name": "all-negative",
+        "in": {
+          "expression": "-1/2-1/3-1/4-1/5"
+        },
+        "out": "-77/60"
+      },
+      {
+        "name": "odd-denominators",
+        "in": {
+          "expression": "1/3+1/5+1/7+1/9"
+        },
+        "out": "248/315"
+      },
+      {
+        "name": "integer-cancel",
+        "in": {
+          "expression": "10/1-9/1-8/1+7/1"
+        },
+        "out": "0/1"
+      },
+      {
+        "name": "many-cancellations",
+        "in": {
+          "expression": "1/2-1/2+2/3-2/3+3/4-3/4+4/5"
+        },
+        "out": "4/5"
+      },
+      {
+        "name": "reduced-half",
+        "in": {
+          "expression": "5/6-1/2+1/3-2/9+1/18"
+        },
+        "out": "1/2"
+      },
+      {
+        "name": "ten-terms-ascending",
+        "in": {
+          "expression": "1/2+1/3+1/4+1/5+1/6+1/7+1/8+1/9+1/10+1/1"
+        },
+        "out": "7381/2520"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "expression = \"-1/2+1/2\"",
+      "output": "\"0/1\""
+    },
+    {
+      "input": "expression = \"-1/2+1/2+1/3\"",
+      "output": "\"1/3\""
+    },
+    {
+      "input": "expression = \"1/3-1/2\"",
+      "output": "\"-1/6\""
+    },
+    {
+      "input": "expression = \"5/3+1/3\"",
+      "output": "\"2/1\""
+    },
+    {
+      "input": "expression = \"1/2+1/2\"",
+      "output": "\"1/1\""
+    },
+    {
+      "input": "expression = \"1/2+1/3+1/6\"",
+      "output": "\"1/1\""
+    },
+    {
+      "input": "expression = \"1/10+1/10+1/10+1/10+1/10\"",
+      "output": "\"1/2\""
+    },
+    {
+      "input": "expression = \"1/2-1/2-1/2\"",
+      "output": "\"-1/2\""
+    }
+  ]
+}

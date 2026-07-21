@@ -1,0 +1,1216 @@
+{
+  "id": "delete_node_in_a_bst",
+  "title": "Delete Node in a BST",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return <em>the <strong>root node reference</strong> (possibly updated) of the BST</em>.</p>\n\n<p>Basically, the deletion can be divided into two stages:</p>\n\n<ol>\n\t<li>Search for a node to remove.</li>\n\t<li>If the node is found, delete the node.</li>\n</ol>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/09/04/del_node_1.jpg\" style=\"width: 800px; height: 214px;\" />\n<pre>\n<strong>Input:</strong> root = [5,3,6,2,4,null,7], key = 3\n<strong>Output:</strong> [5,4,6,2,null,null,7]\n<strong>Explanation:</strong> Given key to delete is 3. So we find the node with value 3 and delete it.\nOne valid answer is [5,4,6,2,null,null,7], shown in the above BST.\nPlease notice that another valid answer is [5,2,6,null,4,null,7] and it&#39;s also accepted.\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/09/04/del_node_supp.jpg\" style=\"width: 350px; height: 255px;\" />\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [5,3,6,2,4,null,7], key = 0\n<strong>Output:</strong> [5,3,6,2,4,null,7]\n<strong>Explanation:</strong> The tree does not contain a node with value = 0.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [], key = 0\n<strong>Output:</strong> []\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[0, 10<sup>4</sup>]</code>.</li>\n\t<li><code>-10<sup>5</sup> &lt;= Node.val &lt;= 10<sup>5</sup></code></li>\n\t<li>Each node has a <strong>unique</strong> value.</li>\n\t<li><code>root</code> is a valid binary search tree.</li>\n\t<li><code>-10<sup>5</sup> &lt;= key &lt;= 10<sup>5</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you solve it with time complexity <code>O(height of tree)</code>?</p>\n",
+  "task": "Solve the 'Delete Node in a BST' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 104].",
+    "-105 <= Node.val <= 105",
+    "Each node has a unique value.",
+    "root is a valid binary search tree.",
+    "-105 <= key <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "deleteNode",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      },
+      {
+        "name": "key",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 450,
+      "title": "delete-node-in-a-bst",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        },
+        "key": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "treeNodeToArray(Solution().deleteNode({root}, {key}))",
+        "rust": "TreeNode::tree_node_to_array(Solution::delete_node({root}, {key}))",
+        "python3": "tree_node_to_array(Solution().deleteNode({root}, {key}))",
+        "python2": "tree_node_to_array(Solution().deleteNode({root}, {key}))",
+        "ruby": "tree_node_to_array(delete_node({root}, {key}))",
+        "java": "TreeNode.treeNodeToArray(new Solution().deleteNode({root}, {key}))",
+        "csharp": "TreeNode.TreeNodeToArray(new Solution().DeleteNode({root}, {key}))",
+        "kotlin": "treeNodeToArray(Solution().deleteNode({root}, {key}))",
+        "go": "treeNodeToArray(deleteNode({root}, {key}))",
+        "dart": "tree_node_to_array(Solution().deleteNode({root}, {key}))",
+        "swift": "tree_node_to_array(Solution().deleteNode({root}, {key}))",
+        "typescript": "treeNodeToArray(deleteNode({root}, {key}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(root, key, {result})",
+        "checker": "class Checker:\n    def _array_to_tree(self, arr):\n        if arr is None or arr == []:\n            return None\n        if not isinstance(arr, list):\n            return arr\n        nodes = [None if v is None else {\"val\": v, \"left\": None, \"right\": None} for v in arr]\n        kids = nodes[::-1]\n        root = kids.pop()\n        for node in nodes:\n            if node is not None:\n                if kids:\n                    node[\"left\"] = kids.pop()\n                if kids:\n                    node[\"right\"] = kids.pop()\n        return root\n\n    def _left(self, node):\n        return node.get(\"left\") if isinstance(node, dict) else getattr(node, \"left\", None)\n\n    def _right(self, node):\n        return node.get(\"right\") if isinstance(node, dict) else getattr(node, \"right\", None)\n\n    def _val(self, node):\n        return node.get(\"val\") if isinstance(node, dict) else getattr(node, \"val\", None)\n\n    def _inorder(self, node, values):\n        if node is None:\n            return True\n        if not self._inorder(self._left(node), values):\n            return False\n        values.append(self._val(node))\n        if not self._inorder(self._right(node), values):\n            return False\n        return True\n\n    def _is_bst(self, node, lo, hi):\n        if node is None:\n            return True\n        val = self._val(node)\n        if val is None or val <= lo or val >= hi:\n            return False\n        return self._is_bst(self._left(node), lo, val) and self._is_bst(self._right(node), val, hi)\n\n    def check(self, root, key, result):\n        result = self._array_to_tree(result)\n        if result is None:\n            result_values = []\n            result_ok = True\n        else:\n            result_values = []\n            result_ok = self._is_bst(result, float('-inf'), float('inf'))\n            if not result_ok:\n                return False\n            if not self._inorder(result, result_values):\n                return False\n\n        original_values = []\n        if root is not None and not self._inorder(root, original_values):\n            return False\n\n        if key in original_values:\n            original_values.remove(key)\n\n        return result_values == original_values\n"
+      }
+    },
+    "seed": 450,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            5,
+            3,
+            6,
+            2,
+            4,
+            null,
+            7
+          ],
+          "key": 3
+        },
+        "out": [
+          5,
+          2,
+          6,
+          null,
+          4,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            5,
+            3,
+            6,
+            2,
+            4,
+            null,
+            7
+          ],
+          "key": 0
+        },
+        "out": [
+          5,
+          3,
+          6,
+          2,
+          4,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "example_3_empty",
+        "in": {
+          "root": [],
+          "key": 0
+        },
+        "out": []
+      },
+      {
+        "name": "single_node_delete_root",
+        "in": {
+          "root": [
+            1
+          ],
+          "key": 1
+        },
+        "out": []
+      },
+      {
+        "name": "single_node_absent",
+        "in": {
+          "root": [
+            1
+          ],
+          "key": 2
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "delete_leaf_left",
+        "in": {
+          "root": [
+            5,
+            3,
+            6,
+            2,
+            4,
+            null,
+            7
+          ],
+          "key": 2
+        },
+        "out": [
+          5,
+          3,
+          6,
+          null,
+          4,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "delete_leaf_right",
+        "in": {
+          "root": [
+            5,
+            3,
+            6,
+            2,
+            4,
+            null,
+            7
+          ],
+          "key": 7
+        },
+        "out": [
+          5,
+          3,
+          6,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "delete_root_with_two_children",
+        "in": {
+          "root": [
+            5,
+            3,
+            6,
+            2,
+            4,
+            null,
+            7
+          ],
+          "key": 5
+        },
+        "out": [
+          3,
+          2,
+          4,
+          null,
+          null,
+          null,
+          6,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "delete_internal_with_left_child_only",
+        "in": {
+          "root": [
+            8,
+            3,
+            10,
+            1,
+            6,
+            null,
+            14,
+            null,
+            null,
+            4,
+            7,
+            13
+          ],
+          "key": 14
+        },
+        "out": [
+          8,
+          3,
+          10,
+          1,
+          6,
+          null,
+          13,
+          null,
+          null,
+          4,
+          7
+        ]
+      },
+      {
+        "name": "delete_internal_with_right_child_only",
+        "in": {
+          "root": [
+            8,
+            3,
+            10,
+            1,
+            6,
+            null,
+            14,
+            null,
+            null,
+            4,
+            7,
+            13
+          ],
+          "key": 6
+        },
+        "out": [
+          8,
+          3,
+          10,
+          1,
+          4,
+          null,
+          14,
+          null,
+          null,
+          null,
+          7,
+          13
+        ]
+      },
+      {
+        "name": "delete_missing_small",
+        "in": {
+          "root": [
+            8,
+            3,
+            10,
+            1,
+            6,
+            null,
+            14,
+            null,
+            null,
+            4,
+            7,
+            13
+          ],
+          "key": -1
+        },
+        "out": [
+          8,
+          3,
+          10,
+          1,
+          6,
+          null,
+          14,
+          null,
+          null,
+          4,
+          7,
+          13
+        ]
+      },
+      {
+        "name": "delete_missing_large",
+        "in": {
+          "root": [
+            8,
+            3,
+            10,
+            1,
+            6,
+            null,
+            14,
+            null,
+            null,
+            4,
+            7,
+            13
+          ],
+          "key": 20
+        },
+        "out": [
+          8,
+          3,
+          10,
+          1,
+          6,
+          null,
+          14,
+          null,
+          null,
+          4,
+          7,
+          13
+        ]
+      },
+      {
+        "name": "left_skew_delete_middle",
+        "in": {
+          "root": [
+            10,
+            5,
+            null,
+            2,
+            null,
+            1
+          ],
+          "key": 5
+        },
+        "out": [
+          10,
+          2,
+          null,
+          1
+        ]
+      },
+      {
+        "name": "right_skew_delete_middle",
+        "in": {
+          "root": [
+            1,
+            null,
+            3,
+            null,
+            5,
+            null,
+            7
+          ],
+          "key": 5
+        },
+        "out": [
+          1,
+          null,
+          3,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "balanced_small_delete_internal",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ],
+          "key": 6
+        },
+        "out": [
+          4,
+          2,
+          5,
+          1,
+          3,
+          null,
+          7
+        ]
+      },
+      {
+        "name": "balanced_small_delete_root",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ],
+          "key": 4
+        },
+        "out": [
+          2,
+          1,
+          3,
+          null,
+          null,
+          null,
+          6,
+          5,
+          7
+        ]
+      },
+      {
+        "name": "delete_minimum",
+        "in": {
+          "root": [
+            15,
+            7,
+            20,
+            3,
+            9,
+            18,
+            25
+          ],
+          "key": 3
+        },
+        "out": [
+          15,
+          7,
+          20,
+          null,
+          9,
+          18,
+          25
+        ]
+      },
+      {
+        "name": "delete_maximum",
+        "in": {
+          "root": [
+            15,
+            7,
+            20,
+            3,
+            9,
+            18,
+            25
+          ],
+          "key": 25
+        },
+        "out": [
+          15,
+          7,
+          20,
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "name": "delete_node_with_deep_successor_case",
+        "in": {
+          "root": [
+            50,
+            30,
+            70,
+            20,
+            40,
+            60,
+            80,
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            90
+          ],
+          "key": 30
+        },
+        "out": [
+          50,
+          20,
+          70,
+          10,
+          25,
+          60,
+          80,
+          null,
+          null,
+          null,
+          40,
+          55,
+          65,
+          75,
+          90,
+          35,
+          45
+        ]
+      },
+      {
+        "name": "delete_node_with_deep_predecessor_case",
+        "in": {
+          "root": [
+            50,
+            30,
+            70,
+            20,
+            40,
+            60,
+            80,
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            90
+          ],
+          "key": 70
+        },
+        "out": [
+          50,
+          30,
+          60,
+          20,
+          40,
+          55,
+          65,
+          10,
+          25,
+          35,
+          45,
+          null,
+          null,
+          null,
+          80,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          75,
+          90
+        ]
+      },
+      {
+        "name": "delete_root_two_children_left_heavy",
+        "in": {
+          "root": [
+            30,
+            20,
+            40,
+            10,
+            25,
+            35,
+            50,
+            5,
+            15,
+            22,
+            27,
+            33,
+            37,
+            45,
+            55
+          ],
+          "key": 30
+        },
+        "out": [
+          20,
+          10,
+          25,
+          5,
+          15,
+          22,
+          27,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          40,
+          35,
+          50,
+          33,
+          37,
+          45,
+          55
+        ]
+      },
+      {
+        "name": "delete_root_two_children_right_heavy",
+        "in": {
+          "root": [
+            30,
+            20,
+            40,
+            10,
+            25,
+            35,
+            50,
+            5,
+            15,
+            22,
+            27,
+            33,
+            37,
+            45,
+            55
+          ],
+          "key": 40
+        },
+        "out": [
+          30,
+          20,
+          35,
+          10,
+          25,
+          33,
+          37,
+          5,
+          15,
+          22,
+          27,
+          null,
+          null,
+          null,
+          50,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          45,
+          55
+        ]
+      },
+      {
+        "name": "bst_with_negative_values_unsupported_in_leetcode_but_valid_for_checker",
+        "in": {
+          "root": [
+            0,
+            -3,
+            9,
+            -10,
+            null,
+            5,
+            12
+          ],
+          "key": -3
+        },
+        "out": [
+          0,
+          -10,
+          9,
+          null,
+          null,
+          5,
+          12
+        ]
+      },
+      {
+        "name": "delete_internal_root_child",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            2,
+            7,
+            12,
+            20
+          ],
+          "key": 5
+        },
+        "out": [
+          10,
+          2,
+          15,
+          null,
+          7,
+          12,
+          20
+        ]
+      },
+      {
+        "name": "delete_internal_right_subtree",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            2,
+            7,
+            12,
+            20
+          ],
+          "key": 15
+        },
+        "out": [
+          10,
+          5,
+          12,
+          2,
+          7,
+          null,
+          20
+        ]
+      },
+      {
+        "name": "delete_root_one_child_left",
+        "in": {
+          "root": [
+            2,
+            1
+          ],
+          "key": 2
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "delete_root_one_child_right",
+        "in": {
+          "root": [
+            2,
+            null,
+            3
+          ],
+          "key": 2
+        },
+        "out": [
+          3
+        ]
+      },
+      {
+        "name": "balanced_medium_delete_leaf",
+        "in": {
+          "root": [
+            16,
+            8,
+            24,
+            4,
+            12,
+            20,
+            28,
+            2,
+            6,
+            10,
+            14,
+            18,
+            22,
+            26,
+            30
+          ],
+          "key": 14
+        },
+        "out": [
+          16,
+          8,
+          24,
+          4,
+          12,
+          20,
+          28,
+          2,
+          6,
+          10,
+          null,
+          18,
+          22,
+          26,
+          30
+        ]
+      },
+      {
+        "name": "balanced_medium_delete_internal",
+        "in": {
+          "root": [
+            16,
+            8,
+            24,
+            4,
+            12,
+            20,
+            28,
+            2,
+            6,
+            10,
+            14,
+            18,
+            22,
+            26,
+            30
+          ],
+          "key": 8
+        },
+        "out": [
+          16,
+          4,
+          24,
+          2,
+          6,
+          20,
+          28,
+          null,
+          null,
+          null,
+          12,
+          18,
+          22,
+          26,
+          30,
+          10,
+          14
+        ]
+      },
+      {
+        "name": "balanced_medium_delete_root",
+        "in": {
+          "root": [
+            16,
+            8,
+            24,
+            4,
+            12,
+            20,
+            28,
+            2,
+            6,
+            10,
+            14,
+            18,
+            22,
+            26,
+            30
+          ],
+          "key": 16
+        },
+        "out": [
+          8,
+          4,
+          12,
+          2,
+          6,
+          10,
+          14,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          24,
+          20,
+          28,
+          18,
+          22,
+          26,
+          30
+        ]
+      },
+      {
+        "name": "wide_sparse_delete_leaf",
+        "in": {
+          "root": [
+            100,
+            50,
+            150,
+            25,
+            75,
+            125,
+            175,
+            10,
+            30,
+            60,
+            90,
+            110,
+            130,
+            160,
+            190
+          ],
+          "key": 110
+        },
+        "out": [
+          100,
+          50,
+          150,
+          25,
+          75,
+          125,
+          175,
+          10,
+          30,
+          60,
+          90,
+          null,
+          130,
+          160,
+          190
+        ]
+      },
+      {
+        "name": "wide_sparse_delete_internal",
+        "in": {
+          "root": [
+            100,
+            50,
+            150,
+            25,
+            75,
+            125,
+            175,
+            10,
+            30,
+            60,
+            90,
+            110,
+            130,
+            160,
+            190
+          ],
+          "key": 150
+        },
+        "out": [
+          100,
+          50,
+          125,
+          25,
+          75,
+          110,
+          130,
+          10,
+          30,
+          60,
+          90,
+          null,
+          null,
+          null,
+          175,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          160,
+          190
+        ]
+      },
+      {
+        "name": "wide_sparse_delete_root",
+        "in": {
+          "root": [
+            100,
+            50,
+            150,
+            25,
+            75,
+            125,
+            175,
+            10,
+            30,
+            60,
+            90,
+            110,
+            130,
+            160,
+            190
+          ],
+          "key": 100
+        },
+        "out": [
+          50,
+          25,
+          75,
+          10,
+          30,
+          60,
+          90,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          150,
+          125,
+          175,
+          110,
+          130,
+          160,
+          190
+        ]
+      },
+      {
+        "name": "chain_long_left",
+        "in": {
+          "root": [
+            20,
+            10,
+            null,
+            5,
+            null,
+            2,
+            null,
+            1
+          ],
+          "key": 2
+        },
+        "out": [
+          20,
+          10,
+          null,
+          5,
+          null,
+          1
+        ]
+      },
+      {
+        "name": "chain_long_right",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3,
+            null,
+            4
+          ],
+          "key": 3
+        },
+        "out": [
+          1,
+          null,
+          2,
+          null,
+          4
+        ]
+      },
+      {
+        "name": "missing_in_large_bst_low",
+        "in": {
+          "root": [
+            32,
+            16,
+            48,
+            8,
+            24,
+            40,
+            56,
+            4,
+            12,
+            20,
+            28,
+            36,
+            44,
+            52,
+            60
+          ],
+          "key": 1
+        },
+        "out": [
+          32,
+          16,
+          48,
+          8,
+          24,
+          40,
+          56,
+          4,
+          12,
+          20,
+          28,
+          36,
+          44,
+          52,
+          60
+        ]
+      },
+      {
+        "name": "missing_in_large_bst_high",
+        "in": {
+          "root": [
+            32,
+            16,
+            48,
+            8,
+            24,
+            40,
+            56,
+            4,
+            12,
+            20,
+            28,
+            36,
+            44,
+            52,
+            60
+          ],
+          "key": 100
+        },
+        "out": [
+          32,
+          16,
+          48,
+          8,
+          24,
+          40,
+          56,
+          4,
+          12,
+          20,
+          28,
+          36,
+          44,
+          52,
+          60
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nkey = 3",
+      "output": "[5, 2, 6, null, 4, null, 7]"
+    },
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nkey = 0",
+      "output": "[5, 3, 6, 2, 4, null, 7]"
+    },
+    {
+      "input": "root = []\nkey = 0",
+      "output": "[]"
+    },
+    {
+      "input": "root = [1]\nkey = 1",
+      "output": "[]"
+    },
+    {
+      "input": "root = [1]\nkey = 2",
+      "output": "[1]"
+    },
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nkey = 2",
+      "output": "[5, 3, 6, null, 4, null, 7]"
+    },
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nkey = 7",
+      "output": "[5, 3, 6, 2, 4]"
+    },
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nkey = 5",
+      "output": "[3, 2, 4, null, null, null, 6, null, 7]"
+    }
+  ]
+}

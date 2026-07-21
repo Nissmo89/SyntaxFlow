@@ -1,0 +1,637 @@
+{
+  "id": "max_chunks_to_make_sorted_ii",
+  "title": "Max Chunks To Make Sorted II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "description": "<p>You are given an integer array <code>arr</code>.</p>\n\n<p>We split <code>arr</code> into some number of <strong>chunks</strong> (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.</p>\n\n<p>Return <em>the largest number of chunks we can make to sort the array</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [5,4,3,2,1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong>\nSplitting into two or more chunks will not return the required result.\nFor example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&#39;t sorted.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [2,1,3,4,4]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong>\nWe can split into two chunks, such as [2, 1], [3, 4, 4].\nHowever, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= arr.length &lt;= 2000</code></li>\n\t<li><code>0 &lt;= arr[i] &lt;= 10<sup>8</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Max Chunks To Make Sorted II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= arr.length <= 2000",
+    "0 <= arr[i] <= 108"
+  ],
+  "hints": [
+    "Each k for which some permutation of arr[:k] is equal to sorted(arr)[:k] is where we should cut each chunk."
+  ],
+  "method": {
+    "name": "maxChunksToSorted",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "arr",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 768,
+      "title": "max-chunks-to-make-sorted-ii",
+      "params": {
+        "arr": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxChunksToSorted({arr})",
+        "rust": "Solution::max_chunks_to_sorted({arr})",
+        "python3": "Solution().maxChunksToSorted({arr})",
+        "python2": "Solution().maxChunksToSorted({arr})",
+        "ruby": "max_chunks_to_sorted({arr})",
+        "java": "new Solution().maxChunksToSorted({arr})",
+        "csharp": "new Solution().MaxChunksToSorted({arr})",
+        "kotlin": "Solution().maxChunksToSorted({arr})",
+        "go": "maxChunksToSorted({arr})",
+        "dart": "Solution().maxChunksToSorted({arr})",
+        "swift": "Solution().maxChunksToSorted({arr})",
+        "typescript": "maxChunksToSorted({arr})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(arr, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def check(self, arr, result):\n        diff = Counter()\n        chunks = 0\n        for left, right in zip(arr, sorted(arr)):\n            diff[left] += 1\n            if diff[left] == 0:\n                del diff[left]\n            diff[right] -= 1\n            if diff[right] == 0:\n                del diff[right]\n            if not diff:\n                chunks += 1\n        return result == chunks\n"
+      }
+    },
+    "seed": 768,
+    "tests": [
+      {
+        "name": "example_descending",
+        "in": {
+          "arr": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example_with_duplicate_tail",
+        "in": {
+          "arr": [
+            2,
+            1,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "arr": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_max_value",
+        "in": {
+          "arr": [
+            100000000
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_equal_small",
+        "in": {
+          "arr": [
+            7,
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "already_sorted_distinct",
+        "in": {
+          "arr": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "two_elements_swapped",
+        "in": {
+          "arr": [
+            1,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "duplicates_split_once",
+        "in": {
+          "arr": [
+            1,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "alternating_duplicate_peaks",
+        "in": {
+          "arr": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "prefix_plateau",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            3,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "zeros_and_ones",
+        "in": {
+          "arr": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "large_values_interleaved",
+        "in": {
+          "arr": [
+            100000000,
+            0,
+            99999999,
+            1,
+            99999998,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "increasing_blocks",
+        "in": {
+          "arr": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "decreasing_blocks",
+        "in": {
+          "arr": [
+            3,
+            3,
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed_easy",
+        "in": {
+          "arr": [
+            1,
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "valley_before_rise",
+        "in": {
+          "arr": [
+            4,
+            2,
+            2,
+            1,
+            1,
+            3,
+            5
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all_same_longer",
+        "in": {
+          "arr": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "chunkable_tail",
+        "in": {
+          "arr": [
+            2,
+            0,
+            1,
+            3,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "chunkable_head",
+        "in": {
+          "arr": [
+            0,
+            1,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "symmetric_duplicates",
+        "in": {
+          "arr": [
+            2,
+            0,
+            2,
+            0,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "sorted_with_duplicates",
+        "in": {
+          "arr": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "reverse_with_duplicates",
+        "in": {
+          "arr": [
+            2,
+            2,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "sparse_extremes",
+        "in": {
+          "arr": [
+            0,
+            100000000,
+            0,
+            100000000
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "digits_of_pi_shape",
+        "in": {
+          "arr": [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "near_sorted_front_swap",
+        "in": {
+          "arr": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "late_drop",
+        "in": {
+          "arr": [
+            0,
+            1,
+            2,
+            6,
+            4,
+            5,
+            7
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "early_peak",
+        "in": {
+          "arr": [
+            4,
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "checkerboard_binary",
+        "in": {
+          "arr": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "big_duplicate_plateaus",
+        "in": {
+          "arr": [
+            5,
+            5,
+            5,
+            3,
+            3,
+            3,
+            5,
+            5
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "many_local_boundaries",
+        "in": {
+          "arr": [
+            0,
+            2,
+            1,
+            3,
+            5,
+            4,
+            6,
+            8,
+            7,
+            9
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "center_block_merge",
+        "in": {
+          "arr": [
+            1,
+            2,
+            2,
+            2,
+            1,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "extreme_pairs",
+        "in": {
+          "arr": [
+            100000000,
+            100000000,
+            0,
+            0,
+            50000000,
+            50000000
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "gen_small_random",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_dense_duplicates",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 120,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 15
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_medium_wide_values",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 400,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_large_near_limit_1999",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 1999,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_large_limit_2000",
+        "in": {
+          "arr": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 100000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "arr = [5, 4, 3, 2, 1]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [2, 1, 3, 4, 4]",
+      "output": "4"
+    },
+    {
+      "input": "arr = [0]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [100000000]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [7, 7, 7, 7]",
+      "output": "4"
+    },
+    {
+      "input": "arr = [0, 1, 2, 3, 4, 5]",
+      "output": "6"
+    },
+    {
+      "input": "arr = [1, 0]",
+      "output": "1"
+    },
+    {
+      "input": "arr = [1, 1, 0, 0, 1]",
+      "output": "2"
+    }
+  ]
+}

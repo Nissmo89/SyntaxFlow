@@ -1,0 +1,349 @@
+{
+  "id": "check_if_word_is_valid_after_substitutions",
+  "title": "Check If Word Is Valid After Substitutions",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>Given a string <code>s</code>, determine if it is <strong>valid</strong>.</p>\n\n<p>A string <code>s</code> is <strong>valid</strong> if, starting with an empty string <code>t = &quot;&quot;</code>, you can <strong>transform </strong><code>t</code><strong> into </strong><code>s</code> after performing the following operation <strong>any number of times</strong>:</p>\n\n<ul>\n\t<li>Insert string <code>&quot;abc&quot;</code> into any position in <code>t</code>. More formally, <code>t</code> becomes <code>t<sub>left</sub> + &quot;abc&quot; + t<sub>right</sub></code>, where <code>t == t<sub>left</sub> + t<sub>right</sub></code>. Note that <code>t<sub>left</sub></code> and <code>t<sub>right</sub></code> may be <strong>empty</strong>.</li>\n</ul>\n\n<p>Return <code>true</code> <em>if </em><code>s</code><em> is a <strong>valid</strong> string, otherwise, return</em> <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aabcbc&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong>\n&quot;&quot; -&gt; &quot;<u>abc</u>&quot; -&gt; &quot;a<u>abc</u>bc&quot;\nThus, &quot;aabcbc&quot; is valid.</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcabcababcc&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong>\n&quot;&quot; -&gt; &quot;<u>abc</u>&quot; -&gt; &quot;abc<u>abc</u>&quot; -&gt; &quot;abcabc<u>abc</u>&quot; -&gt; &quot;abcabcab<u>abc</u>c&quot;\nThus, &quot;abcabcababcc&quot; is valid.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abccba&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> It is impossible to get &quot;abccba&quot; using the operation.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of letters <code>&#39;a&#39;</code>, <code>&#39;b&#39;</code>, and <code>&#39;c&#39;</code></li>\n</ul>\n",
+  "task": "Solve the 'Check If Word Is Valid After Substitutions' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 2 * 104",
+    "s consists of letters 'a', 'b', and 'c'"
+  ],
+  "hints": [],
+  "method": {
+    "name": "isValid",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1003,
+      "title": "check-if-word-is-valid-after-substitutions",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isValid({s})",
+        "rust": "Solution::is_valid({s})",
+        "python3": "Solution().isValid({s})",
+        "python2": "Solution().isValid({s})",
+        "ruby": "is_valid({s})",
+        "java": "new Solution().isValid({s})",
+        "csharp": "new Solution().IsValid({s})",
+        "kotlin": "Solution().isValid({s})",
+        "go": "isValid({s})",
+        "dart": "Solution().isValid({s})",
+        "swift": "Solution().isValid({s})",
+        "typescript": "isValid({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 1003,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "s": "abc"
+        },
+        "out": true
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "s": "aabcbc"
+        },
+        "out": true
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "s": "abcabcababcc"
+        },
+        "out": true
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "s": "abccba"
+        },
+        "out": false
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "s": "cababc"
+        },
+        "out": false
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "s": "ababc"
+        },
+        "out": false
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "s": "aaacbbcbcab"
+        },
+        "out": false
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "s": "aabb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "s": "accabaacc"
+        },
+        "out": false
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "s": "cacccab"
+        },
+        "out": false
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "s": "b"
+        },
+        "out": false
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "s": "cb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "s": "cbcababb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "s": "baa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "s": "c"
+        },
+        "out": false
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "s": "bbabb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "s": "abacbcbcb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "s": "c"
+        },
+        "out": false
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "s": "abbaa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "s": "aabaaaaccbb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "s": "acbcbbbccbcb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "s": "aa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "s": "bcbaa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "s": "ca"
+        },
+        "out": false
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "s": "bbacc"
+        },
+        "out": false
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "s": "aa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "s": "bbcbbc"
+        },
+        "out": false
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "s": "ac"
+        },
+        "out": false
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "s": "bbbbaccbaab"
+        },
+        "out": false
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "s": "abcaba"
+        },
+        "out": false
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "s": "bbaabbcbbab"
+        },
+        "out": false
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "s": "cbcccccaa"
+        },
+        "out": false
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "s": "a"
+        },
+        "out": false
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "s": "cbbabaaacbac"
+        },
+        "out": false
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "s": "babca"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aabcbc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcabcababcc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abccba\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"cababc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ababc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaacbbcbcab\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aabb\"",
+      "output": "false"
+    }
+  ]
+}

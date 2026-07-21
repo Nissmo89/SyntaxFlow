@@ -1,0 +1,719 @@
+{
+  "id": "text_justification",
+  "title": "Text Justification",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String",
+    "Simulation"
+  ],
+  "description": "<p>Given an array of strings <code>words</code> and a width <code>maxWidth</code>, format the text such that each line has exactly <code>maxWidth</code> characters and is fully (left and right) justified.</p>\n\n<p>You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces <code>&#39; &#39;</code> when necessary so that each line has exactly <code>maxWidth</code> characters.</p>\n\n<p>Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.</p>\n\n<p>For the last line of text, it should be left-justified, and no extra space is inserted between words.</p>\n\n<p><strong>Note:</strong></p>\n\n<ul>\n\t<li>A word is defined as a character sequence consisting of non-space characters only.</li>\n\t<li>Each word&#39;s length is guaranteed to be greater than <code>0</code> and not exceed <code>maxWidth</code>.</li>\n\t<li>The input array <code>words</code> contains at least one word.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;This&quot;, &quot;is&quot;, &quot;an&quot;, &quot;example&quot;, &quot;of&quot;, &quot;text&quot;, &quot;justification.&quot;], maxWidth = 16\n<strong>Output:</strong>\n[\n&nbsp; &nbsp;&quot;This &nbsp; &nbsp;is &nbsp; &nbsp;an&quot;,\n&nbsp; &nbsp;&quot;example &nbsp;of text&quot;,\n&nbsp; &nbsp;&quot;justification. &nbsp;&quot;\n]</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;What&quot;,&quot;must&quot;,&quot;be&quot;,&quot;acknowledgment&quot;,&quot;shall&quot;,&quot;be&quot;], maxWidth = 16\n<strong>Output:</strong>\n[\n&nbsp; &quot;What &nbsp; must &nbsp; be&quot;,\n&nbsp; &quot;acknowledgment &nbsp;&quot;,\n&nbsp; &quot;shall be &nbsp; &nbsp; &nbsp; &nbsp;&quot;\n]\n<strong>Explanation:</strong> Note that the last line is &quot;shall be    &quot; instead of &quot;shall     be&quot;, because the last line must be left-justified instead of fully-justified.\nNote that the second line is also left-justified because it contains only one word.</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;Science&quot;,&quot;is&quot;,&quot;what&quot;,&quot;we&quot;,&quot;understand&quot;,&quot;well&quot;,&quot;enough&quot;,&quot;to&quot;,&quot;explain&quot;,&quot;to&quot;,&quot;a&quot;,&quot;computer.&quot;,&quot;Art&quot;,&quot;is&quot;,&quot;everything&quot;,&quot;else&quot;,&quot;we&quot;,&quot;do&quot;], maxWidth = 20\n<strong>Output:</strong>\n[\n&nbsp; &quot;Science &nbsp;is &nbsp;what we&quot;,\n  &quot;understand &nbsp; &nbsp; &nbsp;well&quot;,\n&nbsp; &quot;enough to explain to&quot;,\n&nbsp; &quot;a &nbsp;computer. &nbsp;Art is&quot;,\n&nbsp; &quot;everything &nbsp;else &nbsp;we&quot;,\n&nbsp; &quot;do &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;\n]</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 300</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 20</code></li>\n\t<li><code>words[i]</code> consists of only English letters and symbols.</li>\n\t<li><code>1 &lt;= maxWidth &lt;= 100</code></li>\n\t<li><code>words[i].length &lt;= maxWidth</code></li>\n</ul>\n",
+  "task": "Solve the 'Text Justification' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= words.length <= 300",
+    "1 <= words[i].length <= 20",
+    "words[i] consists of only English letters and symbols.",
+    "1 <= maxWidth <= 100",
+    "words[i].length <= maxWidth"
+  ],
+  "hints": [],
+  "method": {
+    "name": "solve",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "array"
+      },
+      {
+        "name": "maxWidth",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 68,
+      "title": "text-justification",
+      "params": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maxWidth": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().fullJustify({words}, {maxWidth})",
+        "rust": "Solution::full_justify({words}, {maxWidth})",
+        "python3": "fullJustify({words}, {maxWidth})",
+        "python2": "fullJustify({words}, {maxWidth})",
+        "ruby": "full_justify({words}, {maxWidth})",
+        "java": "new Solution().fullJustify({words}, {maxWidth})",
+        "csharp": "new Solution().FullJustify({words}, {maxWidth})",
+        "kotlin": "Solution().fullJustify({words}, {maxWidth})",
+        "go": "fullJustify({words}, {maxWidth})",
+        "dart": "Solution().fullJustify({words}, {maxWidth})",
+        "swift": "Solution().fullJustify({words}, {maxWidth})",
+        "typescript": "fullJustify({words}, {maxWidth})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "fullJustify(words, maxWidth)",
+        "checker": "class Checker:\n    def fullJustify(self, words, maxWidth, result):\n        return result is not None\n"
+      }
+    },
+    "seed": 68,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "words": [
+            "This",
+            "is",
+            "an",
+            "example",
+            "of",
+            "text",
+            "justification."
+          ],
+          "maxWidth": 16
+        },
+        "out": [
+          "This    is    an",
+          "example  of text",
+          "justification.  "
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "words": [
+            "What",
+            "must",
+            "be",
+            "acknowledgment",
+            "shall",
+            "be"
+          ],
+          "maxWidth": 16
+        },
+        "out": [
+          "What   must   be",
+          "acknowledgment  ",
+          "shall be        "
+        ]
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "words": [
+            "Science",
+            "is",
+            "what",
+            "we",
+            "understand",
+            "well",
+            "enough",
+            "to",
+            "explain",
+            "to",
+            "a",
+            "computer.",
+            "Art",
+            "is",
+            "everything",
+            "else",
+            "we",
+            "do"
+          ],
+          "maxWidth": 20
+        },
+        "out": [
+          "Science  is  what we",
+          "understand      well",
+          "enough to explain to",
+          "a  computer.  Art is",
+          "everything  else  we",
+          "do                  "
+        ]
+      },
+      {
+        "name": "single_word_exact_width",
+        "in": {
+          "words": [
+            "hello"
+          ],
+          "maxWidth": 5
+        },
+        "out": [
+          "hello"
+        ]
+      },
+      {
+        "name": "single_word_padded",
+        "in": {
+          "words": [
+            "hello"
+          ],
+          "maxWidth": 10
+        },
+        "out": [
+          "hello     "
+        ]
+      },
+      {
+        "name": "two_words_exact_fit",
+        "in": {
+          "words": [
+            "ab",
+            "cd"
+          ],
+          "maxWidth": 5
+        },
+        "out": [
+          "ab cd"
+        ]
+      },
+      {
+        "name": "two_words_need_padding_last_line",
+        "in": {
+          "words": [
+            "ab",
+            "cd"
+          ],
+          "maxWidth": 6
+        },
+        "out": [
+          "ab cd "
+        ]
+      },
+      {
+        "name": "uneven_distribution_one_extra",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "maxWidth": 6
+        },
+        "out": [
+          "a  b c",
+          "d     "
+        ]
+      },
+      {
+        "name": "uneven_distribution_two_extras",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "maxWidth": 7
+        },
+        "out": [
+          "a b c d"
+        ]
+      },
+      {
+        "name": "all_single_char_tight",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+          ],
+          "maxWidth": 3
+        },
+        "out": [
+          "a b",
+          "c d",
+          "e  "
+        ]
+      },
+      {
+        "name": "exact_line_boundary",
+        "in": {
+          "words": [
+            "abc",
+            "de",
+            "f",
+            "gh"
+          ],
+          "maxWidth": 6
+        },
+        "out": [
+          "abc de",
+          "f gh  "
+        ]
+      },
+      {
+        "name": "last_line_left_justified_many_words",
+        "in": {
+          "words": [
+            "one",
+            "two",
+            "three"
+          ],
+          "maxWidth": 11
+        },
+        "out": [
+          "one     two",
+          "three      "
+        ]
+      },
+      {
+        "name": "long_word_with_small_followups",
+        "in": {
+          "words": [
+            "supercalifragilistic",
+            "is",
+            "fun"
+          ],
+          "maxWidth": 20
+        },
+        "out": [
+          "supercalifragilistic",
+          "is fun              "
+        ]
+      },
+      {
+        "name": "punctuation_words",
+        "in": {
+          "words": [
+            "hello,",
+            "world!",
+            "yes?"
+          ],
+          "maxWidth": 13
+        },
+        "out": [
+          "hello, world!",
+          "yes?         "
+        ]
+      },
+      {
+        "name": "many_single_letter_words_width_four",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g"
+          ],
+          "maxWidth": 4
+        },
+        "out": [
+          "a  b",
+          "c  d",
+          "e  f",
+          "g   "
+        ]
+      },
+      {
+        "name": "width_one_single_char_words",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c"
+          ],
+          "maxWidth": 1
+        },
+        "out": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      {
+        "name": "width_two_simple",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c"
+          ],
+          "maxWidth": 2
+        },
+        "out": [
+          "a ",
+          "b ",
+          "c "
+        ]
+      },
+      {
+        "name": "fit_three_words_exact",
+        "in": {
+          "words": [
+            "ab",
+            "c",
+            "de"
+          ],
+          "maxWidth": 7
+        },
+        "out": [
+          "ab c de"
+        ]
+      },
+      {
+        "name": "fit_three_words_with_padding",
+        "in": {
+          "words": [
+            "ab",
+            "c",
+            "de"
+          ],
+          "maxWidth": 8
+        },
+        "out": [
+          "ab c de "
+        ]
+      },
+      {
+        "name": "alternating_lengths",
+        "in": {
+          "words": [
+            "a",
+            "bb",
+            "c",
+            "ddd",
+            "e",
+            "ff"
+          ],
+          "maxWidth": 8
+        },
+        "out": [
+          "a  bb  c",
+          "ddd e ff"
+        ]
+      },
+      {
+        "name": "exact_fit_across_multiple_lines",
+        "in": {
+          "words": [
+            "abc",
+            "def",
+            "gh",
+            "ijk",
+            "l"
+          ],
+          "maxWidth": 7
+        },
+        "out": [
+          "abc def",
+          "gh  ijk",
+          "l      "
+        ]
+      },
+      {
+        "name": "single_line_many_words",
+        "in": {
+          "words": [
+            "a",
+            "bb",
+            "ccc",
+            "d"
+          ],
+          "maxWidth": 12
+        },
+        "out": [
+          "a bb ccc d  "
+        ]
+      },
+      {
+        "name": "single_word_maxwidth_twenty",
+        "in": {
+          "words": [
+            "abcdefghijklmnopqrst"
+          ],
+          "maxWidth": 20
+        },
+        "out": [
+          "abcdefghijklmnopqrst"
+        ]
+      },
+      {
+        "name": "multiple_one_word_lines",
+        "in": {
+          "words": [
+            "abcdefghij",
+            "klmnopqrst",
+            "uvwxyz"
+          ],
+          "maxWidth": 10
+        },
+        "out": [
+          "abcdefghij",
+          "klmnopqrst",
+          "uvwxyz    "
+        ]
+      },
+      {
+        "name": "greedy_pack_boundary",
+        "in": {
+          "words": [
+            "aa",
+            "bb",
+            "ccc",
+            "d",
+            "ee",
+            "fff"
+          ],
+          "maxWidth": 9
+        },
+        "out": [
+          "aa bb ccc",
+          "d ee fff "
+        ]
+      },
+      {
+        "name": "spaces_left_heavier",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+          ],
+          "maxWidth": 9
+        },
+        "out": [
+          "a b c d e"
+        ]
+      },
+      {
+        "name": "many_words_short_width",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+          ],
+          "maxWidth": 5
+        },
+        "out": [
+          "a b c",
+          "d e f",
+          "g h  "
+        ]
+      },
+      {
+        "name": "exact_justified_last_line",
+        "in": {
+          "words": [
+            "what",
+            "must",
+            "be"
+          ],
+          "maxWidth": 12
+        },
+        "out": [
+          "what must be"
+        ]
+      },
+      {
+        "name": "final_line_single_word_padding",
+        "in": {
+          "words": [
+            "aa",
+            "b",
+            "c"
+          ],
+          "maxWidth": 4
+        },
+        "out": [
+          "aa b",
+          "c   "
+        ]
+      },
+      {
+        "name": "long_mix_small_width",
+        "in": {
+          "words": [
+            "a",
+            "bc",
+            "d",
+            "ef",
+            "g",
+            "hi"
+          ],
+          "maxWidth": 5
+        },
+        "out": [
+          "a  bc",
+          "d  ef",
+          "g hi "
+        ]
+      },
+      {
+        "name": "boundary_three_lines",
+        "in": {
+          "words": [
+            "abc",
+            "d",
+            "ef",
+            "ghij",
+            "k"
+          ],
+          "maxWidth": 8
+        },
+        "out": [
+          "abc d ef",
+          "ghij k  "
+        ]
+      },
+      {
+        "name": "max_width_hundred_single_line",
+        "in": {
+          "words": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit",
+            "amet"
+          ],
+          "maxWidth": 100
+        },
+        "out": [
+          "lorem ipsum dolor sit amet                                                                          "
+        ]
+      },
+      {
+        "name": "max_width_hundred_multi_line",
+        "in": {
+          "words": [
+            "a",
+            "bb",
+            "ccc",
+            "dddd",
+            "eeeee",
+            "ffffff"
+          ],
+          "maxWidth": 100
+        },
+        "out": [
+          "a bb ccc dddd eeeee ffffff                                                                          "
+        ]
+      },
+      {
+        "name": "near_max_word_lengths",
+        "in": {
+          "words": [
+            "abcdefghijklmnopqrst",
+            "uvwxyzabcdefghijklmn",
+            "opqrstuvwxyzabcdefgh"
+          ],
+          "maxWidth": 20
+        },
+        "out": [
+          "abcdefghijklmnopqrst",
+          "uvwxyzabcdefghijklmn",
+          "opqrstuvwxyzabcdefgh"
+        ]
+      },
+      {
+        "name": "many_short_words_fill_exactly",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j"
+          ],
+          "maxWidth": 10
+        },
+        "out": [
+          "a  b c d e",
+          "f g h i j "
+        ]
+      },
+      {
+        "name": "uneven_last_line_padding",
+        "in": {
+          "words": [
+            "abc",
+            "de",
+            "f",
+            "gh",
+            "i"
+          ],
+          "maxWidth": 8
+        },
+        "out": [
+          "abc de f",
+          "gh i    "
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"]\nmaxWidth = 16",
+      "output": "[\"This    is    an\", \"example  of text\", \"justification.  \"]"
+    },
+    {
+      "input": "words = [\"What\", \"must\", \"be\", \"acknowledgment\", \"shall\", \"be\"]\nmaxWidth = 16",
+      "output": "[\"What   must   be\", \"acknowledgment  \", \"shall be        \"]"
+    },
+    {
+      "input": "words = [\"Science\", \"is\", \"what\", \"we\", \"understand\", \"well\", \"enough\", \"to\", \"explain\", \"to\", \"a\", \"computer.\", \"Art\", \"is\", \"everything\", \"else\", \"we\", \"do\"]\nmaxWidth = 20",
+      "output": "[\"Science  is  what we\", \"understand      well\", \"enough to explain to\", \"a  computer.  Art is\", \"everything  else  we\", \"do                  \"]"
+    },
+    {
+      "input": "words = [\"hello\"]\nmaxWidth = 5",
+      "output": "[\"hello\"]"
+    },
+    {
+      "input": "words = [\"hello\"]\nmaxWidth = 10",
+      "output": "[\"hello     \"]"
+    },
+    {
+      "input": "words = [\"ab\", \"cd\"]\nmaxWidth = 5",
+      "output": "[\"ab cd\"]"
+    },
+    {
+      "input": "words = [\"ab\", \"cd\"]\nmaxWidth = 6",
+      "output": "[\"ab cd \"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\"]\nmaxWidth = 6",
+      "output": "[\"a  b c\", \"d     \"]"
+    }
+  ]
+}

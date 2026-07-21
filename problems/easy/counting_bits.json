@@ -1,0 +1,341 @@
+{
+  "id": "counting_bits",
+  "title": "Counting Bits",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return <em>an array </em><code>ans</code><em> of length </em><code>n + 1</code><em> such that for each </em><code>i</code><em> </em>(<code>0 &lt;= i &lt;= n</code>)<em>, </em><code>ans[i]</code><em> is the <strong>number of </strong></em><code>1</code><em><strong>'s</strong> in the binary representation of </em><code>i</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> n = 2\n<strong>Output:</strong> [0,1,1]\n<strong>Explanation:</strong>\n0 --&gt; 0\n1 --&gt; 1\n2 --&gt; 10\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> n = 5\n<strong>Output:</strong> [0,1,1,2,1,2]\n<strong>Explanation:</strong>\n0 --&gt; 0\n1 --&gt; 1\n2 --&gt; 10\n3 --&gt; 11\n4 --&gt; 100\n5 --&gt; 101\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>0 &lt;= n &lt;= 10<sup>5</sup></code></li> </ul> <p> </p> <p><strong>Follow up:</strong></p> <ul> <li>It is very easy to come up with a solution with a runtime of <code>O(n log n)</code>. Can you do it in linear time <code>O(n)</code> and possibly in a single pass?</li> <li>Can you do it without using any built-in function (i.e., like <code>__builtin_popcount</code> in C++)?</li> </ul>",
+  "hints": [
+    "You should make use of what you have produced already.",
+    "Divide the numbers in ranges like [2-3], [4-7], [8-15] and so on. And try to generate new range from previous.",
+    "Or does the odd/even status of the number help you in calculating the number of 1s?"
+  ],
+  "method": {
+    "name": "countBits",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 338,
+      "title": "counting-bits",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countBits({n})",
+        "rust": "Solution::count_bits({n})",
+        "python3": "Solution().countBits({n})",
+        "python2": "Solution().countBits({n})",
+        "ruby": "count_bits({n})",
+        "java": "new Solution().countBits({n})",
+        "csharp": "new Solution().CountBits({n})",
+        "kotlin": "Solution().countBits({n})",
+        "go": "countBits({n})",
+        "dart": "Solution().countBits({n})",
+        "swift": "Solution().countBits({n})",
+        "typescript": "countBits({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().countBits(n, {result})",
+        "checker": "class Checker:\n    def countBits(self, n, result):\n        if not isinstance(n, int):\n            return False\n        if n < 0 or n > 100000:\n            return False\n        if not isinstance(result, list):\n            return False\n        if len(result) != n + 1:\n            return False\n        for i, v in enumerate(result):\n            if not isinstance(v, int):\n                return False\n            if v < 0:\n                return False\n            if v != i.bit_count():\n                return False\n        return True\n"
+      }
+    },
+    "seed": 338,
+    "tests": [
+      {
+        "name": "n_0",
+        "in": {
+          "n": 0
+        }
+      },
+      {
+        "name": "n_1",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "n_2",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "n_3",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "n_4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n_5",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n_6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n_7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n_8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n_9",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n_10",
+        "in": {
+          "n": 10
+        }
+      },
+      {
+        "name": "n_15",
+        "in": {
+          "n": 15
+        }
+      },
+      {
+        "name": "n_16",
+        "in": {
+          "n": 16
+        }
+      },
+      {
+        "name": "n_31",
+        "in": {
+          "n": 31
+        }
+      },
+      {
+        "name": "n_32",
+        "in": {
+          "n": 32
+        }
+      },
+      {
+        "name": "n_63",
+        "in": {
+          "n": 63
+        }
+      },
+      {
+        "name": "n_64",
+        "in": {
+          "n": 64
+        }
+      },
+      {
+        "name": "n_100",
+        "in": {
+          "n": 100
+        }
+      },
+      {
+        "name": "n_127",
+        "in": {
+          "n": 127
+        }
+      },
+      {
+        "name": "n_128",
+        "in": {
+          "n": 128
+        }
+      },
+      {
+        "name": "n_255",
+        "in": {
+          "n": 255
+        }
+      },
+      {
+        "name": "n_256",
+        "in": {
+          "n": 256
+        }
+      },
+      {
+        "name": "n_511",
+        "in": {
+          "n": 511
+        }
+      },
+      {
+        "name": "n_512",
+        "in": {
+          "n": 512
+        }
+      },
+      {
+        "name": "n_999",
+        "in": {
+          "n": 999
+        }
+      },
+      {
+        "name": "n_1000",
+        "in": {
+          "n": 1000
+        }
+      },
+      {
+        "name": "n_1023",
+        "in": {
+          "n": 1023
+        }
+      },
+      {
+        "name": "n_1024",
+        "in": {
+          "n": 1024
+        }
+      },
+      {
+        "name": "n_2047",
+        "in": {
+          "n": 2047
+        }
+      },
+      {
+        "name": "n_2048",
+        "in": {
+          "n": 2048
+        }
+      },
+      {
+        "name": "n_4095",
+        "in": {
+          "n": 4095
+        }
+      },
+      {
+        "name": "n_4096",
+        "in": {
+          "n": 4096
+        }
+      },
+      {
+        "name": "n_8191",
+        "in": {
+          "n": 8191
+        }
+      },
+      {
+        "name": "n_8192",
+        "in": {
+          "n": 8192
+        }
+      },
+      {
+        "name": "n_16383",
+        "in": {
+          "n": 16383
+        }
+      },
+      {
+        "name": "n_16384",
+        "in": {
+          "n": 16384
+        }
+      },
+      {
+        "name": "n_32767",
+        "in": {
+          "n": 32767
+        }
+      },
+      {
+        "name": "n_32768",
+        "in": {
+          "n": 32768
+        }
+      },
+      {
+        "name": "n_65535",
+        "in": {
+          "n": 65535
+        }
+      },
+      {
+        "name": "n_100000",
+        "in": {
+          "n": 100000
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    }
+  ]
+}

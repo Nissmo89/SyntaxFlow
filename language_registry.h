@@ -38,10 +38,7 @@ private:
     bool saveConfig(const LanguageConfig &config);
 
     // Built-in configs
-    static QJsonObject builtinC();
-    static QJsonObject builtinCpp();
     static QJsonObject builtinPython();
-    static QJsonObject builtinJavaScript();
 };
 
 #endif // LANGUAGE_REGISTRY_H

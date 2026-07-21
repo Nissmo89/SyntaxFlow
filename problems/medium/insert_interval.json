@@ -1,0 +1,1350 @@
+{
+  "id": "insert_interval",
+  "title": "Insert Interval",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array"
+  ],
+  "description": "<p>You are given an array of non-overlapping intervals <code>intervals</code> where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code> represent the start and the end of the <code>i<sup>th</sup></code> interval and <code>intervals</code> is sorted in ascending order by <code>start<sub>i</sub></code>. You are also given an interval <code>newInterval = [start, end]</code> that represents the start and end of another interval.</p>\n\n<p>Insert <code>newInterval</code> into <code>intervals</code> such that <code>intervals</code> is still sorted in ascending order by <code>start<sub>i</sub></code> and <code>intervals</code> still does not have any overlapping intervals (merge overlapping intervals if necessary).</p>\n\n<p>Return <code>intervals</code><em> after the insertion</em>.</p>\n\n<p><strong>Note</strong> that you don&#39;t need to modify <code>intervals</code> in-place. You can make a new array and return it.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,3],[6,9]], newInterval = [2,5]\n<strong>Output:</strong> [[1,5],[6,9]]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]\n<strong>Output:</strong> [[1,2],[3,10],[12,16]]\n<strong>Explanation:</strong> Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= intervals.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>intervals[i].length == 2</code></li>\n\t<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 10<sup>5</sup></code></li>\n\t<li><code>intervals</code> is sorted by <code>start<sub>i</sub></code> in <strong>ascending</strong> order.</li>\n\t<li><code>newInterval.length == 2</code></li>\n\t<li><code>0 &lt;= start &lt;= end &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Insert Interval' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= intervals.length <= 104",
+    "intervals[i].length == 2",
+    "0 <= starti <= endi <= 105",
+    "intervals is sorted by starti in ascending order.",
+    "newInterval.length == 2",
+    "0 <= start <= end <= 105"
+  ],
+  "hints": [
+    "Intervals Array is sorted. Can you use Binary Search to find the correct position to insert the new Interval.?",
+    "Can you try merging the overlapping intervals while inserting the new interval?",
+    "This can be done by comparing the end of the last interval with the start of the new interval and vice versa."
+  ],
+  "method": {
+    "name": "insert",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "intervals",
+        "type": "array"
+      },
+      {
+        "name": "newInterval",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 57,
+      "title": "insert-interval",
+      "params": {
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "newInterval": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().insert({intervals}, {newInterval})",
+        "rust": "Solution::insert({intervals}, {newInterval})",
+        "python3": "Solution().insert({intervals}, {newInterval})",
+        "python2": "Solution().insert({intervals}, {newInterval})",
+        "ruby": "insert({intervals}, {newInterval})",
+        "java": "new Solution().insert({intervals}, {newInterval})",
+        "csharp": "new Solution().Insert({intervals}, {newInterval})",
+        "kotlin": "Solution().insert({intervals}, {newInterval})",
+        "go": "insert({intervals}, {newInterval})",
+        "dart": "Solution().insert({intervals}, {newInterval})",
+        "swift": "Solution().insert({intervals}, {newInterval})",
+        "typescript": "insert({intervals}, {newInterval})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().insert(intervals, newInterval, {result})",
+        "checker": "class Checker:\n    def insert(self, intervals, newInterval, result):\n        if not isinstance(result, list):\n            return False\n        for interval in result:\n            if not isinstance(interval, list) or len(interval) != 2:\n                return False\n            if not all(isinstance(x, int) for x in interval):\n                return False\n            if interval[0] > interval[1]:\n                return False\n        expected = []\n        i = 0\n        n = len(intervals)\n        new_start, new_end = newInterval\n        while i < n and intervals[i][1] < new_start:\n            expected.append(intervals[i])\n            i += 1\n        while i < n and intervals[i][0] <= new_end:\n            new_start = min(new_start, intervals[i][0])\n            new_end = max(new_end, intervals[i][1])\n            i += 1\n        expected.append([new_start, new_end])\n        while i < n:\n            expected.append(intervals[i])\n            i += 1\n        return result == expected\n"
+      }
+    },
+    "seed": 57,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "intervals": [
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              9
+            ]
+          ],
+          "newInterval": [
+            2,
+            5
+          ]
+        },
+        "out": [
+          [
+            1,
+            5
+          ],
+          [
+            6,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "newInterval": [
+            4,
+            8
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            12,
+            16
+          ]
+        ]
+      },
+      {
+        "name": "Insert before all",
+        "in": {
+          "intervals": [
+            [
+              5,
+              7
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "newInterval": [
+            1,
+            3
+          ]
+        },
+        "out": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "Insert after all",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "newInterval": [
+            7,
+            8
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "Merge one middle",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "newInterval": [
+            6,
+            6
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "Merge touching left",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "newInterval": [
+            2,
+            4
+          ]
+        },
+        "out": [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "Merge touching right",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "newInterval": [
+            3,
+            5
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "Fully inside one interval",
+        "in": {
+          "intervals": [
+            [
+              1,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ],
+          "newInterval": [
+            3,
+            4
+          ]
+        },
+        "out": [
+          [
+            1,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "Merge across several intervals",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "newInterval": [
+            4,
+            8
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            12,
+            16
+          ]
+        ]
+      },
+      {
+        "name": "Merge all intervals",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              8,
+              10
+            ]
+          ],
+          "newInterval": [
+            0,
+            20
+          ]
+        },
+        "out": [
+          [
+            0,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "Empty intervals simple",
+        "in": {
+          "intervals": [],
+          "newInterval": [
+            4,
+            8
+          ]
+        },
+        "out": [
+          [
+            4,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "Empty intervals zero",
+        "in": {
+          "intervals": [],
+          "newInterval": [
+            0,
+            0
+          ]
+        },
+        "out": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "Single interval before",
+        "in": {
+          "intervals": [
+            [
+              10,
+              20
+            ]
+          ],
+          "newInterval": [
+            1,
+            5
+          ]
+        },
+        "out": [
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "Single interval after",
+        "in": {
+          "intervals": [
+            [
+              10,
+              20
+            ]
+          ],
+          "newInterval": [
+            30,
+            40
+          ]
+        },
+        "out": [
+          [
+            10,
+            20
+          ],
+          [
+            30,
+            40
+          ]
+        ]
+      },
+      {
+        "name": "Single interval overlap left edge",
+        "in": {
+          "intervals": [
+            [
+              10,
+              20
+            ]
+          ],
+          "newInterval": [
+            5,
+            10
+          ]
+        },
+        "out": [
+          [
+            5,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "Single interval overlap right edge",
+        "in": {
+          "intervals": [
+            [
+              10,
+              20
+            ]
+          ],
+          "newInterval": [
+            20,
+            25
+          ]
+        },
+        "out": [
+          [
+            10,
+            25
+          ]
+        ]
+      },
+      {
+        "name": "Single interval inside",
+        "in": {
+          "intervals": [
+            [
+              10,
+              20
+            ]
+          ],
+          "newInterval": [
+            12,
+            18
+          ]
+        },
+        "out": [
+          [
+            10,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "Exact same interval",
+        "in": {
+          "intervals": [
+            [
+              2,
+              4
+            ],
+            [
+              7,
+              9
+            ]
+          ],
+          "newInterval": [
+            7,
+            9
+          ]
+        },
+        "out": [
+          [
+            2,
+            4
+          ],
+          [
+            7,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "Adjacent chain merge",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "newInterval": [
+            2,
+            7
+          ]
+        },
+        "out": [
+          [
+            1,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "New interval between gaps",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              20,
+              21
+            ]
+          ],
+          "newInterval": [
+            5,
+            6
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            20,
+            21
+          ]
+        ]
+      },
+      {
+        "name": "New interval merges with first two",
+        "in": {
+          "intervals": [
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "newInterval": [
+            2,
+            7
+          ]
+        },
+        "out": [
+          [
+            1,
+            9
+          ],
+          [
+            12,
+            16
+          ]
+        ]
+      },
+      {
+        "name": "New interval merges with last two",
+        "in": {
+          "intervals": [
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "newInterval": [
+            8,
+            20
+          ]
+        },
+        "out": [
+          [
+            1,
+            3
+          ],
+          [
+            6,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "New interval at far left boundary",
+        "in": {
+          "intervals": [
+            [
+              2,
+              3
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "newInterval": [
+            0,
+            1
+          ]
+        },
+        "out": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "New interval at far right boundary",
+        "in": {
+          "intervals": [
+            [
+              2,
+              3
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "newInterval": [
+            8,
+            10
+          ]
+        },
+        "out": [
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "New interval bridges a gap exactly",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "newInterval": [
+            2,
+            5
+          ]
+        },
+        "out": [
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "New interval covers multiple gaps",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "newInterval": [
+            3,
+            9
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "New interval equals a gap range",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "newInterval": [
+            3,
+            4
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "Left merge and right merge separated",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "newInterval": [
+            2,
+            10
+          ]
+        },
+        "out": [
+          [
+            1,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "New interval at minimum value",
+        "in": {
+          "intervals": [
+            [
+              1,
+              5
+            ],
+            [
+              10,
+              15
+            ]
+          ],
+          "newInterval": [
+            0,
+            0
+          ]
+        },
+        "out": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            15
+          ]
+        ]
+      },
+      {
+        "name": "New interval at maximum value",
+        "in": {
+          "intervals": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              15
+            ]
+          ],
+          "newInterval": [
+            100000,
+            100000
+          ]
+        },
+        "out": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            100000,
+            100000
+          ]
+        ]
+      },
+      {
+        "name": "Large span merge",
+        "in": {
+          "intervals": [
+            [
+              0,
+              1000
+            ],
+            [
+              2000,
+              3000
+            ],
+            [
+              4000,
+              5000
+            ]
+          ],
+          "newInterval": [
+            1500,
+            4500
+          ]
+        },
+        "out": [
+          [
+            0,
+            1000
+          ],
+          [
+            1500,
+            5000
+          ]
+        ]
+      },
+      {
+        "name": "Many small intervals untouched",
+        "in": {
+          "intervals": [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              12,
+              13
+            ]
+          ],
+          "newInterval": [
+            14,
+            15
+          ]
+        },
+        "out": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            14,
+            15
+          ]
+        ]
+      },
+      {
+        "name": "Many small intervals prepend",
+        "in": {
+          "intervals": [
+            [
+              2,
+              3
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "newInterval": [
+            0,
+            1
+          ]
+        },
+        "out": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            11,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "Many small intervals append",
+        "in": {
+          "intervals": [
+            [
+              2,
+              3
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "newInterval": [
+            13,
+            14
+          ]
+        },
+        "out": [
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            13,
+            14
+          ]
+        ]
+      },
+      {
+        "name": "Overlap all but keep sorted",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "newInterval": [
+            0,
+            12
+          ]
+        },
+        "out": [
+          [
+            0,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "Gap then merge then gap",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              12,
+              13
+            ]
+          ],
+          "newInterval": [
+            3,
+            10
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            12,
+            13
+          ]
+        ]
+      },
+      {
+        "name": "Deep right merge",
+        "in": {
+          "intervals": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              13,
+              14
+            ]
+          ],
+          "newInterval": [
+            9,
+            13
+          ]
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            14
+          ]
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "intervals = [[1, 3], [6, 9]]\nnewInterval = [2, 5]",
+      "output": "[[1, 5], [6, 9]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]\nnewInterval = [4, 8]",
+      "output": "[[1, 2], [3, 10], [12, 16]]"
+    },
+    {
+      "input": "intervals = [[5, 7], [10, 12]]\nnewInterval = [1, 3]",
+      "output": "[[1, 3], [5, 7], [10, 12]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 5]]\nnewInterval = [7, 8]",
+      "output": "[[1, 2], [4, 5], [7, 8]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [5, 7], [10, 12]]\nnewInterval = [6, 6]",
+      "output": "[[1, 2], [5, 7], [10, 12]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [5, 7]]\nnewInterval = [2, 4]",
+      "output": "[[1, 4], [5, 7]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [5, 7]]\nnewInterval = [3, 5]",
+      "output": "[[1, 2], [3, 7]]"
+    },
+    {
+      "input": "intervals = [[1, 10], [15, 20]]\nnewInterval = [3, 4]",
+      "output": "[[1, 10], [15, 20]]"
+    }
+  ]
+}

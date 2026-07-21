@@ -1,0 +1,589 @@
+{
+  "id": "remove_comments",
+  "title": "Remove Comments",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "description": "<p>Given a C++ program, remove comments from it. The program source is an array of strings <code>source</code> where <code>source[i]</code> is the <code>i<sup>th</sup></code> line of the source code. This represents the result of splitting the original source code string by the newline character <code>&#39;\\n&#39;</code>.</p>\n\n<p>In C++, there are two types of comments, line comments, and block comments.</p>\n\n<ul>\n\t<li>The string <code>&quot;//&quot;</code> denotes a line comment, which represents that it and the rest of the characters to the right of it in the same line should be ignored.</li>\n\t<li>The string <code>&quot;/*&quot;</code> denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of <code>&quot;*/&quot;</code> should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string <code>&quot;/*/&quot;</code> does not yet end the block comment, as the ending would be overlapping the beginning.</li>\n</ul>\n\n<p>The first effective comment takes precedence over others.</p>\n\n<ul>\n\t<li>For example, if the string <code>&quot;//&quot;</code> occurs in a block comment, it is ignored.</li>\n\t<li>Similarly, if the string <code>&quot;/*&quot;</code> occurs in a line or block comment, it is also ignored.</li>\n</ul>\n\n<p>If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.</p>\n\n<p>There will be no control characters, single quote, or double quote characters.</p>\n\n<ul>\n\t<li>For example, <code>source = &quot;string s = &quot;/* Not a comment. */&quot;;&quot;</code> will not be a test case.</li>\n</ul>\n\n<p>Also, nothing else such as defines or macros will interfere with the comments.</p>\n\n<p>It is guaranteed that every open block comment will eventually be closed, so <code>&quot;/*&quot;</code> outside of a line or block comment always starts a new comment.</p>\n\n<p>Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.</p>\n\n<p>After removing the comments from the source code, return <em>the source code in the same format</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> source = [&quot;/*Test program */&quot;, &quot;int main()&quot;, &quot;{ &quot;, &quot;  // variable declaration &quot;, &quot;int a, b, c;&quot;, &quot;/* This is a test&quot;, &quot;   multiline  &quot;, &quot;   comment for &quot;, &quot;   testing */&quot;, &quot;a = b + c;&quot;, &quot;}&quot;]\n<strong>Output:</strong> [&quot;int main()&quot;,&quot;{ &quot;,&quot;  &quot;,&quot;int a, b, c;&quot;,&quot;a = b + c;&quot;,&quot;}&quot;]\n<strong>Explanation:</strong> The line by line code is visualized as below:\n/*Test program */\nint main()\n{ \n  // variable declaration \nint a, b, c;\n/* This is a test\n   multiline  \n   comment for \n   testing */\na = b + c;\n}\nThe string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.\nThe line by line output code is visualized as below:\nint main()\n{ \n  \nint a, b, c;\na = b + c;\n}\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> source = [&quot;a/*comment&quot;, &quot;line&quot;, &quot;more_comment*/b&quot;]\n<strong>Output:</strong> [&quot;ab&quot;]\n<strong>Explanation:</strong> The original source string is &quot;a/*comment\\nline\\nmore_comment*/b&quot;, where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string &quot;ab&quot;, which when delimited by newline characters becomes [&quot;ab&quot;].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= source.length &lt;= 100</code></li>\n\t<li><code>0 &lt;= source[i].length &lt;= 80</code></li>\n\t<li><code>source[i]</code> consists of printable <strong>ASCII</strong> characters.</li>\n\t<li>Every open block comment is eventually closed.</li>\n\t<li>There are no single-quote or&nbsp;double-quote in the input.</li>\n</ul>\n",
+  "task": "Solve the 'Remove Comments' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= source.length <= 100",
+    "0 <= source[i].length <= 80",
+    "source[i] consists of printable ASCII characters.",
+    "Every open block comment is eventually closed.",
+    "There are no single-quote or\u00a0double-quote in the input."
+  ],
+  "hints": [
+    "Carefully parse each line according to the following rules:\r\n\r\n* If we start a block comment and we aren't in a block, then we will skip over the next two characters and change our state to be in a block.\r\n\r\n* If we end a block comment and we are in a block, then we will skip over the next two characters and change our state to be *not* in a block.\r\n\r\n* If we start a line comment and we aren't in a block, then we will ignore the rest of the line.\r\n\r\n* If we aren't in a block comment (and it wasn't the start of a comment), we will record the character we are at.\r\n\r\n* At the end of each line, if we aren't in a block, we will record the line."
+  ],
+  "method": {
+    "name": "removeComments",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "source",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 722,
+      "title": "remove-comments",
+      "params": {
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().removeComments({source})",
+        "rust": "Solution::remove_comments({source})",
+        "python3": "Solution().removeComments({source})",
+        "python2": "Solution().removeComments({source})",
+        "ruby": "remove_comments({source})",
+        "java": "new Solution().removeComments({source})",
+        "csharp": "new Solution().RemoveComments({source})",
+        "kotlin": "Solution().removeComments({source})",
+        "go": "removeComments({source})",
+        "dart": "Solution().removeComments({source})",
+        "swift": "Solution().removeComments({source})",
+        "typescript": "removeComments({source})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(source, {result})",
+        "checker": "class Checker(object):\n    def check(self, source, result):\n        if not isinstance(result, list):\n            return False\n        for line in result:\n            if not isinstance(line, str):\n                return False\n            if line == \"\":\n                return False\n        in_block = False\n        current = []\n        expected = []\n        for line in source:\n            i = 0\n            if not in_block:\n                current = []\n            while i < len(line):\n                pair = line[i:i + 2]\n                if not in_block and pair == \"/*\":\n                    in_block = True\n                    i += 2\n                    continue\n                if in_block and pair == \"*/\":\n                    in_block = False\n                    i += 2\n                    continue\n                if not in_block and pair == \"//\":\n                    break\n                if not in_block:\n                    current.append(line[i])\n                i += 1\n            if not in_block and current:\n                expected.append(\"\".join(current))\n        return result == expected\n"
+      }
+    },
+    "seed": 722,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "source": [
+            "/*Test program */",
+            "int main()",
+            "{ ",
+            "  // variable declaration ",
+            "int a, b, c;",
+            "/* This is a test",
+            "   multiline  ",
+            "   comment for ",
+            "   testing */",
+            "a = b + c;",
+            "}"
+          ]
+        },
+        "out": [
+          "int main()",
+          "{ ",
+          "  ",
+          "int a, b, c;",
+          "a = b + c;",
+          "}"
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "source": [
+            "a/*comment",
+            "line",
+            "more_comment*/b"
+          ]
+        },
+        "out": [
+          "ab"
+        ]
+      },
+      {
+        "name": "no_comments_simple",
+        "in": {
+          "source": [
+            "int x = 1;",
+            "return x + 2;"
+          ]
+        },
+        "out": [
+          "int x = 1;",
+          "return x + 2;"
+        ]
+      },
+      {
+        "name": "single_line_comment_after_code",
+        "in": {
+          "source": [
+            "int x = 1; // initialize"
+          ]
+        },
+        "out": [
+          "int x = 1; "
+        ]
+      },
+      {
+        "name": "single_line_comment_only_removed",
+        "in": {
+          "source": [
+            "// comment only",
+            "keep"
+          ]
+        },
+        "out": [
+          "keep"
+        ]
+      },
+      {
+        "name": "block_comment_same_line_middle",
+        "in": {
+          "source": [
+            "ab/* comment */cd"
+          ]
+        },
+        "out": [
+          "abcd"
+        ]
+      },
+      {
+        "name": "block_comment_same_line_entire_line",
+        "in": {
+          "source": [
+            "/* hidden */",
+            "visible"
+          ]
+        },
+        "out": [
+          "visible"
+        ]
+      },
+      {
+        "name": "block_comment_multiline_join",
+        "in": {
+          "source": [
+            "abc/*def",
+            "ghi*/jkl"
+          ]
+        },
+        "out": [
+          "abcjkl"
+        ]
+      },
+      {
+        "name": "block_comment_multiline_with_prefix_suffix",
+        "in": {
+          "source": [
+            "pre/*one",
+            "two",
+            "three*/post"
+          ]
+        },
+        "out": [
+          "prepost"
+        ]
+      },
+      {
+        "name": "line_comment_inside_block_is_ignored",
+        "in": {
+          "source": [
+            "aa/* block // still block",
+            "end */bb"
+          ]
+        },
+        "out": [
+          "aabb"
+        ]
+      },
+      {
+        "name": "block_marker_inside_line_comment_is_ignored",
+        "in": {
+          "source": [
+            "keep// ignore /* not block",
+            "next"
+          ]
+        },
+        "out": [
+          "keep",
+          "next"
+        ]
+      },
+      {
+        "name": "block_then_line_comment_same_line",
+        "in": {
+          "source": [
+            "ab/*x*/cd//tail"
+          ]
+        },
+        "out": [
+          "abcd"
+        ]
+      },
+      {
+        "name": "adjacent_block_comments",
+        "in": {
+          "source": [
+            "a/*x*//*y*/b"
+          ]
+        },
+        "out": [
+          "ab"
+        ]
+      },
+      {
+        "name": "non_overlapping_block_end_pattern",
+        "in": {
+          "source": [
+            "x/*/y*/z"
+          ]
+        },
+        "out": [
+          "xz"
+        ]
+      },
+      {
+        "name": "block_comment_spans_empty_lines",
+        "in": {
+          "source": [
+            "a/*x",
+            "",
+            "",
+            "y*/b"
+          ]
+        },
+        "out": [
+          "ab"
+        ]
+      },
+      {
+        "name": "empty_input_lines_are_dropped",
+        "in": {
+          "source": [
+            "",
+            "abc",
+            ""
+          ]
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "slashes_without_comment_pair",
+        "in": {
+          "source": [
+            "a/b/c",
+            "path/to/file"
+          ]
+        },
+        "out": [
+          "a/b/c",
+          "path/to/file"
+        ]
+      },
+      {
+        "name": "stars_without_comment_pair",
+        "in": {
+          "source": [
+            "a*b**c"
+          ]
+        },
+        "out": [
+          "a*b**c"
+        ]
+      },
+      {
+        "name": "block_then_line_comment_after_code",
+        "in": {
+          "source": [
+            "ab/*c*/de//fg"
+          ]
+        },
+        "out": [
+          "abde"
+        ]
+      },
+      {
+        "name": "multiple_block_comments_same_line",
+        "in": {
+          "source": [
+            "a/*x*/b/*y*/c"
+          ]
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "mixed_program_structure",
+        "in": {
+          "source": [
+            "int main(){",
+            "  int x = 0; /* init */",
+            "  x++; // increment",
+            "  return x;",
+            "}"
+          ]
+        },
+        "out": [
+          "int main(){",
+          "  int x = 0; ",
+          "  x++; ",
+          "  return x;",
+          "}"
+        ]
+      },
+      {
+        "name": "line_comment_keeps_prefix_spaces",
+        "in": {
+          "source": [
+            "abc//  "
+          ]
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "block_comment_at_start_then_code",
+        "in": {
+          "source": [
+            "/*x*/abc"
+          ]
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "block_comment_deletes_newlines",
+        "in": {
+          "source": [
+            "a/*x",
+            "y",
+            "z*/b",
+            "c"
+          ]
+        },
+        "out": [
+          "ab",
+          "c"
+        ]
+      },
+      {
+        "name": "spaces_only_line_is_kept",
+        "in": {
+          "source": [
+            "   "
+          ]
+        },
+        "out": [
+          "   "
+        ]
+      },
+      {
+        "name": "block_comment_leaves_spaces_only",
+        "in": {
+          "source": [
+            "  /*x*/  "
+          ]
+        },
+        "out": [
+          "    "
+        ]
+      },
+      {
+        "name": "multiple_line_comments_separate_lines",
+        "in": {
+          "source": [
+            "one//x",
+            "two//y",
+            "three"
+          ]
+        },
+        "out": [
+          "one",
+          "two",
+          "three"
+        ]
+      },
+      {
+        "name": "block_close_then_reopen_next_segment",
+        "in": {
+          "source": [
+            "a/*x*/b/*y",
+            "z*/c"
+          ]
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "full_block_comment_token",
+        "in": {
+          "source": [
+            "/**/",
+            "done"
+          ]
+        },
+        "out": [
+          "done"
+        ]
+      },
+      {
+        "name": "nested_looking_markers_are_not_nested",
+        "in": {
+          "source": [
+            "a/*b/*c*/d*/e"
+          ]
+        },
+        "out": [
+          "ad*/e"
+        ]
+      },
+      {
+        "name": "line_comment_precedence_before_block_opener",
+        "in": {
+          "source": [
+            "abc//def/*ghi",
+            "jkl"
+          ]
+        },
+        "out": [
+          "abc",
+          "jkl"
+        ]
+      },
+      {
+        "name": "comment_starts_at_line_beginning",
+        "in": {
+          "source": [
+            "/*abc*/x",
+            "y"
+          ]
+        },
+        "out": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "name": "comment_ends_and_keeps_suffix",
+        "in": {
+          "source": [
+            "m/*n*/o",
+            "p"
+          ]
+        },
+        "out": [
+          "mo",
+          "p"
+        ]
+      },
+      {
+        "name": "block_comment_consumes_whole_middle_line",
+        "in": {
+          "source": [
+            "left/*a",
+            "b",
+            "c*/right"
+          ]
+        },
+        "out": [
+          "leftright"
+        ]
+      },
+      {
+        "name": "line_comment_after_block_close",
+        "in": {
+          "source": [
+            "ab/*x*/cd//tail",
+            "ef"
+          ]
+        },
+        "out": [
+          "abcd",
+          "ef"
+        ]
+      },
+      {
+        "name": "multiple_empty_lines_between_comments",
+        "in": {
+          "source": [
+            "a/*x",
+            "",
+            "",
+            "*/b",
+            "",
+            "c"
+          ]
+        },
+        "out": [
+          "ab",
+          "c"
+        ]
+      },
+      {
+        "name": "trailing_spaces_preserved",
+        "in": {
+          "source": [
+            "keep   ",
+            "drop//   "
+          ]
+        },
+        "out": [
+          "keep   ",
+          "drop"
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "source = [\"/*Test program */\", \"int main()\", \"{ \", \"  // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \"   multiline  \", \"   comment for \", \"   testing */\", \"a = b + c;\", \"}\"]",
+      "output": "[\"int main()\", \"{ \", \"  \", \"int a, b, c;\", \"a = b + c;\", \"}\"]"
+    },
+    {
+      "input": "source = [\"a/*comment\", \"line\", \"more_comment*/b\"]",
+      "output": "[\"ab\"]"
+    },
+    {
+      "input": "source = [\"int x = 1;\", \"return x + 2;\"]",
+      "output": "[\"int x = 1;\", \"return x + 2;\"]"
+    },
+    {
+      "input": "source = [\"int x = 1; // initialize\"]",
+      "output": "[\"int x = 1; \"]"
+    },
+    {
+      "input": "source = [\"// comment only\", \"keep\"]",
+      "output": "[\"keep\"]"
+    },
+    {
+      "input": "source = [\"ab/* comment */cd\"]",
+      "output": "[\"abcd\"]"
+    },
+    {
+      "input": "source = [\"/* hidden */\", \"visible\"]",
+      "output": "[\"visible\"]"
+    },
+    {
+      "input": "source = [\"abc/*def\", \"ghi*/jkl\"]",
+      "output": "[\"abcjkl\"]"
+    }
+  ]
+}

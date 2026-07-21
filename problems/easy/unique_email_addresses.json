@@ -1,0 +1,495 @@
+{
+  "id": "unique_email_addresses",
+  "title": "Unique Email Addresses",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "description": "<p>Every <strong>valid email</strong> consists of a <strong>local name</strong> and a <strong>domain name</strong>, separated by the <code>'@'</code> sign. Besides lowercase letters, the email may contain one or more <code>'.'</code> or <code>'+'</code>.</p> <ul> <li>For example, in <code>\"alice@leetcode.com\"</code>, <code>\"alice\"</code> is the <strong>local name</strong>, and <code>\"leetcode.com\"</code> is the <strong>domain name</strong>.</li> </ul> <p>If you add periods <code>'.'</code> between some characters in the <strong>local name</strong> part of an email address, mail sent there will be forwarded to the same address without dots in the local name. Note that this rule <strong>does not apply</strong> to <strong>domain names</strong>.</p> <ul> <li>For example, <code>\"alice.z@leetcode.com\"</code> and <code>\"alicez@leetcode.com\"</code> forward to the same email address.</li> </ul> <p>If you add a plus <code>'+'</code> in the <strong>local name</strong>, everything after the first plus sign <strong>will be ignored</strong>. This allows certain emails to be filtered. Note that this rule <strong>does not apply</strong> to <strong>domain names</strong>.</p> <ul> <li>For example, <code>\"m.y+name@email.com\"</code> will be forwarded to <code>\"my@email.com\"</code>.</li> </ul> <p>It is possible to use both of these rules at the same time.</p> <p>Given an array of strings <code>emails</code> where we send one email to each <code>emails[i]</code>, return <em>the number of different addresses that actually receive mails</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> emails = [\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> \"testemail@leetcode.com\" and \"testemail@lee.tcode.com\" actually receive mails.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> emails = [\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]\n<strong>Output:</strong> 3\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= emails.length &lt;= 100</code></li> <li><code>1 &lt;= emails[i].length &lt;= 100</code></li> <li><code>emails[i]</code> consist of lowercase English letters, <code>'+'</code>, <code>'.'</code> and <code>'@'</code>.</li> <li>Each <code>emails[i]</code> contains exactly one <code>'@'</code> character.</li> <li>All local and domain names are non-empty.</li> <li>Local names do not start with a <code>'+'</code> character.</li> <li>Domain names end with the <code>\".com\"</code> suffix.</li> <li>Domain names must contain at least one character before <code>\".com\"</code> suffix.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "numUniqueEmails",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "emails",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 929,
+      "title": "unique-email-addresses",
+      "params": {
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numUniqueEmails({emails})",
+        "rust": "Solution::num_unique_emails({emails})",
+        "python3": "Solution().numUniqueEmails({emails})",
+        "python2": "Solution().numUniqueEmails({emails})",
+        "ruby": "num_unique_emails({emails})",
+        "java": "new Solution().numUniqueEmails({emails})",
+        "csharp": "new Solution().NumUniqueEmails({emails})",
+        "kotlin": "Solution().numUniqueEmails({emails})",
+        "go": "numUniqueEmails({emails})",
+        "dart": "Solution().numUniqueEmails({emails})",
+        "swift": "Solution().numUniqueEmails({emails})",
+        "typescript": "numUniqueEmails({emails})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 929,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "emails": [
+            "test.email+alex@leetcode.com",
+            "test.e.mail+bob.cathy@leetcode.com",
+            "testemail+david@lee.tcode.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "emails": [
+            "a@leetcode.com",
+            "b@leetcode.com",
+            "c@leetcode.com"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "t1",
+        "in": {
+          "emails": [
+            "a.b.c+d@leetcode.com",
+            "abc@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t2",
+        "in": {
+          "emails": [
+            "x.y.z+spam@domain.com",
+            "xyz@domain.com",
+            "x.yz@domain.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t3",
+        "in": {
+          "emails": [
+            "m.y+name@email.com",
+            "my@email.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t4",
+        "in": {
+          "emails": [
+            "simple@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t5",
+        "in": {
+          "emails": [
+            "a+b@leetcode.com",
+            "a@leetcode.com",
+            "a+b+c@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t6",
+        "in": {
+          "emails": [
+            "a.b+c@leetcode.com",
+            "ab@leetcode.com",
+            "a.b@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t7",
+        "in": {
+          "emails": [
+            "a.a.a@x.com",
+            "aaa@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t8",
+        "in": {
+          "emails": [
+            "x+@x.com",
+            "x@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t9",
+        "in": {
+          "emails": [
+            "x.y+z@x.com",
+            "xy@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t10",
+        "in": {
+          "emails": [
+            "u.v.w@d.com",
+            "uvwxyz@d.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "t11",
+        "in": {
+          "emails": [
+            "u.v.w+tag@d.com",
+            "uvw@d.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t12",
+        "in": {
+          "emails": [
+            "alice@leetcode.com",
+            "alice+spam@leetcode.com",
+            "a.l.i.c.e@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t13",
+        "in": {
+          "emails": [
+            "bob@leetcode.com",
+            "bob+spam@leet.code.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "t14",
+        "in": {
+          "emails": [
+            "a@a.com",
+            "a+b@a.com",
+            "a.b@a.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "t15",
+        "in": {
+          "emails": [
+            "aa@leetcode.com",
+            "a.a@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t16",
+        "in": {
+          "emails": [
+            "ab+cd@x.com",
+            "ab@x.com",
+            "a.b@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t17",
+        "in": {
+          "emails": [
+            "abc@x.com",
+            "ab.c@x.com",
+            "a.bc@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t18",
+        "in": {
+          "emails": [
+            "a@x.com",
+            "a@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t19",
+        "in": {
+          "emails": [
+            "a+b@x.com",
+            "a+c@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t20",
+        "in": {
+          "emails": [
+            "a.b+c@x.com",
+            "ab@x.com",
+            "a.b@x.com",
+            "a.b+c+d@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t21",
+        "in": {
+          "emails": [
+            "z+spam@leetcode.com",
+            "z@leetcode.com",
+            "z.z@leetcode.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "t22",
+        "in": {
+          "emails": [
+            "foo.bar+baz@domain.com",
+            "foobar@domain.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t23",
+        "in": {
+          "emails": [
+            "foo.bar+baz@domain.com",
+            "foo.bar@domain.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t24",
+        "in": {
+          "emails": [
+            "q.w.e+r@domain.com",
+            "qwe@domain.com",
+            "q.w.e@domain.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t25",
+        "in": {
+          "emails": [
+            "local+plus@d.com",
+            "local@d.com",
+            "lo.cal@d.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t26",
+        "in": {
+          "emails": [
+            "a.a+a@a.com",
+            "aa@a.com",
+            "a+a@a.com"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "t27",
+        "in": {
+          "emails": [
+            "abc+def@x.com",
+            "a.b.c@x.com",
+            "abc@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t28",
+        "in": {
+          "emails": [
+            "abc+def@x.com",
+            "a.b.c@x.com",
+            "ab.c@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t29",
+        "in": {
+          "emails": [
+            "p.q.r@s.com",
+            "pqr@s.com",
+            "p.qr@s.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t30",
+        "in": {
+          "emails": [
+            "a@leetcode.com",
+            "a@leetcode.com",
+            "a+spam@leetcode.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t31",
+        "in": {
+          "emails": [
+            "m.n+o@dom.com",
+            "mn@dom.com",
+            "m.n@dom.com",
+            "m.n+o@dom.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t32",
+        "in": {
+          "emails": [
+            "x.x.x+tag@x.com",
+            "xxx@x.com",
+            "x.xx@x.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t33",
+        "in": {
+          "emails": [
+            "u+1@u.com",
+            "u+2@u.com",
+            "u@u.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t34",
+        "in": {
+          "emails": [
+            "same@d.com",
+            "s.a.m.e@d.com",
+            "same+tag@d.com"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "t35",
+        "in": {
+          "emails": [
+            "a.b.c+d@leetcode.com",
+            "a.bc+d@leetcode.com",
+            "ab.c+d@leetcode.com"
+          ]
+        },
+        "out": 1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "emails = [\"test.email+alex@leetcode.com\", \"test.e.mail+bob.cathy@leetcode.com\", \"testemail+david@lee.tcode.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"a@leetcode.com\", \"b@leetcode.com\", \"c@leetcode.com\"]",
+      "output": "3"
+    },
+    {
+      "input": "emails = [\"a.b.c+d@leetcode.com\", \"abc@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"x.y.z+spam@domain.com\", \"xyz@domain.com\", \"x.yz@domain.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"m.y+name@email.com\", \"my@email.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"simple@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a+b@leetcode.com\", \"a@leetcode.com\", \"a+b+c@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a.b+c@leetcode.com\", \"ab@leetcode.com\", \"a.b@leetcode.com\"]",
+      "output": "1"
+    }
+  ]
+}

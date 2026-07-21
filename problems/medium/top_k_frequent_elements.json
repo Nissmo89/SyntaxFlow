@@ -1,0 +1,974 @@
+{
+  "id": "top_k_frequent_elements",
+  "title": "Top K Frequent Elements",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting",
+    "Quickselect"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>k</code> <em>most frequent elements</em>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,2,2,3], k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1,2]</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1], k = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1]</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,1,2,1,2,3,1,3,2], k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1,2]</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>k</code> is in the range <code>[1, the number of unique elements in the array]</code>.</li>\n\t<li>It is <strong>guaranteed</strong> that the answer is <strong>unique</strong>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Your algorithm&#39;s time complexity must be better than <code>O(n log n)</code>, where n is the array&#39;s size.</p>\n",
+  "task": "Solve the 'Top K Frequent Elements' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-104 <= nums[i] <= 104",
+    "k is in the range [1, the number of unique elements in the array].",
+    "It is guaranteed that the answer is unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "topKFrequent",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 347,
+      "title": "top-k-frequent-elements",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().topKFrequent({nums}, {k})",
+        "rust": "Solution::top_k_frequent({nums}, {k})",
+        "python3": "Solution().topKFrequent({nums}, {k})",
+        "python2": "Solution().topKFrequent({nums}, {k})",
+        "ruby": "top_k_frequent({nums}, {k})",
+        "java": "new Solution().topKFrequent({nums}, {k})",
+        "csharp": "new Solution().TopKFrequent({nums}, {k})",
+        "kotlin": "Solution().topKFrequent({nums}, {k})",
+        "go": "topKFrequent({nums}, {k})",
+        "dart": "Solution().topKFrequent({nums}, {k})",
+        "swift": "Solution().topKFrequent({nums}, {k})",
+        "typescript": "topKFrequent({nums}, {k})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().topKFrequent(nums, k, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def topKFrequent(self, nums, k, result):\n        if not isinstance(result, list):\n            return False\n        if len(result) != k:\n            return False\n        if any(not isinstance(x, int) for x in result):\n            return False\n        if len(set(result)) != len(result):\n            return False\n\n        counts = Counter(nums)\n        if any(x not in counts for x in result):\n            return False\n\n        ordered = sorted(counts.items(), key=lambda item: (-item[1], item[0]))\n        cutoff = ordered[k - 1][1]\n        required = {value for value, count in counts.items() if count > cutoff}\n        allowed = {value for value, count in counts.items() if count >= cutoff}\n        result_set = set(result)\n        return required.issubset(result_set) and result_set.issubset(allowed)\n"
+      }
+    },
+    "seed": 347,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            3,
+            1,
+            3,
+            2
+          ],
+          "k": 2
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "single_negative",
+        "in": {
+          "nums": [
+            -7
+          ],
+          "k": 1
+        },
+        "out": [
+          -7
+        ]
+      },
+      {
+        "name": "two_unique_pick_one",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            5,
+            5
+          ],
+          "k": 1
+        },
+        "out": [
+          4
+        ]
+      },
+      {
+        "name": "two_unique_all",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            5,
+            5
+          ],
+          "k": 2
+        },
+        "out": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "three_levels_1",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            8,
+            8,
+            7
+          ],
+          "k": 2
+        },
+        "out": [
+          9,
+          8
+        ]
+      },
+      {
+        "name": "three_levels_2",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            8,
+            8,
+            7
+          ],
+          "k": 1
+        },
+        "out": [
+          9
+        ]
+      },
+      {
+        "name": "includes_zero",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            2
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          -1
+        ]
+      },
+      {
+        "name": "negatives_and_positives",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          3,
+          -1
+        ]
+      },
+      {
+        "name": "k_equals_unique_count",
+        "in": {
+          "nums": [
+            6,
+            6,
+            5,
+            5,
+            4
+          ],
+          "k": 3
+        },
+        "out": [
+          5,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "unique_boundary",
+        "in": {
+          "nums": [
+            10,
+            10,
+            10,
+            9,
+            9,
+            8,
+            8,
+            8,
+            8
+          ],
+          "k": 2
+        },
+        "out": [
+          8,
+          10
+        ]
+      },
+      {
+        "name": "many_duplicates_small",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          "k": 1
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "many_duplicates_small_2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "boundary_values_1",
+        "in": {
+          "nums": [
+            -10000,
+            -10000,
+            -10000,
+            10000,
+            10000,
+            7
+          ],
+          "k": 2
+        },
+        "out": [
+          -10000,
+          10000
+        ]
+      },
+      {
+        "name": "boundary_values_2",
+        "in": {
+          "nums": [
+            -10000,
+            -10000,
+            10000,
+            10000,
+            10000,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          10000,
+          1
+        ]
+      },
+      {
+        "name": "all_unique_small",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            6,
+            5
+          ],
+          "k": 3
+        },
+        "out": [
+          9,
+          8,
+          7
+        ]
+      },
+      {
+        "name": "unique_ranking_1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "unique_ranking_2",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            4,
+            4,
+            3,
+            3,
+            3,
+            2,
+            2,
+            2,
+            2
+          ],
+          "k": 3
+        },
+        "out": [
+          2,
+          5,
+          3
+        ]
+      },
+      {
+        "name": "unique_ranking_3",
+        "in": {
+          "nums": [
+            11,
+            11,
+            11,
+            11,
+            12,
+            12,
+            12,
+            13,
+            13,
+            14
+          ],
+          "k": 2
+        },
+        "out": [
+          11,
+          12
+        ]
+      },
+      {
+        "name": "unique_ranking_4",
+        "in": {
+          "nums": [
+            21,
+            21,
+            21,
+            20,
+            20,
+            19,
+            19,
+            19,
+            19
+          ],
+          "k": 1
+        },
+        "out": [
+          19
+        ]
+      },
+      {
+        "name": "unique_ranking_5",
+        "in": {
+          "nums": [
+            30,
+            30,
+            30,
+            29,
+            29,
+            29,
+            28,
+            28,
+            27
+          ],
+          "k": 2
+        },
+        "out": [
+          29,
+          30
+        ]
+      },
+      {
+        "name": "unique_ranking_6",
+        "in": {
+          "nums": [
+            100,
+            100,
+            99,
+            99,
+            99,
+            98,
+            98,
+            98,
+            98,
+            97,
+            97,
+            97,
+            97,
+            97
+          ],
+          "k": 3
+        },
+        "out": [
+          97,
+          98,
+          99
+        ]
+      },
+      {
+        "name": "unique_ranking_7",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "unique_ranking_8",
+        "in": {
+          "nums": [
+            -3,
+            -3,
+            -3,
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "k": 2
+        },
+        "out": [
+          -1,
+          -3
+        ]
+      },
+      {
+        "name": "large_ladder_1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "k": 4
+        },
+        "out": [
+          5,
+          4,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "large_ladder_2",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -2,
+            -2,
+            -2,
+            -2,
+            -3,
+            -3,
+            -4,
+            -4,
+            -4,
+            -4,
+            -5,
+            -5,
+            -5,
+            -5,
+            -5,
+            -5
+          ],
+          "k": 3
+        },
+        "out": [
+          -1,
+          -5,
+          -2
+        ]
+      },
+      {
+        "name": "large_ladder_3",
+        "in": {
+          "nums": [
+            10000,
+            10000,
+            10000,
+            9999,
+            9999,
+            9999,
+            9999,
+            9998,
+            9998,
+            9998,
+            9998,
+            9998,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          9998
+        ]
+      },
+      {
+        "name": "large_ladder_4",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "k": 2
+        },
+        "out": [
+          9,
+          8
+        ]
+      },
+      {
+        "name": "large_ladder_5",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            41,
+            41,
+            41,
+            41,
+            40,
+            40,
+            40,
+            40,
+            40,
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ],
+          "k": 3
+        },
+        "out": [
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "name": "medium_mixed_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5
+          ],
+          "k": 3
+        },
+        "out": [
+          4,
+          3,
+          2
+        ]
+      },
+      {
+        "name": "medium_mixed_2",
+        "in": {
+          "nums": [
+            -10,
+            -10,
+            -10,
+            -9,
+            -9,
+            -8,
+            -8,
+            -8,
+            -7,
+            -7,
+            -7,
+            -7
+          ],
+          "k": 2
+        },
+        "out": [
+          -7,
+          -10
+        ]
+      },
+      {
+        "name": "medium_mixed_3",
+        "in": {
+          "nums": [
+            6,
+            6,
+            5,
+            5,
+            5,
+            4,
+            4,
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "medium_mixed_4",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            -1,
+            -1,
+            -1
+          ],
+          "k": 2
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "medium_mixed_5",
+        "in": {
+          "nums": [
+            12,
+            12,
+            12,
+            11,
+            11,
+            10,
+            10,
+            10,
+            10,
+            9,
+            9,
+            9
+          ],
+          "k": 3
+        },
+        "out": [
+          10,
+          12,
+          9
+        ]
+      },
+      {
+        "name": "medium_mixed_6",
+        "in": {
+          "nums": [
+            15,
+            15,
+            14,
+            14,
+            14,
+            13,
+            13,
+            13,
+            13,
+            12,
+            12,
+            12,
+            12,
+            12
+          ],
+          "k": 2
+        },
+        "out": [
+          12,
+          13
+        ]
+      },
+      {
+        "name": "medium_mixed_7",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "k": 4
+        },
+        "out": [
+          5,
+          4,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "medium_mixed_8",
+        "in": {
+          "nums": [
+            -4,
+            -4,
+            -4,
+            -3,
+            -3,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "k": 3
+        },
+        "out": [
+          0,
+          -1,
+          -4
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 1, 1, 2, 2, 3]\nk = 2",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "nums = [1]\nk = 1",
+      "output": "[1]"
+    },
+    {
+      "input": "nums = [1, 2, 1, 2, 1, 2, 3, 1, 3, 2]\nk = 2",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "nums = [-7]\nk = 1",
+      "output": "[-7]"
+    },
+    {
+      "input": "nums = [4, 4, 4, 5, 5]\nk = 1",
+      "output": "[4]"
+    },
+    {
+      "input": "nums = [4, 4, 4, 5, 5]\nk = 2",
+      "output": "[4, 5]"
+    },
+    {
+      "input": "nums = [9, 9, 9, 8, 8, 7]\nk = 2",
+      "output": "[9, 8]"
+    },
+    {
+      "input": "nums = [9, 9, 9, 8, 8, 7]\nk = 1",
+      "output": "[9]"
+    }
+  ]
+}

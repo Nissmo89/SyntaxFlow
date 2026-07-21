@@ -1,0 +1,1980 @@
+{
+  "id": "flood_fill",
+  "title": "Flood Fill",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "description": "<p>You are given an image represented by an <code>m x n</code> grid of integers <code>image</code>, where <code>image[i][j]</code> represents the pixel value of the image. You are also given three integers <code>sr</code>, <code>sc</code>, and <code>color</code>. Your task is to perform a <strong>flood fill</strong> on the image starting from the pixel <code>image[sr][sc]</code>.</p> <p>To perform a <strong>flood fill</strong>:</p> <ol> <li>Begin with the starting pixel and change its color to <code>color</code>.</li> <li>Perform the same process for each pixel that is <strong>directly adjacent</strong> (pixels that share a side with the original pixel, either horizontally or vertically) and shares the <strong>same color</strong> as the starting pixel.</li> <li>Keep <strong>repeating</strong> this process by checking neighboring pixels of the <em>updated</em> pixels and modifying their color if it matches the original color of the starting pixel.</li> <li>The process <strong>stops</strong> when there are <strong>no more</strong> adjacent pixels of the original color to update.</li> </ol> <p>Return the <strong>modified</strong> image after performing the flood fill.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2</span></p> <p><strong>Output:</strong> <span class=\"example-io\">[[2,2,2],[2,2,0],[2,0,1]]</span></p> <p><strong>Explanation:</strong></p> <p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/01/flood1-grid.jpg\" style=\"width: 613px; height: 253px;\"/></p> <p>From the center of the image with position <code>(sr, sc) = (1, 1)</code> (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.</p> <p>Note the bottom corner is <strong>not</strong> colored 2, because it is not horizontally or vertically connected to the starting pixel.</p> </div> <p><strong class=\"example\">Example 2:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0</span></p> <p><strong>Output:</strong> <span class=\"example-io\">[[0,0,0],[0,0,0]]</span></p> <p><strong>Explanation:</strong></p> <p>The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image.</p> </div> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>m == image.length</code></li> <li><code>n == image[i].length</code></li> <li><code>1 &lt;= m, n &lt;= 50</code></li> <li><code>0 &lt;= image[i][j], color &lt; 2<sup>16</sup></code></li> <li><code>0 &lt;= sr &lt; m</code></li> <li><code>0 &lt;= sc &lt; n</code></li> </ul>",
+  "hints": [
+    "Write a recursive function that paints the pixel if it's the correct color, then recurses on neighboring pixels."
+  ],
+  "method": {
+    "name": "floodFill",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "image",
+        "type": "array"
+      },
+      {
+        "name": "sr",
+        "type": "int"
+      },
+      {
+        "name": "sc",
+        "type": "int"
+      },
+      {
+        "name": "color",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 733,
+      "title": "flood-fill",
+      "params": {
+        "image": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "sr": {
+          "type": "int"
+        },
+        "sc": {
+          "type": "int"
+        },
+        "color": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "rust": "Solution::flood_fill({image}, {sr}, {sc}, {color})",
+        "python3": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "python2": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "ruby": "flood_fill({image}, {sr}, {sc}, {color})",
+        "java": "new Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "csharp": "new Solution().FloodFill({image}, {sr}, {sc}, {color})",
+        "kotlin": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "go": "floodFill({image}, {sr}, {sc}, {color})",
+        "dart": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "swift": "Solution().floodFill({image}, {sr}, {sc}, {color})",
+        "typescript": "floodFill({image}, {sr}, {sc}, {color})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().floodFill(image, sr, sc, color, {result})",
+        "checker": "class Checker:\n    def floodFill(self, image, sr, sc, color, result):\n        if not isinstance(image, list) or not image:\n            return False\n        if not all(isinstance(row, list) and row for row in image):\n            return False\n        m = len(image)\n        n = len(image[0])\n        if not all(len(row) == n for row in image):\n            return False\n        if not isinstance(result, list) or len(result) != m:\n            return False\n        for row in result:\n            if not isinstance(row, list) or len(row) != n:\n                return False\n            for val in row:\n                if not isinstance(val, int):\n                    return False\n\n        expected = [row[:] for row in image]\n        old = expected[sr][sc]\n        if old != color:\n            stack = [(sr, sc)]\n            while stack:\n                i, j = stack.pop()\n                if i < 0 or i >= m or j < 0 or j >= n or expected[i][j] != old:\n                    continue\n                expected[i][j] = color\n                stack.append((i + 1, j))\n                stack.append((i - 1, j))\n                stack.append((i, j + 1))\n                stack.append((i, j - 1))\n\n        return result == expected\n"
+      }
+    },
+    "seed": 733,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 2
+        },
+        "out": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "image": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 0
+        },
+        "out": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "single-pixel-change",
+        "in": {
+          "image": [
+            [
+              5
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 9
+        },
+        "out": [
+          [
+            9
+          ]
+        ]
+      },
+      {
+        "name": "single-pixel-noop",
+        "in": {
+          "image": [
+            [
+              7
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 7
+        },
+        "out": [
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "name": "one-row-fill-all",
+        "in": {
+          "image": [
+            [
+              3,
+              3,
+              3,
+              3,
+              3
+            ]
+          ],
+          "sr": 0,
+          "sc": 2,
+          "color": 8
+        },
+        "out": [
+          [
+            8,
+            8,
+            8,
+            8,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "one-row-middle-segment",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              2,
+              2,
+              2,
+              3,
+              3
+            ]
+          ],
+          "sr": 0,
+          "sc": 3,
+          "color": 9
+        },
+        "out": [
+          [
+            1,
+            1,
+            9,
+            9,
+            9,
+            3,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "one-column-fill-all",
+        "in": {
+          "image": [
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ]
+          ],
+          "sr": 2,
+          "sc": 0,
+          "color": 1
+        },
+        "out": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "name": "one-column-middle-segment",
+        "in": {
+          "image": [
+            [
+              6
+            ],
+            [
+              6
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ]
+          ],
+          "sr": 3,
+          "sc": 0,
+          "color": 2
+        },
+        "out": [
+          [
+            6
+          ],
+          [
+            6
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            6
+          ]
+        ]
+      },
+      {
+        "name": "diagonal-not-connected",
+        "in": {
+          "image": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 2
+        },
+        "out": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "checkerboard-no-spread",
+        "in": {
+          "image": [
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 7
+        },
+        "out": [
+          [
+            7,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "center-island",
+        "in": {
+          "image": [
+            [
+              2,
+              2,
+              2
+            ],
+            [
+              2,
+              3,
+              2
+            ],
+            [
+              2,
+              2,
+              2
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 4
+        },
+        "out": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            4,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "border-start-top-left",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 5
+        },
+        "out": [
+          [
+            5,
+            5,
+            0
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "border-start-bottom-right",
+        "in": {
+          "image": [
+            [
+              2,
+              2,
+              2
+            ],
+            [
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              1,
+              1
+            ]
+          ],
+          "sr": 2,
+          "sc": 2,
+          "color": 8
+        },
+        "out": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            8,
+            8
+          ],
+          [
+            2,
+            8,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "enclosed-hole-preserved",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 2
+        },
+        "out": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "cross-shape",
+        "in": {
+          "image": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 3
+        },
+        "out": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            0,
+            3,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "unique-start-pixel",
+        "in": {
+          "image": [
+            [
+              9,
+              9,
+              9
+            ],
+            [
+              9,
+              4,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 1
+        },
+        "out": [
+          [
+            9,
+            9,
+            9
+          ],
+          [
+            9,
+            1,
+            9
+          ],
+          [
+            9,
+            9,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "zero-to-max",
+        "in": {
+          "image": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 1,
+          "color": 65535
+        },
+        "out": [
+          [
+            65535,
+            65535
+          ],
+          [
+            65535,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "max-to-zero",
+        "in": {
+          "image": [
+            [
+              65535,
+              65535,
+              1
+            ],
+            [
+              1,
+              65535,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 0
+        },
+        "out": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "multiple-components-same-color",
+        "in": {
+          "image": [
+            [
+              4,
+              4,
+              0,
+              4
+            ],
+            [
+              4,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              4,
+              4
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 7
+        },
+        "out": [
+          [
+            7,
+            7,
+            0,
+            4
+          ],
+          [
+            7,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            4,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "snake-corridor",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 6
+        },
+        "out": [
+          [
+            6,
+            6,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            6,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            6,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "tall-rectangle",
+        "in": {
+          "image": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "sr": 4,
+          "sc": 1,
+          "color": 5
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "wide-rectangle",
+        "in": {
+          "image": [
+            [
+              3,
+              3,
+              3,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              3,
+              2,
+              3
+            ]
+          ],
+          "sr": 0,
+          "sc": 1,
+          "color": 4
+        },
+        "out": [
+          [
+            4,
+            4,
+            4,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            4,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "plus-touching-edge",
+        "in": {
+          "image": [
+            [
+              5,
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              0,
+              5,
+              0
+            ],
+            [
+              5,
+              5,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              5,
+              0
+            ]
+          ],
+          "sr": 0,
+          "sc": 2,
+          "color": 9
+        },
+        "out": [
+          [
+            9,
+            9,
+            9,
+            9
+          ],
+          [
+            9,
+            0,
+            9,
+            0
+          ],
+          [
+            9,
+            9,
+            9,
+            9
+          ],
+          [
+            0,
+            0,
+            9,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "all-same-change",
+        "in": {
+          "image": [
+            [
+              8,
+              8,
+              8
+            ],
+            [
+              8,
+              8,
+              8
+            ],
+            [
+              8,
+              8,
+              8
+            ]
+          ],
+          "sr": 2,
+          "sc": 1,
+          "color": 6
+        },
+        "out": [
+          [
+            6,
+            6,
+            6
+          ],
+          [
+            6,
+            6,
+            6
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "all-same-noop",
+        "in": {
+          "image": [
+            [
+              10,
+              10
+            ],
+            [
+              10,
+              10
+            ]
+          ],
+          "sr": 1,
+          "sc": 0,
+          "color": 10
+        },
+        "out": [
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "large-static-10x10-border",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "sr": 0,
+          "sc": 0,
+          "color": 3
+        },
+        "out": [
+          [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "large-static-10x10-interior",
+        "in": {
+          "image": [
+            [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              5
+            ],
+            [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          ],
+          "sr": 4,
+          "sc": 4,
+          "color": 7
+        },
+        "out": [
+          [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "winding-cavity",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 2
+        },
+        "out": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "start-on-zero-in-mixed",
+        "in": {
+          "image": [
+            [
+              2,
+              2,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              0,
+              2
+            ],
+            [
+              2,
+              0,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              2,
+              2
+            ]
+          ],
+          "sr": 1,
+          "sc": 1,
+          "color": 3
+        },
+        "out": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3,
+            2
+          ],
+          [
+            2,
+            3,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "three-regions",
+        "in": {
+          "image": [
+            [
+              1,
+              1,
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              3,
+              3,
+              0,
+              2,
+              4
+            ],
+            [
+              3,
+              0,
+              0,
+              4,
+              4
+            ]
+          ],
+          "sr": 2,
+          "sc": 0,
+          "color": 9
+        },
+        "out": [
+          [
+            1,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            9,
+            9,
+            0,
+            2,
+            4
+          ],
+          [
+            9,
+            0,
+            0,
+            4,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "generated-50x50-random-center",
+        "in": {
+          "image": {
+            "gen": "array",
+            "len": 50,
+            "of": {
+              "gen": "array",
+              "len": 50,
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 65535
+              },
+              "elemType": "int"
+            }
+          },
+          "sr": 25,
+          "sc": 25,
+          "color": {
+            "gen": "int",
+            "min": 0,
+            "max": 65535
+          }
+        }
+      },
+      {
+        "name": "generated-50x49-random-top-right",
+        "in": {
+          "image": {
+            "gen": "array",
+            "len": 50,
+            "of": {
+              "gen": "array",
+              "len": 49,
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 65535
+              },
+              "elemType": "int"
+            }
+          },
+          "sr": 0,
+          "sc": 48,
+          "color": {
+            "gen": "int",
+            "min": 0,
+            "max": 65535
+          }
+        }
+      },
+      {
+        "name": "generated-49x50-random-bottom-left",
+        "in": {
+          "image": {
+            "gen": "array",
+            "len": 49,
+            "of": {
+              "gen": "array",
+              "len": 50,
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 65535
+              },
+              "elemType": "int"
+            }
+          },
+          "sr": 48,
+          "sc": 0,
+          "color": {
+            "gen": "int",
+            "min": 0,
+            "max": 65535
+          }
+        }
+      },
+      {
+        "name": "generated-1x50-random-row",
+        "in": {
+          "image": {
+            "gen": "array",
+            "len": 1,
+            "of": {
+              "gen": "array",
+              "len": 50,
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 65535
+              },
+              "elemType": "int"
+            }
+          },
+          "sr": 0,
+          "sc": 17,
+          "color": {
+            "gen": "int",
+            "min": 0,
+            "max": 65535
+          }
+        }
+      },
+      {
+        "name": "generated-50x1-random-column",
+        "in": {
+          "image": {
+            "gen": "array",
+            "len": 50,
+            "of": {
+              "gen": "array",
+              "len": 1,
+              "of": {
+                "gen": "int",
+                "min": 0,
+                "max": 65535
+              },
+              "elemType": "int"
+            }
+          },
+          "sr": 17,
+          "sc": 0,
+          "color": {
+            "gen": "int",
+            "min": 0,
+            "max": 65535
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "image = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]\nsr = 1\nsc = 1\ncolor = 2",
+      "output": "[[2, 2, 2], [2, 2, 0], [2, 0, 1]]"
+    },
+    {
+      "input": "image = [[0, 0, 0], [0, 0, 0]]\nsr = 0\nsc = 0\ncolor = 0",
+      "output": "[[0, 0, 0], [0, 0, 0]]"
+    },
+    {
+      "input": "image = [[5]]\nsr = 0\nsc = 0\ncolor = 9",
+      "output": "[[9]]"
+    },
+    {
+      "input": "image = [[7]]\nsr = 0\nsc = 0\ncolor = 7",
+      "output": "[[7]]"
+    },
+    {
+      "input": "image = [[3, 3, 3, 3, 3]]\nsr = 0\nsc = 2\ncolor = 8",
+      "output": "[[8, 8, 8, 8, 8]]"
+    },
+    {
+      "input": "image = [[1, 1, 2, 2, 2, 3, 3]]\nsr = 0\nsc = 3\ncolor = 9",
+      "output": "[[1, 1, 9, 9, 9, 3, 3]]"
+    },
+    {
+      "input": "image = [[4], [4], [4], [4]]\nsr = 2\nsc = 0\ncolor = 1",
+      "output": "[[1], [1], [1], [1]]"
+    },
+    {
+      "input": "image = [[6], [6], [5], [5], [5], [6]]\nsr = 3\nsc = 0\ncolor = 2",
+      "output": "[[6], [6], [2], [2], [2], [6]]"
+    }
+  ]
+}

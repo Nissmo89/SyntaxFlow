@@ -1,0 +1,381 @@
+{
+  "id": "count_set_bits",
+  "title": "Number of 1 Bits",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Divide and Conquer",
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given a positive integer <code>n</code>, write a function that returns the number of <span data-keyword=\"set-bit\">set bits</span> in its binary representation (also known as the <a href=\"http://en.wikipedia.org/wiki/Hamming_weight\" target=\"_blank\">Hamming weight</a>).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 11</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The input binary string <strong>1011</strong> has a total of three set bits.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 128</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The input binary string <strong>10000000</strong> has a total of one set bit.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 2147483645</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">30</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The input binary string <strong>1111111111111111111111111111101</strong> has a total of thirty set bits.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> If this function is called many times, how would you optimize it?",
+  "task": "Solve the 'Number of 1 Bits' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "hammingWeight",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 191,
+      "title": "number-of-1-bits",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().hammingWeight({n})",
+        "rust": "Solution::hamming_weight({n})",
+        "python3": "Solution().hammingWeight({n})",
+        "python2": "Solution().hammingWeight({n})",
+        "ruby": "hamming_weight({n})",
+        "java": "new Solution().hammingWeight({n})",
+        "csharp": "new Solution().HammingWeight({n})",
+        "kotlin": "Solution().hammingWeight({n})",
+        "go": "hammingWeight({n})",
+        "dart": "Solution().hammingWeight({n})",
+        "swift": "Solution().hammingWeight({n})",
+        "typescript": "hammingWeight({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().hammingWeight(n, {result})",
+        "checker": "class Checker:\n    def hammingWeight(self, n, result):\n        if not isinstance(n, int) or not isinstance(result, int):\n            return False\n        if n < 1 or n > 2147483647:\n            return False\n        count = 0\n        x = n\n        while x:\n            count += x & 1\n            x >>= 1\n        return result == count\n"
+      }
+    },
+    "seed": 191,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "n": 11
+        },
+        "out": 3
+      },
+      {
+        "name": "example2",
+        "in": {
+          "n": 128
+        },
+        "out": 1
+      },
+      {
+        "name": "example3",
+        "in": {
+          "n": 2147483645
+        },
+        "out": 30
+      },
+      {
+        "name": "one",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "two",
+        "in": {
+          "n": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "three",
+        "in": {
+          "n": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "four",
+        "in": {
+          "n": 4
+        },
+        "out": 1
+      },
+      {
+        "name": "five",
+        "in": {
+          "n": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "six",
+        "in": {
+          "n": 6
+        },
+        "out": 2
+      },
+      {
+        "name": "seven",
+        "in": {
+          "n": 7
+        },
+        "out": 3
+      },
+      {
+        "name": "eight",
+        "in": {
+          "n": 8
+        },
+        "out": 1
+      },
+      {
+        "name": "nine",
+        "in": {
+          "n": 9
+        },
+        "out": 2
+      },
+      {
+        "name": "ten",
+        "in": {
+          "n": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "twelve",
+        "in": {
+          "n": 12
+        },
+        "out": 2
+      },
+      {
+        "name": "fifteen",
+        "in": {
+          "n": 15
+        },
+        "out": 4
+      },
+      {
+        "name": "sixteen",
+        "in": {
+          "n": 16
+        },
+        "out": 1
+      },
+      {
+        "name": "thirty_one",
+        "in": {
+          "n": 31
+        },
+        "out": 5
+      },
+      {
+        "name": "thirty_two",
+        "in": {
+          "n": 32
+        },
+        "out": 1
+      },
+      {
+        "name": "sixty_three",
+        "in": {
+          "n": 63
+        },
+        "out": 6
+      },
+      {
+        "name": "sixty_four",
+        "in": {
+          "n": 64
+        },
+        "out": 1
+      },
+      {
+        "name": "one_twenty_seven",
+        "in": {
+          "n": 127
+        },
+        "out": 7
+      },
+      {
+        "name": "two_fifty_five",
+        "in": {
+          "n": 255
+        },
+        "out": 8
+      },
+      {
+        "name": "five_eleven",
+        "in": {
+          "n": 511
+        },
+        "out": 9
+      },
+      {
+        "name": "alt_pattern_start_one",
+        "in": {
+          "n": 1431655765
+        },
+        "out": 16
+      },
+      {
+        "name": "alt_pattern_start_two",
+        "in": {
+          "n": 1431655766
+        },
+        "out": 16
+      },
+      {
+        "name": "alt_pattern_dense",
+        "in": {
+          "n": 1431655767
+        },
+        "out": 17
+      },
+      {
+        "name": "lower_thirty_ones",
+        "in": {
+          "n": 1073741823
+        },
+        "out": 30
+      },
+      {
+        "name": "thirtieth_bit_only",
+        "in": {
+          "n": 1073741824
+        },
+        "out": 1
+      },
+      {
+        "name": "max_minus_six",
+        "in": {
+          "n": 2147483641
+        },
+        "out": 29
+      },
+      {
+        "name": "max_minus_five",
+        "in": {
+          "n": 2147483642
+        },
+        "out": 29
+      },
+      {
+        "name": "max_minus_four",
+        "in": {
+          "n": 2147483643
+        },
+        "out": 30
+      },
+      {
+        "name": "max_minus_three",
+        "in": {
+          "n": 2147483644
+        },
+        "out": 29
+      },
+      {
+        "name": "max_minus_two",
+        "in": {
+          "n": 2147483645
+        },
+        "out": 30
+      },
+      {
+        "name": "max_minus_one",
+        "in": {
+          "n": 2147483646
+        },
+        "out": 30
+      },
+      {
+        "name": "max_positive_int",
+        "in": {
+          "n": 2147483647
+        },
+        "out": 31
+      },
+      {
+        "name": "generated_small_positive",
+        "seed": 191001,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 1024
+          }
+        }
+      },
+      {
+        "name": "generated_mid_positive",
+        "seed": 191002,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 1000000
+          }
+        }
+      },
+      {
+        "name": "generated_high_positive",
+        "seed": 191003,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1000000000,
+            "max": 2147483647
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 11",
+      "output": "3"
+    },
+    {
+      "input": "n = 128",
+      "output": "1"
+    },
+    {
+      "input": "n = 2147483645",
+      "output": "30"
+    },
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "1"
+    },
+    {
+      "input": "n = 3",
+      "output": "2"
+    },
+    {
+      "input": "n = 4",
+      "output": "1"
+    },
+    {
+      "input": "n = 5",
+      "output": "2"
+    }
+  ]
+}

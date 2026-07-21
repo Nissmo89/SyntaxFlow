@@ -1,0 +1,351 @@
+{
+  "id": "gray_code",
+  "title": "Gray Code",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "description": "<p>An <strong>n-bit gray code sequence</strong> is a sequence of <code>2<sup>n</sup></code> integers where:</p>\n\n<ul>\n\t<li>Every integer is in the <strong>inclusive</strong> range <code>[0, 2<sup>n</sup> - 1]</code>,</li>\n\t<li>The first integer is <code>0</code>,</li>\n\t<li>An integer appears <strong>no more than once</strong> in the sequence,</li>\n\t<li>The binary representation of every pair of <strong>adjacent</strong> integers differs by <strong>exactly one bit</strong>, and</li>\n\t<li>The binary representation of the <strong>first</strong> and <strong>last</strong> integers differs by <strong>exactly one bit</strong>.</li>\n</ul>\n\n<p>Given an integer <code>n</code>, return <em>any valid <strong>n-bit gray code sequence</strong></em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2\n<strong>Output:</strong> [0,1,3,2]\n<strong>Explanation:</strong>\nThe binary representation of [0,1,3,2] is [00,01,11,10].\n- 0<u>0</u> and 0<u>1</u> differ by one bit\n- <u>0</u>1 and <u>1</u>1 differ by one bit\n- 1<u>1</u> and 1<u>0</u> differ by one bit\n- <u>1</u>0 and <u>0</u>0 differ by one bit\n[0,2,3,1] is also a valid gray code sequence, whose binary representation is [00,10,11,01].\n- <u>0</u>0 and <u>1</u>0 differ by one bit\n- 1<u>0</u> and 1<u>1</u> differ by one bit\n- <u>1</u>1 and <u>0</u>1 differ by one bit\n- 0<u>1</u> and 0<u>0</u> differ by one bit\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> [0,1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 16</code></li>\n</ul>\n",
+  "task": "Solve the 'Gray Code' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 16"
+  ],
+  "hints": [],
+  "method": {
+    "name": "grayCode",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 89,
+      "title": "gray-code",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().grayCode({n})",
+        "rust": "Solution::gray_code({n})",
+        "python3": "Solution().grayCode({n})",
+        "python2": "Solution().grayCode({n})",
+        "ruby": "gray_code({n})",
+        "java": "new Solution().grayCode({n})",
+        "csharp": "new Solution().GrayCode({n})",
+        "kotlin": "Solution().grayCode({n})",
+        "go": "grayCode({n})",
+        "dart": "Solution().grayCode({n})",
+        "swift": "Solution().grayCode({n})",
+        "typescript": "grayCode({n})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 500,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().grayCode(n, {result})",
+        "checker": "class Checker:\n    def grayCode(self, n, result):\n        if not isinstance(n, int) or n < 1 or n > 16:\n            return False\n        if not isinstance(result, list):\n            return False\n        size = 1 << n\n        if len(result) != size:\n            return False\n        if any((not isinstance(v, int)) or v < 0 or v >= size for v in result):\n            return False\n        if result[0] != 0:\n            return False\n        if len(set(result)) != size:\n            return False\n        def one_bit(a, b):\n            x = a ^ b\n            return x != 0 and (x & (x - 1)) == 0\n        for i in range(size - 1):\n            if not one_bit(result[i], result[i + 1]):\n                return False\n        return one_bit(result[0], result[-1])\n"
+      }
+    },
+    "seed": 89,
+    "tests": [
+      {
+        "name": "n1",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "n2",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n5",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n9",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n10",
+        "in": {
+          "n": 10
+        }
+      },
+      {
+        "name": "n11",
+        "in": {
+          "n": 11
+        }
+      },
+      {
+        "name": "n12",
+        "in": {
+          "n": 12
+        }
+      },
+      {
+        "name": "n13",
+        "in": {
+          "n": 13
+        }
+      },
+      {
+        "name": "n14",
+        "in": {
+          "n": 14
+        }
+      },
+      {
+        "name": "n15",
+        "in": {
+          "n": 15
+        }
+      },
+      {
+        "name": "n16",
+        "in": {
+          "n": 16
+        }
+      },
+      {
+        "name": "gen_1",
+        "seed": 1,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        }
+      },
+      {
+        "name": "gen_2",
+        "seed": 2,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        }
+      },
+      {
+        "name": "gen_3",
+        "seed": 3,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        }
+      },
+      {
+        "name": "gen_4",
+        "seed": 4,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        }
+      },
+      {
+        "name": "gen_5",
+        "seed": 5,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        }
+      },
+      {
+        "name": "repeat_n1",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "repeat_n2",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "repeat_n3",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "repeat_n4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "repeat_n5",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "repeat_n6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "repeat_n7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "repeat_n8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "repeat_n9",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "repeat_n10",
+        "in": {
+          "n": 10
+        }
+      },
+      {
+        "name": "repeat_n11",
+        "in": {
+          "n": 11
+        }
+      },
+      {
+        "name": "repeat_n12",
+        "in": {
+          "n": 12
+        }
+      },
+      {
+        "name": "repeat_n13",
+        "in": {
+          "n": 13
+        }
+      },
+      {
+        "name": "repeat_n14",
+        "in": {
+          "n": 14
+        }
+      },
+      {
+        "name": "repeat_n15",
+        "in": {
+          "n": 15
+        }
+      },
+      {
+        "name": "repeat_n16",
+        "in": {
+          "n": 16
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    },
+    {
+      "input": "n = 8",
+      "output": ""
+    }
+  ]
+}

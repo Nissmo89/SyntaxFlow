@@ -1,0 +1,603 @@
+{
+  "id": "can_i_win",
+  "title": "Can I Win",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Memoization",
+    "Game Theory",
+    "Bitmask"
+  ],
+  "description": "<p>In the &quot;100 game&quot; two players take turns adding, to a running total, any integer from <code>1</code> to <code>10</code>. The player who first causes the running total to <strong>reach or exceed</strong> 100 wins.</p>\n\n<p>What if we change the game so that players <strong>cannot</strong> re-use integers?</p>\n\n<p>For example, two players might take turns drawing from a common pool of numbers from 1 to 15 without replacement until they reach a total &gt;= 100.</p>\n\n<p>Given two integers <code>maxChoosableInteger</code> and <code>desiredTotal</code>, return <code>true</code> if the first player to move can force a win, otherwise, return <code>false</code>. Assume both players play <strong>optimally</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> maxChoosableInteger = 10, desiredTotal = 11\n<strong>Output:</strong> false\n<strong>Explanation:</strong>\nNo matter which integer the first player choose, the first player will lose.\nThe first player can choose an integer from 1 up to 10.\nIf the first player choose 1, the second player can only choose integers from 2 up to 10.\nThe second player will win by choosing 10 and get a total = 11, which is &gt;= desiredTotal.\nSame with other integers chosen by the first player, the second player will always win.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> maxChoosableInteger = 10, desiredTotal = 0\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> maxChoosableInteger = 10, desiredTotal = 1\n<strong>Output:</strong> true\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= maxChoosableInteger &lt;= 20</code></li>\n\t<li><code>0 &lt;= desiredTotal &lt;= 300</code></li>\n</ul>\n",
+  "task": "Solve the 'Can I Win' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= maxChoosableInteger <= 20",
+    "0 <= desiredTotal <= 300"
+  ],
+  "hints": [],
+  "method": {
+    "name": "canIWin",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "maxChoosableInteger",
+        "type": "int"
+      },
+      {
+        "name": "desiredTotal",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 464,
+      "title": "can-i-win",
+      "params": {
+        "maxChoosableInteger": {
+          "type": "int"
+        },
+        "desiredTotal": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "rust": "Solution::can_i_win({maxChoosableInteger}, {desiredTotal})",
+        "python3": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "python2": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "ruby": "can_i_win({maxChoosableInteger}, {desiredTotal})",
+        "java": "new Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "csharp": "new Solution().CanIWin({maxChoosableInteger}, {desiredTotal})",
+        "kotlin": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "go": "canIWin({maxChoosableInteger}, {desiredTotal})",
+        "dart": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "swift": "Solution().canIWin({maxChoosableInteger}, {desiredTotal})",
+        "typescript": "canIWin({maxChoosableInteger}, {desiredTotal})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().canIWin(maxChoosableInteger, desiredTotal, {result})",
+        "checker": "class Checker:\n    def canIWin(self, maxChoosableInteger, desiredTotal, result):\n        if not isinstance(result, bool):\n            return False\n\n        if desiredTotal <= 0:\n            return result is True\n\n        if maxChoosableInteger * (maxChoosableInteger + 1) // 2 < desiredTotal:\n            return result is False\n\n        memo = {}\n\n        def can_win(mask, total):\n            key = (mask, total)\n            if key in memo:\n                return memo[key]\n            for i in range(maxChoosableInteger):\n                bit = 1 << i\n                if mask & bit:\n                    continue\n                pick = i + 1\n                if pick >= total or not can_win(mask | bit, total - pick):\n                    memo[key] = True\n                    return True\n            memo[key] = False\n            return False\n\n        return result is can_win(0, desiredTotal)\n"
+      }
+    },
+    "seed": 464,
+    "tests": [
+      {
+        "name": "ex1_false",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 11
+        },
+        "out": false
+      },
+      {
+        "name": "ex2_true_zero",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 0
+        },
+        "out": true
+      },
+      {
+        "name": "ex3_true_one",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 1
+        },
+        "out": true
+      },
+      {
+        "name": "n1_zero",
+        "in": {
+          "maxChoosableInteger": 1,
+          "desiredTotal": 0
+        },
+        "out": true
+      },
+      {
+        "name": "n1_exact",
+        "in": {
+          "maxChoosableInteger": 1,
+          "desiredTotal": 1
+        },
+        "out": true
+      },
+      {
+        "name": "n1_impossible",
+        "in": {
+          "maxChoosableInteger": 1,
+          "desiredTotal": 2
+        },
+        "out": false
+      },
+      {
+        "name": "n2_zero",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 0
+        },
+        "out": true
+      },
+      {
+        "name": "n2_one",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 1
+        },
+        "out": true
+      },
+      {
+        "name": "n2_two",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 2
+        },
+        "out": true
+      },
+      {
+        "name": "n2_three",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 3
+        },
+        "out": false
+      },
+      {
+        "name": "n2_four",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 4
+        },
+        "out": false
+      },
+      {
+        "name": "n2_five",
+        "in": {
+          "maxChoosableInteger": 2,
+          "desiredTotal": 5
+        },
+        "out": false
+      },
+      {
+        "name": "n3_zero",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 0
+        },
+        "out": true
+      },
+      {
+        "name": "n3_one",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 1
+        },
+        "out": true
+      },
+      {
+        "name": "n3_two",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 2
+        },
+        "out": true
+      },
+      {
+        "name": "n3_three",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 3
+        },
+        "out": true
+      },
+      {
+        "name": "n3_four",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 4
+        },
+        "out": false
+      },
+      {
+        "name": "n3_five",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 5
+        },
+        "out": true
+      },
+      {
+        "name": "n3_six",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 6
+        },
+        "out": true
+      },
+      {
+        "name": "n3_seven",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 7
+        },
+        "out": false
+      },
+      {
+        "name": "n3_eight",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 8
+        },
+        "out": false
+      },
+      {
+        "name": "n3_nine",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 9
+        },
+        "out": false
+      },
+      {
+        "name": "n3_ten",
+        "in": {
+          "maxChoosableInteger": 3,
+          "desiredTotal": 10
+        },
+        "out": false
+      },
+      {
+        "name": "n4_four",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 4
+        },
+        "out": true
+      },
+      {
+        "name": "n4_five",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 5
+        },
+        "out": false
+      },
+      {
+        "name": "n4_six",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 6
+        },
+        "out": true
+      },
+      {
+        "name": "n4_seven",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 7
+        },
+        "out": true
+      },
+      {
+        "name": "n4_eight",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 8
+        },
+        "out": true
+      },
+      {
+        "name": "n4_nine",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 9
+        },
+        "out": false
+      },
+      {
+        "name": "n4_ten",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 10
+        },
+        "out": false
+      },
+      {
+        "name": "n4_eleven",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 11
+        },
+        "out": false
+      },
+      {
+        "name": "n4_twelve",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 12
+        },
+        "out": false
+      },
+      {
+        "name": "n4_thirteen",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 13
+        },
+        "out": false
+      },
+      {
+        "name": "n4_fourteen",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 14
+        },
+        "out": false
+      },
+      {
+        "name": "n4_fifteen",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 15
+        },
+        "out": false
+      },
+      {
+        "name": "n4_sixteen",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 16
+        },
+        "out": false
+      },
+      {
+        "name": "n4_seventeen",
+        "in": {
+          "maxChoosableInteger": 4,
+          "desiredTotal": 17
+        },
+        "out": false
+      },
+      {
+        "name": "n5_six",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 6
+        },
+        "out": false
+      },
+      {
+        "name": "n5_seven",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 7
+        },
+        "out": true
+      },
+      {
+        "name": "n5_eight",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 8
+        },
+        "out": true
+      },
+      {
+        "name": "n5_nine",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 9
+        },
+        "out": true
+      },
+      {
+        "name": "n5_ten",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 10
+        },
+        "out": true
+      },
+      {
+        "name": "n5_eleven",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 11
+        },
+        "out": false
+      },
+      {
+        "name": "n5_twelve",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 12
+        },
+        "out": true
+      },
+      {
+        "name": "n5_thirteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 13
+        },
+        "out": true
+      },
+      {
+        "name": "n5_fourteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 14
+        },
+        "out": true
+      },
+      {
+        "name": "n5_fifteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 15
+        },
+        "out": true
+      },
+      {
+        "name": "n5_sixteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 16
+        },
+        "out": false
+      },
+      {
+        "name": "n5_seventeen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 17
+        },
+        "out": false
+      },
+      {
+        "name": "n5_eighteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 18
+        },
+        "out": false
+      },
+      {
+        "name": "n5_nineteen",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 19
+        },
+        "out": false
+      },
+      {
+        "name": "n5_twenty",
+        "in": {
+          "maxChoosableInteger": 5,
+          "desiredTotal": 20
+        },
+        "out": false
+      },
+      {
+        "name": "n10_eleven",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 11
+        },
+        "out": false
+      },
+      {
+        "name": "n10_zero",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 0
+        },
+        "out": true
+      },
+      {
+        "name": "n10_one",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 1
+        },
+        "out": true
+      },
+      {
+        "name": "n10_fifty_four",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 54
+        },
+        "out": false
+      },
+      {
+        "name": "n10_fifty_five",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 55
+        },
+        "out": false
+      },
+      {
+        "name": "n10_fifty_six",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 56
+        },
+        "out": false
+      },
+      {
+        "name": "n10_hundred",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 100
+        },
+        "out": false
+      },
+      {
+        "name": "n10_hundred_one",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 101
+        },
+        "out": false
+      },
+      {
+        "name": "n10_three_hundred",
+        "in": {
+          "maxChoosableInteger": 10,
+          "desiredTotal": 300
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "maxChoosableInteger = 10\ndesiredTotal = 11",
+      "output": "false"
+    },
+    {
+      "input": "maxChoosableInteger = 10\ndesiredTotal = 0",
+      "output": "true"
+    },
+    {
+      "input": "maxChoosableInteger = 10\ndesiredTotal = 1",
+      "output": "true"
+    },
+    {
+      "input": "maxChoosableInteger = 1\ndesiredTotal = 0",
+      "output": "true"
+    },
+    {
+      "input": "maxChoosableInteger = 1\ndesiredTotal = 1",
+      "output": "true"
+    },
+    {
+      "input": "maxChoosableInteger = 1\ndesiredTotal = 2",
+      "output": "false"
+    },
+    {
+      "input": "maxChoosableInteger = 2\ndesiredTotal = 0",
+      "output": "true"
+    },
+    {
+      "input": "maxChoosableInteger = 2\ndesiredTotal = 1",
+      "output": "true"
+    }
+  ]
+}

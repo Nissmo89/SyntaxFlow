@@ -1,0 +1,422 @@
+{
+  "id": "long_pressed_name",
+  "title": "Long Pressed Name",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>Your friend is typing his <code>name</code> into a keyboard. Sometimes, when typing a character <code>c</code>, the key might get <em>long pressed</em>, and the character will be typed 1 or more times.</p> <p>You examine the <code>typed</code> characters of the keyboard. Return <code>True</code> if it is possible that it was your friends name, with some characters (possibly none) being long pressed.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> name = \"alex\", typed = \"aaleex\"\n<strong>Output:</strong> true\n<strong>Explanation: </strong>'a' and 'e' in 'alex' were long pressed.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> name = \"saeed\", typed = \"ssaaedd\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>'e' must have been pressed twice, but it was not in the typed output.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= name.length, typed.length &lt;= 1000</code></li> <li><code>name</code> and <code>typed</code> consist of only lowercase English letters.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "isLongPressedName",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "typed",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 925,
+      "title": "long-pressed-name",
+      "params": {
+        "name": {
+          "type": "string"
+        },
+        "typed": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isLongPressedName({name}, {typed})",
+        "rust": "Solution::is_long_pressed_name({name}, {typed})",
+        "python3": "Solution().isLongPressedName({name}, {typed})",
+        "python2": "Solution().isLongPressedName({name}, {typed})",
+        "ruby": "is_long_pressed_name({name}, {typed})",
+        "java": "new Solution().isLongPressedName({name}, {typed})",
+        "csharp": "new Solution().IsLongPressedName({name}, {typed})",
+        "kotlin": "Solution().isLongPressedName({name}, {typed})",
+        "go": "isLongPressedName({name}, {typed})",
+        "dart": "Solution().isLongPressedName({name}, {typed})",
+        "swift": "Solution().isLongPressedName({name}, {typed})",
+        "typescript": "isLongPressedName({name}, {typed})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isLongPressedName(name, typed, {result})",
+        "checker": "class Checker:\n    def isLongPressedName(self, name, typed, result):\n        i = j = 0\n        while j < len(typed):\n            if i < len(name) and name[i] == typed[j]:\n                i += 1\n                j += 1\n            elif j > 0 and typed[j] == typed[j - 1]:\n                j += 1\n            else:\n                return result == False\n        return result == (i == len(name))\n"
+      }
+    },
+    "seed": 925,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "name": "alex",
+          "typed": "aaleex"
+        },
+        "out": true
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "name": "saeed",
+          "typed": "ssaaedd"
+        },
+        "out": false
+      },
+      {
+        "name": "single_char_true",
+        "in": {
+          "name": "a",
+          "typed": "a"
+        },
+        "out": true
+      },
+      {
+        "name": "single_char_long",
+        "in": {
+          "name": "a",
+          "typed": "aaaaa"
+        },
+        "out": true
+      },
+      {
+        "name": "prefix_missing",
+        "in": {
+          "name": "py",
+          "typed": "ppyy"
+        },
+        "out": true
+      },
+      {
+        "name": "mismatch_middle",
+        "in": {
+          "name": "abcd",
+          "typed": "aabbccdde"
+        },
+        "out": false
+      },
+      {
+        "name": "extra_char_wrong_place",
+        "in": {
+          "name": "ab",
+          "typed": "aaab"
+        },
+        "out": true
+      },
+      {
+        "name": "wrong_order",
+        "in": {
+          "name": "abc",
+          "typed": "abdc"
+        },
+        "out": false
+      },
+      {
+        "name": "exact_match",
+        "in": {
+          "name": "leetcode",
+          "typed": "leetcode"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "name": "vtkgn",
+          "typed": "vvvtttkkkgggnn"
+        },
+        "out": true
+      },
+      {
+        "name": "missing_tail",
+        "in": {
+          "name": "qwer",
+          "typed": "qqwwee"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated_first",
+        "in": {
+          "name": "hello",
+          "typed": "hheelllloo"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_last",
+        "in": {
+          "name": "z",
+          "typed": "zz"
+        },
+        "out": true
+      },
+      {
+        "name": "skip_char",
+        "in": {
+          "name": "abc",
+          "typed": "aabbcc"
+        },
+        "out": true
+      },
+      {
+        "name": "impossible_insert",
+        "in": {
+          "name": "abc",
+          "typed": "abbcx"
+        },
+        "out": false
+      },
+      {
+        "name": "exact_pair",
+        "in": {
+          "name": "ab",
+          "typed": "ab"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_first_block",
+        "in": {
+          "name": "ab",
+          "typed": "aab"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_last_block",
+        "in": {
+          "name": "ab",
+          "typed": "abb"
+        },
+        "out": true
+      },
+      {
+        "name": "three_letters_ok",
+        "in": {
+          "name": "abc",
+          "typed": "aabbcc"
+        },
+        "out": true
+      },
+      {
+        "name": "third_letter_repeated",
+        "in": {
+          "name": "abc",
+          "typed": "abcc"
+        },
+        "out": true
+      },
+      {
+        "name": "third_letter_overlong",
+        "in": {
+          "name": "abc",
+          "typed": "abccc"
+        },
+        "out": true
+      },
+      {
+        "name": "missing_middle",
+        "in": {
+          "name": "abc",
+          "typed": "ac"
+        },
+        "out": false
+      },
+      {
+        "name": "split_runs",
+        "in": {
+          "name": "abcd",
+          "typed": "abbccdd"
+        },
+        "out": true
+      },
+      {
+        "name": "missing_one_run_end",
+        "in": {
+          "name": "abcd",
+          "typed": "aabbccd"
+        },
+        "out": true
+      },
+      {
+        "name": "all_long_pressed",
+        "in": {
+          "name": "abcd",
+          "typed": "aaaabbbbccccdddd"
+        },
+        "out": true
+      },
+      {
+        "name": "single_repeated",
+        "in": {
+          "name": "x",
+          "typed": "xxx"
+        },
+        "out": true
+      },
+      {
+        "name": "three_blocks",
+        "in": {
+          "name": "mno",
+          "typed": "mmnnnooo"
+        },
+        "out": true
+      },
+      {
+        "name": "classic_true",
+        "in": {
+          "name": "hello",
+          "typed": "heeellooo"
+        },
+        "out": true
+      },
+      {
+        "name": "classic_false",
+        "in": {
+          "name": "hello",
+          "typed": "helo"
+        },
+        "out": false
+      },
+      {
+        "name": "extra_suffix",
+        "in": {
+          "name": "alex",
+          "typed": "aaleexa"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated_vowels",
+        "in": {
+          "name": "qwerty",
+          "typed": "qwwerrtty"
+        },
+        "out": true
+      },
+      {
+        "name": "prefix_then_repeat",
+        "in": {
+          "name": "aab",
+          "typed": "aaab"
+        },
+        "out": true
+      },
+      {
+        "name": "all_tripled",
+        "in": {
+          "name": "abc",
+          "typed": "aaabbbccc"
+        },
+        "out": true
+      },
+      {
+        "name": "wrong_order",
+        "in": {
+          "name": "ab",
+          "typed": "baa"
+        },
+        "out": false
+      },
+      {
+        "name": "same_string",
+        "in": {
+          "name": "abc",
+          "typed": "abc"
+        },
+        "out": true
+      },
+      {
+        "name": "missing_inner_char",
+        "in": {
+          "name": "abcd",
+          "typed": "abccd"
+        },
+        "out": true
+      },
+      {
+        "name": "large_oracle_a",
+        "in": {
+          "name": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abc"
+          },
+          "typed": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "large_oracle_b",
+        "in": {
+          "name": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abc"
+          },
+          "typed": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abc"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "name = \"alex\"\ntyped = \"aaleex\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"saeed\"\ntyped = \"ssaaedd\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"a\"\ntyped = \"a\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"a\"\ntyped = \"aaaaa\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"py\"\ntyped = \"ppyy\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abcd\"\ntyped = \"aabbccdde\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"ab\"\ntyped = \"aaab\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"abdc\"",
+      "output": "false"
+    }
+  ]
+}

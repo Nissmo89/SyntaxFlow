@@ -1,0 +1,552 @@
+{
+  "id": "find_pivot_index",
+  "title": "Find Pivot Index",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "description": "<p>Given an array of integers <code>nums</code>, calculate the <strong>pivot index</strong> of this array.</p> <p>The <strong>pivot index</strong> is the index where the sum of all the numbers <strong>strictly</strong> to the left of the index is equal to the sum of all the numbers <strong>strictly</strong> to the index's right.</p> <p>If the index is on the left edge of the array, then the left sum is <code>0</code> because there are no elements to the left. This also applies to the right edge of the array.</p> <p>Return <em>the <strong>leftmost pivot index</strong></em>. If no such index exists, return <code>-1</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums = [1,7,3,6,5,6]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong>\nThe pivot index is 3.\nLeft sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11\nRight sum = nums[4] + nums[5] = 5 + 6 = 11\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong>\nThere is no index that satisfies the conditions in the problem statement.</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> nums = [2,1,-1]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong>\nThe pivot index is 0.\nLeft sum = 0 (no elements to the left of index 0)\nRight sum = nums[1] + nums[2] = 1 + -1 = 0\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li> <li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li> </ul> <p> </p> <p><strong>Note:</strong> This question is the same as 1991: <a href=\"https://leetcode.com/problems/find-the-middle-index-in-array/\" target=\"_blank\">https://leetcode.com/problems/find-the-middle-index-in-array/</a></p>",
+  "hints": [
+    "Create an array sumLeft where sumLeft[i] is the sum of all the numbers to the left of index i.",
+    "Create an array sumRight where sumRight[i] is the sum of all the numbers to the right of index i.",
+    "For each index i, check if sumLeft[i] equals sumRight[i]. If so, return i. If no such i is found, return -1."
+  ],
+  "method": {
+    "name": "pivotIndex",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 724,
+      "title": "find-pivot-index",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().pivotIndex({nums})",
+        "rust": "Solution::pivot_index({nums})",
+        "python3": "Solution().pivotIndex({nums})",
+        "python2": "Solution().pivotIndex({nums})",
+        "ruby": "pivot_index({nums})",
+        "java": "new Solution().pivotIndex({nums})",
+        "csharp": "new Solution().PivotIndex({nums})",
+        "kotlin": "Solution().pivotIndex({nums})",
+        "go": "pivotIndex({nums})",
+        "dart": "Solution().pivotIndex({nums})",
+        "swift": "Solution().pivotIndex({nums})",
+        "typescript": "pivotIndex({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().pivotIndex(nums, {result})",
+        "checker": "class Checker:\n    def pivotIndex(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        n = len(nums)\n        if result < -1 or result >= n:\n            return False\n        total = sum(nums)\n        if result == -1:\n            left = 0\n            for x in nums:\n                if left == total - left - x:\n                    return False\n                left += x\n            return True\n        left = sum(nums[:result])\n        right = total - left - nums[result]\n        if left != right:\n            return False\n        running = 0\n        for i, x in enumerate(nums):\n            if i >= result:\n                break\n            if running == total - running - x:\n                return False\n            running += x\n        return True\n"
+      }
+    },
+    "seed": 724,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            7,
+            3,
+            6,
+            5,
+            6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            2,
+            1,
+            -1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-positive",
+        "in": {
+          "nums": [
+            5
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single-negative",
+        "in": {
+          "nums": [
+            -1000
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two-zeros",
+        "in": {
+          "nums": [
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two-no-pivot",
+        "in": {
+          "nums": [
+            1,
+            -1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "all-zeros-5",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "left-edge-pivot",
+        "in": {
+          "nums": [
+            0,
+            1,
+            -1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "right-edge-pivot",
+        "in": {
+          "nums": [
+            1,
+            -1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "small-middle-pivot",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "negative-middle-pivot",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            -1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "negative-center-pivot",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            0,
+            -1,
+            -1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "late-leftmost-among-many",
+        "in": {
+          "nums": [
+            1,
+            -1,
+            0,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "alternating-no-pivot",
+        "in": {
+          "nums": [
+            1,
+            -1,
+            1,
+            -1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "classic-middle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "pivot-before-end",
+        "in": {
+          "nums": [
+            2,
+            3,
+            -1,
+            8,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "zero-total-last-pivot",
+        "in": {
+          "nums": [
+            3,
+            -3,
+            2,
+            -2,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "duplicate-values-center",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            0,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "center-one-still-pivot",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            1,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "min-max-center",
+        "in": {
+          "nums": [
+            1000,
+            -1000,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "min-max-last-pivot",
+        "in": {
+          "nums": [
+            1000,
+            1000,
+            -1000,
+            -1000,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "negative-left-edge",
+        "in": {
+          "nums": [
+            0,
+            -1000,
+            1000
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "longer-middle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            0,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "longer-no-pivot",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "zeros-around-cancel",
+        "in": {
+          "nums": [
+            0,
+            0,
+            5,
+            -5,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "symmetric-with-zero-center",
+        "in": {
+          "nums": [
+            10,
+            -5,
+            -5,
+            0,
+            -5,
+            -5,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "leftmost-not-latest",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            -1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "mixed-sign-no-pivot",
+        "in": {
+          "nums": [
+            8,
+            -6,
+            2,
+            1,
+            -1
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "generated-small-random",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-medium-random",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 64,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-large-random-2048",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2048,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-near-max-random-9999",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 9999,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-max-random-10000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 10000,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 7, 3, 6, 5, 6]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "-1"
+    },
+    {
+      "input": "nums = [2, 1, -1]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [5]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [-1000]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, -1]",
+      "output": "-1"
+    }
+  ]
+}

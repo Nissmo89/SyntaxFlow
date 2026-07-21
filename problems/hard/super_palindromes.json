@@ -1,0 +1,411 @@
+{
+  "id": "super_palindromes",
+  "title": "Super Palindromes",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Enumeration"
+  ],
+  "description": "<p>Let&#39;s say a positive integer is a <strong>super-palindrome</strong> if it is a palindrome, and it is also the square of a palindrome.</p>\n\n<p>Given two positive integers <code>left</code> and <code>right</code> represented as strings, return <em>the number of <strong>super-palindromes</strong> integers in the inclusive range</em> <code>[left, right]</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> left = &quot;4&quot;, right = &quot;1000&quot;\n<strong>Output:</strong> 4\n<strong>Explanation</strong>: 4, 9, 121, and 484 are superpalindromes.\nNote that 676 is not a superpalindrome: 26 * 26 = 676, but 26 is not a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> left = &quot;1&quot;, right = &quot;2&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= left.length, right.length &lt;= 18</code></li>\n\t<li><code>left</code> and <code>right</code> consist of only digits.</li>\n\t<li><code>left</code> and <code>right</code> cannot have leading zeros.</li>\n\t<li><code>left</code> and <code>right</code> represent integers in the range <code>[1, 10<sup>18</sup> - 1]</code>.</li>\n\t<li><code>left</code> is less than or equal to <code>right</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Super Palindromes' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= left.length, right.length <= 18",
+    "left and right consist of only digits.",
+    "left and right cannot have leading zeros.",
+    "left and right represent integers in the range [1, 1018 - 1].",
+    "left is less than or equal to right."
+  ],
+  "hints": [],
+  "method": {
+    "name": "superpalindromesInRange",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "left",
+        "type": "string"
+      },
+      {
+        "name": "right",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 906,
+      "title": "super-palindromes",
+      "params": {
+        "left": {
+          "type": "string"
+        },
+        "right": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().superpalindromesInRange({left}, {right})",
+        "rust": "Solution::superpalindromes_in_range({left}, {right})",
+        "python3": "Solution().superpalindromesInRange({left}, {right})",
+        "python2": "Solution().superpalindromesInRange({left}, {right})",
+        "ruby": "superpalindromes_in_range({left}, {right})",
+        "java": "new Solution().superpalindromesInRange({left}, {right})",
+        "csharp": "new Solution().SuperpalindromesInRange({left}, {right})",
+        "kotlin": "Solution().superpalindromesInRange({left}, {right})",
+        "go": "superpalindromesInRange({left}, {right})",
+        "dart": "Solution().superpalindromesInRange({left}, {right})",
+        "swift": "Solution().superpalindromesInRange({left}, {right})",
+        "typescript": "superpalindromesInRange({left}, {right})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 906,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "left": "4",
+          "right": "1000"
+        },
+        "out": 4
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "left": "1",
+          "right": "2"
+        },
+        "out": 1
+      },
+      {
+        "name": "single-1",
+        "in": {
+          "left": "1",
+          "right": "1"
+        },
+        "out": 1
+      },
+      {
+        "name": "single-4",
+        "in": {
+          "left": "4",
+          "right": "4"
+        },
+        "out": 1
+      },
+      {
+        "name": "single-9",
+        "in": {
+          "left": "9",
+          "right": "9"
+        },
+        "out": 1
+      },
+      {
+        "name": "between-1",
+        "in": {
+          "left": "2",
+          "right": "3"
+        },
+        "out": 0
+      },
+      {
+        "name": "between-2",
+        "in": {
+          "left": "10",
+          "right": "120"
+        },
+        "out": 0
+      },
+      {
+        "name": "between-3",
+        "in": {
+          "left": "122",
+          "right": "483"
+        },
+        "out": 0
+      },
+      {
+        "name": "around-121",
+        "in": {
+          "left": "120",
+          "right": "121"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-484",
+        "in": {
+          "left": "483",
+          "right": "484"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-10201",
+        "in": {
+          "left": "10200",
+          "right": "10201"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-12321",
+        "in": {
+          "left": "12320",
+          "right": "12321"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-14641",
+        "in": {
+          "left": "14640",
+          "right": "14641"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-40804",
+        "in": {
+          "left": "40803",
+          "right": "40804"
+        },
+        "out": 1
+      },
+      {
+        "name": "around-44944",
+        "in": {
+          "left": "44943",
+          "right": "44944"
+        },
+        "out": 1
+      },
+      {
+        "name": "up-1e6",
+        "in": {
+          "left": "1",
+          "right": "1000000"
+        },
+        "out": 10
+      },
+      {
+        "name": "up-1e7",
+        "in": {
+          "left": "1",
+          "right": "10000000"
+        },
+        "out": 13
+      },
+      {
+        "name": "up-1e8",
+        "in": {
+          "left": "1",
+          "right": "100000000"
+        },
+        "out": 13
+      },
+      {
+        "name": "up-1e9",
+        "in": {
+          "left": "1",
+          "right": "1000000000"
+        },
+        "out": 21
+      },
+      {
+        "name": "up-1e10",
+        "in": {
+          "left": "1",
+          "right": "10000000000"
+        },
+        "out": 21
+      },
+      {
+        "name": "up-1e11",
+        "in": {
+          "left": "1",
+          "right": "100000000000"
+        },
+        "out": 26
+      },
+      {
+        "name": "up-1e12",
+        "in": {
+          "left": "1",
+          "right": "1000000000000"
+        },
+        "out": 26
+      },
+      {
+        "name": "up-1e13",
+        "in": {
+          "left": "1",
+          "right": "10000000000000"
+        },
+        "out": 39
+      },
+      {
+        "name": "up-1e14",
+        "in": {
+          "left": "1",
+          "right": "100000000000000"
+        },
+        "out": 39
+      },
+      {
+        "name": "up-1e15",
+        "in": {
+          "left": "1",
+          "right": "1000000000000000"
+        },
+        "out": 48
+      },
+      {
+        "name": "up-1e16",
+        "in": {
+          "left": "1",
+          "right": "10000000000000000"
+        },
+        "out": 48
+      },
+      {
+        "name": "up-1e17",
+        "in": {
+          "left": "1",
+          "right": "100000000000000000"
+        },
+        "out": 70
+      },
+      {
+        "name": "up-max",
+        "in": {
+          "left": "1",
+          "right": "999999999999999999"
+        },
+        "out": 70
+      },
+      {
+        "name": "tail-1",
+        "in": {
+          "left": "100000000000000000",
+          "right": "999999999999999999"
+        },
+        "out": 0
+      },
+      {
+        "name": "tail-2",
+        "in": {
+          "left": "999999999000000000",
+          "right": "999999999999999999"
+        },
+        "out": 0
+      },
+      {
+        "name": "mid-1",
+        "in": {
+          "left": "1000000000",
+          "right": "1000000000000000000"
+        },
+        "out": 49
+      },
+      {
+        "name": "mid-2",
+        "in": {
+          "left": "400000000000000000",
+          "right": "500000000000000000"
+        },
+        "out": 0
+      },
+      {
+        "name": "small-gap",
+        "in": {
+          "left": "500",
+          "right": "1000"
+        },
+        "out": 0
+      },
+      {
+        "name": "far",
+        "in": {
+          "left": "999999999999999990",
+          "right": "999999999999999999"
+        },
+        "out": 0
+      },
+      {
+        "name": "between-4",
+        "in": {
+          "left": "485",
+          "right": "10200"
+        },
+        "out": 0
+      },
+      {
+        "name": "between-5",
+        "in": {
+          "left": "1000",
+          "right": "10000"
+        },
+        "out": 0
+      },
+      {
+        "name": "large-window",
+        "in": {
+          "left": "1",
+          "right": "1000000000000000000"
+        },
+        "out": 70
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "left = \"4\"\nright = \"1000\"",
+      "output": "4"
+    },
+    {
+      "input": "left = \"1\"\nright = \"2\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"4\"\nright = \"4\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"9\"\nright = \"9\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"2\"\nright = \"3\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"10\"\nright = \"120\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"122\"\nright = \"483\"",
+      "output": "0"
+    }
+  ]
+}

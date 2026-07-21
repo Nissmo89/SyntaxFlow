@@ -1,0 +1,643 @@
+{
+  "id": "number_of_longest_increasing_subsequence",
+  "title": "Number of Longest Increasing Subsequence",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "description": "<p>Given an integer array&nbsp;<code>nums</code>, return <em>the number of longest increasing subsequences.</em></p>\n\n<p><strong>Notice</strong> that the sequence has to be <strong>strictly</strong> increasing.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,4,7]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,2,2,2,2]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> The length of the longest increasing subsequence is 1, and there are 5 increasing subsequences of length 1, so output 5.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 2000</code></li>\n\t<li><code>-10<sup>6</sup> &lt;= nums[i] &lt;= 10<sup>6</sup></code></li>\n\t<li>The answer is guaranteed to fit inside a 32-bit integer.</li>\n</ul>\n",
+  "task": "Solve the 'Number of Longest Increasing Subsequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 2000",
+    "-106 <= nums[i] <= 106",
+    "The answer is guaranteed to fit inside a 32-bit integer."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findNumberOfLIS",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 673,
+      "title": "number-of-longest-increasing-subsequence",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findNumberOfLIS({nums})",
+        "rust": "Solution::find_number_of_lis({nums})",
+        "python3": "Solution().findNumberOfLIS({nums})",
+        "python2": "Solution().findNumberOfLIS({nums})",
+        "ruby": "find_number_of_lis({nums})",
+        "java": "new Solution().findNumberOfLIS({nums})",
+        "csharp": "new Solution().FindNumberOfLIS({nums})",
+        "kotlin": "Solution().findNumberOfLIS({nums})",
+        "go": "findNumberOfLIS({nums})",
+        "dart": "Solution().findNumberOfLIS({nums})",
+        "swift": "Solution().findNumberOfLIS({nums})",
+        "typescript": "findNumberOfLIS({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findNumberOfLIS(nums, {result})",
+        "checker": "class Checker:\n    def findNumberOfLIS(self, nums, result):\n        n = len(nums)\n        if n == 0:\n            return result == 0\n\n        lengths = [1] * n\n        counts = [1] * n\n        for i in range(n):\n            for j in range(i):\n                if nums[j] < nums[i]:\n                    if lengths[j] + 1 > lengths[i]:\n                        lengths[i] = lengths[j] + 1\n                        counts[i] = counts[j]\n                    elif lengths[j] + 1 == lengths[i]:\n                        counts[i] += counts[j]\n\n        max_length = max(lengths)\n        expected = sum(counts[i] for i in range(n) if lengths[i] == max_length)\n        return result == expected and isinstance(result, int)\n"
+      }
+    },
+    "seed": 673,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            4,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "single-element",
+        "in": {
+          "nums": [
+            42
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-increasing",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-decreasing",
+        "in": {
+          "nums": [
+            2,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all-equal-three",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "strictly-increasing-five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "strictly-decreasing-five",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "plateau-then-rise",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "alternating-small",
+        "in": {
+          "nums": [
+            1,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "valley",
+        "in": {
+          "nums": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "duplicate-peaks",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            3,
+            5,
+            4,
+            7,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "leetcode-style",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            4,
+            7,
+            6
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "negative-values",
+        "in": {
+          "nums": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "negatives-with-duplicates",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            0,
+            -1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "mixed-low-high",
+        "in": {
+          "nums": [
+            10,
+            20,
+            10,
+            30,
+            20,
+            50
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "zigzag",
+        "in": {
+          "nums": [
+            1,
+            5,
+            2,
+            6,
+            3,
+            7
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated-blocks",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "late-rise",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "three-levels",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "many-branches",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-run-with-tail",
+        "in": {
+          "nums": [
+            2,
+            1,
+            3,
+            5,
+            4,
+            7,
+            6,
+            8
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "max-int-range",
+        "in": {
+          "nums": [
+            -1000000,
+            0,
+            1000000
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "max-int-duplicates",
+        "in": {
+          "nums": [
+            1000000,
+            1000000,
+            999999,
+            1000000
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all-descending-six",
+        "in": {
+          "nums": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "all-ascending-six",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "repeated-same-prefix",
+        "in": {
+          "nums": [
+            4,
+            4,
+            4,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed-duplicates",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "center-bump",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "sample-branching",
+        "in": {
+          "nums": [
+            1,
+            2,
+            8,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "short-random-1",
+        "in": {
+          "nums": [
+            4,
+            10,
+            4,
+            3,
+            8,
+            9
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "short-random-2",
+        "in": {
+          "nums": [
+            1,
+            7,
+            2,
+            8,
+            3,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "short-random-3",
+        "in": {
+          "nums": [
+            2,
+            2,
+            1,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "large-increasing-2000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 2000
+            },
+            "distinct": true,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-sorted-2000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 2000
+            },
+            "distinct": true,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-equal-2000",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": 7,
+              "max": 7
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-two-blocks",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-random-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 1999,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "large-random-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2000,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 3, 5, 4, 7]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2, 2]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [42]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [7, 7, 7]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [5, 4, 3, 2, 1]",
+      "output": "5"
+    }
+  ]
+}

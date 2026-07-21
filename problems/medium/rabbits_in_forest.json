@@ -1,0 +1,691 @@
+{
+  "id": "rabbits_in_forest",
+  "title": "Rabbits in Forest",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Greedy"
+  ],
+  "description": "<p>There is a forest with an unknown number of rabbits. We asked n rabbits <strong>&quot;How many other rabbits have the same color as you?&quot;</strong> and collected the answers in an integer array <code>answers</code> where <code>answers[i]</code> is the answer of the <code>i<sup>th</sup></code> rabbit.</p>\n\n<p>Given the array <code>answers</code>, return <em>the minimum number of rabbits that could be in the forest</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> answers = [1,1,2]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong>\nThe two rabbits that answered &quot;1&quot; could both be the same color, say red.\nThe rabbit that answered &quot;2&quot; can&#39;t be red or the answers would be inconsistent.\nSay the rabbit that answered &quot;2&quot; was blue.\nThen there should be 2 other blue rabbits in the forest that didn&#39;t answer into the array.\nThe smallest possible number of rabbits in the forest is therefore 5: 3 that answered plus 2 that didn&#39;t.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> answers = [10,10,10]\n<strong>Output:</strong> 11\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= answers.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= answers[i] &lt; 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Rabbits in Forest' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= answers.length <= 1000",
+    "0 <= answers[i] < 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numRabbits",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "answers",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 781,
+      "title": "rabbits-in-forest",
+      "params": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numRabbits({answers})",
+        "rust": "Solution::num_rabbits({answers})",
+        "python3": "Solution().numRabbits({answers})",
+        "python2": "Solution().numRabbits({answers})",
+        "ruby": "num_rabbits({answers})",
+        "java": "new Solution().numRabbits({answers})",
+        "csharp": "new Solution().NumRabbits({answers})",
+        "kotlin": "Solution().numRabbits({answers})",
+        "go": "numRabbits({answers})",
+        "dart": "Solution().numRabbits({answers})",
+        "swift": "Solution().numRabbits({answers})",
+        "typescript": "numRabbits({answers})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numRabbits(answers, {result})",
+        "checker": "from collections import Counter\nfrom math import ceil\n\nclass Checker:\n    def numRabbits(self, answers, result):\n        if not isinstance(result, int):\n            return False\n        if not isinstance(answers, list):\n            return False\n        if any(not isinstance(x, int) for x in answers):\n            return False\n        total = 0\n        counts = Counter(answers)\n        for x, c in counts.items():\n            if x < 0:\n                return False\n            total += ceil(c / (x + 1)) * (x + 1)\n        return result == total\n"
+      }
+    },
+    "seed": 781,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "answers": [
+            1,
+            1,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "answers": [
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "answers": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "answers": [
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "single_large",
+        "in": {
+          "answers": [
+            999
+          ]
+        },
+        "out": 1000
+      },
+      {
+        "name": "pair_zero",
+        "in": {
+          "answers": [
+            0,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "pair_one",
+        "in": {
+          "answers": [
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "triple_one",
+        "in": {
+          "answers": [
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "quad_two",
+        "in": {
+          "answers": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "all_zero_five",
+        "in": {
+          "answers": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed_simple_1",
+        "in": {
+          "answers": [
+            0,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_simple_2",
+        "in": {
+          "answers": [
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_simple_3",
+        "in": {
+          "answers": [
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "example_like",
+        "in": {
+          "answers": [
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "three_pairs",
+        "in": {
+          "answers": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "boundary_998",
+        "in": {
+          "answers": [
+            998,
+            998,
+            998
+          ]
+        },
+        "out": 999
+      },
+      {
+        "name": "boundary_999_group",
+        "in": {
+          "answers": [
+            999,
+            999
+          ]
+        },
+        "out": 1000
+      },
+      {
+        "name": "boundary_mix",
+        "in": {
+          "answers": [
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "skewed_counts_1",
+        "in": {
+          "answers": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "skewed_counts_2",
+        "in": {
+          "answers": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "skewed_counts_3",
+        "in": {
+          "answers": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "generated_small_1",
+        "seed": 1001,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_small_2",
+        "seed": 1002,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_small_3",
+        "seed": 1003,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_small_4",
+        "seed": 1004,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_small_5",
+        "seed": 1005,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_medium_1",
+        "seed": 2001,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 500
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_medium_2",
+        "seed": 2002,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 500
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_medium_3",
+        "seed": 2003,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 500
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_medium_4",
+        "seed": 2004,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 500
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_medium_5",
+        "seed": 2005,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 200,
+              "max": 500
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_1",
+        "seed": 3001,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_2",
+        "seed": 3002,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_3",
+        "seed": 3003,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_4",
+        "seed": 3004,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_large_5",
+        "seed": 3005,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 999
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_clustered_1",
+        "seed": 4001,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50,
+              "max": 100
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_clustered_2",
+        "seed": 4002,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50,
+              "max": 100
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_clustered_3",
+        "seed": 4003,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50,
+              "max": 100
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "generated_clustered_4",
+        "seed": 4004,
+        "in": {
+          "answers": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50,
+              "max": 100
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "answers = [1, 1, 2]",
+      "output": "5"
+    },
+    {
+      "input": "answers = [10, 10, 10]",
+      "output": "11"
+    },
+    {
+      "input": "answers = [0]",
+      "output": "1"
+    },
+    {
+      "input": "answers = [1]",
+      "output": "2"
+    },
+    {
+      "input": "answers = [999]",
+      "output": "1000"
+    },
+    {
+      "input": "answers = [0, 0]",
+      "output": "2"
+    },
+    {
+      "input": "answers = [1, 1]",
+      "output": "2"
+    },
+    {
+      "input": "answers = [1, 1, 1]",
+      "output": "4"
+    }
+  ]
+}

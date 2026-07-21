@@ -1,0 +1,503 @@
+{
+  "id": "decode_string",
+  "title": "Decode String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "description": "<p>Given an encoded string, return its decoded string.</p>\n\n<p>The encoding rule is: <code>k[encoded_string]</code>, where the <code>encoded_string</code> inside the square brackets is being repeated exactly <code>k</code> times. Note that <code>k</code> is guaranteed to be a positive integer.</p>\n\n<p>You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, <code>k</code>. For example, there will not be input like <code>3a</code> or <code>2[4]</code>.</p>\n\n<p>The test cases are generated so that the length of the output will never exceed <code>10<sup>5</sup></code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;3[a]2[bc]&quot;\n<strong>Output:</strong> &quot;aaabcbc&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;3[a2[c]]&quot;\n<strong>Output:</strong> &quot;accaccacc&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;2[abc]3[cd]ef&quot;\n<strong>Output:</strong> &quot;abcabccdcdcdef&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 30</code></li>\n\t<li><code>s</code> consists of lowercase English letters, digits, and square brackets <code>&#39;[]&#39;</code>.</li>\n\t<li><code>s</code> is guaranteed to be <strong>a valid</strong> input.</li>\n\t<li>All the integers in <code>s</code> are in the range <code>[1, 300]</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Decode String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 30",
+    "s consists of lowercase English letters, digits, and square brackets '[]'.",
+    "s is guaranteed to be a valid input.",
+    "All the integers in s are in the range [1, 300]."
+  ],
+  "hints": [],
+  "method": {
+    "name": "decodeString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 394,
+      "title": "decode-string",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().decodeString({s})",
+        "rust": "Solution::decodeString({s})",
+        "python3": "Solution().decodeString({s})",
+        "python2": "Solution().decodeString({s})",
+        "ruby": "decodeString({s})",
+        "java": "new Solution().decodeString({s})",
+        "csharp": "new Solution().DecodeString({s})",
+        "kotlin": "Solution().decodeString({s})",
+        "go": "decodeString({s})",
+        "dart": "Solution().decodeString({s})",
+        "swift": "Solution().decodeString({s})",
+        "typescript": "decodeString({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().decodeString(s, {result})",
+        "checker": "class Checker:\n    def decodeString(self, s, result):\n        i = 0\n\n        def decode():\n            nonlocal i\n            res = []\n            num = 0\n            while i < len(s):\n                c = s[i]\n                if c.isdigit():\n                    num = num * 10 + int(c)\n                    i += 1\n                elif c == '[':\n                    i += 1\n                    inner = decode()\n                    res.append(inner * num)\n                    num = 0\n                elif c == ']':\n                    i += 1\n                    return ''.join(res)\n                else:\n                    res.append(c)\n                    i += 1\n            return ''.join(res)\n\n        expected = decode()\n        return expected == result\n"
+      }
+    },
+    "seed": 394,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "3[a]2[bc]"
+        },
+        "out": "aaabcbc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3941
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "3[a2[c]]"
+        },
+        "out": "accaccacc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3942
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "2[abc]3[cd]ef"
+        },
+        "out": "abcabccdcdcdef",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3943
+      },
+      {
+        "name": "plain_letters",
+        "in": {
+          "s": "abcdef"
+        },
+        "out": "abcdef",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3944
+      },
+      {
+        "name": "single_repeat",
+        "in": {
+          "s": "1[a]"
+        },
+        "out": "a",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3945
+      },
+      {
+        "name": "multi_digit_repeat",
+        "in": {
+          "s": "10[a]"
+        },
+        "out": "aaaaaaaaaa",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3946
+      },
+      {
+        "name": "nested_simple",
+        "in": {
+          "s": "2[ab3[c]]"
+        },
+        "out": "abcccabccc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3947
+      },
+      {
+        "name": "nested_with_suffix",
+        "in": {
+          "s": "2[abc]3[cd]efg"
+        },
+        "out": "abcabccdcdcdefg",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3948
+      },
+      {
+        "name": "deep_nesting",
+        "in": {
+          "s": "3[a2[b4[F]c]]"
+        },
+        "out": "abFFFFcbFFFFcabFFFFcbFFFFcabFFFFcbFFFFc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3949
+      },
+      {
+        "name": "multiple_groups",
+        "in": {
+          "s": "2[a2[b]]3[c]"
+        },
+        "out": "abbabbccc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3950
+      },
+      {
+        "name": "adjacent_literals",
+        "in": {
+          "s": "x2[y]z"
+        },
+        "out": "xyyz",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3951
+      },
+      {
+        "name": "long_number_small_body",
+        "in": {
+          "s": "100[a]"
+        },
+        "out": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3952
+      },
+      {
+        "name": "nested_multi_digit",
+        "in": {
+          "s": "12[a2[b]]"
+        },
+        "out": "abbabbabbabbabbabbabbabbabbabbabbabb",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3953
+      },
+      {
+        "name": "repeated_block_with_tail",
+        "in": {
+          "s": "3[xy]z"
+        },
+        "out": "xyxyxyz",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3954
+      },
+      {
+        "name": "braces_in_middle",
+        "in": {
+          "s": "a2[b3[c]d]e"
+        },
+        "out": "abcccdbcccde",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3955
+      },
+      {
+        "name": "max_length_literal_prefix",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz"
+        },
+        "out": "abcdefghijklmnopqrstuvwxyz",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3956
+      },
+      {
+        "name": "max_length_with_small_repeat",
+        "in": {
+          "s": "2[abcdefghij]"
+        },
+        "out": "abcdefghijabcdefghij",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3957
+      },
+      {
+        "name": "nested_mixed_suffix",
+        "in": {
+          "s": "2[a3[b]c]d"
+        },
+        "out": "abbbcabbbcd",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3958
+      },
+      {
+        "name": "larger_repeat_two_digit",
+        "in": {
+          "s": "30[x]"
+        },
+        "out": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3959
+      },
+      {
+        "name": "repeated_nested_tail",
+        "in": {
+          "s": "2[3[a]b]"
+        },
+        "out": "aaabaaab",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3960
+      },
+      {
+        "name": "single_char_tail",
+        "in": {
+          "s": "9[a]b"
+        },
+        "out": "aaaaaaaaab",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3961
+      },
+      {
+        "name": "mixed_plain_and_nested",
+        "in": {
+          "s": "p2[q]r3[s]"
+        },
+        "out": "pqqrsss",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3962
+      },
+      {
+        "name": "nested_digit_chain",
+        "in": {
+          "s": "2[a2[b2[c]]]"
+        },
+        "out": "abccbccabccbcc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3963
+      },
+      {
+        "name": "medium_repeat_with_letters",
+        "in": {
+          "s": "15[ab]"
+        },
+        "out": "ababababababababababababababab",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3964
+      },
+      {
+        "name": "prefix_suffix_repeat",
+        "in": {
+          "s": "z3[x2[y]]w"
+        },
+        "out": "zxyyxyyxyyw",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3965
+      },
+      {
+        "name": "nested_empty_suffix_style",
+        "in": {
+          "s": "2[a]2[b]2[c]"
+        },
+        "out": "aabbcc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3966
+      },
+      {
+        "name": "repeated_block_three_levels",
+        "in": {
+          "s": "2[a2[b2[c3[d]]]]"
+        },
+        "out": "abcdddcdddbcdddcdddabcdddcdddbcdddcddd",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3967
+      },
+      {
+        "name": "interleaved_literals",
+        "in": {
+          "s": "a2[b]c2[d]e"
+        },
+        "out": "abbcdde",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3968
+      },
+      {
+        "name": "repeat_of_word",
+        "in": {
+          "s": "5[leetcode]"
+        },
+        "out": "leetcodeleetcodeleetcodeleetcodeleetcode",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3969
+      },
+      {
+        "name": "max_repeat_large_body",
+        "in": {
+          "s": "2[abcdefghijklmn]"
+        },
+        "out": "abcdefghijklmnabcdefghijklmn",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3970
+      },
+      {
+        "name": "repeated_nested_letters",
+        "in": {
+          "s": "4[a2[b3[c]]]"
+        },
+        "out": "abcccbcccabcccbcccabcccbcccabcccbccc",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3971
+      },
+      {
+        "name": "trailing_literal",
+        "in": {
+          "s": "3[a]xyz"
+        },
+        "out": "aaaxyz",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3972
+      },
+      {
+        "name": "leading_literal",
+        "in": {
+          "s": "xyz3[a]"
+        },
+        "out": "xyzaaa",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3973
+      },
+      {
+        "name": "nested_with_two_digit_inner",
+        "in": {
+          "s": "2[a10[b]]"
+        },
+        "out": "abbbbbbbbbbabbbbbbbbbb",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3974
+      },
+      {
+        "name": "large_repeat_literal_pair",
+        "in": {
+          "s": "20[xy]"
+        },
+        "out": "xyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxy",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3975
+      },
+      {
+        "name": "mixed_depths",
+        "in": {
+          "s": "2[a3[b2[c]]d]"
+        },
+        "out": "abccbccbccdabccbccbccd",
+        "judge": {
+          "type": "exact"
+        },
+        "seed": 3976
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"3[a]2[bc]\"",
+      "output": "\"aaabcbc\""
+    },
+    {
+      "input": "s = \"3[a2[c]]\"",
+      "output": "\"accaccacc\""
+    },
+    {
+      "input": "s = \"2[abc]3[cd]ef\"",
+      "output": "\"abcabccdcdcdef\""
+    },
+    {
+      "input": "s = \"abcdef\"",
+      "output": "\"abcdef\""
+    },
+    {
+      "input": "s = \"1[a]\"",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"10[a]\"",
+      "output": "\"aaaaaaaaaa\""
+    },
+    {
+      "input": "s = \"2[ab3[c]]\"",
+      "output": "\"abcccabccc\""
+    },
+    {
+      "input": "s = \"2[abc]3[cd]efg\"",
+      "output": "\"abcabccdcdcdefg\""
+    }
+  ]
+}

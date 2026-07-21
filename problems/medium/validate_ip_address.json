@@ -1,0 +1,368 @@
+{
+  "id": "validate_ip_address",
+  "title": "Validate IP Address",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>Given a string <code>queryIP</code>, return <code>&quot;IPv4&quot;</code> if IP is a valid IPv4 address, <code>&quot;IPv6&quot;</code> if IP is a valid IPv6 address or <code>&quot;Neither&quot;</code> if IP is not a correct IP of any type.</p>\n\n<p><strong>A valid IPv4</strong> address is an IP in the form <code>&quot;x<sub>1</sub>.x<sub>2</sub>.x<sub>3</sub>.x<sub>4</sub>&quot;</code> where <code>0 &lt;= x<sub>i</sub> &lt;= 255</code> and <code>x<sub>i</sub></code> <strong>cannot contain</strong> leading zeros. For example, <code>&quot;192.168.1.1&quot;</code> and <code>&quot;192.168.1.0&quot;</code> are valid IPv4 addresses while <code>&quot;192.168.01.1&quot;</code>, <code>&quot;192.168.1.00&quot;</code>, and <code>&quot;192.168@1.1&quot;</code> are invalid IPv4 addresses.</p>\n\n<p><strong>A valid IPv6</strong> address is an IP in the form <code>&quot;x<sub>1</sub>:x<sub>2</sub>:x<sub>3</sub>:x<sub>4</sub>:x<sub>5</sub>:x<sub>6</sub>:x<sub>7</sub>:x<sub>8</sub>&quot;</code> where:</p>\n\n<ul>\n\t<li><code>1 &lt;= x<sub>i</sub>.length &lt;= 4</code></li>\n\t<li><code>x<sub>i</sub></code> is a <strong>hexadecimal string</strong> which may contain digits, lowercase English letter (<code>&#39;a&#39;</code> to <code>&#39;f&#39;</code>) and upper-case English letters (<code>&#39;A&#39;</code> to <code>&#39;F&#39;</code>).</li>\n\t<li>Leading zeros are allowed in <code>x<sub>i</sub></code>.</li>\n</ul>\n\n<p>For example, &quot;<code>2001:0db8:85a3:0000:0000:8a2e:0370:7334&quot;</code> and &quot;<code>2001:db8:85a3:0:0:8A2E:0370:7334&quot;</code> are valid IPv6 addresses, while &quot;<code>2001:0db8:85a3::8A2E:037j:7334&quot;</code> and &quot;<code>02001:0db8:85a3:0000:0000:8a2e:0370:7334&quot;</code> are invalid IPv6 addresses.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> queryIP = &quot;172.16.254.1&quot;\n<strong>Output:</strong> &quot;IPv4&quot;\n<strong>Explanation:</strong> This is a valid IPv4 address, return &quot;IPv4&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> queryIP = &quot;2001:0db8:85a3:0:0:8A2E:0370:7334&quot;\n<strong>Output:</strong> &quot;IPv6&quot;\n<strong>Explanation:</strong> This is a valid IPv6 address, return &quot;IPv6&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> queryIP = &quot;256.256.256.256&quot;\n<strong>Output:</strong> &quot;Neither&quot;\n<strong>Explanation:</strong> This is neither a IPv4 address nor a IPv6 address.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>queryIP</code> consists only of English letters, digits and the characters <code>&#39;.&#39;</code> and <code>&#39;:&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Validate IP Address' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "queryIP consists only of English letters, digits and the characters '.' and ':'."
+  ],
+  "hints": [],
+  "method": {
+    "name": "validIPAddress",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "queryIP",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 468,
+      "title": "validate-ip-address",
+      "params": {
+        "queryIP": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().validIPAddress({queryIP})",
+        "rust": "Solution::valid_ip_address({queryIP})",
+        "python3": "Solution().validIPAddress({queryIP})",
+        "python2": "Solution().validIPAddress({queryIP})",
+        "ruby": "valid_ip_address({queryIP})",
+        "java": "new Solution().validIPAddress({queryIP})",
+        "csharp": "new Solution().ValidIPAddress({queryIP})",
+        "kotlin": "Solution().validIPAddress({queryIP})",
+        "go": "validIPAddress({queryIP})",
+        "dart": "Solution().validIPAddress({queryIP})",
+        "swift": "Solution().validIPAddress({queryIP})",
+        "typescript": "validIPAddress({queryIP})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().validIPAddress(queryIP, {result})",
+        "checker": "from typing import Any\n\nclass Checker:\n    def validIPAddress(self, queryIP: Any, result: Any) -> bool:\n        if not isinstance(queryIP, str) or not isinstance(result, str):\n            return False\n        if result not in {\"IPv4\", \"IPv6\", \"Neither\"}:\n            return False\n\n        def is_ipv4(ip: str) -> bool:\n            if ip.count(\".\") != 3:\n                return False\n            parts = ip.split(\".\")\n            if len(parts) != 4:\n                return False\n            for p in parts:\n                if not p.isdigit():\n                    return False\n                if p != \"0\" and p.startswith(\"0\"):\n                    return False\n                if not 0 <= int(p) <= 255:\n                    return False\n            return True\n\n        def is_ipv6(ip: str) -> bool:\n            if ip.count(\":\") != 7:\n                return False\n            parts = ip.split(\":\")\n            if len(parts) != 8:\n                return False\n            hexdigits = \"0123456789abcdefABCDEF\"\n            for p in parts:\n                if not (1 <= len(p) <= 4):\n                    return False\n                if any(c not in hexdigits for c in p):\n                    return False\n            return True\n\n        expected = \"IPv4\" if is_ipv4(queryIP) else \"IPv6\" if is_ipv6(queryIP) else \"Neither\"\n        return result == expected\n"
+      }
+    },
+    "seed": 468,
+    "tests": [
+      {
+        "name": "ipv4_example_1",
+        "in": {
+          "queryIP": "172.16.254.1"
+        },
+        "out": "IPv4"
+      },
+      {
+        "name": "ipv6_example_1",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370:7334"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "neither_example_1",
+        "in": {
+          "queryIP": "256.256.256.256"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_minimal_valid",
+        "in": {
+          "queryIP": "0.0.0.0"
+        },
+        "out": "IPv4"
+      },
+      {
+        "name": "ipv4_maximal_valid",
+        "in": {
+          "queryIP": "255.255.255.255"
+        },
+        "out": "IPv4"
+      },
+      {
+        "name": "ipv4_with_leading_zero_invalid",
+        "in": {
+          "queryIP": "01.1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_with_trailing_zero_valid",
+        "in": {
+          "queryIP": "1.1.1.0"
+        },
+        "out": "IPv4"
+      },
+      {
+        "name": "ipv4_segment_too_large",
+        "in": {
+          "queryIP": "999.10.10.10"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_segment_negative_like",
+        "in": {
+          "queryIP": "1.-1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_segment_empty",
+        "in": {
+          "queryIP": "1..1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_too_few_segments",
+        "in": {
+          "queryIP": "1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_too_many_segments",
+        "in": {
+          "queryIP": "1.1.1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_with_space_invalid",
+        "in": {
+          "queryIP": "1.1.1.1 "
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_with_letter_invalid",
+        "in": {
+          "queryIP": "1.1.1.a"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_with_sign_invalid",
+        "in": {
+          "queryIP": "+1.1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv4_with_internal_spaces_invalid",
+        "in": {
+          "queryIP": "1.1. 1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_example_uppercase",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370:7334"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_lowercase_valid",
+        "in": {
+          "queryIP": "2001:db8:85a3:0:0:8a2e:370:7334"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_all_zero_valid",
+        "in": {
+          "queryIP": "0:0:0:0:0:0:0:0"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_all_f_valid",
+        "in": {
+          "queryIP": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_single_digit_segments_valid",
+        "in": {
+          "queryIP": "1:2:3:4:5:6:7:8"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_leading_zeroes_valid",
+        "in": {
+          "queryIP": "0001:0002:0003:0004:0005:0006:0007:0008"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv6_segment_too_long",
+        "in": {
+          "queryIP": "12345:0:0:0:0:0:0:0"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_segment_with_invalid_letter",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370:733g"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_segment_with_symbol",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370:73/4"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_too_few_segments",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_too_many_segments",
+        "in": {
+          "queryIP": "2001:0db8:85a3:0:0:8A2E:0370:7334:1234"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_with_double_colon_invalid",
+        "in": {
+          "queryIP": "2001:db8::1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_with_trailing_colon_invalid",
+        "in": {
+          "queryIP": "2001:db8:85a3:0:0:8A2E:0370:7334:"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_with_leading_colon_invalid",
+        "in": {
+          "queryIP": ":2001:db8:85a3:0:0:8A2E:0370:7334"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "ipv6_with_ipv4_style_tail_invalid",
+        "in": {
+          "queryIP": "2001:db8:85a3:0:0:8A2E:0370:1.1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "mixed_separators_invalid",
+        "in": {
+          "queryIP": "1.1.1:1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "dotted_hex_invalid",
+        "in": {
+          "queryIP": "ab.cd.ef.12"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "empty_octets_invalid",
+        "in": {
+          "queryIP": ".1.1.1"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "just_colons_invalid",
+        "in": {
+          "queryIP": "::::::::"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "alphanumeric_ipv4_like_invalid",
+        "in": {
+          "queryIP": "192.168.1.one"
+        },
+        "out": "Neither"
+      },
+      {
+        "name": "uppercase_hex_valid",
+        "in": {
+          "queryIP": "ABCD:EF01:2345:6789:ABCD:EF01:2345:6789"
+        },
+        "out": "IPv6"
+      },
+      {
+        "name": "ipv4_single_zero_segments",
+        "in": {
+          "queryIP": "0.0.0.00"
+        },
+        "out": "Neither"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "queryIP = \"172.16.254.1\"",
+      "output": "\"IPv4\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:7334\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"256.256.256.256\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"0.0.0.0\"",
+      "output": "\"IPv4\""
+    },
+    {
+      "input": "queryIP = \"255.255.255.255\"",
+      "output": "\"IPv4\""
+    },
+    {
+      "input": "queryIP = \"01.1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1.0\"",
+      "output": "\"IPv4\""
+    },
+    {
+      "input": "queryIP = \"999.10.10.10\"",
+      "output": "\"Neither\""
+    }
+  ]
+}

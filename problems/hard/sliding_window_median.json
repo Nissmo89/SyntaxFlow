@@ -1,0 +1,698 @@
+{
+  "id": "sliding_window_median",
+  "title": "Sliding Window Median",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Heap (Priority Queue)"
+  ],
+  "description": "<p>The <strong>median</strong> is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle values.</p>\n\n<ul>\n\t<li>For examples, if <code>arr = [2,<u>3</u>,4]</code>, the median is <code>3</code>.</li>\n\t<li>For examples, if <code>arr = [1,<u>2,3</u>,4]</code>, the median is <code>(2 + 3) / 2 = 2.5</code>.</li>\n</ul>\n\n<p>You are given an integer array <code>nums</code> and an integer <code>k</code>. There is a sliding window of size <code>k</code> which is moving from the very left of the array to the very right. You can only see the <code>k</code> numbers in the window. Each time the sliding window moves right by one position.</p>\n\n<p>Return <em>the median array for each window in the original array</em>. Answers within <code>10<sup>-5</sup></code> of the actual value will be accepted.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,-1,-3,5,3,6,7], k = 3\n<strong>Output:</strong> [1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000]\n<strong>Explanation:</strong> \nWindow position                Median\n---------------                -----\n[<strong>1  3  -1</strong>] -3  5  3  6  7        1\n 1 [<strong>3  -1  -3</strong>] 5  3  6  7       -1\n 1  3 [<strong>-1  -3  5</strong>] 3  6  7       -1\n 1  3  -1 [<strong>-3  5  3</strong>] 6  7        3\n 1  3  -1  -3 [<strong>5  3  6</strong>] 7        5\n 1  3  -1  -3  5 [<strong>3  6  7</strong>]       6\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,2,3,1,4,2], k = 3\n<strong>Output:</strong> [2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= k &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Sliding Window Median' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= k <= nums.length <= 105",
+    "-231 <= nums[i] <= 231 - 1"
+  ],
+  "hints": [
+    "The simplest of solutions comes from the basic idea of finding the median given a set of numbers. We know that by definition, a median is the center element (or an average of the two center elements). Given an unsorted list of numbers, how do we find the median element? If you know the answer to this question, can we extend this idea to every sliding window that we come across in the array?",
+    "Is there a better way to do what we are doing in the above hint? Don't you think there is duplication of calculation being done there? Is there some sort of optimization that we can do to achieve the same result? This approach is merely a modification of the basic approach except that it simply reduces duplication of calculations once done.",
+    "The third line of thought is also based on this same idea but achieving the result in a different way. We obviously need the window to be sorted for us to be able to find the median. Is there a data-structure out there that we can use (in one or more quantities) to obtain the median element extremely fast, say O(1) time while having the ability to perform the other operations fairly efficiently as well?"
+  ],
+  "method": {
+    "name": "medianSlidingWindow",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 480,
+      "title": "sliding-window-median",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().medianSlidingWindow({nums}, {k})",
+        "rust": "Solution::median_sliding_window({nums}, {k})",
+        "python3": "Solution().medianSlidingWindow({nums}, {k})",
+        "python2": "Solution().medianSlidingWindow({nums}, {k})",
+        "ruby": "median_sliding_window({nums}, {k})",
+        "java": "new Solution().medianSlidingWindow({nums}, {k})",
+        "csharp": "new Solution().MedianSlidingWindow({nums}, {k})",
+        "kotlin": "Solution().medianSlidingWindow({nums}, {k})",
+        "go": "medianSlidingWindow({nums}, {k})",
+        "dart": "Solution().medianSlidingWindow({nums}, {k})",
+        "swift": "Solution().medianSlidingWindow({nums}, {k})",
+        "typescript": "medianSlidingWindow({nums}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 4000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(nums, k, {result})",
+        "checker": "import heapq\nfrom typing import Any, List\n\nclass DualHeap:\n    def __init__(self, k: int):\n        self.small = []\n        self.large = []\n        self.delayed = {}\n        self.k = k\n        self.small_size = 0\n        self.large_size = 0\n\n    def prune(self, heap):\n        while heap:\n            num = -heap[0] if heap is self.small else heap[0]\n            if self.delayed.get(num, 0) == 0:\n                break\n            self.delayed[num] -= 1\n            if self.delayed[num] == 0:\n                del self.delayed[num]\n            heapq.heappop(heap)\n\n    def make_balance(self):\n        if self.small_size > self.large_size + 1:\n            heapq.heappush(self.large, -heapq.heappop(self.small))\n            self.small_size -= 1\n            self.large_size += 1\n            self.prune(self.small)\n        elif self.small_size < self.large_size:\n            heapq.heappush(self.small, -heapq.heappop(self.large))\n            self.small_size += 1\n            self.large_size -= 1\n            self.prune(self.large)\n\n    def insert(self, num: int):\n        if not self.small or num <= -self.small[0]:\n            heapq.heappush(self.small, -num)\n            self.small_size += 1\n        else:\n            heapq.heappush(self.large, num)\n            self.large_size += 1\n        self.make_balance()\n\n    def erase(self, num: int):\n        self.delayed[num] = self.delayed.get(num, 0) + 1\n        if num <= -self.small[0]:\n            self.small_size -= 1\n            if num == -self.small[0]:\n                self.prune(self.small)\n        else:\n            self.large_size -= 1\n            if self.large and num == self.large[0]:\n                self.prune(self.large)\n        self.make_balance()\n\n    def median(self) -> float:\n        if self.k % 2 == 1:\n            return float(-self.small[0])\n        return (-self.small[0] + self.large[0]) / 2.0\n\nclass Checker:\n    def check(self, nums: List[int], k: int, result: Any) -> bool:\n        if not isinstance(result, list):\n            return False\n        expected_len = len(nums) - k + 1\n        if expected_len < 0 or len(result) != expected_len:\n            return False\n        if expected_len == 0:\n            return result == []\n        for value in result:\n            if not isinstance(value, (int, float)):\n                return False\n\n        dh = DualHeap(k)\n        for i in range(k):\n            dh.insert(nums[i])\n\n        if abs(float(result[0]) - dh.median()) > 1e-5:\n            return False\n\n        idx = 1\n        for i in range(k, len(nums)):\n            dh.insert(nums[i])\n            dh.erase(nums[i - k])\n            if abs(float(result[idx]) - dh.median()) > 1e-5:\n                return False\n            idx += 1\n        return True\n"
+      }
+    },
+    "seed": 480,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            1,
+            3,
+            -1,
+            -3,
+            5,
+            3,
+            6,
+            7
+          ],
+          "k": 3
+        },
+        "out": [
+          1.0,
+          -1.0,
+          -1.0,
+          3.0,
+          5.0,
+          6.0
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            2,
+            3,
+            1,
+            4,
+            2
+          ],
+          "k": 3
+        },
+        "out": [
+          2.0,
+          3.0,
+          3.0,
+          3.0,
+          2.0,
+          3.0,
+          2.0
+        ]
+      },
+      {
+        "name": "single_element",
+        "in": {
+          "nums": [
+            5
+          ],
+          "k": 1
+        },
+        "out": [
+          5.0
+        ]
+      },
+      {
+        "name": "two_elements_even",
+        "in": {
+          "nums": [
+            1,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          2.5
+        ]
+      },
+      {
+        "name": "all_equal",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "k": 4
+        },
+        "out": [
+          7.0,
+          7.0
+        ]
+      },
+      {
+        "name": "negatives_and_duplicates",
+        "in": {
+          "nums": [
+            -5,
+            -1,
+            -5,
+            -1,
+            -5
+          ],
+          "k": 3
+        },
+        "out": [
+          -5.0,
+          -1.0,
+          -5.0
+        ]
+      },
+      {
+        "name": "k_equals_n_odd",
+        "in": {
+          "nums": [
+            10,
+            0,
+            -10,
+            20,
+            30
+          ],
+          "k": 5
+        },
+        "out": [
+          10.0
+        ]
+      },
+      {
+        "name": "k_one",
+        "in": {
+          "nums": [
+            9,
+            -2,
+            0,
+            4,
+            8
+          ],
+          "k": 1
+        },
+        "out": [
+          9.0,
+          -2.0,
+          0.0,
+          4.0,
+          8.0
+        ]
+      },
+      {
+        "name": "gen_small_01",
+        "seed": 1001,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 2
+        }
+      },
+      {
+        "name": "gen_small_02",
+        "seed": 1002,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 2
+        }
+      },
+      {
+        "name": "gen_small_03",
+        "seed": 1003,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 3
+        }
+      },
+      {
+        "name": "gen_small_04",
+        "seed": 1004,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 4
+        }
+      },
+      {
+        "name": "gen_small_05",
+        "seed": 1005,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 5
+        }
+      },
+      {
+        "name": "gen_small_06",
+        "seed": 1006,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 7,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 3
+        }
+      },
+      {
+        "name": "gen_small_07",
+        "seed": 1007,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 6
+        }
+      },
+      {
+        "name": "gen_small_08",
+        "seed": 1008,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 9,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 4
+        }
+      },
+      {
+        "name": "gen_small_09",
+        "seed": 1009,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 10,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 5
+        }
+      },
+      {
+        "name": "gen_small_10",
+        "seed": 1010,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 7
+        }
+      },
+      {
+        "name": "gen_small_11",
+        "seed": 1011,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 13,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 6
+        }
+      },
+      {
+        "name": "gen_small_12",
+        "seed": 1012,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 14,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 8
+        }
+      },
+      {
+        "name": "gen_small_13",
+        "seed": 1013,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 15,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 7
+        }
+      },
+      {
+        "name": "gen_small_14",
+        "seed": 1014,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 16,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 8
+        }
+      },
+      {
+        "name": "gen_small_15",
+        "seed": 1015,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 17,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 9
+        }
+      },
+      {
+        "name": "gen_small_16",
+        "seed": 1016,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 18,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 9
+        }
+      },
+      {
+        "name": "gen_small_17",
+        "seed": 1017,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 19,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 10
+        }
+      },
+      {
+        "name": "gen_small_18",
+        "seed": 1018,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 11
+        }
+      },
+      {
+        "name": "gen_medium_01",
+        "seed": 2001,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 64,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 32
+        }
+      },
+      {
+        "name": "gen_medium_02",
+        "seed": 2002,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 96,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 17
+        }
+      },
+      {
+        "name": "gen_medium_03",
+        "seed": 2003,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 128,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 64
+        }
+      },
+      {
+        "name": "gen_medium_04",
+        "seed": 2004,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 192,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 95
+        }
+      },
+      {
+        "name": "gen_medium_05",
+        "seed": 2005,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 256,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 127
+        }
+      },
+      {
+        "name": "gen_large_01",
+        "seed": 9001,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 50000
+        }
+      },
+      {
+        "name": "gen_large_02",
+        "seed": 9002,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 99999
+        }
+      },
+      {
+        "name": "gen_small_19",
+        "seed": 1019,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 21,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 11
+        }
+      },
+      {
+        "name": "gen_small_20",
+        "seed": 1020,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 22,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            }
+          },
+          "k": 12
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 3, -1, -3, 5, 3, 6, 7]\nk = 3",
+      "output": "[1.0, -1.0, -1.0, 3.0, 5.0, 6.0]"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 2, 3, 1, 4, 2]\nk = 3",
+      "output": "[2.0, 3.0, 3.0, 3.0, 2.0, 3.0, 2.0]"
+    },
+    {
+      "input": "nums = [5]\nk = 1",
+      "output": "[5.0]"
+    },
+    {
+      "input": "nums = [1, 4]\nk = 2",
+      "output": "[2.5]"
+    },
+    {
+      "input": "nums = [7, 7, 7, 7, 7]\nk = 4",
+      "output": "[7.0, 7.0]"
+    },
+    {
+      "input": "nums = [-5, -1, -5, -1, -5]\nk = 3",
+      "output": "[-5.0, -1.0, -5.0]"
+    },
+    {
+      "input": "nums = [10, 0, -10, 20, 30]\nk = 5",
+      "output": "[10.0]"
+    },
+    {
+      "input": "nums = [9, -2, 0, 4, 8]\nk = 1",
+      "output": "[9.0, -2.0, 0.0, 4.0, 8.0]"
+    }
+  ]
+}

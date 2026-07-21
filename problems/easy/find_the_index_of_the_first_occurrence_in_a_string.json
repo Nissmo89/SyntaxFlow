@@ -1,0 +1,620 @@
+{
+  "id": "find_the_index_of_the_first_occurrence_in_a_string",
+  "title": "Find the Index of the First Occurrence in a String",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "String Matching"
+  ],
+  "description": "<p>Given two strings <code>needle</code> and <code>haystack</code>, return the index of the first occurrence of <code>needle</code> in <code>haystack</code>, or <code>-1</code> if <code>needle</code> is not part of <code>haystack</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> haystack = \"sadbutsad\", needle = \"sad\"\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> \"sad\" occurs at index 0 and 6.\nThe first occurrence is at index 0, so we return 0.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> haystack = \"leetcode\", needle = \"leeto\"\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> \"leeto\" did not occur in \"leetcode\", so we return -1.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= haystack.length, needle.length &lt;= 10<sup>4</sup></code></li> <li><code>haystack</code> and <code>needle</code> consist of only lowercase English characters.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "strStr",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "haystack",
+        "type": "string"
+      },
+      {
+        "name": "needle",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 28,
+      "title": "find-the-index-of-the-first-occurrence-in-a-string",
+      "params": {
+        "haystack": {
+          "type": "string"
+        },
+        "needle": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().strStr({haystack}, {needle})",
+        "rust": "Solution::str_str({haystack}, {needle})",
+        "python3": "Solution().strStr({haystack}, {needle})",
+        "python2": "Solution().strStr({haystack}, {needle})",
+        "ruby": "str_str({haystack}, {needle})",
+        "java": "new Solution().strStr({haystack}, {needle})",
+        "csharp": "new Solution().StrStr({haystack}, {needle})",
+        "kotlin": "Solution().strStr({haystack}, {needle})",
+        "go": "strStr({haystack}, {needle})",
+        "dart": "Solution().strStr({haystack}, {needle})",
+        "swift": "Solution().strStr({haystack}, {needle})",
+        "typescript": "strStr({haystack}, {needle})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().strStr(haystack, needle, {result})",
+        "checker": "class Checker:\n    def strStr(self, haystack, needle, result):\n        if not isinstance(haystack, str):\n            return False\n        if not isinstance(needle, str):\n            return False\n        if not isinstance(result, int):\n            return False\n        if any(not ('a' <= ch <= 'z') for ch in haystack):\n            return False\n        if any(not ('a' <= ch <= 'z') for ch in needle):\n            return False\n        if not (1 <= len(haystack) <= 10000):\n            return False\n        if not (1 <= len(needle) <= 10000):\n            return False\n        expected = haystack.find(needle)\n        return result == expected\n"
+      }
+    },
+    "seed": 28,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "haystack": "sadbutsad",
+          "needle": "sad"
+        },
+        "out": 0
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "haystack": "leetcode",
+          "needle": "leeto"
+        },
+        "out": -1
+      },
+      {
+        "name": "needle-equals-haystack",
+        "in": {
+          "haystack": "aaaaa",
+          "needle": "aaaaa"
+        },
+        "out": 0
+      },
+      {
+        "name": "single-char-first-position",
+        "in": {
+          "haystack": "abcde",
+          "needle": "a"
+        },
+        "out": 0
+      },
+      {
+        "name": "single-char-middle-position",
+        "in": {
+          "haystack": "abcde",
+          "needle": "c"
+        },
+        "out": 2
+      },
+      {
+        "name": "single-char-last-position",
+        "in": {
+          "haystack": "abcde",
+          "needle": "e"
+        },
+        "out": 4
+      },
+      {
+        "name": "not-present-simple",
+        "in": {
+          "haystack": "abcde",
+          "needle": "f"
+        },
+        "out": -1
+      },
+      {
+        "name": "repeated-prefix",
+        "in": {
+          "haystack": "aaaab",
+          "needle": "aaab"
+        },
+        "out": 1
+      },
+      {
+        "name": "repeated-overlap",
+        "in": {
+          "haystack": "mississippi",
+          "needle": "issip"
+        },
+        "out": 4
+      },
+      {
+        "name": "embedded-at-end",
+        "in": {
+          "haystack": "zzzzzabc",
+          "needle": "abc"
+        },
+        "out": 5
+      },
+      {
+        "name": "generated-01",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "a"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "a"
+          }
+        }
+      },
+      {
+        "name": "generated-02",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-03",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-04",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 10,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 3,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-05",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 25,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 5,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-06",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 50,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 7,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-07",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 100,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 10,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-08",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 250,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 20,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-09",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 500,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 30,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-10",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 50,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-11",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 1500,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 75,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-12",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 2000,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 100,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-13",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 2500,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 125,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-14",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 3000,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 150,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-15",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 3500,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 175,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-16",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 4000,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 200,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-17",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 4500,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 225,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-18",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 5000,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 250,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-19",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 5500,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 275,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-20",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 6000,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 300,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-21",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 6500,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 325,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-22",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 7000,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 350,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-23",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 7500,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 375,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-24",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 8000,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 400,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-25",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 8500,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 425,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-26",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 9000,
+            "alphabet": "abcd"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 450,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated-27",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 9500,
+            "alphabet": "ab"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 475,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated-28",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "abc"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 5000,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated-29",
+        "in": {
+          "haystack": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "a"
+          },
+          "needle": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "a"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "haystack = \"sadbutsad\"\nneedle = \"sad\"",
+      "output": "0"
+    },
+    {
+      "input": "haystack = \"leetcode\"\nneedle = \"leeto\"",
+      "output": "-1"
+    },
+    {
+      "input": "haystack = \"aaaaa\"\nneedle = \"aaaaa\"",
+      "output": "0"
+    },
+    {
+      "input": "haystack = \"abcde\"\nneedle = \"a\"",
+      "output": "0"
+    },
+    {
+      "input": "haystack = \"abcde\"\nneedle = \"c\"",
+      "output": "2"
+    },
+    {
+      "input": "haystack = \"abcde\"\nneedle = \"e\"",
+      "output": "4"
+    },
+    {
+      "input": "haystack = \"abcde\"\nneedle = \"f\"",
+      "output": "-1"
+    },
+    {
+      "input": "haystack = \"aaaab\"\nneedle = \"aaab\"",
+      "output": "1"
+    }
+  ]
+}

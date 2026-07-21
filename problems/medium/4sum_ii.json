@@ -1,0 +1,1023 @@
+{
+  "id": "4sum_ii",
+  "title": "4Sum II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "description": "<p>Given four integer arrays <code>nums1</code>, <code>nums2</code>, <code>nums3</code>, and <code>nums4</code> all of length <code>n</code>, return the number of tuples <code>(i, j, k, l)</code> such that:</p>\n\n<ul>\n\t<li><code>0 &lt;= i, j, k, l &lt; n</code></li>\n\t<li><code>nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong>\nThe two tuples are:\n1. (0, 0, 0, 1) -&gt; nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0\n2. (1, 1, 0, 0) -&gt; nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums1.length</code></li>\n\t<li><code>n == nums2.length</code></li>\n\t<li><code>n == nums3.length</code></li>\n\t<li><code>n == nums4.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 200</code></li>\n\t<li><code>-2<sup>28</sup> &lt;= nums1[i], nums2[i], nums3[i], nums4[i] &lt;= 2<sup>28</sup></code></li>\n</ul>\n",
+  "task": "Solve the '4Sum II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == nums1.length",
+    "n == nums2.length",
+    "n == nums3.length",
+    "n == nums4.length",
+    "1 <= n <= 200",
+    "-228 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 228"
+  ],
+  "hints": [],
+  "method": {
+    "name": "fourSumCount",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "array"
+      },
+      {
+        "name": "nums2",
+        "type": "array"
+      },
+      {
+        "name": "nums3",
+        "type": "array"
+      },
+      {
+        "name": "nums4",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 454,
+      "title": "4sum-ii",
+      "params": {
+        "nums1": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "nums2": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "nums3": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "nums4": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "rust": "Solution::four_sum_count({nums1}, {nums2}, {nums3}, {nums4})",
+        "python3": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "python2": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "ruby": "four_sum_count({nums1}, {nums2}, {nums3}, {nums4})",
+        "java": "new Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "csharp": "new Solution().FourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "kotlin": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "go": "fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "dart": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "swift": "Solution().fourSumCount({nums1}, {nums2}, {nums3}, {nums4})",
+        "typescript": "fourSumCount({nums1}, {nums2}, {nums3}, {nums4})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().fourSumCount(nums1, nums2, nums3, nums4, {result})",
+        "checker": "class Checker:\n    def fourSumCount(self, nums1, nums2, nums3, nums4, result):\n        if not isinstance(result, int):\n            return False\n        expected = 0\n        for a in nums1:\n            for b in nums2:\n                for c in nums3:\n                    for d in nums4:\n                        if a + b + c + d == 0:\n                            expected += 1\n        return result == expected\n"
+      }
+    },
+    "seed": 454,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            -2,
+            -1
+          ],
+          "nums3": [
+            -1,
+            2
+          ],
+          "nums4": [
+            0,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums1": [
+            0
+          ],
+          "nums2": [
+            0
+          ],
+          "nums3": [
+            0
+          ],
+          "nums4": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_zero_sum",
+        "in": {
+          "nums1": [
+            1
+          ],
+          "nums2": [
+            -1
+          ],
+          "nums3": [
+            0
+          ],
+          "nums4": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_no_solution",
+        "in": {
+          "nums1": [
+            1
+          ],
+          "nums2": [
+            2
+          ],
+          "nums3": [
+            -1
+          ],
+          "nums4": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "all_same_small_positive",
+        "in": {
+          "nums1": [
+            1,
+            1
+          ],
+          "nums2": [
+            -1,
+            -1
+          ],
+          "nums3": [
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "balanced_pairs",
+        "in": {
+          "nums1": [
+            2,
+            -1
+          ],
+          "nums2": [
+            1,
+            -2
+          ],
+          "nums3": [
+            -1,
+            0
+          ],
+          "nums4": [
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "simple_triplet_match",
+        "in": {
+          "nums1": [
+            3
+          ],
+          "nums2": [
+            1
+          ],
+          "nums3": [
+            -2
+          ],
+          "nums4": [
+            -2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "simple_no_match",
+        "in": {
+          "nums1": [
+            3
+          ],
+          "nums2": [
+            1
+          ],
+          "nums3": [
+            -1
+          ],
+          "nums4": [
+            -2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "all_zero_two_each",
+        "in": {
+          "nums1": [
+            0,
+            0
+          ],
+          "nums2": [
+            0,
+            0
+          ],
+          "nums3": [
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "three_by_three_zero",
+        "in": {
+          "nums1": [
+            1,
+            1,
+            1
+          ],
+          "nums2": [
+            0,
+            0,
+            0
+          ],
+          "nums3": [
+            -1,
+            -1,
+            -1
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 81
+      },
+      {
+        "name": "three_by_three_mixed",
+        "in": {
+          "nums1": [
+            1,
+            2,
+            3
+          ],
+          "nums2": [
+            -1,
+            -2,
+            -3
+          ],
+          "nums3": [
+            0,
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 27
+      },
+      {
+        "name": "negative_positive_pairs",
+        "in": {
+          "nums1": [
+            -1,
+            -1
+          ],
+          "nums2": [
+            1,
+            1
+          ],
+          "nums3": [
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "alternating_signs",
+        "in": {
+          "nums1": [
+            1,
+            -1
+          ],
+          "nums2": [
+            1,
+            -1
+          ],
+          "nums3": [
+            1,
+            -1
+          ],
+          "nums4": [
+            -1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "small_grid_exact",
+        "in": {
+          "nums1": [
+            0,
+            1
+          ],
+          "nums2": [
+            -1,
+            0
+          ],
+          "nums3": [
+            0,
+            1
+          ],
+          "nums4": [
+            -1,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "repeated_twos",
+        "in": {
+          "nums1": [
+            2,
+            2,
+            2
+          ],
+          "nums2": [
+            -1,
+            -1,
+            -1
+          ],
+          "nums3": [
+            -1,
+            -1,
+            -1
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 81
+      },
+      {
+        "name": "symmetry_six",
+        "in": {
+          "nums1": [
+            4,
+            -4
+          ],
+          "nums2": [
+            4,
+            -4
+          ],
+          "nums3": [
+            -4,
+            4
+          ],
+          "nums4": [
+            -4,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "one_solution_with_zeroes",
+        "in": {
+          "nums1": [
+            5,
+            -5
+          ],
+          "nums2": [
+            1,
+            -1
+          ],
+          "nums3": [
+            -3,
+            3
+          ],
+          "nums4": [
+            -3,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all_zero_three",
+        "in": {
+          "nums1": [
+            0,
+            0,
+            0
+          ],
+          "nums2": [
+            0,
+            0,
+            0
+          ],
+          "nums3": [
+            0,
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 81
+      },
+      {
+        "name": "offset_no_solution",
+        "in": {
+          "nums1": [
+            7
+          ],
+          "nums2": [
+            -6
+          ],
+          "nums3": [
+            0
+          ],
+          "nums4": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "offset_exact_solution",
+        "in": {
+          "nums1": [
+            7
+          ],
+          "nums2": [
+            -7
+          ],
+          "nums3": [
+            0
+          ],
+          "nums4": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed_three_by_three",
+        "in": {
+          "nums1": [
+            1,
+            2,
+            3
+          ],
+          "nums2": [
+            4,
+            5,
+            6
+          ],
+          "nums3": [
+            -7,
+            -8,
+            -9
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "two_by_two_zero",
+        "in": {
+          "nums1": [
+            1,
+            1
+          ],
+          "nums2": [
+            -1,
+            -1
+          ],
+          "nums3": [
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "two_by_two_all_zero",
+        "in": {
+          "nums1": [
+            0,
+            0
+          ],
+          "nums2": [
+            0,
+            0
+          ],
+          "nums3": [
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "many_paths",
+        "in": {
+          "nums1": [
+            1,
+            -1,
+            1
+          ],
+          "nums2": [
+            -1,
+            1,
+            -1
+          ],
+          "nums3": [
+            0,
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 45
+      },
+      {
+        "name": "cross_cancellation",
+        "in": {
+          "nums1": [
+            2,
+            -2
+          ],
+          "nums2": [
+            2,
+            -2
+          ],
+          "nums3": [
+            -2,
+            2
+          ],
+          "nums4": [
+            -2,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "single_large_positive",
+        "in": {
+          "nums1": [
+            268435456
+          ],
+          "nums2": [
+            268435456
+          ],
+          "nums3": [
+            -268435456
+          ],
+          "nums4": [
+            -268435456
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_large_negative",
+        "in": {
+          "nums1": [
+            -268435456
+          ],
+          "nums2": [
+            268435456
+          ],
+          "nums3": [
+            1
+          ],
+          "nums4": [
+            -1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "large_all_zero",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          },
+          "nums2": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          },
+          "nums3": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          },
+          "nums4": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        },
+        "out": 1600000000
+      },
+      {
+        "name": "large_all_same_sign",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            }
+          },
+          "nums2": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            }
+          },
+          "nums3": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            }
+          },
+          "nums4": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            }
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "large_balanced_extremes",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": -268435456,
+              "max": -268435456
+            }
+          },
+          "nums2": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 268435456,
+              "max": 268435456
+            }
+          },
+          "nums3": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          },
+          "nums4": {
+            "gen": "array",
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        },
+        "out": 1600000000
+      },
+      {
+        "name": "dense_zeros_and_ones",
+        "in": {
+          "nums1": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "nums2": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "nums3": [
+            0,
+            -1,
+            0,
+            -1
+          ],
+          "nums4": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 96
+      },
+      {
+        "name": "no_zero_with_mixed_values",
+        "in": {
+          "nums1": [
+            9,
+            8,
+            7
+          ],
+          "nums2": [
+            6,
+            5,
+            4
+          ],
+          "nums3": [
+            -1,
+            -2,
+            -3
+          ],
+          "nums4": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "four_equal_blocks",
+        "in": {
+          "nums1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "nums2": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "nums3": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "nums4": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 256
+      },
+      {
+        "name": "mirrored_pairs",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            -1,
+            -2
+          ],
+          "nums3": [
+            1,
+            2
+          ],
+          "nums4": [
+            -1,
+            -2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "wide_zero_multiplicity",
+        "in": {
+          "nums1": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "nums2": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "nums3": [
+            -2,
+            -2,
+            -2,
+            -2
+          ],
+          "nums4": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 256
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [-2, -1]\nnums3 = [-1, 2]\nnums4 = [0, 2]",
+      "output": "2"
+    },
+    {
+      "input": "nums1 = [0]\nnums2 = [0]\nnums3 = [0]\nnums4 = [0]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = [1]\nnums2 = [-1]\nnums3 = [0]\nnums4 = [0]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = [1]\nnums2 = [2]\nnums3 = [-1]\nnums4 = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums1 = [1, 1]\nnums2 = [-1, -1]\nnums3 = [0, 0]\nnums4 = [0, 0]",
+      "output": "16"
+    },
+    {
+      "input": "nums1 = [2, -1]\nnums2 = [1, -2]\nnums3 = [-1, 0]\nnums4 = [0, 1]",
+      "output": "4"
+    },
+    {
+      "input": "nums1 = [3]\nnums2 = [1]\nnums3 = [-2]\nnums4 = [-2]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = [3]\nnums2 = [1]\nnums3 = [-1]\nnums4 = [-2]",
+      "output": "0"
+    }
+  ]
+}

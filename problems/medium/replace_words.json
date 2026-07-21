@@ -1,0 +1,592 @@
+{
+  "id": "replace_words",
+  "title": "Replace Words",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "description": "<p>In English, we have a concept called <strong>root</strong>, which can be followed by some other word to form another longer word - let&#39;s call this word <strong>derivative</strong>. For example, when the <strong>root</strong> <code>&quot;help&quot;</code> is followed by the word <code>&quot;ful&quot;</code>, we can form a derivative <code>&quot;helpful&quot;</code>.</p>\n\n<p>Given a <code>dictionary</code> consisting of many <strong>roots</strong> and a <code>sentence</code> consisting of words separated by spaces, replace all the derivatives in the sentence with the <strong>root</strong> forming it. If a derivative can be replaced by more than one <strong>root</strong>, replace it with the <strong>root</strong> that has <strong>the shortest length</strong>.</p>\n\n<p>Return <em>the <code>sentence</code></em> after the replacement.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> dictionary = [&quot;cat&quot;,&quot;bat&quot;,&quot;rat&quot;], sentence = &quot;the cattle was rattled by the battery&quot;\n<strong>Output:</strong> &quot;the cat was rat by the bat&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> dictionary = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], sentence = &quot;aadsfasf absbs bbab cadsfafs&quot;\n<strong>Output:</strong> &quot;a a b c&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= dictionary.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= dictionary[i].length &lt;= 100</code></li>\n\t<li><code>dictionary[i]</code> consists of only lower-case letters.</li>\n\t<li><code>1 &lt;= sentence.length &lt;= 10<sup>6</sup></code></li>\n\t<li><code>sentence</code> consists of only lower-case letters and spaces.</li>\n\t<li>The number of words in <code>sentence</code> is in the range <code>[1, 1000]</code></li>\n\t<li>The length of each word in <code>sentence</code> is in the range <code>[1, 1000]</code></li>\n\t<li>Every two consecutive words in <code>sentence</code> will be separated by exactly one space.</li>\n\t<li><code>sentence</code> does not have leading or trailing spaces.</li>\n</ul>\n",
+  "task": "Solve the 'Replace Words' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= dictionary.length <= 1000",
+    "1 <= dictionary[i].length <= 100",
+    "dictionary[i] consists of only lower-case letters.",
+    "1 <= sentence.length <= 106",
+    "sentence consists of only lower-case letters and spaces.",
+    "The number of words in sentence is in the range [1, 1000]",
+    "The length of each word in sentence is in the range [1, 1000]",
+    "Every two consecutive words in sentence will be separated by exactly one space.",
+    "sentence does not have leading or trailing spaces."
+  ],
+  "hints": [],
+  "method": {
+    "name": "replaceWords",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "dictionary",
+        "type": "array"
+      },
+      {
+        "name": "sentence",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 648,
+      "title": "replace-words",
+      "params": {
+        "dictionary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sentence": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().replaceWords({dictionary}, {sentence})",
+        "rust": "Solution::replace_words({dictionary}, {sentence})",
+        "python3": "Solution().replaceWords({dictionary}, {sentence})",
+        "python2": "Solution().replaceWords({dictionary}, {sentence})",
+        "ruby": "replace_words({dictionary}, {sentence})",
+        "java": "new Solution().replaceWords({dictionary}, {sentence})",
+        "csharp": "new Solution().ReplaceWords({dictionary}, {sentence})",
+        "kotlin": "Solution().replaceWords({dictionary}, {sentence})",
+        "go": "replaceWords({dictionary}, {sentence})",
+        "dart": "Solution().replaceWords({dictionary}, {sentence})",
+        "swift": "Solution().replaceWords({dictionary}, {sentence})",
+        "typescript": "replaceWords({dictionary}, {sentence})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().replaceWords(dictionary, sentence, {result})",
+        "checker": "class Checker:\n    def _replace(self, dictionary, sentence):\n        trie = {}\n        end = \"*\"\n        for word in dictionary:\n            node = trie\n            for ch in word:\n                if ch not in node:\n                    node[ch] = {}\n                node = node[ch]\n            node[end] = True\n        out = []\n        for word in sentence.split(\" \"):\n            node = trie\n            rep = word\n            for i, ch in enumerate(word):\n                if end in node:\n                    rep = word[:i]\n                    break\n                if ch not in node:\n                    break\n                node = node[ch]\n            else:\n                if end in node:\n                    rep = word\n            out.append(rep)\n        return \" \".join(out)\n\n    def replaceWords(self, dictionary, sentence, result):\n        return self._replace(dictionary, sentence) == result\n"
+      }
+    },
+    "seed": 648,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "dictionary": [
+            "cat",
+            "bat",
+            "rat"
+          ],
+          "sentence": "the cattle was rattled by the battery"
+        },
+        "out": "the cat was rat by the bat"
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "dictionary": [
+            "a",
+            "b",
+            "c"
+          ],
+          "sentence": "aadsfasf absbs bbab cadsfafs"
+        },
+        "out": "a a b c"
+      },
+      {
+        "name": "single-root-all-match",
+        "in": {
+          "dictionary": [
+            "a"
+          ],
+          "sentence": "a aa aaa aaaa"
+        },
+        "out": "a a a a"
+      },
+      {
+        "name": "no-replacement",
+        "in": {
+          "dictionary": [
+            "xyz",
+            "qqq"
+          ],
+          "sentence": "alpha beta gamma"
+        },
+        "out": "alpha beta gamma"
+      },
+      {
+        "name": "shortest-root-wins",
+        "in": {
+          "dictionary": [
+            "abc",
+            "ab",
+            "a"
+          ],
+          "sentence": "abcde abacus aaaaa"
+        },
+        "out": "a a a"
+      },
+      {
+        "name": "duplicate-roots",
+        "in": {
+          "dictionary": [
+            "car",
+            "car",
+            "carpet"
+          ],
+          "sentence": "car carpets carpenter"
+        },
+        "out": "car car car"
+      },
+      {
+        "name": "root-equals-word",
+        "in": {
+          "dictionary": [
+            "help",
+            "helpful"
+          ],
+          "sentence": "help helpful helped"
+        },
+        "out": "help help help"
+      },
+      {
+        "name": "mixed-replacements",
+        "in": {
+          "dictionary": [
+            "run",
+            "walk",
+            "talk"
+          ],
+          "sentence": "running walked talkative runner walk talk"
+        },
+        "out": "run walk talk run walk talk"
+      },
+      {
+        "name": "prefix-chain",
+        "in": {
+          "dictionary": [
+            "c",
+            "ca",
+            "cat",
+            "cattle"
+          ],
+          "sentence": "cattle cat catch cater"
+        },
+        "out": "c c c c"
+      },
+      {
+        "name": "repeated-words",
+        "in": {
+          "dictionary": [
+            "blue",
+            "bl"
+          ],
+          "sentence": "bluebird bluebird bluebird bluebird"
+        },
+        "out": "bl bl bl bl"
+      },
+      {
+        "name": "single-letter-mixed",
+        "in": {
+          "dictionary": [
+            "a",
+            "m",
+            "z"
+          ],
+          "sentence": "apple mango zebra dog"
+        },
+        "out": "a m z dog"
+      },
+      {
+        "name": "no-root-prefix",
+        "in": {
+          "dictionary": [
+            "abc",
+            "def"
+          ],
+          "sentence": "ab ac ad ae"
+        },
+        "out": "ab ac ad ae"
+      },
+      {
+        "name": "long-word-match",
+        "in": {
+          "dictionary": [
+            "supercalifragilistic",
+            "super"
+          ],
+          "sentence": "supercalifragilisticexpialidocious superstructure super"
+        },
+        "out": "super super super"
+      },
+      {
+        "name": "long-word-no-match",
+        "in": {
+          "dictionary": [
+            "orange",
+            "apple"
+          ],
+          "sentence": "bananas strawberries watermelons"
+        },
+        "out": "bananas strawberries watermelons"
+      },
+      {
+        "name": "multiple-shortest-choice",
+        "in": {
+          "dictionary": [
+            "pre",
+            "prefix",
+            "preform",
+            "press"
+          ],
+          "sentence": "prefixing preformed pressing preview"
+        },
+        "out": "pre pre pre pre"
+      },
+      {
+        "name": "root-at-first-char",
+        "in": {
+          "dictionary": [
+            "x",
+            "xy",
+            "xyz"
+          ],
+          "sentence": "xyzzy xylophone xray"
+        },
+        "out": "x x x"
+      },
+      {
+        "name": "punctuation-free-mass",
+        "in": {
+          "dictionary": [
+            "red",
+            "green",
+            "blue"
+          ],
+          "sentence": "redgreen bluegreen greenblue bluered"
+        },
+        "out": "red blue green blue"
+      },
+      {
+        "name": "mixed-short-roots",
+        "in": {
+          "dictionary": [
+            "do",
+            "dog",
+            "dot"
+          ],
+          "sentence": "doggedly dotted doing done"
+        },
+        "out": "do do do do"
+      },
+      {
+        "name": "exact-root-in-sentence",
+        "in": {
+          "dictionary": [
+            "moon",
+            "sun"
+          ],
+          "sentence": "moon sun moonlight sunlight"
+        },
+        "out": "moon sun moon sun"
+      },
+      {
+        "name": "multiple-spaces-none",
+        "in": {
+          "dictionary": [
+            "he",
+            "her"
+          ],
+          "sentence": "hello help hero herb"
+        },
+        "out": "he he he he"
+      },
+      {
+        "name": "small-prefix-variety",
+        "in": {
+          "dictionary": [
+            "car",
+            "cart",
+            "care"
+          ],
+          "sentence": "career carpenter cartwheel car care"
+        },
+        "out": "car car car car car"
+      },
+      {
+        "name": "large-repeated-word-one",
+        "in": {
+          "dictionary": [
+            "a",
+            "aa",
+            "aaa"
+          ],
+          "sentence": "aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa"
+        },
+        "out": "a a a a a a a a a a"
+      },
+      {
+        "name": "large-repeated-word-two",
+        "in": {
+          "dictionary": [
+            "z",
+            "zz",
+            "zzz"
+          ],
+          "sentence": "zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz"
+        },
+        "out": "z z z z z z z z z z"
+      },
+      {
+        "name": "boundary-long-root",
+        "in": {
+          "dictionary": [
+            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv",
+            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"
+          ],
+          "sentence": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstu"
+        },
+        "out": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"
+      },
+      {
+        "name": "boundary-short-root",
+        "in": {
+          "dictionary": [
+            "p",
+            "pq",
+            "pqr"
+          ],
+          "sentence": "ppppp qqqqq rrrrr"
+        },
+        "out": "p qqqqq rrrrr"
+      },
+      {
+        "name": "varied-words-1",
+        "in": {
+          "dictionary": [
+            "an",
+            "ant",
+            "anti"
+          ],
+          "sentence": "antic antler anatomy banana"
+        },
+        "out": "an an an banana"
+      },
+      {
+        "name": "varied-words-2",
+        "in": {
+          "dictionary": [
+            "fin",
+            "fish"
+          ],
+          "sentence": "fishing finisher finish"
+        },
+        "out": "fish fin fin"
+      },
+      {
+        "name": "varied-words-3",
+        "in": {
+          "dictionary": [
+            "pro",
+            "program",
+            "progress"
+          ],
+          "sentence": "programming progress prologue prototype"
+        },
+        "out": "pro pro pro pro"
+      },
+      {
+        "name": "varied-words-4",
+        "in": {
+          "dictionary": [
+            "st",
+            "sta",
+            "star"
+          ],
+          "sentence": "starting stable stars"
+        },
+        "out": "st st st"
+      },
+      {
+        "name": "varied-words-5",
+        "in": {
+          "dictionary": [
+            "mi",
+            "mid",
+            "mind"
+          ],
+          "sentence": "midnight mindless missing mission"
+        },
+        "out": "mi mi mi mi"
+      },
+      {
+        "name": "varied-words-6",
+        "in": {
+          "dictionary": [
+            "top",
+            "to"
+          ],
+          "sentence": "today tomorrow topical top"
+        },
+        "out": "to to to to"
+      },
+      {
+        "name": "varied-words-7",
+        "in": {
+          "dictionary": [
+            "un",
+            "uni",
+            "unit"
+          ],
+          "sentence": "unicode unique unit unify"
+        },
+        "out": "un un un un"
+      },
+      {
+        "name": "varied-words-8",
+        "in": {
+          "dictionary": [
+            "ca",
+            "cab",
+            "cane"
+          ],
+          "sentence": "cabin canary candle caress"
+        },
+        "out": "ca ca ca ca"
+      },
+      {
+        "name": "varied-words-9",
+        "in": {
+          "dictionary": [
+            "de",
+            "del",
+            "demo"
+          ],
+          "sentence": "delta develop demonstrate"
+        },
+        "out": "de de de"
+      },
+      {
+        "name": "varied-words-10",
+        "in": {
+          "dictionary": [
+            "re",
+            "rep",
+            "report"
+          ],
+          "sentence": "replay repeat report reported"
+        },
+        "out": "re re re re"
+      },
+      {
+        "name": "varied-words-11",
+        "in": {
+          "dictionary": [
+            "li",
+            "lin",
+            "link"
+          ],
+          "sentence": "linear linked linking listen"
+        },
+        "out": "li li li li"
+      },
+      {
+        "name": "varied-words-12",
+        "in": {
+          "dictionary": [
+            "go",
+            "gol",
+            "gold"
+          ],
+          "sentence": "golden goose golf"
+        },
+        "out": "go go go"
+      },
+      {
+        "name": "varied-words-13",
+        "in": {
+          "dictionary": [
+            "he",
+            "her",
+            "hero"
+          ],
+          "sentence": "helium heron heroic helper"
+        },
+        "out": "he he he he"
+      },
+      {
+        "name": "varied-words-14",
+        "in": {
+          "dictionary": [
+            "pa",
+            "par",
+            "park"
+          ],
+          "sentence": "parent parallel parked parade"
+        },
+        "out": "pa pa pa pa"
+      },
+      {
+        "name": "varied-words-15",
+        "in": {
+          "dictionary": [
+            "tr",
+            "tra",
+            "trap"
+          ],
+          "sentence": "travel train trapping transfer"
+        },
+        "out": "tr tr tr tr"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "dictionary = [\"cat\", \"bat\", \"rat\"]\nsentence = \"the cattle was rattled by the battery\"",
+      "output": "\"the cat was rat by the bat\""
+    },
+    {
+      "input": "dictionary = [\"a\", \"b\", \"c\"]\nsentence = \"aadsfasf absbs bbab cadsfafs\"",
+      "output": "\"a a b c\""
+    },
+    {
+      "input": "dictionary = [\"a\"]\nsentence = \"a aa aaa aaaa\"",
+      "output": "\"a a a a\""
+    },
+    {
+      "input": "dictionary = [\"xyz\", \"qqq\"]\nsentence = \"alpha beta gamma\"",
+      "output": "\"alpha beta gamma\""
+    },
+    {
+      "input": "dictionary = [\"abc\", \"ab\", \"a\"]\nsentence = \"abcde abacus aaaaa\"",
+      "output": "\"a a a\""
+    },
+    {
+      "input": "dictionary = [\"car\", \"car\", \"carpet\"]\nsentence = \"car carpets carpenter\"",
+      "output": "\"car car car\""
+    },
+    {
+      "input": "dictionary = [\"help\", \"helpful\"]\nsentence = \"help helpful helped\"",
+      "output": "\"help help help\""
+    },
+    {
+      "input": "dictionary = [\"run\", \"walk\", \"talk\"]\nsentence = \"running walked talkative runner walk talk\"",
+      "output": "\"run walk talk run walk talk\""
+    }
+  ]
+}

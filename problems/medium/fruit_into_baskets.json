@@ -1,0 +1,676 @@
+{
+  "id": "fruit_into_baskets",
+  "title": "Fruit Into Baskets",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "description": "<p>You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array <code>fruits</code> where <code>fruits[i]</code> is the <strong>type</strong> of fruit the <code>i<sup>th</sup></code> tree produces.</p>\n\n<p>You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:</p>\n\n<ul>\n\t<li>You only have <strong>two</strong> baskets, and each basket can only hold a <strong>single type</strong> of fruit. There is no limit on the amount of fruit each basket can hold.</li>\n\t<li>Starting from any tree of your choice, you must pick <strong>exactly one fruit</strong> from <strong>every</strong> tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.</li>\n\t<li>Once you reach a tree with fruit that cannot fit in your baskets, you must stop.</li>\n</ul>\n\n<p>Given the integer array <code>fruits</code>, return <em>the <strong>maximum</strong> number of fruits you can pick</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> fruits = [<u>1,2,1</u>]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We can pick from all 3 trees.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> fruits = [0,<u>1,2,2</u>]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> We can pick from trees [1,2,2].\nIf we had started at the first tree, we would only pick from trees [0,1].\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> fruits = [1,<u>2,3,2,2</u>]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> We can pick from trees [2,3,2,2].\nIf we had started at the first tree, we would only pick from trees [1,2].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= fruits.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= fruits[i] &lt; fruits.length</code></li>\n</ul>\n",
+  "task": "Solve the 'Fruit Into Baskets' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= fruits.length <= 105",
+    "0 <= fruits[i] < fruits.length"
+  ],
+  "hints": [],
+  "method": {
+    "name": "totalFruit",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "fruits",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 904,
+      "title": "fruit-into-baskets",
+      "params": {
+        "fruits": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().totalFruit({fruits})",
+        "rust": "Solution::total_fruit({fruits})",
+        "python3": "Solution().totalFruit({fruits})",
+        "python2": "Solution().totalFruit({fruits})",
+        "ruby": "total_fruit({fruits})",
+        "java": "new Solution().totalFruit({fruits})",
+        "csharp": "new Solution().TotalFruit({fruits})",
+        "kotlin": "Solution().totalFruit({fruits})",
+        "go": "totalFruit({fruits})",
+        "dart": "Solution().totalFruit({fruits})",
+        "swift": "Solution().totalFruit({fruits})",
+        "typescript": "totalFruit({fruits})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().totalFruit(fruits, {result})",
+        "checker": "from collections import defaultdict\n\nclass Checker:\n    def totalFruit(self, fruits, result):\n        if not isinstance(result, int):\n            return False\n        start = 0\n        max_len = 0\n        fruit_count = defaultdict(int)\n        for end in range(len(fruits)):\n            fruit_count[fruits[end]] += 1\n            while len(fruit_count) > 2:\n                fruit_count[fruits[start]] -= 1\n                if fruit_count[fruits[start]] == 0:\n                    del fruit_count[fruits[start]]\n                start += 1\n            max_len = max(max_len, end - start + 1)\n        return result == max_len\n"
+      }
+    },
+    "seed": 904,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            2,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "single",
+        "in": {
+          "fruits": [
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-same",
+        "in": {
+          "fruits": [
+            7,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two-diff",
+        "in": {
+          "fruits": [
+            7,
+            8
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all-same-6",
+        "in": {
+          "fruits": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "pair-repeat",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "three-alt",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "long-two",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "long-three",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "block-two",
+        "in": {
+          "fruits": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "block-three",
+        "in": {
+          "fruits": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed1",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            3,
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed2",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            0,
+            1,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "edge-high",
+        "in": {
+          "fruits": [
+            0,
+            49999,
+            0,
+            49999,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "edge-many",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            2,
+            3,
+            2,
+            2,
+            1,
+            1,
+            4,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "pattern1",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            1,
+            3,
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern2",
+        "in": {
+          "fruits": [
+            4,
+            5,
+            4,
+            5,
+            6,
+            6,
+            6,
+            5,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern3",
+        "in": {
+          "fruits": [
+            9,
+            8,
+            7,
+            8,
+            9,
+            8,
+            7,
+            7
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "pattern4",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            0,
+            2,
+            2,
+            2,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern5",
+        "in": {
+          "fruits": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "pattern6",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "pattern7",
+        "in": {
+          "fruits": [
+            3,
+            4,
+            5,
+            5,
+            4,
+            4,
+            3,
+            3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern8",
+        "in": {
+          "fruits": [
+            6,
+            7,
+            6,
+            7,
+            6,
+            8,
+            8,
+            7,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern9",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            1,
+            2,
+            3,
+            4,
+            4,
+            4,
+            3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern10",
+        "in": {
+          "fruits": [
+            2,
+            2,
+            2,
+            3,
+            4,
+            5,
+            5,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "pattern11",
+        "in": {
+          "fruits": [
+            0,
+            0,
+            1,
+            2,
+            2,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "pattern12",
+        "in": {
+          "fruits": [
+            5,
+            6,
+            7,
+            6,
+            5,
+            6,
+            7,
+            7,
+            6
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "gen-large-a",
+        "in": {
+          "fruits": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 2,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-large-b",
+        "in": {
+          "fruits": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 2,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "extra-1",
+        "in": {
+          "fruits": [
+            4,
+            1,
+            4,
+            1,
+            4,
+            2,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "extra-2",
+        "in": {
+          "fruits": [
+            2,
+            3,
+            2,
+            4,
+            4,
+            4,
+            3,
+            3
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "extra-3",
+        "in": {
+          "fruits": [
+            1,
+            2,
+            1,
+            2,
+            3,
+            3,
+            3,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "extra-4",
+        "in": {
+          "fruits": [
+            0,
+            1,
+            1,
+            0,
+            2,
+            2,
+            2,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 5
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "fruits = [1, 2, 1]",
+      "output": "3"
+    },
+    {
+      "input": "fruits = [0, 1, 2, 2]",
+      "output": "3"
+    },
+    {
+      "input": "fruits = [1, 2, 3, 2, 2]",
+      "output": "4"
+    },
+    {
+      "input": "fruits = [5]",
+      "output": "1"
+    },
+    {
+      "input": "fruits = [7, 7]",
+      "output": "2"
+    },
+    {
+      "input": "fruits = [7, 8]",
+      "output": "2"
+    },
+    {
+      "input": "fruits = [3, 3, 3, 3, 3, 3]",
+      "output": "6"
+    },
+    {
+      "input": "fruits = [1, 2, 1, 2, 1, 2]",
+      "output": "6"
+    }
+  ]
+}

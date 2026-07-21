@@ -1,0 +1,994 @@
+{
+  "id": "max_sum_of_rectangle_no_larger_than_k",
+  "title": "Max Sum of Rectangle No Larger Than K",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Matrix",
+    "Prefix Sum",
+    "Ordered Set"
+  ],
+  "description": "<p>Given an <code>m x n</code> matrix <code>matrix</code> and an integer <code>k</code>, return <em>the max sum of a rectangle in the matrix such that its sum is no larger than</em> <code>k</code>.</p>\n\n<p>It is <strong>guaranteed</strong> that there will be a rectangle with a sum no larger than <code>k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/18/sum-grid.jpg\" style=\"width: 255px; height: 176px;\" />\n<pre>\n<strong>Input:</strong> matrix = [[1,0,1],[0,-2,3]], k = 2\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Because the sum of the blue rectangle [[0, 1], [-2, 3]] is 2, and 2 is the max number no larger than k (k = 2).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> matrix = [[2,2,-1]], k = 3\n<strong>Output:</strong> 3\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == matrix.length</code></li>\n\t<li><code>n == matrix[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 100</code></li>\n\t<li><code>-100 &lt;= matrix[i][j] &lt;= 100</code></li>\n\t<li><code>-10<sup>5</sup> &lt;= k &lt;= 10<sup>5</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> What if the number of rows is much larger than the number of columns?</p>\n",
+  "task": "Solve the 'Max Sum of Rectangle No Larger Than K' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-100 <= matrix[i][j] <= 100",
+    "-105 <= k <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxSumSubmatrix",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 363,
+      "title": "max-sum-of-rectangle-no-larger-than-k",
+      "params": {
+        "matrix": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "rust": "Solution::max_sum_submatrix({matrix}, {k})",
+        "python3": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "python2": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "ruby": "max_sum_submatrix({matrix}, {k})",
+        "java": "new Solution().maxSumSubmatrix({matrix}, {k})",
+        "csharp": "new Solution().MaxSumSubmatrix({matrix}, {k})",
+        "kotlin": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "go": "maxSumSubmatrix({matrix}, {k})",
+        "dart": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "swift": "Solution().maxSumSubmatrix({matrix}, {k})",
+        "typescript": "maxSumSubmatrix({matrix}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxSumSubmatrix(matrix, k, {result})",
+        "checker": "class Checker:\n    def maxSumSubmatrix(self, matrix, k, result):\n        m = len(matrix)\n        n = len(matrix[0])\n        best = float('-inf')\n        for top in range(m):\n            col = [0] * n\n            for bottom in range(top, m):\n                for c in range(n):\n                    col[c] += matrix[bottom][c]\n                for left in range(n):\n                    s = 0\n                    for right in range(left, n):\n                        s += col[right]\n                        if s <= k and s > best:\n                            best = s\n        return result == best\n"
+      }
+    },
+    "seed": 363,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                -2,
+                3
+              ]
+            ]
+          },
+          "k": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "example2",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2,
+                -1
+              ]
+            ]
+          },
+          "k": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "single_cell_equal",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                5
+              ]
+            ]
+          },
+          "k": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "single_cell_negative_gt_k",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                -5
+              ]
+            ]
+          },
+          "k": -2
+        },
+        "out": -5
+      },
+      {
+        "name": "single_cell_negative_equal",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                -5
+              ]
+            ]
+          },
+          "k": -5
+        },
+        "out": -5
+      },
+      {
+        "name": "small_positive_large_k",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "k": 100
+        },
+        "out": 10
+      },
+      {
+        "name": "small_positive_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "k": 7
+        },
+        "out": 7
+      },
+      {
+        "name": "small_positive_one_under",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "k": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "small_positive_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "k": 5
+        },
+        "out": 4
+      },
+      {
+        "name": "all_negative_small",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                -1,
+                -2
+              ],
+              [
+                -3,
+                -4
+              ]
+            ]
+          },
+          "k": -2
+        },
+        "out": -2
+      },
+      {
+        "name": "all_negative_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                -1,
+                -2
+              ],
+              [
+                -3,
+                -4
+              ]
+            ]
+          },
+          "k": -6
+        },
+        "out": -6
+      },
+      {
+        "name": "mixed_2x2_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                -1
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "k": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_2x2_plus_one",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                -1
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "k": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_2x2_high",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                -1
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "k": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "zero_matrix",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "k": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_row",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                -1,
+                1,
+                -1,
+                1
+              ]
+            ]
+          },
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "alternating_row_zero",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                -1,
+                1,
+                -1,
+                1
+              ]
+            ]
+          },
+          "k": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_col",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                -1
+              ],
+              [
+                1
+              ],
+              [
+                -1
+              ],
+              [
+                1
+              ]
+            ]
+          },
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "alternating_col_zero",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                -1
+              ],
+              [
+                1
+              ],
+              [
+                -1
+              ],
+              [
+                1
+              ]
+            ]
+          },
+          "k": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "larger_mixed_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                -2,
+                5
+              ],
+              [
+                -1,
+                4,
+                -3
+              ],
+              [
+                2,
+                -5,
+                6
+              ]
+            ]
+          },
+          "k": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "larger_mixed_plus_one",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                -2,
+                5
+              ],
+              [
+                -1,
+                4,
+                -3
+              ],
+              [
+                2,
+                -5,
+                6
+              ]
+            ]
+          },
+          "k": 8
+        },
+        "out": 8
+      },
+      {
+        "name": "larger_mixed_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                -2,
+                5
+              ],
+              [
+                -1,
+                4,
+                -3
+              ],
+              [
+                2,
+                -5,
+                6
+              ]
+            ]
+          },
+          "k": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "asymmetric_3x4_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                -3,
+                4,
+                -2
+              ],
+              [
+                -5,
+                6,
+                -1,
+                7
+              ],
+              [
+                3,
+                -4,
+                2,
+                -6
+              ]
+            ]
+          },
+          "k": 9
+        },
+        "out": 9
+      },
+      {
+        "name": "asymmetric_3x4_plus_one",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                -3,
+                4,
+                -2
+              ],
+              [
+                -5,
+                6,
+                -1,
+                7
+              ],
+              [
+                3,
+                -4,
+                2,
+                -6
+              ]
+            ]
+          },
+          "k": 10
+        },
+        "out": 10
+      },
+      {
+        "name": "asymmetric_3x4_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                -3,
+                4,
+                -2
+              ],
+              [
+                -5,
+                6,
+                -1,
+                7
+              ],
+              [
+                3,
+                -4,
+                2,
+                -6
+              ]
+            ]
+          },
+          "k": 8
+        },
+        "out": 8
+      },
+      {
+        "name": "banded_3x4_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2,
+                2,
+                2
+              ],
+              [
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                3,
+                3,
+                3,
+                3
+              ]
+            ]
+          },
+          "k": 8
+        },
+        "out": 8
+      },
+      {
+        "name": "banded_3x4_plus_one",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2,
+                2,
+                2
+              ],
+              [
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                3,
+                3,
+                3,
+                3
+              ]
+            ]
+          },
+          "k": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "banded_3x4_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                2,
+                2,
+                2
+              ],
+              [
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                3,
+                3,
+                3,
+                3
+              ]
+            ]
+          },
+          "k": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "all_ones_3x3_tight",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          "k": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "all_ones_3x3_mid",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          "k": 5
+        },
+        "out": 4
+      },
+      {
+        "name": "all_ones_3x3_large",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          "k": 9
+        },
+        "out": 9
+      },
+      {
+        "name": "checkerboard_5x5_exact",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ],
+              [
+                -10,
+                10,
+                -10,
+                10,
+                -10
+              ],
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ],
+              [
+                -10,
+                10,
+                -10,
+                10,
+                -10
+              ],
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ]
+            ]
+          },
+          "k": 10
+        },
+        "out": 10
+      },
+      {
+        "name": "checkerboard_5x5_zero",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ],
+              [
+                -10,
+                10,
+                -10,
+                10,
+                -10
+              ],
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ],
+              [
+                -10,
+                10,
+                -10,
+                10,
+                -10
+              ],
+              [
+                10,
+                -10,
+                10,
+                -10,
+                10
+              ]
+            ]
+          },
+          "k": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "mixed_3x3_boundary",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                -1,
+                2
+              ],
+              [
+                1,
+                -3,
+                4
+              ],
+              [
+                -2,
+                5,
+                -6
+              ]
+            ]
+          },
+          "k": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed_3x4_boundary",
+        "in": {
+          "matrix": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                -8,
+                9,
+                -10
+              ],
+              [
+                6,
+                -5,
+                4,
+                -3
+              ],
+              [
+                -2,
+                1,
+                -1,
+                2
+              ]
+            ]
+          },
+          "k": 7
+        },
+        "out": 7
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 1], [0, -2, 3]]}\nk = 2",
+      "output": "2"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[2, 2, -1]]}\nk = 3",
+      "output": "3"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[5]]}\nk = 5",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-5]]}\nk = -2",
+      "output": "-5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-5]]}\nk = -5",
+      "output": "-5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}\nk = 100",
+      "output": "10"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}\nk = 7",
+      "output": "7"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}\nk = 6",
+      "output": "6"
+    }
+  ]
+}

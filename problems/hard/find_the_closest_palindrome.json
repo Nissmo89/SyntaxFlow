@@ -1,0 +1,346 @@
+{
+  "id": "find_the_closest_palindrome",
+  "title": "Find the Closest Palindrome",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "description": "<p>Given a string <code>n</code> representing an integer, return <em>the closest integer (not including itself), which is a palindrome</em>. If there is a tie, return <em><strong>the smaller one</strong></em>.</p>\n\n<p>The closest is defined as the absolute difference minimized between two integers.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = &quot;123&quot;\n<strong>Output:</strong> &quot;121&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = &quot;1&quot;\n<strong>Output:</strong> &quot;0&quot;\n<strong>Explanation:</strong> 0 and 2 are the closest palindromes but we return the smallest which is 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n.length &lt;= 18</code></li>\n\t<li><code>n</code> consists of only digits.</li>\n\t<li><code>n</code> does not have leading zeros.</li>\n\t<li><code>n</code> is representing an integer in the range <code>[1, 10<sup>18</sup> - 1]</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Find the Closest Palindrome' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n.length <= 18",
+    "n consists of only digits.",
+    "n does not have leading zeros.",
+    "n is representing an integer in the range [1, 1018 - 1]."
+  ],
+  "hints": [
+    "Will brute force work for this problem? Think of something else.",
+    "Take some examples like 1234, 999,1000, etc and check their closest palindromes. How many different cases are possible?",
+    "Do we have to consider only left half or right half of the string or both?",
+    "Try to find the closest palindrome of these numbers- 12932, 99800, 12120. Did you observe something?"
+  ],
+  "method": {
+    "name": "nearestPalindromic",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 564,
+      "title": "find-the-closest-palindrome",
+      "params": {
+        "n": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().nearestPalindromic({n})",
+        "rust": "Solution::nearest_palindromic({n})",
+        "python3": "Solution().nearestPalindromic({n})",
+        "python2": "Solution().nearestPalindromic({n})",
+        "ruby": "nearest_palindromic({n})",
+        "java": "new Solution().nearestPalindromic({n})",
+        "csharp": "new Solution().NearestPalindromic({n})",
+        "kotlin": "Solution().nearestPalindromic({n})",
+        "go": "nearestPalindromic({n})",
+        "dart": "Solution().nearestPalindromic({n})",
+        "swift": "Solution().nearestPalindromic({n})",
+        "typescript": "nearestPalindromic({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().nearestPalindromic(n, {result})",
+        "checker": "class Checker:\n    def nearestPalindromic(self, n, result):\n        if not isinstance(result, str):\n            return False\n        x = int(n)\n        length = len(n)\n        candidates = set()\n        candidates.add(10 ** (length - 1) - 1)\n        candidates.add(10 ** length + 1)\n        prefix = int(n[:(length + 1) // 2])\n        half_len = (length + 1) // 2\n        for delta in (-1, 0, 1):\n            cur = prefix + delta\n            if cur < 0:\n                continue\n            left = str(cur).zfill(half_len)\n            if length % 2 == 0:\n                pal = left + left[::-1]\n            else:\n                pal = left + left[:-1][::-1]\n            candidates.add(int(pal))\n        candidates.discard(x)\n        expected = str(min(candidates, key=lambda value: (abs(value - x), value)))\n        return expected == result\n"
+      }
+    },
+    "seed": 564,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "n": "123"
+        }
+      },
+      {
+        "name": "example2",
+        "in": {
+          "n": "1"
+        }
+      },
+      {
+        "name": "single_digit_two",
+        "in": {
+          "n": "2"
+        }
+      },
+      {
+        "name": "single_digit_nine",
+        "in": {
+          "n": "9"
+        }
+      },
+      {
+        "name": "ten",
+        "in": {
+          "n": "10"
+        }
+      },
+      {
+        "name": "eleven",
+        "in": {
+          "n": "11"
+        }
+      },
+      {
+        "name": "twelve",
+        "in": {
+          "n": "12"
+        }
+      },
+      {
+        "name": "nineteen",
+        "in": {
+          "n": "19"
+        }
+      },
+      {
+        "name": "twenty_two",
+        "in": {
+          "n": "22"
+        }
+      },
+      {
+        "name": "ninety_nine",
+        "in": {
+          "n": "99"
+        }
+      },
+      {
+        "name": "one_hundred",
+        "in": {
+          "n": "100"
+        }
+      },
+      {
+        "name": "one_hundred_one",
+        "in": {
+          "n": "101"
+        }
+      },
+      {
+        "name": "one_hundred_twenty_one",
+        "in": {
+          "n": "121"
+        }
+      },
+      {
+        "name": "one_twenty_eight_three",
+        "in": {
+          "n": "1283"
+        }
+      },
+      {
+        "name": "all_nines_three_digits",
+        "in": {
+          "n": "999"
+        }
+      },
+      {
+        "name": "one_thousand",
+        "in": {
+          "n": "1000"
+        }
+      },
+      {
+        "name": "one_thousand_one",
+        "in": {
+          "n": "1001"
+        }
+      },
+      {
+        "name": "ten_thousand_nine_hundred_eighty_seven",
+        "in": {
+          "n": "10987"
+        }
+      },
+      {
+        "name": "palindrome_five_digits",
+        "in": {
+          "n": "12321"
+        }
+      },
+      {
+        "name": "increasing_five_digits",
+        "in": {
+          "n": "12345"
+        }
+      },
+      {
+        "name": "nearby_upper_candidate",
+        "in": {
+          "n": "12932"
+        }
+      },
+      {
+        "name": "all_nines_four_digits",
+        "in": {
+          "n": "9999"
+        }
+      },
+      {
+        "name": "ten_thousand",
+        "in": {
+          "n": "10000"
+        }
+      },
+      {
+        "name": "ten_thousand_one",
+        "in": {
+          "n": "10001"
+        }
+      },
+      {
+        "name": "nine_digits",
+        "in": {
+          "n": "123456789"
+        }
+      },
+      {
+        "name": "power_of_ten_17",
+        "in": {
+          "n": "10000000000000000"
+        }
+      },
+      {
+        "name": "power_of_ten_18",
+        "in": {
+          "n": "100000000000000000"
+        }
+      },
+      {
+        "name": "all_nines_18",
+        "in": {
+          "n": "999999999999999999"
+        }
+      },
+      {
+        "name": "palindrome_18_digits",
+        "in": {
+          "n": "100000000000000001"
+        }
+      },
+      {
+        "name": "random_18_digits",
+        "in": {
+          "n": "807045053224792883"
+        }
+      },
+      {
+        "name": "generated_len_1",
+        "seed": 56401,
+        "in": {
+          "n": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "123456789"
+          }
+        }
+      },
+      {
+        "name": "generated_len_2",
+        "seed": 56402,
+        "in": {
+          "n": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "123456789"
+          }
+        }
+      },
+      {
+        "name": "generated_len_6",
+        "seed": 56403,
+        "in": {
+          "n": {
+            "gen": "str",
+            "len": 6,
+            "alphabet": "123456789"
+          }
+        }
+      },
+      {
+        "name": "generated_len_12",
+        "seed": 56404,
+        "in": {
+          "n": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "123456789"
+          }
+        }
+      },
+      {
+        "name": "generated_len_18",
+        "seed": 56405,
+        "in": {
+          "n": {
+            "gen": "str",
+            "len": 18,
+            "alphabet": "123456789"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = \"123\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"2\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"9\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"10\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"11\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"12\"",
+      "output": ""
+    },
+    {
+      "input": "n = \"19\"",
+      "output": ""
+    }
+  ]
+}

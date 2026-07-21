@@ -1,0 +1,529 @@
+{
+  "id": "lemonade_change",
+  "title": "Lemonade Change",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "description": "<p>At a lemonade stand, each lemonade costs <code>$5</code>. Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills). Each customer will only buy one lemonade and pay with either a <code>$5</code>, <code>$10</code>, or <code>$20</code> bill. You must provide the correct change to each customer so that the net transaction is that the customer pays <code>$5</code>.</p> <p>Note that you do not have any change in hand at first.</p> <p>Given an integer array <code>bills</code> where <code>bills[i]</code> is the bill the <code>i<sup>th</sup></code> customer pays, return <code>true</code> <em>if you can provide every customer with the correct change, or</em> <code>false</code> <em>otherwise</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> bills = [5,5,5,10,20]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> \nFrom the first 3 customers, we collect three $5 bills in order.\nFrom the fourth customer, we collect a $10 bill and give back a $5.\nFrom the fifth customer, we give a $10 bill and a $5 bill.\nSince all customers got correct change, we output true.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> bills = [5,5,10,10,20]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> \nFrom the first two customers in order, we collect two $5 bills.\nFor the next two customers in order, we collect a $10 bill and give back a $5 bill.\nFor the last customer, we can not give the change of $15 back because we only have two $10 bills.\nSince not every customer received the correct change, the answer is false.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= bills.length &lt;= 10<sup>5</sup></code></li> <li><code>bills[i]</code> is either <code>5</code>, <code>10</code>, or <code>20</code>.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "lemonadeChange",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "bills",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 860,
+      "title": "lemonade-change",
+      "params": {
+        "bills": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().lemonadeChange({bills})",
+        "rust": "Solution::lemonade_change({bills})",
+        "python3": "Solution().lemonadeChange({bills})",
+        "python2": "Solution().lemonadeChange({bills})",
+        "ruby": "lemonade_change({bills})",
+        "java": "new Solution().lemonadeChange({bills})",
+        "csharp": "new Solution().LemonadeChange({bills})",
+        "kotlin": "Solution().lemonadeChange({bills})",
+        "go": "lemonadeChange({bills})",
+        "dart": "Solution().lemonadeChange({bills})",
+        "swift": "Solution().lemonadeChange({bills})",
+        "typescript": "lemonadeChange({bills})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().lemonadeChange(bills, {result})",
+        "checker": "class Checker:\n    def lemonadeChange(self, bills, result):\n        f = t = 0\n        for bill in bills:\n            if bill == 5:\n                f += 1\n            elif bill == 10:\n                if f < 1:\n                    return result is False\n                f -= 1\n                t += 1\n            else:\n                if f >= 1 and t >= 1:\n                    f -= 1\n                    t -= 1\n                elif f >= 3:\n                    f -= 3\n                else:\n                    return result is False\n        return result is True\n"
+      }
+    },
+    "seed": 860,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t3",
+        "in": {
+          "bills": [
+            5
+          ]
+        }
+      },
+      {
+        "name": "t4",
+        "in": {
+          "bills": [
+            10
+          ]
+        }
+      },
+      {
+        "name": "t5",
+        "in": {
+          "bills": [
+            20
+          ]
+        }
+      },
+      {
+        "name": "t6",
+        "in": {
+          "bills": [
+            5,
+            10
+          ]
+        }
+      },
+      {
+        "name": "t7",
+        "in": {
+          "bills": [
+            5,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t8",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10
+          ]
+        }
+      },
+      {
+        "name": "t9",
+        "in": {
+          "bills": [
+            5,
+            5,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t10",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t11",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t12",
+        "in": {
+          "bills": [
+            5,
+            10,
+            5,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t13",
+        "in": {
+          "bills": [
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t14",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t15",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            5,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t16",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            10
+          ]
+        }
+      },
+      {
+        "name": "t17",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t18",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            20,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t19",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            10,
+            20,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t20",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            20,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t21",
+        "in": {
+          "bills": [
+            5,
+            10,
+            10
+          ]
+        }
+      },
+      {
+        "name": "t22",
+        "in": {
+          "bills": [
+            5,
+            10,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t23",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t24",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t25",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            10,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t26",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            10,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t27",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            10,
+            20,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t28",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            20,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t29",
+        "in": {
+          "bills": [
+            5,
+            10,
+            20,
+            5,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t30",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            20,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t31",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            20,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t32",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            10,
+            20,
+            5,
+            10,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t33",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            10,
+            20,
+            20,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t34",
+        "in": {
+          "bills": [
+            5,
+            5,
+            10,
+            5,
+            5,
+            10,
+            20,
+            20
+          ]
+        }
+      },
+      {
+        "name": "t35",
+        "in": {
+          "bills": [
+            5,
+            5,
+            5,
+            10,
+            5,
+            5,
+            10,
+            20,
+            20
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "bills = [5, 5, 5, 10, 20]",
+      "output": ""
+    },
+    {
+      "input": "bills = [5, 5, 10, 10, 20]",
+      "output": ""
+    },
+    {
+      "input": "bills = [5]",
+      "output": ""
+    },
+    {
+      "input": "bills = [10]",
+      "output": ""
+    },
+    {
+      "input": "bills = [20]",
+      "output": ""
+    },
+    {
+      "input": "bills = [5, 10]",
+      "output": ""
+    },
+    {
+      "input": "bills = [5, 20]",
+      "output": ""
+    },
+    {
+      "input": "bills = [5, 5, 10]",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,727 @@
+{
+  "id": "daily_temperatures",
+  "title": "Daily Temperatures",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "description": "<p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> <code>i<sup>th</sup></code> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> temperatures = [73,74,75,71,69,72,76,73]\n<strong>Output:</strong> [1,1,4,2,1,1,0,0]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,40,50,60]\n<strong>Output:</strong> [1,1,1,0]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,60,90]\n<strong>Output:</strong> [1,1,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;=&nbsp;temperatures.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>30 &lt;=&nbsp;temperatures[i] &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Daily Temperatures' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <=\u00a0temperatures.length <= 105",
+    "30 <=\u00a0temperatures[i] <= 100"
+  ],
+  "hints": [
+    "If the temperature is say, 70 today, then in the future a warmer temperature must be either 71, 72, 73, ..., 99, or 100.  We could remember when all of them occur next."
+  ],
+  "method": {
+    "name": "dailyTemperatures",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "temperatures",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 739,
+      "title": "daily-temperatures",
+      "params": {
+        "temperatures": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().dailyTemperatures({temperatures})",
+        "rust": "Solution::daily_temperatures({temperatures})",
+        "python3": "Solution().dailyTemperatures({temperatures})",
+        "python2": "Solution().dailyTemperatures({temperatures})",
+        "ruby": "daily_temperatures({temperatures})",
+        "java": "new Solution().dailyTemperatures({temperatures})",
+        "csharp": "new Solution().DailyTemperatures({temperatures})",
+        "kotlin": "Solution().dailyTemperatures({temperatures})",
+        "go": "dailyTemperatures({temperatures})",
+        "dart": "Solution().dailyTemperatures({temperatures})",
+        "swift": "Solution().dailyTemperatures({temperatures})",
+        "typescript": "dailyTemperatures({temperatures})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(temperatures, {result})",
+        "checker": "class Checker(object):\n    def check(self, temperatures, result):\n        if not isinstance(result, list):\n            return False\n        if len(result) != len(temperatures):\n            return False\n        for value in result:\n            if not isinstance(value, int):\n                return False\n            if value < 0:\n                return False\n        n = len(temperatures)\n        nearest = [None] * 101\n        for i in range(n - 1, -1, -1):\n            cur = temperatures[i]\n            best = None\n            for warmer in range(cur + 1, 101):\n                idx = nearest[warmer]\n                if idx is not None and (best is None or idx < best):\n                    best = idx\n            expected = 0 if best is None else best - i\n            if result[i] != expected:\n                return False\n            nearest[cur] = i\n        return True\n"
+      }
+    },
+    "seed": 739,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "temperatures": [
+            73,
+            74,
+            75,
+            71,
+            69,
+            72,
+            76,
+            73
+          ]
+        },
+        "out": [
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "temperatures": [
+            30,
+            40,
+            50,
+            60
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "temperatures": [
+            30,
+            60,
+            90
+          ]
+        },
+        "out": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "single_day_min",
+        "in": {
+          "temperatures": [
+            30
+          ]
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "single_day_max",
+        "in": {
+          "temperatures": [
+            100
+          ]
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "two_increasing",
+        "in": {
+          "temperatures": [
+            30,
+            31
+          ]
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "two_decreasing",
+        "in": {
+          "temperatures": [
+            31,
+            30
+          ]
+        },
+        "out": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "all_equal_small",
+        "in": {
+          "temperatures": [
+            70,
+            70,
+            70
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "strictly_increasing_five",
+        "in": {
+          "temperatures": [
+            30,
+            40,
+            50,
+            60,
+            70
+          ]
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "strictly_decreasing_five",
+        "in": {
+          "temperatures": [
+            70,
+            60,
+            50,
+            40,
+            30
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "alternating_peaks",
+        "in": {
+          "temperatures": [
+            70,
+            71,
+            70,
+            71,
+            70
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "plateau_then_rise",
+        "in": {
+          "temperatures": [
+            65,
+            65,
+            65,
+            66
+          ]
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "plateau_after_rise",
+        "in": {
+          "temperatures": [
+            65,
+            66,
+            66,
+            66
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "warmer_far_future",
+        "in": {
+          "temperatures": [
+            90,
+            80,
+            70,
+            60,
+            95
+          ]
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "late_warmer_after_plateau",
+        "in": {
+          "temperatures": [
+            73,
+            72,
+            72,
+            72,
+            74
+          ]
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "many_local_peaks",
+        "in": {
+          "temperatures": [
+            75,
+            71,
+            74,
+            72,
+            76
+          ]
+        },
+        "out": [
+          4,
+          1,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "min_max_zigzag",
+        "in": {
+          "temperatures": [
+            30,
+            100,
+            30,
+            100,
+            30
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "temperatures": [
+            60,
+            61,
+            60,
+            61,
+            60,
+            61
+          ]
+        },
+        "out": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "answer_gt_one",
+        "in": {
+          "temperatures": [
+            60,
+            58,
+            59,
+            57,
+            61
+          ]
+        },
+        "out": [
+          4,
+          1,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "no_warmer_after_peak",
+        "in": {
+          "temperatures": [
+            60,
+            62,
+            61,
+            60
+          ]
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "all_maximum",
+        "in": {
+          "temperatures": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "all_minimum",
+        "in": {
+          "temperatures": [
+            30,
+            30,
+            30,
+            30
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "repeated_min_before_max",
+        "in": {
+          "temperatures": [
+            30,
+            30,
+            30,
+            100
+          ]
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "max_then_mins",
+        "in": {
+          "temperatures": [
+            100,
+            30,
+            30,
+            30
+          ]
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "mixed_valley",
+        "in": {
+          "temperatures": [
+            80,
+            79,
+            78,
+            79,
+            80
+          ]
+        },
+        "out": [
+          0,
+          3,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "oscillating_window",
+        "in": {
+          "temperatures": [
+            70,
+            69,
+            70,
+            69,
+            70,
+            69,
+            71
+          ]
+        },
+        "out": [
+          6,
+          1,
+          4,
+          1,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "long_plateau_middle",
+        "in": {
+          "temperatures": [
+            68,
+            70,
+            70,
+            70,
+            69,
+            71
+          ]
+        },
+        "out": [
+          1,
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "boundary_mix",
+        "in": {
+          "temperatures": [
+            30,
+            31,
+            30,
+            31,
+            32
+          ]
+        },
+        "out": [
+          1,
+          3,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "max_at_end_only",
+        "in": {
+          "temperatures": [
+            99,
+            98,
+            97,
+            100
+          ]
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "sparse_warmers",
+        "in": {
+          "temperatures": [
+            65,
+            64,
+            63,
+            70,
+            62,
+            71
+          ]
+        },
+        "out": [
+          3,
+          2,
+          1,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "generated_len_1",
+        "in": {
+          "temperatures": {
+            "gen": "array",
+            "len": 1,
+            "of": {
+              "gen": "int",
+              "min": 30,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_8",
+        "in": {
+          "temperatures": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": 30,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_256",
+        "in": {
+          "temperatures": {
+            "gen": "array",
+            "len": 256,
+            "of": {
+              "gen": "int",
+              "min": 30,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_large_50000",
+        "in": {
+          "temperatures": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": 30,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_large_100000",
+        "in": {
+          "temperatures": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": 30,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "temperatures = [73, 74, 75, 71, 69, 72, 76, 73]",
+      "output": "[1, 1, 4, 2, 1, 1, 0, 0]"
+    },
+    {
+      "input": "temperatures = [30, 40, 50, 60]",
+      "output": "[1, 1, 1, 0]"
+    },
+    {
+      "input": "temperatures = [30, 60, 90]",
+      "output": "[1, 1, 0]"
+    },
+    {
+      "input": "temperatures = [30]",
+      "output": "[0]"
+    },
+    {
+      "input": "temperatures = [100]",
+      "output": "[0]"
+    },
+    {
+      "input": "temperatures = [30, 31]",
+      "output": "[1, 0]"
+    },
+    {
+      "input": "temperatures = [31, 30]",
+      "output": "[0, 0]"
+    },
+    {
+      "input": "temperatures = [70, 70, 70]",
+      "output": "[0, 0, 0]"
+    }
+  ]
+}

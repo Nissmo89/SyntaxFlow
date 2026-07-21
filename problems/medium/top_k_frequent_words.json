@@ -1,0 +1,401 @@
+{
+  "id": "top_k_frequent_words",
+  "title": "Top K Frequent Words",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting"
+  ],
+  "description": "<p>Given an array of strings <code>words</code> and an integer <code>k</code>, return <em>the </em><code>k</code><em> most frequent strings</em>.</p>\n\n<p>Return the answer <strong>sorted</strong> by <strong>the frequency</strong> from highest to lowest. Sort the words with the same frequency by their <strong>lexicographical order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;i&quot;,&quot;love&quot;,&quot;leetcode&quot;,&quot;i&quot;,&quot;love&quot;,&quot;coding&quot;], k = 2\n<strong>Output:</strong> [&quot;i&quot;,&quot;love&quot;]\n<strong>Explanation:</strong> &quot;i&quot; and &quot;love&quot; are the two most frequent words.\nNote that &quot;i&quot; comes before &quot;love&quot; due to a lower alphabetical order.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;the&quot;,&quot;day&quot;,&quot;is&quot;,&quot;sunny&quot;,&quot;the&quot;,&quot;the&quot;,&quot;the&quot;,&quot;sunny&quot;,&quot;is&quot;,&quot;is&quot;], k = 4\n<strong>Output:</strong> [&quot;the&quot;,&quot;is&quot;,&quot;sunny&quot;,&quot;day&quot;]\n<strong>Explanation:</strong> &quot;the&quot;, &quot;is&quot;, &quot;sunny&quot; and &quot;day&quot; are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 500</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 10</code></li>\n\t<li><code>words[i]</code> consists of lowercase English letters.</li>\n\t<li><code>k</code> is in the range <code>[1, The number of <strong>unique</strong> words[i]]</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow-up:</strong> Could you solve it in <code>O(n log(k))</code> time and <code>O(n)</code> extra space?</p>\n",
+  "task": "Solve the 'Top K Frequent Words' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= words.length <= 500",
+    "1 <= words[i].length <= 10",
+    "words[i] consists of lowercase English letters.",
+    "k is in the range [1, The number of unique words[i]]"
+  ],
+  "hints": [],
+  "method": {
+    "name": "topKFrequent",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 692,
+      "title": "top-k-frequent-words",
+      "params": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().topKFrequent({words}, {k})",
+        "rust": "Solution::top_k_frequent({words}, {k})",
+        "python3": "Solution().topKFrequent({words}, {k})",
+        "python2": "Solution().topKFrequent({words}, {k})",
+        "ruby": "top_k_frequent({words}, {k})",
+        "java": "new Solution().topKFrequent({words}, {k})",
+        "csharp": "new Solution().TopKFrequent({words}, {k})",
+        "kotlin": "Solution().topKFrequent({words}, {k})",
+        "go": "topKFrequent({words}, {k})",
+        "dart": "Solution().topKFrequent({words}, {k})",
+        "swift": "Solution().topKFrequent({words}, {k})",
+        "typescript": "topKFrequent({words}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().topKFrequent(words, k, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def topKFrequent(self, words, k, result):\n        if not isinstance(result, list) or len(result) != k:\n            return False\n        if any(not isinstance(word, str) for word in result):\n            return False\n        counter = Counter(words)\n        expected = sorted(counter.items(), key=lambda item: (-item[1], item[0]))\n        return result == [word for word, _ in expected[:k]]\n"
+      }
+    },
+    "seed": 692,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "words": [
+            "i",
+            "love",
+            "leetcode",
+            "i",
+            "love",
+            "coding"
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "example2",
+        "in": {
+          "words": [
+            "the",
+            "day",
+            "is",
+            "sunny",
+            "the",
+            "the",
+            "the",
+            "sunny",
+            "is",
+            "is"
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "single_word",
+        "in": {
+          "words": [
+            "a"
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "all_same",
+        "in": {
+          "words": [
+            "z",
+            "z",
+            "z",
+            "z"
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "tie_two_words",
+        "in": {
+          "words": [
+            "b",
+            "a"
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "unique_k1",
+        "in": {
+          "words": [
+            "c",
+            "b",
+            "a"
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "unique_all",
+        "in": {
+          "words": [
+            "c",
+            "b",
+            "a"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "frequency_gap",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "a",
+            "a",
+            "b"
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "three_way_tie",
+        "in": {
+          "words": [
+            "dog",
+            "cat",
+            "bird",
+            "dog",
+            "cat",
+            "bird"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "prefixes",
+        "in": {
+          "words": [
+            "app",
+            "apple",
+            "app",
+            "apply",
+            "apple",
+            "apply",
+            "ape"
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "sample_with_singletons",
+        "in": {
+          "words": [
+            "aa",
+            "bb",
+            "cc",
+            "aa",
+            "bb",
+            "dd",
+            "ee"
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "mixed_frequencies",
+        "in": {
+          "words": [
+            "i",
+            "love",
+            "coding",
+            "i",
+            "coding",
+            "coding",
+            "love",
+            "a"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "all_equal_freq",
+        "in": {
+          "words": [
+            "e",
+            "d",
+            "c",
+            "b",
+            "a",
+            "e",
+            "d",
+            "c",
+            "b",
+            "a"
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "sorted_by_count_then_lex",
+        "in": {
+          "words": [
+            "x",
+            "x",
+            "y",
+            "y",
+            "z",
+            "z",
+            "z"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "top_four",
+        "in": {
+          "words": [
+            "ff",
+            "aa",
+            "dd",
+            "bb",
+            "aa",
+            "dd",
+            "ff",
+            "ff",
+            "ee",
+            "cc"
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "k_equals_unique",
+        "in": {
+          "words": [
+            "one",
+            "two",
+            "two",
+            "three",
+            "three",
+            "three"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "long_words",
+        "in": {
+          "words": [
+            "abcdefghij",
+            "abcdefghik",
+            "abcdefghij",
+            "abcdefghik",
+            "abcdefghil"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "one_double_many_single",
+        "in": {
+          "words": [
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "aa"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "alternating_pairs",
+        "in": {
+          "words": [
+            "red",
+            "blue",
+            "red",
+            "green",
+            "blue",
+            "green"
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "all_single_sorted",
+        "in": {
+          "words": [
+            "kiwi",
+            "pear",
+            "apple",
+            "mango"
+          ],
+          "k": 4
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = [\"i\", \"love\", \"leetcode\", \"i\", \"love\", \"coding\"]\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "words = [\"the\", \"day\", \"is\", \"sunny\", \"the\", \"the\", \"the\", \"sunny\", \"is\", \"is\"]\nk = 4",
+      "output": ""
+    },
+    {
+      "input": "words = [\"a\"]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "words = [\"z\", \"z\", \"z\", \"z\"]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "words = [\"b\", \"a\"]\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "words = [\"c\", \"b\", \"a\"]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "words = [\"c\", \"b\", \"a\"]\nk = 3",
+      "output": ""
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"a\", \"a\", \"b\"]\nk = 2",
+      "output": ""
+    }
+  ]
+}

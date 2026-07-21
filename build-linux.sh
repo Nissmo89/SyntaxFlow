@@ -68,30 +68,12 @@ else
     echo "  [OK] QScintilla built."
 fi
 
-# ---- Step 2: Ensure TinyCC Linux libs are built ----
+# ---- Step 2: Skip TinyCC (Removed from CMake) ----
 echo ""
 echo "============================================================"
-echo " Step 2: TinyCC"
+echo " Step 2: TinyCC (SKIPPED — Removed from CMake)"
 echo "============================================================"
-
-TINYCC_DIR="$SCRIPT_DIR/libs/tinycc"
-TINYCC_LIB="$TINYCC_DIR/linux/libtcc.a"
-
-if [ -f "$TINYCC_LIB" ]; then
-    echo "  [SKIP] libtcc.a already exists at libs/tinycc/linux/"
-else
-    echo "  Building TinyCC from source..."
-    pushd "$TINYCC_DIR" > /dev/null
-    ./configure --prefix="$TINYCC_DIR/linux" \
-                --sysincludepaths="$TINYCC_DIR/include"
-    make libtcc.a libtcc1.a -j"$(nproc)"
-    mkdir -p linux
-    cp libtcc.a libtcc1.a \
-       runmain.o bt-exe.o bt-log.o bcheck.o \
-       linux/ 2>/dev/null || true
-    popd > /dev/null
-    echo "  [OK] TinyCC built."
-fi
+echo "  [SKIP] TinyCC is disabled."
 
 # ---- Step 3: CMake Configure ----
 echo ""

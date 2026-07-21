@@ -1,0 +1,318 @@
+{
+  "id": "recover_a_tree_from_preorder_traversal",
+  "title": "Recover a Tree From Preorder Traversal",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>We run a&nbsp;preorder&nbsp;depth-first search (DFS) on the <code>root</code> of a binary tree.</p>\n\n<p>At each node in this traversal, we output <code>D</code> dashes (where <code>D</code> is the depth of this node), then we output the value of this node.&nbsp; If the depth of a node is <code>D</code>, the depth of its immediate child is <code>D + 1</code>.&nbsp; The depth of the <code>root</code> node is <code>0</code>.</p>\n\n<p>If a node has only one child, that child is guaranteed to be <strong>the left child</strong>.</p>\n\n<p>Given the output <code>traversal</code> of this traversal, recover the tree and return <em>its</em> <code>root</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/09/10/recover_tree_ex1.png\" style=\"width: 423px; height: 200px;\" />\n<pre>\n<strong>Input:</strong> traversal = &quot;1-2--3--4-5--6--7&quot;\n<strong>Output:</strong> [1,2,5,3,4,6,7]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/09/10/recover_tree_ex2.png\" style=\"width: 432px; height: 250px;\" />\n<pre>\n<strong>Input:</strong> traversal = &quot;1-2--3---4-5--6---7&quot;\n<strong>Output:</strong> [1,2,5,3,null,6,null,4,null,7]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/09/10/recover_tree_ex3.png\" style=\"width: 305px; height: 250px;\" />\n<pre>\n<strong>Input:</strong> traversal = &quot;1-401--349---90--88&quot;\n<strong>Output:</strong> [1,401,null,349,88,90]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the original tree is in the range <code>[1, 1000]</code>.</li>\n\t<li><code>1 &lt;= Node.val &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Recover a Tree From Preorder Traversal' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the original tree is in the range [1, 1000].",
+    "1 <= Node.val <= 109"
+  ],
+  "hints": [
+    "Do an iterative depth first search, parsing dashes from the string to inform you how to link the nodes together."
+  ],
+  "method": {
+    "name": "recoverFromPreorder",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "traversal",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1028,
+      "title": "recover-a-tree-from-preorder-traversal",
+      "params": {
+        "traversal": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "treeNodeToArray(Solution().recoverFromPreorder({traversal}))",
+        "rust": "TreeNode::tree_node_to_array(Solution::recover_from_preorder({traversal}))",
+        "python3": "tree_node_to_array(Solution().recoverFromPreorder({traversal}))",
+        "python2": "tree_node_to_array(Solution().recoverFromPreorder({traversal}))",
+        "ruby": "tree_node_to_array(recover_from_preorder({traversal}))",
+        "java": "TreeNode.treeNodeToArray(new Solution().recoverFromPreorder({traversal}))",
+        "csharp": "TreeNode.TreeNodeToArray(new Solution().RecoverFromPreorder({traversal}))",
+        "kotlin": "treeNodeToArray(Solution().recoverFromPreorder({traversal}))",
+        "go": "treeNodeToArray(recoverFromPreorder({traversal}))",
+        "dart": "tree_node_to_array(Solution().recoverFromPreorder({traversal}))",
+        "swift": "tree_node_to_array(Solution().recoverFromPreorder({traversal}))",
+        "typescript": "treeNodeToArray(recoverFromPreorder({traversal}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().recoverFromPreorder(traversal, {result})",
+        "checker": "class Checker:\n    def _build(self, values):\n        if not values:\n            return None\n        nodes = [None if v is None else TreeNode(v) for v in values]\n        kids = nodes[::-1]\n        root = kids.pop()\n        for node in nodes:\n            if node is not None:\n                if kids:\n                    node.left = kids.pop()\n                if kids:\n                    node.right = kids.pop()\n        return root\n\n    def _serialize(self, node, depth=0):\n        if node is None:\n            return []\n        return [\"-\" * depth + str(node.val)] + self._serialize(node.left, depth + 1) + self._serialize(node.right, depth + 1)\n\n    def recoverFromPreorder(self, traversal, result):\n        if not isinstance(result, list):\n            return False\n        root = self._build(result)\n        return \"\".join(self._serialize(root)) == traversal\n"
+      }
+    },
+    "seed": 1028,
+    "tests": [
+      {
+        "name": "single_node",
+        "in": {
+          "traversal": "1"
+        }
+      },
+      {
+        "name": "left_child",
+        "in": {
+          "traversal": "1-2"
+        }
+      },
+      {
+        "name": "right_child",
+        "in": {
+          "traversal": "1-2-3"
+        }
+      },
+      {
+        "name": "example_1",
+        "in": {
+          "traversal": "1-2--3--4-5--6--7"
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "traversal": "1-2--3---4-5--6---7"
+        }
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "traversal": "1-401--349---90--88"
+        }
+      },
+      {
+        "name": "two_level_full",
+        "in": {
+          "traversal": "10-7--4--6-15--12--20"
+        }
+      },
+      {
+        "name": "deep_left",
+        "in": {
+          "traversal": "1-2--3---4----5"
+        }
+      },
+      {
+        "name": "deep_rightish",
+        "in": {
+          "traversal": "1-2--3-4--5---6"
+        }
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "traversal": "8-3--1--6---4---7-10--9--14"
+        }
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "traversal": "5-4--3---2----1-8--7---6"
+        }
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "traversal": "7-2--1--3-9--8--10"
+        }
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "traversal": "15-6--4---2----1--5-18--16---17--20"
+        }
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "traversal": "100-50--25---12----6-150--125---110"
+        }
+      },
+      {
+        "name": "balanced_1",
+        "in": {
+          "traversal": "4-2--1--3-6--5--7"
+        }
+      },
+      {
+        "name": "balanced_2",
+        "in": {
+          "traversal": "12-6--3--9-18--15--21"
+        }
+      },
+      {
+        "name": "unbalanced_1",
+        "in": {
+          "traversal": "1-2--4---8----16-3"
+        }
+      },
+      {
+        "name": "unbalanced_2",
+        "in": {
+          "traversal": "30-20--10---5----2-25"
+        }
+      },
+      {
+        "name": "small_1",
+        "in": {
+          "traversal": "2-1-3"
+        }
+      },
+      {
+        "name": "small_2",
+        "in": {
+          "traversal": "2-1--0"
+        }
+      },
+      {
+        "name": "small_3",
+        "in": {
+          "traversal": "9-8--7---6"
+        }
+      },
+      {
+        "name": "small_4",
+        "in": {
+          "traversal": "9-10--11---12"
+        }
+      },
+      {
+        "name": "small_5",
+        "in": {
+          "traversal": "1-10--100---1000"
+        }
+      },
+      {
+        "name": "small_6",
+        "in": {
+          "traversal": "8-4--2--6-12--10--14"
+        }
+      },
+      {
+        "name": "small_7",
+        "in": {
+          "traversal": "3-1--0-2"
+        }
+      },
+      {
+        "name": "small_8",
+        "in": {
+          "traversal": "6-3--1--4-9--7--10"
+        }
+      },
+      {
+        "name": "small_9",
+        "in": {
+          "traversal": "50-40--30---20-60"
+        }
+      },
+      {
+        "name": "small_10",
+        "in": {
+          "traversal": "42-21--11--31-63--52--73"
+        }
+      },
+      {
+        "name": "small_11",
+        "in": {
+          "traversal": "7-3--2---1-5"
+        }
+      },
+      {
+        "name": "small_12",
+        "in": {
+          "traversal": "13-8--5--10-17--15--19"
+        }
+      },
+      {
+        "name": "small_13",
+        "in": {
+          "traversal": "5-2--1-4--3"
+        }
+      },
+      {
+        "name": "small_14",
+        "in": {
+          "traversal": "11-7--4---2-9"
+        }
+      },
+      {
+        "name": "small_15",
+        "in": {
+          "traversal": "24-12--6--18-36--30--42"
+        }
+      },
+      {
+        "name": "small_16",
+        "in": {
+          "traversal": "4-1--0-2--3"
+        }
+      },
+      {
+        "name": "extra_balanced_4",
+        "in": {
+          "traversal": "2-1--3-4--5"
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "traversal = \"1\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-2\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-2-3\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-2--3--4-5--6--7\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-2--3---4-5--6---7\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-401--349---90--88\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"10-7--4--6-15--12--20\"",
+      "output": ""
+    },
+    {
+      "input": "traversal = \"1-2--3---4----5\"",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "id": "broken_calculator",
+  "title": "Broken Calculator",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "description": "<p>There is a broken calculator that has the integer <code>startValue</code> on its display initially. In one operation, you can:</p>\n\n<ul>\n\t<li>multiply the number on display by <code>2</code>, or</li>\n\t<li>subtract <code>1</code> from the number on display.</li>\n</ul>\n\n<p>Given two integers <code>startValue</code> and <code>target</code>, return <em>the minimum number of operations needed to display </em><code>target</code><em> on the calculator</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> startValue = 2, target = 3\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Use double operation and then decrement operation {2 -&gt; 4 -&gt; 3}.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> startValue = 5, target = 8\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Use decrement and then double {5 -&gt; 4 -&gt; 8}.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> startValue = 3, target = 10\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Use double, decrement and double {3 -&gt; 6 -&gt; 5 -&gt; 10}.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= startValue, target &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Broken Calculator' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= startValue, target <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "brokenCalc",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "startValue",
+        "type": "int"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 991,
+      "title": "broken-calculator",
+      "params": {
+        "startValue": {
+          "type": "int"
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().brokenCalc({startValue}, {target})",
+        "rust": "Solution::broken_calc({startValue}, {target})",
+        "python3": "Solution().brokenCalc({startValue}, {target})",
+        "python2": "Solution().brokenCalc({startValue}, {target})",
+        "ruby": "broken_calc({startValue}, {target})",
+        "java": "new Solution().brokenCalc({startValue}, {target})",
+        "csharp": "new Solution().BrokenCalc({startValue}, {target})",
+        "kotlin": "Solution().brokenCalc({startValue}, {target})",
+        "go": "brokenCalc({startValue}, {target})",
+        "dart": "Solution().brokenCalc({startValue}, {target})",
+        "swift": "Solution().brokenCalc({startValue}, {target})",
+        "typescript": "brokenCalc({startValue}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 991,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "startValue": 89,
+          "target": 313
+        },
+        "out": 14
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "startValue": 3,
+          "target": 384
+        },
+        "out": 7
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "startValue": 41,
+          "target": 500
+        },
+        "out": 15
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "startValue": 8,
+          "target": 325
+        },
+        "out": 13
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "startValue": 54,
+          "target": 200
+        },
+        "out": 6
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "startValue": 17,
+          "target": 26
+        },
+        "out": 5
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "startValue": 9,
+          "target": 450
+        },
+        "out": 12
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "startValue": 15,
+          "target": 172
+        },
+        "out": 9
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "startValue": 49,
+          "target": 67
+        },
+        "out": 17
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "startValue": 69,
+          "target": 136
+        },
+        "out": 2
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "startValue": 8,
+          "target": 173
+        },
+        "out": 10
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "startValue": 71,
+          "target": 279
+        },
+        "out": 4
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "startValue": 75,
+          "target": 482
+        },
+        "out": 19
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "startValue": 21,
+          "target": 85
+        },
+        "out": 15
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "startValue": 2,
+          "target": 94
+        },
+        "out": 8
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "startValue": 28,
+          "target": 367
+        },
+        "out": 10
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "startValue": 16,
+          "target": 167
+        },
+        "out": 11
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "startValue": 34,
+          "target": 324
+        },
+        "out": 19
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "startValue": 86,
+          "target": 403
+        },
+        "out": 40
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "startValue": 18,
+          "target": 105
+        },
+        "out": 10
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "startValue": 79,
+          "target": 168
+        },
+        "out": 39
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "startValue": 79,
+          "target": 95
+        },
+        "out": 33
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "startValue": 74,
+          "target": 370
+        },
+        "out": 32
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "startValue": 22,
+          "target": 492
+        },
+        "out": 13
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "startValue": 40,
+          "target": 98
+        },
+        "out": 18
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "startValue": 34,
+          "target": 185
+        },
+        "out": 16
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "startValue": 51,
+          "target": 86
+        },
+        "out": 9
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "startValue": 10,
+          "target": 485
+        },
+        "out": 12
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "startValue": 79,
+          "target": 328
+        },
+        "out": 41
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "startValue": 91,
+          "target": 177
+        },
+        "out": 4
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "startValue": 29,
+          "target": 132
+        },
+        "out": 16
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "startValue": 56,
+          "target": 348
+        },
+        "out": 16
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "startValue": 55,
+          "target": 11
+        },
+        "out": 44
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "startValue": 63,
+          "target": 119
+        },
+        "out": 5
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "startValue": 62,
+          "target": 327
+        },
+        "out": 25
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "startValue = 89\ntarget = 313",
+      "output": "14"
+    },
+    {
+      "input": "startValue = 3\ntarget = 384",
+      "output": "7"
+    },
+    {
+      "input": "startValue = 41\ntarget = 500",
+      "output": "15"
+    },
+    {
+      "input": "startValue = 8\ntarget = 325",
+      "output": "13"
+    },
+    {
+      "input": "startValue = 54\ntarget = 200",
+      "output": "6"
+    },
+    {
+      "input": "startValue = 17\ntarget = 26",
+      "output": "5"
+    },
+    {
+      "input": "startValue = 9\ntarget = 450",
+      "output": "12"
+    },
+    {
+      "input": "startValue = 15\ntarget = 172",
+      "output": "9"
+    }
+  ]
+}

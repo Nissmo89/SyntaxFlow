@@ -1,0 +1,615 @@
+{
+  "id": "bag_of_tokens",
+  "title": "Bag of Tokens",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "description": "<p>You start with an initial <strong>power</strong> of <code>power</code>, an initial <strong>score</strong> of <code>0</code>, and a bag of tokens given as an integer array <code>tokens</code>, where each&nbsp;<code>tokens[i]</code> denotes the value of token<em><sub>i</sub></em>.</p>\n\n<p>Your goal is to <strong>maximize</strong> the total <strong>score</strong> by strategically playing these tokens. In one move, you can play an <strong>unplayed</strong> token in one of the two ways (but not both for the same token):</p>\n\n<ul>\n\t<li><strong>Face-up</strong>: If your current power is <strong>at least</strong> <code>tokens[i]</code>, you may play token<em><sub>i</sub></em>, losing <code>tokens[i]</code> power and gaining <code>1</code> score.</li>\n\t<li><strong>Face-down</strong>: If your current score is <strong>at least</strong> <code>1</code>, you may play token<em><sub>i</sub></em>, gaining <code>tokens[i]</code> power and losing <code>1</code> score.</li>\n</ul>\n\n<p>Return <em>the <strong>maximum</strong> possible score you can achieve after playing <strong>any</strong> number of tokens</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\" style=\"\n    border-color: var(--border-tertiary);\n    border-left-width: 2px;\n    color: var(--text-secondary);\n    font-size: .875rem;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    overflow: visible;\n    padding-left: 1rem;\n\">\n<p><strong>Input:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">tokens = [100], power = 50</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">0</span></p>\n\n<p><strong>Explanation</strong><strong>:</strong> Since your score is <code>0</code> initially, you cannot play the token face-down. You also cannot play it face-up since your power (<code>50</code>) is less than <code>tokens[0]</code>&nbsp;(<code>100</code>).</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\" style=\"\n    border-color: var(--border-tertiary);\n    border-left-width: 2px;\n    color: var(--text-secondary);\n    font-size: .875rem;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    overflow: visible;\n    padding-left: 1rem;\n\">\n<p><strong>Input:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">tokens = [200,100], power = 150</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">1</span></p>\n\n<p><strong>Explanation:</strong> Play token<em><sub>1</sub></em> (<code>100</code>) face-up, reducing your power to&nbsp;<code>50</code> and increasing your score to&nbsp;<code>1</code>.</p>\n\n<p>There is no need to play token<em><sub>0</sub></em>, since you cannot play it face-up to add to your score. The maximum score achievable is <code>1</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\" style=\"\n    border-color: var(--border-tertiary);\n    border-left-width: 2px;\n    color: var(--text-secondary);\n    font-size: .875rem;\n    margin-bottom: 1rem;\n    margin-top: 1rem;\n    overflow: visible;\n    padding-left: 1rem;\n\">\n<p><strong>Input:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">tokens = [100,200,300,400], power = 200</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\" style=\"\n    font-family: Menlo,sans-serif;\n    font-size: 0.85rem;\n\">2</span></p>\n\n<p><strong>Explanation:</strong> Play the tokens in this order to get a score of <code>2</code>:</p>\n\n<ol>\n\t<li>Play token<em><sub>0</sub></em> (<code>100</code>) face-up, reducing power to <code>100</code> and increasing score to <code>1</code>.</li>\n\t<li>Play token<em><sub>3</sub></em> (<code>400</code>) face-down, increasing power to <code>500</code> and reducing score to <code>0</code>.</li>\n\t<li>Play token<em><sub>1</sub></em> (<code>200</code>) face-up, reducing power to <code>300</code> and increasing score to <code>1</code>.</li>\n\t<li>Play token<em><sub>2</sub></em> (<code>300</code>) face-up, reducing power to <code>0</code> and increasing score to <code>2</code>.</li>\n</ol>\n\n<p><span style=\"color: var(--text-secondary); font-size: 0.875rem;\">The maximum score achievable is </span><code style=\"color: var(--text-secondary); font-size: 0.875rem;\">2</code><span style=\"color: var(--text-secondary); font-size: 0.875rem;\">.</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= tokens.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= tokens[i], power &lt; 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Bag of Tokens' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= tokens.length <= 1000",
+    "0 <= tokens[i], power < 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "bagOfTokensScore",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "tokens",
+        "type": "array"
+      },
+      {
+        "name": "power",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 948,
+      "title": "bag-of-tokens",
+      "params": {
+        "tokens": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "power": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().bagOfTokensScore({tokens}, {power})",
+        "rust": "Solution::bag_of_tokens_score({tokens}, {power})",
+        "python3": "Solution().bagOfTokensScore({tokens}, {power})",
+        "python2": "Solution().bagOfTokensScore({tokens}, {power})",
+        "ruby": "bag_of_tokens_score({tokens}, {power})",
+        "java": "new Solution().bagOfTokensScore({tokens}, {power})",
+        "csharp": "new Solution().BagOfTokensScore({tokens}, {power})",
+        "kotlin": "Solution().bagOfTokensScore({tokens}, {power})",
+        "go": "bagOfTokensScore({tokens}, {power})",
+        "dart": "Solution().bagOfTokensScore({tokens}, {power})",
+        "swift": "Solution().bagOfTokensScore({tokens}, {power})",
+        "typescript": "bagOfTokensScore({tokens}, {power})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 948,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "tokens": [
+            31,
+            66,
+            78,
+            112,
+            141,
+            226,
+            228,
+            243,
+            282
+          ],
+          "power": 204
+        },
+        "out": 4
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "tokens": [
+            103,
+            187,
+            235,
+            270
+          ],
+          "power": 306
+        },
+        "out": 2
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "tokens": [
+            13
+          ],
+          "power": 166
+        },
+        "out": 1
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "tokens": [
+            41,
+            66,
+            162,
+            186,
+            226,
+            269,
+            288
+          ],
+          "power": 98
+        },
+        "out": 2
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "tokens": [
+            19,
+            32,
+            37,
+            91,
+            105,
+            106,
+            185,
+            217,
+            248
+          ],
+          "power": 278
+        },
+        "out": 5
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "tokens": [
+            40,
+            43,
+            66,
+            70,
+            175,
+            197,
+            213,
+            256
+          ],
+          "power": 158
+        },
+        "out": 4
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "tokens": [
+            18,
+            41,
+            202,
+            223,
+            246
+          ],
+          "power": 32
+        },
+        "out": 2
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "tokens": [
+            141,
+            272
+          ],
+          "power": 75
+        },
+        "out": 0
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "tokens": [
+            0,
+            12,
+            18,
+            26,
+            233,
+            261,
+            282,
+            293
+          ],
+          "power": 367
+        },
+        "out": 5
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "tokens": [
+            37,
+            38,
+            57,
+            104,
+            131,
+            162,
+            183,
+            185,
+            199,
+            202
+          ],
+          "power": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "tokens": [
+            153,
+            195
+          ],
+          "power": 338
+        },
+        "out": 1
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "tokens": [
+            4,
+            17,
+            89,
+            172,
+            233
+          ],
+          "power": 68
+        },
+        "out": 3
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "tokens": [
+            15,
+            117,
+            138,
+            169,
+            201,
+            215
+          ],
+          "power": 213
+        },
+        "out": 2
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "tokens": [
+            15,
+            89,
+            109,
+            146,
+            157,
+            188,
+            208,
+            229,
+            252
+          ],
+          "power": 180
+        },
+        "out": 3
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "tokens": [
+            18,
+            26,
+            174,
+            229,
+            233,
+            242,
+            277
+          ],
+          "power": 266
+        },
+        "out": 3
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "tokens": [
+            33,
+            141,
+            198,
+            226,
+            289
+          ],
+          "power": 334
+        },
+        "out": 3
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "tokens": [
+            64,
+            88,
+            212,
+            222
+          ],
+          "power": 165
+        },
+        "out": 2
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "tokens": [
+            3
+          ],
+          "power": 72
+        },
+        "out": 1
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "tokens": [
+            204,
+            300
+          ],
+          "power": 132
+        },
+        "out": 0
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "tokens": [
+            59
+          ],
+          "power": 339
+        },
+        "out": 1
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "tokens": [
+            208,
+            236,
+            242,
+            293
+          ],
+          "power": 394
+        },
+        "out": 2
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "tokens": [
+            42,
+            80,
+            140,
+            154,
+            177,
+            183,
+            196,
+            281
+          ],
+          "power": 158
+        },
+        "out": 3
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "tokens": [
+            235
+          ],
+          "power": 204
+        },
+        "out": 0
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "tokens": [
+            26,
+            172,
+            248,
+            258
+          ],
+          "power": 400
+        },
+        "out": 2
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "tokens": [
+            17,
+            55,
+            75,
+            124,
+            161,
+            188,
+            212,
+            297,
+            300
+          ],
+          "power": 47
+        },
+        "out": 4
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "tokens": [
+            3,
+            96,
+            214,
+            228,
+            252
+          ],
+          "power": 270
+        },
+        "out": 2
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "tokens": [
+            3,
+            98,
+            115,
+            143,
+            224,
+            248,
+            258
+          ],
+          "power": 311
+        },
+        "out": 3
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "tokens": [
+            24,
+            296,
+            297
+          ],
+          "power": 241
+        },
+        "out": 1
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "tokens": [
+            27,
+            225
+          ],
+          "power": 198
+        },
+        "out": 1
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "tokens": [
+            23,
+            63,
+            93,
+            140,
+            162,
+            182,
+            292
+          ],
+          "power": 202
+        },
+        "out": 4
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "tokens": [
+            4,
+            41,
+            147,
+            271
+          ],
+          "power": 176
+        },
+        "out": 2
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "tokens": [
+            59,
+            81,
+            97,
+            149,
+            210
+          ],
+          "power": 207
+        },
+        "out": 3
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "tokens": [
+            36,
+            199,
+            277
+          ],
+          "power": 77
+        },
+        "out": 1
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "tokens": [
+            46,
+            49,
+            68,
+            86,
+            107,
+            265,
+            296
+          ],
+          "power": 230
+        },
+        "out": 4
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "tokens": [
+            30,
+            85,
+            142,
+            170,
+            179,
+            272,
+            282,
+            285,
+            299,
+            300
+          ],
+          "power": 81
+        },
+        "out": 3
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "tokens = [31, 66, 78, 112, 141, 226, 228, 243, 282]\npower = 204",
+      "output": "4"
+    },
+    {
+      "input": "tokens = [103, 187, 235, 270]\npower = 306",
+      "output": "2"
+    },
+    {
+      "input": "tokens = [13]\npower = 166",
+      "output": "1"
+    },
+    {
+      "input": "tokens = [41, 66, 162, 186, 226, 269, 288]\npower = 98",
+      "output": "2"
+    },
+    {
+      "input": "tokens = [19, 32, 37, 91, 105, 106, 185, 217, 248]\npower = 278",
+      "output": "5"
+    },
+    {
+      "input": "tokens = [40, 43, 66, 70, 175, 197, 213, 256]\npower = 158",
+      "output": "4"
+    },
+    {
+      "input": "tokens = [18, 41, 202, 223, 246]\npower = 32",
+      "output": "2"
+    },
+    {
+      "input": "tokens = [141, 272]\npower = 75",
+      "output": "0"
+    }
+  ]
+}

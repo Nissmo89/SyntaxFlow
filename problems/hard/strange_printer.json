@@ -1,0 +1,377 @@
+{
+  "id": "strange_printer",
+  "title": "Strange Printer",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>There is a strange printer with the following two special properties:</p>\n\n<ul>\n\t<li>The printer can only print a sequence of <strong>the same character</strong> each time.</li>\n\t<li>At each turn, the printer can print new characters starting from and ending at any place and will cover the original existing characters.</li>\n</ul>\n\n<p>Given a string <code>s</code>, return <em>the minimum number of turns the printer needed to print it</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aaabbb&quot;\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Print &quot;aaa&quot; first and then print &quot;bbb&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aba&quot;\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Print &quot;aaa&quot; first and then print &quot;b&quot; from the second place of the string, which will cover the existing character &#39;a&#39;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> consists of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Strange Printer' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "strangePrinter",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 664,
+      "title": "strange-printer",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().strangePrinter({s})",
+        "rust": "Solution::strange_printer({s})",
+        "python3": "Solution().strangePrinter({s})",
+        "python2": "Solution().strangePrinter({s})",
+        "ruby": "strange_printer({s})",
+        "java": "new Solution().strangePrinter({s})",
+        "csharp": "new Solution().StrangePrinter({s})",
+        "kotlin": "Solution().strangePrinter({s})",
+        "go": "strangePrinter({s})",
+        "dart": "Solution().strangePrinter({s})",
+        "swift": "Solution().strangePrinter({s})",
+        "typescript": "strangePrinter({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().strangePrinter({s}, {result})",
+        "checker": "class Checker:\n    def strangePrinter(self, s, result):\n        if not isinstance(result, int):\n            return False\n        if result < 1:\n            return False\n        n = len(s)\n        if n == 0:\n            return result == 0\n        t = []\n        for ch in s:\n            if not t or t[-1] != ch:\n                t.append(ch)\n        m = len(t)\n        dp = [[0] * m for _ in range(m)]\n        for i in range(m):\n            dp[i][i] = 1\n        for length in range(2, m + 1):\n            for i in range(m - length + 1):\n                j = i + length - 1\n                best = dp[i][j - 1] + 1\n                for k in range(i, j):\n                    if t[k] == t[j]:\n                        left = dp[i][k]\n                        mid = 0 if k + 1 > j - 1 else dp[k + 1][j - 1]\n                        cand = left + mid\n                        if cand < best:\n                            best = cand\n                dp[i][j] = best\n        return result == dp[0][m - 1]\n"
+      }
+    },
+    "seed": 664,
+    "tests": [
+      {
+        "name": "single_a",
+        "in": {
+          "s": "a"
+        },
+        "out": 1
+      },
+      {
+        "name": "double_same",
+        "in": {
+          "s": "aa"
+        },
+        "out": 1
+      },
+      {
+        "name": "double_diff",
+        "in": {
+          "s": "ab"
+        },
+        "out": 2
+      },
+      {
+        "name": "aba",
+        "in": {
+          "s": "aba"
+        },
+        "out": 2
+      },
+      {
+        "name": "abc",
+        "in": {
+          "s": "abc"
+        },
+        "out": 3
+      },
+      {
+        "name": "abba",
+        "in": {
+          "s": "abba"
+        },
+        "out": 2
+      },
+      {
+        "name": "aaabbb",
+        "in": {
+          "s": "aaabbb"
+        },
+        "out": 2
+      },
+      {
+        "name": "abab",
+        "in": {
+          "s": "abab"
+        },
+        "out": 3
+      },
+      {
+        "name": "aabbaa",
+        "in": {
+          "s": "aabbaa"
+        },
+        "out": 2
+      },
+      {
+        "name": "abcabc",
+        "in": {
+          "s": "abcabc"
+        },
+        "out": 5
+      },
+      {
+        "name": "zzzz",
+        "in": {
+          "s": "zzzz"
+        },
+        "out": 1
+      },
+      {
+        "name": "azazaz",
+        "in": {
+          "s": "azazaz"
+        },
+        "out": 4
+      },
+      {
+        "name": "abcba",
+        "in": {
+          "s": "abcba"
+        },
+        "out": 3
+      },
+      {
+        "name": "abca",
+        "in": {
+          "s": "abca"
+        },
+        "out": 3
+      },
+      {
+        "name": "aabbcc",
+        "in": {
+          "s": "aabbcc"
+        },
+        "out": 3
+      },
+      {
+        "name": "bacab",
+        "in": {
+          "s": "bacab"
+        },
+        "out": 3
+      },
+      {
+        "name": "leetcode",
+        "in": {
+          "s": "leetcode"
+        },
+        "out": 6
+      },
+      {
+        "name": "ten_as",
+        "in": {
+          "s": "aaaaaaaaaa"
+        },
+        "out": 1
+      },
+      {
+        "name": "ten_bs",
+        "in": {
+          "s": "bbbbbbbbbb"
+        },
+        "out": 1
+      },
+      {
+        "name": "ten_alternating",
+        "in": {
+          "s": "ababababab"
+        },
+        "out": 6
+      },
+      {
+        "name": "repeated_abc",
+        "in": {
+          "s": "abcabcabcabc"
+        },
+        "out": 9
+      },
+      {
+        "name": "aaabbaaa",
+        "in": {
+          "s": "aaabbaaa"
+        },
+        "out": 2
+      },
+      {
+        "name": "baab",
+        "in": {
+          "s": "baab"
+        },
+        "out": 2
+      },
+      {
+        "name": "cabac",
+        "in": {
+          "s": "cabac"
+        },
+        "out": 3
+      },
+      {
+        "name": "abcdabcd",
+        "in": {
+          "s": "abcdabcd"
+        },
+        "out": 7
+      },
+      {
+        "name": "aabbbaaa",
+        "in": {
+          "s": "aabbbaaa"
+        },
+        "out": 2
+      },
+      {
+        "name": "aaaabaaa",
+        "in": {
+          "s": "aaaabaaa"
+        },
+        "out": 2
+      },
+      {
+        "name": "qwerty",
+        "in": {
+          "s": "qwerty"
+        },
+        "out": 6
+      },
+      {
+        "name": "xxyyzzxxyyzz",
+        "in": {
+          "s": "xxyyzzxxyyzz"
+        },
+        "out": 5
+      },
+      {
+        "name": "single_c",
+        "in": {
+          "s": "c"
+        },
+        "out": 1
+      },
+      {
+        "name": "long_blocked",
+        "in": {
+          "s": "aaaaabbbbbccccc"
+        },
+        "out": 3
+      },
+      {
+        "name": "all_unique_16",
+        "in": {
+          "s": "abcdefghijklmnop"
+        },
+        "out": 16
+      },
+      {
+        "name": "repeated_abba",
+        "in": {
+          "s": "abbaabbaabba"
+        },
+        "out": 4
+      },
+      {
+        "name": "repeated_zzxy",
+        "in": {
+          "s": "zzxyzzxyzzxy"
+        },
+        "out": 7
+      },
+      {
+        "name": "hundred_as",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": 1
+      },
+      {
+        "name": "hundred_alternating",
+        "in": {
+          "s": "abababababababababababababababababababababababababababababababababababababababababababababababababab"
+        },
+        "out": 51
+      },
+      {
+        "name": "hundred_repeated_abc",
+        "in": {
+          "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca"
+        },
+        "out": 67
+      },
+      {
+        "name": "long_three_blocks",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "out": 3
+      },
+      {
+        "name": "long_repeated_abca",
+        "in": {
+          "s": "abcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabca"
+        },
+        "out": 51
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"aba\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abba\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"aaabbb\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"abab\"",
+      "output": "3"
+    }
+  ]
+}

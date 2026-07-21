@@ -1,0 +1,478 @@
+{
+  "id": "number_of_music_playlists",
+  "title": "Number of Music Playlists",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "description": "<p>Your music player contains <code>n</code> different songs. You want to listen to <code>goal</code> songs (not necessarily different) during your trip. To avoid boredom, you will create a playlist so that:</p>\n\n<ul>\n\t<li>Every song is played <strong>at least once</strong>.</li>\n\t<li>A song can only be played again only if <code>k</code> other songs have been played.</li>\n</ul>\n\n<p>Given <code>n</code>, <code>goal</code>, and <code>k</code>, return <em>the number of possible playlists that you can create</em>. Since the answer can be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3, goal = 3, k = 1\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> There are 6 possible playlists: [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], and [3, 2, 1].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2, goal = 3, k = 0\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> There are 6 possible playlists: [1, 1, 2], [1, 2, 1], [2, 1, 1], [2, 2, 1], [2, 1, 2], and [1, 2, 2].\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2, goal = 3, k = 1\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> There are 2 possible playlists: [1, 2, 1] and [2, 1, 2].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= k &lt; n &lt;= goal &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Number of Music Playlists' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= k < n <= goal <= 100"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numMusicPlaylists",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "goal",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 920,
+      "title": "number-of-music-playlists",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "goal": {
+          "type": "int"
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "rust": "Solution::num_music_playlists({n}, {goal}, {k})",
+        "python3": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "python2": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "ruby": "num_music_playlists({n}, {goal}, {k})",
+        "java": "new Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "csharp": "new Solution().NumMusicPlaylists({n}, {goal}, {k})",
+        "kotlin": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "go": "numMusicPlaylists({n}, {goal}, {k})",
+        "dart": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "swift": "Solution().numMusicPlaylists({n}, {goal}, {k})",
+        "typescript": "numMusicPlaylists({n}, {goal}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numMusicPlaylists(n, goal, k, {result})",
+        "checker": "class Checker:\n    def numMusicPlaylists(self, n, goal, k, result):\n        if not isinstance(result, int):\n            return False\n        MOD = 10**9 + 7\n        dp = [[0 for _ in range(n + 1)] for _ in range(2)]\n        dp[0][0] = 1\n        for i in range(1, goal + 1):\n            dp[i % 2][0] = 0\n            for j in range(1, min(i, n) + 1):\n                dp[i % 2][j] = dp[(i - 1) % 2][j - 1] * (n - (j - 1)) % MOD\n                if j > k:\n                    dp[i % 2][j] = (dp[i % 2][j] + dp[(i - 1) % 2][j] * (j - k)) % MOD\n        return result == dp[goal % 2][n]\n"
+      }
+    },
+    "seed": 920,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 3,
+          "goal": 3,
+          "k": 1
+        },
+        "out": 6
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 2,
+          "goal": 3,
+          "k": 0
+        },
+        "out": 6
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "n": 2,
+          "goal": 3,
+          "k": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "n1-goal2-k0",
+        "in": {
+          "n": 1,
+          "goal": 2,
+          "k": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "n2-goal2-k0",
+        "in": {
+          "n": 2,
+          "goal": 2,
+          "k": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "n2-goal2-k1",
+        "in": {
+          "n": 2,
+          "goal": 2,
+          "k": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "n2-goal4-k0",
+        "in": {
+          "n": 2,
+          "goal": 4,
+          "k": 0
+        },
+        "out": 14
+      },
+      {
+        "name": "n2-goal4-k1",
+        "in": {
+          "n": 2,
+          "goal": 4,
+          "k": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "n3-goal3-k0",
+        "in": {
+          "n": 3,
+          "goal": 3,
+          "k": 0
+        },
+        "out": 6
+      },
+      {
+        "name": "n3-goal3-k2",
+        "in": {
+          "n": 3,
+          "goal": 3,
+          "k": 2
+        },
+        "out": 6
+      },
+      {
+        "name": "n3-goal4-k1",
+        "in": {
+          "n": 3,
+          "goal": 4,
+          "k": 1
+        },
+        "out": 18
+      },
+      {
+        "name": "n3-goal4-k2",
+        "in": {
+          "n": 3,
+          "goal": 4,
+          "k": 2
+        },
+        "out": 6
+      },
+      {
+        "name": "n3-goal5-k1",
+        "in": {
+          "n": 3,
+          "goal": 5,
+          "k": 1
+        },
+        "out": 42
+      },
+      {
+        "name": "n4-goal4-k1",
+        "in": {
+          "n": 4,
+          "goal": 4,
+          "k": 1
+        },
+        "out": 24
+      },
+      {
+        "name": "n4-goal5-k1",
+        "in": {
+          "n": 4,
+          "goal": 5,
+          "k": 1
+        },
+        "out": 144
+      },
+      {
+        "name": "n4-goal5-k2",
+        "in": {
+          "n": 4,
+          "goal": 5,
+          "k": 2
+        },
+        "out": 72
+      },
+      {
+        "name": "n4-goal6-k2",
+        "in": {
+          "n": 4,
+          "goal": 6,
+          "k": 2
+        },
+        "out": 168
+      },
+      {
+        "name": "n5-goal5-k0",
+        "in": {
+          "n": 5,
+          "goal": 5,
+          "k": 0
+        },
+        "out": 120
+      },
+      {
+        "name": "n5-goal6-k1",
+        "in": {
+          "n": 5,
+          "goal": 6,
+          "k": 1
+        },
+        "out": 1200
+      },
+      {
+        "name": "n5-goal6-k2",
+        "in": {
+          "n": 5,
+          "goal": 6,
+          "k": 2
+        },
+        "out": 720
+      },
+      {
+        "name": "n5-goal7-k2",
+        "in": {
+          "n": 5,
+          "goal": 7,
+          "k": 2
+        },
+        "out": 3000
+      },
+      {
+        "name": "n6-goal6-k0",
+        "in": {
+          "n": 6,
+          "goal": 6,
+          "k": 0
+        },
+        "out": 720
+      },
+      {
+        "name": "n6-goal7-k1",
+        "in": {
+          "n": 6,
+          "goal": 7,
+          "k": 1
+        },
+        "out": 10800
+      },
+      {
+        "name": "n6-goal7-k2",
+        "in": {
+          "n": 6,
+          "goal": 7,
+          "k": 2
+        },
+        "out": 7200
+      },
+      {
+        "name": "n7-goal7-k0",
+        "in": {
+          "n": 7,
+          "goal": 7,
+          "k": 0
+        },
+        "out": 5040
+      },
+      {
+        "name": "n7-goal8-k1",
+        "in": {
+          "n": 7,
+          "goal": 8,
+          "k": 1
+        },
+        "out": 105840
+      },
+      {
+        "name": "n8-goal8-k0",
+        "in": {
+          "n": 8,
+          "goal": 8,
+          "k": 0
+        },
+        "out": 40320
+      },
+      {
+        "name": "n8-goal9-k2",
+        "in": {
+          "n": 8,
+          "goal": 9,
+          "k": 2
+        },
+        "out": 846720
+      },
+      {
+        "name": "n10-goal10-k0",
+        "in": {
+          "n": 10,
+          "goal": 10,
+          "k": 0
+        },
+        "out": 3628800
+      },
+      {
+        "name": "n10-goal12-k3",
+        "in": {
+          "n": 10,
+          "goal": 12,
+          "k": 3
+        },
+        "out": 676505593
+      },
+      {
+        "name": "n10-goal20-k0",
+        "in": {
+          "n": 10,
+          "goal": 20,
+          "k": 0
+        },
+        "out": 423938817
+      },
+      {
+        "name": "n10-goal20-k5",
+        "in": {
+          "n": 10,
+          "goal": 20,
+          "k": 5
+        },
+        "out": 993942190
+      },
+      {
+        "name": "n20-goal20-k0",
+        "in": {
+          "n": 20,
+          "goal": 20,
+          "k": 0
+        },
+        "out": 146326063
+      },
+      {
+        "name": "n20-goal25-k3",
+        "in": {
+          "n": 20,
+          "goal": 25,
+          "k": 3
+        },
+        "out": 192032929
+      },
+      {
+        "name": "n25-goal25-k0",
+        "in": {
+          "n": 25,
+          "goal": 25,
+          "k": 0
+        },
+        "out": 440732388
+      },
+      {
+        "name": "n30-goal35-k4",
+        "in": {
+          "n": 30,
+          "goal": 35,
+          "k": 4
+        },
+        "out": 418810183
+      },
+      {
+        "name": "n50-goal50-k0",
+        "in": {
+          "n": 50,
+          "goal": 50,
+          "k": 0
+        },
+        "out": 318608048
+      },
+      {
+        "name": "n50-goal60-k10",
+        "in": {
+          "n": 50,
+          "goal": 60,
+          "k": 10
+        },
+        "out": 145632432
+      },
+      {
+        "name": "n100-goal100-k0",
+        "in": {
+          "n": 100,
+          "goal": 100,
+          "k": 0
+        },
+        "out": 437918130
+      },
+      {
+        "name": "n100-goal100-k99",
+        "in": {
+          "n": 100,
+          "goal": 100,
+          "k": 99
+        },
+        "out": 437918130
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3\ngoal = 3\nk = 1",
+      "output": "6"
+    },
+    {
+      "input": "n = 2\ngoal = 3\nk = 0",
+      "output": "6"
+    },
+    {
+      "input": "n = 2\ngoal = 3\nk = 1",
+      "output": "2"
+    },
+    {
+      "input": "n = 1\ngoal = 2\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 2\ngoal = 2\nk = 0",
+      "output": "2"
+    },
+    {
+      "input": "n = 2\ngoal = 2\nk = 1",
+      "output": "2"
+    },
+    {
+      "input": "n = 2\ngoal = 4\nk = 0",
+      "output": "14"
+    },
+    {
+      "input": "n = 2\ngoal = 4\nk = 1",
+      "output": "2"
+    }
+  ]
+}

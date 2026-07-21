@@ -1,0 +1,371 @@
+{
+  "id": "count_binary_substrings",
+  "title": "Count Binary Substrings",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>Given a binary string <code>s</code>, return the number of non-empty substrings that have the same number of <code>0</code>'s and <code>1</code>'s, and all the <code>0</code>'s and all the <code>1</code>'s in these substrings are grouped consecutively.</p> <p>Substrings that occur multiple times are counted the number of times they occur.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"00110011\"\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> There are 6 substrings that have equal number of consecutive 1's and 0's: \"0011\", \"01\", \"1100\", \"10\", \"0011\", and \"01\".\nNotice that some of these substrings repeat and are counted the number of times they occur.\nAlso, \"00110011\" is not a valid substring because all the 0's (and 1's) are not grouped together.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"10101\"\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> There are 4 substrings: \"10\", \"01\", \"10\", \"01\" that have equal number of consecutive 1's and 0's.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li> <li><code>s[i]</code> is either <code>'0'</code> or <code>'1'</code>.</li> </ul>",
+  "hints": [
+    "How many valid binary substrings exist in \"000111\", and how many in \"11100\"?  What about \"00011100\"?"
+  ],
+  "method": {
+    "name": "countBinarySubstrings",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 696,
+      "title": "count-binary-substrings",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countBinarySubstrings({s})",
+        "rust": "Solution::count_binary_substrings({s})",
+        "python3": "Solution().countBinarySubstrings({s})",
+        "python2": "Solution().countBinarySubstrings({s})",
+        "ruby": "count_binary_substrings({s})",
+        "java": "new Solution().countBinarySubstrings({s})",
+        "csharp": "new Solution().CountBinarySubstrings({s})",
+        "kotlin": "Solution().countBinarySubstrings({s})",
+        "go": "countBinarySubstrings({s})",
+        "dart": "Solution().countBinarySubstrings({s})",
+        "swift": "Solution().countBinarySubstrings({s})",
+        "typescript": "countBinarySubstrings({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().countBinarySubstrings(s, {result})",
+        "checker": "class Checker:\n    def countBinarySubstrings(self, s, result):\n        if not isinstance(result, int):\n            return False\n        groups = []\n        cur = 1\n        for i in range(1, len(s)):\n            if s[i] == s[i - 1]:\n                cur += 1\n            else:\n                groups.append(cur)\n                cur = 1\n        groups.append(cur)\n        expected = 0\n        for i in range(len(groups) - 1):\n            expected += min(groups[i], groups[i + 1])\n        return result == expected\n"
+      }
+    },
+    "seed": 696,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "00110011"
+        },
+        "out": 6
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "10101"
+        },
+        "out": 4
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "s": "0"
+        },
+        "out": 0
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "s": "1"
+        },
+        "out": 0
+      },
+      {
+        "name": "two_chars_01",
+        "in": {
+          "s": "01"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_chars_10",
+        "in": {
+          "s": "10"
+        },
+        "out": 1
+      },
+      {
+        "name": "balanced_pairs_0011",
+        "in": {
+          "s": "0011"
+        },
+        "out": 2
+      },
+      {
+        "name": "balanced_pairs_1100",
+        "in": {
+          "s": "1100"
+        },
+        "out": 2
+      },
+      {
+        "name": "three_groups_000111",
+        "in": {
+          "s": "000111"
+        },
+        "out": 3
+      },
+      {
+        "name": "three_groups_111000",
+        "in": {
+          "s": "111000"
+        },
+        "out": 3
+      },
+      {
+        "name": "all_zero_four",
+        "in": {
+          "s": "0000"
+        },
+        "out": 0
+      },
+      {
+        "name": "all_one_four",
+        "in": {
+          "s": "1111"
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_six_010101",
+        "in": {
+          "s": "010101"
+        },
+        "out": 5
+      },
+      {
+        "name": "alternating_six_101010",
+        "in": {
+          "s": "101010"
+        },
+        "out": 5
+      },
+      {
+        "name": "three_blocks_000111000",
+        "in": {
+          "s": "000111000"
+        },
+        "out": 6
+      },
+      {
+        "name": "three_blocks_111000111",
+        "in": {
+          "s": "111000111"
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_00110",
+        "in": {
+          "s": "00110"
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_01100",
+        "in": {
+          "s": "01100"
+        },
+        "out": 3
+      },
+      {
+        "name": "longer_mixed_0001100111",
+        "in": {
+          "s": "0001100111"
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_101100",
+        "in": {
+          "s": "101100"
+        },
+        "out": 4
+      },
+      {
+        "name": "four_and_four_00001111",
+        "in": {
+          "s": "00001111"
+        },
+        "out": 4
+      },
+      {
+        "name": "four_and_four_11110000",
+        "in": {
+          "s": "11110000"
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_010011",
+        "in": {
+          "s": "010011"
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_001010",
+        "in": {
+          "s": "001010"
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_00010111",
+        "in": {
+          "s": "00010111"
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_10100110",
+        "in": {
+          "s": "10100110"
+        },
+        "out": 6
+      },
+      {
+        "name": "balanced_runs_0011110000",
+        "in": {
+          "s": "0011110000"
+        },
+        "out": 6
+      },
+      {
+        "name": "balanced_runs_111100001111",
+        "in": {
+          "s": "111100001111"
+        },
+        "out": 8
+      },
+      {
+        "name": "alternating_ten_0101010101",
+        "in": {
+          "s": "0101010101"
+        },
+        "out": 9
+      },
+      {
+        "name": "five_and_five_0000011111",
+        "in": {
+          "s": "0000011111"
+        },
+        "out": 5
+      },
+      {
+        "name": "five_and_five_1111100000",
+        "in": {
+          "s": "1111100000"
+        },
+        "out": 5
+      },
+      {
+        "name": "balanced_runs_0011001100",
+        "in": {
+          "s": "0011001100"
+        },
+        "out": 8
+      },
+      {
+        "name": "long_runs_100000111111",
+        "in": {
+          "s": "100000111111"
+        },
+        "out": 6
+      },
+      {
+        "name": "long_runs_011111000000",
+        "in": {
+          "s": "011111000000"
+        },
+        "out": 6
+      },
+      {
+        "name": "long_runs_001111100000",
+        "in": {
+          "s": "001111100000"
+        },
+        "out": 7
+      },
+      {
+        "name": "long_runs_010000111111",
+        "in": {
+          "s": "010000111111"
+        },
+        "out": 6
+      },
+      {
+        "name": "generated-binary-medium",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 2000,
+            "alphabet": "01"
+          }
+        }
+      },
+      {
+        "name": "generated-binary-large",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 5000,
+            "alphabet": "01"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"00110011\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"10101\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"0\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"1\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"01\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"10\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"0011\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"1100\"",
+      "output": "2"
+    }
+  ]
+}

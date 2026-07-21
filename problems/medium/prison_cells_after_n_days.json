@@ -1,0 +1,1027 @@
+{
+  "id": "prison_cells_after_n_days",
+  "title": "Prison Cells After N Days",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Bit Manipulation"
+  ],
+  "description": "<p>There are <code>8</code> prison cells in a row and each cell is either occupied or vacant.</p>\n\n<p>Each day, whether the cell is occupied or vacant changes according to the following rules:</p>\n\n<ul>\n\t<li>If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.</li>\n\t<li>Otherwise, it becomes vacant.</li>\n</ul>\n\n<p><strong>Note</strong> that because the prison is a row, the first and the last cells in the row can&#39;t have two adjacent neighbors.</p>\n\n<p>You are given an integer array <code>cells</code> where <code>cells[i] == 1</code> if the <code>i<sup>th</sup></code> cell is occupied and <code>cells[i] == 0</code> if the <code>i<sup>th</sup></code> cell is vacant, and you are given an integer <code>n</code>.</p>\n\n<p>Return the state of the prison after <code>n</code> days (i.e., <code>n</code> such changes described above).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> cells = [0,1,0,1,1,0,0,1], n = 7\n<strong>Output:</strong> [0,0,1,1,0,0,0,0]\n<strong>Explanation:</strong> The following table summarizes the state of the prison on each day:\nDay 0: [0, 1, 0, 1, 1, 0, 0, 1]\nDay 1: [0, 1, 1, 0, 0, 0, 0, 0]\nDay 2: [0, 0, 0, 0, 1, 1, 1, 0]\nDay 3: [0, 1, 1, 0, 0, 1, 0, 0]\nDay 4: [0, 0, 0, 0, 0, 1, 0, 0]\nDay 5: [0, 1, 1, 1, 0, 1, 0, 0]\nDay 6: [0, 0, 1, 0, 1, 1, 0, 0]\nDay 7: [0, 0, 1, 1, 0, 0, 0, 0]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> cells = [1,0,0,1,0,0,1,0], n = 1000000000\n<strong>Output:</strong> [0,0,1,1,1,1,1,0]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>cells.length == 8</code></li>\n\t<li><code>cells[i]</code>&nbsp;is either <code>0</code> or <code>1</code>.</li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Prison Cells After N Days' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "cells.length == 8",
+    "cells[i]\u00a0is either 0 or 1.",
+    "1 <= n <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "prisonAfterNDays",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "cells",
+        "type": "array"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 957,
+      "title": "prison-cells-after-n-days",
+      "params": {
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().prisonAfterNDays({cells}, {n})",
+        "rust": "Solution::prison_after_n_days({cells}, {n})",
+        "python3": "Solution().prisonAfterNDays({cells}, {n})",
+        "python2": "Solution().prisonAfterNDays({cells}, {n})",
+        "ruby": "prison_after_n_days({cells}, {n})",
+        "java": "new Solution().prisonAfterNDays({cells}, {n})",
+        "csharp": "new Solution().PrisonAfterNDays({cells}, {n})",
+        "kotlin": "Solution().prisonAfterNDays({cells}, {n})",
+        "go": "prisonAfterNDays({cells}, {n})",
+        "dart": "Solution().prisonAfterNDays({cells}, {n})",
+        "swift": "Solution().prisonAfterNDays({cells}, {n})",
+        "typescript": "prisonAfterNDays({cells}, {n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 957,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "cells": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n": 60
+        },
+        "out": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "cells": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0
+          ],
+          "n": 22
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "cells": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "n": 77
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "cells": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 96
+        },
+        "out": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n": 72
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "n": 19
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "cells": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "n": 41
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "cells": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 158
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "cells": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          "n": 193
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n": 113
+        },
+        "out": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "cells": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n": 27
+        },
+        "out": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "cells": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          "n": 89
+        },
+        "out": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "cells": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "n": 181
+        },
+        "out": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 118
+        },
+        "out": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 128
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "cells": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 180
+        },
+        "out": [
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "cells": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "n": 125
+        },
+        "out": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "cells": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 75
+        },
+        "out": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "cells": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 65
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "cells": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "n": 141
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "cells": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "n": 11
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "n": 58
+        },
+        "out": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "cells": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "n": 73
+        },
+        "out": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "cells": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 63
+        },
+        "out": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "cells": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          "n": 155
+        },
+        "out": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "cells": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n": 82
+        },
+        "out": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "cells": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "n": 192
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "cells": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "n": 126
+        },
+        "out": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "cells": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 197
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "n": 161
+        },
+        "out": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 183
+        },
+        "out": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "n": 122
+        },
+        "out": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "n": 159
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "cells": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "n": 160
+        },
+        "out": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "cells": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "n": 86
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "cells = [0, 0, 0, 1, 0, 1, 0, 0]\nn = 60",
+      "output": "[0, 1, 0, 0, 0, 1, 1, 0]"
+    },
+    {
+      "input": "cells = [1, 1, 0, 1, 0, 1, 1, 0]\nn = 22",
+      "output": "[0, 0, 0, 1, 1, 1, 0, 0]"
+    },
+    {
+      "input": "cells = [0, 1, 0, 0, 1, 0, 0, 0]\nn = 77",
+      "output": "[0, 0, 0, 1, 0, 0, 1, 0]"
+    },
+    {
+      "input": "cells = [1, 1, 0, 1, 0, 1, 0, 1]\nn = 96",
+      "output": "[0, 1, 1, 1, 0, 0, 1, 0]"
+    },
+    {
+      "input": "cells = [1, 0, 1, 0, 0, 0, 0, 0]\nn = 72",
+      "output": "[0, 0, 0, 1, 0, 1, 0, 0]"
+    },
+    {
+      "input": "cells = [1, 0, 1, 0, 1, 1, 0, 1]\nn = 19",
+      "output": "[0, 0, 0, 1, 1, 1, 0, 0]"
+    },
+    {
+      "input": "cells = [0, 1, 1, 1, 1, 0, 1, 0]\nn = 41",
+      "output": "[0, 0, 0, 0, 0, 0, 1, 0]"
+    },
+    {
+      "input": "cells = [0, 0, 1, 1, 1, 0, 1, 1]\nn = 158",
+      "output": "[0, 0, 0, 1, 1, 0, 1, 0]"
+    }
+  ]
+}

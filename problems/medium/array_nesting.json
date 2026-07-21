@@ -1,0 +1,716 @@
+{
+  "id": "array_nesting",
+  "title": "Array Nesting",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Depth-First Search"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code> of length <code>n</code> where <code>nums</code> is a permutation of the numbers in the range <code>[0, n - 1]</code>.</p>\n\n<p>You should build a set <code>s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... }</code> subjected to the following rule:</p>\n\n<ul>\n\t<li>The first element in <code>s[k]</code> starts with the selection of the element <code>nums[k]</code> of <code>index = k</code>.</li>\n\t<li>The next element in <code>s[k]</code> should be <code>nums[nums[k]]</code>, and then <code>nums[nums[nums[k]]]</code>, and so on.</li>\n\t<li>We stop adding right before a duplicate element occurs in <code>s[k]</code>.</li>\n</ul>\n\n<p>Return <em>the longest length of a set</em> <code>s[k]</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5,4,0,3,1,6,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> \nnums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.\nOne of the longest sets s[k]:\ns[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,2]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt; nums.length</code></li>\n\t<li>All the values of <code>nums</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Array Nesting' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] < nums.length",
+    "All the values of nums are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "arrayNesting",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 565,
+      "title": "array-nesting",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().arrayNesting({nums})",
+        "rust": "Solution::array_nesting({nums})",
+        "python3": "Solution().arrayNesting({nums})",
+        "python2": "Solution().arrayNesting({nums})",
+        "ruby": "array_nesting({nums})",
+        "java": "new Solution().arrayNesting({nums})",
+        "csharp": "new Solution().ArrayNesting({nums})",
+        "kotlin": "Solution().arrayNesting({nums})",
+        "go": "arrayNesting({nums})",
+        "dart": "Solution().arrayNesting({nums})",
+        "swift": "Solution().arrayNesting({nums})",
+        "typescript": "arrayNesting({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().arrayNesting(nums, {result})",
+        "checker": "class Checker:\n    def arrayNesting(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        seen = [False] * len(nums)\n        best = 0\n        for i in range(len(nums)):\n            if seen[i]:\n                continue\n            cur = i\n            count = 0\n            while not seen[cur]:\n                seen[cur] = True\n                cur = nums[cur]\n                count += 1\n            if count > best:\n                best = count\n        return result == best\n"
+      }
+    },
+    "seed": 565,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            5,
+            4,
+            0,
+            3,
+            1,
+            6,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-self",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-cycle",
+        "in": {
+          "nums": [
+            1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "four-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "five-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "all-self-four",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed-two-cycles",
+        "in": {
+          "nums": [
+            1,
+            0,
+            3,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three-and-two",
+        "in": {
+          "nums": [
+            2,
+            0,
+            1,
+            4,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "longest-at-end",
+        "in": {
+          "nums": [
+            0,
+            2,
+            3,
+            4,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "full-cycle-five",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4,
+            0,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "two-triples",
+        "in": {
+          "nums": [
+            1,
+            2,
+            0,
+            4,
+            5,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "four-plus-two",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            0,
+            5,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "max-cycle-seven",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            0
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "reverse-pairs",
+        "in": {
+          "nums": [
+            1,
+            0,
+            3,
+            2,
+            5,
+            4,
+            7,
+            6
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "four-cycle-offset",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "self-plus-six",
+        "in": {
+          "nums": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "three-cycles-of-three",
+        "in": {
+          "nums": [
+            1,
+            2,
+            0,
+            4,
+            5,
+            3,
+            7,
+            8,
+            6
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "one-and-eight",
+        "in": {
+          "nums": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "ten-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "alternating-pairs-ten",
+        "in": {
+          "nums": [
+            1,
+            0,
+            3,
+            2,
+            5,
+            4,
+            7,
+            6,
+            9,
+            8
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "split-five-five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            0,
+            6,
+            7,
+            8,
+            9,
+            5
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "one-two-seven",
+        "in": {
+          "nums": [
+            0,
+            2,
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            3
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "eleven-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            0
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "twelve-self",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "twelve-rotated",
+        "in": {
+          "nums": [
+            11,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "two-six-cycles",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            0,
+            7,
+            8,
+            9,
+            10,
+            11,
+            6
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "one-nine-three",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            0,
+            10,
+            11,
+            9
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "thirteen-cycle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            0
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "offset-cycle",
+        "in": {
+          "nums": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "large-single-cycle-20",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            0
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "large-two-cycles-20",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            10
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "large-all-self-20",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "cycle-15-plus-five",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            0,
+            16,
+            17,
+            18,
+            19,
+            15
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "max-at-middle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            0,
+            8,
+            9,
+            7
+          ]
+        },
+        "out": 7
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [5, 4, 0, 3, 1, 6, 2]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [0, 1, 2]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 0]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 2, 0]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3, 0]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 0]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [0, 1, 2, 3]",
+      "output": "1"
+    }
+  ]
+}

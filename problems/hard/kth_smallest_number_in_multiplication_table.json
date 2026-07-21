@@ -1,0 +1,478 @@
+{
+  "id": "kth_smallest_number_in_multiplication_table",
+  "title": "Kth Smallest Number in Multiplication Table",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "description": "<p>Nearly everyone has used the <a href=\"https://en.wikipedia.org/wiki/Multiplication_table\" target=\"_blank\">Multiplication Table</a>. The multiplication table of size <code>m x n</code> is an integer matrix <code>mat</code> where <code>mat[i][j] == i * j</code> (<strong>1-indexed</strong>).</p>\n\n<p>Given three integers <code>m</code>, <code>n</code>, and <code>k</code>, return <em>the </em><code>k<sup>th</sup></code><em> smallest element in the </em><code>m x n</code><em> multiplication table</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/02/multtable1-grid.jpg\" style=\"width: 500px; height: 254px;\" />\n<pre>\n<strong>Input:</strong> m = 3, n = 3, k = 5\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The 5<sup>th</sup> smallest number is 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/02/multtable2-grid.jpg\" style=\"width: 493px; height: 293px;\" />\n<pre>\n<strong>Input:</strong> m = 2, n = 3, k = 6\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The 6<sup>th</sup> smallest number is 6.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= m, n &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= m * n</code></li>\n</ul>\n",
+  "task": "Solve the 'Kth Smallest Number in Multiplication Table' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= m, n <= 3 * 104",
+    "1 <= k <= m * n"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findKthNumber",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 668,
+      "title": "kth-smallest-number-in-multiplication-table",
+      "params": {
+        "m": {
+          "type": "int"
+        },
+        "n": {
+          "type": "int"
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findKthNumber({m}, {n}, {k})",
+        "rust": "Solution::find_kth_number({m}, {n}, {k})",
+        "python3": "Solution().findKthNumber({m}, {n}, {k})",
+        "python2": "Solution().findKthNumber({m}, {n}, {k})",
+        "ruby": "find_kth_number({m}, {n}, {k})",
+        "java": "new Solution().findKthNumber({m}, {n}, {k})",
+        "csharp": "new Solution().FindKthNumber({m}, {n}, {k})",
+        "kotlin": "Solution().findKthNumber({m}, {n}, {k})",
+        "go": "findKthNumber({m}, {n}, {k})",
+        "dart": "Solution().findKthNumber({m}, {n}, {k})",
+        "swift": "Solution().findKthNumber({m}, {n}, {k})",
+        "typescript": "findKthNumber({m}, {n}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findKthNumber(m, n, k, result)",
+        "checker": "class Checker:\n    def findKthNumber(self, m, n, k, result):\n        if not isinstance(result, int):\n            return False\n        if result < 1 or result > m * n:\n            return False\n\n        def count_le(x):\n            total = 0\n            for i in range(1, m + 1):\n                total += min(n, x // i)\n            return total\n\n        def count_lt(x):\n            return count_le(x - 1)\n\n        return count_le(result) >= k and count_lt(result) < k\n"
+      }
+    },
+    "seed": 668,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 5
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "single-cell",
+        "in": {
+          "m": 1,
+          "n": 1,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "one-row-first",
+        "in": {
+          "m": 1,
+          "n": 5,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "one-row-middle",
+        "in": {
+          "m": 1,
+          "n": 5,
+          "k": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "one-row-last",
+        "in": {
+          "m": 1,
+          "n": 5,
+          "k": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "one-column-first",
+        "in": {
+          "m": 5,
+          "n": 1,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "one-column-middle",
+        "in": {
+          "m": 5,
+          "n": 1,
+          "k": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "one-column-last",
+        "in": {
+          "m": 5,
+          "n": 1,
+          "k": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "two-by-two-first",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "two-by-two-second",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "k": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "two-by-two-third",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "k": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "two-by-two-last",
+        "in": {
+          "m": 2,
+          "n": 2,
+          "k": 4
+        },
+        "out": 4
+      },
+      {
+        "name": "two-by-three-first",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "two-by-three-second",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "two-by-three-third",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "two-by-three-fourth",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 4
+        },
+        "out": 3
+      },
+      {
+        "name": "two-by-three-fifth",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 5
+        },
+        "out": 4
+      },
+      {
+        "name": "two-by-three-last",
+        "in": {
+          "m": 2,
+          "n": 3,
+          "k": 6
+        },
+        "out": 6
+      },
+      {
+        "name": "three-by-three-first",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "three-by-three-second",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "three-by-three-third",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "three-by-three-fourth",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 4
+        },
+        "out": 3
+      },
+      {
+        "name": "three-by-three-fifth",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 5
+        },
+        "out": 3
+      },
+      {
+        "name": "three-by-three-sixth",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 6
+        },
+        "out": 4
+      },
+      {
+        "name": "three-by-three-seventh",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "three-by-three-eighth",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 8
+        },
+        "out": 6
+      },
+      {
+        "name": "three-by-three-last",
+        "in": {
+          "m": 3,
+          "n": 3,
+          "k": 9
+        },
+        "out": 9
+      },
+      {
+        "name": "three-by-five-middle",
+        "in": {
+          "m": 3,
+          "n": 5,
+          "k": 7
+        },
+        "out": 4
+      },
+      {
+        "name": "four-by-seven-middle",
+        "in": {
+          "m": 4,
+          "n": 7,
+          "k": 10
+        },
+        "out": 6
+      },
+      {
+        "name": "five-by-five-middle",
+        "in": {
+          "m": 5,
+          "n": 5,
+          "k": 12
+        },
+        "out": 6
+      },
+      {
+        "name": "six-by-seven-middle",
+        "in": {
+          "m": 6,
+          "n": 7,
+          "k": 20
+        },
+        "out": 10
+      },
+      {
+        "name": "seven-by-eight-middle",
+        "in": {
+          "m": 7,
+          "n": 8,
+          "k": 28
+        },
+        "out": 14
+      },
+      {
+        "name": "ten-by-ten-first",
+        "in": {
+          "m": 10,
+          "n": 10,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "ten-by-ten-middle",
+        "in": {
+          "m": 10,
+          "n": 10,
+          "k": 50
+        },
+        "out": 24
+      },
+      {
+        "name": "ten-by-ten-last",
+        "in": {
+          "m": 10,
+          "n": 10,
+          "k": 100
+        },
+        "out": 100
+      },
+      {
+        "name": "max-first",
+        "in": {
+          "m": 30000,
+          "n": 30000,
+          "k": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "max-half",
+        "in": {
+          "m": 30000,
+          "n": 30000,
+          "k": 450000000
+        },
+        "out": 168028638
+      },
+      {
+        "name": "max-near-end",
+        "in": {
+          "m": 30000,
+          "n": 30000,
+          "k": 899999999
+        },
+        "out": 899970000
+      },
+      {
+        "name": "max-last",
+        "in": {
+          "m": 30000,
+          "n": 30000,
+          "k": 900000000
+        },
+        "out": 900000000
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "m = 3\nn = 3\nk = 5",
+      "output": "3"
+    },
+    {
+      "input": "m = 2\nn = 3\nk = 6",
+      "output": "6"
+    },
+    {
+      "input": "m = 1\nn = 1\nk = 1",
+      "output": "1"
+    },
+    {
+      "input": "m = 1\nn = 5\nk = 1",
+      "output": "1"
+    },
+    {
+      "input": "m = 1\nn = 5\nk = 3",
+      "output": "3"
+    },
+    {
+      "input": "m = 1\nn = 5\nk = 5",
+      "output": "5"
+    },
+    {
+      "input": "m = 5\nn = 1\nk = 1",
+      "output": "1"
+    },
+    {
+      "input": "m = 5\nn = 1\nk = 4",
+      "output": "4"
+    }
+  ]
+}

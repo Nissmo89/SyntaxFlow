@@ -1,0 +1,354 @@
+{
+  "id": "reverse_integer",
+  "title": "Reverse Integer",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math"
+  ],
+  "description": "<p>Given a signed 32-bit integer <code>x</code>, return <code>x</code><em> with its digits reversed</em>. If reversing <code>x</code> causes the value to go outside the signed 32-bit integer range <code>[-2<sup>31</sup>, 2<sup>31</sup> - 1]</code>, then return <code>0</code>.</p>\n\n<p><strong>Assume the environment does not allow you to store 64-bit integers (signed or unsigned).</strong></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 123\n<strong>Output:</strong> 321\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = -123\n<strong>Output:</strong> -321\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 120\n<strong>Output:</strong> 21\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-2<sup>31</sup> &lt;= x &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Reverse Integer' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "-231 <= x <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "reverse",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 7,
+      "title": "reverse-integer",
+      "params": {
+        "x": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().reverse({x})",
+        "rust": "Solution::reverse({x})",
+        "python3": "Solution().reverse({x})",
+        "python2": "Solution().reverse({x})",
+        "ruby": "reverse({x})",
+        "java": "new Solution().reverse({x})",
+        "csharp": "new Solution().Reverse({x})",
+        "kotlin": "Solution().reverse({x})",
+        "go": "reverse({x})",
+        "dart": "Solution().reverse({x})",
+        "swift": "Solution().reverse({x})",
+        "typescript": "reverse({x})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(result, expected)",
+        "checker": "class Checker:\n    def check(self, result, expected):\n        return result == expected\n"
+      }
+    },
+    "seed": 7,
+    "tests": [
+      {
+        "name": "example_123",
+        "in": {
+          "x": 123
+        },
+        "out": 321
+      },
+      {
+        "name": "example_negative_123",
+        "in": {
+          "x": -123
+        },
+        "out": -321
+      },
+      {
+        "name": "example_trailing_zero",
+        "in": {
+          "x": 120
+        },
+        "out": 21
+      },
+      {
+        "name": "zero",
+        "in": {
+          "x": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "single_positive_digit",
+        "in": {
+          "x": 7
+        },
+        "out": 7
+      },
+      {
+        "name": "single_negative_digit",
+        "in": {
+          "x": -8
+        },
+        "out": -8
+      },
+      {
+        "name": "positive_with_zeroes",
+        "in": {
+          "x": 1000
+        },
+        "out": 1
+      },
+      {
+        "name": "negative_with_zeroes",
+        "in": {
+          "x": -1000
+        },
+        "out": -1
+      },
+      {
+        "name": "palindrome_positive",
+        "in": {
+          "x": 1221
+        },
+        "out": 1221
+      },
+      {
+        "name": "palindrome_negative",
+        "in": {
+          "x": -1221
+        },
+        "out": -1221
+      },
+      {
+        "name": "no_overflow_small",
+        "in": {
+          "x": 1463847412
+        },
+        "out": 2147483641
+      },
+      {
+        "name": "no_overflow_negative_small",
+        "in": {
+          "x": -1463847412
+        },
+        "out": -2147483641
+      },
+      {
+        "name": "overflow_positive_boundary",
+        "in": {
+          "x": 1534236469
+        },
+        "out": 0
+      },
+      {
+        "name": "overflow_negative_boundary",
+        "in": {
+          "x": -1534236469
+        },
+        "out": 0
+      },
+      {
+        "name": "max_int",
+        "in": {
+          "x": 2147483647
+        },
+        "out": 0
+      },
+      {
+        "name": "min_int",
+        "in": {
+          "x": -2147483648
+        },
+        "out": 0
+      },
+      {
+        "name": "reverse_max_non_overflow",
+        "in": {
+          "x": 2147483412
+        },
+        "out": 2143847412
+      },
+      {
+        "name": "reverse_min_like",
+        "in": {
+          "x": -2147447412
+        },
+        "out": -2147447412
+      },
+      {
+        "name": "near_overflow_positive_1",
+        "in": {
+          "x": 1463847413
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_positive_2",
+        "in": {
+          "x": 1563847412
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_positive_3",
+        "in": {
+          "x": 1056384759
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_positive_4",
+        "in": {
+          "x": 1000000009
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_negative_1",
+        "in": {
+          "x": -1463847413
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_negative_2",
+        "in": {
+          "x": -1563847412
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_negative_3",
+        "in": {
+          "x": -1056384759
+        },
+        "out": 0
+      },
+      {
+        "name": "near_overflow_negative_4",
+        "in": {
+          "x": -1000000009
+        },
+        "out": 0
+      },
+      {
+        "name": "ends_with_many_zeroes",
+        "in": {
+          "x": 100000000
+        },
+        "out": 1
+      },
+      {
+        "name": "ends_with_many_zeroes_negative",
+        "in": {
+          "x": -100000000
+        },
+        "out": -1
+      },
+      {
+        "name": "alternating_digits",
+        "in": {
+          "x": 1010101
+        },
+        "out": 1010101
+      },
+      {
+        "name": "alternating_digits_negative",
+        "in": {
+          "x": -1010101
+        },
+        "out": -1010101
+      },
+      {
+        "name": "reverse_to_small_value",
+        "in": {
+          "x": 109
+        },
+        "out": 901
+      },
+      {
+        "name": "reverse_to_small_value_negative",
+        "in": {
+          "x": -109
+        },
+        "out": -901
+      },
+      {
+        "name": "two_digits",
+        "in": {
+          "x": 10
+        },
+        "out": 1
+      },
+      {
+        "name": "two_digits_negative",
+        "in": {
+          "x": -10
+        },
+        "out": -1
+      },
+      {
+        "name": "large_safe_positive",
+        "in": {
+          "x": 1463847410
+        },
+        "out": 147483641
+      },
+      {
+        "name": "large_safe_negative",
+        "in": {
+          "x": -1463847410
+        },
+        "out": -147483641
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "x = 123",
+      "output": "321"
+    },
+    {
+      "input": "x = -123",
+      "output": "-321"
+    },
+    {
+      "input": "x = 120",
+      "output": "21"
+    },
+    {
+      "input": "x = 0",
+      "output": "0"
+    },
+    {
+      "input": "x = 7",
+      "output": "7"
+    },
+    {
+      "input": "x = -8",
+      "output": "-8"
+    },
+    {
+      "input": "x = 1000",
+      "output": "1"
+    },
+    {
+      "input": "x = -1000",
+      "output": "-1"
+    }
+  ]
+}

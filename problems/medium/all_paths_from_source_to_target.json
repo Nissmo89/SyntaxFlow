@@ -1,0 +1,1143 @@
+{
+  "id": "all_paths_from_source_to_target",
+  "title": "All Paths From Source to Target",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Backtracking",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "description": "<p>Given a directed acyclic graph (<strong>DAG</strong>) of <code>n</code> nodes labeled from <code>0</code> to <code>n - 1</code>, find all possible paths from node <code>0</code> to node <code>n - 1</code> and return them in <strong>any order</strong>.</p>\n\n<p>The graph is given as follows: <code>graph[i]</code> is a list of all nodes you can visit from node <code>i</code> (i.e., there is a directed edge from node <code>i</code> to node <code>graph[i][j]</code>).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/09/28/all_1.jpg\" style=\"width: 242px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> graph = [[1,2],[3],[3],[]]\n<strong>Output:</strong> [[0,1,3],[0,2,3]]\n<strong>Explanation:</strong> There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/09/28/all_2.jpg\" style=\"width: 423px; height: 301px;\" />\n<pre>\n<strong>Input:</strong> graph = [[4,3,1],[3,2,4],[3],[4],[]]\n<strong>Output:</strong> [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == graph.length</code></li>\n\t<li><code>2 &lt;= n &lt;= 15</code></li>\n\t<li><code>0 &lt;= graph[i][j] &lt; n</code></li>\n\t<li><code>graph[i][j] != i</code> (i.e., there will be no self-loops).</li>\n\t<li>All the elements of <code>graph[i]</code> are <strong>unique</strong>.</li>\n\t<li>The input graph is <strong>guaranteed</strong> to be a <strong>DAG</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'All Paths From Source to Target' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == graph.length",
+    "2 <= n <= 15",
+    "0 <= graph[i][j] < n",
+    "graph[i][j] != i (i.e., there will be no self-loops).",
+    "All the elements of graph[i] are unique.",
+    "The input graph is guaranteed to be a DAG."
+  ],
+  "hints": [],
+  "method": {
+    "name": "allPathsSourceTarget",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "graph",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 797,
+      "title": "all-paths-from-source-to-target",
+      "params": {
+        "graph": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().allPathsSourceTarget({graph})",
+        "rust": "Solution::all_paths_source_target({graph})",
+        "python3": "Solution().allPathsSourceTarget({graph})",
+        "python2": "Solution().allPathsSourceTarget({graph})",
+        "ruby": "all_paths_source_target({graph})",
+        "java": "new Solution().allPathsSourceTarget({graph})",
+        "csharp": "new Solution().AllPathsSourceTarget({graph})",
+        "kotlin": "Solution().allPathsSourceTarget({graph})",
+        "go": "allPathsSourceTarget({graph})",
+        "dart": "Solution().allPathsSourceTarget({graph})",
+        "swift": "Solution().allPathsSourceTarget({graph})",
+        "typescript": "allPathsSourceTarget({graph})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(graph, {result})",
+        "checker": "class Checker:\n    def check(self, graph, result):\n        target = len(graph) - 1\n        expected = []\n\n        def dfs(node, path):\n            if node == target:\n                expected.append(tuple(path))\n                return\n            for nxt in graph[node]:\n                dfs(nxt, path + [nxt])\n\n        dfs(0, [0])\n\n        try:\n            got = [tuple(path) for path in result]\n        except TypeError:\n            return False\n\n        if len(got) != len(expected):\n            return False\n        if len(set(got)) != len(got):\n            return False\n        if set(got) != set(expected):\n            return False\n        for path in got:\n            if not path or path[0] != 0 or path[-1] != target:\n                return False\n            for a, b in zip(path, path[1:]):\n                if b not in graph[a]:\n                    return False\n        return True\n"
+      }
+    },
+    "seed": 797,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                3,
+                1
+              ],
+              [
+                3,
+                2,
+                4
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_nodes_one_edge",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "two_nodes_no_path",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "chain_3",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "diamond",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "fork_join",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "direct_only",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "branching_5",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "branching_6",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "branching_7",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "branching_8",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_1",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_2",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                3
+              ],
+              [
+                2
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_3",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_4",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_5",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_6",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_7",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_8",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_9",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_10",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_11",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_12",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_13",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2,
+                3,
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_14",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_15",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_16",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_17",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_18",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_19",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_20",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_21",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_22",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_23",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_24",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_25",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              [
+                6
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_26",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_27",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              []
+            ]
+          }
+        }
+      },
+      {
+        "name": "sparse_28",
+        "in": {
+          "graph": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                4
+              ],
+              []
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[1, 2], [3], [3], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[4, 3, 1], [3, 2, 4], [3], [4], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[1], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[1], [2], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[1, 2], [3], [3], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [4], [4], [4], []]}",
+      "output": ""
+    },
+    {
+      "input": "graph = {\"elemType\": \"int\", \"value\": [[4], [4], [4], [4], []]}",
+      "output": ""
+    }
+  ]
+}

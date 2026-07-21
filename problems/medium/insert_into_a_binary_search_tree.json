@@ -1,0 +1,706 @@
+{
+  "id": "insert_into_a_binary_search_tree",
+  "title": "Insert into a Binary Search Tree",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>You are given the <code>root</code> node of a binary search tree (BST) and a <code>value</code> to insert into the tree. Return <em>the root node of the BST after the insertion</em>. It is <strong>guaranteed</strong> that the new value does not exist in the original BST.</p>\n\n<p><strong>Notice</strong>&nbsp;that there may exist&nbsp;multiple valid ways for the&nbsp;insertion, as long as the tree remains a BST after insertion. You can return <strong>any of them</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/05/insertbst.jpg\" style=\"width: 752px; height: 221px;\" />\n<pre>\n<strong>Input:</strong> root = [4,2,7,1,3], val = 5\n<strong>Output:</strong> [4,2,7,1,3,5]\n<strong>Explanation:</strong> Another accepted tree is:\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/10/05/bst.jpg\" style=\"width: 352px; height: 301px;\" />\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [40,20,60,10,30,50,70], val = 25\n<strong>Output:</strong> [40,20,60,10,30,50,70,null,null,25]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [4,2,7,1,3,null,null,null,null,null,null], val = 5\n<strong>Output:</strong> [4,2,7,1,3,5]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in&nbsp;the tree will be in the range <code>[0,&nbsp;10<sup>4</sup>]</code>.</li>\n\t<li><code>-10<sup>8</sup> &lt;= Node.val &lt;= 10<sup>8</sup></code></li>\n\t<li>All the values <code>Node.val</code> are <strong>unique</strong>.</li>\n\t<li><code>-10<sup>8</sup> &lt;= val &lt;= 10<sup>8</sup></code></li>\n\t<li>It&#39;s <strong>guaranteed</strong> that <code>val</code> does not exist in the original BST.</li>\n</ul>\n",
+  "task": "Solve the 'Insert into a Binary Search Tree' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in\u00a0the tree will be in the range [0,\u00a0104].",
+    "-108 <= Node.val <= 108",
+    "All the values Node.val are unique.",
+    "-108 <= val <= 108",
+    "It's guaranteed that val does not exist in the original BST."
+  ],
+  "hints": [],
+  "method": {
+    "name": "insertIntoBST",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      },
+      {
+        "name": "val",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 701,
+      "title": "insert-into-a-binary-search-tree",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        },
+        "val": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "treeNodeToArray(Solution().insertIntoBST({root}, {val}))",
+        "rust": "TreeNode::tree_node_to_array(Solution::insert_into_bst({root}, {val}))",
+        "python3": "tree_node_to_array(Solution().insertIntoBST({root}, {val}))",
+        "python2": "tree_node_to_array(Solution().insertIntoBST({root}, {val}))",
+        "ruby": "tree_node_to_array(insert_into_bst({root}, {val}))",
+        "java": "TreeNode.treeNodeToArray(new Solution().insertIntoBST({root}, {val}))",
+        "csharp": "TreeNode.TreeNodeToArray(new Solution().InsertIntoBST({root}, {val}))",
+        "kotlin": "treeNodeToArray(Solution().insertIntoBST({root}, {val}))",
+        "go": "treeNodeToArray(insertIntoBST({root}, {val}))",
+        "dart": "tree_node_to_array(Solution().insertIntoBST({root}, {val}))",
+        "swift": "tree_node_to_array(Solution().insertIntoBST({root}, {val}))",
+        "typescript": "treeNodeToArray(insertIntoBST({root}, {val}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().insertIntoBST(root, val, {result})",
+        "checker": "from collections import deque\nfrom typing import Any\n\nclass Checker:\n    def insertIntoBST(self, root: Any, val: int, result: Any) -> bool:\n        def node_val(node):\n            if node is None:\n                return None\n            if isinstance(node, dict):\n                return node.get(\"val\", node.get(\"value\"))\n            return getattr(node, \"val\", getattr(node, \"value\", None))\n\n        def node_left(node):\n            if node is None:\n                return None\n            if isinstance(node, dict):\n                return node.get(\"left\")\n            return getattr(node, \"left\", None)\n\n        def node_right(node):\n            if node is None:\n                return None\n            if isinstance(node, dict):\n                return node.get(\"right\")\n            return getattr(node, \"right\", None)\n\n        def is_tree_object(node):\n            return node is None or hasattr(node, \"val\") or isinstance(node, dict)\n\n        def normalize_tree(obj):\n            if obj is None:\n                return None\n            if isinstance(obj, list):\n                if not obj or obj[0] is None:\n                    return None\n                nodes = [None if x is None else {\"val\": x, \"left\": None, \"right\": None} for x in obj]\n                q = deque([0])\n                idx = 1\n                while q and idx < len(nodes):\n                    cur = q.popleft()\n                    if nodes[cur] is None:\n                        continue\n                    if idx < len(nodes):\n                        if nodes[idx] is not None:\n                            nodes[cur][\"left\"] = idx\n                            q.append(idx)\n                        idx += 1\n                    if idx < len(nodes):\n                        if nodes[idx] is not None:\n                            nodes[cur][\"right\"] = idx\n                            q.append(idx)\n                        idx += 1\n\n                def rec(i):\n                    if i is None:\n                        return None\n                    n = nodes[i]\n                    if n is None:\n                        return None\n                    return {\"val\": n[\"val\"], \"left\": rec(n[\"left\"]), \"right\": rec(n[\"right\"])}\n\n                return rec(0)\n            if is_tree_object(obj):\n                v = node_val(obj)\n                if v is None:\n                    return None\n                return {\n                    \"val\": v,\n                    \"left\": normalize_tree(node_left(obj)),\n                    \"right\": normalize_tree(node_right(obj)),\n                }\n            return None\n\n        def inorder(node):\n            if node is None:\n                return []\n            return inorder(node[\"left\"]) + [node[\"val\"]] + inorder(node[\"right\"])\n\n        def validate_bst(node, lo, hi):\n            if node is None:\n                return True\n            v = node[\"val\"]\n            if not (lo < v < hi):\n                return False\n            return validate_bst(node[\"left\"], lo, v) and validate_bst(node[\"right\"], v, hi)\n\n        def values_set(node):\n            if node is None:\n                return set()\n            return {node[\"val\"]} | values_set(node[\"left\"]) | values_set(node[\"right\"])\n\n        def count(node):\n            if node is None:\n                return 0\n            return 1 + count(node[\"left\"]) + count(node[\"right\"])\n\n        input_tree = normalize_tree(root)\n        output_tree = normalize_tree(result)\n        if output_tree is None:\n            return False\n        if not validate_bst(output_tree, float(\"-inf\"), float(\"inf\")):\n            return False\n        if input_tree is not None and not validate_bst(input_tree, float(\"-inf\"), float(\"inf\")):\n            return False\n\n        input_values = values_set(input_tree)\n        output_values = values_set(output_tree)\n        if val in input_values:\n            return False\n        if output_values != (input_values | {val}):\n            return False\n        if count(output_tree) != count(input_tree) + 1:\n            return False\n        if inorder(output_tree) != sorted(output_values):\n            return False\n        return True\n"
+      }
+    },
+    "seed": 701,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            4,
+            2,
+            7,
+            1,
+            3
+          ],
+          "val": 5
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            40,
+            20,
+            60,
+            10,
+            30,
+            50,
+            70
+          ],
+          "val": 25
+        }
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "root": [
+            4,
+            2,
+            7,
+            1,
+            3,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "val": 5
+        }
+      },
+      {
+        "name": "empty_tree",
+        "in": {
+          "root": [],
+          "val": 1
+        }
+      },
+      {
+        "name": "single_insert_left",
+        "in": {
+          "root": [
+            2
+          ],
+          "val": 1
+        }
+      },
+      {
+        "name": "single_insert_right",
+        "in": {
+          "root": [
+            2
+          ],
+          "val": 3
+        }
+      },
+      {
+        "name": "root_with_left_child_insert_leftmost",
+        "in": {
+          "root": [
+            5,
+            3
+          ],
+          "val": 2
+        }
+      },
+      {
+        "name": "root_with_left_child_insert_right_of_left",
+        "in": {
+          "root": [
+            5,
+            3
+          ],
+          "val": 4
+        }
+      },
+      {
+        "name": "root_with_right_child_insert_left_of_right",
+        "in": {
+          "root": [
+            5,
+            null,
+            8
+          ],
+          "val": 7
+        }
+      },
+      {
+        "name": "root_with_right_child_insert_rightmost",
+        "in": {
+          "root": [
+            5,
+            null,
+            8
+          ],
+          "val": 9
+        }
+      },
+      {
+        "name": "balanced_7_insert_middle",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ],
+          "val": 8
+        }
+      },
+      {
+        "name": "balanced_7_insert_leaf_left",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ],
+          "val": 0
+        }
+      },
+      {
+        "name": "balanced_7_insert_internal_left",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ],
+          "val": 8
+        }
+      },
+      {
+        "name": "left_skew_4_insert_bottom",
+        "in": {
+          "root": [
+            4,
+            3,
+            null,
+            2,
+            null,
+            1
+          ],
+          "val": 0
+        }
+      },
+      {
+        "name": "left_skew_4_insert_middle",
+        "in": {
+          "root": [
+            4,
+            3,
+            null,
+            2,
+            null,
+            1
+          ],
+          "val": 5
+        }
+      },
+      {
+        "name": "right_skew_4_insert_bottom",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3,
+            null,
+            4
+          ],
+          "val": 5
+        }
+      },
+      {
+        "name": "right_skew_4_insert_middle",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3,
+            null,
+            4
+          ],
+          "val": 0
+        }
+      },
+      {
+        "name": "negative_values_left",
+        "in": {
+          "root": [
+            0,
+            -3,
+            9,
+            -10,
+            -1,
+            5,
+            12
+          ],
+          "val": -2
+        }
+      },
+      {
+        "name": "negative_values_right",
+        "in": {
+          "root": [
+            0,
+            -3,
+            9,
+            -10,
+            -1,
+            5,
+            12
+          ],
+          "val": 8
+        }
+      },
+      {
+        "name": "insert_between_levels",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            3,
+            7,
+            12,
+            18
+          ],
+          "val": 6
+        }
+      },
+      {
+        "name": "insert_far_left",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            3,
+            7,
+            12,
+            18
+          ],
+          "val": 1
+        }
+      },
+      {
+        "name": "insert_far_right",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            3,
+            7,
+            12,
+            18
+          ],
+          "val": 20
+        }
+      },
+      {
+        "name": "sparse_tree_left_gap",
+        "in": {
+          "root": [
+            8,
+            4,
+            12,
+            2,
+            6,
+            10,
+            14,
+            1,
+            null,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          "val": 16
+        }
+      },
+      {
+        "name": "sparse_tree_right_gap",
+        "in": {
+          "root": [
+            8,
+            4,
+            12,
+            2,
+            6,
+            10,
+            14,
+            1,
+            null,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          "val": 0
+        }
+      },
+      {
+        "name": "insert_root_between_children",
+        "in": {
+          "root": [
+            50,
+            25,
+            75,
+            10,
+            37,
+            62,
+            87
+          ],
+          "val": 60
+        }
+      },
+      {
+        "name": "insert_left_chain_new_leaf",
+        "in": {
+          "root": [
+            7,
+            3,
+            null,
+            2,
+            null,
+            1
+          ],
+          "val": 6
+        }
+      },
+      {
+        "name": "insert_right_chain_new_leaf",
+        "in": {
+          "root": [
+            7,
+            null,
+            11,
+            null,
+            13,
+            null,
+            15
+          ],
+          "val": 16
+        }
+      },
+      {
+        "name": "insert_near_min",
+        "in": {
+          "root": [
+            0,
+            -100000000,
+            100000000
+          ],
+          "val": -99999999
+        }
+      },
+      {
+        "name": "insert_near_max",
+        "in": {
+          "root": [
+            0,
+            -100000000,
+            100000000
+          ],
+          "val": 99999999
+        }
+      },
+      {
+        "name": "deep_left_branch",
+        "in": {
+          "root": [
+            30,
+            20,
+            40,
+            10,
+            25,
+            35,
+            50,
+            5,
+            null,
+            22,
+            27,
+            33,
+            37,
+            45,
+            55
+          ],
+          "val": 24
+        }
+      },
+      {
+        "name": "deep_right_branch",
+        "in": {
+          "root": [
+            30,
+            20,
+            40,
+            10,
+            25,
+            35,
+            50,
+            5,
+            null,
+            22,
+            27,
+            33,
+            37,
+            45,
+            55
+          ],
+          "val": 53
+        }
+      },
+      {
+        "name": "complete_tree_small",
+        "in": {
+          "root": [
+            6,
+            3,
+            9,
+            1,
+            4,
+            7,
+            10
+          ],
+          "val": 8
+        }
+      },
+      {
+        "name": "complete_tree_small_left",
+        "in": {
+          "root": [
+            6,
+            3,
+            9,
+            1,
+            4,
+            7,
+            10
+          ],
+          "val": 2
+        }
+      },
+      {
+        "name": "complete_tree_small_right",
+        "in": {
+          "root": [
+            6,
+            3,
+            9,
+            1,
+            4,
+            7,
+            10
+          ],
+          "val": 11
+        }
+      },
+      {
+        "name": "mixed_sparse_1",
+        "in": {
+          "root": [
+            15,
+            6,
+            20,
+            3,
+            7,
+            18,
+            24,
+            2,
+            null,
+            null,
+            13,
+            17,
+            19,
+            22,
+            27
+          ],
+          "val": 14
+        }
+      },
+      {
+        "name": "mixed_sparse_2",
+        "in": {
+          "root": [
+            15,
+            6,
+            20,
+            3,
+            7,
+            18,
+            24,
+            2,
+            null,
+            null,
+            13,
+            17,
+            19,
+            22,
+            27
+          ],
+          "val": 21
+        }
+      },
+      {
+        "name": "long_left_spine",
+        "in": {
+          "root": [
+            100,
+            50,
+            null,
+            25,
+            null,
+            12,
+            null,
+            6,
+            null,
+            3
+          ],
+          "val": 1
+        }
+      },
+      {
+        "name": "long_right_spine",
+        "in": {
+          "root": [
+            100,
+            null,
+            150,
+            null,
+            175,
+            null,
+            187,
+            null,
+            193
+          ],
+          "val": 200
+        }
+      },
+      {
+        "name": "root_level_insert",
+        "in": {
+          "root": [
+            8,
+            4,
+            12,
+            2,
+            6,
+            10,
+            14
+          ],
+          "val": 11
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [4, 2, 7, 1, 3]\nval = 5",
+      "output": ""
+    },
+    {
+      "input": "root = [40, 20, 60, 10, 30, 50, 70]\nval = 25",
+      "output": ""
+    },
+    {
+      "input": "root = [4, 2, 7, 1, 3, null, null, null, null, null, null]\nval = 5",
+      "output": ""
+    },
+    {
+      "input": "root = []\nval = 1",
+      "output": ""
+    },
+    {
+      "input": "root = [2]\nval = 1",
+      "output": ""
+    },
+    {
+      "input": "root = [2]\nval = 3",
+      "output": ""
+    },
+    {
+      "input": "root = [5, 3]\nval = 2",
+      "output": ""
+    },
+    {
+      "input": "root = [5, 3]\nval = 4",
+      "output": ""
+    }
+  ]
+}

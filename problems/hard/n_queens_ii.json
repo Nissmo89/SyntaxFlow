@@ -1,0 +1,347 @@
+{
+  "id": "n_queens_ii",
+  "title": "N-Queens II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Backtracking"
+  ],
+  "description": "<p>The <strong>n-queens</strong> puzzle is the problem of placing <code>n</code> queens on an <code>n x n</code> chessboard such that no two queens attack each other.</p>\n\n<p>Given an integer <code>n</code>, return <em>the number of distinct solutions to the&nbsp;<strong>n-queens puzzle</strong></em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/11/13/queens.jpg\" style=\"width: 600px; height: 268px;\" />\n<pre>\n<strong>Input:</strong> n = 4\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> There are two distinct solutions to the 4-queens puzzle as shown.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 9</code></li>\n</ul>\n",
+  "task": "Solve the 'N-Queens II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 9"
+  ],
+  "hints": [],
+  "method": {
+    "name": "totalNQueens",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 52,
+      "title": "n-queens-ii",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().totalNQueens({n})",
+        "rust": "Solution::total_n_queens({n})",
+        "python3": "Solution().totalNQueens({n})",
+        "python2": "Solution().totalNQueens({n})",
+        "ruby": "total_n_queens({n})",
+        "java": "new Solution().totalNQueens({n})",
+        "csharp": "new Solution().TotalNQueens({n})",
+        "kotlin": "Solution().totalNQueens({n})",
+        "go": "totalNQueens({n})",
+        "dart": "Solution().totalNQueens({n})",
+        "swift": "Solution().totalNQueens({n})",
+        "typescript": "totalNQueens({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().totalNQueens(n, {result})",
+        "checker": "class Checker:\n    def totalNQueens(self, n, result):\n        return isinstance(result, int) and result == Solution().totalNQueens(n)\n"
+      }
+    },
+    "seed": 52,
+    "tests": [
+      {
+        "name": "n=1 example",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n=2 no solution",
+        "in": {
+          "n": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "n=3 no solution",
+        "in": {
+          "n": 3
+        },
+        "out": 0
+      },
+      {
+        "name": "n=4 example",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "n=5",
+        "in": {
+          "n": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "n=6",
+        "in": {
+          "n": 6
+        },
+        "out": 4
+      },
+      {
+        "name": "n=7",
+        "in": {
+          "n": 7
+        },
+        "out": 40
+      },
+      {
+        "name": "n=8 upper bound minus one",
+        "in": {
+          "n": 8
+        },
+        "out": 92
+      },
+      {
+        "name": "n=9 upper bound",
+        "in": {
+          "n": 9
+        },
+        "out": 352
+      },
+      {
+        "name": "n=1 regression A",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n=2 regression A",
+        "in": {
+          "n": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "n=3 regression A",
+        "in": {
+          "n": 3
+        },
+        "out": 0
+      },
+      {
+        "name": "n=4 regression A",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "n=5 regression A",
+        "in": {
+          "n": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "n=6 regression A",
+        "in": {
+          "n": 6
+        },
+        "out": 4
+      },
+      {
+        "name": "n=7 regression A",
+        "in": {
+          "n": 7
+        },
+        "out": 40
+      },
+      {
+        "name": "n=8 regression A",
+        "in": {
+          "n": 8
+        },
+        "out": 92
+      },
+      {
+        "name": "n=9 regression A",
+        "in": {
+          "n": 9
+        },
+        "out": 352
+      },
+      {
+        "name": "n=1 regression B",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n=2 regression B",
+        "in": {
+          "n": 2
+        },
+        "out": 0
+      },
+      {
+        "name": "n=3 regression B",
+        "in": {
+          "n": 3
+        },
+        "out": 0
+      },
+      {
+        "name": "n=4 regression B",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "n=5 regression B",
+        "in": {
+          "n": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "n=6 regression B",
+        "in": {
+          "n": 6
+        },
+        "out": 4
+      },
+      {
+        "name": "n=7 regression B",
+        "in": {
+          "n": 7
+        },
+        "out": 40
+      },
+      {
+        "name": "n=8 regression B",
+        "in": {
+          "n": 8
+        },
+        "out": 92
+      },
+      {
+        "name": "n=9 regression B",
+        "in": {
+          "n": 9
+        },
+        "out": 352
+      },
+      {
+        "name": "n=4 repeat",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "n=5 repeat",
+        "in": {
+          "n": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "n=6 repeat",
+        "in": {
+          "n": 6
+        },
+        "out": 4
+      },
+      {
+        "name": "n=7 repeat",
+        "in": {
+          "n": 7
+        },
+        "out": 40
+      },
+      {
+        "name": "n=8 repeat",
+        "in": {
+          "n": 8
+        },
+        "out": 92
+      },
+      {
+        "name": "n=9 repeat",
+        "in": {
+          "n": 9
+        },
+        "out": 352
+      },
+      {
+        "name": "n=8 final stress",
+        "in": {
+          "n": 8
+        },
+        "out": 92
+      },
+      {
+        "name": "n=9 final stress",
+        "in": {
+          "n": 9
+        },
+        "out": 352
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "0"
+    },
+    {
+      "input": "n = 3",
+      "output": "0"
+    },
+    {
+      "input": "n = 4",
+      "output": "2"
+    },
+    {
+      "input": "n = 5",
+      "output": "10"
+    },
+    {
+      "input": "n = 6",
+      "output": "4"
+    },
+    {
+      "input": "n = 7",
+      "output": "40"
+    },
+    {
+      "input": "n = 8",
+      "output": "92"
+    }
+  ]
+}

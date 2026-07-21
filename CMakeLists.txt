@@ -10,7 +10,12 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 # ---- Find Qt ----
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network)
+
+# ============================================================
+# QText Browser Custom Renderer Module
+# ============================================================
+add_subdirectory(libs/qtext_browser)
 
 # ============================================================
 # Tree-sitter Core
@@ -59,71 +64,10 @@ target_link_libraries(tree-sitter-highlighter PUBLIC
 )
 
 # ============================================================
-# QuickJS (Static Embedded)
+# Python 3 (Required)
 # ============================================================
-set(QUICKJS_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/libs/quickjs)
-
-add_library(quickjs STATIC
-    ${QUICKJS_ROOT}/quickjs.c
-    ${QUICKJS_ROOT}/libregexp.c
-    ${QUICKJS_ROOT}/libunicode.c
-    ${QUICKJS_ROOT}/cutils.c
-    ${QUICKJS_ROOT}/dtoa.c
-)
-
-target_include_directories(quickjs PUBLIC ${QUICKJS_ROOT})
-
-# Rename conflicting symbols to avoid clash with libtcc
-target_compile_definitions(quickjs PRIVATE
-    CONFIG_VERSION="2024-01-13"
-    "pstrcpy=qjs_pstrcpy"
-    "pstrcat=qjs_pstrcat"
-    "unicode_to_utf8=qjs_unicode_to_utf8"
-)
-
-set_target_properties(quickjs PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)
-
-if(MSVC)
-    # MSVC is NOT a supported toolchain for SyntaxFlow.
-    # The project requires MinGW-w64 on Windows or GCC/Clang on Linux.
-    # This block is intentionally left empty.
-    message(WARNING "MSVC detected. SyntaxFlow only officially supports MinGW-w64 (Windows) and GCC/Clang (Linux). Build may fail.")
-elseif(MINGW)
-    target_compile_options(quickjs PRIVATE
-        -Wno-implicit-function-declaration
-        -Wno-sign-compare
-        -Wno-unused-variable
-        -Wno-unused-parameter
-    )
-    # QuickJS uses math functions (pow, floor, etc.) — MinGW needs explicit -lm.
-    # QuickJS CONFIG_ATOMICS uses pthreads — MinGW needs explicit -lpthread.
-    target_link_libraries(quickjs PRIVATE m pthread)
-else()
-    target_compile_options(quickjs PRIVATE
-        -Wno-implicit-function-declaration
-        -Wno-sign-compare
-    )
-endif()
-
-# ============================================================
-# Python 3 (Optional on ALL platforms — BUILD-04)
-# ============================================================
-# On Windows with MinGW, pass -DPYTHON3_ROOT_DIR=C:/Python312 to cmake.
-find_package(Python3 COMPONENTS Interpreter Development QUIET)
-
-if(Python3_FOUND)
-    message(STATUS "Python3 found: ${Python3_VERSION} — ${Python3_EXECUTABLE}")
-    set(SF_ENABLE_PYTHON ON)
-else()
-    message(WARNING
-        "Python3 development headers not found — Python runner will be disabled.\n"
-        "To enable:\n"
-        "  Ubuntu/Debian: sudo apt install python3-dev\n"
-        "  Fedora:        sudo dnf install python3-devel\n"
-        "  Windows:       Install Python 3.x from python.org (tick 'development libraries')\n"
-        "                 then pass -DPYTHON3_ROOT_DIR=C:/Python312 to cmake")
-    set(SF_ENABLE_PYTHON OFF)
-endif()
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+message(STATUS "Python3 found: ${Python3_VERSION} — ${Python3_EXECUTABLE}")
 
 # ============================================================
 # Main Executable
@@ -134,6 +78,7 @@ add_executable(SyntaxFlow
     hoversidebar.cpp hoversidebar.h
     problemwidgets.cpp problemwidgets.h
     problem_panel.cpp problem_panel.h
+    markdownrenderer.cpp markdownrenderer.h
     jsonutils.cpp jsonutils.h
     code_editor.cpp code_editor.h
     testcase_panel.cpp testcase_panel.h
@@ -145,41 +90,25 @@ add_executable(SyntaxFlow
     output_normalizer.h
     progressmanager.h progressmanager.cpp
     embedded_runner.h
-    tcc_compiler.h tcc_compiler.cpp
-    quickjs_runner.h quickjs_runner.cpp
-    lab_manager.h lab_manager.cpp
-    lab_browser.h lab_browser.cpp
-    output_panel.h output_panel.cpp
+    python_runner.h python_runner.cpp
 )
 
-# Conditionally include python runner
-if(SF_ENABLE_PYTHON)
-    target_sources(SyntaxFlow PRIVATE python_runner.h python_runner.cpp)
-    target_compile_definitions(SyntaxFlow PRIVATE SF_PYTHON_ENABLED)
-    target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
-endif()
+target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
 
-# ---- Link Qt ----
+# ---- Link Libraries ----
 target_link_libraries(SyntaxFlow PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    Qt6::Network
     tree-sitter-highlighter
-    quickjs
+    qtext_browser
+    ${Python3_LIBRARIES}
 )
 
-# ---- Link Python if found ----
-if(SF_ENABLE_PYTHON)
-    target_link_libraries(SyntaxFlow PRIVATE ${Python3_LIBRARIES})
-    if(WIN32)
-        # MinGW needs these for Python on Windows
-        target_link_libraries(SyntaxFlow PRIVATE ws2_32 winmm)
-    endif()
-endif()
-
-# ---- MinGW: link pthread (required by QuickJS CONFIG_ATOMICS) ----
-if(MINGW)
-    target_link_libraries(SyntaxFlow PRIVATE pthread)
+if(WIN32)
+    # MinGW needs these for Python on Windows
+    target_link_libraries(SyntaxFlow PRIVATE ws2_32 winmm)
 endif()
 
 # ============================================================
@@ -233,124 +162,24 @@ else()
 endif()
 
 # ============================================================
-# TinyCC (Static Embedded)
-# ============================================================
-set(TINYCC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/libs/tinycc)
-
-if(WIN32)
-    set(TINYCC_LIB ${TINYCC_ROOT}/windows/libtcc.a)
-elseif(UNIX)
-    set(TINYCC_LIB ${TINYCC_ROOT}/linux/libtcc.a)
-endif()
-
-if(APPLE)
-    # macOS is NOT supported. TCC has no macOS/Apple Silicon backend.
-    # External compiler fallback has been intentionally removed.
-    # Only libtcc (Linux/Windows), QuickJS, and CPython are supported runners.
-    message(FATAL_ERROR
-        "macOS is not a supported build target for SyntaxFlow.\n"
-        "Supported platforms: Linux (x86-64) and Windows (MinGW-w64).")
-endif()
-
-if(EXISTS ${TINYCC_LIB})
-    message(STATUS "Using static TinyCC: ${TINYCC_LIB}")
-
-    add_library(tcc STATIC IMPORTED)
-    set_target_properties(tcc PROPERTIES
-        IMPORTED_LOCATION ${TINYCC_LIB}
-        INTERFACE_INCLUDE_DIRECTORIES ${TINYCC_ROOT}
-    )
-    target_link_libraries(SyntaxFlow PRIVATE tcc)
-
-    # On MinGW, TinyCC's internal relocation needs all symbols exported.
-    if(WIN32 AND MINGW)
-        target_link_libraries(SyntaxFlow PRIVATE -Wl,--export-all-symbols)
-    endif()
-
-else()
-    # BUILD-01: Auto-build TinyCC from source rather than failing immediately.
-    message(STATUS "TinyCC not found at ${TINYCC_LIB} — attempting to build from source...")
-    if(UNIX AND NOT APPLE)
-        execute_process(
-            COMMAND bash -c
-                "cd '${TINYCC_ROOT}' && ./configure && make libtcc.a libtcc1.a && mkdir -p linux && cp libtcc.a libtcc1.a runmain.o bt-exe.o bt-log.o bcheck.o linux/ 2>/dev/null || true"
-            RESULT_VARIABLE TCC_BUILD_RESULT
-        )
-    elseif(WIN32)
-        execute_process(
-            COMMAND cmd /c "${CMAKE_CURRENT_SOURCE_DIR}/build-windows.bat"
-            RESULT_VARIABLE TCC_BUILD_RESULT
-        )
-    endif()
-
-    if(EXISTS ${TINYCC_LIB})
-        message(STATUS "TinyCC built successfully: ${TINYCC_LIB}")
-        add_library(tcc STATIC IMPORTED)
-        set_target_properties(tcc PROPERTIES
-            IMPORTED_LOCATION ${TINYCC_LIB}
-            INTERFACE_INCLUDE_DIRECTORIES ${TINYCC_ROOT}
-        )
-        target_link_libraries(SyntaxFlow PRIVATE tcc)
-        if(WIN32 AND MINGW)
-            target_link_libraries(SyntaxFlow PRIVATE -Wl,--export-all-symbols)
-        endif()
-    else()
-        message(FATAL_ERROR
-            "TinyCC build failed. Install build tools and retry cmake:\n"
-            "  Ubuntu/Debian: sudo apt install build-essential\n"
-            "  Fedora:        sudo dnf install gcc make\n"
-            "  Windows:       Run build-windows.bat manually first.")
-    endif()
-endif()
-
-# ============================================================
 # Copy runtime assets after build
 # ============================================================
-if(WIN32)
-    add_custom_command(TARGET SyntaxFlow POST_BUILD
-        COMMENT "Copying Windows TCC runtime assets..."
-        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:SyntaxFlow>/tcc"
-        COMMAND ${CMAKE_COMMAND} -E copy
-            "${TINYCC_ROOT}/windows/libtcc1.a"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${TINYCC_ROOT}/include"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/include"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${TINYCC_ROOT}/win32/include"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/include"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${TINYCC_ROOT}/win32/lib"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/lib"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_SOURCE_DIR}/problems"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/problems"
-        COMMAND ${CMAKE_COMMAND} -E copy
-            "${CMAKE_CURRENT_SOURCE_DIR}/problems.json"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/problems.json"
-    )
-else()
-    add_custom_command(TARGET SyntaxFlow POST_BUILD
-        COMMENT "Copying Linux TCC runtime assets..."
-        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:SyntaxFlow>/tcc"
-        COMMAND ${CMAKE_COMMAND} -E copy
-            "${TINYCC_ROOT}/linux/libtcc1.a"
-            "${TINYCC_ROOT}/linux/runmain.o"
-            "${TINYCC_ROOT}/linux/bt-exe.o"
-            "${TINYCC_ROOT}/linux/bt-log.o"
-            "${TINYCC_ROOT}/linux/bcheck.o"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${TINYCC_ROOT}/include"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/tcc/include"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_SOURCE_DIR}/problems"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/problems"
-        COMMAND ${CMAKE_COMMAND} -E copy
-            "${CMAKE_CURRENT_SOURCE_DIR}/problems.json"
-            "$<TARGET_FILE_DIR:SyntaxFlow>/problems.json"
-    )
-endif()
+add_custom_command(TARGET SyntaxFlow POST_BUILD
+    COMMENT "Copying runtime assets..."
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/problems"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/problems"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "${CMAKE_CURRENT_SOURCE_DIR}/problems.json"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/problems.json"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "${CMAKE_CURRENT_SOURCE_DIR}/libs/qtext_browser/style.css"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/style.css"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/libs/qtext_browser/fonts"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/fonts"
+)
+
 
 # ---- Windows: hide console ----
 if(WIN32)

@@ -1,0 +1,803 @@
+{
+  "id": "reveal_cards_in_increasing_order",
+  "title": "Reveal Cards In Increasing Order",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Queue",
+    "Sorting",
+    "Simulation"
+  ],
+  "description": "<p>You are given an integer array <code>deck</code>. There is a deck of cards where every card has a unique integer. The integer on the <code>i<sup>th</sup></code> card is <code>deck[i]</code>.</p>\n\n<p>You can order the deck in any order you want. Initially, all the cards start face down (unrevealed) in one deck.</p>\n\n<p>You will do the following steps repeatedly until all cards are revealed:</p>\n\n<ol>\n\t<li>Take the top card of the deck, reveal it, and take it out of the deck.</li>\n\t<li>If there are still cards in the deck then put the next top card of the deck at the bottom of the deck.</li>\n\t<li>If there are still unrevealed cards, go back to step 1. Otherwise, stop.</li>\n</ol>\n\n<p>Return <em>an ordering of the deck that would reveal the cards in increasing order</em>.</p>\n\n<p><strong>Note</strong> that the first entry in the answer is considered to be the top of the deck.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> deck = [17,13,11,2,3,5,7]\n<strong>Output:</strong> [2,13,3,11,5,17,7]\n<strong>Explanation:</strong> \nWe get the deck in the order [17,13,11,2,3,5,7] (this order does not matter), and reorder it.\nAfter reordering, the deck starts as [2,13,3,11,5,17,7], where 2 is the top of the deck.\nWe reveal 2, and move 13 to the bottom.  The deck is now [3,11,5,17,7,13].\nWe reveal 3, and move 11 to the bottom.  The deck is now [5,17,7,13,11].\nWe reveal 5, and move 17 to the bottom.  The deck is now [7,13,11,17].\nWe reveal 7, and move 13 to the bottom.  The deck is now [11,17,13].\nWe reveal 11, and move 17 to the bottom.  The deck is now [13,17].\nWe reveal 13, and move 17 to the bottom.  The deck is now [17].\nWe reveal 17.\nSince all the cards revealed are in increasing order, the answer is correct.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> deck = [1,1000]\n<strong>Output:</strong> [1,1000]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= deck.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= deck[i] &lt;= 10<sup>6</sup></code></li>\n\t<li>All the values of <code>deck</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Reveal Cards In Increasing Order' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= deck.length <= 1000",
+    "1 <= deck[i] <= 106",
+    "All the values of deck are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "deckRevealedIncreasing",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "deck",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 950,
+      "title": "reveal-cards-in-increasing-order",
+      "params": {
+        "deck": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().deckRevealedIncreasing({deck})",
+        "rust": "Solution::deck_revealed_increasing({deck})",
+        "python3": "Solution().deckRevealedIncreasing({deck})",
+        "python2": "Solution().deckRevealedIncreasing({deck})",
+        "ruby": "deck_revealed_increasing({deck})",
+        "java": "new Solution().deckRevealedIncreasing({deck})",
+        "csharp": "new Solution().DeckRevealedIncreasing({deck})",
+        "kotlin": "Solution().deckRevealedIncreasing({deck})",
+        "go": "deckRevealedIncreasing({deck})",
+        "dart": "Solution().deckRevealedIncreasing({deck})",
+        "swift": "Solution().deckRevealedIncreasing({deck})",
+        "typescript": "deckRevealedIncreasing({deck})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 950,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "deck": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17
+          ]
+        },
+        "out": [
+          2,
+          13,
+          3,
+          11,
+          5,
+          17,
+          7
+        ]
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "deck": [
+            1
+          ]
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "deck": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "deck": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "deck": [
+            1,
+            250,
+            500,
+            1000
+          ]
+        },
+        "out": [
+          1,
+          500,
+          250,
+          1000
+        ]
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "deck": [
+            51,
+            55,
+            105,
+            178
+          ]
+        },
+        "out": [
+          51,
+          105,
+          55,
+          178
+        ]
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "deck": [
+            8,
+            13,
+            47,
+            54,
+            74,
+            89,
+            109,
+            198
+          ]
+        },
+        "out": [
+          8,
+          74,
+          13,
+          109,
+          47,
+          89,
+          54,
+          198
+        ]
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "deck": [
+            9,
+            11,
+            120,
+            128,
+            195
+          ]
+        },
+        "out": [
+          9,
+          195,
+          11,
+          128,
+          120
+        ]
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "deck": [
+            166
+          ]
+        },
+        "out": [
+          166
+        ]
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "deck": [
+            11,
+            86,
+            98
+          ]
+        },
+        "out": [
+          11,
+          98,
+          86
+        ]
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "deck": [
+            18,
+            62,
+            70,
+            88,
+            188
+          ]
+        },
+        "out": [
+          18,
+          188,
+          62,
+          88,
+          70
+        ]
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "deck": [
+            24,
+            41,
+            125
+          ]
+        },
+        "out": [
+          24,
+          125,
+          41
+        ]
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "deck": [
+            18,
+            62,
+            122,
+            123,
+            160,
+            170,
+            193
+          ]
+        },
+        "out": [
+          18,
+          170,
+          62,
+          160,
+          122,
+          193,
+          123
+        ]
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "deck": [
+            2,
+            17,
+            184
+          ]
+        },
+        "out": [
+          2,
+          184,
+          17
+        ]
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "deck": [
+            12,
+            86,
+            128,
+            169,
+            188,
+            189
+          ]
+        },
+        "out": [
+          12,
+          169,
+          86,
+          189,
+          128,
+          188
+        ]
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "deck": [
+            35,
+            36,
+            43,
+            44,
+            78,
+            145,
+            157,
+            178
+          ]
+        },
+        "out": [
+          35,
+          78,
+          36,
+          157,
+          43,
+          145,
+          44,
+          178
+        ]
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "deck": [
+            27,
+            59,
+            64,
+            100,
+            107,
+            108,
+            146,
+            148,
+            153,
+            155
+          ]
+        },
+        "out": [
+          27,
+          108,
+          59,
+          155,
+          64,
+          146,
+          100,
+          153,
+          107,
+          148
+        ]
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "deck": [
+            28,
+            32,
+            40,
+            42,
+            48,
+            79,
+            105,
+            130,
+            171,
+            178
+          ]
+        },
+        "out": [
+          28,
+          79,
+          32,
+          178,
+          40,
+          105,
+          42,
+          171,
+          48,
+          130
+        ]
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "deck": [
+            37,
+            93,
+            123,
+            138,
+            147,
+            152,
+            153
+          ]
+        },
+        "out": [
+          37,
+          152,
+          93,
+          147,
+          123,
+          153,
+          138
+        ]
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "deck": [
+            142
+          ]
+        },
+        "out": [
+          142
+        ]
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "deck": [
+            12,
+            20,
+            45,
+            51,
+            176
+          ]
+        },
+        "out": [
+          12,
+          176,
+          20,
+          51,
+          45
+        ]
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "deck": [
+            43,
+            137
+          ]
+        },
+        "out": [
+          43,
+          137
+        ]
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "deck": [
+            81,
+            89,
+            90,
+            100
+          ]
+        },
+        "out": [
+          81,
+          90,
+          89,
+          100
+        ]
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "deck": [
+            9,
+            14,
+            70,
+            72,
+            118,
+            122,
+            166,
+            181,
+            185,
+            196
+          ]
+        },
+        "out": [
+          9,
+          122,
+          14,
+          196,
+          70,
+          166,
+          72,
+          185,
+          118,
+          181
+        ]
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "deck": [
+            51,
+            67,
+            116,
+            120,
+            142,
+            166,
+            175,
+            196,
+            199
+          ]
+        },
+        "out": [
+          51,
+          199,
+          67,
+          166,
+          116,
+          196,
+          120,
+          175,
+          142
+        ]
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "deck": [
+            2,
+            29,
+            34,
+            39,
+            50,
+            67,
+            75,
+            127,
+            189
+          ]
+        },
+        "out": [
+          2,
+          189,
+          29,
+          67,
+          34,
+          127,
+          39,
+          75,
+          50
+        ]
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "deck": [
+            50,
+            137
+          ]
+        },
+        "out": [
+          50,
+          137
+        ]
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "deck": [
+            73,
+            193
+          ]
+        },
+        "out": [
+          73,
+          193
+        ]
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "deck": [
+            118
+          ]
+        },
+        "out": [
+          118
+        ]
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "deck": [
+            29,
+            75,
+            79,
+            96,
+            131,
+            171,
+            191
+          ]
+        },
+        "out": [
+          29,
+          171,
+          75,
+          131,
+          79,
+          191,
+          96
+        ]
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "deck": [
+            35,
+            41,
+            62,
+            67,
+            89,
+            113,
+            115,
+            176,
+            180,
+            186
+          ]
+        },
+        "out": [
+          35,
+          113,
+          41,
+          186,
+          62,
+          115,
+          67,
+          180,
+          89,
+          176
+        ]
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "deck": [
+            36,
+            53,
+            75,
+            84,
+            103,
+            133,
+            153,
+            165
+          ]
+        },
+        "out": [
+          36,
+          103,
+          53,
+          153,
+          75,
+          133,
+          84,
+          165
+        ]
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "deck": [
+            93,
+            103,
+            114,
+            131
+          ]
+        },
+        "out": [
+          93,
+          114,
+          103,
+          131
+        ]
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "deck": [
+            5,
+            8,
+            48,
+            56,
+            66,
+            85,
+            106,
+            167,
+            183,
+            197
+          ]
+        },
+        "out": [
+          5,
+          85,
+          8,
+          197,
+          48,
+          106,
+          56,
+          183,
+          66,
+          167
+        ]
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "deck": [
+            19,
+            26,
+            28,
+            48,
+            69,
+            115,
+            134,
+            149,
+            167
+          ]
+        },
+        "out": [
+          19,
+          167,
+          26,
+          115,
+          28,
+          149,
+          48,
+          134,
+          69
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "deck = [2, 3, 5, 7, 11, 13, 17]",
+      "output": "[2, 13, 3, 11, 5, 17, 7]"
+    },
+    {
+      "input": "deck = [1]",
+      "output": "[1]"
+    },
+    {
+      "input": "deck = [1, 2]",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "deck = [1, 2]",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "deck = [1, 250, 500, 1000]",
+      "output": "[1, 500, 250, 1000]"
+    },
+    {
+      "input": "deck = [51, 55, 105, 178]",
+      "output": "[51, 105, 55, 178]"
+    },
+    {
+      "input": "deck = [8, 13, 47, 54, 74, 89, 109, 198]",
+      "output": "[8, 74, 13, 109, 47, 89, 54, 198]"
+    },
+    {
+      "input": "deck = [9, 11, 120, 128, 195]",
+      "output": "[9, 195, 11, 128, 120]"
+    }
+  ]
+}

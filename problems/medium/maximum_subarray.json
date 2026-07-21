@@ -1,0 +1,726 @@
+{
+  "id": "maximum_subarray",
+  "title": "Maximum Subarray",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Dynamic Programming"
+  ],
+  "description": "<p>Given an integer array <code>nums</code>, find the <span data-keyword=\"subarray-nonempty\">subarray</span> with the largest sum, and return <em>its sum</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-2,1,-3,4,-1,2,1,-5,4]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The subarray [4,-1,2,1] has the largest sum 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The subarray [1] has the largest sum 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5,4,-1,7,8]\n<strong>Output:</strong> 23\n<strong>Explanation:</strong> The subarray [5,4,-1,7,8] has the largest sum 23.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> If you have figured out the <code>O(n)</code> solution, try coding another solution using the <strong>divide and conquer</strong> approach, which is more subtle.</p>\n",
+  "task": "Solve the 'Maximum Subarray' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-104 <= nums[i] <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxSubArray",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 53,
+      "title": "maximum-subarray",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxSubArray({nums})",
+        "rust": "Solution::max_sub_array({nums})",
+        "python3": "Solution().maxSubArray({nums})",
+        "python2": "Solution().maxSubArray({nums})",
+        "ruby": "max_sub_array({nums})",
+        "java": "new Solution().maxSubArray({nums})",
+        "csharp": "new Solution().MaxSubArray({nums})",
+        "kotlin": "Solution().maxSubArray({nums})",
+        "go": "maxSubArray({nums})",
+        "dart": "Solution().maxSubArray({nums})",
+        "swift": "Solution().maxSubArray({nums})",
+        "typescript": "maxSubArray({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxSubArray(nums, {result})",
+        "checker": "class Checker:\n    def maxSubArray(self, nums, result):\n        best = nums[0]\n        cur = 0\n        for n in nums:\n            if cur < 0:\n                cur = 0\n            cur += n\n            if cur > best:\n                best = cur\n        return result == best\n"
+      }
+    },
+    "seed": 53,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            5,
+            4,
+            -1,
+            7,
+            8
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "single-negative",
+        "in": {
+          "nums": [
+            -7
+          ]
+        },
+        "out": -7
+      },
+      {
+        "name": "all-negative",
+        "in": {
+          "nums": [
+            -8,
+            -3,
+            -6,
+            -2,
+            -5,
+            -4
+          ]
+        },
+        "out": -2
+      },
+      {
+        "name": "zeros-and-negatives",
+        "in": {
+          "nums": [
+            0,
+            -1,
+            0,
+            -2,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating-small",
+        "in": {
+          "nums": [
+            2,
+            -1,
+            2,
+            -1,
+            2,
+            -1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed-peaks",
+        "in": {
+          "nums": [
+            10,
+            -3,
+            1,
+            -1,
+            2,
+            -1,
+            2,
+            -10,
+            20,
+            -5,
+            1
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "gen-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 1,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-3",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-4",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-5",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-6",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-7",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 13,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-8",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 21,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-9",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 34,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-10",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 55,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-11",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 89,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-12",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 144,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-13",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 233,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-14",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 377,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-15",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 610,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-16",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 987,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-17",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 1597,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-18",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2584,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-19",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 4181,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-20",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 6765,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-21",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 10000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-22",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 15000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-23",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-24",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 30000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-25",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-26",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-27",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-28",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 75000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-29",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 64000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      },
+      {
+        "name": "gen-30",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 32000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000,
+              "distinct": false,
+              "sorted": false,
+              "elemType": "int"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [5, 4, -1, 7, 8]",
+      "output": "23"
+    },
+    {
+      "input": "nums = [-7]",
+      "output": "-7"
+    },
+    {
+      "input": "nums = [-8, -3, -6, -2, -5, -4]",
+      "output": "-2"
+    },
+    {
+      "input": "nums = [0, -1, 0, -2, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [2, -1, 2, -1, 2, -1]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [10, -3, 1, -1, 2, -1, 2, -10, 20, -5, 1]",
+      "output": "20"
+    }
+  ]
+}

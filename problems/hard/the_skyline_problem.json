@@ -1,0 +1,1230 @@
+{
+  "id": "the_skyline_problem",
+  "title": "The Skyline Problem",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sweep Line",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "description": "<p>A city&#39;s <strong>skyline</strong> is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Given the locations and heights of all the buildings, return <em>the <strong>skyline</strong> formed by these buildings collectively</em>.</p>\n\n<p>The geometric information of each building is given in the array <code>buildings</code> where <code>buildings[i] = [left<sub>i</sub>, right<sub>i</sub>, height<sub>i</sub>]</code>:</p>\n\n<ul>\n\t<li><code>left<sub>i</sub></code> is the x coordinate of the left edge of the <code>i<sup>th</sup></code> building.</li>\n\t<li><code>right<sub>i</sub></code> is the x coordinate of the right edge of the <code>i<sup>th</sup></code> building.</li>\n\t<li><code>height<sub>i</sub></code> is the height of the <code>i<sup>th</sup></code> building.</li>\n</ul>\n\n<p>You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height <code>0</code>.</p>\n\n<p>The <strong>skyline</strong> should be represented as a list of &quot;key points&quot; <strong>sorted by their x-coordinate</strong> in the form <code>[[x<sub>1</sub>,y<sub>1</sub>],[x<sub>2</sub>,y<sub>2</sub>],...]</code>. Each key point is the left endpoint of some horizontal segment in the skyline except the last point in the list, which always has a y-coordinate <code>0</code> and is used to mark the skyline&#39;s termination where the rightmost building ends. Any ground between the leftmost and rightmost buildings should be part of the skyline&#39;s contour.</p>\n\n<p><b>Note:</b> There must be no consecutive horizontal lines of equal height in the output skyline. For instance, <code>[...,[2 3],[4 5],[7 5],[11 5],[12 7],...]</code> is not acceptable; the three lines of height 5 should be merged into one in the final output as such: <code>[...,[2 3],[4 5],[12 7],...]</code></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/12/01/merged.jpg\" style=\"width: 800px; height: 331px;\" />\n<pre>\n<strong>Input:</strong> buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]\n<strong>Output:</strong> [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\n<strong>Explanation:</strong>\nFigure A shows the buildings of the input.\nFigure B shows the skyline formed by those buildings. The red points in figure B represent the key points in the output list.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> buildings = [[0,2,3],[2,5,3]]\n<strong>Output:</strong> [[0,3],[5,0]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= buildings.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= left<sub>i</sub> &lt; right<sub>i</sub> &lt;= 2<sup>31</sup> - 1</code></li>\n\t<li><code>1 &lt;= height<sub>i</sub> &lt;= 2<sup>31</sup> - 1</code></li>\n\t<li><code>buildings</code> is sorted by <code>left<sub>i</sub></code> in&nbsp;non-decreasing order.</li>\n</ul>\n",
+  "task": "Solve the 'The Skyline Problem' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= buildings.length <= 104",
+    "0 <= lefti < righti <= 231 - 1",
+    "1 <= heighti <= 231 - 1",
+    "buildings is sorted by lefti in\u00a0non-decreasing order."
+  ],
+  "hints": [],
+  "method": {
+    "name": "getSkyline",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "buildings",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 218,
+      "title": "the-skyline-problem",
+      "params": {
+        "buildings": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().getSkyline({buildings})",
+        "rust": "Solution::get_skyline({buildings})",
+        "python3": "Solution().getSkyline({buildings})",
+        "python2": "Solution().getSkyline({buildings})",
+        "ruby": "get_skyline({buildings})",
+        "java": "new Solution().getSkyline({buildings})",
+        "csharp": "new Solution().GetSkyline({buildings})",
+        "kotlin": "Solution().getSkyline({buildings})",
+        "go": "getSkyline({buildings})",
+        "dart": "Solution().getSkyline({buildings})",
+        "swift": "Solution().getSkyline({buildings})",
+        "typescript": "getSkyline({buildings})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().getSkyline(buildings, {result})",
+        "checker": "from typing import Any, List, Tuple\n\nclass Checker:\n    def getSkyline(self, buildings: List[List[int]], result: Any) -> bool:\n        if not isinstance(result, list):\n            return False\n        for point in result:\n            if not isinstance(point, list) or len(point) != 2:\n                return False\n            if any(not isinstance(v, int) for v in point):\n                return False\n\n        expected = self._skyline(buildings)\n        return result == expected\n\n    def _skyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        events: List[Tuple[int, int]] = []\n        for building in buildings:\n            if not isinstance(building, list) or len(building) != 3:\n                return []\n            L, R, H = building\n            if not all(isinstance(v, int) for v in building):\n                return []\n            if not (0 <= L < R and H >= 1):\n                return []\n            events.append((L, -H))\n            events.append((R, H))\n\n        events.sort()\n        import heapq\n\n        live = [0]\n        removed = {}\n        result = []\n        prev = 0\n\n        for x, h in events:\n            if h < 0:\n                heapq.heappush(live, h)\n            else:\n                removed[-h] = removed.get(-h, 0) + 1\n            while live[0] in removed:\n                top = live[0]\n                heapq.heappop(live)\n                removed[top] -= 1\n                if removed[top] == 0:\n                    del removed[top]\n            curr = -live[0]\n            if curr != prev:\n                result.append([x, curr])\n                prev = curr\n        return result\n"
+      }
+    },
+    "seed": 218218,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "buildings": [
+            [
+              2,
+              9,
+              10
+            ],
+            [
+              3,
+              7,
+              15
+            ],
+            [
+              5,
+              12,
+              12
+            ],
+            [
+              15,
+              20,
+              10
+            ],
+            [
+              19,
+              24,
+              8
+            ]
+          ]
+        },
+        "out": [
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            15
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            15,
+            10
+          ],
+          [
+            20,
+            8
+          ],
+          [
+            24,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              2,
+              5,
+              3
+            ]
+          ]
+        },
+        "out": [
+          [
+            0,
+            3
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "single_building",
+        "in": {
+          "buildings": [
+            [
+              1,
+              5,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "two_disjoint",
+        "in": {
+          "buildings": [
+            [
+              1,
+              3,
+              2
+            ],
+            [
+              5,
+              7,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "touching_equal",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              3
+            ],
+            [
+              4,
+              6,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "touching_different",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              5
+            ],
+            [
+              4,
+              6,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "nested",
+        "in": {
+          "buildings": [
+            [
+              1,
+              10,
+              5
+            ],
+            [
+              2,
+              9,
+              6
+            ],
+            [
+              3,
+              8,
+              7
+            ],
+            [
+              4,
+              7,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "same_left",
+        "in": {
+          "buildings": [
+            [
+              2,
+              6,
+              4
+            ],
+            [
+              2,
+              5,
+              7
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "same_right",
+        "in": {
+          "buildings": [
+            [
+              1,
+              8,
+              3
+            ],
+            [
+              2,
+              8,
+              6
+            ],
+            [
+              4,
+              8,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "stair_up",
+        "in": {
+          "buildings": [
+            [
+              0,
+              3,
+              2
+            ],
+            [
+              1,
+              4,
+              3
+            ],
+            [
+              2,
+              5,
+              4
+            ],
+            [
+              3,
+              6,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "stair_down",
+        "in": {
+          "buildings": [
+            [
+              0,
+              6,
+              6
+            ],
+            [
+              1,
+              5,
+              5
+            ],
+            [
+              2,
+              4,
+              4
+            ],
+            [
+              3,
+              7,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              4,
+              4
+            ],
+            [
+              3,
+              5,
+              6
+            ],
+            [
+              4,
+              6,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "duplicate_heights",
+        "in": {
+          "buildings": [
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              6,
+              5
+            ],
+            [
+              5,
+              7,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "plateau_with_gap",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              4,
+              4
+            ],
+            [
+              5,
+              7,
+              4
+            ],
+            [
+              7,
+              9,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "height_changes_same_x",
+        "in": {
+          "buildings": [
+            [
+              0,
+              5,
+              3
+            ],
+            [
+              0,
+              5,
+              7
+            ],
+            [
+              5,
+              10,
+              2
+            ],
+            [
+              5,
+              10,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "small_overlap",
+        "in": {
+          "buildings": [
+            [
+              1,
+              4,
+              2
+            ],
+            [
+              2,
+              6,
+              3
+            ],
+            [
+              5,
+              8,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "edge_zero_start",
+        "in": {
+          "buildings": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              3,
+              3
+            ],
+            [
+              3,
+              4,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "long_flat_top",
+        "in": {
+          "buildings": [
+            [
+              0,
+              10,
+              8
+            ],
+            [
+              2,
+              8,
+              8
+            ],
+            [
+              4,
+              6,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "interleaved_towers",
+        "in": {
+          "buildings": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1,
+              6,
+              2
+            ],
+            [
+              2,
+              5,
+              6
+            ],
+            [
+              4,
+              7,
+              5
+            ],
+            [
+              6,
+              9,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "many_small",
+        "in": {
+          "buildings": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "same_height_overlap",
+        "in": {
+          "buildings": [
+            [
+              1,
+              4,
+              5
+            ],
+            [
+              2,
+              6,
+              5
+            ],
+            [
+              3,
+              5,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "deep_nesting",
+        "in": {
+          "buildings": [
+            [
+              1,
+              20,
+              2
+            ],
+            [
+              2,
+              19,
+              3
+            ],
+            [
+              3,
+              18,
+              4
+            ],
+            [
+              4,
+              17,
+              5
+            ],
+            [
+              5,
+              16,
+              6
+            ],
+            [
+              6,
+              15,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "wide_two_peaks",
+        "in": {
+          "buildings": [
+            [
+              0,
+              10,
+              5
+            ],
+            [
+              3,
+              7,
+              9
+            ],
+            [
+              10,
+              20,
+              4
+            ],
+            [
+              12,
+              18,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "leftmost_gap",
+        "in": {
+          "buildings": [
+            [
+              5,
+              8,
+              3
+            ],
+            [
+              6,
+              9,
+              4
+            ],
+            [
+              10,
+              12,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "rightmost_drop",
+        "in": {
+          "buildings": [
+            [
+              0,
+              4,
+              3
+            ],
+            [
+              1,
+              5,
+              4
+            ],
+            [
+              2,
+              6,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "single_tall_middle",
+        "in": {
+          "buildings": [
+            [
+              0,
+              8,
+              2
+            ],
+            [
+              3,
+              5,
+              10
+            ],
+            [
+              5,
+              8,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "dense_overlap",
+        "in": {
+          "buildings": [
+            [
+              0,
+              4,
+              3
+            ],
+            [
+              1,
+              5,
+              4
+            ],
+            [
+              2,
+              6,
+              5
+            ],
+            [
+              3,
+              7,
+              6
+            ],
+            [
+              4,
+              8,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "tall_then_short",
+        "in": {
+          "buildings": [
+            [
+              0,
+              3,
+              9
+            ],
+            [
+              3,
+              6,
+              4
+            ],
+            [
+              6,
+              9,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "short_then_tall",
+        "in": {
+          "buildings": [
+            [
+              0,
+              3,
+              1
+            ],
+            [
+              3,
+              6,
+              4
+            ],
+            [
+              6,
+              9,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "name": "many_duplicates",
+        "in": {
+          "buildings": [
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              5,
+              10,
+              5
+            ],
+            [
+              5,
+              10,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "peak_and_valley",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              1
+            ],
+            [
+              4,
+              6,
+              4
+            ],
+            [
+              6,
+              8,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "large_range_1",
+        "in": {
+          "buildings": [
+            [
+              0,
+              1000000000,
+              1
+            ],
+            [
+              100,
+              200,
+              5
+            ],
+            [
+              300,
+              400,
+              4
+            ],
+            [
+              500,
+              600,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "large_range_2",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2147483646,
+              2
+            ],
+            [
+              1,
+              2147483645,
+              3
+            ],
+            [
+              2,
+              2147483644,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "stress_chain_1",
+        "in": {
+          "buildings": [
+            [
+              0,
+              3,
+              2
+            ],
+            [
+              1,
+              4,
+              4
+            ],
+            [
+              2,
+              5,
+              6
+            ],
+            [
+              3,
+              6,
+              8
+            ],
+            [
+              4,
+              7,
+              10
+            ],
+            [
+              5,
+              8,
+              12
+            ],
+            [
+              6,
+              9,
+              14
+            ]
+          ]
+        }
+      },
+      {
+        "name": "stress_chain_2",
+        "in": {
+          "buildings": [
+            [
+              10,
+              13,
+              14
+            ],
+            [
+              11,
+              14,
+              12
+            ],
+            [
+              12,
+              15,
+              10
+            ],
+            [
+              13,
+              16,
+              8
+            ],
+            [
+              14,
+              17,
+              6
+            ],
+            [
+              15,
+              18,
+              4
+            ],
+            [
+              16,
+              19,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "wide_sparse",
+        "in": {
+          "buildings": [
+            [
+              0,
+              2,
+              7
+            ],
+            [
+              10,
+              12,
+              9
+            ],
+            [
+              20,
+              22,
+              5
+            ],
+            [
+              30,
+              33,
+              11
+            ],
+            [
+              40,
+              44,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "one_short_one_tall",
+        "in": {
+          "buildings": [
+            [
+              1,
+              9,
+              2
+            ],
+            [
+              4,
+              6,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "name": "three_levels",
+        "in": {
+          "buildings": [
+            [
+              0,
+              10,
+              1
+            ],
+            [
+              2,
+              8,
+              3
+            ],
+            [
+              4,
+              6,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "same_start_same_end",
+        "in": {
+          "buildings": [
+            [
+              2,
+              9,
+              2
+            ],
+            [
+              2,
+              9,
+              7
+            ],
+            [
+              2,
+              9,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "mixed_extremes",
+        "in": {
+          "buildings": [
+            [
+              0,
+              1,
+              2147483647
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              3,
+              2147483646
+            ],
+            [
+              3,
+              4,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "final_big",
+        "in": {
+          "buildings": [
+            [
+              0,
+              5,
+              4
+            ],
+            [
+              1,
+              6,
+              8
+            ],
+            [
+              2,
+              7,
+              6
+            ],
+            [
+              3,
+              8,
+              10
+            ],
+            [
+              4,
+              9,
+              7
+            ],
+            [
+              5,
+              10,
+              9
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "buildings = [[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]",
+      "output": "[[2, 10], [3, 15], [7, 12], [12, 0], [15, 10], [20, 8], [24, 0]]"
+    },
+    {
+      "input": "buildings = [[0, 2, 3], [2, 5, 3]]",
+      "output": "[[0, 3], [5, 0]]"
+    },
+    {
+      "input": "buildings = [[1, 5, 4]]",
+      "output": ""
+    },
+    {
+      "input": "buildings = [[1, 3, 2], [5, 7, 4]]",
+      "output": ""
+    },
+    {
+      "input": "buildings = [[0, 2, 3], [2, 4, 3], [4, 6, 3]]",
+      "output": ""
+    },
+    {
+      "input": "buildings = [[0, 2, 3], [2, 4, 5], [4, 6, 1]]",
+      "output": ""
+    },
+    {
+      "input": "buildings = [[1, 10, 5], [2, 9, 6], [3, 8, 7], [4, 7, 8]]",
+      "output": ""
+    },
+    {
+      "input": "buildings = [[2, 6, 4], [2, 5, 7], [2, 4, 6]]",
+      "output": ""
+    }
+  ]
+}

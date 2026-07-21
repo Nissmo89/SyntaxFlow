@@ -1,0 +1,567 @@
+{
+  "id": "coin_change_ii",
+  "title": "Coin Change II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.</p>\n\n<p>Return <em>the number of combinations that make up that amount</em>. If that amount of money cannot be made up by any combination of the coins, return <code>0</code>.</p>\n\n<p>You may assume that you have an infinite number of each kind of coin.</p>\n\n<p>The <strong>final</strong> answer is <strong>guaranteed</strong> to fit into a signed <strong>32-bit</strong> integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> amount = 5, coins = [1,2,5]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> there are four ways to make up the amount:\n5=5\n5=2+2+1\n5=2+1+1+1\n5=1+1+1+1+1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> amount = 3, coins = [2]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> the amount of 3 cannot be made up just with coins of 2.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> amount = 10, coins = [10]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= coins.length &lt;= 300</code></li>\n\t<li><code>1 &lt;= coins[i] &lt;= 5000</code></li>\n\t<li>All the values of <code>coins</code> are <strong>unique</strong>.</li>\n\t<li><code>0 &lt;= amount &lt;= 5000</code></li>\n</ul>\n",
+  "task": "Solve the 'Coin Change II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= coins.length <= 300",
+    "1 <= coins[i] <= 5000",
+    "All the values of coins are unique.",
+    "0 <= amount <= 5000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "change",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "amount",
+        "type": "int"
+      },
+      {
+        "name": "coins",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 518,
+      "title": "coin-change-ii",
+      "params": {
+        "amount": {
+          "type": "int"
+        },
+        "coins": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().change({amount}, {coins})",
+        "rust": "Solution::change({amount}, {coins})",
+        "python3": "Solution().change({amount}, {coins})",
+        "python2": "Solution().change({amount}, {coins})",
+        "ruby": "change({amount}, {coins})",
+        "java": "new Solution().change({amount}, {coins})",
+        "csharp": "new Solution().Change({amount}, {coins})",
+        "kotlin": "Solution().change({amount}, {coins})",
+        "go": "change({amount}, {coins})",
+        "dart": "Solution().change({amount}, {coins})",
+        "swift": "Solution().change({amount}, {coins})",
+        "typescript": "change({amount}, {coins})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(amount, coins, {result})",
+        "checker": "class Checker:\n    def check(self, amount, coins, result):\n        if not isinstance(result, int):\n            return False\n        n = len(coins)\n        dp = [[0] * (amount + 1) for _ in range(n + 1)]\n        for i in range(n + 1):\n            dp[i][0] = 1\n        for i in range(1, n + 1):\n            c = coins[i - 1]\n            for j in range(1, amount + 1):\n                if c <= j:\n                    dp[i][j] = dp[i][j - c] + dp[i - 1][j]\n                else:\n                    dp[i][j] = dp[i - 1][j]\n        return result == dp[n][amount]\n"
+      }
+    },
+    "seed": 518,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "amount": 5,
+          "coins": [
+            1,
+            2,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "example2",
+        "in": {
+          "amount": 3,
+          "coins": [
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "example3",
+        "in": {
+          "amount": 10,
+          "coins": [
+            10
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_amount_single",
+        "in": {
+          "amount": 0,
+          "coins": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_amount_many",
+        "in": {
+          "amount": 0,
+          "coins": [
+            2,
+            3,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "coin_one_only",
+        "in": {
+          "amount": 7,
+          "coins": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "exact_coin",
+        "in": {
+          "amount": 7,
+          "coins": [
+            7
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "no_solution_small",
+        "in": {
+          "amount": 1,
+          "coins": [
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_coins_small",
+        "in": {
+          "amount": 4,
+          "coins": [
+            1,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "three_coins_small",
+        "in": {
+          "amount": 6,
+          "coins": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "unsorted_coins",
+        "in": {
+          "amount": 10,
+          "coins": [
+            5,
+            1,
+            2
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "gapped_coins",
+        "in": {
+          "amount": 8,
+          "coins": [
+            2,
+            4,
+            6
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "odd_amount_even_coins",
+        "in": {
+          "amount": 9,
+          "coins": [
+            2,
+            4,
+            6
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "duplicate_shape_free",
+        "in": {
+          "amount": 11,
+          "coins": [
+            2,
+            5,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "five_coins",
+        "in": {
+          "amount": 10,
+          "coins": [
+            2,
+            3,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "medium_1",
+        "in": {
+          "amount": 12,
+          "coins": [
+            1,
+            3,
+            4
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "medium_2",
+        "in": {
+          "amount": 15,
+          "coins": [
+            2,
+            5,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "medium_3",
+        "in": {
+          "amount": 20,
+          "coins": [
+            2,
+            5,
+            10
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "medium_4",
+        "in": {
+          "amount": 25,
+          "coins": [
+            1,
+            5,
+            10,
+            25
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "medium_5",
+        "in": {
+          "amount": 30,
+          "coins": [
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        "out": 98
+      },
+      {
+        "name": "medium_6",
+        "in": {
+          "amount": 40,
+          "coins": [
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        "out": 195
+      },
+      {
+        "name": "medium_7",
+        "in": {
+          "amount": 50,
+          "coins": [
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        "out": 341
+      },
+      {
+        "name": "medium_8",
+        "in": {
+          "amount": 100,
+          "coins": [
+            1,
+            5,
+            10,
+            25,
+            50
+          ]
+        },
+        "out": 292
+      },
+      {
+        "name": "large_sparse_1",
+        "in": {
+          "amount": 500,
+          "coins": [
+            1,
+            2,
+            5,
+            10,
+            20,
+            50,
+            100,
+            200,
+            500
+          ]
+        },
+        "out": 6295435
+      },
+      {
+        "name": "large_sparse_2",
+        "in": {
+          "amount": 1000,
+          "coins": [
+            1,
+            2,
+            5,
+            10,
+            20,
+            50,
+            100,
+            200,
+            500
+          ]
+        },
+        "out": 327631321
+      },
+      {
+        "name": "large_dense_1",
+        "in": {
+          "amount": 50,
+          "coins": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 62740
+      },
+      {
+        "name": "large_dense_2",
+        "in": {
+          "amount": 75,
+          "coins": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 847628
+      },
+      {
+        "name": "large_dense_3",
+        "in": {
+          "amount": 100,
+          "coins": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": 6292069
+      },
+      {
+        "name": "high_coin_values",
+        "in": {
+          "amount": 9,
+          "coins": [
+            5,
+            7,
+            11,
+            13
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "exact_sum_two_ways",
+        "in": {
+          "amount": 14,
+          "coins": [
+            2,
+            7
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "exact_sum_three_ways",
+        "in": {
+          "amount": 18,
+          "coins": [
+            3,
+            6,
+            9
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "exact_sum_four_ways",
+        "in": {
+          "amount": 24,
+          "coins": [
+            4,
+            6,
+            8
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "coin_large_gap",
+        "in": {
+          "amount": 37,
+          "coins": [
+            1,
+            17,
+            19
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "coin_large_gap2",
+        "in": {
+          "amount": 99,
+          "coins": [
+            1,
+            25,
+            50
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "coin_large_gap3",
+        "in": {
+          "amount": 123,
+          "coins": [
+            1,
+            3,
+            7,
+            11
+          ]
+        },
+        "out": 1732
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "amount = 5\ncoins = [1, 2, 5]",
+      "output": "4"
+    },
+    {
+      "input": "amount = 3\ncoins = [2]",
+      "output": "0"
+    },
+    {
+      "input": "amount = 10\ncoins = [10]",
+      "output": "1"
+    },
+    {
+      "input": "amount = 0\ncoins = [1]",
+      "output": "1"
+    },
+    {
+      "input": "amount = 0\ncoins = [2, 3, 5]",
+      "output": "1"
+    },
+    {
+      "input": "amount = 7\ncoins = [1]",
+      "output": "1"
+    },
+    {
+      "input": "amount = 7\ncoins = [7]",
+      "output": "1"
+    },
+    {
+      "input": "amount = 1\ncoins = [2, 3, 4]",
+      "output": "0"
+    }
+  ]
+}

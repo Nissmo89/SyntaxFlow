@@ -1,0 +1,408 @@
+{
+  "id": "longest_substring_without_repeating_characters",
+  "title": "Longest Substring Without Repeating Characters",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "description": "<p>Given a string <code>s</code>, find the length of the <strong>longest</strong> <span data-keyword=\"substring-nonempty\"><strong>substring</strong></span> without duplicate characters.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcabcbb&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The answer is &quot;abc&quot;, with the length of 3. Note that <code>&quot;bca&quot;</code> and <code>&quot;cab&quot;</code> are also correct answers.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;bbbbb&quot;\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The answer is &quot;b&quot;, with the length of 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;pwwkew&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The answer is &quot;wke&quot;, with the length of 3.\nNotice that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of English letters, digits, symbols and spaces.</li>\n</ul>\n",
+  "task": "Solve the 'Longest Substring Without Repeating Characters' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= s.length <= 5 * 104",
+    "s consists of English letters, digits, symbols and spaces."
+  ],
+  "hints": [
+    "There are less than 100 unique characters. We can check all substrings with length at most 100 for example. This is a good enough approximation."
+  ],
+  "method": {
+    "name": "lengthOfLongestSubstring",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 3,
+      "title": "longest-substring-without-repeating-characters",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().lengthOfLongestSubstring({s})",
+        "rust": "Solution::length_of_longest_substring({s})",
+        "python3": "Solution().lengthOfLongestSubstring({s})",
+        "python2": "Solution().lengthOfLongestSubstring({s})",
+        "ruby": "length_of_longest_substring({s})",
+        "java": "new Solution().lengthOfLongestSubstring({s})",
+        "csharp": "new Solution().LengthOfLongestSubstring({s})",
+        "kotlin": "Solution().lengthOfLongestSubstring({s})",
+        "go": "lengthOfLongestSubstring({s})",
+        "dart": "Solution().lengthOfLongestSubstring({s})",
+        "swift": "Solution().lengthOfLongestSubstring({s})",
+        "typescript": "lengthOfLongestSubstring({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().lengthOfLongestSubstring(s, {result})",
+        "checker": "class Checker:\n    def lengthOfLongestSubstring(self, s, result):\n        if not isinstance(result, int):\n            return False\n        last_seen = {}\n        start = 0\n        best = 0\n        for end, ch in enumerate(s):\n            if ch in last_seen and last_seen[ch] >= start:\n                start = last_seen[ch] + 1\n            best = max(best, end - start + 1)\n            last_seen[ch] = end\n        return result == best\n"
+      }
+    },
+    "seed": 3,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "abcabcbb"
+        },
+        "out": 3
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "bbbbb"
+        },
+        "out": 1
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "pwwkew"
+        },
+        "out": 3
+      },
+      {
+        "name": "empty_string",
+        "in": {
+          "s": ""
+        },
+        "out": 0
+      },
+      {
+        "name": "single_char",
+        "in": {
+          "s": "a"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_same_chars",
+        "in": {
+          "s": "aa"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_distinct_chars",
+        "in": {
+          "s": "ab"
+        },
+        "out": 2
+      },
+      {
+        "name": "all_unique_short",
+        "in": {
+          "s": "abcdef"
+        },
+        "out": 6
+      },
+      {
+        "name": "repeat_after_unique_run",
+        "in": {
+          "s": "abcdaf"
+        },
+        "out": 5
+      },
+      {
+        "name": "spaces_only",
+        "in": {
+          "s": "     "
+        },
+        "out": 1
+      },
+      {
+        "name": "spaces_and_letters",
+        "in": {
+          "s": "a b c a b"
+        },
+        "out": 3
+      },
+      {
+        "name": "digits_cycle",
+        "in": {
+          "s": "01234567890123456789"
+        },
+        "out": 10
+      },
+      {
+        "name": "symbols_unique",
+        "in": {
+          "s": "!@#$%^&*()_+"
+        },
+        "out": 12
+      },
+      {
+        "name": "symbol_repeat_middle",
+        "in": {
+          "s": "ab!cd!ef"
+        },
+        "out": 5
+      },
+      {
+        "name": "case_sensitive",
+        "in": {
+          "s": "aA"
+        },
+        "out": 2
+      },
+      {
+        "name": "case_sensitive_repeat",
+        "in": {
+          "s": "AaAa"
+        },
+        "out": 2
+      },
+      {
+        "name": "long_run_then_repeat",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        },
+        "out": 62
+      },
+      {
+        "name": "repeat_at_end",
+        "in": {
+          "s": "tmmzuxt"
+        },
+        "out": 5
+      },
+      {
+        "name": "classic_overlap",
+        "in": {
+          "s": "dvdf"
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "s": "abcdeafghijaklmn"
+        },
+        "out": 10
+      },
+      {
+        "name": "punctuation_mix",
+        "in": {
+          "s": "a,b.c!d?e;f:g"
+        },
+        "out": 13
+      },
+      {
+        "name": "generated_small_alpha_1",
+        "seed": 101,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 0,
+            "alphabet": "abc"
+          }
+        }
+      },
+      {
+        "name": "generated_small_alpha_2",
+        "seed": 102,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "xyz"
+          }
+        }
+      },
+      {
+        "name": "generated_small_alpha_3",
+        "seed": 103,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12,
+            "alphabet": "abcd"
+          }
+        }
+      },
+      {
+        "name": "generated_small_alpha_4",
+        "seed": 104,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 30,
+            "alphabet": "012345"
+          }
+        }
+      },
+      {
+        "name": "generated_small_alpha_5",
+        "seed": 105,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 50,
+            "alphabet": " !@#$%"
+          }
+        }
+      },
+      {
+        "name": "generated_large_1",
+        "seed": 301,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 50000,
+            "alphabet": "abcdef"
+          }
+        }
+      },
+      {
+        "name": "generated_large_2",
+        "seed": 302,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 50000,
+            "alphabet": "0123456789 ,.! "
+          }
+        }
+      },
+      {
+        "name": "generated_large_3",
+        "seed": 303,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 32000,
+            "alphabet": "abcdefghijklmnop"
+          }
+        }
+      },
+      {
+        "name": "generated_large_4",
+        "seed": 304,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 45000,
+            "alphabet": "xyzXYZ123"
+          }
+        }
+      },
+      {
+        "name": "generated_large_5",
+        "seed": 305,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 49999,
+            "alphabet": " abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated_boundary_1",
+        "seed": 601,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "ab"
+          }
+        }
+      },
+      {
+        "name": "generated_boundary_2",
+        "seed": 602,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 17,
+            "alphabet": "abcdefghi"
+          }
+        }
+      },
+      {
+        "name": "generated_boundary_3",
+        "seed": 603,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 12345,
+            "alphabet": "0123456789"
+          }
+        }
+      },
+      {
+        "name": "generated_boundary_4",
+        "seed": 604,
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 50000,
+            "alphabet": " !@#$%^&*"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"abcabcbb\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"bbbbb\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"pwwkew\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"abcdef\"",
+      "output": "6"
+    }
+  ]
+}

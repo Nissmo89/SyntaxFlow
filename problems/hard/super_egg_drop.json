@@ -1,0 +1,364 @@
+{
+  "id": "super_egg_drop",
+  "title": "Super Egg Drop",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given <code>k</code> identical eggs and you have access to a building with <code>n</code> floors labeled from <code>1</code> to <code>n</code>.</p>\n\n<p>You know that there exists a floor <code>f</code> where <code>0 &lt;= f &lt;= n</code> such that any egg dropped at a floor <strong>higher</strong> than <code>f</code> will <strong>break</strong>, and any egg dropped <strong>at or below</strong> floor <code>f</code> will <strong>not break</strong>.</p>\n\n<p>Each move, you may take an unbroken egg and drop it from any floor <code>x</code> (where <code>1 &lt;= x &lt;= n</code>). If the egg breaks, you can no longer use it. However, if the egg does not break, you may <strong>reuse</strong> it in future moves.</p>\n\n<p>Return <em>the <strong>minimum number of moves</strong> that you need to determine <strong>with certainty</strong> what the value of </em><code>f</code> is.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 1, n = 2\n<strong>Output:</strong> 2\n<strong>Explanation: </strong>\nDrop the egg from floor 1. If it breaks, we know that f = 0.\nOtherwise, drop the egg from floor 2. If it breaks, we know that f = 1.\nIf it does not break, then we know f = 2.\nHence, we need at minimum 2 moves to determine with certainty what the value of f is.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 2, n = 6\n<strong>Output:</strong> 3\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 3, n = 14\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Super Egg Drop' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= k <= 100",
+    "1 <= n <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "superEggDrop",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 887,
+      "title": "super-egg-drop",
+      "params": {
+        "k": {
+          "type": "int"
+        },
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().superEggDrop({k}, {n})",
+        "rust": "Solution::super_egg_drop({k}, {n})",
+        "python3": "Solution().superEggDrop({k}, {n})",
+        "python2": "Solution().superEggDrop({k}, {n})",
+        "ruby": "super_egg_drop({k}, {n})",
+        "java": "new Solution().superEggDrop({k}, {n})",
+        "csharp": "new Solution().SuperEggDrop({k}, {n})",
+        "kotlin": "Solution().superEggDrop({k}, {n})",
+        "go": "superEggDrop({k}, {n})",
+        "dart": "Solution().superEggDrop({k}, {n})",
+        "swift": "Solution().superEggDrop({k}, {n})",
+        "typescript": "superEggDrop({k}, {n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().superEggDrop(k, n, {result})",
+        "checker": "class Checker:\n    def superEggDrop(self, k, n, result):\n        if not isinstance(result, int):\n            return False\n        if k == 1:\n            return result == n\n        def can(moves):\n            total = 0\n            cur = 1\n            for _ in range(k):\n                cur = cur * (moves - _)\n                cur //= (_ + 1)\n                total += cur\n                if total >= n:\n                    return True\n            return total >= n\n        lo, hi = 0, n\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if can(mid):\n                hi = mid\n            else:\n                lo = mid + 1\n        return result == lo\n"
+      }
+    },
+    "seed": 887,
+    "tests": [
+      {
+        "name": "t1",
+        "in": {
+          "k": 1,
+          "n": 1
+        }
+      },
+      {
+        "name": "t2",
+        "in": {
+          "k": 1,
+          "n": 2
+        }
+      },
+      {
+        "name": "t3",
+        "in": {
+          "k": 1,
+          "n": 10
+        }
+      },
+      {
+        "name": "t4",
+        "in": {
+          "k": 2,
+          "n": 1
+        }
+      },
+      {
+        "name": "t5",
+        "in": {
+          "k": 2,
+          "n": 2
+        }
+      },
+      {
+        "name": "t6",
+        "in": {
+          "k": 2,
+          "n": 3
+        }
+      },
+      {
+        "name": "t7",
+        "in": {
+          "k": 2,
+          "n": 6
+        }
+      },
+      {
+        "name": "t8",
+        "in": {
+          "k": 2,
+          "n": 10
+        }
+      },
+      {
+        "name": "t9",
+        "in": {
+          "k": 2,
+          "n": 100
+        }
+      },
+      {
+        "name": "t10",
+        "in": {
+          "k": 3,
+          "n": 14
+        }
+      },
+      {
+        "name": "t11",
+        "in": {
+          "k": 3,
+          "n": 25
+        }
+      },
+      {
+        "name": "t12",
+        "in": {
+          "k": 3,
+          "n": 100
+        }
+      },
+      {
+        "name": "t13",
+        "in": {
+          "k": 3,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t14",
+        "in": {
+          "k": 4,
+          "n": 500
+        }
+      },
+      {
+        "name": "t15",
+        "in": {
+          "k": 4,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t16",
+        "in": {
+          "k": 5,
+          "n": 100
+        }
+      },
+      {
+        "name": "t17",
+        "in": {
+          "k": 5,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t18",
+        "in": {
+          "k": 5,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t19",
+        "in": {
+          "k": 6,
+          "n": 5000
+        }
+      },
+      {
+        "name": "t20",
+        "in": {
+          "k": 7,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t21",
+        "in": {
+          "k": 8,
+          "n": 9999
+        }
+      },
+      {
+        "name": "t22",
+        "in": {
+          "k": 10,
+          "n": 1
+        }
+      },
+      {
+        "name": "t23",
+        "in": {
+          "k": 10,
+          "n": 100
+        }
+      },
+      {
+        "name": "t24",
+        "in": {
+          "k": 10,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t25",
+        "in": {
+          "k": 10,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t26",
+        "in": {
+          "k": 20,
+          "n": 100
+        }
+      },
+      {
+        "name": "t27",
+        "in": {
+          "k": 20,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t28",
+        "in": {
+          "k": 20,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t29",
+        "in": {
+          "k": 50,
+          "n": 2
+        }
+      },
+      {
+        "name": "t30",
+        "in": {
+          "k": 50,
+          "n": 100
+        }
+      },
+      {
+        "name": "t31",
+        "in": {
+          "k": 50,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t32",
+        "in": {
+          "k": 50,
+          "n": 10000
+        }
+      },
+      {
+        "name": "t33",
+        "in": {
+          "k": 100,
+          "n": 1
+        }
+      },
+      {
+        "name": "t34",
+        "in": {
+          "k": 100,
+          "n": 100
+        }
+      },
+      {
+        "name": "t35",
+        "in": {
+          "k": 100,
+          "n": 1000
+        }
+      },
+      {
+        "name": "t36",
+        "in": {
+          "k": 100,
+          "n": 10000
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "k = 1\nn = 1",
+      "output": ""
+    },
+    {
+      "input": "k = 1\nn = 2",
+      "output": ""
+    },
+    {
+      "input": "k = 1\nn = 10",
+      "output": ""
+    },
+    {
+      "input": "k = 2\nn = 1",
+      "output": ""
+    },
+    {
+      "input": "k = 2\nn = 2",
+      "output": ""
+    },
+    {
+      "input": "k = 2\nn = 3",
+      "output": ""
+    },
+    {
+      "input": "k = 2\nn = 6",
+      "output": ""
+    },
+    {
+      "input": "k = 2\nn = 10",
+      "output": ""
+    }
+  ]
+}

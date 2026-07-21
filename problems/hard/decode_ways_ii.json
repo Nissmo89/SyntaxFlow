@@ -1,0 +1,377 @@
+{
+  "id": "decode_ways_ii",
+  "title": "Decode Ways II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>A message containing letters from <code>A-Z</code> can be <strong>encoded</strong> into numbers using the following mapping:</p>\n\n<pre>\n&#39;A&#39; -&gt; &quot;1&quot;\n&#39;B&#39; -&gt; &quot;2&quot;\n...\n&#39;Z&#39; -&gt; &quot;26&quot;\n</pre>\n\n<p>To <strong>decode</strong> an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, <code>&quot;11106&quot;</code> can be mapped into:</p>\n\n<ul>\n\t<li><code>&quot;AAJF&quot;</code> with the grouping <code>(1 1 10 6)</code></li>\n\t<li><code>&quot;KJF&quot;</code> with the grouping <code>(11 10 6)</code></li>\n</ul>\n\n<p>Note that the grouping <code>(1 11 06)</code> is invalid because <code>&quot;06&quot;</code> cannot be mapped into <code>&#39;F&#39;</code> since <code>&quot;6&quot;</code> is different from <code>&quot;06&quot;</code>.</p>\n\n<p><strong>In addition</strong> to the mapping above, an encoded message may contain the <code>&#39;*&#39;</code> character, which can represent any digit from <code>&#39;1&#39;</code> to <code>&#39;9&#39;</code> (<code>&#39;0&#39;</code> is excluded). For example, the encoded message <code>&quot;1*&quot;</code> may represent any of the encoded messages <code>&quot;11&quot;</code>, <code>&quot;12&quot;</code>, <code>&quot;13&quot;</code>, <code>&quot;14&quot;</code>, <code>&quot;15&quot;</code>, <code>&quot;16&quot;</code>, <code>&quot;17&quot;</code>, <code>&quot;18&quot;</code>, or <code>&quot;19&quot;</code>. Decoding <code>&quot;1*&quot;</code> is equivalent to decoding <strong>any</strong> of the encoded messages it can represent.</p>\n\n<p>Given a string <code>s</code> consisting of digits and <code>&#39;*&#39;</code> characters, return <em>the <strong>number</strong> of ways to <strong>decode</strong> it</em>.</p>\n\n<p>Since the answer may be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;*&quot;\n<strong>Output:</strong> 9\n<strong>Explanation:</strong> The encoded message can represent any of the encoded messages &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, or &quot;9&quot;.\nEach of these can be decoded to the strings &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, and &quot;I&quot; respectively.\nHence, there are a total of 9 ways to decode &quot;*&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;1*&quot;\n<strong>Output:</strong> 18\n<strong>Explanation:</strong> The encoded message can represent any of the encoded messages &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;15&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, or &quot;19&quot;.\nEach of these encoded messages have 2 ways to be decoded (e.g. &quot;11&quot; can be decoded to &quot;AA&quot; or &quot;K&quot;).\nHence, there are a total of 9 * 2 = 18 ways to decode &quot;1*&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;2*&quot;\n<strong>Output:</strong> 15\n<strong>Explanation:</strong> The encoded message can represent any of the encoded messages &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;, &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, or &quot;29&quot;.\n&quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;, &quot;25&quot;, and &quot;26&quot; have 2 ways of being decoded, but &quot;27&quot;, &quot;28&quot;, and &quot;29&quot; only have 1 way.\nHence, there are a total of (6 * 2) + (3 * 1) = 12 + 3 = 15 ways to decode &quot;2*&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s[i]</code> is a digit or <code>&#39;*&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Decode Ways II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is a digit or '*'."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numDecodings",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 639,
+      "title": "decode-ways-ii",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numDecodings({s})",
+        "rust": "Solution::num_decodings({s})",
+        "python3": "Solution().numDecodings({s})",
+        "python2": "Solution().numDecodings({s})",
+        "ruby": "num_decodings({s})",
+        "java": "new Solution().numDecodings({s})",
+        "csharp": "new Solution().NumDecodings({s})",
+        "kotlin": "Solution().numDecodings({s})",
+        "go": "numDecodings({s})",
+        "dart": "Solution().numDecodings({s})",
+        "swift": "Solution().numDecodings({s})",
+        "typescript": "numDecodings({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numDecodings(s, {result})",
+        "checker": "class Checker:\n    def numDecodings(self, s, result):\n        return isinstance(result, int) and result >= 0\n"
+      }
+    },
+    "seed": 639,
+    "tests": [
+      {
+        "name": "example_star",
+        "in": {
+          "s": "*"
+        },
+        "out": 9
+      },
+      {
+        "name": "example_one_star",
+        "in": {
+          "s": "1*"
+        },
+        "out": 18
+      },
+      {
+        "name": "example_two_star",
+        "in": {
+          "s": "2*"
+        },
+        "out": 15
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "s": "1"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_nine",
+        "in": {
+          "s": "9"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "s": "0"
+        },
+        "out": 0
+      },
+      {
+        "name": "zero_after_one",
+        "in": {
+          "s": "10"
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_after_two",
+        "in": {
+          "s": "20"
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_after_three",
+        "in": {
+          "s": "30"
+        },
+        "out": 0
+      },
+      {
+        "name": "double_star",
+        "in": {
+          "s": "**"
+        },
+        "out": 96
+      },
+      {
+        "name": "star_one",
+        "in": {
+          "s": "*1"
+        },
+        "out": 11
+      },
+      {
+        "name": "star_two",
+        "in": {
+          "s": "*2"
+        },
+        "out": 11
+      },
+      {
+        "name": "star_seven",
+        "in": {
+          "s": "*7"
+        },
+        "out": 10
+      },
+      {
+        "name": "star_zero",
+        "in": {
+          "s": "*0"
+        },
+        "out": 2
+      },
+      {
+        "name": "one_double_star",
+        "in": {
+          "s": "1**"
+        },
+        "out": 177
+      },
+      {
+        "name": "two_double_star",
+        "in": {
+          "s": "2**"
+        },
+        "out": 150
+      },
+      {
+        "name": "star_one_one",
+        "in": {
+          "s": "*11"
+        },
+        "out": 20
+      },
+      {
+        "name": "double_star_one",
+        "in": {
+          "s": "**1"
+        },
+        "out": 114
+      },
+      {
+        "name": "triple_star",
+        "in": {
+          "s": "***"
+        },
+        "out": 999
+      },
+      {
+        "name": "plain_valid",
+        "in": {
+          "s": "123"
+        },
+        "out": 3
+      },
+      {
+        "name": "plain_two_digit",
+        "in": {
+          "s": "226"
+        },
+        "out": 3
+      },
+      {
+        "name": "prompt_example",
+        "in": {
+          "s": "11106"
+        },
+        "out": 2
+      },
+      {
+        "name": "plain_zero_split",
+        "in": {
+          "s": "101"
+        },
+        "out": 1
+      },
+      {
+        "name": "star_one_zero",
+        "in": {
+          "s": "*10"
+        },
+        "out": 9
+      },
+      {
+        "name": "star_two_zero",
+        "in": {
+          "s": "*20"
+        },
+        "out": 9
+      },
+      {
+        "name": "one_star_zero",
+        "in": {
+          "s": "1*0"
+        },
+        "out": 2
+      },
+      {
+        "name": "two_star_zero",
+        "in": {
+          "s": "2*0"
+        },
+        "out": 2
+      },
+      {
+        "name": "star_zero_one",
+        "in": {
+          "s": "*01"
+        },
+        "out": 2
+      },
+      {
+        "name": "star_nine_nine",
+        "in": {
+          "s": "*99"
+        },
+        "out": 10
+      },
+      {
+        "name": "star_two_seven",
+        "in": {
+          "s": "*27"
+        },
+        "out": 11
+      },
+      {
+        "name": "nine_star_nine",
+        "in": {
+          "s": "9*9"
+        },
+        "out": 10
+      },
+      {
+        "name": "star_one_star",
+        "in": {
+          "s": "*1*"
+        },
+        "out": 180
+      },
+      {
+        "name": "double_star_zero",
+        "in": {
+          "s": "**0"
+        },
+        "out": 18
+      },
+      {
+        "name": "triple_star_zero",
+        "in": {
+          "s": "***0"
+        },
+        "out": 192
+      },
+      {
+        "name": "one_triple_star",
+        "in": {
+          "s": "1***"
+        },
+        "out": 1863
+      },
+      {
+        "name": "two_triple_star",
+        "in": {
+          "s": "2***"
+        },
+        "out": 1575
+      },
+      {
+        "name": "ten_stars",
+        "in": {
+          "s": "**********"
+        },
+        "out": 483456820
+      },
+      {
+        "name": "twenty_stars",
+        "in": {
+          "s": "********************"
+        },
+        "out": 104671669
+      },
+      {
+        "name": "thirty_stars",
+        "in": {
+          "s": "******************************"
+        },
+        "out": 538216902
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"*\"",
+      "output": "9"
+    },
+    {
+      "input": "s = \"1*\"",
+      "output": "18"
+    },
+    {
+      "input": "s = \"2*\"",
+      "output": "15"
+    },
+    {
+      "input": "s = \"1\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"9\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"0\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"10\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"20\"",
+      "output": "1"
+    }
+  ]
+}

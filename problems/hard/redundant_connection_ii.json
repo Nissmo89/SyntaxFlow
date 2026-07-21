@@ -1,0 +1,1276 @@
+{
+  "id": "redundant_connection_ii",
+  "title": "Redundant Connection II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "description": "<p>In this problem, a rooted tree is a <b>directed</b> graph such that, there is exactly one node (the root) for which all other nodes are descendants of this node, plus every node has exactly one parent, except for the root node which has no parents.</p>\n\n<p>The given input is a directed graph that started as a rooted tree with <code>n</code> nodes (with distinct values from <code>1</code> to <code>n</code>), with one additional directed edge added. The added edge has two different vertices chosen from <code>1</code> to <code>n</code>, and was not an edge that already existed.</p>\n\n<p>The resulting graph is given as a 2D-array of <code>edges</code>. Each element of <code>edges</code> is a pair <code>[u<sub>i</sub>, v<sub>i</sub>]</code> that represents a <b>directed</b> edge connecting nodes <code>u<sub>i</sub></code> and <code>v<sub>i</sub></code>, where <code>u<sub>i</sub></code> is a parent of child <code>v<sub>i</sub></code>.</p>\n\n<p>Return <em>an edge that can be removed so that the resulting graph is a rooted tree of</em> <code>n</code> <em>nodes</em>. If there are multiple answers, return the answer that occurs last in the given 2D-array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/12/20/graph1.jpg\" style=\"width: 222px; height: 222px;\" />\n<pre>\n<strong>Input:</strong> edges = [[1,2],[1,3],[2,3]]\n<strong>Output:</strong> [2,3]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/12/20/graph2.jpg\" style=\"width: 222px; height: 382px;\" />\n<pre>\n<strong>Input:</strong> edges = [[1,2],[2,3],[3,4],[4,1],[1,5]]\n<strong>Output:</strong> [4,1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == edges.length</code></li>\n\t<li><code>3 &lt;= n &lt;= 1000</code></li>\n\t<li><code>edges[i].length == 2</code></li>\n\t<li><code>1 &lt;= u<sub>i</sub>, v<sub>i</sub> &lt;= n</code></li>\n\t<li><code>u<sub>i</sub> != v<sub>i</sub></code></li>\n</ul>\n",
+  "task": "Solve the 'Redundant Connection II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == edges.length",
+    "3 <= n <= 1000",
+    "edges[i].length == 2",
+    "1 <= ui, vi <= n",
+    "ui != vi"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findRedundantDirectedConnection",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "edges",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 685,
+      "title": "redundant-connection-ii",
+      "params": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findRedundantDirectedConnection({edges})",
+        "rust": "Solution::find_redundant_directed_connection({edges})",
+        "python3": "Solution().findRedundantDirectedConnection({edges})",
+        "python2": "Solution().findRedundantDirectedConnection({edges})",
+        "ruby": "find_redundant_directed_connection({edges})",
+        "java": "new Solution().findRedundantDirectedConnection({edges})",
+        "csharp": "new Solution().FindRedundantDirectedConnection({edges})",
+        "kotlin": "Solution().findRedundantDirectedConnection({edges})",
+        "go": "findRedundantDirectedConnection({edges})",
+        "dart": "Solution().findRedundantDirectedConnection({edges})",
+        "swift": "Solution().findRedundantDirectedConnection({edges})",
+        "typescript": "findRedundantDirectedConnection({edges})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findRedundantDirectedConnection(edges, {result})",
+        "checker": "class Checker:\n    def findRedundantDirectedConnection(self, edges, result):\n        if not isinstance(result, list) or len(result) != 2:\n            return False\n        if any(not isinstance(x, int) for x in result):\n            return False\n        n = len(edges)\n        if len(edges) != n:\n            return False\n        if len(result) != 2:\n            return False\n        u, v = result\n        if u < 1 or u > n or v < 1 or v > n or u == v:\n            return False\n\n        indeg = [0] * (n + 1)\n        g = [[] for _ in range(n + 1)]\n        removed = False\n        for a, b in edges:\n            if not removed and a == u and b == v:\n                removed = True\n                continue\n            indeg[b] += 1\n            g[a].append(b)\n            if indeg[b] > 1:\n                return False\n\n        roots = [i for i in range(1, n + 1) if indeg[i] == 0]\n        if len(roots) != 1:\n            return False\n\n        root = roots[0]\n        seen = [False] * (n + 1)\n        stack = [root]\n        seen[root] = True\n        count = 0\n        while stack:\n            node = stack.pop()\n            count += 1\n            for nxt in g[node]:\n                if seen[nxt]:\n                    return False\n                seen[nxt] = True\n                stack.append(nxt)\n        return count == n and removed\n"
+      }
+    },
+    "seed": 685,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        "out": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "two_parents_small",
+        "in": {
+          "edges": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        "out": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "simple_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        "out": [
+          3,
+          1
+        ]
+      },
+      {
+        "name": "cycle_with_two_parents",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        "out": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "pure_cycle_five",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "last_edge_closes_tree",
+        "in": {
+          "edges": [
+            [
+              5,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "out": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "two_parents_no_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        "out": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "cycle_root_shift",
+        "in": {
+          "edges": [
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        "out": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "four_cycle",
+        "in": {
+          "edges": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        "out": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "add_to_leaf",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        "out": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "two_parents_middle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        "out": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "small_branch_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        "out": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "ancestor_duplicate",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        "out": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "duplicate_child_after_branch",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "six_nodes_cycle_and_two_parents",
+        "in": {
+          "edges": [
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "out": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "two_possible_answers_last_wins",
+        "in": {
+          "edges": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        "out": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "cycle_through_root_candidate",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        "out": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "leaf_reparenting",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        "out": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "reversed_cycle",
+        "in": {
+          "edges": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        "out": [
+          1,
+          5
+        ]
+      },
+      {
+        "name": "self_balanced_two_cycles",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        "out": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "deeper_two_parent",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        "out": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "join_at_sink",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        "out": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "seven_nodes_two_parent_rooted",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_alt_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_long_path",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_chain_backedge",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        "out": [
+          6,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_simple_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "out": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_branch_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "out": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_two_components",
+        "in": {
+          "edges": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        "out": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "seven_nodes_mixed",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        "out": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_two_cycles",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        },
+        "out": [
+          3,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_cycle_plus_chain",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        },
+        "out": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "seven_nodes_last_edge",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              6
+            ]
+          ]
+        },
+        "out": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "six_nodes_branch_cycle",
+        "in": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "out": [
+          5,
+          1
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "edges = [[1, 2], [1, 3], [2, 3]]",
+      "output": "[2, 3]"
+    },
+    {
+      "input": "edges = [[1, 2], [2, 3], [3, 4], [4, 1], [1, 5]]",
+      "output": "[4, 1]"
+    },
+    {
+      "input": "edges = [[2, 1], [3, 1], [4, 2], [1, 4]]",
+      "output": "[2, 1]"
+    },
+    {
+      "input": "edges = [[1, 2], [2, 3], [3, 1]]",
+      "output": "[3, 1]"
+    },
+    {
+      "input": "edges = [[1, 2], [2, 3], [4, 3], [3, 5], [5, 6], [6, 4]]",
+      "output": "[4, 3]"
+    },
+    {
+      "input": "edges = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 1]]",
+      "output": "[5, 1]"
+    },
+    {
+      "input": "edges = [[5, 1], [1, 2], [2, 3], [3, 4], [4, 5]]",
+      "output": "[4, 5]"
+    },
+    {
+      "input": "edges = [[1, 2], [1, 3], [2, 4], [3, 4]]",
+      "output": "[3, 4]"
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+{
+  "id": "regular_expression_matching",
+  "title": "Regular Expression Matching",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Recursion"
+  ],
+  "description": "<p>Given an input string <code>s</code>&nbsp;and a pattern <code>p</code>, implement regular expression matching with support for <code>&#39;.&#39;</code> and <code>&#39;*&#39;</code> where:</p>\n\n<ul>\n\t<li><code>&#39;.&#39;</code> Matches any single character.\u200b\u200b\u200b\u200b</li>\n\t<li><code>&#39;*&#39;</code> Matches zero or more of the preceding element.</li>\n</ul>\n\n<p>Return a boolean indicating whether the matching covers the entire input string (not partial).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aa&quot;, p = &quot;a&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> &quot;a&quot; does not match the entire string &quot;aa&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aa&quot;, p = &quot;a*&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &#39;*&#39; means zero or more of the preceding element, &#39;a&#39;. Therefore, by repeating &#39;a&#39; once, it becomes &quot;aa&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;ab&quot;, p = &quot;.*&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length&nbsp;&lt;= 20</code></li>\n\t<li><code>1 &lt;= p.length&nbsp;&lt;= 20</code></li>\n\t<li><code>s</code> contains only lowercase English letters.</li>\n\t<li><code>p</code> contains only lowercase English letters, <code>&#39;.&#39;</code>, and&nbsp;<code>&#39;*&#39;</code>.</li>\n\t<li>It is guaranteed for each appearance of the character <code>&#39;*&#39;</code>, there will be a previous valid character to match.</li>\n</ul>\n",
+  "task": "Solve the 'Regular Expression Matching' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length\u00a0<= 20",
+    "1 <= p.length\u00a0<= 20",
+    "s contains only lowercase English letters.",
+    "p contains only lowercase English letters, '.', and\u00a0'*'.",
+    "It is guaranteed for each appearance of the character '*', there will be a previous valid character to match."
+  ],
+  "hints": [],
+  "method": {
+    "name": "isMatch",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "p",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 10,
+      "title": "regular-expression-matching",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "p": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isMatch({s}, {p})",
+        "rust": "Solution::is_match({s}.to_string(), {p}.to_string())",
+        "python3": "Solution().isMatch({s}, {p})",
+        "python2": "Solution().isMatch({s}, {p})",
+        "ruby": "is_match({s}, {p})",
+        "java": "new Solution().isMatch({s}, {p})",
+        "csharp": "new Solution().IsMatch({s}, {p})",
+        "kotlin": "Solution().isMatch({s}, {p})",
+        "go": "isMatch({s}, {p})",
+        "dart": "Solution().isMatch({s}, {p})",
+        "swift": "Solution().isMatch({s}, {p})",
+        "typescript": "isMatch({s}, {p})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isMatch(s, p, {result})",
+        "checker": "class Checker:\n    def isMatch(self, s, p, result):\n        m, n = len(s), len(p)\n        dp = [[False] * (n + 1) for _ in range(m + 1)]\n        dp[0][0] = True\n\n        for j in range(1, n + 1):\n            if p[j - 1] == \"*\":\n                dp[0][j] = dp[0][j - 2]\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if p[j - 1] in {s[i - 1], \".\"}:\n                    dp[i][j] = dp[i - 1][j - 1]\n                elif p[j - 1] == \"*\":\n                    dp[i][j] = dp[i][j - 2]\n                    if p[j - 2] in {s[i - 1], \".\"}:\n                        dp[i][j] = dp[i][j] or dp[i - 1][j]\n\n        return dp[m][n] == result\n"
+      }
+    },
+    "seed": 10,
+    "tests": [
+      {
+        "name": "example 1",
+        "in": {
+          "s": "aa",
+          "p": "a"
+        },
+        "out": false
+      },
+      {
+        "name": "example 2",
+        "in": {
+          "s": "aa",
+          "p": "a*"
+        },
+        "out": true
+      },
+      {
+        "name": "example 3",
+        "in": {
+          "s": "ab",
+          "p": ".*"
+        },
+        "out": true
+      },
+      {
+        "name": "empty string empty pattern",
+        "in": {
+          "s": "",
+          "p": ""
+        },
+        "out": true
+      },
+      {
+        "name": "empty string literal",
+        "in": {
+          "s": "",
+          "p": "a"
+        },
+        "out": false
+      },
+      {
+        "name": "empty string star zero",
+        "in": {
+          "s": "",
+          "p": "a*"
+        },
+        "out": true
+      },
+      {
+        "name": "empty string chain zeros",
+        "in": {
+          "s": "",
+          "p": "a*b*c*"
+        },
+        "out": true
+      },
+      {
+        "name": "one char dot",
+        "in": {
+          "s": "a",
+          "p": "."
+        },
+        "out": true
+      },
+      {
+        "name": "one char literal mismatch",
+        "in": {
+          "s": "a",
+          "p": "b"
+        },
+        "out": false
+      },
+      {
+        "name": "one char star zero",
+        "in": {
+          "s": "a",
+          "p": "ab*"
+        },
+        "out": true
+      },
+      {
+        "name": "one char star many",
+        "in": {
+          "s": "aaaa",
+          "p": "a*"
+        },
+        "out": true
+      },
+      {
+        "name": "exact literal match",
+        "in": {
+          "s": "abc",
+          "p": "abc"
+        },
+        "out": true
+      },
+      {
+        "name": "exact literal mismatch",
+        "in": {
+          "s": "abc",
+          "p": "abd"
+        },
+        "out": false
+      },
+      {
+        "name": "dot middle",
+        "in": {
+          "s": "abc",
+          "p": "a.c"
+        },
+        "out": true
+      },
+      {
+        "name": "dot mismatch",
+        "in": {
+          "s": "abc",
+          "p": "a.d"
+        },
+        "out": false
+      },
+      {
+        "name": "star after dot",
+        "in": {
+          "s": "abcd",
+          "p": ".*d"
+        },
+        "out": true
+      },
+      {
+        "name": "star after dot mismatch",
+        "in": {
+          "s": "abcd",
+          "p": ".*e"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated literal with star",
+        "in": {
+          "s": "aaab",
+          "p": "a*b"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated literal fails",
+        "in": {
+          "s": "aaac",
+          "p": "a*b"
+        },
+        "out": false
+      },
+      {
+        "name": "multiple starred groups",
+        "in": {
+          "s": "aab",
+          "p": "c*a*b"
+        },
+        "out": true
+      },
+      {
+        "name": "multiple starred groups fail",
+        "in": {
+          "s": "mississippi",
+          "p": "mis*is*p*."
+        },
+        "out": false
+      },
+      {
+        "name": "canonical tricky true",
+        "in": {
+          "s": "mississippi",
+          "p": "mis*is*ip*."
+        },
+        "out": true
+      },
+      {
+        "name": "star can be zero",
+        "in": {
+          "s": "ab",
+          "p": "ab*c*"
+        },
+        "out": true
+      },
+      {
+        "name": "trailing literal required",
+        "in": {
+          "s": "ab",
+          "p": "ab.*c"
+        },
+        "out": false
+      },
+      {
+        "name": "prefix not enough",
+        "in": {
+          "s": "abcdef",
+          "p": "abc"
+        },
+        "out": false
+      },
+      {
+        "name": "pattern longer through stars",
+        "in": {
+          "s": "a",
+          "p": "ab*c*"
+        },
+        "out": true
+      },
+      {
+        "name": "adjacent stars pass",
+        "in": {
+          "s": "abbbcd",
+          "p": "ab*cd"
+        },
+        "out": true
+      },
+      {
+        "name": "adjacent stars fail",
+        "in": {
+          "s": "abbbce",
+          "p": "ab*cd"
+        },
+        "out": false
+      },
+      {
+        "name": "dot star consumes all",
+        "in": {
+          "s": "xyz",
+          "p": ".*"
+        },
+        "out": true
+      },
+      {
+        "name": "dot star followed by literal",
+        "in": {
+          "s": "xyz",
+          "p": ".*z"
+        },
+        "out": true
+      },
+      {
+        "name": "dot star followed by wrong literal",
+        "in": {
+          "s": "xyz",
+          "p": ".*a"
+        },
+        "out": false
+      },
+      {
+        "name": "long repeated literal match",
+        "in": {
+          "s": "aaaaaaaaaaaaaab",
+          "p": "a*a*a*a*a*a*a*a*a*b"
+        },
+        "out": true
+      },
+      {
+        "name": "long repeated literal mismatch",
+        "in": {
+          "s": "aaaaaaaaaaaaaac",
+          "p": "a*a*a*a*a*a*a*a*a*b"
+        },
+        "out": false
+      },
+      {
+        "name": "zero length via stars",
+        "in": {
+          "s": "",
+          "p": "c*d*e*f*"
+        },
+        "out": true
+      },
+      {
+        "name": "star with partial fallback",
+        "in": {
+          "s": "aaaab",
+          "p": "a*ab"
+        },
+        "out": true
+      },
+      {
+        "name": "star with partial fallback fail",
+        "in": {
+          "s": "aaaac",
+          "p": "a*ab"
+        },
+        "out": false
+      },
+      {
+        "name": "all dots exact length",
+        "in": {
+          "s": "abcde",
+          "p": "....."
+        },
+        "out": true
+      },
+      {
+        "name": "all dots too short",
+        "in": {
+          "s": "abcd",
+          "p": "....."
+        },
+        "out": false
+      },
+      {
+        "name": "complex nested choice",
+        "in": {
+          "s": "baaaab",
+          "p": "b.*a*b"
+        },
+        "out": true
+      },
+      {
+        "name": "complex nested choice fail",
+        "in": {
+          "s": "baaaac",
+          "p": "b.*a*b"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"aa\"\np = \"a\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aa\"\np = \"a*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab\"\np = \".*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"\"\np = \"\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"\"\np = \"a\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"\"\np = \"a*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"\"\np = \"a*b*c*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a\"\np = \".\"",
+      "output": "true"
+    }
+  ]
+}

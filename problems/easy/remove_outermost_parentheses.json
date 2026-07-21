@@ -1,0 +1,379 @@
+{
+  "id": "remove_outermost_parentheses",
+  "title": "Remove Outermost Parentheses",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>A valid parentheses string is either empty <code>\"\"</code>, <code>\"(\" + A + \")\"</code>, or <code>A + B</code>, where <code>A</code> and <code>B</code> are valid parentheses strings, and <code>+</code> represents string concatenation.</p> <ul> <li>For example, <code>\"\"</code>, <code>\"()\"</code>, <code>\"(())()\"</code>, and <code>\"(()(()))\"</code> are all valid parentheses strings.</li> </ul> <p>A valid parentheses string <code>s</code> is primitive if it is nonempty, and there does not exist a way to split it into <code>s = A + B</code>, with <code>A</code> and <code>B</code> nonempty valid parentheses strings.</p> <p>Given a valid parentheses string <code>s</code>, consider its primitive decomposition: <code>s = P<sub>1</sub> + P<sub>2</sub> + ... + P<sub>k</sub></code>, where <code>P<sub>i</sub></code> are primitive valid parentheses strings.</p> <p>Return <code>s</code> <em>after removing the outermost parentheses of every primitive string in the primitive decomposition of </em><code>s</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"(()())(())\"\n<strong>Output:</strong> \"()()()\"\n<strong>Explanation:</strong> \nThe input string is \"(()())(())\", with primitive decomposition \"(()())\" + \"(())\".\nAfter removing outer parentheses of each part, this is \"()()\" + \"()\" = \"()()()\".\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"(()())(())(()(()))\"\n<strong>Output:</strong> \"()()()()(())\"\n<strong>Explanation:</strong> \nThe input string is \"(()())(())(()(()))\", with primitive decomposition \"(()())\" + \"(())\" + \"(()(()))\".\nAfter removing outer parentheses of each part, this is \"()()\" + \"()\" + \"()(())\" = \"()()()()(())\".\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> s = \"()()\"\n<strong>Output:</strong> \"\"\n<strong>Explanation:</strong> \nThe input string is \"()()\", with primitive decomposition \"()\" + \"()\".\nAfter removing outer parentheses of each part, this is \"\" + \"\" = \"\".\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li> <li><code>s[i]</code> is either <code>'('</code> or <code>')'</code>.</li> <li><code>s</code> is a valid parentheses string.</li> </ul>",
+  "hints": [
+    "Can you find the primitive decomposition?  The number of ( and ) characters must be equal."
+  ],
+  "method": {
+    "name": "removeOuterParentheses",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1021,
+      "title": "remove-outermost-parentheses",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().removeOuterParentheses({s})",
+        "rust": "Solution::remove_outer_parentheses({s})",
+        "python3": "Solution().removeOuterParentheses({s})",
+        "python2": "Solution().removeOuterParentheses({s})",
+        "ruby": "remove_outer_parentheses({s})",
+        "java": "new Solution().removeOuterParentheses({s})",
+        "csharp": "new Solution().RemoveOuterParentheses({s})",
+        "kotlin": "Solution().removeOuterParentheses({s})",
+        "go": "removeOuterParentheses({s})",
+        "dart": "Solution().removeOuterParentheses({s})",
+        "swift": "Solution().removeOuterParentheses({s})",
+        "typescript": "removeOuterParentheses({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 1021,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "(()())(())"
+        },
+        "out": "()()()"
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "(()())(())(()(()))"
+        },
+        "out": "()()()()(())"
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "s": "()()"
+        },
+        "out": ""
+      },
+      {
+        "name": "single_primitive",
+        "in": {
+          "s": "()"
+        },
+        "out": ""
+      },
+      {
+        "name": "nested_2",
+        "in": {
+          "s": "(())"
+        },
+        "out": "()"
+      },
+      {
+        "name": "nested_3",
+        "in": {
+          "s": "((()))"
+        },
+        "out": "(())"
+      },
+      {
+        "name": "two_primitives",
+        "in": {
+          "s": "()()(())"
+        },
+        "out": "()"
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "s": "(()(()))"
+        },
+        "out": "()(())"
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "s": "((()()))"
+        },
+        "out": "(()())"
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "s": "(()())()"
+        },
+        "out": "()()"
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "s": "()((()))"
+        },
+        "out": "(())"
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "s": "((())())"
+        },
+        "out": "(())()"
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "s": "(()(()()))"
+        },
+        "out": "()(()())"
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "s": "((()()))()"
+        },
+        "out": "(()())"
+      },
+      {
+        "name": "mixed_8",
+        "in": {
+          "s": "()((())())"
+        },
+        "out": "(())()"
+      },
+      {
+        "name": "mixed_9",
+        "in": {
+          "s": "(()())(()())"
+        },
+        "out": "()()()()"
+      },
+      {
+        "name": "mixed_10",
+        "in": {
+          "s": "(((())))"
+        },
+        "out": "((()))"
+      },
+      {
+        "name": "mixed_11",
+        "in": {
+          "s": "()(())"
+        },
+        "out": "()"
+      },
+      {
+        "name": "mixed_12",
+        "in": {
+          "s": "((()))()"
+        },
+        "out": "(())"
+      },
+      {
+        "name": "mixed_13",
+        "in": {
+          "s": "()(()())"
+        },
+        "out": "()()"
+      },
+      {
+        "name": "mixed_14",
+        "in": {
+          "s": "(()())(())()"
+        },
+        "out": "()()()"
+      },
+      {
+        "name": "mixed_15",
+        "in": {
+          "s": "((()()))(())"
+        },
+        "out": "(()())()"
+      },
+      {
+        "name": "mixed_16",
+        "in": {
+          "s": "(()(()))()"
+        },
+        "out": "()(())"
+      },
+      {
+        "name": "mixed_17",
+        "in": {
+          "s": "()((()()))"
+        },
+        "out": "(()())"
+      },
+      {
+        "name": "mixed_18",
+        "in": {
+          "s": "((())())()"
+        },
+        "out": "(())()"
+      },
+      {
+        "name": "mixed_19",
+        "in": {
+          "s": "(()())((()))"
+        },
+        "out": "()()(())"
+      },
+      {
+        "name": "mixed_20",
+        "in": {
+          "s": "(((()()))())"
+        },
+        "out": "((()()))()"
+      },
+      {
+        "name": "mixed_21",
+        "in": {
+          "s": "()(()(()))"
+        },
+        "out": "()(())"
+      },
+      {
+        "name": "mixed_22",
+        "in": {
+          "s": "((()())())"
+        },
+        "out": "(()())()"
+      },
+      {
+        "name": "mixed_23",
+        "in": {
+          "s": "(()()())"
+        },
+        "out": "()()()"
+      },
+      {
+        "name": "mixed_24",
+        "in": {
+          "s": "(()(()))(()())"
+        },
+        "out": "()(())()()"
+      },
+      {
+        "name": "mixed_25",
+        "in": {
+          "s": "((()()))((()))"
+        },
+        "out": "(()())(())"
+      },
+      {
+        "name": "mixed_26",
+        "in": {
+          "s": "()()()()"
+        },
+        "out": ""
+      },
+      {
+        "name": "mixed_27",
+        "in": {
+          "s": "(((())))()()"
+        },
+        "out": "((()))"
+      },
+      {
+        "name": "mixed_28",
+        "in": {
+          "s": "()((())())()"
+        },
+        "out": "(())()"
+      },
+      {
+        "name": "mixed_29",
+        "in": {
+          "s": "(()())(()(()))"
+        },
+        "out": "()()()(())"
+      },
+      {
+        "name": "mixed_30",
+        "in": {
+          "s": "((())())((()))"
+        },
+        "out": "(())()(())"
+      },
+      {
+        "name": "mixed_31",
+        "in": {
+          "s": "(()(()()))(()())"
+        },
+        "out": "()(()())()()"
+      },
+      {
+        "name": "mixed_32",
+        "in": {
+          "s": "((()()))(()(()))"
+        },
+        "out": "(()())()(())"
+      },
+      {
+        "name": "mixed_33",
+        "in": {
+          "s": "(()())((()()))"
+        },
+        "out": "()()(()())"
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "s = \"(()())(())\"",
+      "output": "\"()()()\""
+    },
+    {
+      "input": "s = \"(()())(())(()(()))\"",
+      "output": "\"()()()()(())\""
+    },
+    {
+      "input": "s = \"()()\"",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"()\"",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"(())\"",
+      "output": "\"()\""
+    },
+    {
+      "input": "s = \"((()))\"",
+      "output": "\"(())\""
+    },
+    {
+      "input": "s = \"()()(())\"",
+      "output": "\"()\""
+    },
+    {
+      "input": "s = \"(()(()))\"",
+      "output": "\"()(())\""
+    }
+  ]
+}

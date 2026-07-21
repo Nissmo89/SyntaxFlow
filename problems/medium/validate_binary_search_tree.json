@@ -1,0 +1,570 @@
+{
+  "id": "validate_binary_search_tree",
+  "title": "Validate Binary Search Tree",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>Given the <code>root</code> of a binary tree, <em>determine if it is a valid binary search tree (BST)</em>.</p>\n\n<p>A <strong>valid BST</strong> is defined as follows:</p>\n\n<ul>\n\t<li>The left <span data-keyword=\"subtree\">subtree</span> of a node contains only nodes with keys&nbsp;<strong>strictly less than</strong> the node&#39;s key.</li>\n\t<li>The right subtree of a node contains only nodes with keys <strong>strictly greater than</strong> the node&#39;s key.</li>\n\t<li>Both the left and right subtrees must also be binary search trees.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/12/01/tree1.jpg\" style=\"width: 302px; height: 182px;\" />\n<pre>\n<strong>Input:</strong> root = [2,1,3]\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/12/01/tree2.jpg\" style=\"width: 422px; height: 292px;\" />\n<pre>\n<strong>Input:</strong> root = [5,1,4,null,null,3,6]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The root node&#39;s value is 5 but its right child&#39;s value is 4.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[1, 10<sup>4</sup>]</code>.</li>\n\t<li><code>-2<sup>31</sup> &lt;= Node.val &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Validate Binary Search Tree' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 104].",
+    "-231 <= Node.val <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "isValidBST",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 98,
+      "title": "validate-binary-search-tree",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isValidBST({root})",
+        "rust": "Solution::is_valid_bst({root})",
+        "python3": "Solution().isValidBST({root})",
+        "python2": "Solution().isValidBST({root})",
+        "ruby": "is_valid_bst({root})",
+        "java": "new Solution().isValidBST({root})",
+        "csharp": "new Solution().IsValidBST({root})",
+        "kotlin": "Solution().isValidBST({root})",
+        "go": "isValidBST({root})",
+        "dart": "Solution().isValidBST({root})",
+        "swift": "Solution().isValidBST({root})",
+        "typescript": "isValidBST({root})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 42,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "root": [
+            2,
+            1,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "root": [
+            5,
+            1,
+            4,
+            null,
+            null,
+            3,
+            6
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single_node",
+        "in": {
+          "root": [
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two_nodes_valid",
+        "in": {
+          "root": [
+            1,
+            null,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "two_nodes_invalid",
+        "in": {
+          "root": [
+            1,
+            2,
+            null
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "max_int_edge",
+        "in": {
+          "root": [
+            2147483647
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "min_int_edge",
+        "in": {
+          "root": [
+            -2147483648
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "left_chain_valid",
+        "in": {
+          "root": [
+            10,
+            5,
+            null,
+            2,
+            7,
+            null,
+            null
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "right_chain_valid",
+        "in": {
+          "root": [
+            10,
+            null,
+            20,
+            null,
+            null,
+            15,
+            25
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "invalid_right_of_left",
+        "in": {
+          "root": [
+            5,
+            1,
+            6,
+            null,
+            null,
+            3,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "invalid_left_of_right",
+        "in": {
+          "root": [
+            5,
+            4,
+            6,
+            null,
+            null,
+            3,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "all_same_values",
+        "in": {
+          "root": [
+            1,
+            1,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "strict_less_than",
+        "in": {
+          "root": [
+            2,
+            2,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "zig_zag_valid",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            null,
+            8,
+            12,
+            20
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "zig_zag_invalid",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            null,
+            12,
+            8,
+            20
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "negative_boundary",
+        "in": {
+          "root": [
+            -2147483648,
+            null,
+            2147483647
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "negative_boundary_invalid",
+        "in": {
+          "root": [
+            -2147483648,
+            -2147483648,
+            null
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "full_tree_valid",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "full_tree_invalid",
+        "in": {
+          "root": [
+            4,
+            2,
+            6,
+            1,
+            5,
+            3,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "left_deep_valid",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            2,
+            7
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "right_deep_valid",
+        "in": {
+          "root": [
+            10,
+            5,
+            15,
+            null,
+            null,
+            12,
+            20
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "gen_1",
+        "seed": 1,
+        "in": {
+          "root": {
+            "elemType": "int",
+            "value": [
+              8
+            ]
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "gen_2",
+        "seed": 2,
+        "in": {
+          "root": {
+            "elemType": "int",
+            "value": [
+              2,
+              1,
+              3
+            ]
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "gen_3",
+        "seed": 3,
+        "in": {
+          "root": {
+            "elemType": "int",
+            "value": [
+              5,
+              1,
+              4,
+              null,
+              null,
+              3,
+              6
+            ]
+          }
+        },
+        "out": false
+      },
+      {
+        "name": "gen_4",
+        "seed": 4,
+        "in": {
+          "root": {
+            "elemType": "int",
+            "value": [
+              10,
+              5,
+              15,
+              null,
+              6,
+              12,
+              20
+            ]
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "gen_5",
+        "seed": 5,
+        "in": {
+          "root": {
+            "elemType": "int",
+            "value": [
+              1,
+              null,
+              2,
+              null,
+              3
+            ]
+          }
+        },
+        "out": true
+      },
+      {
+        "name": "extra_1",
+        "in": {
+          "root": [
+            1,
+            0,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "extra_2",
+        "in": {
+          "root": [
+            3,
+            1,
+            5,
+            null,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "extra_3",
+        "in": {
+          "root": [
+            6,
+            4,
+            8,
+            3,
+            5,
+            7,
+            9
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "extra_4",
+        "in": {
+          "root": [
+            6,
+            4,
+            8,
+            3,
+            7,
+            5,
+            9
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "extra_5",
+        "in": {
+          "root": [
+            2,
+            1,
+            3,
+            null,
+            null,
+            0,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "extra_6",
+        "in": {
+          "root": [
+            2,
+            1,
+            3,
+            0,
+            null,
+            null,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "extra_7",
+        "in": {
+          "root": [
+            10,
+            9,
+            11,
+            8,
+            null,
+            null,
+            12
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "extra_8",
+        "in": {
+          "root": [
+            10,
+            9,
+            11,
+            null,
+            8,
+            12,
+            null
+          ]
+        },
+        "out": false
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().isValidBST(root, {result})",
+        "checker": "class Checker:\n    def _check(self, arr, idx, lo, hi):\n        if idx >= len(arr) or arr[idx] is None:\n            return True\n        val = arr[idx]\n        if not (lo < val < hi):\n            return False\n        return self._check(arr, 2 * idx + 1, lo, val) and self._check(arr, 2 * idx + 2, val, hi)\n\n    def isValidBST(self, root, result):\n        return result == self._check(root, 0, float(\"-inf\"), float(\"inf\"))\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "root = [2, 1, 3]",
+      "output": "true"
+    },
+    {
+      "input": "root = [5, 1, 4, null, null, 3, 6]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, null, 2]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, null]",
+      "output": "false"
+    },
+    {
+      "input": "root = [2147483647]",
+      "output": "true"
+    },
+    {
+      "input": "root = [-2147483648]",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, null, 2, 7, null, null]",
+      "output": "true"
+    }
+  ]
+}

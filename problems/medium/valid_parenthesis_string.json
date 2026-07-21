@@ -1,0 +1,370 @@
+{
+  "id": "valid_parenthesis_string",
+  "title": "Valid Parenthesis String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy"
+  ],
+  "description": "<p>Given a string <code>s</code> containing only three types of characters: <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code> and <code>&#39;*&#39;</code>, return <code>true</code> <em>if</em> <code>s</code> <em>is <strong>valid</strong></em>.</p>\n\n<p>The following rules define a <strong>valid</strong> string:</p>\n\n<ul>\n\t<li>Any left parenthesis <code>&#39;(&#39;</code> must have a corresponding right parenthesis <code>&#39;)&#39;</code>.</li>\n\t<li>Any right parenthesis <code>&#39;)&#39;</code> must have a corresponding left parenthesis <code>&#39;(&#39;</code>.</li>\n\t<li>Left parenthesis <code>&#39;(&#39;</code> must go before the corresponding right parenthesis <code>&#39;)&#39;</code>.</li>\n\t<li><code>&#39;*&#39;</code> could be treated as a single right parenthesis <code>&#39;)&#39;</code> or a single left parenthesis <code>&#39;(&#39;</code> or an empty string <code>&quot;&quot;</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = \"()\"\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = \"(*)\"\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> s = \"(*))\"\n<strong>Output:</strong> true\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s[i]</code> is <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code> or <code>&#39;*&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Valid Parenthesis String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s[i] is '(', ')' or '*'."
+  ],
+  "hints": [
+    "Use backtracking to explore all possible combinations of treating '*' as either '(', ')', or an empty string. If any combination leads to a valid string, return true.",
+    "DP[i][j] represents whether the substring s[i:j] is valid.",
+    "Keep track of the count of open parentheses encountered so far. If you encounter a close parenthesis, it should balance with an open parenthesis. Utilize a stack to handle this effectively.",
+    "How about using 2 stacks instead of 1? Think about it."
+  ],
+  "method": {
+    "name": "checkValidString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 678,
+      "title": "valid-parenthesis-string",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().checkValidString({s})",
+        "rust": "Solution::check_valid_string({s})",
+        "python3": "Solution().checkValidString({s})",
+        "python2": "Solution().checkValidString({s})",
+        "ruby": "check_valid_string({s})",
+        "java": "new Solution().checkValidString({s})",
+        "csharp": "new Solution().CheckValidString({s})",
+        "kotlin": "Solution().checkValidString({s})",
+        "go": "checkValidString({s})",
+        "dart": "Solution().checkValidString({s})",
+        "swift": "Solution().checkValidString({s})",
+        "typescript": "checkValidString({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().checkValidString(s, {result})",
+        "checker": "class Checker:\n    def checkValidString(self, s, result):\n        if not isinstance(result, bool):\n            return False\n        low = 0\n        high = 0\n        for char in s:\n            if char == '(':\n                low += 1\n                high += 1\n            elif char == ')':\n                low = max(low - 1, 0)\n                high -= 1\n            else:\n                low = max(low - 1, 0)\n                high += 1\n            if high < 0:\n                return result is False\n        expected = (low == 0)\n        return result == expected\n"
+      }
+    },
+    "seed": 678,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "()"
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "(*)"
+        },
+        "out": true
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "(*))"
+        },
+        "out": true
+      },
+      {
+        "name": "single_open",
+        "in": {
+          "s": "("
+        },
+        "out": false
+      },
+      {
+        "name": "single_close",
+        "in": {
+          "s": ")"
+        },
+        "out": false
+      },
+      {
+        "name": "single_star",
+        "in": {
+          "s": "*"
+        },
+        "out": true
+      },
+      {
+        "name": "empty_effective_pair",
+        "in": {
+          "s": "**"
+        },
+        "out": true
+      },
+      {
+        "name": "star_as_close",
+        "in": {
+          "s": "*)"
+        },
+        "out": true
+      },
+      {
+        "name": "star_as_open",
+        "in": {
+          "s": "(*"
+        },
+        "out": true
+      },
+      {
+        "name": "simple_invalid_prefix",
+        "in": {
+          "s": "())"
+        },
+        "out": false
+      },
+      {
+        "name": "balanced_plain",
+        "in": {
+          "s": "()()"
+        },
+        "out": true
+      },
+      {
+        "name": "nested_plain",
+        "in": {
+          "s": "(())"
+        },
+        "out": true
+      },
+      {
+        "name": "interleaved_star",
+        "in": {
+          "s": "(*()"
+        },
+        "out": true
+      },
+      {
+        "name": "star_middle_invalid",
+        "in": {
+          "s": "())*"
+        },
+        "out": false
+      },
+      {
+        "name": "star_suffix_fix",
+        "in": {
+          "s": "(()*)"
+        },
+        "out": true
+      },
+      {
+        "name": "star_prefix_fix",
+        "in": {
+          "s": "*(()"
+        },
+        "out": false
+      },
+      {
+        "name": "close_then_star",
+        "in": {
+          "s": ")*("
+        },
+        "out": false
+      },
+      {
+        "name": "many_stars",
+        "in": {
+          "s": "******"
+        },
+        "out": true
+      },
+      {
+        "name": "alternating_valid",
+        "in": {
+          "s": "(*)(*)"
+        },
+        "out": true
+      },
+      {
+        "name": "alternating_invalid",
+        "in": {
+          "s": "(*))(*"
+        },
+        "out": true
+      },
+      {
+        "name": "open_heavy_valid",
+        "in": {
+          "s": "(((***)))"
+        },
+        "out": true
+      },
+      {
+        "name": "open_heavy_invalid",
+        "in": {
+          "s": "(((**))"
+        },
+        "out": true
+      },
+      {
+        "name": "early_close_fail",
+        "in": {
+          "s": ")))***"
+        },
+        "out": false
+      },
+      {
+        "name": "late_close_repair",
+        "in": {
+          "s": "***((()))"
+        },
+        "out": true
+      },
+      {
+        "name": "stars_and_parens",
+        "in": {
+          "s": "(*()*)"
+        },
+        "out": true
+      },
+      {
+        "name": "mismatch_after_star",
+        "in": {
+          "s": "(*(()"
+        },
+        "out": false
+      },
+      {
+        "name": "suffix_balance",
+        "in": {
+          "s": "((*)"
+        },
+        "out": true
+      },
+      {
+        "name": "prefix_balance",
+        "in": {
+          "s": ")*()"
+        },
+        "out": false
+      },
+      {
+        "name": "complex_valid_1",
+        "in": {
+          "s": "((*)())"
+        },
+        "out": true
+      },
+      {
+        "name": "complex_valid_2",
+        "in": {
+          "s": "(*((*)*))"
+        },
+        "out": true
+      },
+      {
+        "name": "complex_invalid_1",
+        "in": {
+          "s": "(*((*)*)"
+        },
+        "out": true
+      },
+      {
+        "name": "complex_invalid_2",
+        "in": {
+          "s": "(()*(()"
+        },
+        "out": false
+      },
+      {
+        "name": "max_all_stars",
+        "in": {
+          "s": "****************************************************************************************************"
+        },
+        "out": true
+      },
+      {
+        "name": "max_balanced_mix",
+        "in": {
+          "s": "((((((((((**************************************************))))))))))"
+        },
+        "out": true
+      },
+      {
+        "name": "max_unbalanced_prefix",
+        "in": {
+          "s": "))))))))))**************************************************((((((((((("
+        },
+        "out": false
+      },
+      {
+        "name": "max_valid_spread",
+        "in": {
+          "s": "(*()(*()(*()(*()(*()(*()(*()(*()(*()(*()"
+        },
+        "out": true
+      },
+      {
+        "name": "max_invalid_spread",
+        "in": {
+          "s": "(*()(*()(*()(*()(*()(*()(*()(*()(*()(*("
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"()\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"(*)\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"(*))\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"(\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \")\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"**\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"*)\"",
+      "output": "true"
+    }
+  ]
+}

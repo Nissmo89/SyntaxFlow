@@ -1,0 +1,1359 @@
+{
+  "id": "possible_bipartition",
+  "title": "Possible Bipartition",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "description": "<p>We want to split a group of <code>n</code> people (labeled from <code>1</code> to <code>n</code>) into two groups of <strong>any size</strong>. Each person may dislike some other people, and they should not go into the same group.</p>\n\n<p>Given the integer <code>n</code> and the array <code>dislikes</code> where <code>dislikes[i] = [a<sub>i</sub>, b<sub>i</sub>]</code> indicates that the person labeled <code>a<sub>i</sub></code> does not like the person labeled <code>b<sub>i</sub></code>, return <code>true</code> <em>if it is possible to split everyone into two groups in this way</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4, dislikes = [[1,2],[1,3],[2,4]]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The first group has [1,4], and the second group has [2,3].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3, dislikes = [[1,2],[1,3],[2,3]]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> We need at least 3 groups to divide them. We cannot put them in two groups.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 2000</code></li>\n\t<li><code>0 &lt;= dislikes.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>dislikes[i].length == 2</code></li>\n\t<li><code>1 &lt;= a<sub>i</sub> &lt; b<sub>i</sub> &lt;= n</code></li>\n\t<li>All the pairs of <code>dislikes</code> are <strong>unique</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Possible Bipartition' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= dislikes.length <= 104",
+    "dislikes[i].length == 2",
+    "1 <= ai < bi <= n",
+    "All the pairs of dislikes are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "possibleBipartition",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "dislikes",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 886,
+      "title": "possible-bipartition",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "dislikes": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().possibleBipartition({n}, {dislikes})",
+        "rust": "Solution::possible_bipartition({n}, {dislikes})",
+        "python3": "Solution().possibleBipartition({n}, {dislikes})",
+        "python2": "Solution().possibleBipartition({n}, {dislikes})",
+        "ruby": "possible_bipartition({n}, {dislikes})",
+        "java": "new Solution().possibleBipartition({n}, {dislikes})",
+        "csharp": "new Solution().PossibleBipartition({n}, {dislikes})",
+        "kotlin": "Solution().possibleBipartition({n}, {dislikes})",
+        "go": "possibleBipartition({n}, {dislikes})",
+        "dart": "Solution().possibleBipartition({n}, {dislikes})",
+        "swift": "Solution().possibleBipartition({n}, {dislikes})",
+        "typescript": "possibleBipartition({n}, {dislikes})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().possibleBipartition(n, dislikes, {result})",
+        "checker": "from collections import deque\n\nclass Checker:\n    def possibleBipartition(self, n, dislikes, result):\n        graph = [[] for _ in range(n + 1)]\n        for a, b in dislikes:\n            graph[a].append(b)\n            graph[b].append(a)\n        color = [0] * (n + 1)\n        for start in range(1, n + 1):\n            if color[start] != 0:\n                continue\n            color[start] = 1\n            q = deque([start])\n            while q:\n                node = q.popleft()\n                for nb in graph[node]:\n                    if color[nb] == color[node]:\n                        return result is False\n                    if color[nb] == 0:\n                        color[nb] = -color[node]\n                        q.append(nb)\n        return result is True\n"
+      }
+    },
+    "seed": 886,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 4,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 3,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "single-person",
+        "in": {
+          "n": 1,
+          "dislikes": []
+        },
+        "out": true
+      },
+      {
+        "name": "two-no-edge",
+        "in": {
+          "n": 2,
+          "dislikes": []
+        },
+        "out": true
+      },
+      {
+        "name": "two-one-edge",
+        "in": {
+          "n": 2,
+          "dislikes": [
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "path-3",
+        "in": {
+          "n": 3,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "triangle",
+        "in": {
+          "n": 3,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "square",
+        "in": {
+          "n": 4,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "star",
+        "in": {
+          "n": 5,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd-cycle-5",
+        "in": {
+          "n": 5,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "disconnected-edges",
+        "in": {
+          "n": 6,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "disconnected-with-triangle",
+        "in": {
+          "n": 6,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "complete-bipartite-2x3",
+        "in": {
+          "n": 5,
+          "dislikes": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "complete-bipartite-3x3",
+        "in": {
+          "n": 6,
+          "dislikes": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "path-8",
+        "in": {
+          "n": 8,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "even-cycle-6",
+        "in": {
+          "n": 6,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd-cycle-7",
+        "in": {
+          "n": 7,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "tree",
+        "in": {
+          "n": 8,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "ladder",
+        "in": {
+          "n": 8,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "triangle-plus-path",
+        "in": {
+          "n": 8,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "many-isolated",
+        "in": {
+          "n": 10,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "path-10",
+        "in": {
+          "n": 10,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd-cycle-9",
+        "in": {
+          "n": 9,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              1,
+              9
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "two-squares",
+        "in": {
+          "n": 10,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "square-and-triangle",
+        "in": {
+          "n": 10,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "skip-edges-small",
+        "in": {
+          "n": 12,
+          "dislikes": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              9
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              10,
+              12
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "dense-bipartite-4x4",
+        "in": {
+          "n": 8,
+          "dislikes": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "component-cycle-and-isolated",
+        "in": {
+          "n": 14,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "component-odd-cycle-and-isolated",
+        "in": {
+          "n": 14,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "path-20",
+        "in": {
+          "n": 20,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              12,
+              13
+            ],
+            [
+              13,
+              14
+            ],
+            [
+              14,
+              15
+            ],
+            [
+              15,
+              16
+            ],
+            [
+              16,
+              17
+            ],
+            [
+              17,
+              18
+            ],
+            [
+              18,
+              19
+            ],
+            [
+              19,
+              20
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "matching-20",
+        "in": {
+          "n": 20,
+          "dislikes": [
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              7,
+              17
+            ],
+            [
+              8,
+              18
+            ],
+            [
+              9,
+              19
+            ],
+            [
+              10,
+              20
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "odd-cycle-11",
+        "in": {
+          "n": 11,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              1,
+              11
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "hub-and-spokes-two-hubs",
+        "in": {
+          "n": 12,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "triangle-hidden-in-large",
+        "in": {
+          "n": 15,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              7,
+              11
+            ]
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "long-even-cycle-12",
+        "in": {
+          "n": 12,
+          "dislikes": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              1,
+              12
+            ]
+          ]
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 4\ndislikes = [[1, 2], [1, 3], [2, 4]]",
+      "output": "true"
+    },
+    {
+      "input": "n = 3\ndislikes = [[1, 2], [1, 3], [2, 3]]",
+      "output": "false"
+    },
+    {
+      "input": "n = 1\ndislikes = []",
+      "output": "true"
+    },
+    {
+      "input": "n = 2\ndislikes = []",
+      "output": "true"
+    },
+    {
+      "input": "n = 2\ndislikes = [[1, 2]]",
+      "output": "true"
+    },
+    {
+      "input": "n = 3\ndislikes = [[1, 2], [2, 3]]",
+      "output": "true"
+    },
+    {
+      "input": "n = 3\ndislikes = [[1, 2], [2, 3], [1, 3]]",
+      "output": "false"
+    },
+    {
+      "input": "n = 4\ndislikes = [[1, 2], [2, 3], [3, 4], [4, 1]]",
+      "output": "true"
+    }
+  ]
+}

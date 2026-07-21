@@ -1,0 +1,374 @@
+{
+  "id": "fizz_buzz",
+  "title": "Fizz Buzz",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return <em>a string array </em><code>answer</code><em> (<strong>1-indexed</strong>) where</em>:</p> <ul> <li><code>answer[i] == \"FizzBuzz\"</code> if <code>i</code> is divisible by <code>3</code> and <code>5</code>.</li> <li><code>answer[i] == \"Fizz\"</code> if <code>i</code> is divisible by <code>3</code>.</li> <li><code>answer[i] == \"Buzz\"</code> if <code>i</code> is divisible by <code>5</code>.</li> <li><code>answer[i] == i</code> (as a string) if none of the above conditions are true.</li> </ul> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> n = 3\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> n = 5\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\"]\n</pre><p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> n = 15\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "fizzBuzz",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 412,
+      "title": "fizz-buzz",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().fizzBuzz({n})",
+        "rust": "Solution::fizz_buzz({n})",
+        "python3": "Solution().fizzBuzz({n})",
+        "python2": "Solution().fizzBuzz({n})",
+        "ruby": "fizz_buzz({n})",
+        "java": "new Solution().fizzBuzz({n})",
+        "csharp": "new Solution().FizzBuzz({n})",
+        "kotlin": "Solution().fizzBuzz({n})",
+        "go": "fizzBuzz({n})",
+        "dart": "Solution().fizzBuzz({n})",
+        "swift": "Solution().fizzBuzz({n})",
+        "typescript": "fizzBuzz({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().fizzBuzz(n, {result})",
+        "checker": "class Checker:\n    def fizzBuzz(self, n, result):\n        if not isinstance(result, list) or len(result) != n:\n            return False\n        expected = []\n        for i in range(1, n + 1):\n            if i % 15 == 0:\n                expected.append(\"FizzBuzz\")\n            elif i % 3 == 0:\n                expected.append(\"Fizz\")\n            elif i % 5 == 0:\n                expected.append(\"Buzz\")\n            else:\n                expected.append(str(i))\n        return result == expected\n"
+      }
+    },
+    "seed": 412,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 3
+        },
+        "out": [
+          "1",
+          "2",
+          "Fizz"
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 5
+        },
+        "out": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz"
+        ]
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "n": 15
+        },
+        "out": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz",
+          "Fizz",
+          "7",
+          "8",
+          "Fizz",
+          "Buzz",
+          "11",
+          "Fizz",
+          "13",
+          "14",
+          "FizzBuzz"
+        ]
+      },
+      {
+        "name": "n-1",
+        "in": {
+          "n": 1
+        },
+        "out": [
+          "1"
+        ]
+      },
+      {
+        "name": "n-2",
+        "in": {
+          "n": 2
+        },
+        "out": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "name": "n-4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n-6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n-7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n-8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "n-9",
+        "in": {
+          "n": 9
+        }
+      },
+      {
+        "name": "n-10",
+        "in": {
+          "n": 10
+        }
+      },
+      {
+        "name": "n-11",
+        "in": {
+          "n": 11
+        }
+      },
+      {
+        "name": "n-12",
+        "in": {
+          "n": 12
+        }
+      },
+      {
+        "name": "n-13",
+        "in": {
+          "n": 13
+        }
+      },
+      {
+        "name": "n-14",
+        "in": {
+          "n": 14
+        }
+      },
+      {
+        "name": "n-16",
+        "in": {
+          "n": 16
+        }
+      },
+      {
+        "name": "n-17",
+        "in": {
+          "n": 17
+        }
+      },
+      {
+        "name": "n-18",
+        "in": {
+          "n": 18
+        }
+      },
+      {
+        "name": "n-19",
+        "in": {
+          "n": 19
+        }
+      },
+      {
+        "name": "n-20",
+        "in": {
+          "n": 20
+        }
+      },
+      {
+        "name": "n-21",
+        "in": {
+          "n": 21
+        }
+      },
+      {
+        "name": "n-22",
+        "in": {
+          "n": 22
+        }
+      },
+      {
+        "name": "n-29",
+        "in": {
+          "n": 29
+        }
+      },
+      {
+        "name": "n-30",
+        "in": {
+          "n": 30
+        }
+      },
+      {
+        "name": "n-31",
+        "in": {
+          "n": 31
+        }
+      },
+      {
+        "name": "n-32",
+        "in": {
+          "n": 32
+        }
+      },
+      {
+        "name": "n-44",
+        "in": {
+          "n": 44
+        }
+      },
+      {
+        "name": "n-45",
+        "in": {
+          "n": 45
+        }
+      },
+      {
+        "name": "n-46",
+        "in": {
+          "n": 46
+        }
+      },
+      {
+        "name": "n-59",
+        "in": {
+          "n": 59
+        }
+      },
+      {
+        "name": "n-60",
+        "in": {
+          "n": 60
+        }
+      },
+      {
+        "name": "n-61",
+        "in": {
+          "n": 61
+        }
+      },
+      {
+        "name": "n-74",
+        "in": {
+          "n": 74
+        }
+      },
+      {
+        "name": "n-75",
+        "in": {
+          "n": 75
+        }
+      },
+      {
+        "name": "n-76",
+        "in": {
+          "n": 76
+        }
+      },
+      {
+        "name": "n-99",
+        "in": {
+          "n": 99
+        }
+      },
+      {
+        "name": "n-100",
+        "in": {
+          "n": 100
+        }
+      },
+      {
+        "name": "n-101",
+        "in": {
+          "n": 101
+        }
+      },
+      {
+        "name": "n-999",
+        "in": {
+          "n": 999
+        }
+      },
+      {
+        "name": "n-10000",
+        "in": {
+          "n": 10000
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3",
+      "output": "[\"1\", \"2\", \"Fizz\"]"
+    },
+    {
+      "input": "n = 5",
+      "output": "[\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\"]"
+    },
+    {
+      "input": "n = 15",
+      "output": "[\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\", \"Fizz\", \"7\", \"8\", \"Fizz\", \"Buzz\", \"11\", \"Fizz\", \"13\", \"14\", \"FizzBuzz\"]"
+    },
+    {
+      "input": "n = 1",
+      "output": "[\"1\"]"
+    },
+    {
+      "input": "n = 2",
+      "output": "[\"1\", \"2\"]"
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    }
+  ]
+}

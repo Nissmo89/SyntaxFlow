@@ -1,0 +1,871 @@
+{
+  "id": "path_sum_ii",
+  "title": "Path Sum II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Backtracking",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>Given the <code>root</code> of a binary tree and an integer <code>targetSum</code>, return <em>all <strong>root-to-leaf</strong> paths where the sum of the node values in the path equals </em><code>targetSum</code><em>. Each path should be returned as a list of the node <strong>values</strong>, not node references</em>.</p>\n\n<p>A <strong>root-to-leaf</strong> path is a path starting from the root and ending at any leaf node. A <strong>leaf</strong> is a node with no children.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/18/pathsumii1.jpg\" style=\"width: 500px; height: 356px;\" />\n<pre>\n<strong>Input:</strong> root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22\n<strong>Output:</strong> [[5,4,11,2],[5,8,4,5]]\n<strong>Explanation:</strong> There are two paths whose sum equals targetSum:\n5 + 4 + 11 + 2 = 22\n5 + 8 + 4 + 5 = 22\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/18/pathsum2.jpg\" style=\"width: 212px; height: 181px;\" />\n<pre>\n<strong>Input:</strong> root = [1,2,3], targetSum = 5\n<strong>Output:</strong> []\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [1,2], targetSum = 0\n<strong>Output:</strong> []\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[0, 5000]</code>.</li>\n\t<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>\n\t<li><code>-1000 &lt;= targetSum &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Path Sum II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 5000].",
+    "-1000 <= Node.val <= 1000",
+    "-1000 <= targetSum <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "pathSum",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      },
+      {
+        "name": "targetSum",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 113,
+      "title": "path-sum-ii",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        },
+        "targetSum": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().pathSum({root}, {targetSum})",
+        "rust": "Solution::path_sum({root}, {targetSum})",
+        "python3": "Solution().pathSum({root}, {targetSum})",
+        "python2": "Solution().pathSum({root}, {targetSum})",
+        "ruby": "path_sum({root}, {targetSum})",
+        "java": "new Solution().pathSum({root}, {targetSum})",
+        "csharp": "new Solution().PathSum({root}, {targetSum})",
+        "kotlin": "Solution().pathSum({root}, {targetSum})",
+        "go": "pathSum({root}, {targetSum})",
+        "dart": "Solution().pathSum({root}, {targetSum})",
+        "swift": "Solution().pathSum({root}, {targetSum})",
+        "typescript": "pathSum({root}, {targetSum})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().pathSum(root, targetSum, {result})",
+        "checker": "class Checker:\n    def pathSum(self, root, targetSum, result):\n        if not isinstance(result, list):\n            return False\n        for path in result:\n            if not isinstance(path, list) or not all(isinstance(v, int) for v in path):\n                return False\n        if root is None or root == []:\n            return result == []\n        if not isinstance(root, list):\n            return False\n\n        expected = []\n\n        def dfs(i, acc, path):\n            if i >= len(root) or root[i] is None:\n                return\n            val = root[i]\n            path.append(val)\n            acc += val\n            left = 2 * i + 1\n            right = 2 * i + 2\n            has_left = left < len(root) and root[left] is not None\n            has_right = right < len(root) and root[right] is not None\n            if not has_left and not has_right:\n                if acc == targetSum:\n                    expected.append(path[:])\n            else:\n                dfs(left, acc, path)\n                dfs(right, acc, path)\n            path.pop()\n\n        dfs(0, 0, [])\n        return sorted(result) == sorted(expected)\n"
+      }
+    },
+    "seed": 113,
+    "tests": [
+      {
+        "name": "example_classic_two_paths",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            13,
+            4,
+            7,
+            2,
+            null,
+            null,
+            5,
+            1
+          ],
+          "targetSum": 22
+        },
+        "out": [
+          [
+            5,
+            4,
+            11,
+            2
+          ],
+          [
+            5,
+            8,
+            4,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "example_single_path_via_right",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            13,
+            4,
+            7,
+            2,
+            null,
+            null,
+            5,
+            1
+          ],
+          "targetSum": 26
+        },
+        "out": [
+          [
+            5,
+            8,
+            13
+          ]
+        ]
+      },
+      {
+        "name": "example_single_path_via_far_right",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            13,
+            4,
+            7,
+            2,
+            null,
+            null,
+            5,
+            1
+          ],
+          "targetSum": 18
+        },
+        "out": [
+          [
+            5,
+            8,
+            4,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "single_node_match",
+        "in": {
+          "root": [
+            7
+          ],
+          "targetSum": 7
+        },
+        "out": [
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "name": "single_node_mismatch",
+        "in": {
+          "root": [
+            7
+          ],
+          "targetSum": 8
+        },
+        "out": []
+      },
+      {
+        "name": "left_chain_match",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3
+          ],
+          "targetSum": 6
+        },
+        "out": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "left_chain_mismatch",
+        "in": {
+          "root": [
+            1,
+            2,
+            null,
+            3
+          ],
+          "targetSum": 5
+        },
+        "out": []
+      },
+      {
+        "name": "right_chain_match",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3
+          ],
+          "targetSum": 6
+        },
+        "out": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "right_chain_mismatch",
+        "in": {
+          "root": [
+            1,
+            null,
+            2,
+            null,
+            3
+          ],
+          "targetSum": 4
+        },
+        "out": []
+      },
+      {
+        "name": "negative_values_match",
+        "in": {
+          "root": [
+            -2,
+            null,
+            -3
+          ],
+          "targetSum": -5
+        },
+        "out": [
+          [
+            -2,
+            -3
+          ]
+        ]
+      },
+      {
+        "name": "negative_values_mismatch",
+        "in": {
+          "root": [
+            -2,
+            null,
+            -3
+          ],
+          "targetSum": -2
+        },
+        "out": []
+      },
+      {
+        "name": "zero_tree_two_paths",
+        "in": {
+          "root": [
+            0,
+            1,
+            1
+          ],
+          "targetSum": 1
+        },
+        "out": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "zero_tree_no_path",
+        "in": {
+          "root": [
+            0,
+            1,
+            1
+          ],
+          "targetSum": 2
+        },
+        "out": []
+      },
+      {
+        "name": "full_zero_tree_four_paths",
+        "in": {
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "targetSum": 0
+        },
+        "out": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "full_zero_tree_no_match",
+        "in": {
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "targetSum": 1
+        },
+        "out": []
+      },
+      {
+        "name": "duplicated_values_four_paths",
+        "in": {
+          "root": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "targetSum": 6
+        },
+        "out": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "duplicated_values_no_match",
+        "in": {
+          "root": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "targetSum": 5
+        },
+        "out": []
+      },
+      {
+        "name": "balanced_all_leafs_distinct_7",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "targetSum": 7
+        },
+        "out": [
+          [
+            1,
+            2,
+            4
+          ]
+        ]
+      },
+      {
+        "name": "balanced_all_leafs_distinct_8",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "targetSum": 8
+        },
+        "out": [
+          [
+            1,
+            2,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "balanced_all_leafs_distinct_10",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "targetSum": 10
+        },
+        "out": [
+          [
+            1,
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "balanced_all_leafs_distinct_11",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "targetSum": 11
+        },
+        "out": [
+          [
+            1,
+            3,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "long_left_branch_and_right_leaf",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            13,
+            4,
+            7,
+            2,
+            null,
+            null,
+            null,
+            1
+          ],
+          "targetSum": 27
+        },
+        "out": [
+          [
+            5,
+            4,
+            11,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "long_left_branch_and_right_leaf_no_match",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            13,
+            4,
+            7,
+            2,
+            null,
+            null,
+            null,
+            1
+          ],
+          "targetSum": 19
+        },
+        "out": []
+      },
+      {
+        "name": "mixed_negative_zero_paths",
+        "in": {
+          "root": [
+            1,
+            -2,
+            -3,
+            1,
+            3,
+            -2,
+            null,
+            -1
+          ],
+          "targetSum": -1
+        },
+        "out": [
+          [
+            1,
+            -2,
+            1,
+            -1
+          ]
+        ]
+      },
+      {
+        "name": "mixed_negative_zero_paths_alt",
+        "in": {
+          "root": [
+            1,
+            -2,
+            -3,
+            1,
+            3,
+            -2,
+            null,
+            -1
+          ],
+          "targetSum": -4
+        },
+        "out": [
+          [
+            1,
+            -3,
+            -2
+          ]
+        ]
+      },
+      {
+        "name": "mixed_negative_zero_paths_no_match",
+        "in": {
+          "root": [
+            1,
+            -2,
+            -3,
+            1,
+            3,
+            -2,
+            null,
+            -1
+          ],
+          "targetSum": 4
+        },
+        "out": []
+      },
+      {
+        "name": "skewed_with_null_gaps_match",
+        "in": {
+          "root": [
+            10,
+            5,
+            -3,
+            3,
+            2,
+            null,
+            11,
+            3,
+            -2,
+            null,
+            1
+          ],
+          "targetSum": 18
+        },
+        "out": [
+          [
+            10,
+            5,
+            2,
+            1
+          ],
+          [
+            10,
+            -3,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "skewed_with_null_gaps_two_matches",
+        "in": {
+          "root": [
+            10,
+            5,
+            -3,
+            3,
+            2,
+            null,
+            11,
+            3,
+            -2,
+            null,
+            1
+          ],
+          "targetSum": 21
+        },
+        "out": [
+          [
+            10,
+            5,
+            3,
+            3
+          ]
+        ]
+      },
+      {
+        "name": "skewed_with_null_gaps_no_match",
+        "in": {
+          "root": [
+            10,
+            5,
+            -3,
+            3,
+            2,
+            null,
+            11,
+            3,
+            -2,
+            null,
+            1
+          ],
+          "targetSum": 100
+        },
+        "out": []
+      },
+      {
+        "name": "deeper_left_then_right",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            null,
+            6,
+            7,
+            null,
+            null,
+            8
+          ],
+          "targetSum": 14
+        },
+        "out": [
+          [
+            1,
+            2,
+            4,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "deeper_left_then_right_alt",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            null,
+            6,
+            7,
+            null,
+            null,
+            8
+          ],
+          "targetSum": 16
+        },
+        "out": [
+          [
+            1,
+            2,
+            5,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "deeper_left_then_right_no_match",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            null,
+            6,
+            7,
+            null,
+            null,
+            8
+          ],
+          "targetSum": 12
+        },
+        "out": []
+      },
+      {
+        "name": "many_leaves_same_sum",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            null,
+            null,
+            1
+          ],
+          "targetSum": 3
+        },
+        "out": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "many_leaves_same_sum_no_match",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            null,
+            null,
+            1
+          ],
+          "targetSum": 5
+        },
+        "out": []
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]\ntargetSum = 22",
+      "output": "[[5, 4, 11, 2], [5, 8, 4, 5]]"
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]\ntargetSum = 26",
+      "output": "[[5, 8, 13]]"
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]\ntargetSum = 18",
+      "output": "[[5, 8, 4, 1]]"
+    },
+    {
+      "input": "root = [7]\ntargetSum = 7",
+      "output": "[[7]]"
+    },
+    {
+      "input": "root = [7]\ntargetSum = 8",
+      "output": "[]"
+    },
+    {
+      "input": "root = [1, 2, null, 3]\ntargetSum = 6",
+      "output": "[[1, 2, 3]]"
+    },
+    {
+      "input": "root = [1, 2, null, 3]\ntargetSum = 5",
+      "output": "[]"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3]\ntargetSum = 6",
+      "output": "[[1, 2, 3]]"
+    }
+  ]
+}

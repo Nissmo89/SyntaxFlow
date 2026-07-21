@@ -1,0 +1,367 @@
+{
+  "id": "valid_parentheses",
+  "title": "Valid Parentheses",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>Given a string <code>s</code> containing just the characters <code>'('</code>, <code>')'</code>, <code>'{'</code>, <code>'}'</code>, <code>'['</code> and <code>']'</code>, determine if the input string is valid.</p> <p>An input string is valid if:</p> <ol> <li>Open brackets must be closed by the same type of brackets.</li> <li>Open brackets must be closed in the correct order.</li> <li>Every close bracket has a corresponding open bracket of the same type.</li> </ol> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">s = \"()\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">true</span></p> </div> <p><strong class=\"example\">Example 2:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">s = \"()[]{}\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">true</span></p> </div> <p><strong class=\"example\">Example 3:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">s = \"(]\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">false</span></p> </div> <p><strong class=\"example\">Example 4:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">s = \"([])\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">true</span></p> </div> <p><strong class=\"example\">Example 5:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">s = \"([)]\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">false</span></p> </div> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li> <li><code>s</code> consists of parentheses only <code>'()[]{}'</code>.</li> </ul>",
+  "hints": [
+    "Use a stack of characters.",
+    "When you encounter an opening bracket, push it to the top of the stack.",
+    "When you encounter a closing bracket, check if the top of the stack was the opening for it. If yes, pop it from the stack. Otherwise, return false."
+  ],
+  "method": {
+    "name": "isValid",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 20,
+      "title": "valid-parentheses",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isValid({s})",
+        "rust": "Solution::is_valid({s})",
+        "python3": "Solution().isValid({s})",
+        "python2": "Solution().isValid({s})",
+        "ruby": "is_valid({s})",
+        "java": "new Solution().isValid({s})",
+        "csharp": "new Solution().IsValid({s})",
+        "kotlin": "Solution().isValid({s})",
+        "go": "isValid({s})",
+        "dart": "Solution().isValid({s})",
+        "swift": "Solution().isValid({s})",
+        "typescript": "isValid({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isValid(s, {result})",
+        "checker": "class Checker:\n    def isValid(self, s, result):\n        if not isinstance(result, bool):\n            return False\n        stack = []\n        pairs = {')': '(', ']': '[', '}': '{'}\n        for ch in s:\n            if ch in '([{':\n                stack.append(ch)\n            elif not stack or stack.pop() != pairs.get(ch):\n                return False\n        expected = not stack\n        return result == expected\n"
+      }
+    },
+    "seed": 20,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "s": "()"
+        },
+        "out": true
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "s": "()[]{}"
+        },
+        "out": true
+      },
+      {
+        "name": "Example 3",
+        "in": {
+          "s": "(]"
+        },
+        "out": false
+      },
+      {
+        "name": "Example 4",
+        "in": {
+          "s": "([])"
+        },
+        "out": true
+      },
+      {
+        "name": "Example 5",
+        "in": {
+          "s": "([)]"
+        },
+        "out": false
+      },
+      {
+        "name": "Single open parenthesis",
+        "in": {
+          "s": "("
+        },
+        "out": false
+      },
+      {
+        "name": "Single close parenthesis",
+        "in": {
+          "s": ")"
+        },
+        "out": false
+      },
+      {
+        "name": "Two pairs",
+        "in": {
+          "s": "()()"
+        },
+        "out": true
+      },
+      {
+        "name": "Three bracket types",
+        "in": {
+          "s": "[]{}()"
+        },
+        "out": true
+      },
+      {
+        "name": "Wrong close order",
+        "in": {
+          "s": "({)}"
+        },
+        "out": false
+      },
+      {
+        "name": "Nested valid",
+        "in": {
+          "s": "({[]})"
+        },
+        "out": true
+      },
+      {
+        "name": "Nested invalid",
+        "in": {
+          "s": "(([]){})]"
+        },
+        "out": false
+      },
+      {
+        "name": "Deep valid",
+        "in": {
+          "s": "({[()()]})"
+        },
+        "out": true
+      },
+      {
+        "name": "Deep invalid",
+        "in": {
+          "s": "({[()()]}]"
+        },
+        "out": false
+      },
+      {
+        "name": "Interleaved valid",
+        "in": {
+          "s": "[({})]"
+        },
+        "out": true
+      },
+      {
+        "name": "Interleaved invalid",
+        "in": {
+          "s": "[({)]}"
+        },
+        "out": false
+      },
+      {
+        "name": "Starts with close",
+        "in": {
+          "s": "](){}"
+        },
+        "out": false
+      },
+      {
+        "name": "Ends with open",
+        "in": {
+          "s": "()[]{"
+        },
+        "out": false
+      },
+      {
+        "name": "Mixed small valid",
+        "in": {
+          "s": "{[]}"
+        },
+        "out": true
+      },
+      {
+        "name": "Mixed small invalid",
+        "in": {
+          "s": "{[}]"
+        },
+        "out": false
+      },
+      {
+        "name": "Alternating valid",
+        "in": {
+          "s": "({})[]"
+        },
+        "out": true
+      },
+      {
+        "name": "Alternating invalid",
+        "in": {
+          "s": "({}][)"
+        },
+        "out": false
+      },
+      {
+        "name": "Close too early",
+        "in": {
+          "s": "((())"
+        },
+        "out": false
+      },
+      {
+        "name": "Extra close at end",
+        "in": {
+          "s": "(()))"
+        },
+        "out": false
+      },
+      {
+        "name": "Multiple groups valid",
+        "in": {
+          "s": "(()[]){}"
+        },
+        "out": true
+      },
+      {
+        "name": "Multiple groups invalid",
+        "in": {
+          "s": "(()[)]{}"
+        },
+        "out": false
+      },
+      {
+        "name": "Braces first",
+        "in": {
+          "s": "{}[]()"
+        },
+        "out": true
+      },
+      {
+        "name": "Mixed grouping valid",
+        "in": {
+          "s": "{[()]}[]"
+        },
+        "out": true
+      },
+      {
+        "name": "Long valid repeated pattern",
+        "in": {
+          "s": "()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}"
+        },
+        "out": true
+      },
+      {
+        "name": "Long invalid repeated pattern",
+        "in": {
+          "s": "()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}()[]{}]"
+        },
+        "out": false
+      },
+      {
+        "name": "Long valid nested blocks",
+        "in": {
+          "s": "{{{{[[[[((((()))))]]]]}}}}"
+        },
+        "out": true
+      },
+      {
+        "name": "Long invalid nested blocks",
+        "in": {
+          "s": "{{{{[[[[((((()))))]]]]}}}]"
+        },
+        "out": false
+      },
+      {
+        "name": "Early mismatch after prefix",
+        "in": {
+          "s": "([{}])("
+        },
+        "out": false
+      },
+      {
+        "name": "Prefix then bad close",
+        "in": {
+          "s": "([{}])]"
+        },
+        "out": false
+      },
+      {
+        "name": "Valid complex mixture",
+        "in": {
+          "s": "{[()()]}({[]})"
+        },
+        "out": true
+      },
+      {
+        "name": "Invalid complex mixture",
+        "in": {
+          "s": "{[()()]}({[}])"
+        },
+        "out": false
+      },
+      {
+        "name": "Longer balanced repetition",
+        "in": {
+          "s": "()"
+        },
+        "out": true
+      },
+      {
+        "name": "Longer imbalanced repetition",
+        "in": {
+          "s": "(()"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"()\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"()[]{}\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"(]\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"([])\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"([)]\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"(\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \")\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"()()\"",
+      "output": "true"
+    }
+  ]
+}

@@ -1,0 +1,610 @@
+{
+  "id": "max_consecutive_ones",
+  "title": "Max Consecutive Ones",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array"
+  ],
+  "description": "<p>Given a binary array <code>nums</code>, return <em>the maximum number of consecutive </em><code>1</code><em>'s in the array</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums = [1,1,0,1,1,1]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums = [1,0,1,1,0,1]\n<strong>Output:</strong> 2\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li> <li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li> </ul>",
+  "hints": [
+    "You need to think about two things as far as any window is concerned. One is the starting point for the window. How do you detect that a new window of 1s has started? The next part is detecting the ending point for this window.\r\n\r\nHow do you detect the ending point for an existing window? If you figure these two things out, you will be able to detect the windows of consecutive ones. All that remains afterward is to find the longest such window and return the size."
+  ],
+  "method": {
+    "name": "findMaxConsecutiveOnes",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 485,
+      "title": "max-consecutive-ones",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findMaxConsecutiveOnes({nums})",
+        "rust": "Solution::find_max_consecutive_ones({nums})",
+        "python3": "Solution().findMaxConsecutiveOnes({nums})",
+        "python2": "Solution().findMaxConsecutiveOnes({nums})",
+        "ruby": "find_max_consecutive_ones({nums})",
+        "java": "new Solution().findMaxConsecutiveOnes({nums})",
+        "csharp": "new Solution().FindMaxConsecutiveOnes({nums})",
+        "kotlin": "Solution().findMaxConsecutiveOnes({nums})",
+        "go": "findMaxConsecutiveOnes({nums})",
+        "dart": "Solution().findMaxConsecutiveOnes({nums})",
+        "swift": "Solution().findMaxConsecutiveOnes({nums})",
+        "typescript": "findMaxConsecutiveOnes({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findMaxConsecutiveOnes(nums, {result})",
+        "checker": "class Checker:\n    def findMaxConsecutiveOnes(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        best = 0\n        current = 0\n        for value in nums:\n            if value == 1:\n                current += 1\n                if current > best:\n                    best = current\n            else:\n                current = 0\n        return result == best\n"
+      }
+    },
+    "seed": 485,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_ones",
+        "in": {
+          "nums": [
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two_zeros",
+        "in": {
+          "nums": [
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "starts_with_ones",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ends_with_ones",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "alternating_short",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_ones_five",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "all_zeros_five",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "middle_block",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "multiple_equal_blocks",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "longest_at_front",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "longest_at_back",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "zero_between_long_runs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "short_tail_zero",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "short_head_zero",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "isolated_ones",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long_middle_run",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "run_after_noise",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "many_small_runs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "zeros_surrounding_run",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "run_len_six",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "run_len_seven",
+        "in": {
+          "nums": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "zero_punctuated",
+        "in": {
+          "nums": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "last_isolated_one",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "first_isolated_one",
+        "in": {
+          "nums": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "oracle_large_ones",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_all_zeros_large",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_alternating_large",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_sparse_large",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_dense_large",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_mid_large",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 50000,
+              "max": 100000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "oracle_tiny_random",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            }
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 1, 0, 1, 1, 1]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 0, 1, 1, 0, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 1, 1, 0, 0]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [0, 0, 1, 1, 1]",
+      "output": "3"
+    }
+  ]
+}

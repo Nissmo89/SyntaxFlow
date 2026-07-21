@@ -1,0 +1,442 @@
+{
+  "id": "beautiful_arrangement",
+  "title": "Beautiful Arrangement",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "description": "<p>Suppose you have <code>n</code> integers labeled <code>1</code> through <code>n</code>. A permutation of those <code>n</code> integers <code>perm</code> (<strong>1-indexed</strong>) is considered a <strong>beautiful arrangement</strong> if for every <code>i</code> (<code>1 &lt;= i &lt;= n</code>), <strong>either</strong> of the following is true:</p>\n\n<ul>\n\t<li><code>perm[i]</code> is divisible by <code>i</code>.</li>\n\t<li><code>i</code> is divisible by <code>perm[i]</code>.</li>\n</ul>\n\n<p>Given an integer <code>n</code>, return <em>the <strong>number</strong> of the <strong>beautiful arrangements</strong> that you can construct</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2\n<strong>Output:</strong> 2\n<b>Explanation:</b> \nThe first beautiful arrangement is [1,2]:\n    - perm[1] = 1 is divisible by i = 1\n    - perm[2] = 2 is divisible by i = 2\nThe second beautiful arrangement is [2,1]:\n    - perm[1] = 2 is divisible by i = 1\n    - i = 2 is divisible by perm[2] = 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 15</code></li>\n</ul>\n",
+  "task": "Solve the 'Beautiful Arrangement' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 15"
+  ],
+  "hints": [],
+  "method": {
+    "name": "countArrangement",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 526,
+      "title": "beautiful-arrangement",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countArrangement({n})",
+        "rust": "Solution::count_arrangement({n})",
+        "python3": "Solution().countArrangement({n})",
+        "python2": "Solution().countArrangement({n})",
+        "ruby": "count_arrangement({n})",
+        "java": "new Solution().countArrangement({n})",
+        "csharp": "new Solution().CountArrangement({n})",
+        "kotlin": "Solution().countArrangement({n})",
+        "go": "countArrangement({n})",
+        "dart": "Solution().countArrangement({n})",
+        "swift": "Solution().countArrangement({n})",
+        "typescript": "countArrangement({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().countArrangement(n, {result})",
+        "checker": "class Checker:\n    def countArrangement(self, n, result):\n        if not isinstance(result, int):\n            return False\n        size = 1 << n\n        dp = [0] * size\n        dp[0] = 1\n        for mask in range(size):\n            pos = mask.bit_count() + 1\n            if pos > n:\n                continue\n            cur = dp[mask]\n            if cur == 0:\n                continue\n            for v in range(1, n + 1):\n                bit = 1 << (v - 1)\n                if mask & bit == 0 and (v % pos == 0 or pos % v == 0):\n                    dp[mask | bit] += cur\n        return result == dp[-1]\n"
+      }
+    },
+    "seed": 526,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n-3",
+        "in": {
+          "n": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "n-4",
+        "in": {
+          "n": 4
+        },
+        "out": 8
+      },
+      {
+        "name": "n-5",
+        "in": {
+          "n": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "n-6",
+        "in": {
+          "n": 6
+        },
+        "out": 36
+      },
+      {
+        "name": "n-7",
+        "in": {
+          "n": 7
+        },
+        "out": 41
+      },
+      {
+        "name": "n-8",
+        "in": {
+          "n": 8
+        },
+        "out": 132
+      },
+      {
+        "name": "n-9",
+        "in": {
+          "n": 9
+        },
+        "out": 250
+      },
+      {
+        "name": "n-10",
+        "in": {
+          "n": 10
+        },
+        "out": 700
+      },
+      {
+        "name": "n-11",
+        "in": {
+          "n": 11
+        },
+        "out": 750
+      },
+      {
+        "name": "n-12",
+        "in": {
+          "n": 12
+        },
+        "out": 4010
+      },
+      {
+        "name": "n-13",
+        "in": {
+          "n": 13
+        },
+        "out": 4237
+      },
+      {
+        "name": "n-14",
+        "in": {
+          "n": 14
+        },
+        "out": 10680
+      },
+      {
+        "name": "n-15",
+        "in": {
+          "n": 15
+        },
+        "out": 24679
+      },
+      {
+        "name": "generated-any-n-1",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5261
+      },
+      {
+        "name": "generated-any-n-2",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5262
+      },
+      {
+        "name": "generated-any-n-3",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5263
+      },
+      {
+        "name": "generated-any-n-4",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5264
+      },
+      {
+        "name": "generated-any-n-5",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5265
+      },
+      {
+        "name": "generated-any-n-6",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5266
+      },
+      {
+        "name": "generated-any-n-7",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5267
+      },
+      {
+        "name": "generated-any-n-8",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5268
+      },
+      {
+        "name": "generated-any-n-9",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5269
+      },
+      {
+        "name": "generated-any-n-10",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5270
+      },
+      {
+        "name": "generated-any-n-11",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5271
+      },
+      {
+        "name": "generated-any-n-12",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5272
+      },
+      {
+        "name": "generated-any-n-13",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5273
+      },
+      {
+        "name": "generated-any-n-14",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5274
+      },
+      {
+        "name": "generated-any-n-15",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 15
+          }
+        },
+        "seed": 5275
+      },
+      {
+        "name": "generated-low-range-1",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 5
+          }
+        },
+        "seed": 5276
+      },
+      {
+        "name": "generated-low-range-2",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 5
+          }
+        },
+        "seed": 5277
+      },
+      {
+        "name": "generated-mid-range-1",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 6,
+            "max": 10
+          }
+        },
+        "seed": 5278
+      },
+      {
+        "name": "generated-mid-range-2",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 6,
+            "max": 10
+          }
+        },
+        "seed": 5279
+      },
+      {
+        "name": "generated-high-range-1",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 11,
+            "max": 15
+          }
+        },
+        "seed": 5280
+      },
+      {
+        "name": "generated-high-range-2",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 11,
+            "max": 15
+          }
+        },
+        "seed": 5281
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 2",
+      "output": "2"
+    },
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 3",
+      "output": "3"
+    },
+    {
+      "input": "n = 4",
+      "output": "8"
+    },
+    {
+      "input": "n = 5",
+      "output": "10"
+    },
+    {
+      "input": "n = 6",
+      "output": "36"
+    },
+    {
+      "input": "n = 7",
+      "output": "41"
+    },
+    {
+      "input": "n = 8",
+      "output": "132"
+    }
+  ]
+}

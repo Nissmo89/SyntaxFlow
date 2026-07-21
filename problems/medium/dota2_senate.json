@@ -1,0 +1,410 @@
+{
+  "id": "dota2_senate",
+  "title": "Dota2 Senate",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Greedy",
+    "Queue"
+  ],
+  "description": "<p>In the world of Dota2, there are two parties: the Radiant and the Dire.</p>\n\n<p>The Dota2 senate consists of senators coming from two parties. Now the Senate wants to decide on a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise <strong>one</strong> of the two rights:</p>\n\n<ul>\n\t<li><strong>Ban one senator&#39;s right:</strong> A senator can make another senator lose all his rights in this and all the following rounds.</li>\n\t<li><strong>Announce the victory:</strong> If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and decide on the change in the game.</li>\n</ul>\n\n<p>Given a string <code>senate</code> representing each senator&#39;s party belonging. The character <code>&#39;R&#39;</code> and <code>&#39;D&#39;</code> represent the Radiant party and the Dire party. Then if there are <code>n</code> senators, the size of the given string will be <code>n</code>.</p>\n\n<p>The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.</p>\n\n<p>Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be <code>&quot;Radiant&quot;</code> or <code>&quot;Dire&quot;</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> senate = &quot;RD&quot;\n<strong>Output:</strong> &quot;Radiant&quot;\n<strong>Explanation:</strong> \nThe first senator comes from Radiant and he can just ban the next senator&#39;s right in round 1. \nAnd the second senator can&#39;t exercise any rights anymore since his right has been banned. \nAnd in round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> senate = &quot;RDD&quot;\n<strong>Output:</strong> &quot;Dire&quot;\n<strong>Explanation:</strong> \nThe first senator comes from Radiant and he can just ban the next senator&#39;s right in round 1. \nAnd the second senator can&#39;t exercise any rights anymore since his right has been banned. \nAnd the third senator comes from Dire and he can ban the first senator&#39;s right in round 1. \nAnd in round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == senate.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n\t<li><code>senate[i]</code> is either <code>&#39;R&#39;</code> or <code>&#39;D&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Dota2 Senate' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == senate.length",
+    "1 <= n <= 104",
+    "senate[i] is either 'R' or 'D'."
+  ],
+  "hints": [],
+  "method": {
+    "name": "predictPartyVictory",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "senate",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 649,
+      "title": "dota2-senate",
+      "params": {
+        "senate": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().predictPartyVictory({senate})",
+        "rust": "Solution::predict_party_victory({senate})",
+        "python3": "Solution().predictPartyVictory({senate})",
+        "python2": "Solution().predictPartyVictory({senate})",
+        "ruby": "predict_party_victory({senate})",
+        "java": "new Solution().predictPartyVictory({senate})",
+        "csharp": "new Solution().PredictPartyVictory({senate})",
+        "kotlin": "Solution().predictPartyVictory({senate})",
+        "go": "predictPartyVictory({senate})",
+        "dart": "Solution().predictPartyVictory({senate})",
+        "swift": "Solution().predictPartyVictory({senate})",
+        "typescript": "predictPartyVictory({senate})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().predictPartyVictory(senate, {result})",
+        "checker": "from collections import deque\n\nclass Checker:\n    def predictPartyVictory(self, senate, result):\n        if result not in (\"Radiant\", \"Dire\"):\n            return False\n        if not senate or any(ch not in \"RD\" for ch in senate):\n            return False\n\n        r = deque()\n        d = deque()\n        n = len(senate)\n\n        for i, ch in enumerate(senate):\n            if ch == \"R\":\n                r.append(i)\n            else:\n                d.append(i)\n\n        while r and d:\n            r_idx = r.popleft()\n            d_idx = d.popleft()\n            if r_idx < d_idx:\n                r.append(r_idx + n)\n            else:\n                d.append(d_idx + n)\n\n        expected = \"Radiant\" if r else \"Dire\"\n        return result == expected\n"
+      }
+    },
+    "seed": 649,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "senate": "RD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "senate": "RDD"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "single_r",
+        "in": {
+          "senate": "R"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "single_d",
+        "in": {
+          "senate": "D"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "two_rr",
+        "in": {
+          "senate": "RR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "two_dd",
+        "in": {
+          "senate": "DD"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "dr",
+        "in": {
+          "senate": "DR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rrd",
+        "in": {
+          "senate": "RRD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddr",
+        "in": {
+          "senate": "DDR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rdr",
+        "in": {
+          "senate": "RDR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "drr",
+        "in": {
+          "senate": "DRR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "rddr",
+        "in": {
+          "senate": "RDDR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddrr",
+        "in": {
+          "senate": "DDRR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rrrrd",
+        "in": {
+          "senate": "RRRRD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddddr",
+        "in": {
+          "senate": "DDDDR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rdrd",
+        "in": {
+          "senate": "RDRD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "drdr",
+        "in": {
+          "senate": "DRDR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rrdd",
+        "in": {
+          "senate": "RRDD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddrr_2",
+        "in": {
+          "senate": "DDRR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rdrrr",
+        "in": {
+          "senate": "RDRRR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddrdd",
+        "in": {
+          "senate": "DDRDD"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rrrdd",
+        "in": {
+          "senate": "RRRDD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "rdrddr",
+        "in": {
+          "senate": "RDRDDR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "drrrd",
+        "in": {
+          "senate": "DRRRD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "rrdddr",
+        "in": {
+          "senate": "RRDDDR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "ddrrr",
+        "in": {
+          "senate": "DDRRR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rdrrdr",
+        "in": {
+          "senate": "RDRRDR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "drddrr",
+        "in": {
+          "senate": "DRDDRR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rrrddd",
+        "in": {
+          "senate": "RRRDDD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "dddrrr",
+        "in": {
+          "senate": "DDDRRR"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "short_skew_r",
+        "in": {
+          "senate": "RDRRR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "short_skew_d",
+        "in": {
+          "senate": "DDRDD"
+        },
+        "out": "Dire"
+      },
+      {
+        "name": "rddrrd",
+        "in": {
+          "senate": "RDDRRD"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "drrdrr",
+        "in": {
+          "senate": "DRRDRR"
+        },
+        "out": "Radiant"
+      },
+      {
+        "name": "max_r_prefix",
+        "seed": 64901,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "RD"
+          }
+        }
+      },
+      {
+        "name": "max_d_prefix",
+        "seed": 64902,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "DR"
+          }
+        }
+      },
+      {
+        "name": "alternating_rd",
+        "seed": 64903,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "RD"
+          }
+        }
+      },
+      {
+        "name": "alternating_dr",
+        "seed": 64904,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "DR"
+          }
+        }
+      },
+      {
+        "name": "leading_r_many_d",
+        "seed": 64905,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "RD"
+          }
+        }
+      },
+      {
+        "name": "leading_d_many_r",
+        "seed": 64906,
+        "in": {
+          "senate": {
+            "gen": "str",
+            "len": 10000,
+            "alphabet": "DR"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "senate = \"RD\"",
+      "output": "\"Radiant\""
+    },
+    {
+      "input": "senate = \"RDD\"",
+      "output": "\"Dire\""
+    },
+    {
+      "input": "senate = \"R\"",
+      "output": "\"Radiant\""
+    },
+    {
+      "input": "senate = \"D\"",
+      "output": "\"Dire\""
+    },
+    {
+      "input": "senate = \"RR\"",
+      "output": "\"Radiant\""
+    },
+    {
+      "input": "senate = \"DD\"",
+      "output": "\"Dire\""
+    },
+    {
+      "input": "senate = \"DR\"",
+      "output": "\"Dire\""
+    },
+    {
+      "input": "senate = \"RRD\"",
+      "output": "\"Radiant\""
+    }
+  ]
+}

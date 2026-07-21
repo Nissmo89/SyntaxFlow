@@ -1,0 +1,360 @@
+{
+  "id": "robot_return_to_origin",
+  "title": "Robot Return to Origin",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "description": "<p>There is a robot starting at the position <code>(0, 0)</code>, the origin, on a 2D plane. Given a sequence of its moves, judge if this robot <strong>ends up at </strong><code>(0, 0)</code> after it completes its moves.</p> <p>You are given a string <code>moves</code> that represents the move sequence of the robot where <code>moves[i]</code> represents its <code>i<sup>th</sup></code> move. Valid moves are <code>'R'</code> (right), <code>'L'</code> (left), <code>'U'</code> (up), and <code>'D'</code> (down).</p> <p>Return <code>true</code><em> if the robot returns to the origin after it finishes all of its moves, or </em><code>false</code><em> otherwise</em>.</p> <p><strong>Note</strong>: The way that the robot is \"facing\" is irrelevant. <code>'R'</code> will always make the robot move to the right once, <code>'L'</code> will always make it move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> moves = \"UD\"\n<strong>Output:</strong> true\n<strong>Explanation</strong>: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> moves = \"LL\"\n<strong>Output:</strong> false\n<strong>Explanation</strong>: The robot moves left twice. It ends up two \"moves\" to the left of the origin. We return false because it is not at the origin at the end of its moves.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= moves.length &lt;= 2 * 10<sup>4</sup></code></li> <li><code>moves</code> only contains the characters <code>'U'</code>, <code>'D'</code>, <code>'L'</code> and <code>'R'</code>.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "judgeCircle",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "moves",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 657,
+      "title": "robot-return-to-origin",
+      "params": {
+        "moves": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().judgeCircle({moves})",
+        "rust": "Solution::judge_circle({moves})",
+        "python3": "Solution().judgeCircle({moves})",
+        "python2": "Solution().judgeCircle({moves})",
+        "ruby": "judge_circle({moves})",
+        "java": "new Solution().judgeCircle({moves})",
+        "csharp": "new Solution().JudgeCircle({moves})",
+        "kotlin": "Solution().judgeCircle({moves})",
+        "go": "judgeCircle({moves})",
+        "dart": "Solution().judgeCircle({moves})",
+        "swift": "Solution().judgeCircle({moves})",
+        "typescript": "judgeCircle({moves})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().judgeCircle(moves, {result})",
+        "checker": "class Checker:\n    def judgeCircle(self, moves, result):\n        expected = moves.count('L') == moves.count('R') and moves.count('U') == moves.count('D')\n        return isinstance(result, bool) and result == expected\n"
+      }
+    },
+    "seed": 657,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "moves": "UD"
+        },
+        "out": true
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "moves": "LL"
+        },
+        "out": false
+      },
+      {
+        "name": "single-u",
+        "in": {
+          "moves": "U"
+        },
+        "out": false
+      },
+      {
+        "name": "single-d",
+        "in": {
+          "moves": "D"
+        },
+        "out": false
+      },
+      {
+        "name": "single-l",
+        "in": {
+          "moves": "L"
+        },
+        "out": false
+      },
+      {
+        "name": "single-r",
+        "in": {
+          "moves": "R"
+        },
+        "out": false
+      },
+      {
+        "name": "simple-origin-horizontal",
+        "in": {
+          "moves": "LR"
+        },
+        "out": true
+      },
+      {
+        "name": "simple-origin-vertical",
+        "in": {
+          "moves": "UDUD"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed-origin-1",
+        "in": {
+          "moves": "UUDDLLRR"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed-origin-2",
+        "in": {
+          "moves": "ULDR"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed-false-1",
+        "in": {
+          "moves": "UUDDUD"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed-false-2",
+        "in": {
+          "moves": "LLRRU"
+        },
+        "out": false
+      },
+      {
+        "name": "unbalanced-left-right",
+        "in": {
+          "moves": "LLLLRRR"
+        },
+        "out": false
+      },
+      {
+        "name": "unbalanced-up-down",
+        "in": {
+          "moves": "UUUDDDU"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated-cycle-1",
+        "in": {
+          "moves": "UDLRUDLR"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-cycle-2",
+        "in": {
+          "moves": "RDLU"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-cycle-3",
+        "in": {
+          "moves": "RRLL"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-cycle-4",
+        "in": {
+          "moves": "UUUDDD"
+        },
+        "out": true
+      },
+      {
+        "name": "odd-length-false",
+        "in": {
+          "moves": "UDL"
+        },
+        "out": false
+      },
+      {
+        "name": "odd-length-false-2",
+        "in": {
+          "moves": "RRU"
+        },
+        "out": false
+      },
+      {
+        "name": "prefix-bias-left",
+        "in": {
+          "moves": "LLLURRDD"
+        },
+        "out": false
+      },
+      {
+        "name": "prefix-bias-right",
+        "in": {
+          "moves": "RRRULLDD"
+        },
+        "out": false
+      },
+      {
+        "name": "prefix-bias-up",
+        "in": {
+          "moves": "UUUDLR"
+        },
+        "out": false
+      },
+      {
+        "name": "prefix-bias-down",
+        "in": {
+          "moves": "DDDLLRR"
+        },
+        "out": false
+      },
+      {
+        "name": "balanced-pairs-1",
+        "in": {
+          "moves": "ULDR"
+        },
+        "out": true
+      },
+      {
+        "name": "balanced-pairs-2",
+        "in": {
+          "moves": "URDL"
+        },
+        "out": true
+      },
+      {
+        "name": "unbalanced-tail-1",
+        "in": {
+          "moves": "UDLRR"
+        },
+        "out": false
+      },
+      {
+        "name": "alternating-false-1",
+        "in": {
+          "moves": "UDUDL"
+        },
+        "out": false
+      },
+      {
+        "name": "alternating-false-2",
+        "in": {
+          "moves": "LRLRU"
+        },
+        "out": false
+      },
+      {
+        "name": "balanced-long-1",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 20000,
+            "alphabet": "UDLR"
+          }
+        }
+      },
+      {
+        "name": "balanced-long-2",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 19999,
+            "alphabet": "UDLR"
+          }
+        }
+      },
+      {
+        "name": "balanced-long-3",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 18000,
+            "alphabet": "UDLR"
+          }
+        }
+      },
+      {
+        "name": "balanced-long-4",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 16000,
+            "alphabet": "UDLR"
+          }
+        }
+      },
+      {
+        "name": "max-false-lr",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 20000,
+            "alphabet": "UDLR"
+          }
+        }
+      },
+      {
+        "name": "max-false-ud",
+        "in": {
+          "moves": {
+            "gen": "str",
+            "len": 20000,
+            "alphabet": "UDLR"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "moves = \"UD\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"LL\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"U\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"D\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"L\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"R\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"LR\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"UDUD\"",
+      "output": "true"
+    }
+  ]
+}

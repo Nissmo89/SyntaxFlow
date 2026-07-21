@@ -1,0 +1,356 @@
+{
+  "id": "string_without_aaa_or_bbb",
+  "title": "String Without AAA or BBB",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "description": "<p>Given two integers <code>a</code> and <code>b</code>, return <strong>any</strong> string <code>s</code> such that:</p>\n\n<ul>\n\t<li><code>s</code> has length <code>a + b</code> and contains exactly <code>a</code> <code>&#39;a&#39;</code> letters, and exactly <code>b</code> <code>&#39;b&#39;</code> letters,</li>\n\t<li>The substring <code>&#39;aaa&#39;</code> does not occur in <code>s</code>, and</li>\n\t<li>The substring <code>&#39;bbb&#39;</code> does not occur in <code>s</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> a = 1, b = 2\n<strong>Output:</strong> &quot;abb&quot;\n<strong>Explanation:</strong> &quot;abb&quot;, &quot;bab&quot; and &quot;bba&quot; are all correct answers.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> a = 4, b = 1\n<strong>Output:</strong> &quot;aabaa&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= a, b &lt;= 100</code></li>\n\t<li>It is guaranteed such an <code>s</code> exists for the given <code>a</code> and <code>b</code>.</li>\n</ul>\n",
+  "task": "Solve the 'String Without AAA or BBB' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= a, b <= 100",
+    "It is guaranteed such an s exists for the given a and b."
+  ],
+  "hints": [],
+  "method": {
+    "name": "strWithout3a3b",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "b",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 984,
+      "title": "string-without-aaa-or-bbb",
+      "params": {
+        "a": {
+          "type": "int"
+        },
+        "b": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().strWithout3a3b({a}, {b})",
+        "rust": "Solution::str_without3a3b({a}, {b})",
+        "python3": "Solution().strWithout3a3b({a}, {b})",
+        "python2": "Solution().strWithout3a3b({a}, {b})",
+        "ruby": "str_without3a3b({a}, {b})",
+        "java": "new Solution().strWithout3a3b({a}, {b})",
+        "csharp": "new Solution().StrWithout3a3b({a}, {b})",
+        "kotlin": "Solution().strWithout3a3b({a}, {b})",
+        "go": "strWithout3a3b({a}, {b})",
+        "dart": "Solution().strWithout3a3b({a}, {b})",
+        "swift": "Solution().strWithout3a3b({a}, {b})",
+        "typescript": "strWithout3a3b({a}, {b})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().strWithout3a3b(a, b, {result})",
+        "checker": "class Checker:\n    def strWithout3a3b(self, a, b, result):\n        if not isinstance(result, str):\n            return False\n        if len(result) != a + b:\n            return False\n        if result.count('a') != a or result.count('b') != b:\n            return False\n        return 'aaa' not in result and 'bbb' not in result\n"
+      }
+    },
+    "seed": 984,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "a": 2,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "a": 5,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "a": 8,
+          "b": 4
+        }
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "a": 5,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "a": 3,
+          "b": 2
+        }
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "a": 4,
+          "b": 4
+        }
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "a": 2,
+          "b": 0
+        }
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "a": 1,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "a": 4,
+          "b": 4
+        }
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "a": 2,
+          "b": 6
+        }
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "a": 3,
+          "b": 4
+        }
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "a": 3,
+          "b": 6
+        }
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "a": 4,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "a": 4,
+          "b": 2
+        }
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "a": 2,
+          "b": 2
+        }
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "a": 8,
+          "b": 8
+        }
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "a": 7,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "a": 6,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "a": 2,
+          "b": 4
+        }
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "a": 6,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "a": 3,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "a": 6,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "a": 5,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "a": 4,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "a": 0,
+          "b": 2
+        }
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "a": 7,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "a": 5,
+          "b": 7
+        }
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "a": 8,
+          "b": 7
+        }
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "a": 5,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "a": 2,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "a": 3,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "a": 7,
+          "b": 3
+        }
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "a": 3,
+          "b": 5
+        }
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "a": 1,
+          "b": 1
+        }
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "a": 3,
+          "b": 2
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "a = 2\nb = 1",
+      "output": ""
+    },
+    {
+      "input": "a = 5\nb = 5",
+      "output": ""
+    },
+    {
+      "input": "a = 8\nb = 4",
+      "output": ""
+    },
+    {
+      "input": "a = 5\nb = 3",
+      "output": ""
+    },
+    {
+      "input": "a = 3\nb = 2",
+      "output": ""
+    },
+    {
+      "input": "a = 4\nb = 4",
+      "output": ""
+    },
+    {
+      "input": "a = 2\nb = 0",
+      "output": ""
+    },
+    {
+      "input": "a = 1\nb = 3",
+      "output": ""
+    }
+  ]
+}

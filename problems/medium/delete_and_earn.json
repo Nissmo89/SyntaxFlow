@@ -1,0 +1,672 @@
+{
+  "id": "delete_and_earn",
+  "title": "Delete and Earn",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code>. You want to maximize the number of points you get by performing the following operation any number of times:</p>\n\n<ul>\n\t<li>Pick any <code>nums[i]</code> and delete it to earn <code>nums[i]</code> points. Afterwards, you must delete <b>every</b> element equal to <code>nums[i] - 1</code> and <strong>every</strong> element equal to <code>nums[i] + 1</code>.</li>\n</ul>\n\n<p>Return <em>the <strong>maximum number of points</strong> you can earn by applying the above operation some number of times</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,2]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> You can perform the following operations:\n- Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].\n- Delete 2 to earn 2 points. nums = [].\nYou earn a total of 6 points.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,2,3,3,3,4]\n<strong>Output:</strong> 9\n<strong>Explanation:</strong> You can perform the following operations:\n- Delete a 3 to earn 3 points. All 2&#39;s and 4&#39;s are also deleted. nums = [3,3].\n- Delete a 3 again to earn 3 points. nums = [3].\n- Delete a 3 once more to earn 3 points. nums = [].\nYou earn a total of 9 points.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Delete and Earn' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 104",
+    "1 <= nums[i] <= 104"
+  ],
+  "hints": [
+    "If you take a number, you might as well take them all.  Keep track of what the value is of the subset of the input with maximum M when you either take or don't take M."
+  ],
+  "method": {
+    "name": "deleteAndEarn",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 740,
+      "title": "delete-and-earn",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().deleteAndEarn({nums})",
+        "rust": "Solution::delete_and_earn({nums})",
+        "python3": "Solution().deleteAndEarn({nums})",
+        "python2": "Solution().deleteAndEarn({nums})",
+        "ruby": "delete_and_earn({nums})",
+        "java": "new Solution().deleteAndEarn({nums})",
+        "csharp": "new Solution().DeleteAndEarn({nums})",
+        "kotlin": "Solution().deleteAndEarn({nums})",
+        "go": "deleteAndEarn({nums})",
+        "dart": "Solution().deleteAndEarn({nums})",
+        "swift": "Solution().deleteAndEarn({nums})",
+        "typescript": "deleteAndEarn({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().deleteAndEarn(nums, {result})",
+        "checker": "class Checker:\n    def deleteAndEarn(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        if not isinstance(nums, list):\n            return False\n        if len(nums) < 1 or len(nums) > 20000:\n            return False\n        if any((not isinstance(x, int)) for x in nums):\n            return False\n        if any(x < 1 or x > 10000 for x in nums):\n            return False\n\n        points = [0] * (max(nums) + 1)\n        for num in nums:\n            points[num] += num\n\n        take = 0\n        skip = 0\n        for value in points:\n            new_take = skip + value\n            new_skip = max(skip, take)\n            take = new_take\n            skip = new_skip\n\n        return result == max(take, skip)\n"
+      }
+    },
+    "seed": 740,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            3,
+            4,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "single_min",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_max",
+        "in": {
+          "nums": [
+            10000
+          ]
+        },
+        "out": 10000
+      },
+      {
+        "name": "all_same_small",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "all_same_large",
+        "in": {
+          "nums": [
+            10000,
+            10000,
+            10000,
+            10000
+          ]
+        },
+        "out": 40000
+      },
+      {
+        "name": "adjacent_pair",
+        "in": {
+          "nums": [
+            2,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "non_adjacent_pair",
+        "in": {
+          "nums": [
+            2,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "choose_middle_block",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "gaps_chain",
+        "in": {
+          "nums": [
+            1,
+            1,
+            3,
+            3,
+            5,
+            5
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "consecutive_run",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "dense_duplicates",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "high_low_mix",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            9999,
+            10000,
+            10000
+          ]
+        },
+        "out": 20003
+      },
+      {
+        "name": "alternating_clusters",
+        "in": {
+          "nums": [
+            8,
+            8,
+            9,
+            9,
+            10,
+            10
+          ]
+        },
+        "out": 36
+      },
+      {
+        "name": "skip_better_than_take",
+        "in": {
+          "nums": [
+            4,
+            4,
+            5,
+            5,
+            5,
+            6
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "scattered",
+        "in": {
+          "nums": [
+            1,
+            4,
+            4,
+            5,
+            6,
+            6
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "many_ones_and_twos",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "many_nines_and_tens",
+        "in": {
+          "nums": [
+            9,
+            9,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "near_upper_adjacent",
+        "in": {
+          "nums": [
+            9998,
+            9999,
+            9999,
+            10000
+          ]
+        },
+        "out": 19998
+      },
+      {
+        "name": "repeated_with_gap",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            4,
+            4,
+            4,
+            6,
+            6
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "boundary_span",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            10000
+          ]
+        },
+        "out": 10004
+      },
+      {
+        "name": "choose_edges",
+        "in": {
+          "nums": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "isolated_peak",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            8,
+            9,
+            9,
+            9
+          ]
+        },
+        "out": 48
+      },
+      {
+        "name": "sparse_large",
+        "in": {
+          "nums": [
+            100,
+            100,
+            102,
+            102,
+            104
+          ]
+        },
+        "out": 508
+      },
+      {
+        "name": "bridge_value_loss",
+        "in": {
+          "nums": [
+            10,
+            10,
+            11,
+            12,
+            12,
+            12,
+            13
+          ]
+        },
+        "out": 56
+      },
+      {
+        "name": "long_consecutive_small",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "large_duplicate_advantage",
+        "in": {
+          "nums": [
+            5000,
+            5000,
+            5000,
+            4999,
+            5001
+          ]
+        },
+        "out": 15000
+      },
+      {
+        "name": "two_far_blocks",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            50,
+            50,
+            51,
+            52,
+            52
+          ]
+        },
+        "out": 208
+      },
+      {
+        "name": "single_between_large_blocks",
+        "in": {
+          "nums": [
+            6,
+            6,
+            7,
+            8,
+            8
+          ]
+        },
+        "out": 28
+      },
+      {
+        "name": "prime_like",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3,
+            5,
+            5,
+            6,
+            7,
+            7
+          ]
+        },
+        "out": 28
+      },
+      {
+        "name": "triplet_tie",
+        "in": {
+          "nums": [
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "cluster_then_gap",
+        "in": {
+          "nums": [
+            2,
+            3,
+            3,
+            3,
+            6,
+            6,
+            7
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "upper_range_sparse",
+        "in": {
+          "nums": [
+            9990,
+            9990,
+            9992,
+            9994,
+            9994,
+            9995
+          ]
+        },
+        "out": 49960
+      },
+      {
+        "name": "all_values_same_then_neighbor",
+        "in": {
+          "nums": [
+            8,
+            8,
+            8,
+            9
+          ]
+        },
+        "out": 24
+      },
+      {
+        "name": "generated_len_50_full_range",
+        "seed": 101,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_200_small_band",
+        "seed": 102,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_1000_upper_band",
+        "seed": 103,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 1000,
+            "of": {
+              "gen": "int",
+              "min": 9990,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_20000_full_range",
+        "seed": 104,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_20000_two_values",
+        "seed": 105,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": 5000,
+              "max": 5001
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated_len_12000_sorted",
+        "seed": 106,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 12000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [3, 4, 2]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [2, 2, 3, 3, 3, 4]",
+      "output": "9"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [10000]",
+      "output": "10000"
+    },
+    {
+      "input": "nums = [5, 5, 5]",
+      "output": "15"
+    },
+    {
+      "input": "nums = [10000, 10000, 10000, 10000]",
+      "output": "40000"
+    },
+    {
+      "input": "nums = [2, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [2, 4]",
+      "output": "6"
+    }
+  ]
+}

@@ -1,0 +1,558 @@
+{
+  "id": "minimum_moves_to_equal_array_elements_ii",
+  "title": "Minimum Moves to Equal Array Elements II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> of size <code>n</code>, return <em>the minimum number of moves required to make all array elements equal</em>.</p>\n\n<p>In one move, you can increment or decrement an element of the array by <code>1</code>.</p>\n\n<p>Test cases are designed so that the answer will fit in a <strong>32-bit</strong> integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong>\nOnly two moves are needed (remember each move increments or decrements one element):\n[<u>1</u>,2,3]  =&gt;  [2,2,<u>3</u>]  =&gt;  [2,2,2]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,10,2,9]\n<strong>Output:</strong> 16\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Moves to Equal Array Elements II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == nums.length",
+    "1 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "minMoves2",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 462,
+      "title": "minimum-moves-to-equal-array-elements-ii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minMoves2({nums})",
+        "rust": "Solution::min_moves2({nums})",
+        "python3": "Solution().minMoves2({nums})",
+        "python2": "Solution().minMoves2({nums})",
+        "ruby": "min_moves2({nums})",
+        "java": "new Solution().minMoves2({nums})",
+        "csharp": "new Solution().MinMoves2({nums})",
+        "kotlin": "Solution().minMoves2({nums})",
+        "go": "minMoves2({nums})",
+        "dart": "Solution().minMoves2({nums})",
+        "swift": "Solution().minMoves2({nums})",
+        "typescript": "minMoves2({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minMoves2(nums, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def minMoves2(self, nums: List[int], result: Any) -> bool:\n        if not isinstance(result, int):\n            return False\n        if not nums:\n            return False\n        nums_sorted = sorted(nums)\n        median = nums_sorted[len(nums_sorted) // 2]\n        expected = sum(abs(num - median) for num in nums_sorted)\n        return result == expected\n"
+      }
+    },
+    "seed": 462,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            1,
+            10,
+            2,
+            9
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_positive",
+        "in": {
+          "nums": [
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_equal",
+        "in": {
+          "nums": [
+            5,
+            5
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_apart",
+        "in": {
+          "nums": [
+            1,
+            100
+          ]
+        },
+        "out": 99
+      },
+      {
+        "name": "three_same",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "already_balanced_even",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "already_balanced_odd",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "negatives_small",
+        "in": {
+          "nums": [
+            -1,
+            -10,
+            -2,
+            -9
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "mixed_signs",
+        "in": {
+          "nums": [
+            -5,
+            -1,
+            0,
+            4,
+            10
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "many_duplicates_left",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            10,
+            10,
+            10
+          ]
+        },
+        "out": 27
+      },
+      {
+        "name": "many_duplicates_right",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            100
+          ]
+        },
+        "out": 98
+      },
+      {
+        "name": "spread_small",
+        "in": {
+          "nums": [
+            8,
+            1,
+            6,
+            3,
+            5
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "spread_even",
+        "in": {
+          "nums": [
+            1,
+            3,
+            7,
+            9
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "large_values_symmetric",
+        "in": {
+          "nums": [
+            -1000000000,
+            1000000000
+          ]
+        },
+        "out": 2000000000
+      },
+      {
+        "name": "large_values_three",
+        "in": {
+          "nums": [
+            -1000000000,
+            0,
+            1000000000
+          ]
+        },
+        "out": 2000000000
+      },
+      {
+        "name": "median_plateau",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            2,
+            100
+          ]
+        },
+        "out": 99
+      },
+      {
+        "name": "odd_with_duplicate_median",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "even_tie_low",
+        "in": {
+          "nums": [
+            1,
+            2,
+            100,
+            101
+          ]
+        },
+        "out": 198
+      },
+      {
+        "name": "even_tie_high",
+        "in": {
+          "nums": [
+            0,
+            0,
+            100,
+            100
+          ]
+        },
+        "out": 200
+      },
+      {
+        "name": "ascending_small",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "descending_small",
+        "in": {
+          "nums": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "clustered_low",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            100
+          ]
+        },
+        "out": 100
+      },
+      {
+        "name": "clustered_high",
+        "in": {
+          "nums": [
+            1,
+            50,
+            50,
+            50,
+            51
+          ]
+        },
+        "out": 50
+      },
+      {
+        "name": "alternating_small",
+        "in": {
+          "nums": [
+            1,
+            100,
+            1,
+            100,
+            1,
+            100
+          ]
+        },
+        "out": 297
+      },
+      {
+        "name": "alternating_shifted",
+        "in": {
+          "nums": [
+            2,
+            100,
+            2,
+            100,
+            2,
+            100
+          ]
+        },
+        "out": 294
+      },
+      {
+        "name": "zeros_and_positive",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "zeros_and_negative",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            -1,
+            -2,
+            -3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "short_mixed",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "wide_gap_odd",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3,
+            1000
+          ]
+        },
+        "out": 1002
+      },
+      {
+        "name": "wide_gap_even",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            1000,
+            1001,
+            1002
+          ]
+        },
+        "out": 3000
+      },
+      {
+        "name": "near_max_mix",
+        "in": {
+          "nums": [
+            -999999999,
+            -999999998,
+            999999998,
+            999999999
+          ]
+        },
+        "out": 3999999994
+      },
+      {
+        "name": "all_equal_large",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "odd_spike",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            1000
+          ]
+        },
+        "out": 995
+      },
+      {
+        "name": "even_spike",
+        "in": {
+          "nums": [
+            5,
+            5,
+            1000,
+            1000
+          ]
+        },
+        "out": 1990
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 10, 2, 9]",
+      "output": "16"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [7]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [5, 5]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 100]",
+      "output": "99"
+    },
+    {
+      "input": "nums = [3, 3, 3]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "4"
+    }
+  ]
+}

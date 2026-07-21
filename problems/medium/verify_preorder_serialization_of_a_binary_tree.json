@@ -1,0 +1,379 @@
+{
+  "id": "verify_preorder_serialization_of_a_binary_tree",
+  "title": "Verify Preorder Serialization of a Binary Tree",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack",
+    "Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>One way to serialize a binary tree is to use <strong>preorder traversal</strong>. When we encounter a non-null node, we record the node&#39;s value. If it is a null node, we record using a sentinel value such as <code>&#39;#&#39;</code>.</p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/12/pre-tree.jpg\" style=\"width: 362px; height: 293px;\" />\n<p>For example, the above binary tree can be serialized to the string <code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code>, where <code>&#39;#&#39;</code> represents a null node.</p>\n\n<p>Given a string of comma-separated values <code>preorder</code>, return <code>true</code> if it is a correct preorder traversal serialization of a binary tree.</p>\n\n<p>It is <strong>guaranteed</strong> that each comma-separated value in the string must be either an integer or a character <code>&#39;#&#39;</code> representing null pointer.</p>\n\n<p>You may assume that the input format is always valid.</p>\n\n<ul>\n\t<li>For example, it could never contain two consecutive commas, such as <code>&quot;1,,3&quot;</code>.</li>\n</ul>\n\n<p><strong>Note:&nbsp;</strong>You are not allowed to reconstruct the tree.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> preorder = \"1,#\"\n<strong>Output:</strong> false\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> preorder = \"9,#,#,1\"\n<strong>Output:</strong> false\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= preorder.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>preorder</code> consist of integers in the range <code>[0, 100]</code> and <code>&#39;#&#39;</code> separated by commas <code>&#39;,&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Verify Preorder Serialization of a Binary Tree' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= preorder.length <= 104",
+    "preorder consist of integers in the range [0, 100] and '#' separated by commas ','."
+  ],
+  "hints": [],
+  "method": {
+    "name": "isValidSerialization",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "preorder",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 331,
+      "title": "verify-preorder-serialization-of-a-binary-tree",
+      "params": {
+        "preorder": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isValidSerialization({preorder})",
+        "rust": "Solution::is_valid_serialization({preorder})",
+        "python3": "Solution().isValidSerialization({preorder})",
+        "python2": "Solution().isValidSerialization({preorder})",
+        "ruby": "is_valid_serialization({preorder})",
+        "java": "new Solution().isValidSerialization({preorder})",
+        "csharp": "new Solution().IsValidSerialization({preorder})",
+        "kotlin": "Solution().isValidSerialization({preorder})",
+        "go": "isValidSerialization({preorder})",
+        "dart": "Solution().isValidSerialization({preorder})",
+        "swift": "Solution().isValidSerialization({preorder})",
+        "typescript": "isValidSerialization({preorder})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isValidSerialization(preorder, {result})",
+        "checker": "class Checker:\n    def isValidSerialization(self, preorder, result):\n        slots = 1\n        for node in preorder.split(','):\n            slots -= 1\n            if slots < 0:\n                return result is False\n            if node != '#':\n                slots += 2\n        return result == (slots == 0)\n"
+      }
+    },
+    "seed": 331,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "preorder": "9,3,4,#,#,1,#,#,2,#,6,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "preorder": "1,#"
+        },
+        "out": false
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "preorder": "9,#,#,1"
+        },
+        "out": false
+      },
+      {
+        "name": "single-null",
+        "in": {
+          "preorder": "#"
+        },
+        "out": true
+      },
+      {
+        "name": "single-node-missing-null",
+        "in": {
+          "preorder": "1"
+        },
+        "out": false
+      },
+      {
+        "name": "two-nodes-complete",
+        "in": {
+          "preorder": "1,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "root-with-left-only",
+        "in": {
+          "preorder": "1,2,#,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "root-with-right-only-invalid-shape",
+        "in": {
+          "preorder": "1,#,2,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "extra-node-after-complete-tree",
+        "in": {
+          "preorder": "1,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "missing-final-null",
+        "in": {
+          "preorder": "1,2,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "null-then-extra-node",
+        "in": {
+          "preorder": "#,1"
+        },
+        "out": false
+      },
+      {
+        "name": "two-nulls-only",
+        "in": {
+          "preorder": "#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "balanced-three-levels",
+        "in": {
+          "preorder": "8,4,2,#,#,6,#,#,10,9,#,#,12,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "left-heavy-deep-valid",
+        "in": {
+          "preorder": "1,2,3,4,#,#,#,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "left-heavy-deep-invalid",
+        "in": {
+          "preorder": "1,2,3,4,#,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "right-heavy-deep-valid",
+        "in": {
+          "preorder": "1,#,2,#,3,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "right-heavy-deep-invalid",
+        "in": {
+          "preorder": "1,#,2,#,3,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-with-zero-value",
+        "in": {
+          "preorder": "0,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "valid-with-max-value",
+        "in": {
+          "preorder": "100,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-with-big-final-node",
+        "in": {
+          "preorder": "100,#,#,99"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-mixed-shape",
+        "in": {
+          "preorder": "5,2,#,3,#,#,7,6,#,#,8,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-too-few-slots-midway",
+        "in": {
+          "preorder": "5,2,#"
+        },
+        "out": false
+      },
+      {
+        "name": "invalid-ending-with-internal-node",
+        "in": {
+          "preorder": "5,2,#,#,7"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-root-with-two-leaves",
+        "in": {
+          "preorder": "5,2,#,#,7,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-premature-null-termination",
+        "in": {
+          "preorder": "5,#,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-sparse-tree",
+        "in": {
+          "preorder": "1,2,#,4,#,#,3,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-sparse-tree-missing-last-null",
+        "in": {
+          "preorder": "1,2,#,4,#,#,3,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-max-depth-chain",
+        "in": {
+          "preorder": "1,2,3,4,5,6,#,#,#,#,#,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-max-depth-chain-one-short",
+        "in": {
+          "preorder": "1,2,3,4,5,6,#,#,#,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-alternating-structure",
+        "in": {
+          "preorder": "1,2,#,#,3,4,#,#,5,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-alternating-structure-extra",
+        "in": {
+          "preorder": "1,2,#,#,3,4,#,#,5,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-small-right-branch",
+        "in": {
+          "preorder": "1,#,2,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-small-right-branch-extra",
+        "in": {
+          "preorder": "1,#,2,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-full-tree-height-4",
+        "in": {
+          "preorder": "1,2,4,#,#,5,#,#,3,6,#,#,7,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-full-tree-height-4-extra",
+        "in": {
+          "preorder": "1,2,4,#,#,5,#,#,3,6,#,#,7,#,#,#"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-single-child-at-root-left",
+        "in": {
+          "preorder": "2,1,#,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "valid-single-child-at-root-right",
+        "in": {
+          "preorder": "2,#,1,#,#"
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-after-valid-complete-serialization",
+        "in": {
+          "preorder": "2,1,#,#,#,0"
+        },
+        "out": false
+      },
+      {
+        "name": "valid-maximal-simple",
+        "in": {
+          "preorder": "9,#,#"
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"9,#,#,1\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,#,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,#,2,#,#\"",
+      "output": "true"
+    }
+  ]
+}

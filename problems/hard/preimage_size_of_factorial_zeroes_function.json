@@ -1,0 +1,404 @@
+{
+  "id": "preimage_size_of_factorial_zeroes_function",
+  "title": "Preimage Size of Factorial Zeroes Function",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "description": "<p>Let <code>f(x)</code> be the number of zeroes at the end of <code>x!</code>. Recall that <code>x! = 1 * 2 * 3 * ... * x</code> and by convention, <code>0! = 1</code>.</p>\n\n<ul>\n\t<li>For example, <code>f(3) = 0</code> because <code>3! = 6</code> has no zeroes at the end, while <code>f(11) = 2</code> because <code>11! = 39916800</code> has two zeroes at the end.</li>\n</ul>\n\n<p>Given an integer <code>k</code>, return the number of non-negative integers <code>x</code> have the property that <code>f(x) = k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 0\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> 0!, 1!, 2!, 3!, and 4! end with k = 0 zeroes.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 5\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> There is no x such that x! ends in k = 5 zeroes.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> k = 3\n<strong>Output:</strong> 5\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= k &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Preimage Size of Factorial Zeroes Function' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= k <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "preimageSizeFZF",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 793,
+      "title": "preimage-size-of-factorial-zeroes-function",
+      "params": {
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().preimageSizeFZF({k})",
+        "rust": "Solution::preimage_size_fzf({k})",
+        "python3": "Solution().preimageSizeFZF({k})",
+        "python2": "Solution().preimageSizeFZF({k})",
+        "ruby": "preimage_size_fzf({k})",
+        "java": "new Solution().preimageSizeFZF({k})",
+        "csharp": "new Solution().PreimageSizeFZF({k})",
+        "kotlin": "Solution().preimageSizeFZF({k})",
+        "go": "preimageSizeFZF({k})",
+        "dart": "Solution().preimageSizeFZF({k})",
+        "swift": "Solution().preimageSizeFZF({k})",
+        "typescript": "preimageSizeFZF({k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().preimageSizeFZF(k, {result})",
+        "checker": "class Checker(object):\n    def preimageSizeFZF(self, k, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 793,
+    "tests": [
+      {
+        "name": "k0",
+        "in": {
+          "k": 0
+        },
+        "out": 5
+      },
+      {
+        "name": "k1",
+        "in": {
+          "k": 1
+        },
+        "out": 5
+      },
+      {
+        "name": "k2",
+        "in": {
+          "k": 2
+        },
+        "out": 5
+      },
+      {
+        "name": "k3",
+        "in": {
+          "k": 3
+        },
+        "out": 5
+      },
+      {
+        "name": "k4",
+        "in": {
+          "k": 4
+        },
+        "out": 5
+      },
+      {
+        "name": "k5",
+        "in": {
+          "k": 5
+        },
+        "out": 0
+      },
+      {
+        "name": "k6",
+        "in": {
+          "k": 6
+        },
+        "out": 5
+      },
+      {
+        "name": "k7",
+        "in": {
+          "k": 7
+        },
+        "out": 5
+      },
+      {
+        "name": "k8",
+        "in": {
+          "k": 8
+        },
+        "out": 5
+      },
+      {
+        "name": "k9",
+        "in": {
+          "k": 9
+        },
+        "out": 5
+      },
+      {
+        "name": "k10",
+        "in": {
+          "k": 10
+        },
+        "out": 5
+      },
+      {
+        "name": "k11",
+        "in": {
+          "k": 11
+        },
+        "out": 0
+      },
+      {
+        "name": "k12",
+        "in": {
+          "k": 12
+        },
+        "out": 5
+      },
+      {
+        "name": "k13",
+        "in": {
+          "k": 13
+        },
+        "out": 5
+      },
+      {
+        "name": "k14",
+        "in": {
+          "k": 14
+        },
+        "out": 5
+      },
+      {
+        "name": "k15",
+        "in": {
+          "k": 15
+        },
+        "out": 5
+      },
+      {
+        "name": "k16",
+        "in": {
+          "k": 16
+        },
+        "out": 5
+      },
+      {
+        "name": "k17",
+        "in": {
+          "k": 17
+        },
+        "out": 0
+      },
+      {
+        "name": "k18",
+        "in": {
+          "k": 18
+        },
+        "out": 5
+      },
+      {
+        "name": "k19",
+        "in": {
+          "k": 19
+        },
+        "out": 5
+      },
+      {
+        "name": "k20",
+        "in": {
+          "k": 20
+        },
+        "out": 5
+      },
+      {
+        "name": "k21",
+        "in": {
+          "k": 21
+        },
+        "out": 5
+      },
+      {
+        "name": "k22",
+        "in": {
+          "k": 22
+        },
+        "out": 5
+      },
+      {
+        "name": "k23",
+        "in": {
+          "k": 23
+        },
+        "out": 0
+      },
+      {
+        "name": "k24",
+        "in": {
+          "k": 24
+        },
+        "out": 5
+      },
+      {
+        "name": "k25",
+        "in": {
+          "k": 25
+        },
+        "out": 5
+      },
+      {
+        "name": "k26",
+        "in": {
+          "k": 26
+        },
+        "out": 5
+      },
+      {
+        "name": "k27",
+        "in": {
+          "k": 27
+        },
+        "out": 5
+      },
+      {
+        "name": "k28",
+        "in": {
+          "k": 28
+        },
+        "out": 5
+      },
+      {
+        "name": "k29",
+        "in": {
+          "k": 29
+        },
+        "out": 0
+      },
+      {
+        "name": "k30",
+        "in": {
+          "k": 30
+        },
+        "out": 0
+      },
+      {
+        "name": "k50",
+        "in": {
+          "k": 50
+        },
+        "out": 5
+      },
+      {
+        "name": "k54",
+        "in": {
+          "k": 54
+        },
+        "out": 0
+      },
+      {
+        "name": "k55",
+        "in": {
+          "k": 55
+        },
+        "out": 5
+      },
+      {
+        "name": "k60",
+        "in": {
+          "k": 60
+        },
+        "out": 0
+      },
+      {
+        "name": "k61",
+        "in": {
+          "k": 61
+        },
+        "out": 0
+      },
+      {
+        "name": "k62",
+        "in": {
+          "k": 62
+        },
+        "out": 5
+      },
+      {
+        "name": "k100",
+        "in": {
+          "k": 100
+        },
+        "out": 5
+      },
+      {
+        "name": "k124",
+        "in": {
+          "k": 124
+        },
+        "out": 5
+      },
+      {
+        "name": "k125",
+        "in": {
+          "k": 125
+        },
+        "out": 5
+      },
+      {
+        "name": "k126",
+        "in": {
+          "k": 126
+        },
+        "out": 5
+      },
+      {
+        "name": "k_large1",
+        "in": {
+          "k": 999999995
+        },
+        "out": 0
+      },
+      {
+        "name": "k_large2",
+        "in": {
+          "k": 1000000000
+        },
+        "out": 5
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "k = 0",
+      "output": "5"
+    },
+    {
+      "input": "k = 1",
+      "output": "5"
+    },
+    {
+      "input": "k = 2",
+      "output": "5"
+    },
+    {
+      "input": "k = 3",
+      "output": "5"
+    },
+    {
+      "input": "k = 4",
+      "output": "5"
+    },
+    {
+      "input": "k = 5",
+      "output": "0"
+    },
+    {
+      "input": "k = 6",
+      "output": "5"
+    },
+    {
+      "input": "k = 7",
+      "output": "5"
+    }
+  ]
+}

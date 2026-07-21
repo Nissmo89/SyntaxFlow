@@ -1,0 +1,545 @@
+{
+  "id": "partition_labels",
+  "title": "Partition Labels",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "description": "<p>You are given a string <code>s</code>. We want to partition the string into as many parts as possible so that each letter appears in at most one part. For example, the string <code>&quot;ababcc&quot;</code> can be partitioned into <code>[&quot;abab&quot;, &quot;cc&quot;]</code>, but partitions such as <code>[&quot;aba&quot;, &quot;bcc&quot;]</code> or <code>[&quot;ab&quot;, &quot;ab&quot;, &quot;cc&quot;]</code> are invalid.</p>\n\n<p>Note that the partition is done so that after concatenating all the parts in order, the resultant string should be <code>s</code>.</p>\n\n<p>Return <em>a list of integers representing the size of these parts</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;ababcbacadefegdehijhklij&quot;\n<strong>Output:</strong> [9,7,8]\n<strong>Explanation:</strong>\nThe partition is &quot;ababcbaca&quot;, &quot;defegde&quot;, &quot;hijhklij&quot;.\nThis is a partition so that each letter appears in at most one part.\nA partition like &quot;ababcbacadefegde&quot;, &quot;hijhklij&quot; is incorrect, because it splits s into less parts.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;eccbbbbdec&quot;\n<strong>Output:</strong> [10]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 500</code></li>\n\t<li><code>s</code> consists of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Partition Labels' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Try to greedily choose the smallest partition that includes the first letter.  If you have something like \"abaccbdeffed\", then you might need to add b.  You can use an map like \"last['b'] = 5\" to help you expand the width of your partition."
+  ],
+  "method": {
+    "name": "partitionLabels",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 763,
+      "title": "partition-labels",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().partitionLabels({s})",
+        "rust": "Solution::partition_labels({s})",
+        "python3": "Solution().partitionLabels({s})",
+        "python2": "Solution().partitionLabels({s})",
+        "ruby": "partition_labels({s})",
+        "java": "new Solution().partitionLabels({s})",
+        "csharp": "new Solution().PartitionLabels({s})",
+        "kotlin": "Solution().partitionLabels({s})",
+        "go": "partitionLabels({s})",
+        "dart": "Solution().partitionLabels({s})",
+        "swift": "Solution().partitionLabels({s})",
+        "typescript": "partitionLabels({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().partitionLabels(s, {result})",
+        "checker": "class Checker:\n    def partitionLabels(self, s, result):\n        if not isinstance(result, list):\n            return False\n        total = 0\n        for length in result:\n            if not isinstance(length, int) or length <= 0:\n                return False\n            total += length\n        if total != len(s):\n            return False\n        last = {}\n        for i, ch in enumerate(s):\n            last[ch] = i\n        expected = []\n        start = 0\n        end = 0\n        for i, ch in enumerate(s):\n            if last[ch] > end:\n                end = last[ch]\n            if i == end:\n                expected.append(end - start + 1)\n                start = i + 1\n        return result == expected\n"
+      }
+    },
+    "seed": 763,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "ababcbacadefegdehijhklij"
+        },
+        "out": [
+          9,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "eccbbbbdec"
+        },
+        "out": [
+          10
+        ]
+      },
+      {
+        "name": "single-char",
+        "in": {
+          "s": "z"
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "double-same",
+        "in": {
+          "s": "aa"
+        },
+        "out": [
+          2
+        ]
+      },
+      {
+        "name": "double-distinct",
+        "in": {
+          "s": "ab"
+        },
+        "out": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "triple-unique",
+        "in": {
+          "s": "abc"
+        },
+        "out": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "triple-wrap",
+        "in": {
+          "s": "aba"
+        },
+        "out": [
+          3
+        ]
+      },
+      {
+        "name": "simple-tail",
+        "in": {
+          "s": "abca"
+        },
+        "out": [
+          4
+        ]
+      },
+      {
+        "name": "simple-split",
+        "in": {
+          "s": "abbc"
+        },
+        "out": [
+          1,
+          2,
+          1
+        ]
+      },
+      {
+        "name": "mirror-pair",
+        "in": {
+          "s": "abccba"
+        },
+        "out": [
+          6
+        ]
+      },
+      {
+        "name": "staggered-merge",
+        "in": {
+          "s": "abaccb"
+        },
+        "out": [
+          6
+        ]
+      },
+      {
+        "name": "split-then-merge",
+        "in": {
+          "s": "eccbbaad"
+        },
+        "out": [
+          1,
+          2,
+          2,
+          2,
+          1
+        ]
+      },
+      {
+        "name": "single-then-dense",
+        "in": {
+          "s": "caedbdedda"
+        },
+        "out": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "dense-then-singletons",
+        "in": {
+          "s": "qiejxqfnqceocmy"
+        },
+        "out": [
+          13,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "outer-wrap-two-chunks",
+        "in": {
+          "s": "abcddcbaefgfe"
+        },
+        "out": [
+          8,
+          5
+        ]
+      },
+      {
+        "name": "tiny-prefix-two-tail",
+        "in": {
+          "s": "vhaagbqkaq"
+        },
+        "out": [
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "name": "all-unique-10",
+        "in": {
+          "s": "abcdefghij"
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "all-same-12",
+        "in": {
+          "s": "aaaaaaaaaaaa"
+        },
+        "out": [
+          12
+        ]
+      },
+      {
+        "name": "alternating-8",
+        "in": {
+          "s": "abababab"
+        },
+        "out": [
+          8
+        ]
+      },
+      {
+        "name": "paired-blocks-20",
+        "in": {
+          "s": "aabbccddeeffgghhiijj"
+        },
+        "out": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "nested-end",
+        "in": {
+          "s": "abcbad"
+        },
+        "out": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "three-parts-mixed",
+        "in": {
+          "s": "abacdefegdehijhklij"
+        },
+        "out": [
+          3,
+          1,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "long-first-part",
+        "in": {
+          "s": "abcadeafghibjklmnoip"
+        },
+        "out": [
+          19,
+          1
+        ]
+      },
+      {
+        "name": "full-merge-10",
+        "in": {
+          "s": "abcdaefgha"
+        },
+        "out": [
+          10
+        ]
+      },
+      {
+        "name": "two-balanced-parts",
+        "in": {
+          "s": "abaccbdeffed"
+        },
+        "out": [
+          6,
+          6
+        ]
+      },
+      {
+        "name": "prefix-suffix-overlap",
+        "in": {
+          "s": "abccaddbeffe"
+        },
+        "out": [
+          8,
+          4
+        ]
+      },
+      {
+        "name": "all-unique-26",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz"
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "repeat-alpha-52",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+        },
+        "out": [
+          52
+        ]
+      },
+      {
+        "name": "five-blocks-25",
+        "in": {
+          "s": "aaaaabbbbbcccccdddddeeeee"
+        },
+        "out": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "block-then-tail",
+        "in": {
+          "s": "aaaabbbbcccd"
+        },
+        "out": [
+          4,
+          4,
+          3,
+          1
+        ]
+      },
+      {
+        "name": "tail-singleton-after-wrap",
+        "in": {
+          "s": "zzxyxz"
+        },
+        "out": [
+          6
+        ]
+      },
+      {
+        "name": "early-singletons-then-pair",
+        "in": {
+          "s": "abcdd"
+        },
+        "out": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "max-blocks-500",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "out": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "name": "max-merge-500",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef"
+        },
+        "out": [
+          500
+        ]
+      },
+      {
+        "name": "generated-len-1",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated-len-2",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 2,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated-len-50",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 50,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated-len-499",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 499,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated-len-500",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 500,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"ababcbacadefegdehijhklij\"",
+      "output": "[9, 7, 8]"
+    },
+    {
+      "input": "s = \"eccbbbbdec\"",
+      "output": "[10]"
+    },
+    {
+      "input": "s = \"z\"",
+      "output": "[1]"
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "[2]"
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": "[1, 1]"
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "[1, 1, 1]"
+    },
+    {
+      "input": "s = \"aba\"",
+      "output": "[3]"
+    },
+    {
+      "input": "s = \"abca\"",
+      "output": "[4]"
+    }
+  ]
+}

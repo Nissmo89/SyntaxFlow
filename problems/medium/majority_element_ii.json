@@ -1,0 +1,782 @@
+{
+  "id": "majority_element_ii",
+  "title": "Majority Element II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting"
+  ],
+  "description": "<p>Given an integer array of size <code>n</code>, find all elements that appear more than <code>&lfloor;n / 3&rfloor;</code> times.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> [3]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1]\n<strong>Output:</strong> [1]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2]\n<strong>Output:</strong> [1,2]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?</p>\n",
+  "task": "Solve the 'Majority Element II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 5 * 104",
+    "-109 <= nums[i] <= 109"
+  ],
+  "hints": [
+    "Think about the possible number of elements that can appear more than \u230a n/3 \u230b times in the array.",
+    "It can be at most two. Why?",
+    "Consider using Boyer-Moore Voting Algorithm, which is efficient for finding elements that appear more than a certain threshold."
+  ],
+  "method": {
+    "name": "majorityElement",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 229,
+      "title": "majority-element-ii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().majorityElement({nums})",
+        "rust": "Solution::majority_element({nums})",
+        "python3": "Solution().majorityElement({nums})",
+        "python2": "Solution().majorityElement({nums})",
+        "ruby": "majority_element({nums})",
+        "java": "new Solution().majorityElement({nums})",
+        "csharp": "new Solution().MajorityElement({nums})",
+        "kotlin": "Solution().majorityElement({nums})",
+        "go": "majorityElement({nums})",
+        "dart": "Solution().majorityElement({nums})",
+        "swift": "Solution().majorityElement({nums})",
+        "typescript": "majorityElement({nums})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().majorityElement(nums, {result})",
+        "checker": "from typing import Any, List\n\nclass Checker:\n    def majorityElement(self, nums: List[int], result: Any) -> bool:\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, int) for x in result):\n            return False\n        if len(set(result)) != len(result):\n            return False\n\n        n = len(nums)\n        threshold = n // 3\n        counts = {}\n        for num in nums:\n            counts[num] = counts.get(num, 0) + 1\n\n        expected = sorted(num for num, count in counts.items() if count > threshold)\n        return sorted(result) == expected\n"
+      }
+    },
+    "seed": 229229,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            3,
+            2,
+            3
+          ]
+        },
+        "out": [
+          3
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "t04_no_majority_small",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": []
+      },
+      {
+        "name": "t05_single_majority_exact_boundary",
+        "in": {
+          "nums": [
+            2,
+            2,
+            1,
+            3,
+            2,
+            4,
+            2
+          ]
+        },
+        "out": [
+          2
+        ]
+      },
+      {
+        "name": "t06_two_majorities",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "t07_negative_values",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -1,
+            2,
+            3,
+            4,
+            -1
+          ]
+        },
+        "out": [
+          -1
+        ]
+      },
+      {
+        "name": "t08_two_majorities_with_negatives",
+        "in": {
+          "nums": [
+            -10,
+            -10,
+            -10,
+            7,
+            7,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "out": []
+      },
+      {
+        "name": "t09_two_values_tie_below_threshold",
+        "in": {
+          "nums": [
+            5,
+            5,
+            6,
+            6,
+            7,
+            8
+          ]
+        },
+        "out": []
+      },
+      {
+        "name": "t10_large_single_majority",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 3
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t11_large_no_majority_wide_range",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t12_generated_small_1",
+        "seed": 12001,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 25
+            },
+            "of": {
+              "gen": "int",
+              "min": -20,
+              "max": 20
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t13_generated_small_2",
+        "seed": 12002,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 25
+            },
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t14_generated_small_3",
+        "seed": 12003,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 25
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 9
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t15_generated_small_4",
+        "seed": 12004,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 30
+            },
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t16_generated_small_5",
+        "seed": 12005,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1,
+              "max": 30
+            },
+            "of": {
+              "gen": "int",
+              "min": -5,
+              "max": 5
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t17_generated_medium_1",
+        "seed": 12006,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t18_generated_medium_2",
+        "seed": 12007,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -200,
+              "max": 200
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t19_generated_medium_3",
+        "seed": 12008,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 4
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t20_generated_medium_4",
+        "seed": 12009,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -7,
+              "max": 7
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t21_generated_medium_5",
+        "seed": 12010,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -3,
+              "max": 3
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t22_generated_medium_6",
+        "seed": 12011,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t23_generated_medium_7",
+        "seed": 12012,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t24_generated_medium_8",
+        "seed": 12013,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t25_generated_medium_9",
+        "seed": 12014,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -500,
+              "max": 500
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t26_generated_medium_10",
+        "seed": 12015,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 5000
+            },
+            "of": {
+              "gen": "int",
+              "min": -2,
+              "max": 2
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t27_generated_large_1",
+        "seed": 12016,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t28_generated_large_2",
+        "seed": 12017,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 2
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t29_generated_large_3",
+        "seed": 12018,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000000000,
+              "max": 1000000000
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t30_generated_large_4",
+        "seed": 12019,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": -9,
+              "max": 9
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t31_generated_large_5",
+        "seed": 12020,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t32_generated_large_6",
+        "seed": 12021,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 45000,
+              "max": 50000
+            },
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t33_generated_boundary_mix_1",
+        "seed": 12022,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 2,
+              "max": 12
+            },
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t34_generated_boundary_mix_2",
+        "seed": 12023,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 2,
+              "max": 12
+            },
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      },
+      {
+        "name": "t35_generated_boundary_mix_3",
+        "seed": 12024,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": {
+              "gen": "int",
+              "min": 2,
+              "max": 12
+            },
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1
+            },
+            "distinct": false,
+            "sorted": false
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [3, 2, 3]",
+      "output": "[3]"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "[1]"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "[]"
+    },
+    {
+      "input": "nums = [2, 2, 1, 3, 2, 4, 2]",
+      "output": "[2]"
+    },
+    {
+      "input": "nums = [1, 1, 1, 2, 2, 2, 3, 4]",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "nums = [-1, -1, -1, 2, 3, 4, -1]",
+      "output": "[-1]"
+    },
+    {
+      "input": "nums = [-10, -10, -10, 7, 7, 7, 8, 9, 10]",
+      "output": "[]"
+    }
+  ]
+}

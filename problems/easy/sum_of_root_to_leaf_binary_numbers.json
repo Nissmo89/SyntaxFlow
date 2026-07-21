@@ -1,0 +1,676 @@
+{
+  "id": "sum_of_root_to_leaf_binary_numbers",
+  "title": "Sum of Root To Leaf Binary Numbers",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>You are given the <code>root</code> of a binary tree where each node has a value <code>0</code> or <code>1</code>. Each root-to-leaf path represents a binary number starting with the most significant bit.</p> <ul> <li>For example, if the path is <code>0 -&gt; 1 -&gt; 1 -&gt; 0 -&gt; 1</code>, then this could represent <code>01101</code> in binary, which is <code>13</code>.</li> </ul> <p>For all leaves in the tree, consider the numbers represented by the path from the root to that leaf. Return <em>the sum of these numbers</em>.</p> <p>The test cases are generated so that the answer fits in a <strong>32-bits</strong> integer.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/04/04/sum-of-root-to-leaf-binary-numbers.png\" style=\"width: 400px; height: 263px;\"/> <pre><strong>Input:</strong> root = [1,0,1,0,1,0,1]\n<strong>Output:</strong> 22\n<strong>Explanation: </strong>(100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> root = [0]\n<strong>Output:</strong> 0\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li> <li><code>Node.val</code> is <code>0</code> or <code>1</code>.</li> </ul>",
+  "hints": [
+    "Find each path, then transform that path to an integer in base 10."
+  ],
+  "method": {
+    "name": "sumRootToLeaf",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1022,
+      "title": "sum-of-root-to-leaf-binary-numbers",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        }
+      },
+      "call": {
+        "cpp": "Solution().sumRootToLeaf({root})",
+        "rust": "Solution::sum_root_to_leaf({root})",
+        "python3": "Solution().sumRootToLeaf({root})",
+        "python2": "Solution().sumRootToLeaf({root})",
+        "ruby": "sum_root_to_leaf({root})",
+        "java": "new Solution().sumRootToLeaf({root})",
+        "csharp": "new Solution().SumRootToLeaf({root})",
+        "kotlin": "Solution().sumRootToLeaf({root})",
+        "go": "sumRootToLeaf({root})",
+        "dart": "Solution().sumRootToLeaf({root})",
+        "swift": "Solution().sumRootToLeaf({root})",
+        "typescript": "sumRootToLeaf({root})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 1022,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 22
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "root": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_1",
+        "in": {
+          "root": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single_0",
+        "in": {
+          "root": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "two_nodes_left",
+        "in": {
+          "root": [
+            1,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two_nodes_right",
+        "in": {
+          "root": [
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "complete_3_levels",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 22
+      },
+      {
+        "name": "left_chain_4",
+        "in": {
+          "root": [
+            1,
+            0,
+            null,
+            1,
+            null,
+            null,
+            null,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "right_chain_4",
+        "in": {
+          "root": [
+            1,
+            null,
+            1,
+            null,
+            0,
+            null,
+            1
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "root": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 22
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "root": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            null,
+            null,
+            0
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            null,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "root": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 23
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "root": [
+            0,
+            0,
+            1,
+            null,
+            null,
+            1,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "root": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 17
+      },
+      {
+        "name": "mixed_8",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            null,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 19
+      },
+      {
+        "name": "mixed_9",
+        "in": {
+          "root": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            null,
+            0
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_10",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            null
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "mixed_11",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            0,
+            null,
+            1,
+            0
+          ]
+        },
+        "out": 17
+      },
+      {
+        "name": "mixed_12",
+        "in": {
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "mixed_13",
+        "in": {
+          "root": [
+            1,
+            1,
+            null,
+            1,
+            1,
+            null,
+            null,
+            0
+          ]
+        },
+        "out": 21
+      },
+      {
+        "name": "mixed_14",
+        "in": {
+          "root": [
+            1,
+            0,
+            null,
+            0,
+            1,
+            null,
+            null,
+            1
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "mixed_15",
+        "in": {
+          "root": [
+            1,
+            1,
+            0,
+            null,
+            null,
+            1,
+            null
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "mixed_16",
+        "in": {
+          "root": [
+            0,
+            1,
+            1,
+            1,
+            null,
+            null,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_17",
+        "in": {
+          "root": [
+            1,
+            0,
+            0,
+            null,
+            1,
+            1,
+            null
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "mixed_18",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "mixed_19",
+        "in": {
+          "root": [
+            0,
+            1,
+            null,
+            0,
+            1,
+            null,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "mixed_20",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            1,
+            null,
+            1,
+            1
+          ]
+        },
+        "out": 19
+      },
+      {
+        "name": "mixed_21",
+        "in": {
+          "root": [
+            1,
+            null,
+            0,
+            1,
+            0,
+            null,
+            1
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "mixed_22",
+        "in": {
+          "root": [
+            1,
+            1,
+            null,
+            0,
+            1,
+            1,
+            null
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "mixed_23",
+        "in": {
+          "root": [
+            0,
+            0,
+            1,
+            1,
+            null,
+            0,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_24",
+        "in": {
+          "root": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            null,
+            0
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "mixed_25",
+        "in": {
+          "root": [
+            1,
+            1,
+            0,
+            0,
+            null,
+            1,
+            0
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "mixed_26",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "mixed_27",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            null,
+            0
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "mixed_28",
+        "in": {
+          "root": [
+            0,
+            1,
+            0,
+            null,
+            1,
+            1,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "mixed_29",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            null
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "mixed_30",
+        "in": {
+          "root": [
+            1,
+            1,
+            0,
+            null,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "mixed_31",
+        "in": {
+          "root": [
+            1,
+            0,
+            1,
+            null,
+            null,
+            null,
+            1
+          ]
+        },
+        "out": 9
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "root = [1, 0, 1, 0, 1, 0, 1]",
+      "output": "22"
+    },
+    {
+      "input": "root = [0]",
+      "output": "0"
+    },
+    {
+      "input": "root = [1]",
+      "output": "1"
+    },
+    {
+      "input": "root = [0]",
+      "output": "0"
+    },
+    {
+      "input": "root = [1, 0]",
+      "output": "2"
+    },
+    {
+      "input": "root = [1, null, 1]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 0, 1, 0, 1, 0, 1]",
+      "output": "22"
+    },
+    {
+      "input": "root = [1, 0, null, 1, null, null, null, 0]",
+      "output": "5"
+    }
+  ]
+}

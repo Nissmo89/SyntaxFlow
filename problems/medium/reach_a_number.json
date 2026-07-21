@@ -1,0 +1,392 @@
+{
+  "id": "reach_a_number",
+  "title": "Reach a Number",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "description": "<p>You are standing at position <code>0</code> on an infinite number line. There is a destination at position <code>target</code>.</p>\n\n<p>You can make some number of moves <code>numMoves</code> so that:</p>\n\n<ul>\n\t<li>On each move, you can either go left or right.</li>\n\t<li>During the <code>i<sup>th</sup></code> move (starting from <code>i == 1</code> to <code>i == numMoves</code>), you take <code>i</code> steps in the chosen direction.</li>\n</ul>\n\n<p>Given the integer <code>target</code>, return <em>the <strong>minimum</strong> number of moves required (i.e., the minimum </em><code>numMoves</code><em>) to reach the destination</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> target = 2\n<strong>Output:</strong> 3\n<strong>Explanation:</strong>\nOn the 1<sup>st</sup> move, we step from 0 to 1 (1 step).\nOn the 2<sup>nd</sup> move, we step from 1 to -1 (2 steps).\nOn the 3<sup>rd</sup> move, we step from -1 to 2 (3 steps).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> target = 3\n<strong>Output:</strong> 2\n<strong>Explanation:</strong>\nOn the 1<sup>st</sup> move, we step from 0 to 1 (1 step).\nOn the 2<sup>nd</sup> move, we step from 1 to 3 (2 steps).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>\n\t<li><code>target != 0</code></li>\n</ul>\n",
+  "task": "Solve the 'Reach a Number' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "-109 <= target <= 109",
+    "target != 0"
+  ],
+  "hints": [],
+  "method": {
+    "name": "reachNumber",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 754,
+      "title": "reach-a-number",
+      "params": {
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().reachNumber({target})",
+        "rust": "Solution::reach_number({target})",
+        "python3": "Solution().reachNumber({target})",
+        "python2": "Solution().reachNumber({target})",
+        "ruby": "reach_number({target})",
+        "java": "new Solution().reachNumber({target})",
+        "csharp": "new Solution().ReachNumber({target})",
+        "kotlin": "Solution().reachNumber({target})",
+        "go": "reachNumber({target})",
+        "dart": "Solution().reachNumber({target})",
+        "swift": "Solution().reachNumber({target})",
+        "typescript": "reachNumber({target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(target, {result})",
+        "checker": "class Checker:\n    def check(self, target, result):\n        if not isinstance(result, int):\n            return False\n        if target == 0:\n            return False\n        if result < 0:\n            return False\n\n        target = abs(target)\n        total = result * (result + 1) // 2\n        if total < target:\n            return False\n        if (total - target) % 2 != 0:\n            return False\n\n        prev = (result - 1) * result // 2\n        if result > 0 and prev >= target and (prev - target) % 2 == 0:\n            return False\n\n        return True\n"
+      }
+    },
+    "seed": 754,
+    "tests": [
+      {
+        "name": "example_target_2",
+        "in": {
+          "target": 2
+        },
+        "out": 3
+      },
+      {
+        "name": "example_target_3",
+        "in": {
+          "target": 3
+        },
+        "out": 2
+      },
+      {
+        "name": "small_positive_1",
+        "in": {
+          "target": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "small_negative_1",
+        "in": {
+          "target": -1
+        },
+        "out": 1
+      },
+      {
+        "name": "just_after_triangle_3",
+        "in": {
+          "target": 4
+        },
+        "out": 3
+      },
+      {
+        "name": "negative_just_after_triangle_3",
+        "in": {
+          "target": -4
+        },
+        "out": 3
+      },
+      {
+        "name": "parity_gap_5",
+        "in": {
+          "target": 5
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_parity_gap_5",
+        "in": {
+          "target": -5
+        },
+        "out": 5
+      },
+      {
+        "name": "triangle_6",
+        "in": {
+          "target": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "negative_triangle_6",
+        "in": {
+          "target": -6
+        },
+        "out": 3
+      },
+      {
+        "name": "parity_gap_7",
+        "in": {
+          "target": 7
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_parity_gap_7",
+        "in": {
+          "target": -7
+        },
+        "out": 5
+      },
+      {
+        "name": "needs_even_flip_8",
+        "in": {
+          "target": 8
+        },
+        "out": 4
+      },
+      {
+        "name": "negative_needs_even_flip_8",
+        "in": {
+          "target": -8
+        },
+        "out": 4
+      },
+      {
+        "name": "mid_small_9",
+        "in": {
+          "target": 9
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_mid_small_9",
+        "in": {
+          "target": -9
+        },
+        "out": 5
+      },
+      {
+        "name": "triangle_10",
+        "in": {
+          "target": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "negative_triangle_10",
+        "in": {
+          "target": -10
+        },
+        "out": 4
+      },
+      {
+        "name": "just_after_triangle_10",
+        "in": {
+          "target": 11
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_just_after_triangle_10",
+        "in": {
+          "target": -11
+        },
+        "out": 5
+      },
+      {
+        "name": "parity_gap_14",
+        "in": {
+          "target": 14
+        },
+        "out": 7
+      },
+      {
+        "name": "negative_parity_gap_14",
+        "in": {
+          "target": -14
+        },
+        "out": 7
+      },
+      {
+        "name": "triangle_15",
+        "in": {
+          "target": 15
+        },
+        "out": 5
+      },
+      {
+        "name": "negative_triangle_15",
+        "in": {
+          "target": -15
+        },
+        "out": 5
+      },
+      {
+        "name": "just_after_triangle_15",
+        "in": {
+          "target": 16
+        },
+        "out": 7
+      },
+      {
+        "name": "negative_just_after_triangle_15",
+        "in": {
+          "target": -16
+        },
+        "out": 7
+      },
+      {
+        "name": "triangle_21",
+        "in": {
+          "target": 21
+        },
+        "out": 6
+      },
+      {
+        "name": "negative_triangle_21",
+        "in": {
+          "target": -21
+        },
+        "out": 6
+      },
+      {
+        "name": "just_after_triangle_45",
+        "in": {
+          "target": 46
+        },
+        "out": 11
+      },
+      {
+        "name": "negative_just_after_triangle_45",
+        "in": {
+          "target": -46
+        },
+        "out": 11
+      },
+      {
+        "name": "large_prime_like_positive",
+        "in": {
+          "target": 999999937
+        },
+        "out": 44721
+      },
+      {
+        "name": "large_prime_like_negative",
+        "in": {
+          "target": -999999937
+        },
+        "out": 44721
+      },
+      {
+        "name": "max_positive_bound",
+        "in": {
+          "target": 1000000000
+        },
+        "out": 44723
+      },
+      {
+        "name": "max_negative_bound",
+        "in": {
+          "target": -1000000000
+        },
+        "out": 44723
+      },
+      {
+        "name": "generated_large_positive_band",
+        "in": {
+          "target": {
+            "gen": "int",
+            "min": 999900000,
+            "max": 1000000000
+          }
+        }
+      },
+      {
+        "name": "generated_large_negative_band",
+        "in": {
+          "target": {
+            "gen": "int",
+            "min": -1000000000,
+            "max": -999900000
+          }
+        }
+      },
+      {
+        "name": "generated_mid_positive",
+        "in": {
+          "target": {
+            "gen": "int",
+            "min": 1,
+            "max": 1000000
+          }
+        }
+      },
+      {
+        "name": "generated_mid_negative",
+        "in": {
+          "target": {
+            "gen": "int",
+            "min": -1000000,
+            "max": -1
+          }
+        }
+      },
+      {
+        "name": "generated_wide_positive",
+        "in": {
+          "target": {
+            "gen": "int",
+            "min": 1,
+            "max": 1000000000
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "target = 2",
+      "output": "3"
+    },
+    {
+      "input": "target = 3",
+      "output": "2"
+    },
+    {
+      "input": "target = 1",
+      "output": "1"
+    },
+    {
+      "input": "target = -1",
+      "output": "1"
+    },
+    {
+      "input": "target = 4",
+      "output": "3"
+    },
+    {
+      "input": "target = -4",
+      "output": "3"
+    },
+    {
+      "input": "target = 5",
+      "output": "5"
+    },
+    {
+      "input": "target = -5",
+      "output": "5"
+    }
+  ]
+}

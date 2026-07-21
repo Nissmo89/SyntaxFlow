@@ -1,0 +1,567 @@
+{
+  "id": "subsets_ii",
+  "title": "Subsets II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> that may contain duplicates, return <em>all possible</em> <span data-keyword=\"subset\"><em>subsets</em></span><em> (the power set)</em>.</p>\n\n<p>The solution set <strong>must not</strong> contain duplicate subsets. Return the solution in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,2]\n<strong>Output:</strong> [[],[1],[1,2],[1,2,2],[2],[2,2]]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [0]\n<strong>Output:</strong> [[],[0]]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10</code></li>\n\t<li><code>-10 &lt;= nums[i] &lt;= 10</code></li>\n</ul>\n",
+  "task": "Solve the 'Subsets II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 10",
+    "-10 <= nums[i] <= 10"
+  ],
+  "hints": [],
+  "method": {
+    "name": "subsetsWithDup",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 90,
+      "title": "subsets-ii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().subsetsWithDup({nums})",
+        "rust": "Solution::subsets_with_dup({nums})",
+        "python3": "Solution().subsetsWithDup({nums})",
+        "python2": "Solution().subsetsWithDup({nums})",
+        "ruby": "subsets_with_dup({nums})",
+        "java": "new Solution().subsetsWithDup({nums})",
+        "csharp": "new Solution().SubsetsWithDup({nums})",
+        "kotlin": "Solution().subsetsWithDup({nums})",
+        "go": "subsetsWithDup({nums})",
+        "dart": "Solution().subsetsWithDup({nums})",
+        "swift": "Solution().subsetsWithDup({nums})",
+        "typescript": "subsetsWithDup({nums})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().subsetsWithDup(nums, {result})",
+        "checker": "class Checker:\n    def subsetsWithDup(self, nums, result):\n        nums = sorted(nums)\n        expected = []\n        def bt(i, cur):\n            expected.append(tuple(cur))\n            for j in range(i, len(nums)):\n                if j > i and nums[j] == nums[j - 1]:\n                    continue\n                cur.append(nums[j]); bt(j + 1, cur); cur.pop()\n        bt(0, [])\n        got = [tuple(x) for x in result] if isinstance(result, list) else None\n        return got is not None and sorted(got) == sorted(expected)\n"
+      }
+    },
+    "seed": 90,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            0
+          ]
+        }
+      },
+      {
+        "name": "all_unique",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "all_same3",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "mixed1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "negatives_zero",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "four_mixed",
+        "in": {
+          "nums": [
+            -1,
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "one_negative",
+        "in": {
+          "nums": [
+            -10
+          ]
+        }
+      },
+      {
+        "name": "all_same4",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "sorted_dups",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "no_dups5",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "dup_tail",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            4,
+            4
+          ]
+        }
+      },
+      {
+        "name": "dup_head",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "mix_small",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "mix_small2",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "two_equal",
+        "in": {
+          "nums": [
+            5,
+            5
+          ]
+        }
+      },
+      {
+        "name": "two_distinct",
+        "in": {
+          "nums": [
+            -1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "three_with_dup_head",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "three_with_dup_tail",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "three_all_same",
+        "in": {
+          "nums": [
+            -3,
+            -3,
+            -3
+          ]
+        }
+      },
+      {
+        "name": "three_distinct_neg",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1
+          ]
+        }
+      },
+      {
+        "name": "four_all_distinct",
+        "in": {
+          "nums": [
+            4,
+            1,
+            3,
+            2
+          ]
+        }
+      },
+      {
+        "name": "four_two_pairs",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "four_mixed2",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            -1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "four_mixed3",
+        "in": {
+          "nums": [
+            2,
+            2,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "five_one_dup",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "five_two_dups",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "five_neg_mix",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "five_all_distinct",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        }
+      },
+      {
+        "name": "six_double_pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "name": "six_triple_pair",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "six_sparse",
+        "in": {
+          "nums": [
+            -5,
+            -1,
+            0,
+            0,
+            4,
+            10
+          ]
+        }
+      },
+      {
+        "name": "six_all_same",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        }
+      },
+      {
+        "name": "seven_mixed",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "seven_neg_mixed",
+        "in": {
+          "nums": [
+            -4,
+            -4,
+            -1,
+            0,
+            2,
+            2,
+            5
+          ]
+        }
+      },
+      {
+        "name": "seven_all_distinct",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "eight_pairs",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ]
+        }
+      },
+      {
+        "name": "eight_cluster",
+        "in": {
+          "nums": [
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "eight_all_same",
+        "in": {
+          "nums": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [0]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, 0, 0]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, 1, 1, 2]",
+      "output": ""
+    },
+    {
+      "input": "nums = [-10]",
+      "output": ""
+    }
+  ]
+}

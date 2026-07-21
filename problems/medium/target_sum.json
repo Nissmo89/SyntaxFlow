@@ -1,0 +1,730 @@
+{
+  "id": "target_sum",
+  "title": "Target Sum",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code> and an integer <code>target</code>.</p>\n\n<p>You want to build an <strong>expression</strong> out of nums by adding one of the symbols <code>&#39;+&#39;</code> and <code>&#39;-&#39;</code> before each integer in nums and then concatenate all the integers.</p>\n\n<ul>\n\t<li>For example, if <code>nums = [2, 1]</code>, you can add a <code>&#39;+&#39;</code> before <code>2</code> and a <code>&#39;-&#39;</code> before <code>1</code> and concatenate them to build the expression <code>&quot;+2-1&quot;</code>.</li>\n</ul>\n\n<p>Return the number of different <strong>expressions</strong> that you can build, which evaluates to <code>target</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,1,1,1], target = 3\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> There are 5 ways to assign symbols to make the sum of nums be target 3.\n-1 + 1 + 1 + 1 + 1 = 3\n+1 - 1 + 1 + 1 + 1 = 3\n+1 + 1 - 1 + 1 + 1 = 3\n+1 + 1 + 1 - 1 + 1 = 3\n+1 + 1 + 1 + 1 - 1 = 3\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1], target = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 20</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li><code>0 &lt;= sum(nums[i]) &lt;= 1000</code></li>\n\t<li><code>-1000 &lt;= target &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Target Sum' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 20",
+    "0 <= nums[i] <= 1000",
+    "0 <= sum(nums[i]) <= 1000",
+    "-1000 <= target <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findTargetSumWays",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 494,
+      "title": "target-sum",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "target": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findTargetSumWays({nums}, {target})",
+        "rust": "Solution::find_target_sum_ways({nums}, {target})",
+        "python3": "Solution().findTargetSumWays({nums}, {target})",
+        "python2": "Solution().findTargetSumWays({nums}, {target})",
+        "ruby": "find_target_sum_ways({nums}, {target})",
+        "java": "new Solution().findTargetSumWays({nums}, {target})",
+        "csharp": "new Solution().FindTargetSumWays({nums}, {target})",
+        "kotlin": "Solution().findTargetSumWays({nums}, {target})",
+        "go": "findTargetSumWays({nums}, {target})",
+        "dart": "Solution().findTargetSumWays({nums}, {target})",
+        "swift": "Solution().findTargetSumWays({nums}, {target})",
+        "typescript": "findTargetSumWays({nums}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findTargetSumWays(nums, target, {result})",
+        "checker": "class Checker:\n    def findTargetSumWays(self, nums, target, result):\n        if not isinstance(result, int):\n            return False\n        total = sum(nums)\n        if abs(target) > total or (target + total) % 2 != 0:\n            return result == 0\n        subset = (target + total) // 2\n        dp = [0] * (subset + 1)\n        dp[0] = 1\n        for num in nums:\n            for j in range(subset, num - 1, -1):\n                dp[j] += dp[j - num]\n        return result == dp[subset]\n"
+      }
+    },
+    "seed": 494,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 3
+        },
+        "out": 5
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "nums": [
+            1
+          ],
+          "target": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_target_single_zero",
+        "in": {
+          "nums": [
+            0
+          ],
+          "target": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "zero_target_two_zeros",
+        "in": {
+          "nums": [
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "out": 4
+      },
+      {
+        "name": "zero_target_three_zeros",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "out": 8
+      },
+      {
+        "name": "zero_and_one_positive",
+        "in": {
+          "nums": [
+            1,
+            0
+          ],
+          "target": 1
+        },
+        "out": 2
+      },
+      {
+        "name": "zero_and_one_negative",
+        "in": {
+          "nums": [
+            1,
+            0
+          ],
+          "target": -1
+        },
+        "out": 2
+      },
+      {
+        "name": "small_balanced",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1
+          ],
+          "target": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "simple_even_sum",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5
+          ],
+          "target": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "simple_max_target",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5
+          ],
+          "target": 10
+        },
+        "out": 1
+      },
+      {
+        "name": "simple_min_target",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5
+          ],
+          "target": -10
+        },
+        "out": 1
+      },
+      {
+        "name": "impossible_parity",
+        "in": {
+          "nums": [
+            2,
+            3,
+            5
+          ],
+          "target": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "large_target_outside_sum",
+        "in": {
+          "nums": [
+            1,
+            2,
+            7,
+            9,
+            980
+          ],
+          "target": 1000
+        },
+        "out": 0
+      },
+      {
+        "name": "single_large_positive",
+        "in": {
+          "nums": [
+            1000
+          ],
+          "target": 1000
+        },
+        "out": 1
+      },
+      {
+        "name": "single_large_negative",
+        "in": {
+          "nums": [
+            1000
+          ],
+          "target": -1000
+        },
+        "out": 1
+      },
+      {
+        "name": "single_large_zero",
+        "in": {
+          "nums": [
+            1000
+          ],
+          "target": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "two_large_zero",
+        "in": {
+          "nums": [
+            1000,
+            1000
+          ],
+          "target": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "two_large_positive",
+        "in": {
+          "nums": [
+            1000,
+            1000
+          ],
+          "target": 2000
+        },
+        "out": 1
+      },
+      {
+        "name": "two_large_negative",
+        "in": {
+          "nums": [
+            1000,
+            1000
+          ],
+          "target": -2000
+        },
+        "out": 1
+      },
+      {
+        "name": "increasing_ten_zero",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "target": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "increasing_ten_mid",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "target": 5
+        },
+        "out": 39
+      },
+      {
+        "name": "increasing_ten_max",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "target": 55
+        },
+        "out": 1
+      },
+      {
+        "name": "repeated_pairs_zero",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "target": 0
+        },
+        "out": 26
+      },
+      {
+        "name": "repeated_pairs_two",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "target": 2
+        },
+        "out": 24
+      },
+      {
+        "name": "leading_zeroes_positive",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "leading_zeroes_negative",
+        "in": {
+          "nums": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": -2
+        },
+        "out": 2
+      },
+      {
+        "name": "zeros_and_ones_mid",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "target": 1
+        },
+        "out": 12
+      },
+      {
+        "name": "zeros_and_ones_high",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "target": 3
+        },
+        "out": 4
+      },
+      {
+        "name": "foursome_zero",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "target": 0
+        },
+        "out": 6
+      },
+      {
+        "name": "foursome_max",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "target": 20
+        },
+        "out": 1
+      },
+      {
+        "name": "foursome_mid",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "target": 10
+        },
+        "out": 4
+      },
+      {
+        "name": "hundreds_zero",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "target": 0
+        },
+        "out": 2
+      },
+      {
+        "name": "hundreds_max",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "target": 1000
+        },
+        "out": 1
+      },
+      {
+        "name": "hundreds_min",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "target": -1000
+        },
+        "out": 1
+      },
+      {
+        "name": "twenty_ones_zero",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 0
+        },
+        "out": 184756
+      },
+      {
+        "name": "twenty_ones_max",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 20
+        },
+        "out": 1
+      },
+      {
+        "name": "twenty_ones_two",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target": 2
+        },
+        "out": 167960
+      },
+      {
+        "name": "twenty_zeros",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "out": 1048576
+      },
+      {
+        "name": "nineteen_zeros_one_positive",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "target": 1
+        },
+        "out": 524288
+      },
+      {
+        "name": "nineteen_zeros_one_zero",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "target": 0
+        },
+        "out": 0
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 1, 1, 1, 1]\ntarget = 3",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1]\ntarget = 1",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0]\ntarget = 0",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 0]\ntarget = 0",
+      "output": "4"
+    },
+    {
+      "input": "nums = [0, 0, 0]\ntarget = 0",
+      "output": "8"
+    },
+    {
+      "input": "nums = [1, 0]\ntarget = 1",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 0]\ntarget = -1",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 2, 1]\ntarget = 0",
+      "output": "2"
+    }
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "id": "minimum_genetic_mutation",
+  "title": "Minimum Genetic Mutation",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search"
+  ],
+  "description": "<p>A gene string can be represented by an 8-character long string, with choices from <code>&#39;A&#39;</code>, <code>&#39;C&#39;</code>, <code>&#39;G&#39;</code>, and <code>&#39;T&#39;</code>.</p>\n\n<p>Suppose we need to investigate a mutation from a gene string <code>startGene</code> to a gene string <code>endGene</code> where one mutation is defined as one single character changed in the gene string.</p>\n\n<ul>\n\t<li>For example, <code>&quot;AACCGGTT&quot; --&gt; &quot;AACCGGTA&quot;</code> is one mutation.</li>\n</ul>\n\n<p>There is also a gene bank <code>bank</code> that records all the valid gene mutations. A gene must be in <code>bank</code> to make it a valid gene string.</p>\n\n<p>Given the two gene strings <code>startGene</code> and <code>endGene</code> and the gene bank <code>bank</code>, return <em>the minimum number of mutations needed to mutate from </em><code>startGene</code><em> to </em><code>endGene</code>. If there is no such a mutation, return <code>-1</code>.</p>\n\n<p>Note that the starting point is assumed to be valid, so it might not be included in the bank.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> startGene = &quot;AACCGGTT&quot;, endGene = &quot;AACCGGTA&quot;, bank = [&quot;AACCGGTA&quot;]\n<strong>Output:</strong> 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> startGene = &quot;AACCGGTT&quot;, endGene = &quot;AAACGGTA&quot;, bank = [&quot;AACCGGTA&quot;,&quot;AACCGCTA&quot;,&quot;AAACGGTA&quot;]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= bank.length &lt;= 10</code></li>\n\t<li><code>startGene.length == endGene.length == bank[i].length == 8</code></li>\n\t<li><code>startGene</code>, <code>endGene</code>, and <code>bank[i]</code> consist of only the characters <code>[&#39;A&#39;, &#39;C&#39;, &#39;G&#39;, &#39;T&#39;]</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Minimum Genetic Mutation' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= bank.length <= 10",
+    "startGene.length == endGene.length == bank[i].length == 8",
+    "startGene, endGene, and bank[i] consist of only the characters ['A', 'C', 'G', 'T']."
+  ],
+  "hints": [],
+  "method": {
+    "name": "minMutation",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "startGene",
+        "type": "string"
+      },
+      {
+        "name": "endGene",
+        "type": "string"
+      },
+      {
+        "name": "bank",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 433,
+      "title": "minimum-genetic-mutation",
+      "params": {
+        "startGene": {
+          "type": "string"
+        },
+        "endGene": {
+          "type": "string"
+        },
+        "bank": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "rust": "Solution::min_mutation({startGene}, {endGene}, {bank})",
+        "python3": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "python2": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "ruby": "min_mutation({startGene}, {endGene}, {bank})",
+        "java": "new Solution().minMutation({startGene}, {endGene}, {bank})",
+        "csharp": "new Solution().MinMutation({startGene}, {endGene}, {bank})",
+        "kotlin": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "go": "minMutation({startGene}, {endGene}, {bank})",
+        "dart": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "swift": "Solution().minMutation({startGene}, {endGene}, {bank})",
+        "typescript": "minMutation({startGene}, {endGene}, {bank})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minMutation(startGene, endGene, {result})",
+        "checker": "class Checker:\n    def minMutation(self, startGene, endGene, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 433,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AACCGGTA",
+          "bank": [
+            "AACCGGTA"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AAACGGTA",
+          "bank": [
+            "AACCGGTA",
+            "AACCGCTA",
+            "AAACGGTA"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "same-start-end-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AACCGGTT",
+          "bank": []
+        },
+        "out": 0
+      },
+      {
+        "name": "same-start-end-2",
+        "in": {
+          "startGene": "AAAAAAAA",
+          "endGene": "AAAAAAAA",
+          "bank": [
+            "CAAAAAAA",
+            "GAAAAAAA"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "direct-step-a",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AAAACCCC",
+          "bank": [
+            "AAAACCCC"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "direct-step-b",
+        "in": {
+          "startGene": "CCGGTTAA",
+          "endGene": "CCGGTTAT",
+          "bank": [
+            "CCGGTTAT",
+            "CCGGTTAA"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-step-chain-a",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AACCGTTA",
+          "bank": [
+            "AACCGGTA",
+            "AACCGTTA"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two-step-chain-b",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AAAACCCA",
+          "bank": [
+            "AAAACCCC",
+            "AAAACCCA"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three-step-chain-a",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AACCCCCC",
+          "bank": [
+            "AAAACCCC",
+            "AAACCCCC",
+            "AACCCCCC"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "three-step-chain-b",
+        "in": {
+          "startGene": "AAAAAAAA",
+          "endGene": "TTTTAAAA",
+          "bank": [
+            "TAAAAAAA",
+            "TTAAAAAA",
+            "TTTAAAAA",
+            "TTTTAAAA"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "not-in-bank-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AACCGGTA",
+          "bank": []
+        },
+        "out": -1
+      },
+      {
+        "name": "not-in-bank-2",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AAACGGTA",
+          "bank": [
+            "AACCGGTA",
+            "AACCGCTA"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "unreachable-1",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AACCCCCC",
+          "bank": [
+            "AAAACCCA",
+            "AAACCCCA",
+            "AACCCCCA"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "unreachable-2",
+        "in": {
+          "startGene": "AAAAAAAA",
+          "endGene": "CCCCCCCC",
+          "bank": [
+            "AAAAACCC",
+            "AAAACCCC",
+            "AAACCCCC",
+            "AACCCCCC"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "bank-has-end-but-no-path-1",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AACCCCCC",
+          "bank": [
+            "AAAACCCA",
+            "AAAACCAC",
+            "AACCCCCC"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "bank-has-end-but-no-path-2",
+        "in": {
+          "startGene": "TTTTTTTT",
+          "endGene": "TTTTTTTA",
+          "bank": [
+            "TTTTTTTA",
+            "TTTTTTAA",
+            "TTTTTAAA"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "branched-shortest-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AAACGGTA",
+          "bank": [
+            "AACCGGTA",
+            "AACCGCTA",
+            "AAACGGTA",
+            "AAACGGTA"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "branched-shortest-2",
+        "in": {
+          "startGene": "AAAAAAAC",
+          "endGene": "CAAAAAAC",
+          "bank": [
+            "CAAAAAAC",
+            "CAAAAAAT",
+            "CAAAAACT",
+            "GAAAAAAC"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "repeated-branching-1",
+        "in": {
+          "startGene": "AAAAAAAA",
+          "endGene": "AAAAACCC",
+          "bank": [
+            "AAAAAAAA",
+            "AAAAACAA",
+            "AAAAACCA",
+            "AAAAACCC",
+            "AAAAGAAA",
+            "AAAAGCAA"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated-branching-2",
+        "in": {
+          "startGene": "GGGGGGGG",
+          "endGene": "GGGGAAGG",
+          "bank": [
+            "GGGGGGGA",
+            "GGGGGAGA",
+            "GGGGAAGA",
+            "GGGGAAGG",
+            "GGGGGAGG"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "one-mutation-away-but-end-missing-1",
+        "in": {
+          "startGene": "ACGTACGT",
+          "endGene": "ACGTACGA",
+          "bank": [
+            "ACGTACGG",
+            "ACGTACGC"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "one-mutation-away-but-end-missing-2",
+        "in": {
+          "startGene": "TGCATGCA",
+          "endGene": "TGCATGCG",
+          "bank": [
+            "TGCATGCC",
+            "TGCATGCT"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "small-bank-1",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "CAAACCCC",
+          "bank": [
+            "AAAACCCC",
+            "CAAACCCC"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "small-bank-2",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AAAAACCG",
+          "bank": [
+            "AAAAACCG"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "detour-needed-1",
+        "in": {
+          "startGene": "AAAAACCC",
+          "endGene": "AAACCCCA",
+          "bank": [
+            "AAAACCCC",
+            "AAACCCCC",
+            "AAACCCCA",
+            "AAAACCCA"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "detour-needed-2",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "CACCGGTT",
+          "bank": [
+            "CACCGGTT",
+            "AACCGGTA",
+            "AACCGCTA"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "isolated-end-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "TTTTTTTT",
+          "bank": [
+            "AACCGGTA",
+            "AACCGCTA",
+            "AAACGGTA",
+            "TTTTTTTT"
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "isolated-end-2",
+        "in": {
+          "startGene": "CCCCCCCC",
+          "endGene": "CCCCCCCA",
+          "bank": [
+            "CCCCCCCG",
+            "CCCCCCGG",
+            "CCCCCCAA",
+            "CCCCCCCA"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "no-bank-given",
+        "in": {
+          "startGene": "GATTACAA",
+          "endGene": "GATTACAG",
+          "bank": []
+        },
+        "out": -1
+      },
+      {
+        "name": "same-with-bank-1",
+        "in": {
+          "startGene": "GATTACAA",
+          "endGene": "GATTACAA",
+          "bank": [
+            "GATTACAG",
+            "GATTACAC"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "same-with-bank-2",
+        "in": {
+          "startGene": "TTTTGGGG",
+          "endGene": "TTTTGGGG",
+          "bank": [
+            "TTTTGGGA",
+            "TTTTGGGC",
+            "TTTTGGGT"
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "longer-path-1",
+        "in": {
+          "startGene": "AAAAAAAA",
+          "endGene": "AAAATTTT",
+          "bank": [
+            "AAAATAAA",
+            "AAAATTAA",
+            "AAAATTTA",
+            "AAAATTTT"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "longer-path-2",
+        "in": {
+          "startGene": "CCCCGGGG",
+          "endGene": "CCGGGGGG",
+          "bank": [
+            "CCCGGGGG",
+            "CCGGGGGG",
+            "CCCCGGGA",
+            "CCCCGGGC"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "end-present-multiple-options-1",
+        "in": {
+          "startGene": "AACCGGTT",
+          "endGene": "AACCGGTC",
+          "bank": [
+            "AACCGGTC",
+            "AACCGGTA",
+            "AACCGGTT",
+            "AACCGGAT"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "end-present-multiple-options-2",
+        "in": {
+          "startGene": "ACGTACGT",
+          "endGene": "ACGTTCGT",
+          "bank": [
+            "ACGTTCGT",
+            "ACGTACGA",
+            "ACGTACGG",
+            "ACGTCCGT"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "path-with-decoy-1",
+        "in": {
+          "startGene": "AAAAAAAC",
+          "endGene": "AAAAAACC",
+          "bank": [
+            "AAAAAAAC",
+            "AAAAAACC",
+            "AAAAAAGC",
+            "AAAAAATC"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "path-with-decoy-2",
+        "in": {
+          "startGene": "TTTAAAAA",
+          "endGene": "TTTCCCAA",
+          "bank": [
+            "TTTCAAAA",
+            "TTTCCAAA",
+            "TTTCCCAA",
+            "TTTAAAAA",
+            "TTTCAAAT"
+          ]
+        },
+        "out": 3
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AACCGGTA\"\nbank = [\"AACCGGTA\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AAACGGTA\"\nbank = [\"AACCGGTA\", \"AACCGCTA\", \"AAACGGTA\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AACCGGTT\"\nbank = []",
+      "output": "0"
+    },
+    {
+      "input": "startGene = \"AAAAAAAA\"\nendGene = \"AAAAAAAA\"\nbank = [\"CAAAAAAA\", \"GAAAAAAA\"]",
+      "output": "0"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AAAACCCC\"\nbank = [\"AAAACCCC\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"CCGGTTAA\"\nendGene = \"CCGGTTAT\"\nbank = [\"CCGGTTAT\", \"CCGGTTAA\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AACCGTTA\"\nbank = [\"AACCGGTA\", \"AACCGTTA\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AAAACCCA\"\nbank = [\"AAAACCCC\", \"AAAACCCA\"]",
+      "output": "2"
+    }
+  ]
+}

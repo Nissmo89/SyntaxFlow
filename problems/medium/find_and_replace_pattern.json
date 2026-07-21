@@ -1,0 +1,694 @@
+{
+  "id": "find_and_replace_pattern",
+  "title": "Find and Replace Pattern",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "description": "<p>Given a list of strings <code>words</code> and a string <code>pattern</code>, return <em>a list of</em> <code>words[i]</code> <em>that match</em> <code>pattern</code>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>A word matches the pattern if there exists a permutation of letters <code>p</code> so that after replacing every letter <code>x</code> in the pattern with <code>p(x)</code>, we get the desired word.</p>\n\n<p>Recall that a permutation of letters is a bijection from letters to letters: every letter maps to another letter, and no two letters map to the same letter.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;abc&quot;,&quot;deq&quot;,&quot;mee&quot;,&quot;aqq&quot;,&quot;dkd&quot;,&quot;ccc&quot;], pattern = &quot;abb&quot;\n<strong>Output:</strong> [&quot;mee&quot;,&quot;aqq&quot;]\n<strong>Explanation:</strong> &quot;mee&quot; matches the pattern because there is a permutation {a -&gt; m, b -&gt; e, ...}. \n&quot;ccc&quot; does not match the pattern because {a -&gt; c, b -&gt; c, ...} is not a permutation, since a and b map to the same letter.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], pattern = &quot;a&quot;\n<strong>Output:</strong> [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= pattern.length &lt;= 20</code></li>\n\t<li><code>1 &lt;= words.length &lt;= 50</code></li>\n\t<li><code>words[i].length == pattern.length</code></li>\n\t<li><code>pattern</code> and <code>words[i]</code> are lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Find and Replace Pattern' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= pattern.length <= 20",
+    "1 <= words.length <= 50",
+    "words[i].length == pattern.length",
+    "pattern and words[i] are lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findAndReplacePattern",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "array"
+      },
+      {
+        "name": "pattern",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 890,
+      "title": "find-and-replace-pattern",
+      "params": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pattern": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findAndReplacePattern({words}, {pattern})",
+        "rust": "Solution::find_and_replace_pattern({words}, {pattern})",
+        "python3": "Solution().findAndReplacePattern({words}, {pattern})",
+        "python2": "Solution().findAndReplacePattern({words}, {pattern})",
+        "ruby": "find_and_replace_pattern({words}, {pattern})",
+        "java": "new Solution().findAndReplacePattern({words}, {pattern})",
+        "csharp": "new Solution().FindAndReplacePattern({words}, {pattern})",
+        "kotlin": "Solution().findAndReplacePattern({words}, {pattern})",
+        "go": "findAndReplacePattern({words}, {pattern})",
+        "dart": "Solution().findAndReplacePattern({words}, {pattern})",
+        "swift": "Solution().findAndReplacePattern({words}, {pattern})",
+        "typescript": "findAndReplacePattern({words}, {pattern})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(words, pattern, {result})",
+        "checker": "from collections import Counter\n\nclass Checker(object):\n    def check(self, words, pattern, result):\n        if not isinstance(result, list):\n            return False\n        expected = []\n        pattern_signature = [pattern.index(c) for c in pattern]\n        for word in words:\n            if len(word) != len(pattern):\n                return False\n            if [word.index(c) for c in word] == pattern_signature:\n                expected.append(word)\n        return Counter(result) == Counter(expected)\n"
+      }
+    },
+    "seed": 890,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "words": [
+            "abc",
+            "deq",
+            "mee",
+            "aqq",
+            "dkd",
+            "ccc"
+          ],
+          "pattern": "abb"
+        },
+        "out": [
+          "mee",
+          "aqq"
+        ]
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "c"
+          ],
+          "pattern": "a"
+        },
+        "out": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      {
+        "name": "single_match",
+        "in": {
+          "words": [
+            "aa",
+            "ab",
+            "ba"
+          ],
+          "pattern": "aa"
+        },
+        "out": [
+          "aa"
+        ]
+      },
+      {
+        "name": "two_letter_bijection",
+        "in": {
+          "words": [
+            "ab",
+            "cd",
+            "ee",
+            "fg"
+          ],
+          "pattern": "ab"
+        },
+        "out": [
+          "ab",
+          "cd",
+          "fg"
+        ]
+      },
+      {
+        "name": "all_same_pattern",
+        "in": {
+          "words": [
+            "aaaa",
+            "bbbb",
+            "abcd",
+            "zzzz"
+          ],
+          "pattern": "zzzz"
+        },
+        "out": [
+          "aaaa",
+          "bbbb",
+          "zzzz"
+        ]
+      },
+      {
+        "name": "repeated_first_last",
+        "in": {
+          "words": [
+            "abca",
+            "zbxz",
+            "mnop",
+            "zzzz"
+          ],
+          "pattern": "mama"
+        },
+        "out": []
+      },
+      {
+        "name": "example_like_abb",
+        "in": {
+          "words": [
+            "abc",
+            "xyy",
+            "yxx",
+            "foo"
+          ],
+          "pattern": "abb"
+        },
+        "out": [
+          "xyy",
+          "yxx",
+          "foo"
+        ]
+      },
+      {
+        "name": "no_matches",
+        "in": {
+          "words": [
+            "abcd",
+            "efgh",
+            "ijkl"
+          ],
+          "pattern": "aaaa"
+        },
+        "out": []
+      },
+      {
+        "name": "length_five_mixed",
+        "in": {
+          "words": [
+            "qwert",
+            "tyuio",
+            "asdfg",
+            "zxcvb"
+          ],
+          "pattern": "abcde"
+        },
+        "out": [
+          "qwert",
+          "tyuio",
+          "asdfg",
+          "zxcvb"
+        ]
+      },
+      {
+        "name": "length_five_single_pattern",
+        "in": {
+          "words": [
+            "hello",
+            "jelly",
+            "civic",
+            "radar"
+          ],
+          "pattern": "paper"
+        },
+        "out": []
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "words": [
+            "abcabc",
+            "deqdeq",
+            "meemee",
+            "aqqaqq"
+          ],
+          "pattern": "abcabc"
+        },
+        "out": [
+          "abcabc",
+          "deqdeq"
+        ]
+      },
+      {
+        "name": "classic_noon",
+        "in": {
+          "words": [
+            "abba",
+            "baab",
+            "cddc",
+            "eeee"
+          ],
+          "pattern": "noon"
+        },
+        "out": [
+          "abba",
+          "baab",
+          "cddc"
+        ]
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "words": [
+            "xyxy",
+            "zaza",
+            "mnom",
+            "abab"
+          ],
+          "pattern": "abab"
+        },
+        "out": [
+          "xyxy",
+          "zaza",
+          "abab"
+        ]
+      },
+      {
+        "name": "all_unique_len4",
+        "in": {
+          "words": [
+            "pqrs",
+            "qrst",
+            "rstu",
+            "stuv"
+          ],
+          "pattern": "abcd"
+        },
+        "out": [
+          "pqrs",
+          "qrst",
+          "rstu",
+          "stuv"
+        ]
+      },
+      {
+        "name": "duplicates_in_words",
+        "in": {
+          "words": [
+            "zz",
+            "xy",
+            "yx",
+            "zz"
+          ],
+          "pattern": "ab"
+        },
+        "out": [
+          "xy",
+          "yx"
+        ]
+      },
+      {
+        "name": "duplicates_output",
+        "in": {
+          "words": [
+            "baba",
+            "caca",
+            "dada"
+          ],
+          "pattern": "noon"
+        },
+        "out": []
+      },
+      {
+        "name": "single_char_many",
+        "in": {
+          "words": [
+            "a",
+            "z",
+            "m",
+            "q"
+          ],
+          "pattern": "b"
+        },
+        "out": [
+          "a",
+          "z",
+          "m",
+          "q"
+        ]
+      },
+      {
+        "name": "pattern_three_unique",
+        "in": {
+          "words": [
+            "abc",
+            "bcd",
+            "cde",
+            "def"
+          ],
+          "pattern": "xyz"
+        },
+        "out": [
+          "abc",
+          "bcd",
+          "cde",
+          "def"
+        ]
+      },
+      {
+        "name": "pattern_two_same_one_diff",
+        "in": {
+          "words": [
+            "mom",
+            "dad",
+            "pop",
+            "aaa"
+          ],
+          "pattern": "aba"
+        },
+        "out": [
+          "mom",
+          "dad",
+          "pop"
+        ]
+      },
+      {
+        "name": "pattern_two_same_one_diff_2",
+        "in": {
+          "words": [
+            "kik",
+            "foo",
+            "bar",
+            "paper"
+          ],
+          "pattern": "abb"
+        },
+        "out": [
+          "foo"
+        ]
+      },
+      {
+        "name": "length_six_partial",
+        "in": {
+          "words": [
+            "xyzxyz",
+            "ababab",
+            "aaaaaa",
+            "qwerty"
+          ],
+          "pattern": "aabbcc"
+        },
+        "out": []
+      },
+      {
+        "name": "length_six_unique",
+        "in": {
+          "words": [
+            "abcdef",
+            "bcdefg",
+            "cdefgh",
+            "zyxwvu"
+          ],
+          "pattern": "abcdef"
+        },
+        "out": [
+          "abcdef",
+          "bcdefg",
+          "cdefgh",
+          "zyxwvu"
+        ]
+      },
+      {
+        "name": "length_seven_reuse",
+        "in": {
+          "words": [
+            "abcabca",
+            "bcdbcde",
+            "zzxzzxz",
+            "mnopqrs"
+          ],
+          "pattern": "abcadab"
+        },
+        "out": []
+      },
+      {
+        "name": "length_eight_exampleish",
+        "in": {
+          "words": [
+            "leetcode",
+            "codeleet",
+            "helloell",
+            "worldwid"
+          ],
+          "pattern": "abcaefgh"
+        },
+        "out": []
+      },
+      {
+        "name": "long_unique_1",
+        "in": {
+          "words": [
+            "abcdefghij",
+            "klmnopqrst",
+            "uvwxyzabcd",
+            "zyxwvutsrq"
+          ],
+          "pattern": "abcdefghij"
+        },
+        "out": [
+          "abcdefghij",
+          "klmnopqrst",
+          "uvwxyzabcd",
+          "zyxwvutsrq"
+        ]
+      },
+      {
+        "name": "long_unique_2",
+        "in": {
+          "words": [
+            "abcdefghijkl",
+            "mnopqrstuvwx",
+            "yzabcdefghij"
+          ],
+          "pattern": "klmnopqrstuv"
+        },
+        "out": [
+          "abcdefghijkl",
+          "mnopqrstuvwx",
+          "yzabcdefghij"
+        ]
+      },
+      {
+        "name": "repeated_then_unique",
+        "in": {
+          "words": [
+            "aab",
+            "bbc",
+            "ccd",
+            "dde"
+          ],
+          "pattern": "abb"
+        },
+        "out": []
+      },
+      {
+        "name": "mixed_case_of_pattern",
+        "in": {
+          "words": [
+            "aba",
+            "xyz",
+            "xyx"
+          ],
+          "pattern": "aba"
+        },
+        "out": [
+          "aba",
+          "xyx"
+        ]
+      },
+      {
+        "name": "all_match_short",
+        "in": {
+          "words": [
+            "ab",
+            "ba",
+            "cd",
+            "ef"
+          ],
+          "pattern": "ab"
+        },
+        "out": [
+          "ab",
+          "ba",
+          "cd",
+          "ef"
+        ]
+      },
+      {
+        "name": "no_match_long",
+        "in": {
+          "words": [
+            "abc",
+            "aba",
+            "aaa"
+          ],
+          "pattern": "xyz"
+        },
+        "out": [
+          "abc"
+        ]
+      },
+      {
+        "name": "repeated_letter_pattern",
+        "in": {
+          "words": [
+            "ppp",
+            "qqq",
+            "rqr"
+          ],
+          "pattern": "aaa"
+        },
+        "out": [
+          "ppp",
+          "qqq"
+        ]
+      },
+      {
+        "name": "weird_mix_1",
+        "in": {
+          "words": [
+            "abcde",
+            "fghij",
+            "klmno",
+            "pqrst"
+          ],
+          "pattern": "abcde"
+        },
+        "out": [
+          "abcde",
+          "fghij",
+          "klmno",
+          "pqrst"
+        ]
+      },
+      {
+        "name": "weird_mix_2",
+        "in": {
+          "words": [
+            "abca",
+            "zbxz",
+            "mnmm",
+            "zzzz"
+          ],
+          "pattern": "mama"
+        },
+        "out": []
+      },
+      {
+        "name": "pair_repeats",
+        "in": {
+          "words": [
+            "xyxy",
+            "yyyy",
+            "xzxz"
+          ],
+          "pattern": "abab"
+        },
+        "out": [
+          "xyxy",
+          "xzxz"
+        ]
+      },
+      {
+        "name": "single_word_match",
+        "in": {
+          "words": [
+            "same"
+          ],
+          "pattern": "abcd"
+        },
+        "out": [
+          "same"
+        ]
+      },
+      {
+        "name": "single_word_no_match",
+        "in": {
+          "words": [
+            "nooo"
+          ],
+          "pattern": "abcd"
+        },
+        "out": []
+      },
+      {
+        "name": "two_words_same_shape",
+        "in": {
+          "words": [
+            "abab",
+            "baba"
+          ],
+          "pattern": "abba"
+        },
+        "out": []
+      },
+      {
+        "name": "final_mixed",
+        "in": {
+          "words": [
+            "paper",
+            "title",
+            "abaca",
+            "xyxxy"
+          ],
+          "pattern": "aabcd"
+        },
+        "out": []
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = [\"abc\", \"deq\", \"mee\", \"aqq\", \"dkd\", \"ccc\"]\npattern = \"abb\"",
+      "output": "[\"mee\", \"aqq\"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\"]\npattern = \"a\"",
+      "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "words = [\"aa\", \"ab\", \"ba\"]\npattern = \"aa\"",
+      "output": "[\"aa\"]"
+    },
+    {
+      "input": "words = [\"ab\", \"cd\", \"ee\", \"fg\"]\npattern = \"ab\"",
+      "output": "[\"ab\", \"cd\", \"fg\"]"
+    },
+    {
+      "input": "words = [\"aaaa\", \"bbbb\", \"abcd\", \"zzzz\"]\npattern = \"zzzz\"",
+      "output": "[\"aaaa\", \"bbbb\", \"zzzz\"]"
+    },
+    {
+      "input": "words = [\"abca\", \"zbxz\", \"mnop\", \"zzzz\"]\npattern = \"mama\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"abc\", \"xyy\", \"yxx\", \"foo\"]\npattern = \"abb\"",
+      "output": "[\"xyy\", \"yxx\", \"foo\"]"
+    },
+    {
+      "input": "words = [\"abcd\", \"efgh\", \"ijkl\"]\npattern = \"aaaa\"",
+      "output": "[]"
+    }
+  ]
+}

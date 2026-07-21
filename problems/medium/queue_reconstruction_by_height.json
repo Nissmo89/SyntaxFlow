@@ -1,0 +1,1429 @@
+{
+  "id": "queue_reconstruction_by_height",
+  "title": "Queue Reconstruction by Height",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sorting"
+  ],
+  "description": "<p>You are given an array of people, <code>people</code>, which are the attributes of some people in a queue (not necessarily in order). Each <code>people[i] = [h<sub>i</sub>, k<sub>i</sub>]</code> represents the <code>i<sup>th</sup></code> person of height <code>h<sub>i</sub></code> with <strong>exactly</strong> <code>k<sub>i</sub></code> other people in front who have a height greater than or equal to <code>h<sub>i</sub></code>.</p>\n\n<p>Reconstruct and return <em>the queue that is represented by the input array </em><code>people</code>. The returned queue should be formatted as an array <code>queue</code>, where <code>queue[j] = [h<sub>j</sub>, k<sub>j</sub>]</code> is the attributes of the <code>j<sup>th</sup></code> person in the queue (<code>queue[0]</code> is the person at the front of the queue).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]\n<strong>Output:</strong> [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]\n<strong>Explanation:</strong>\nPerson 0 has height 5 with no other people taller or the same height in front.\nPerson 1 has height 7 with no other people taller or the same height in front.\nPerson 2 has height 5 with two persons taller or the same height in front, which is person 0 and 1.\nPerson 3 has height 6 with one person taller or the same height in front, which is person 1.\nPerson 4 has height 4 with four people taller or the same height in front, which are people 0, 1, 2, and 3.\nPerson 5 has height 7 with one person taller or the same height in front, which is person 1.\nHence [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] is the reconstructed queue.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> people = [[6,0],[5,0],[4,0],[3,2],[2,2],[1,4]]\n<strong>Output:</strong> [[4,0],[5,0],[2,2],[3,2],[1,4],[6,0]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= people.length &lt;= 2000</code></li>\n\t<li><code>0 &lt;= h<sub>i</sub> &lt;= 10<sup>6</sup></code></li>\n\t<li><code>0 &lt;= k<sub>i</sub> &lt; people.length</code></li>\n\t<li>It is guaranteed that the queue can be reconstructed.</li>\n</ul>\n",
+  "task": "Solve the 'Queue Reconstruction by Height' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= people.length <= 2000",
+    "0 <= hi <= 106",
+    "0 <= ki < people.length",
+    "It is guaranteed that the queue can be reconstructed."
+  ],
+  "hints": [
+    "What can you say about the position of the shortest person? </br>\r\nIf the position of the shortest person is <i>i</i>, how many people would be in front of the shortest person?",
+    "Once you fix the position of the shortest person, what can you say about the position of the second shortest person?"
+  ],
+  "method": {
+    "name": "reconstructQueue",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "people",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 406,
+      "title": "queue-reconstruction-by-height",
+      "params": {
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().reconstructQueue({people})",
+        "rust": "Solution::reconstruct_queue({people})",
+        "python3": "Solution().reconstructQueue({people})",
+        "python2": "Solution().reconstructQueue({people})",
+        "ruby": "reconstruct_queue({people})",
+        "java": "new Solution().reconstructQueue({people})",
+        "csharp": "new Solution().ReconstructQueue({people})",
+        "kotlin": "Solution().reconstructQueue({people})",
+        "go": "reconstructQueue({people})",
+        "dart": "Solution().reconstructQueue({people})",
+        "swift": "Solution().reconstructQueue({people})",
+        "typescript": "reconstructQueue({people})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().reconstructQueue(people, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def reconstructQueue(self, people, result):\n        if not isinstance(result, list) or len(result) != len(people):\n            return False\n        try:\n            in_counts = Counter(tuple(p) for p in people)\n            out_counts = Counter(tuple(p) for p in result)\n        except TypeError:\n            return False\n        if in_counts != out_counts:\n            return False\n        for i, person in enumerate(result):\n            if not isinstance(person, list) or len(person) != 2:\n                return False\n            h, k = person\n            if not isinstance(h, int) or not isinstance(k, int):\n                return False\n            if k < 0 or k >= len(result):\n                return False\n            taller_or_equal = sum(1 for prev in result[:i] if prev[0] >= h)\n            if taller_or_equal != k:\n                return False\n        return True\n"
+      }
+    },
+    "seed": 406,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                2
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                7,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                1
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                7,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                2
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                9,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                1
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                8,
+                2
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                6,
+                4
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                1
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                98,
+                3
+              ],
+              [
+                100,
+                0
+              ],
+              [
+                99,
+                2
+              ],
+              [
+                100,
+                1
+              ],
+              [
+                98,
+                4
+              ],
+              [
+                98,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                1
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                4
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                4,
+                5
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                5
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                7,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                1
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                5,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                8,
+                2
+              ],
+              [
+                8,
+                1
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                7,
+                5
+              ],
+              [
+                7,
+                4
+              ],
+              [
+                8,
+                3
+              ],
+              [
+                6,
+                6
+              ],
+              [
+                9,
+                1
+              ],
+              [
+                8,
+                2
+              ],
+              [
+                9,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                2
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                4,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                11,
+                0
+              ],
+              [
+                8,
+                5
+              ],
+              [
+                8,
+                6
+              ],
+              [
+                9,
+                3
+              ],
+              [
+                8,
+                7
+              ],
+              [
+                11,
+                1
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                10,
+                2
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                4
+              ],
+              [
+                8,
+                5
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                10,
+                2
+              ],
+              [
+                7,
+                6
+              ],
+              [
+                10,
+                1
+              ],
+              [
+                9,
+                3
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                7,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                1
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                4,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                4
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                7,
+                2
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                8,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                12,
+                0
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                12,
+                2
+              ],
+              [
+                11,
+                3
+              ],
+              [
+                12,
+                1
+              ],
+              [
+                9,
+                8
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                9,
+                6
+              ],
+              [
+                9,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                5,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                8
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                7,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                18,
+                3
+              ],
+              [
+                18,
+                4
+              ],
+              [
+                20,
+                1
+              ],
+              [
+                17,
+                6
+              ],
+              [
+                18,
+                5
+              ],
+              [
+                19,
+                2
+              ],
+              [
+                16,
+                7
+              ],
+              [
+                20,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                0
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                8
+              ],
+              [
+                2,
+                6
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                6,
+                3
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                7,
+                2
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                9,
+                0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                6
+              ],
+              [
+                13,
+                3
+              ],
+              [
+                11,
+                5
+              ],
+              [
+                12,
+                4
+              ],
+              [
+                15,
+                0
+              ],
+              [
+                15,
+                1
+              ],
+              [
+                9,
+                8
+              ],
+              [
+                14,
+                2
+              ],
+              [
+                10,
+                7
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "name": "case_36",
+        "in": {
+          "people": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                7
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                9
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                1,
+                8
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                6
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[5, 2], [6, 2], [7, 1], [5, 4], [4, 1], [7, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[5, 1], [4, 2], [6, 0], [3, 3], [1, 5], [2, 4]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[5, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[5, 0], [5, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[5, 0], [5, 2], [5, 1]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[8, 1], [7, 3], [8, 0], [7, 2]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[7, 2], [6, 4], [6, 3], [7, 1], [9, 0]]}",
+      "output": ""
+    },
+    {
+      "input": "people = {\"elemType\": \"int\", \"value\": [[9, 1], [5, 5], [4, 6], [10, 0], [8, 2], [7, 3], [6, 4]]}",
+      "output": ""
+    }
+  ]
+}

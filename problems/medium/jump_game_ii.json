@@ -1,0 +1,777 @@
+{
+  "id": "jump_game_ii",
+  "title": "Jump Game II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "description": "<p>You are given a <strong>0-indexed</strong> array of integers <code>nums</code> of length <code>n</code>. You are initially positioned at&nbsp;index 0.</p>\n\n<p>Each element <code>nums[i]</code> represents the maximum length of a forward jump from index <code>i</code>. In other words, if you are at index <code>i</code>, you can jump to any index <code>(i + j)</code>&nbsp;where:</p>\n\n<ul>\n\t<li><code>0 &lt;= j &lt;= nums[i]</code> and</li>\n\t<li><code>i + j &lt; n</code></li>\n</ul>\n\n<p>Return <em>the minimum number of jumps to reach index </em><code>n - 1</code>. The test cases are generated such that you can reach index&nbsp;<code>n - 1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,3,1,1,4]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,3,0,1,4]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li>It&#39;s guaranteed that you can reach <code>nums[n - 1]</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Jump Game II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 104",
+    "0 <= nums[i] <= 1000",
+    "It's guaranteed that you can reach nums[n - 1]."
+  ],
+  "hints": [],
+  "method": {
+    "name": "jump",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 45,
+      "title": "jump-game-ii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().jump({nums})",
+        "rust": "Solution::jump({nums})",
+        "python3": "Solution().jump({nums})",
+        "python2": "Solution().jump({nums})",
+        "ruby": "jump({nums})",
+        "java": "new Solution().jump({nums})",
+        "csharp": "new Solution().Jump({nums})",
+        "kotlin": "Solution().jump({nums})",
+        "go": "jump({nums})",
+        "dart": "Solution().jump({nums})",
+        "swift": "Solution().jump({nums})",
+        "typescript": "jump({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().jump(nums, {result})",
+        "checker": "class Checker:\n    def jump(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        n = len(nums)\n        if n <= 1:\n            return result == 0\n        jumps = 0\n        curr_end = 0\n        max_reach = 0\n        for i in range(n - 1):\n            if i > max_reach:\n                return False\n            max_reach = max(max_reach, i + nums[i])\n            if i == curr_end:\n                jumps += 1\n                curr_end = max_reach\n                if curr_end >= n - 1:\n                    break\n        return result == jumps\n"
+      }
+    },
+    "seed": 45,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "nums": [
+            2,
+            3,
+            1,
+            1,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "nums": [
+            2,
+            3,
+            0,
+            1,
+            4
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Single element",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "Two elements one jump",
+        "in": {
+          "nums": [
+            1,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "Two elements direct reach",
+        "in": {
+          "nums": [
+            2,
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "Need three jumps",
+        "in": {
+          "nums": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "Greedy beat local choice",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Classic unreachable-pattern-but-reachable",
+        "in": {
+          "nums": [
+            2,
+            3,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "Short chain",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "Zero in middle",
+        "in": {
+          "nums": [
+            2,
+            0,
+            2,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Longer mixed",
+        "in": {
+          "nums": [
+            3,
+            4,
+            2,
+            1,
+            0,
+            2,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "All ones length seven",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "Large first jump then stop",
+        "in": {
+          "nums": [
+            6,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "Boundary with zero tail",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Jump around zero",
+        "in": {
+          "nums": [
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Alternating reachable",
+        "in": {
+          "nums": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "Larger first frontier",
+        "in": {
+          "nums": [
+            4,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Two-step with prefix zero",
+        "in": {
+          "nums": [
+            1,
+            4,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Wide jumps",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Deep but reachable",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "Example-like with dead branch",
+        "in": {
+          "nums": [
+            2,
+            5,
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Ten ones",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "One big leap",
+        "in": {
+          "nums": [
+            10,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "Midrange mix 1",
+        "in": {
+          "nums": [
+            2,
+            4,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "Midrange mix 2",
+        "in": {
+          "nums": [
+            1,
+            4,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "Midrange mix 3",
+        "in": {
+          "nums": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "Midrange mix 4",
+        "in": {
+          "nums": [
+            2,
+            3,
+            1,
+            1,
+            4,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "Seven-ish chain",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "Front-loaded reach",
+        "in": {
+          "nums": [
+            4,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "Alternating short jumps",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "Example with long final reach",
+        "in": {
+          "nums": [
+            3,
+            0,
+            8,
+            2,
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Large first jump to tail",
+        "in": {
+          "nums": [
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "Short with zeros",
+        "in": {
+          "nums": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "Near-max all ones",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 90
+      },
+      {
+        "name": "Near-max direct reach",
+        "in": {
+          "nums": [
+            1000,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [2, 3, 1, 1, 4]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 3, 0, 1, 4]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 1, 1, 1, 1]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 3, 1]",
+      "output": "1"
+    }
+  ]
+}

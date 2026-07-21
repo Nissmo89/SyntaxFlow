@@ -1,0 +1,355 @@
+{
+  "id": "number_complement",
+  "title": "Number Complement",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "description": "<p>The <strong>complement</strong> of an integer is the integer you get when you flip all the <code>0</code>'s to <code>1</code>'s and all the <code>1</code>'s to <code>0</code>'s in its binary representation.</p> <ul> <li>For example, The integer <code>5</code> is <code>\"101\"</code> in binary and its <strong>complement</strong> is <code>\"010\"</code> which is the integer <code>2</code>.</li> </ul> <p>Given an integer <code>num</code>, return <em>its complement</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> num = 5\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> num = 1\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= num &lt; 2<sup>31</sup></code></li> </ul> <p> </p> <p><strong>Note:</strong> This question is the same as 1009: <a href=\"https://leetcode.com/problems/complement-of-base-10-integer/\" target=\"_blank\">https://leetcode.com/problems/complement-of-base-10-integer/</a></p>",
+  "hints": [],
+  "method": {
+    "name": "findComplement",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 476,
+      "title": "number-complement",
+      "params": {
+        "num": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().findComplement({num})",
+        "rust": "Solution::find_complement({num})",
+        "python3": "Solution().findComplement({num})",
+        "python2": "Solution().findComplement({num})",
+        "ruby": "find_complement({num})",
+        "java": "new Solution().findComplement({num})",
+        "csharp": "new Solution().FindComplement({num})",
+        "kotlin": "Solution().findComplement({num})",
+        "go": "findComplement({num})",
+        "dart": "Solution().findComplement({num})",
+        "swift": "Solution().findComplement({num})",
+        "typescript": "findComplement({num})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(num, {result})",
+        "checker": "class Checker:\n    def check(self, num, result):\n        if not isinstance(num, int) or not isinstance(result, int):\n            return False\n        if num < 1 or num >= 2 ** 31:\n            return False\n        bit = 1\n        curr = num\n        expected = num\n        while curr > 0:\n            expected ^= bit\n            bit <<= 1\n            curr >>= 1\n        return expected == result\n"
+      }
+    },
+    "seed": 476,
+    "tests": [
+      {
+        "name": "example 1",
+        "in": {
+          "num": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "example 2",
+        "in": {
+          "num": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "minimum",
+        "in": {
+          "num": 1
+        },
+        "out": 0
+      },
+      {
+        "name": "two",
+        "in": {
+          "num": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "three",
+        "in": {
+          "num": 3
+        },
+        "out": 0
+      },
+      {
+        "name": "four",
+        "in": {
+          "num": 4
+        },
+        "out": 3
+      },
+      {
+        "name": "six",
+        "in": {
+          "num": 6
+        },
+        "out": 1
+      },
+      {
+        "name": "seven",
+        "in": {
+          "num": 7
+        },
+        "out": 0
+      },
+      {
+        "name": "eight",
+        "in": {
+          "num": 8
+        },
+        "out": 7
+      },
+      {
+        "name": "nine",
+        "in": {
+          "num": 9
+        },
+        "out": 6
+      },
+      {
+        "name": "ten",
+        "in": {
+          "num": 10
+        },
+        "out": 5
+      },
+      {
+        "name": "fifteen",
+        "in": {
+          "num": 15
+        },
+        "out": 0
+      },
+      {
+        "name": "sixteen",
+        "in": {
+          "num": 16
+        },
+        "out": 15
+      },
+      {
+        "name": "seventeen",
+        "in": {
+          "num": 17
+        },
+        "out": 14
+      },
+      {
+        "name": "thirty-one",
+        "in": {
+          "num": 31
+        },
+        "out": 0
+      },
+      {
+        "name": "thirty-two",
+        "in": {
+          "num": 32
+        },
+        "out": 31
+      },
+      {
+        "name": "thirty-three",
+        "in": {
+          "num": 33
+        },
+        "out": 30
+      },
+      {
+        "name": "sixty-three",
+        "in": {
+          "num": 63
+        },
+        "out": 0
+      },
+      {
+        "name": "sixty-four",
+        "in": {
+          "num": 64
+        },
+        "out": 63
+      },
+      {
+        "name": "sixty-five",
+        "in": {
+          "num": 65
+        },
+        "out": 62
+      },
+      {
+        "name": "one-twenty-seven",
+        "in": {
+          "num": 127
+        },
+        "out": 0
+      },
+      {
+        "name": "one-twenty-eight",
+        "in": {
+          "num": 128
+        },
+        "out": 127
+      },
+      {
+        "name": "one-twenty-nine",
+        "in": {
+          "num": 129
+        },
+        "out": 126
+      },
+      {
+        "name": "two-fifty-five",
+        "in": {
+          "num": 255
+        },
+        "out": 0
+      },
+      {
+        "name": "two-fifty-six",
+        "in": {
+          "num": 256
+        },
+        "out": 255
+      },
+      {
+        "name": "two-fifty-seven",
+        "in": {
+          "num": 257
+        },
+        "out": 254
+      },
+      {
+        "name": "five-eleven",
+        "in": {
+          "num": 511
+        },
+        "out": 0
+      },
+      {
+        "name": "five-twelve",
+        "in": {
+          "num": 512
+        },
+        "out": 511
+      },
+      {
+        "name": "one-zero-two-three",
+        "in": {
+          "num": 1023
+        },
+        "out": 0
+      },
+      {
+        "name": "one-zero-two-four",
+        "in": {
+          "num": 1024
+        },
+        "out": 1023
+      },
+      {
+        "name": "two-zero-four-seven",
+        "in": {
+          "num": 2047
+        },
+        "out": 0
+      },
+      {
+        "name": "four-zero-nine-five",
+        "in": {
+          "num": 4095
+        },
+        "out": 0
+      },
+      {
+        "name": "eight-one-nine-one",
+        "in": {
+          "num": 8191
+        },
+        "out": 0
+      },
+      {
+        "name": "max-15-bit",
+        "in": {
+          "num": 16383
+        },
+        "out": 0
+      },
+      {
+        "name": "max-16-bit",
+        "in": {
+          "num": 32767
+        },
+        "out": 0
+      },
+      {
+        "name": "sixty-five-thousand-five-hundred-thirty-five",
+        "in": {
+          "num": 65535
+        },
+        "out": 0
+      },
+      {
+        "name": "max-31-bit",
+        "in": {
+          "num": 2147483647
+        },
+        "out": 0
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "num = 5",
+      "output": "2"
+    },
+    {
+      "input": "num = 1",
+      "output": "0"
+    },
+    {
+      "input": "num = 1",
+      "output": "0"
+    },
+    {
+      "input": "num = 2",
+      "output": "1"
+    },
+    {
+      "input": "num = 3",
+      "output": "0"
+    },
+    {
+      "input": "num = 4",
+      "output": "3"
+    },
+    {
+      "input": "num = 6",
+      "output": "1"
+    },
+    {
+      "input": "num = 7",
+      "output": "0"
+    }
+  ]
+}

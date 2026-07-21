@@ -1,0 +1,373 @@
+{
+  "id": "bulb_switcher",
+  "title": "Bulb Switcher",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Brainteaser"
+  ],
+  "description": "<p>There are <code>n</code> bulbs that are initially off. You first turn on all the bulbs, then&nbsp;you turn off every second bulb.</p>\n\n<p>On the third round, you toggle every third bulb (turning on if it&#39;s off or turning off if it&#39;s on). For the <code>i<sup>th</sup></code> round, you toggle every <code>i</code> bulb. For the <code>n<sup>th</sup></code> round, you only toggle the last bulb.</p>\n\n<p>Return <em>the number of bulbs that are on after <code>n</code> rounds</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/11/05/bulb.jpg\" style=\"width: 421px; height: 321px;\" />\n<pre>\n<strong>Input:</strong> n = 3\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> At first, the three bulbs are [off, off, off].\nAfter the first round, the three bulbs are [on, on, on].\nAfter the second round, the three bulbs are [on, off, on].\nAfter the third round, the three bulbs are [on, off, off]. \nSo you should return 1 because there is only one bulb is on.</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 0\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Bulb Switcher' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= n <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "bulbSwitch",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 319,
+      "title": "bulb-switcher",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().bulbSwitch({n})",
+        "rust": "Solution::bulb_switch({n})",
+        "python3": "Solution().bulbSwitch({n})",
+        "python2": "Solution().bulbSwitch({n})",
+        "ruby": "bulb_switch({n})",
+        "java": "new Solution().bulbSwitch({n})",
+        "csharp": "new Solution().BulbSwitch({n})",
+        "kotlin": "Solution().bulbSwitch({n})",
+        "go": "bulbSwitch({n})",
+        "dart": "Solution().bulbSwitch({n})",
+        "swift": "Solution().bulbSwitch({n})",
+        "typescript": "bulbSwitch({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 100,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, {result})",
+        "checker": "from typing import Any\nfrom math import isqrt\n\nclass Checker:\n    def check(self, n: Any, result: Any) -> bool:\n        if not isinstance(n, int) or not isinstance(result, int):\n            return False\n        if n < 0:\n            return False\n        expected = isqrt(n)\n        return result == expected\n"
+      }
+    },
+    "seed": 319319,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "n": 3
+        },
+        "out": 1
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "n": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "t04",
+        "in": {
+          "n": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "t05",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "t06",
+        "in": {
+          "n": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "t07",
+        "in": {
+          "n": 8
+        },
+        "out": 2
+      },
+      {
+        "name": "t08",
+        "in": {
+          "n": 9
+        },
+        "out": 3
+      },
+      {
+        "name": "t09",
+        "in": {
+          "n": 15
+        },
+        "out": 3
+      },
+      {
+        "name": "t10",
+        "in": {
+          "n": 16
+        },
+        "out": 4
+      },
+      {
+        "name": "t11",
+        "in": {
+          "n": 24
+        },
+        "out": 4
+      },
+      {
+        "name": "t12",
+        "in": {
+          "n": 25
+        },
+        "out": 5
+      },
+      {
+        "name": "t13",
+        "in": {
+          "n": 35
+        },
+        "out": 5
+      },
+      {
+        "name": "t14",
+        "in": {
+          "n": 36
+        },
+        "out": 6
+      },
+      {
+        "name": "t15",
+        "in": {
+          "n": 48
+        },
+        "out": 6
+      },
+      {
+        "name": "t16",
+        "in": {
+          "n": 49
+        },
+        "out": 7
+      },
+      {
+        "name": "t17",
+        "in": {
+          "n": 63
+        },
+        "out": 7
+      },
+      {
+        "name": "t18",
+        "in": {
+          "n": 64
+        },
+        "out": 8
+      },
+      {
+        "name": "t19",
+        "in": {
+          "n": 80
+        },
+        "out": 8
+      },
+      {
+        "name": "t20",
+        "in": {
+          "n": 81
+        },
+        "out": 9
+      },
+      {
+        "name": "t21",
+        "in": {
+          "n": 99
+        },
+        "out": 9
+      },
+      {
+        "name": "t22",
+        "in": {
+          "n": 100
+        },
+        "out": 10
+      },
+      {
+        "name": "t23",
+        "in": {
+          "n": 120
+        },
+        "out": 10
+      },
+      {
+        "name": "t24",
+        "in": {
+          "n": 121
+        },
+        "out": 11
+      },
+      {
+        "name": "t25",
+        "in": {
+          "n": 143
+        },
+        "out": 11
+      },
+      {
+        "name": "t26",
+        "in": {
+          "n": 144
+        },
+        "out": 12
+      },
+      {
+        "name": "t27",
+        "in": {
+          "n": 255
+        },
+        "out": 15
+      },
+      {
+        "name": "t28",
+        "in": {
+          "n": 256
+        },
+        "out": 16
+      },
+      {
+        "name": "t29",
+        "in": {
+          "n": 1000
+        },
+        "out": 31
+      },
+      {
+        "name": "t30",
+        "in": {
+          "n": 1000000
+        },
+        "out": 1000
+      },
+      {
+        "name": "t31",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 999999990,
+            "max": 1000000000
+          }
+        }
+      },
+      {
+        "name": "t32",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 2147395590,
+            "max": 2147395600
+          }
+        }
+      },
+      {
+        "name": "t33",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 2147483637,
+            "max": 2147483647
+          }
+        }
+      },
+      {
+        "name": "t34",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 10
+          }
+        }
+      },
+      {
+        "name": "t35",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 100,
+            "max": 200
+          }
+        }
+      },
+      {
+        "name": "t36",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1000000,
+            "max": 1000100
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3",
+      "output": "1"
+    },
+    {
+      "input": "n = 0",
+      "output": "0"
+    },
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "1"
+    },
+    {
+      "input": "n = 4",
+      "output": "2"
+    },
+    {
+      "input": "n = 5",
+      "output": "2"
+    },
+    {
+      "input": "n = 8",
+      "output": "2"
+    },
+    {
+      "input": "n = 9",
+      "output": "3"
+    }
+  ]
+}

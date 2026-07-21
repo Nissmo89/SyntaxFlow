@@ -1,0 +1,715 @@
+{
+  "id": "rectangle_area",
+  "title": "Rectangle Area",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Geometry"
+  ],
+  "description": "<p>Given the coordinates of two <strong>rectilinear</strong> rectangles in a 2D plane, return <em>the total area covered by the two rectangles</em>.</p>\n\n<p>The first rectangle is defined by its <strong>bottom-left</strong> corner <code>(ax1, ay1)</code> and its <strong>top-right</strong> corner <code>(ax2, ay2)</code>.</p>\n\n<p>The second rectangle is defined by its <strong>bottom-left</strong> corner <code>(bx1, by1)</code> and its <strong>top-right</strong> corner <code>(bx2, by2)</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"Rectangle Area\" src=\"https://assets.leetcode.com/uploads/2021/05/08/rectangle-plane.png\" style=\"width: 700px; height: 365px;\" />\n<pre>\n<strong>Input:</strong> ax1 = -3, ay1 = 0, ax2 = 3, ay2 = 4, bx1 = 0, by1 = -1, bx2 = 9, by2 = 2\n<strong>Output:</strong> 45\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> ax1 = -2, ay1 = -2, ax2 = 2, ay2 = 2, bx1 = -2, by1 = -2, bx2 = 2, by2 = 2\n<strong>Output:</strong> 16\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-10<sup>4</sup> &lt;= ax1 &lt;= ax2 &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= ay1 &lt;= ay2 &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= bx1 &lt;= bx2 &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= by1 &lt;= by2 &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Rectangle Area' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "-104 <= ax1 <= ax2 <= 104",
+    "-104 <= ay1 <= ay2 <= 104",
+    "-104 <= bx1 <= bx2 <= 104",
+    "-104 <= by1 <= by2 <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "computeArea",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "ax1",
+        "type": "int"
+      },
+      {
+        "name": "ay1",
+        "type": "int"
+      },
+      {
+        "name": "ax2",
+        "type": "int"
+      },
+      {
+        "name": "ay2",
+        "type": "int"
+      },
+      {
+        "name": "bx1",
+        "type": "int"
+      },
+      {
+        "name": "by1",
+        "type": "int"
+      },
+      {
+        "name": "bx2",
+        "type": "int"
+      },
+      {
+        "name": "by2",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 223,
+      "title": "rectangle-area",
+      "params": {
+        "ax1": {
+          "type": "int"
+        },
+        "ay1": {
+          "type": "int"
+        },
+        "ax2": {
+          "type": "int"
+        },
+        "ay2": {
+          "type": "int"
+        },
+        "bx1": {
+          "type": "int"
+        },
+        "by1": {
+          "type": "int"
+        },
+        "bx2": {
+          "type": "int"
+        },
+        "by2": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "rust": "Solution::compute_area({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "python3": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "python2": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "ruby": "compute_area({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "java": "new Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "csharp": "new Solution().ComputeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "kotlin": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "go": "computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "dart": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "swift": "Solution().computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})",
+        "typescript": "computeArea({ax1}, {ay1}, {ax2}, {ay2}, {bx1}, {by1}, {bx2}, {by2})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().computeArea(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, result)",
+        "checker": "class Checker:\n    def computeArea(self, ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, result):\n        area1 = (ax2 - ax1) * (ay2 - ay1)\n        area2 = (bx2 - bx1) * (by2 - by1)\n        overlap_width = max(0, min(ax2, bx2) - max(ax1, bx1))\n        overlap_height = max(0, min(ay2, by2) - max(ay1, by1))\n        expected = area1 + area2 - overlap_width * overlap_height\n        return result == expected\n"
+      }
+    },
+    "seed": 223,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "ax1": -3,
+          "ay1": 0,
+          "ax2": 3,
+          "ay2": 4,
+          "bx1": 0,
+          "by1": -1,
+          "bx2": 9,
+          "by2": 2
+        },
+        "out": 45
+      },
+      {
+        "name": "example2",
+        "in": {
+          "ax1": -2,
+          "ay1": -2,
+          "ax2": 2,
+          "ay2": 2,
+          "bx1": -2,
+          "by1": -2,
+          "bx2": 2,
+          "by2": 2
+        },
+        "out": 16
+      },
+      {
+        "name": "disjoint_horizontal",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 2,
+          "ay2": 2,
+          "bx1": 3,
+          "by1": 0,
+          "bx2": 5,
+          "by2": 2
+        },
+        "out": 8
+      },
+      {
+        "name": "disjoint_vertical",
+        "in": {
+          "ax1": -4,
+          "ay1": -1,
+          "ax2": -1,
+          "ay2": 1,
+          "bx1": 1,
+          "by1": -2,
+          "bx2": 4,
+          "by2": 3
+        },
+        "out": 21
+      },
+      {
+        "name": "touch_edge_x",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 2,
+          "ay2": 3,
+          "bx1": 2,
+          "by1": 1,
+          "bx2": 5,
+          "by2": 4
+        },
+        "out": 15
+      },
+      {
+        "name": "touch_edge_y",
+        "in": {
+          "ax1": -3,
+          "ay1": -3,
+          "ax2": 1,
+          "ay2": 0,
+          "bx1": -1,
+          "by1": 0,
+          "bx2": 4,
+          "by2": 2
+        },
+        "out": 22
+      },
+      {
+        "name": "touch_corner",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 2,
+          "ay2": 2,
+          "bx1": 2,
+          "by1": 2,
+          "bx2": 4,
+          "by2": 5
+        },
+        "out": 10
+      },
+      {
+        "name": "contained_second_inside_first",
+        "in": {
+          "ax1": -5,
+          "ay1": -5,
+          "ax2": 5,
+          "ay2": 5,
+          "bx1": -2,
+          "by1": -1,
+          "bx2": 1,
+          "by2": 2
+        },
+        "out": 100
+      },
+      {
+        "name": "contained_first_inside_second",
+        "in": {
+          "ax1": -1,
+          "ay1": -1,
+          "ax2": 1,
+          "ay2": 1,
+          "bx1": -5,
+          "by1": -6,
+          "bx2": 7,
+          "by2": 8
+        },
+        "out": 168
+      },
+      {
+        "name": "identical_small",
+        "in": {
+          "ax1": 1,
+          "ay1": 1,
+          "ax2": 4,
+          "ay2": 6,
+          "bx1": 1,
+          "by1": 1,
+          "bx2": 4,
+          "by2": 6
+        },
+        "out": 15
+      },
+      {
+        "name": "zero_area_first",
+        "in": {
+          "ax1": 3,
+          "ay1": 7,
+          "ax2": 3,
+          "ay2": 10,
+          "bx1": 0,
+          "by1": 0,
+          "bx2": 2,
+          "by2": 2
+        },
+        "out": 4
+      },
+      {
+        "name": "zero_area_second",
+        "in": {
+          "ax1": -2,
+          "ay1": -2,
+          "ax2": 4,
+          "ay2": 1,
+          "bx1": 5,
+          "by1": 5,
+          "bx2": 5,
+          "by2": 9
+        },
+        "out": 18
+      },
+      {
+        "name": "both_zero_area",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 0,
+          "ay2": 0,
+          "bx1": -1,
+          "by1": -1,
+          "bx2": -1,
+          "by2": -1
+        },
+        "out": 0
+      },
+      {
+        "name": "negative_coordinates_overlap",
+        "in": {
+          "ax1": -8,
+          "ay1": -6,
+          "ax2": -1,
+          "ay2": 2,
+          "bx1": -5,
+          "by1": -3,
+          "bx2": 3,
+          "by2": 5
+        },
+        "out": 100
+      },
+      {
+        "name": "overlap_width_only",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 5,
+          "ay2": 2,
+          "bx1": 2,
+          "by1": 3,
+          "bx2": 4,
+          "by2": 6
+        },
+        "out": 16
+      },
+      {
+        "name": "overlap_height_only",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 2,
+          "ay2": 5,
+          "bx1": 3,
+          "by1": 2,
+          "bx2": 6,
+          "by2": 4
+        },
+        "out": 16
+      },
+      {
+        "name": "thin_strip_overlap",
+        "in": {
+          "ax1": -10,
+          "ay1": -1,
+          "ax2": 10,
+          "ay2": 1,
+          "bx1": -5,
+          "by1": 0,
+          "bx2": 5,
+          "by2": 2
+        },
+        "out": 50
+      },
+      {
+        "name": "large_disjoint_low",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": -9990,
+          "ay2": -9990,
+          "bx1": 9990,
+          "by1": 9990,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 200
+      },
+      {
+        "name": "large_disjoint_cross",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": -5000,
+          "ay2": 10000,
+          "bx1": 5000,
+          "by1": -10000,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 200000000
+      },
+      {
+        "name": "large_full_overlap",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": 10000,
+          "ay2": 10000,
+          "bx1": -10000,
+          "by1": -10000,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 400000000
+      },
+      {
+        "name": "large_contained",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": 10000,
+          "ay2": 10000,
+          "bx1": -1,
+          "by1": -1,
+          "bx2": 1,
+          "by2": 1
+        },
+        "out": 400000000
+      },
+      {
+        "name": "touch_at_min_bounds",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": -9999,
+          "ay2": -9999,
+          "bx1": -9999,
+          "by1": -9999,
+          "bx2": -9998,
+          "by2": -9998
+        },
+        "out": 2
+      },
+      {
+        "name": "touch_at_max_bounds",
+        "in": {
+          "ax1": 9998,
+          "ay1": 9998,
+          "ax2": 10000,
+          "ay2": 10000,
+          "bx1": 10000,
+          "by1": 10000,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 4
+      },
+      {
+        "name": "partial_overlap_small",
+        "in": {
+          "ax1": 1,
+          "ay1": 1,
+          "ax2": 6,
+          "ay2": 5,
+          "bx1": 4,
+          "by1": 3,
+          "bx2": 8,
+          "by2": 7
+        },
+        "out": 32
+      },
+      {
+        "name": "partial_overlap_negative_positive",
+        "in": {
+          "ax1": -7,
+          "ay1": -2,
+          "ax2": 0,
+          "ay2": 4,
+          "bx1": -3,
+          "by1": 1,
+          "bx2": 5,
+          "by2": 6
+        },
+        "out": 73
+      },
+      {
+        "name": "shared_left_edge_overlap",
+        "in": {
+          "ax1": -2,
+          "ay1": 0,
+          "ax2": 2,
+          "ay2": 3,
+          "bx1": -2,
+          "by1": 1,
+          "bx2": 1,
+          "by2": 4
+        },
+        "out": 15
+      },
+      {
+        "name": "shared_bottom_edge_overlap",
+        "in": {
+          "ax1": 0,
+          "ay1": -4,
+          "ax2": 5,
+          "ay2": 0,
+          "bx1": 2,
+          "by1": -4,
+          "bx2": 6,
+          "by2": -1
+        },
+        "out": 23
+      },
+      {
+        "name": "one_by_one_squares",
+        "in": {
+          "ax1": 0,
+          "ay1": 0,
+          "ax2": 1,
+          "ay2": 1,
+          "bx1": 1,
+          "by1": 1,
+          "bx2": 2,
+          "by2": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "big_overlap_inside",
+        "in": {
+          "ax1": -100,
+          "ay1": -50,
+          "ax2": 100,
+          "ay2": 50,
+          "bx1": -25,
+          "by1": -25,
+          "bx2": 25,
+          "by2": 25
+        },
+        "out": 20000
+      },
+      {
+        "name": "wide_and_tall",
+        "in": {
+          "ax1": -12,
+          "ay1": -1,
+          "ax2": 8,
+          "ay2": 9,
+          "bx1": -4,
+          "by1": -6,
+          "bx2": 14,
+          "by2": 3
+        },
+        "out": 314
+      },
+      {
+        "name": "vertical_strip_touch",
+        "in": {
+          "ax1": -1,
+          "ay1": -8,
+          "ax2": 1,
+          "ay2": 8,
+          "bx1": 1,
+          "by1": -3,
+          "bx2": 4,
+          "by2": 3
+        },
+        "out": 50
+      },
+      {
+        "name": "nested_touching_border",
+        "in": {
+          "ax1": -6,
+          "ay1": -6,
+          "ax2": 6,
+          "ay2": 6,
+          "bx1": -6,
+          "by1": -2,
+          "bx2": -2,
+          "by2": 2
+        },
+        "out": 144
+      },
+      {
+        "name": "far_apart_large_rects",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": 0,
+          "ay2": 0,
+          "bx1": 1,
+          "by1": 1,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 199980001
+      },
+      {
+        "name": "thin_overlap_strip",
+        "in": {
+          "ax1": -10,
+          "ay1": -10,
+          "ax2": 10,
+          "ay2": 10,
+          "bx1": -10,
+          "by1": 0,
+          "bx2": 10,
+          "by2": 1
+        },
+        "out": 400
+      },
+      {
+        "name": "corner_overlap_large",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": 0,
+          "ay2": 0,
+          "bx1": -1,
+          "by1": -1,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 200020000
+      },
+      {
+        "name": "same_bottom_left_different_sizes",
+        "in": {
+          "ax1": -4,
+          "ay1": -4,
+          "ax2": 2,
+          "ay2": 3,
+          "bx1": -4,
+          "by1": -4,
+          "bx2": 0,
+          "by2": 0
+        },
+        "out": 42
+      },
+      {
+        "name": "same_top_right_different_sizes",
+        "in": {
+          "ax1": -6,
+          "ay1": -1,
+          "ax2": 4,
+          "ay2": 5,
+          "bx1": -2,
+          "by1": 1,
+          "bx2": 4,
+          "by2": 5
+        },
+        "out": 60
+      },
+      {
+        "name": "share_full_horizontal_span",
+        "in": {
+          "ax1": -8,
+          "ay1": -3,
+          "ax2": 8,
+          "ay2": 1,
+          "bx1": -8,
+          "by1": 0,
+          "bx2": 8,
+          "by2": 4
+        },
+        "out": 112
+      },
+      {
+        "name": "share_full_vertical_span",
+        "in": {
+          "ax1": -3,
+          "ay1": -8,
+          "ax2": 1,
+          "ay2": 8,
+          "bx1": 0,
+          "by1": -8,
+          "bx2": 4,
+          "by2": 8
+        },
+        "out": 112
+      },
+      {
+        "name": "maximum_span_thin_overlap",
+        "in": {
+          "ax1": -10000,
+          "ay1": -10000,
+          "ax2": 10000,
+          "ay2": 10000,
+          "bx1": -10000,
+          "by1": 9999,
+          "bx2": 10000,
+          "by2": 10000
+        },
+        "out": 400000000
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "ax1 = -3\nay1 = 0\nax2 = 3\nay2 = 4\nbx1 = 0\nby1 = -1\nbx2 = 9\nby2 = 2",
+      "output": "45"
+    },
+    {
+      "input": "ax1 = -2\nay1 = -2\nax2 = 2\nay2 = 2\nbx1 = -2\nby1 = -2\nbx2 = 2\nby2 = 2",
+      "output": "16"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 2\nay2 = 2\nbx1 = 3\nby1 = 0\nbx2 = 5\nby2 = 2",
+      "output": "8"
+    },
+    {
+      "input": "ax1 = -4\nay1 = -1\nax2 = -1\nay2 = 1\nbx1 = 1\nby1 = -2\nbx2 = 4\nby2 = 3",
+      "output": "21"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 2\nay2 = 3\nbx1 = 2\nby1 = 1\nbx2 = 5\nby2 = 4",
+      "output": "15"
+    },
+    {
+      "input": "ax1 = -3\nay1 = -3\nax2 = 1\nay2 = 0\nbx1 = -1\nby1 = 0\nbx2 = 4\nby2 = 2",
+      "output": "22"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 2\nay2 = 2\nbx1 = 2\nby1 = 2\nbx2 = 4\nby2 = 5",
+      "output": "10"
+    },
+    {
+      "input": "ax1 = -5\nay1 = -5\nax2 = 5\nay2 = 5\nbx1 = -2\nby1 = -1\nbx2 = 1\nby2 = 2",
+      "output": "100"
+    }
+  ]
+}

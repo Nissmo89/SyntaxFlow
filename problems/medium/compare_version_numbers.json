@@ -1,0 +1,412 @@
+{
+  "id": "compare_version_numbers",
+  "title": "Compare Version Numbers",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>Given two <strong>version strings</strong>, <code>version1</code> and <code>version2</code>, compare them. A version string consists of <strong>revisions</strong> separated by dots <code>&#39;.&#39;</code>. The <strong>value of the revision</strong> is its <strong>integer conversion</strong> ignoring leading zeros.</p>\n\n<p>To compare version strings, compare their revision values in <strong>left-to-right order</strong>. If one of the version strings has fewer revisions, treat the missing revision values as <code>0</code>.</p>\n\n<p>Return the following:</p>\n\n<ul>\n\t<li>If <code>version1 &lt; version2</code>, return -1.</li>\n\t<li>If <code>version1 &gt; version2</code>, return 1.</li>\n\t<li>Otherwise, return 0.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">version1 = &quot;1.2&quot;, version2 = &quot;1.10&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>version1&#39;s second revision is &quot;2&quot; and version2&#39;s second revision is &quot;10&quot;: 2 &lt; 10, so version1 &lt; version2.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">version1 = &quot;1.01&quot;, version2 = &quot;1.001&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Ignoring leading zeroes, both &quot;01&quot; and &quot;001&quot; represent the same integer &quot;1&quot;.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">version1 = &quot;1.0&quot;, version2 = &quot;1.0.0.0&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>version1 has less revisions, which means every missing revision are treated as &quot;0&quot;.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= version1.length, version2.length &lt;= 500</code></li>\n\t<li><code>version1</code> and <code>version2</code>&nbsp;only contain digits and <code>&#39;.&#39;</code>.</li>\n\t<li><code>version1</code> and <code>version2</code>&nbsp;<strong>are valid version numbers</strong>.</li>\n\t<li>All the given revisions in&nbsp;<code>version1</code> and <code>version2</code>&nbsp;can be stored in&nbsp;a&nbsp;<strong>32-bit integer</strong>.</li>\n</ul>\n",
+  "task": "Solve the 'Compare Version Numbers' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= version1.length, version2.length <= 500",
+    "version1 and version2\u00a0only contain digits and '.'.",
+    "version1 and version2\u00a0are valid version numbers.",
+    "All the given revisions in\u00a0version1 and version2\u00a0can be stored in\u00a0a\u00a032-bit integer."
+  ],
+  "hints": [
+    "You can use two pointers for each version string to traverse them together while comparing the corresponding segments.",
+    "Utilize the substring method to extract each version segment delimited by '.'. Ensure you're extracting the segments correctly by adjusting the start and end indices accordingly."
+  ],
+  "method": {
+    "name": "compareVersion",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "version1",
+        "type": "string"
+      },
+      {
+        "name": "version2",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 165,
+      "title": "compare-version-numbers",
+      "params": {
+        "version1": {
+          "type": "string"
+        },
+        "version2": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().compareVersion({version1}, {version2})",
+        "rust": "Solution::compare_version({version1}, {version2})",
+        "python3": "Solution().compareVersion({version1}, {version2})",
+        "python2": "Solution().compareVersion({version1}, {version2})",
+        "ruby": "compare_version({version1}, {version2})",
+        "java": "new Solution().compareVersion({version1}, {version2})",
+        "csharp": "new Solution().CompareVersion({version1}, {version2})",
+        "kotlin": "Solution().compareVersion({version1}, {version2})",
+        "go": "compareVersion({version1}, {version2})",
+        "dart": "Solution().compareVersion({version1}, {version2})",
+        "swift": "Solution().compareVersion({version1}, {version2})",
+        "typescript": "compareVersion({version1}, {version2})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().compareVersion(version1, version2, {result})",
+        "checker": "class Checker:\n    def compareVersion(self, version1, version2, result):\n        return result in (-1, 0, 1) and isinstance(result, int)\n"
+      }
+    },
+    "seed": 165,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "version1": "1.2",
+          "version2": "1.10"
+        },
+        "out": -1
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "version1": "1.01",
+          "version2": "1.001"
+        },
+        "out": 0
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "version1": "1.0",
+          "version2": "1.0.0.0"
+        },
+        "out": 0
+      },
+      {
+        "name": "equal_single_revision",
+        "in": {
+          "version1": "7",
+          "version2": "7"
+        },
+        "out": 0
+      },
+      {
+        "name": "single_revision_less",
+        "in": {
+          "version1": "1",
+          "version2": "2"
+        },
+        "out": -1
+      },
+      {
+        "name": "single_revision_greater",
+        "in": {
+          "version1": "10",
+          "version2": "2"
+        },
+        "out": 1
+      },
+      {
+        "name": "trailing_zeros_equal",
+        "in": {
+          "version1": "1.0.0",
+          "version2": "1"
+        },
+        "out": 0
+      },
+      {
+        "name": "trailing_zeros_left_shorter",
+        "in": {
+          "version1": "1.0",
+          "version2": "1.0.0.0.0"
+        },
+        "out": 0
+      },
+      {
+        "name": "trailing_zeros_right_shorter",
+        "in": {
+          "version1": "1.0.0.0",
+          "version2": "1.0"
+        },
+        "out": 0
+      },
+      {
+        "name": "leading_zero_equal",
+        "in": {
+          "version1": "01",
+          "version2": "1"
+        },
+        "out": 0
+      },
+      {
+        "name": "leading_zero_equal_many_digits",
+        "in": {
+          "version1": "00012",
+          "version2": "12"
+        },
+        "out": 0
+      },
+      {
+        "name": "leading_zero_less",
+        "in": {
+          "version1": "001",
+          "version2": "002"
+        },
+        "out": -1
+      },
+      {
+        "name": "leading_zero_greater",
+        "in": {
+          "version1": "010",
+          "version2": "2"
+        },
+        "out": 1
+      },
+      {
+        "name": "revision_length_vs_value",
+        "in": {
+          "version1": "1.0.1",
+          "version2": "1.0.10"
+        },
+        "out": -1
+      },
+      {
+        "name": "second_revision_greater",
+        "in": {
+          "version1": "1.2.3",
+          "version2": "1.2.4"
+        },
+        "out": -1
+      },
+      {
+        "name": "second_revision_smaller",
+        "in": {
+          "version1": "1.3.0",
+          "version2": "1.2.9"
+        },
+        "out": 1
+      },
+      {
+        "name": "compare_after_equal_prefix",
+        "in": {
+          "version1": "1.0.0.1",
+          "version2": "1.0.0.0"
+        },
+        "out": 1
+      },
+      {
+        "name": "compare_after_equal_prefix_reverse",
+        "in": {
+          "version1": "1.0.0.0",
+          "version2": "1.0.0.1"
+        },
+        "out": -1
+      },
+      {
+        "name": "many_revisions_equal",
+        "in": {
+          "version1": "3.4.5.6.7",
+          "version2": "3.4.5.6.7"
+        },
+        "out": 0
+      },
+      {
+        "name": "many_revisions_less",
+        "in": {
+          "version1": "3.4.5.6.7",
+          "version2": "3.4.5.6.8"
+        },
+        "out": -1
+      },
+      {
+        "name": "many_revisions_greater",
+        "in": {
+          "version1": "3.4.5.7.1",
+          "version2": "3.4.5.6.9"
+        },
+        "out": 1
+      },
+      {
+        "name": "different_revision_counts_equal",
+        "in": {
+          "version1": "2.3",
+          "version2": "2.3.0.0.0"
+        },
+        "out": 0
+      },
+      {
+        "name": "different_revision_counts_less",
+        "in": {
+          "version1": "2.3",
+          "version2": "2.3.0.1"
+        },
+        "out": -1
+      },
+      {
+        "name": "different_revision_counts_greater",
+        "in": {
+          "version1": "2.3.0.2",
+          "version2": "2.3"
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_vs_nonzero",
+        "in": {
+          "version1": "0",
+          "version2": "0.0.1"
+        },
+        "out": -1
+      },
+      {
+        "name": "nonzero_vs_zero_padding",
+        "in": {
+          "version1": "0.0.1",
+          "version2": "0"
+        },
+        "out": 1
+      },
+      {
+        "name": "complex_equal_with_leading_zeros",
+        "in": {
+          "version1": "001.0002.00003",
+          "version2": "1.2.3"
+        },
+        "out": 0
+      },
+      {
+        "name": "complex_greater_with_leading_zeros",
+        "in": {
+          "version1": "001.0003.00003",
+          "version2": "1.2.4"
+        },
+        "out": 1
+      },
+      {
+        "name": "long_equal_all_ones",
+        "in": {
+          "version1": "1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1",
+          "version2": "1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1"
+        },
+        "out": 0
+      },
+      {
+        "name": "long_equal_trailing_zeros",
+        "in": {
+          "version1": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0",
+          "version2": "1"
+        },
+        "out": 0
+      },
+      {
+        "name": "long_prefix_less",
+        "in": {
+          "version1": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1",
+          "version2": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2"
+        },
+        "out": -1
+      },
+      {
+        "name": "long_many_leading_zeros_equal",
+        "in": {
+          "version1": "00000000000000000000000000000000000000000000000001.00000000000000000000000000000000000000000000000002",
+          "version2": "1.2"
+        },
+        "out": 0
+      },
+      {
+        "name": "long_many_leading_zeros_less",
+        "in": {
+          "version1": "00000000000000000000000000000000000000000000000001.00000000000000000000000000000000000000000000000002",
+          "version2": "1.3"
+        },
+        "out": -1
+      },
+      {
+        "name": "long_many_leading_zeros_greater",
+        "in": {
+          "version1": "00000000000000000000000000000000000000000000000001.00000000000000000000000000000000000000000000000003",
+          "version2": "1.2"
+        },
+        "out": 1
+      },
+      {
+        "name": "alternating_zero_and_nonzero",
+        "in": {
+          "version1": "1.0.1.0.1.0.1.0",
+          "version2": "1.0.1.0.1.0.1.1"
+        },
+        "out": -1
+      },
+      {
+        "name": "many_revisions_missing_tail_equal",
+        "in": {
+          "version1": "4.5.6.7.8.9.10",
+          "version2": "4.5.6.7.8.9.10.0.0.0"
+        },
+        "out": 0
+      },
+      {
+        "name": "many_revisions_missing_tail_less",
+        "in": {
+          "version1": "4.5.6.7.8.9.10",
+          "version2": "4.5.6.7.8.9.10.0.1"
+        },
+        "out": -1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "version1 = \"1.2\"\nversion2 = \"1.10\"",
+      "output": "-1"
+    },
+    {
+      "input": "version1 = \"1.01\"\nversion2 = \"1.001\"",
+      "output": "0"
+    },
+    {
+      "input": "version1 = \"1.0\"\nversion2 = \"1.0.0.0\"",
+      "output": "0"
+    },
+    {
+      "input": "version1 = \"7\"\nversion2 = \"7\"",
+      "output": "0"
+    },
+    {
+      "input": "version1 = \"1\"\nversion2 = \"2\"",
+      "output": "-1"
+    },
+    {
+      "input": "version1 = \"10\"\nversion2 = \"2\"",
+      "output": "1"
+    },
+    {
+      "input": "version1 = \"1.0.0\"\nversion2 = \"1\"",
+      "output": "0"
+    },
+    {
+      "input": "version1 = \"1.0\"\nversion2 = \"1.0.0.0.0\"",
+      "output": "0"
+    }
+  ]
+}

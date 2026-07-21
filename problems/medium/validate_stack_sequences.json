@@ -1,0 +1,783 @@
+{
+  "id": "validate_stack_sequences",
+  "title": "Validate Stack Sequences",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "description": "<p>Given two integer arrays <code>pushed</code> and <code>popped</code> each with distinct values, return <code>true</code><em> if this could have been the result of a sequence of push and pop operations on an initially empty stack, or </em><code>false</code><em> otherwise.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> pushed = [1,2,3,4,5], popped = [4,5,3,2,1]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We might do the following sequence:\npush(1), push(2), push(3), push(4),\npop() -&gt; 4,\npush(5),\npop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> pushed = [1,2,3,4,5], popped = [4,3,5,1,2]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> 1 cannot be popped before 2.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= pushed.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= pushed[i] &lt;= 1000</code></li>\n\t<li>All the elements of <code>pushed</code> are <strong>unique</strong>.</li>\n\t<li><code>popped.length == pushed.length</code></li>\n\t<li><code>popped</code> is a permutation of <code>pushed</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Validate Stack Sequences' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= pushed.length <= 1000",
+    "0 <= pushed[i] <= 1000",
+    "All the elements of pushed are unique.",
+    "popped.length == pushed.length",
+    "popped is a permutation of pushed."
+  ],
+  "hints": [],
+  "method": {
+    "name": "validateStackSequences",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "pushed",
+        "type": "array"
+      },
+      {
+        "name": "popped",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 946,
+      "title": "validate-stack-sequences",
+      "params": {
+        "pushed": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "popped": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().validateStackSequences({pushed}, {popped})",
+        "rust": "Solution::validate_stack_sequences({pushed}, {popped})",
+        "python3": "Solution().validateStackSequences({pushed}, {popped})",
+        "python2": "Solution().validateStackSequences({pushed}, {popped})",
+        "ruby": "validate_stack_sequences({pushed}, {popped})",
+        "java": "new Solution().validateStackSequences({pushed}, {popped})",
+        "csharp": "new Solution().ValidateStackSequences({pushed}, {popped})",
+        "kotlin": "Solution().validateStackSequences({pushed}, {popped})",
+        "go": "validateStackSequences({pushed}, {popped})",
+        "dart": "Solution().validateStackSequences({pushed}, {popped})",
+        "swift": "Solution().validateStackSequences({pushed}, {popped})",
+        "typescript": "validateStackSequences({pushed}, {popped})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 946,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "popped": [
+            1,
+            2,
+            6,
+            4,
+            7,
+            5,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "pushed": [
+            1,
+            2
+          ],
+          "popped": [
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            4,
+            1,
+            3,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "popped": [
+            5,
+            4,
+            2,
+            8,
+            9,
+            3,
+            6,
+            7,
+            1
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "pushed": [
+            1
+          ],
+          "popped": [
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "pushed": [
+            1
+          ],
+          "popped": [
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            1,
+            2,
+            3
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            3,
+            1,
+            2,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "popped": [
+            2,
+            9,
+            6,
+            1,
+            5,
+            7,
+            3,
+            8,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "popped": [
+            3,
+            2,
+            1,
+            6,
+            5,
+            4,
+            7,
+            8
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            2,
+            3,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "pushed": [
+            1,
+            2
+          ],
+          "popped": [
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "popped": [
+            4,
+            5,
+            2,
+            1,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "popped": [
+            2,
+            3,
+            1,
+            5,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            3,
+            4,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "popped": [
+            5,
+            2,
+            9,
+            1,
+            8,
+            7,
+            3,
+            6,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "popped": [
+            2,
+            4,
+            3,
+            5,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "popped": [
+            7,
+            5,
+            3,
+            2,
+            6,
+            1,
+            4
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "pushed": [
+            1,
+            2
+          ],
+          "popped": [
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "popped": [
+            4,
+            1,
+            2,
+            5,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "popped": [
+            3,
+            2,
+            6,
+            4,
+            8,
+            1,
+            5,
+            7
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "popped": [
+            1,
+            4,
+            5,
+            3,
+            2
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "popped": [
+            1,
+            3,
+            2,
+            5,
+            6,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "popped": [
+            1,
+            4,
+            5,
+            2,
+            7,
+            6,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "pushed": [
+            1
+          ],
+          "popped": [
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            3,
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            4,
+            1,
+            3,
+            2
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            2,
+            3,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "pushed": [
+            1
+          ],
+          "popped": [
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "popped": [
+            4,
+            6,
+            7,
+            5,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            1,
+            3,
+            2,
+            4
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "pushed": [
+            1,
+            2
+          ],
+          "popped": [
+            2,
+            1
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "popped": [
+            2,
+            4,
+            1,
+            3
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "pushed": [
+            1,
+            2,
+            3
+          ],
+          "popped": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "pushed = [1, 2, 3, 4, 5, 6, 7]\npopped = [1, 2, 6, 4, 7, 5, 3]",
+      "output": "false"
+    },
+    {
+      "input": "pushed = [1, 2]\npopped = [2, 1]",
+      "output": "true"
+    },
+    {
+      "input": "pushed = [1, 2, 3, 4]\npopped = [4, 1, 3, 2]",
+      "output": "false"
+    },
+    {
+      "input": "pushed = [1, 2, 3, 4, 5, 6, 7, 8, 9]\npopped = [5, 4, 2, 8, 9, 3, 6, 7, 1]",
+      "output": "false"
+    },
+    {
+      "input": "pushed = [1]\npopped = [1]",
+      "output": "true"
+    },
+    {
+      "input": "pushed = [1]\npopped = [1]",
+      "output": "true"
+    },
+    {
+      "input": "pushed = [1, 2, 3]\npopped = [1, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "pushed = [1, 2, 3, 4]\npopped = [3, 1, 2, 4]",
+      "output": "false"
+    }
+  ]
+}

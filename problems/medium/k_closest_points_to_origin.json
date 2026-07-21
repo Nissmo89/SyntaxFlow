@@ -1,0 +1,870 @@
+{
+  "id": "k_closest_points_to_origin",
+  "title": "K Closest Points to Origin",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Math",
+    "Divide and Conquer",
+    "Geometry",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Quickselect"
+  ],
+  "description": "<p>Given an array of <code>points</code> where <code>points[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> represents a point on the <strong>X-Y</strong> plane and an integer <code>k</code>, return the <code>k</code> closest points to the origin <code>(0, 0)</code>.</p>\n\n<p>The distance between two points on the <strong>X-Y</strong> plane is the Euclidean distance (i.e., <code>&radic;(x<sub>1</sub> - x<sub>2</sub>)<sup>2</sup> + (y<sub>1</sub> - y<sub>2</sub>)<sup>2</sup></code>).</p>\n\n<p>You may return the answer in <strong>any order</strong>. The answer is <strong>guaranteed</strong> to be <strong>unique</strong> (except for the order that it is in).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/03/closestplane1.jpg\" style=\"width: 400px; height: 400px;\" />\n<pre>\n<strong>Input:</strong> points = [[1,3],[-2,2]], k = 1\n<strong>Output:</strong> [[-2,2]]\n<strong>Explanation:</strong>\nThe distance between (1, 3) and the origin is sqrt(10).\nThe distance between (-2, 2) and the origin is sqrt(8).\nSince sqrt(8) &lt; sqrt(10), (-2, 2) is closer to the origin.\nWe only want the closest k = 1 points from the origin, so the answer is just [[-2,2]].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> points = [[3,3],[5,-1],[-2,4]], k = 2\n<strong>Output:</strong> [[3,3],[-2,4]]\n<strong>Explanation:</strong> The answer [[-2,4],[3,3]] would also be accepted.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= k &lt;= points.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'K Closest Points to Origin' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= k <= points.length <= 104",
+    "-104 <= xi, yi <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "kClosest",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "points",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 973,
+      "title": "k-closest-points-to-origin",
+      "params": {
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().kClosest({points}, {k})",
+        "rust": "Solution::k_closest({points}, {k})",
+        "python3": "Solution().kClosest({points}, {k})",
+        "python2": "Solution().kClosest({points}, {k})",
+        "ruby": "k_closest({points}, {k})",
+        "java": "new Solution().kClosest({points}, {k})",
+        "csharp": "new Solution().KClosest({points}, {k})",
+        "kotlin": "Solution().kClosest({points}, {k})",
+        "go": "kClosest({points}, {k})",
+        "dart": "Solution().kClosest({points}, {k})",
+        "swift": "Solution().kClosest({points}, {k})",
+        "typescript": "kClosest({points}, {k})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().kClosest(points, k, {result})",
+        "checker": "class Checker:\n    def kClosest(self, points, k, result):\n        if not isinstance(result, list) or len(result) != k:\n            return False\n        pts = [tuple(p) for p in points]\n        res = [tuple(p) for p in result]\n        counts = {}\n        for p in pts:\n            counts[p] = counts.get(p, 0) + 1\n        for p in res:\n            if counts.get(p, 0) == 0:\n                return False\n            counts[p] -= 1\n        dists = sorted(x * x + y * y for x, y in pts)\n        threshold = dists[k - 1]\n        for x, y in res:\n            if x * x + y * y > threshold:\n                return False\n        strict = sum(1 for x, y in pts if x * x + y * y < threshold)\n        equal = sum(1 for x, y in res if x * x + y * y == threshold)\n        need_equal = k - strict\n        return equal == need_equal\n"
+      }
+    },
+    "seed": 973,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "points": [
+            [
+              0,
+              -1
+            ],
+            [
+              -1,
+              -2
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "points": [
+            [
+              -4,
+              -1
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              -4,
+              -3
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "points": [
+            [
+              3,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "points": [
+            [
+              -3,
+              3
+            ],
+            [
+              -2,
+              -1
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "points": [
+            [
+              3,
+              5
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "points": [
+            [
+              -2,
+              1
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "points": [
+            [
+              -2,
+              -5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              -2,
+              1
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "points": [
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              -2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              -5,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "points": [
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              -5,
+              1
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "points": [
+            [
+              1,
+              -4
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              -3,
+              0
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "points": [
+            [
+              -3,
+              -1
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              -5,
+              2
+            ],
+            [
+              2,
+              -4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              4,
+              -3
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "points": [
+            [
+              3,
+              -5
+            ],
+            [
+              -3,
+              3
+            ],
+            [
+              -3,
+              4
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "points": [
+            [
+              2,
+              5
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "points": [
+            [
+              -4,
+              4
+            ],
+            [
+              -5,
+              -5
+            ],
+            [
+              -5,
+              -2
+            ],
+            [
+              -5,
+              5
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "points": [
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              -3
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "points": [
+            [
+              1,
+              0
+            ],
+            [
+              -4,
+              -5
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "points": [
+            [
+              -3,
+              -1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              -2,
+              -1
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "points": [
+            [
+              3,
+              -3
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "points": [
+            [
+              1,
+              4
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "points": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              -4
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "points": [
+            [
+              -1,
+              1
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -5,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "points": [
+            [
+              -1,
+              -5
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              -2,
+              -2
+            ]
+          ],
+          "k": 3
+        }
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "points": [
+            [
+              5,
+              -2
+            ],
+            [
+              -4,
+              -5
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "points": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              0,
+              -2
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              -4,
+              5
+            ],
+            [
+              -4,
+              -5
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "points": [
+            [
+              -4,
+              -2
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "points": [
+            [
+              4,
+              -2
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "points": [
+            [
+              5,
+              5
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              -4,
+              -3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              -2,
+              -4
+            ],
+            [
+              0,
+              -2
+            ]
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "points": [
+            [
+              -3,
+              -1
+            ],
+            [
+              -4,
+              1
+            ],
+            [
+              -5,
+              -3
+            ]
+          ],
+          "k": 2
+        }
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "points": [
+            [
+              -2,
+              4
+            ],
+            [
+              4,
+              -4
+            ],
+            [
+              0,
+              -4
+            ],
+            [
+              -5,
+              -4
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              -4,
+              -5
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "points": [
+            [
+              -1,
+              -5
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "points": [
+            [
+              4,
+              -4
+            ]
+          ],
+          "k": 1
+        }
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "points": [
+            [
+              -5,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              2,
+              -5
+            ]
+          ],
+          "k": 5
+        }
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "points": [
+            [
+              4,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              -4,
+              0
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          "k": 4
+        }
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "points": [
+            [
+              2,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              2,
+              -4
+            ]
+          ],
+          "k": 5
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "points = [[0, -1], [-1, -2], [0, 5]]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "points = [[-4, -1], [2, -1], [-4, -3]]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "points = [[3, 1], [0, 2]]\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "points = [[-3, 3], [-2, -1]]\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "points = [[3, 5]]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "points = [[-2, 1], [2, 5], [5, 5], [-2, 2]]\nk = 4",
+      "output": ""
+    },
+    {
+      "input": "points = [[-2, -5], [2, 4], [-2, 1]]\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "points = [[4, 4], [3, -2], [3, 4], [-1, -3], [-5, 2], [1, 3]]\nk = 4",
+      "output": ""
+    }
+  ]
+}

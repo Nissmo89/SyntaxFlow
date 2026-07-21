@@ -1,0 +1,405 @@
+{
+  "id": "champagne_tower",
+  "title": "Champagne Tower",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "description": "<p>We stack glasses in a pyramid, where the <strong>first</strong> row has <code>1</code> glass, the <strong>second</strong> row has <code>2</code> glasses, and so on until the 100<sup>th</sup> row.&nbsp; Each glass holds one cup&nbsp;of champagne.</p>\n\n<p>Then, some champagne is poured into the first glass at the top.&nbsp; When the topmost glass is full, any excess liquid poured will fall equally to the glass immediately to the left and right of it.&nbsp; When those glasses become full, any excess champagne will fall equally to the left and right of those glasses, and so on.&nbsp; (A glass at the bottom row has its excess champagne fall on the floor.)</p>\n\n<p>For example, after one cup of champagne is poured, the top most glass is full.&nbsp; After two cups of champagne are poured, the two glasses on the second row are half full.&nbsp; After three cups of champagne are poured, those two cups become full - there are 3 full glasses total now.&nbsp; After four cups of champagne are poured, the third row has the middle glass half full, and the two outside glasses are a quarter full, as pictured below.</p>\n\n<p><img alt=\"\" src=\"https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/09/tower.png\" style=\"height: 241px; width: 350px;\" /></p>\n\n<p>Now after pouring some non-negative integer cups of champagne, return how full the <code>j<sup>th</sup></code> glass in the <code>i<sup>th</sup></code> row is (both <code>i</code> and <code>j</code> are 0-indexed.)</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> poured = 1, query_row = 1, query_glass = 1\n<strong>Output:</strong> 0.00000\n<strong>Explanation:</strong> We poured 1 cup of champange to the top glass of the tower (which is indexed as (0, 0)). There will be no excess liquid so all the glasses under the top glass will remain empty.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> poured = 2, query_row = 1, query_glass = 1\n<strong>Output:</strong> 0.50000\n<strong>Explanation:</strong> We poured 2 cups of champange to the top glass of the tower (which is indexed as (0, 0)). There is one cup of excess liquid. The glass indexed as (1, 0) and the glass indexed as (1, 1) will share the excess liquid equally, and each will get half cup of champange.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> poured = 100000009, query_row = 33, query_glass = 17\n<strong>Output:</strong> 1.00000\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;=&nbsp;poured &lt;= 10<sup>9</sup></code></li>\n\t<li><code>0 &lt;= query_glass &lt;= query_row&nbsp;&lt; 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Champagne Tower' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <=\u00a0poured <= 109",
+    "0 <= query_glass <= query_row\u00a0< 100"
+  ],
+  "hints": [],
+  "method": {
+    "name": "champagneTower",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "poured",
+        "type": "int"
+      },
+      {
+        "name": "query_row",
+        "type": "int"
+      },
+      {
+        "name": "query_glass",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 799,
+      "title": "champagne-tower",
+      "params": {
+        "poured": {
+          "type": "int"
+        },
+        "query_row": {
+          "type": "int"
+        },
+        "query_glass": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "rust": "Solution::champagne_tower({poured}, {query_row}, {query_glass})",
+        "python3": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "python2": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "ruby": "champagne_tower({poured}, {query_row}, {query_glass})",
+        "java": "new Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "csharp": "new Solution().ChampagneTower({poured}, {query_row}, {query_glass})",
+        "kotlin": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "go": "champagneTower({poured}, {query_row}, {query_glass})",
+        "dart": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "swift": "Solution().champagneTower({poured}, {query_row}, {query_glass})",
+        "typescript": "champagneTower({poured}, {query_row}, {query_glass})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(poured, query_row, query_glass, {result})",
+        "checker": "class Checker:\n    def check(self, poured, query_row, query_glass, result):\n        tower = [[0.0] * 102 for _ in range(102)]\n        tower[0][0] = float(poured)\n        for r in range(query_row + 1):\n            for c in range(r + 1):\n                if tower[r][c] > 1.0:\n                    excess = (tower[r][c] - 1.0) / 2.0\n                    tower[r][c] = 1.0\n                    tower[r + 1][c] += excess\n                    tower[r + 1][c + 1] += excess\n        expected = tower[query_row][query_glass]\n        return abs(float(result) - expected) <= 1e-9\n"
+      }
+    },
+    "seed": 799,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "poured": 1,
+          "query_row": 1,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "poured": 2,
+          "query_row": 1,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "poured": 100000009,
+          "query_row": 33,
+          "query_glass": 17
+        }
+      },
+      {
+        "name": "zero_top",
+        "in": {
+          "poured": 0,
+          "query_row": 0,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "one_top",
+        "in": {
+          "poured": 1,
+          "query_row": 0,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "two_rows_left",
+        "in": {
+          "poured": 2,
+          "query_row": 1,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "two_rows_right",
+        "in": {
+          "poured": 2,
+          "query_row": 1,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "three_center_half",
+        "in": {
+          "poured": 4,
+          "query_row": 2,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "three_edge_quarter",
+        "in": {
+          "poured": 4,
+          "query_row": 2,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "small_full_row",
+        "in": {
+          "poured": 3,
+          "query_row": 1,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "small_full_row_right",
+        "in": {
+          "poured": 3,
+          "query_row": 1,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "exact_one_more",
+        "in": {
+          "poured": 5,
+          "query_row": 2,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "exact_three_rows",
+        "in": {
+          "poured": 6,
+          "query_row": 2,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "medium_1",
+        "in": {
+          "poured": 10,
+          "query_row": 3,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "medium_2",
+        "in": {
+          "poured": 10,
+          "query_row": 3,
+          "query_glass": 2
+        }
+      },
+      {
+        "name": "medium_3",
+        "in": {
+          "poured": 25,
+          "query_row": 4,
+          "query_glass": 2
+        }
+      },
+      {
+        "name": "medium_4",
+        "in": {
+          "poured": 25,
+          "query_row": 4,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "medium_5",
+        "in": {
+          "poured": 25,
+          "query_row": 4,
+          "query_glass": 4
+        }
+      },
+      {
+        "name": "medium_6",
+        "in": {
+          "poured": 100,
+          "query_row": 6,
+          "query_glass": 3
+        }
+      },
+      {
+        "name": "medium_7",
+        "in": {
+          "poured": 100,
+          "query_row": 6,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "medium_8",
+        "in": {
+          "poured": 100,
+          "query_row": 6,
+          "query_glass": 6
+        }
+      },
+      {
+        "name": "medium_9",
+        "in": {
+          "poured": 1000,
+          "query_row": 10,
+          "query_glass": 5
+        }
+      },
+      {
+        "name": "medium_10",
+        "in": {
+          "poured": 1000,
+          "query_row": 10,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "medium_11",
+        "in": {
+          "poured": 1000,
+          "query_row": 10,
+          "query_glass": 10
+        }
+      },
+      {
+        "name": "boundary_row_99_left",
+        "in": {
+          "poured": 1000000000,
+          "query_row": 99,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "boundary_row_99_mid",
+        "in": {
+          "poured": 1000000000,
+          "query_row": 99,
+          "query_glass": 50
+        }
+      },
+      {
+        "name": "boundary_row_99_right",
+        "in": {
+          "poured": 1000000000,
+          "query_row": 99,
+          "query_glass": 99
+        }
+      },
+      {
+        "name": "boundary_row_50",
+        "in": {
+          "poured": 123456789,
+          "query_row": 50,
+          "query_glass": 25
+        }
+      },
+      {
+        "name": "boundary_row_50_edge",
+        "in": {
+          "poured": 123456789,
+          "query_row": 50,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "boundary_row_50_right",
+        "in": {
+          "poured": 123456789,
+          "query_row": 50,
+          "query_glass": 50
+        }
+      },
+      {
+        "name": "randomish_1",
+        "in": {
+          "poured": 7,
+          "query_row": 3,
+          "query_glass": 0
+        }
+      },
+      {
+        "name": "randomish_2",
+        "in": {
+          "poured": 7,
+          "query_row": 3,
+          "query_glass": 1
+        }
+      },
+      {
+        "name": "randomish_3",
+        "in": {
+          "poured": 7,
+          "query_row": 3,
+          "query_glass": 2
+        }
+      },
+      {
+        "name": "randomish_4",
+        "in": {
+          "poured": 7,
+          "query_row": 3,
+          "query_glass": 3
+        }
+      },
+      {
+        "name": "randomish_5",
+        "in": {
+          "poured": 50,
+          "query_row": 5,
+          "query_glass": 2
+        }
+      },
+      {
+        "name": "randomish_6",
+        "in": {
+          "poured": 50,
+          "query_row": 5,
+          "query_glass": 5
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "poured = 1\nquery_row = 1\nquery_glass = 1",
+      "output": ""
+    },
+    {
+      "input": "poured = 2\nquery_row = 1\nquery_glass = 1",
+      "output": ""
+    },
+    {
+      "input": "poured = 100000009\nquery_row = 33\nquery_glass = 17",
+      "output": ""
+    },
+    {
+      "input": "poured = 0\nquery_row = 0\nquery_glass = 0",
+      "output": ""
+    },
+    {
+      "input": "poured = 1\nquery_row = 0\nquery_glass = 0",
+      "output": ""
+    },
+    {
+      "input": "poured = 2\nquery_row = 1\nquery_glass = 0",
+      "output": ""
+    },
+    {
+      "input": "poured = 2\nquery_row = 1\nquery_glass = 0",
+      "output": ""
+    },
+    {
+      "input": "poured = 4\nquery_row = 2\nquery_glass = 1",
+      "output": ""
+    }
+  ]
+}

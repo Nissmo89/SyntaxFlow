@@ -1,0 +1,405 @@
+{
+  "id": "bitwise_and_of_numbers_range",
+  "title": "Bitwise AND of Numbers Range",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "description": "<p>Given two integers <code>left</code> and <code>right</code> that represent the range <code>[left, right]</code>, return <em>the bitwise AND of all numbers in this range, inclusive</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> left = 5, right = 7\n<strong>Output:</strong> 4\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> left = 0, right = 0\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> left = 1, right = 2147483647\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= left &lt;= right &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Bitwise AND of Numbers Range' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= left <= right <= 231 - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "rangeBitwiseAnd",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "left",
+        "type": "int"
+      },
+      {
+        "name": "right",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 201,
+      "title": "bitwise-and-of-numbers-range",
+      "params": {
+        "left": {
+          "type": "int"
+        },
+        "right": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().rangeBitwiseAnd({left}, {right})",
+        "rust": "Solution::range_bitwise_and({left}, {right})",
+        "python3": "Solution().rangeBitwiseAnd({left}, {right})",
+        "python2": "Solution().rangeBitwiseAnd({left}, {right})",
+        "ruby": "range_bitwise_and({left}, {right})",
+        "java": "new Solution().rangeBitwiseAnd({left}, {right})",
+        "csharp": "new Solution().RangeBitwiseAnd({left}, {right})",
+        "kotlin": "Solution().rangeBitwiseAnd({left}, {right})",
+        "go": "rangeBitwiseAnd({left}, {right})",
+        "dart": "Solution().rangeBitwiseAnd({left}, {right})",
+        "swift": "Solution().rangeBitwiseAnd({left}, {right})",
+        "typescript": "rangeBitwiseAnd({left}, {right})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().rangeBitwiseAnd(left, right, result)",
+        "checker": "class Checker:\n    def rangeBitwiseAnd(self, left, right, result):\n        shift = 0\n        expected_left = left\n        expected_right = right\n        while expected_left < expected_right:\n            expected_left >>= 1\n            expected_right >>= 1\n            shift += 1\n        expected = expected_left << shift\n        return expected == result\n"
+      }
+    },
+    "seed": 201,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "left": 5,
+          "right": 7
+        },
+        "out": 4
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "left": 0,
+          "right": 0
+        },
+        "out": 0
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "left": 1,
+          "right": 2147483647
+        },
+        "out": 0
+      },
+      {
+        "name": "same-single-1",
+        "in": {
+          "left": 1,
+          "right": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "same-single-2",
+        "in": {
+          "left": 2,
+          "right": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "same-single-3",
+        "in": {
+          "left": 3,
+          "right": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "small-window-1",
+        "in": {
+          "left": 6,
+          "right": 7
+        },
+        "out": 6
+      },
+      {
+        "name": "boundary-cross-1",
+        "in": {
+          "left": 7,
+          "right": 8
+        },
+        "out": 0
+      },
+      {
+        "name": "power-block-1",
+        "in": {
+          "left": 8,
+          "right": 15
+        },
+        "out": 8
+      },
+      {
+        "name": "power-block-2",
+        "in": {
+          "left": 10,
+          "right": 15
+        },
+        "out": 8
+      },
+      {
+        "name": "power-block-3",
+        "in": {
+          "left": 12,
+          "right": 15
+        },
+        "out": 12
+      },
+      {
+        "name": "aligned-boundary-1",
+        "in": {
+          "left": 16,
+          "right": 16
+        },
+        "out": 16
+      },
+      {
+        "name": "aligned-boundary-2",
+        "in": {
+          "left": 16,
+          "right": 17
+        },
+        "out": 16
+      },
+      {
+        "name": "crossing-mid-1",
+        "in": {
+          "left": 17,
+          "right": 31
+        },
+        "out": 16
+      },
+      {
+        "name": "crossing-mid-2",
+        "in": {
+          "left": 24,
+          "right": 31
+        },
+        "out": 24
+      },
+      {
+        "name": "crossing-mid-3",
+        "in": {
+          "left": 32,
+          "right": 63
+        },
+        "out": 32
+      },
+      {
+        "name": "crossing-mid-4",
+        "in": {
+          "left": 63,
+          "right": 64
+        },
+        "out": 0
+      },
+      {
+        "name": "crossing-mid-5",
+        "in": {
+          "left": 64,
+          "right": 127
+        },
+        "out": 64
+      },
+      {
+        "name": "small-random-1",
+        "in": {
+          "left": 100,
+          "right": 123
+        },
+        "out": 96
+      },
+      {
+        "name": "power-two-range-1",
+        "in": {
+          "left": 128,
+          "right": 255
+        },
+        "out": 128
+      },
+      {
+        "name": "power-two-cross-1",
+        "in": {
+          "left": 255,
+          "right": 256
+        },
+        "out": 0
+      },
+      {
+        "name": "power-two-range-2",
+        "in": {
+          "left": 256,
+          "right": 511
+        },
+        "out": 256
+      },
+      {
+        "name": "power-two-range-3",
+        "in": {
+          "left": 512,
+          "right": 1023
+        },
+        "out": 512
+      },
+      {
+        "name": "power-two-cross-2",
+        "in": {
+          "left": 1023,
+          "right": 1024
+        },
+        "out": 0
+      },
+      {
+        "name": "power-two-range-4",
+        "in": {
+          "left": 1024,
+          "right": 2047
+        },
+        "out": 1024
+      },
+      {
+        "name": "exact-large-1",
+        "in": {
+          "left": 12345,
+          "right": 12345
+        },
+        "out": 12345
+      },
+      {
+        "name": "small-span-2",
+        "in": {
+          "left": 12345,
+          "right": 12346
+        },
+        "out": 12344
+      },
+      {
+        "name": "medium-span-1",
+        "in": {
+          "left": 12345,
+          "right": 12399
+        },
+        "out": 12288
+      },
+      {
+        "name": "exact-large-2",
+        "in": {
+          "left": 65535,
+          "right": 65535
+        },
+        "out": 65535
+      },
+      {
+        "name": "power-two-cross-3",
+        "in": {
+          "left": 65535,
+          "right": 65536
+        },
+        "out": 0
+      },
+      {
+        "name": "crossing-17bit",
+        "in": {
+          "left": 65536,
+          "right": 131071
+        },
+        "out": 65536
+      },
+      {
+        "name": "power-two-cross-4",
+        "in": {
+          "left": 1048575,
+          "right": 1048576
+        },
+        "out": 0
+      },
+      {
+        "name": "large-single-1",
+        "in": {
+          "left": 1000000000,
+          "right": 1000000000
+        },
+        "out": 1000000000
+      },
+      {
+        "name": "large-span-1",
+        "in": {
+          "left": 1000000000,
+          "right": 1000000123
+        },
+        "out": 1000000000
+      },
+      {
+        "name": "max-power-single",
+        "in": {
+          "left": 1073741824,
+          "right": 1073741824
+        },
+        "out": 1073741824
+      },
+      {
+        "name": "near-max",
+        "in": {
+          "left": 2147483646,
+          "right": 2147483647
+        },
+        "out": 2147483646
+      },
+      {
+        "name": "full-range",
+        "in": {
+          "left": 1,
+          "right": 2147483647
+        },
+        "out": 0
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "left = 5\nright = 7",
+      "output": "4"
+    },
+    {
+      "input": "left = 0\nright = 0",
+      "output": "0"
+    },
+    {
+      "input": "left = 1\nright = 2147483647",
+      "output": "0"
+    },
+    {
+      "input": "left = 1\nright = 1",
+      "output": "1"
+    },
+    {
+      "input": "left = 2\nright = 2",
+      "output": "2"
+    },
+    {
+      "input": "left = 3\nright = 3",
+      "output": "3"
+    },
+    {
+      "input": "left = 6\nright = 7",
+      "output": "6"
+    },
+    {
+      "input": "left = 7\nright = 8",
+      "output": "0"
+    }
+  ]
+}

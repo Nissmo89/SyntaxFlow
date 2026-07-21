@@ -1,0 +1,578 @@
+{
+  "id": "concatenated_words",
+  "title": "Concatenated Words",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Trie",
+    "Sorting"
+  ],
+  "description": "<p>Given an array of strings <code>words</code> (<strong>without duplicates</strong>), return <em>all the <strong>concatenated words</strong> in the given list of</em> <code>words</code>.</p>\n\n<p>A <strong>concatenated word</strong> is defined as a string that is comprised entirely of at least two shorter words (not necessarily distinct)&nbsp;in the given array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;cat&quot;,&quot;cats&quot;,&quot;catsdogcats&quot;,&quot;dog&quot;,&quot;dogcatsdog&quot;,&quot;hippopotamuses&quot;,&quot;rat&quot;,&quot;ratcatdogcat&quot;]\n<strong>Output:</strong> [&quot;catsdogcats&quot;,&quot;dogcatsdog&quot;,&quot;ratcatdogcat&quot;]\n<strong>Explanation:</strong> &quot;catsdogcats&quot; can be concatenated by &quot;cats&quot;, &quot;dog&quot; and &quot;cats&quot;; \n&quot;dogcatsdog&quot; can be concatenated by &quot;dog&quot;, &quot;cats&quot; and &quot;dog&quot;; \n&quot;ratcatdogcat&quot; can be concatenated by &quot;rat&quot;, &quot;cat&quot;, &quot;dog&quot; and &quot;cat&quot;.</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;cat&quot;,&quot;dog&quot;,&quot;catdog&quot;]\n<strong>Output:</strong> [&quot;catdog&quot;]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 30</code></li>\n\t<li><code>words[i]</code> consists of only lowercase English letters.</li>\n\t<li>All the strings of <code>words</code> are <strong>unique</strong>.</li>\n\t<li><code>1 &lt;= sum(words[i].length) &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Concatenated Words' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= words.length <= 104",
+    "1 <= words[i].length <= 30",
+    "words[i] consists of only lowercase English letters.",
+    "All the strings of words are unique.",
+    "1 <= sum(words[i].length) <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findAllConcatenatedWordsInADict",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 472,
+      "title": "concatenated-words",
+      "params": {
+        "words": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "([&](){ std::vector<std::string> v; std::unordered_set<std::string> seen; std::string cur; for (char ch : {words}) { if (ch == '|') { if (!cur.empty() && !seen.count(cur)) { seen.insert(cur); v.push_back(cur); } cur.clear(); } else { cur.push_back(ch); } } if (!cur.empty() && !seen.count(cur)) { v.push_back(cur); } return Solution().findAllConcatenatedWordsInADict(v); })()",
+        "rust": "({ let mut words_vec: Vec<String> = Vec::new(); let mut seen = std::collections::HashSet::new(); for part in {words}.split(\"|\") { if !part.is_empty() && seen.insert(part.to_string()) { words_vec.push(part.to_string()); } } Solution::find_all_concatenated_words_in_a_dict(words_vec) })",
+        "python3": "Solution().findAllConcatenatedWordsInADict(list(dict.fromkeys([w for w in {words}.split(\"|\") if w])))",
+        "python2": "Solution().findAllConcatenatedWordsInADict((lambda arr: [x for i, x in enumerate(arr) if x and x not in arr[:i]])({words}.split(\"|\")))",
+        "ruby": "find_all_concatenated_words_in_a_dict({words}.split(\"|\").reject(&:empty?).uniq)",
+        "java": "new Solution().findAllConcatenatedWordsInADict(((java.util.function.Function<String, String[]>)(s -> { java.util.ArrayList<String> list = new java.util.ArrayList<>(); java.util.HashSet<String> seen = new java.util.HashSet<>(); for (String w : s.split(\"\\\\|\")) { if (!w.isEmpty() && seen.add(w)) list.add(w); } return list.toArray(new String[0]); })).apply({words}))",
+        "csharp": "new Solution().FindAllConcatenatedWordsInADict(((Func<string, string[]>)(s => { var seen = new HashSet<string>(); var list = new List<string>(); foreach (var w in s.Split('|')) { if (w.Length > 0 && seen.Add(w)) list.Add(w); } return list.ToArray(); }))({words}))",
+        "kotlin": "Solution().findAllConcatenatedWordsInADict(buildList { val seen = hashSetOf<String>(); for (w in {words}.split(\"|\")) if (w.isNotEmpty() && seen.add(w)) add(w) }.toTypedArray())",
+        "go": "(func() []string { seen := map[string]bool{}; words := make([]string, 0); for _, w := range strings.Split({words}, \"|\") { if w != \"\" && !seen[w] { seen[w] = true; words = append(words, w) } }; return findAllConcatenatedWordsInADict(words) })()",
+        "dart": "Solution().findAllConcatenatedWordsInADict(() { final seen = <String>{}; final words = <String>[]; for (final w in {words}.split(\"|\")) { if (w.isNotEmpty && seen.add(w)) words.add(w); } return words; }())",
+        "swift": "Solution().findAllConcatenatedWordsInADict(({ () -> [String] in var seen = Set<String>(); var parsed = [String](); for w in {words}.split(separator: \"|\").map(String.init) { if !w.isEmpty && !seen.contains(w) { seen.insert(w); parsed.append(w) } }; return parsed })())",
+        "typescript": "findAllConcatenatedWordsInADict((() => { const seen = new Set<string>(); const words: string[] = []; for (const w of {words}.split(\"|\")) { if (w.length > 0 && !seen.has(w)) { seen.add(w); words.push(w); } } return words; })())"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findAllConcatenatedWordsInADict(words, {result})",
+        "checker": "class Checker:\n    def _parse_words(self, words):\n        res = []\n        seen = set()\n        for w in words.split(\"|\"):\n            if w and w not in seen:\n                seen.add(w)\n                res.append(w)\n        return res\n\n    def _is_concat(self, word, word_set):\n        if not word_set:\n            return False\n        dp = [False] * (len(word) + 1)\n        dp[0] = True\n        for i in range(1, len(word) + 1):\n            for j in range(i):\n                if dp[j] and word[j:i] in word_set:\n                    dp[i] = True\n                    break\n        if not dp[-1]:\n            return False\n        for i in range(1, len(word)):\n            if dp[i] and word[i:] in word_set:\n                return True\n        return False\n\n    def findAllConcatenatedWordsInADict(self, words, result):\n        words = self._parse_words(words)\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, str) for x in result):\n            return False\n        if len(result) != len(set(result)):\n            return False\n        word_set = set(words)\n        expected = sorted(w for w in words if self._is_concat(w, word_set - {w}))\n        return sorted(result) == expected\n"
+      }
+    },
+    "seed": 472,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "words": "cat|cats|catsdogcats|dog|dogcatsdog|hippopotamuses|rat|ratcatdogcat"
+        },
+        "out": [
+          "catsdogcats",
+          "dogcatsdog",
+          "ratcatdogcat"
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "words": "cat|dog|catdog"
+        },
+        "out": [
+          "catdog"
+        ]
+      },
+      {
+        "name": "single_word",
+        "in": {
+          "words": "a"
+        },
+        "out": []
+      },
+      {
+        "name": "two_words_no_concat",
+        "in": {
+          "words": "ab|cd"
+        },
+        "out": []
+      },
+      {
+        "name": "simple_chain",
+        "in": {
+          "words": "a|b|c|ab|abc|bc|abcd"
+        },
+        "out": [
+          "ab",
+          "abc",
+          "bc"
+        ]
+      },
+      {
+        "name": "repeated_pattern",
+        "in": {
+          "words": "cat|cats|dog|catsdog|dogcat|catdogcats"
+        },
+        "out": [
+          "catsdog",
+          "dogcat",
+          "catdogcats"
+        ]
+      },
+      {
+        "name": "multiple_lengths",
+        "in": {
+          "words": "a|aa|aaa|aaaa|aaaaa|aaaaaa|aaaaaaa"
+        },
+        "out": [
+          "aa",
+          "aaa",
+          "aaaa",
+          "aaaaa",
+          "aaaaaa",
+          "aaaaaaa"
+        ]
+      },
+      {
+        "name": "prefix_only",
+        "in": {
+          "words": "rat|ratcat|ratcatdog|ratcatdogcat|cat|dog"
+        },
+        "out": [
+          "ratcat",
+          "ratcatdog",
+          "ratcatdogcat"
+        ]
+      },
+      {
+        "name": "overlapping_segments",
+        "in": {
+          "words": "ab|abc|cd|abcd|abcabcd|cdab|abcdab"
+        },
+        "out": [
+          "abcd",
+          "abcabcd",
+          "cdab",
+          "abcdab"
+        ]
+      },
+      {
+        "name": "long_word_small_parts",
+        "in": {
+          "words": "a|aa|aaa|aaaa|aaaaaa|aaaaaaaa|aaaaaaaaaaaa"
+        },
+        "out": [
+          "aa",
+          "aaa",
+          "aaaa",
+          "aaaaaa",
+          "aaaaaaaa",
+          "aaaaaaaaaaaa"
+        ]
+      },
+      {
+        "name": "gen_small_1",
+        "seed": 1001,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 20,
+              "max": 35
+            },
+            "alphabet": "abc|"
+          }
+        }
+      },
+      {
+        "name": "gen_small_2",
+        "seed": 1002,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 25,
+              "max": 40
+            },
+            "alphabet": "abcd|"
+          }
+        }
+      },
+      {
+        "name": "gen_small_3",
+        "seed": 1003,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 30,
+              "max": 45
+            },
+            "alphabet": "abcde|"
+          }
+        }
+      },
+      {
+        "name": "gen_small_4",
+        "seed": 1004,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 35,
+              "max": 50
+            },
+            "alphabet": "abcdef|"
+          }
+        }
+      },
+      {
+        "name": "gen_small_5",
+        "seed": 1005,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 40,
+              "max": 55
+            },
+            "alphabet": "abcdefg|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_1",
+        "seed": 2001,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 60,
+              "max": 90
+            },
+            "alphabet": "abcd|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_2",
+        "seed": 2002,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 70,
+              "max": 100
+            },
+            "alphabet": "abcde|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_3",
+        "seed": 2003,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 80,
+              "max": 110
+            },
+            "alphabet": "abcdef|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_4",
+        "seed": 2004,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 90,
+              "max": 120
+            },
+            "alphabet": "abcdefg|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_5",
+        "seed": 2005,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 100,
+              "max": 130
+            },
+            "alphabet": "abcdefgh|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_6",
+        "seed": 2006,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 110,
+              "max": 140
+            },
+            "alphabet": "abcdefghi|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_7",
+        "seed": 2007,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 120,
+              "max": 150
+            },
+            "alphabet": "abcdefghij|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_8",
+        "seed": 2008,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 130,
+              "max": 160
+            },
+            "alphabet": "abcdefghijk|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_9",
+        "seed": 2009,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 140,
+              "max": 170
+            },
+            "alphabet": "abcdefghijkl|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_10",
+        "seed": 2010,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 150,
+              "max": 180
+            },
+            "alphabet": "abcdefghijklm|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_11",
+        "seed": 2011,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 160,
+              "max": 190
+            },
+            "alphabet": "abcdefghijklmn|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_12",
+        "seed": 2012,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 170,
+              "max": 200
+            },
+            "alphabet": "abcdefghijklmno|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_13",
+        "seed": 2013,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 180,
+              "max": 210
+            },
+            "alphabet": "abcdefghijklmnop|"
+          }
+        }
+      },
+      {
+        "name": "oracle_random_14",
+        "seed": 2014,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 190,
+              "max": 220
+            },
+            "alphabet": "abcdefghijklmnopq|"
+          }
+        }
+      },
+      {
+        "name": "oracle_large_1",
+        "seed": 3001,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 800,
+              "max": 1000
+            },
+            "alphabet": "abcde|"
+          }
+        }
+      },
+      {
+        "name": "oracle_large_2",
+        "seed": 3002,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 900,
+              "max": 1100
+            },
+            "alphabet": "abcdef|"
+          }
+        }
+      },
+      {
+        "name": "oracle_large_3",
+        "seed": 3003,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 1000,
+              "max": 1200
+            },
+            "alphabet": "abcdefg|"
+          }
+        }
+      },
+      {
+        "name": "oracle_large_4",
+        "seed": 3004,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 1100,
+              "max": 1300
+            },
+            "alphabet": "abcdefgh|"
+          }
+        }
+      },
+      {
+        "name": "oracle_large_5",
+        "seed": 3005,
+        "in": {
+          "words": {
+            "gen": "str",
+            "len": {
+              "gen": "int",
+              "min": 1200,
+              "max": 1400
+            },
+            "alphabet": "abcdefghi|"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = \"cat|cats|catsdogcats|dog|dogcatsdog|hippopotamuses|rat|ratcatdogcat\"",
+      "output": "[\"catsdogcats\", \"dogcatsdog\", \"ratcatdogcat\"]"
+    },
+    {
+      "input": "words = \"cat|dog|catdog\"",
+      "output": "[\"catdog\"]"
+    },
+    {
+      "input": "words = \"a\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = \"ab|cd\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = \"a|b|c|ab|abc|bc|abcd\"",
+      "output": "[\"ab\", \"abc\", \"bc\"]"
+    },
+    {
+      "input": "words = \"cat|cats|dog|catsdog|dogcat|catdogcats\"",
+      "output": "[\"catsdog\", \"dogcat\", \"catdogcats\"]"
+    },
+    {
+      "input": "words = \"a|aa|aaa|aaaa|aaaaa|aaaaaa|aaaaaaa\"",
+      "output": "[\"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\", \"aaaaaaa\"]"
+    },
+    {
+      "input": "words = \"rat|ratcat|ratcatdog|ratcatdogcat|cat|dog\"",
+      "output": "[\"ratcat\", \"ratcatdog\", \"ratcatdogcat\"]"
+    }
+  ]
+}

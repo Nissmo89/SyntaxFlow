@@ -1,0 +1,389 @@
+{
+  "id": "integer_to_english_words",
+  "title": "Integer to English Words",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "String",
+    "Recursion"
+  ],
+  "description": "<p>Convert a non-negative integer <code>num</code> to its English words representation.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 123\n<strong>Output:</strong> &quot;One Hundred Twenty Three&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 12345\n<strong>Output:</strong> &quot;Twelve Thousand Three Hundred Forty Five&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 1234567\n<strong>Output:</strong> &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= num &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Integer to English Words' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= num <= 231 - 1"
+  ],
+  "hints": [
+    "Did you see a pattern in dividing the number into chunk of words? For example, 123 and 123000.",
+    "Group the number by thousands (3 digits). You can write a helper function that takes a number less than 1000 and convert just that chunk to words.",
+    "There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or 1000010? (middle chunk is zero and should not be printed out)"
+  ],
+  "method": {
+    "name": "numberToWords",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 273,
+      "title": "integer-to-english-words",
+      "params": {
+        "num": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numberToWords({num})",
+        "rust": "Solution::number_to_words({num})",
+        "python3": "Solution().numberToWords({num})",
+        "python2": "Solution().numberToWords({num})",
+        "ruby": "number_to_words({num})",
+        "java": "new Solution().numberToWords({num})",
+        "csharp": "new Solution().NumberToWords({num})",
+        "kotlin": "Solution().numberToWords({num})",
+        "go": "numberToWords({num})",
+        "dart": "Solution().numberToWords({num})",
+        "swift": "Solution().numberToWords({num})",
+        "typescript": "numberToWords({num})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numberToWords(num, {result})",
+        "checker": "class Checker:\n    ones = [\n        \"Zero\",\n        \"One\",\n        \"Two\",\n        \"Three\",\n        \"Four\",\n        \"Five\",\n        \"Six\",\n        \"Seven\",\n        \"Eight\",\n        \"Nine\",\n        \"Ten\",\n        \"Eleven\",\n        \"Twelve\",\n        \"Thirteen\",\n        \"Fourteen\",\n        \"Fifteen\",\n        \"Sixteen\",\n        \"Seventeen\",\n        \"Eighteen\",\n        \"Nineteen\",\n    ]\n\n    tens = [\n        \"Zero\",\n        \"Ten\",\n        \"Twenty\",\n        \"Thirty\",\n        \"Forty\",\n        \"Fifty\",\n        \"Sixty\",\n        \"Seventy\",\n        \"Eighty\",\n        \"Ninety\",\n    ]\n\n    magnitudes = [\n        \"\",\n        \"Thousand\",\n        \"Million\",\n        \"Billion\",\n    ]\n\n    def chunk_to_words(self, n: int) -> str:\n        parts = []\n        if n >= 100:\n            parts.append(self.ones[n // 100])\n            parts.append(\"Hundred\")\n            n %= 100\n        if n >= 20:\n            parts.append(self.tens[n // 10])\n            n %= 10\n        if 0 < n < 20:\n            parts.append(self.ones[n])\n        return \" \".join(parts)\n\n    def numberToWords(self, num: int, result: str) -> bool:\n        if not isinstance(result, str):\n            return False\n\n        if num == 0:\n            return result == \"Zero\"\n\n        parts = []\n        group = 0\n        while num > 0:\n            chunk = num % 1000\n            if chunk != 0:\n                words = self.chunk_to_words(chunk)\n                magnitude = self.magnitudes[group]\n                if magnitude:\n                    parts.append(words + \" \" + magnitude)\n                else:\n                    parts.append(words)\n            num //= 1000\n            group += 1\n\n        expected = \" \".join(reversed(parts))\n        return result == expected\n"
+      }
+    },
+    "seed": 273,
+    "tests": [
+      {
+        "name": "zero",
+        "in": {
+          "num": 0
+        },
+        "out": "Zero"
+      },
+      {
+        "name": "one",
+        "in": {
+          "num": 1
+        },
+        "out": "One"
+      },
+      {
+        "name": "nine",
+        "in": {
+          "num": 9
+        },
+        "out": "Nine"
+      },
+      {
+        "name": "ten",
+        "in": {
+          "num": 10
+        },
+        "out": "Ten"
+      },
+      {
+        "name": "eleven",
+        "in": {
+          "num": 11
+        },
+        "out": "Eleven"
+      },
+      {
+        "name": "nineteen",
+        "in": {
+          "num": 19
+        },
+        "out": "Nineteen"
+      },
+      {
+        "name": "twenty",
+        "in": {
+          "num": 20
+        },
+        "out": "Twenty"
+      },
+      {
+        "name": "twenty_one",
+        "in": {
+          "num": 21
+        },
+        "out": "Twenty One"
+      },
+      {
+        "name": "thirty_five",
+        "in": {
+          "num": 35
+        },
+        "out": "Thirty Five"
+      },
+      {
+        "name": "ninety_nine",
+        "in": {
+          "num": 99
+        },
+        "out": "Ninety Nine"
+      },
+      {
+        "name": "one_hundred",
+        "in": {
+          "num": 100
+        },
+        "out": "One Hundred"
+      },
+      {
+        "name": "one_hundred_one",
+        "in": {
+          "num": 101
+        },
+        "out": "One Hundred One"
+      },
+      {
+        "name": "one_hundred_ten",
+        "in": {
+          "num": 110
+        },
+        "out": "One Hundred Ten"
+      },
+      {
+        "name": "one_hundred_fifteen",
+        "in": {
+          "num": 115
+        },
+        "out": "One Hundred Fifteen"
+      },
+      {
+        "name": "one_hundred_ninety_nine",
+        "in": {
+          "num": 199
+        },
+        "out": "One Hundred Ninety Nine"
+      },
+      {
+        "name": "two_hundred_forty_six",
+        "in": {
+          "num": 246
+        },
+        "out": "Two Hundred Forty Six"
+      },
+      {
+        "name": "nine_hundred_ninety_nine",
+        "in": {
+          "num": 999
+        },
+        "out": "Nine Hundred Ninety Nine"
+      },
+      {
+        "name": "one_thousand",
+        "in": {
+          "num": 1000
+        },
+        "out": "One Thousand"
+      },
+      {
+        "name": "one_thousand_one",
+        "in": {
+          "num": 1001
+        },
+        "out": "One Thousand One"
+      },
+      {
+        "name": "one_thousand_ten",
+        "in": {
+          "num": 1010
+        },
+        "out": "One Thousand Ten"
+      },
+      {
+        "name": "one_thousand_one_hundred",
+        "in": {
+          "num": 1100
+        },
+        "out": "One Thousand One Hundred"
+      },
+      {
+        "name": "twelve_thousand_three_hundred_forty_five",
+        "in": {
+          "num": 12345
+        },
+        "out": "Twelve Thousand Three Hundred Forty Five"
+      },
+      {
+        "name": "one_hundred_thousand",
+        "in": {
+          "num": 100000
+        },
+        "out": "One Hundred Thousand"
+      },
+      {
+        "name": "one_hundred_twenty_three_thousand",
+        "in": {
+          "num": 123000
+        },
+        "out": "One Hundred Twenty Three Thousand"
+      },
+      {
+        "name": "seven_hundred_eighty_nine_thousand_one_hundred_twenty_three",
+        "in": {
+          "num": 789123
+        },
+        "out": "Seven Hundred Eighty Nine Thousand One Hundred Twenty Three"
+      },
+      {
+        "name": "one_million",
+        "in": {
+          "num": 1000000
+        },
+        "out": "One Million"
+      },
+      {
+        "name": "one_million_one",
+        "in": {
+          "num": 1000001
+        },
+        "out": "One Million One"
+      },
+      {
+        "name": "one_million_ten",
+        "in": {
+          "num": 1000010
+        },
+        "out": "One Million Ten"
+      },
+      {
+        "name": "one_million_one_thousand",
+        "in": {
+          "num": 1001000
+        },
+        "out": "One Million One Thousand"
+      },
+      {
+        "name": "one_million_two_hundred_thirty_four_thousand_five_hundred_sixty_seven",
+        "in": {
+          "num": 1234567
+        },
+        "out": "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+      },
+      {
+        "name": "ten_million",
+        "in": {
+          "num": 10000000
+        },
+        "out": "Ten Million"
+      },
+      {
+        "name": "ninety_nine_million_nine_hundred_ninety_nine_thousand_nine_hundred_ninety_nine",
+        "in": {
+          "num": 99999999
+        },
+        "out": "Ninety Nine Million Nine Hundred Ninety Nine Thousand Nine Hundred Ninety Nine"
+      },
+      {
+        "name": "one_hundred_million",
+        "in": {
+          "num": 100000000
+        },
+        "out": "One Hundred Million"
+      },
+      {
+        "name": "one_billion",
+        "in": {
+          "num": 1000000000
+        },
+        "out": "One Billion"
+      },
+      {
+        "name": "one_billion_one",
+        "in": {
+          "num": 1000000001
+        },
+        "out": "One Billion One"
+      },
+      {
+        "name": "one_billion_ten",
+        "in": {
+          "num": 1000000010
+        },
+        "out": "One Billion Ten"
+      },
+      {
+        "name": "max_int",
+        "in": {
+          "num": 2147483647
+        },
+        "out": "Two Billion One Hundred Forty Seven Million Four Hundred Eighty Three Thousand Six Hundred Forty Seven"
+      },
+      {
+        "name": "gen_mid_range",
+        "seed": 27301,
+        "in": {
+          "num": {
+            "gen": "int",
+            "min": 0,
+            "max": 1000000000
+          }
+        }
+      },
+      {
+        "name": "gen_full_range",
+        "seed": 27302,
+        "in": {
+          "num": {
+            "gen": "int",
+            "min": 0,
+            "max": 2147483647
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "num = 0",
+      "output": "\"Zero\""
+    },
+    {
+      "input": "num = 1",
+      "output": "\"One\""
+    },
+    {
+      "input": "num = 9",
+      "output": "\"Nine\""
+    },
+    {
+      "input": "num = 10",
+      "output": "\"Ten\""
+    },
+    {
+      "input": "num = 11",
+      "output": "\"Eleven\""
+    },
+    {
+      "input": "num = 19",
+      "output": "\"Nineteen\""
+    },
+    {
+      "input": "num = 20",
+      "output": "\"Twenty\""
+    },
+    {
+      "input": "num = 21",
+      "output": "\"Twenty One\""
+    }
+  ]
+}

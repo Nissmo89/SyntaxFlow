@@ -1,0 +1,584 @@
+{
+  "id": "minimum_cost_to_merge_stones",
+  "title": "Minimum Cost to Merge Stones",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "description": "<p>There are <code>n</code> piles of <code>stones</code> arranged in a row. The <code>i<sup>th</sup></code> pile has <code>stones[i]</code> stones.</p>\n\n<p>A move consists of merging exactly <code>k</code> <strong>consecutive</strong> piles into one pile, and the cost of this move is equal to the total number of stones in these <code>k</code> piles.</p>\n\n<p>Return <em>the minimum cost to merge all piles of stones into one pile</em>. If it is impossible, return <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [3,2,4,1], k = 2\n<strong>Output:</strong> 20\n<strong>Explanation:</strong> We start with [3, 2, 4, 1].\nWe merge [3, 2] for a cost of 5, and we are left with [5, 4, 1].\nWe merge [4, 1] for a cost of 5, and we are left with [5, 5].\nWe merge [5, 5] for a cost of 10, and we are left with [10].\nThe total cost was 20, and this is the minimum possible.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [3,2,4,1], k = 3\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> After any merge operation, there are 2 piles left, and we can&#39;t merge anymore.  So the task is impossible.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> stones = [3,5,1,2,6], k = 3\n<strong>Output:</strong> 25\n<strong>Explanation:</strong> We start with [3, 5, 1, 2, 6].\nWe merge [5, 1, 2] for a cost of 8, and we are left with [3, 8, 6].\nWe merge [3, 8, 6] for a cost of 17, and we are left with [17].\nThe total cost was 25, and this is the minimum possible.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == stones.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 30</code></li>\n\t<li><code>1 &lt;= stones[i] &lt;= 100</code></li>\n\t<li><code>2 &lt;= k &lt;= 30</code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Cost to Merge Stones' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == stones.length",
+    "1 <= n <= 30",
+    "1 <= stones[i] <= 100",
+    "2 <= k <= 30"
+  ],
+  "hints": [],
+  "method": {
+    "name": "mergeStones",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "stones",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1000,
+      "title": "minimum-cost-to-merge-stones",
+      "params": {
+        "stones": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().mergeStones({stones}, {k})",
+        "rust": "Solution::merge_stones({stones}, {k})",
+        "python3": "Solution().mergeStones({stones}, {k})",
+        "python2": "Solution().mergeStones({stones}, {k})",
+        "ruby": "merge_stones({stones}, {k})",
+        "java": "new Solution().mergeStones({stones}, {k})",
+        "csharp": "new Solution().MergeStones({stones}, {k})",
+        "kotlin": "Solution().mergeStones({stones}, {k})",
+        "go": "mergeStones({stones}, {k})",
+        "dart": "Solution().mergeStones({stones}, {k})",
+        "swift": "Solution().mergeStones({stones}, {k})",
+        "typescript": "mergeStones({stones}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 1000,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "stones": [
+            11,
+            15,
+            2,
+            1,
+            7,
+            5,
+            6,
+            10
+          ],
+          "k": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "stones": [
+            9
+          ],
+          "k": 5
+        },
+        "out": 0
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "stones": [
+            2,
+            3,
+            12,
+            10,
+            9
+          ],
+          "k": 5
+        },
+        "out": 36
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "stones": [
+            14,
+            14,
+            13,
+            4,
+            4,
+            7,
+            13,
+            14
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "stones": [
+            15,
+            3,
+            11,
+            9,
+            7,
+            2,
+            10,
+            2
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "stones": [
+            1,
+            10
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "stones": [
+            14,
+            8
+          ],
+          "k": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "stones": [
+            11,
+            9,
+            8
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "stones": [
+            5,
+            2,
+            5,
+            8,
+            13,
+            13,
+            13
+          ],
+          "k": 3
+        },
+        "out": 104
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "stones": [
+            3,
+            6,
+            12,
+            4
+          ],
+          "k": 2
+        },
+        "out": 50
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "stones": [
+            12,
+            8,
+            4,
+            4,
+            14,
+            7,
+            4
+          ],
+          "k": 2
+        },
+        "out": 141
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "stones": [
+            7,
+            2,
+            14,
+            5
+          ],
+          "k": 4
+        },
+        "out": 28
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "stones": [
+            6,
+            10,
+            14,
+            9,
+            2,
+            6,
+            7,
+            6
+          ],
+          "k": 2
+        },
+        "out": 174
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "stones": [
+            8,
+            13,
+            15,
+            14,
+            15,
+            1
+          ],
+          "k": 2
+        },
+        "out": 169
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "stones": [
+            13
+          ],
+          "k": 5
+        },
+        "out": 0
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "stones": [
+            7,
+            13,
+            1
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "stones": [
+            15,
+            4,
+            7
+          ],
+          "k": 2
+        },
+        "out": 37
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "stones": [
+            15,
+            7,
+            9,
+            13
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "stones": [
+            13
+          ],
+          "k": 5
+        },
+        "out": 0
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "stones": [
+            13,
+            1,
+            6
+          ],
+          "k": 3
+        },
+        "out": 20
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "stones": [
+            10,
+            10,
+            8,
+            14,
+            12,
+            15
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "stones": [
+            3,
+            2,
+            2,
+            15,
+            15,
+            3,
+            12
+          ],
+          "k": 3
+        },
+        "out": 89
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "stones": [
+            8,
+            8,
+            13,
+            14
+          ],
+          "k": 2
+        },
+        "out": 86
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "stones": [
+            2,
+            12
+          ],
+          "k": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "stones": [
+            12,
+            9
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "stones": [
+            10,
+            6,
+            2,
+            4,
+            12,
+            1,
+            10,
+            11
+          ],
+          "k": 4
+        },
+        "out": -1
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "stones": [
+            12,
+            8,
+            2
+          ],
+          "k": 3
+        },
+        "out": 22
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "stones": [
+            15,
+            2,
+            9,
+            13,
+            13
+          ],
+          "k": 2
+        },
+        "out": 115
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "stones": [
+            2,
+            8,
+            15,
+            14,
+            14
+          ],
+          "k": 5
+        },
+        "out": 53
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "stones": [
+            15,
+            10,
+            14,
+            9
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "stones": [
+            5
+          ],
+          "k": 5
+        },
+        "out": 0
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "stones": [
+            5,
+            7,
+            12,
+            4,
+            7,
+            14
+          ],
+          "k": 5
+        },
+        "out": -1
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "stones": [
+            15
+          ],
+          "k": 4
+        },
+        "out": 0
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "stones": [
+            3,
+            14
+          ],
+          "k": 3
+        },
+        "out": -1
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "stones": [
+            3,
+            15,
+            6,
+            1,
+            1,
+            12,
+            9,
+            4
+          ],
+          "k": 2
+        },
+        "out": 143
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "stones = [11, 15, 2, 1, 7, 5, 6, 10]\nk = 3",
+      "output": "-1"
+    },
+    {
+      "input": "stones = [9]\nk = 5",
+      "output": "0"
+    },
+    {
+      "input": "stones = [2, 3, 12, 10, 9]\nk = 5",
+      "output": "36"
+    },
+    {
+      "input": "stones = [14, 14, 13, 4, 4, 7, 13, 14]\nk = 5",
+      "output": "-1"
+    },
+    {
+      "input": "stones = [15, 3, 11, 9, 7, 2, 10, 2]\nk = 5",
+      "output": "-1"
+    },
+    {
+      "input": "stones = [1, 10]\nk = 5",
+      "output": "-1"
+    },
+    {
+      "input": "stones = [14, 8]\nk = 3",
+      "output": "-1"
+    },
+    {
+      "input": "stones = [11, 9, 8]\nk = 4",
+      "output": "-1"
+    }
+  ]
+}

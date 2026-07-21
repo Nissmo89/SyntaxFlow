@@ -1,0 +1,1511 @@
+{
+  "id": "merge_intervals",
+  "title": "Merge Intervals",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "description": "<p>Given an array&nbsp;of <code>intervals</code>&nbsp;where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code>, merge all overlapping intervals, and return <em>an array of the non-overlapping intervals that cover all the intervals in the input</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,3],[2,6],[8,10],[15,18]]\n<strong>Output:</strong> [[1,6],[8,10],[15,18]]\n<strong>Explanation:</strong> Since intervals [1,3] and [2,6] overlap, merge them into [1,6].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,4],[4,5]]\n<strong>Output:</strong> [[1,5]]\n<strong>Explanation:</strong> Intervals [1,4] and [4,5] are considered overlapping.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[4,7],[1,4]]\n<strong>Output:</strong> [[1,7]]\n<strong>Explanation:</strong> Intervals [1,4] and [4,7] are considered overlapping.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= intervals.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>intervals[i].length == 2</code></li>\n\t<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Merge Intervals' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= intervals.length <= 104",
+    "intervals[i].length == 2",
+    "0 <= starti <= endi <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "merge",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "intervals",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 56,
+      "title": "merge-intervals",
+      "params": {
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().merge({intervals})",
+        "rust": "Solution::merge({intervals})",
+        "python3": "Solution().merge({intervals})",
+        "python2": "Solution().merge({intervals})",
+        "ruby": "merge({intervals})",
+        "java": "new Solution().merge({intervals})",
+        "csharp": "new Solution().Merge({intervals})",
+        "kotlin": "Solution().merge({intervals})",
+        "go": "merge({intervals})",
+        "dart": "Solution().merge({intervals})",
+        "swift": "Solution().merge({intervals})",
+        "typescript": "merge({intervals})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().merge(intervals, {result})",
+        "checker": "class Checker:\n    def merge(self, intervals, result):\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(interval, list) or len(interval) != 2 for interval in result):\n            return False\n        if any(not isinstance(x, int) for interval in result for x in interval):\n            return False\n        for interval in result:\n            if interval[0] > interval[1]:\n                return False\n        if any(intervals[i][0] > intervals[i][1] for i in range(len(intervals))):\n            return False\n        sorted_intervals = sorted([list(interval) for interval in intervals])\n        merged = []\n        for start, end in sorted_intervals:\n            if not merged or start > merged[-1][1]:\n                merged.append([start, end])\n            else:\n                merged[-1][1] = max(merged[-1][1], end)\n        return result == merged\n"
+      }
+    },
+    "seed": 56,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                4
+              ],
+              [
+                4,
+                5
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                4,
+                7
+              ],
+              [
+                1,
+                4
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "single-interval",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                9
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            5,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "zero-length-interval",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "name": "touching-chain",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                5
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "disjoint-small",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                7,
+                8
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "nested-intervals",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                10
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4,
+                8
+              ],
+              [
+                9,
+                10
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "unsorted-overlap",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                6,
+                8
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                7,
+                9
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "duplicate-intervals",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                2,
+                6
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            2,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "zero-and-touching",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "left-most-dominates",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                5,
+                7
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "merge-all",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                100
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6,
+                7
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            100
+          ]
+        ]
+      },
+      {
+        "name": "shared-boundary-right",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                4
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                7
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "name": "many-small-gaps",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                9,
+                9
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            9,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "repeated-overlap-growth",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                8
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "separated-large-range",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1000,
+                2000
+              ],
+              [
+                3000,
+                4000
+              ],
+              [
+                5000,
+                6000
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1000,
+            2000
+          ],
+          [
+            3000,
+            4000
+          ],
+          [
+            5000,
+            6000
+          ]
+        ]
+      },
+      {
+        "name": "endpoint-merges",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                4
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "sandwich-merge",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                10
+              ],
+              [
+                11,
+                12
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            10
+          ],
+          [
+            11,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "interleaved-unsorted",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                8,
+                10
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                12,
+                14
+              ],
+              [
+                13,
+                13
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            12,
+            14
+          ]
+        ]
+      },
+      {
+        "name": "dense-first-cluster",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "descending-input",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                9,
+                11
+              ],
+              [
+                7,
+                8
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "chain-with-gap",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                8,
+                10
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            5
+          ],
+          [
+            6,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "alternating-singletons",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                10,
+                10
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "overlapping-prefix",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                4
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                8,
+                12
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            5
+          ],
+          [
+            7,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "overlapping-suffix",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                7,
+                8
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      {
+        "name": "interval-in-interval",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                10000
+              ],
+              [
+                500,
+                600
+              ],
+              [
+                7000,
+                8000
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            10000
+          ]
+        ]
+      },
+      {
+        "name": "lower-boundaries",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            6
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "upper-boundaries",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                9998,
+                9999
+              ],
+              [
+                9999,
+                10000
+              ],
+              [
+                10000,
+                10000
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            9998,
+            10000
+          ]
+        ]
+      },
+      {
+        "name": "mixed-small-intervals",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "broad-coverage",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                10,
+                20
+              ],
+              [
+                15,
+                25
+              ],
+              [
+                26,
+                30
+              ],
+              [
+                29,
+                40
+              ],
+              [
+                41,
+                50
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            10,
+            25
+          ],
+          [
+            26,
+            40
+          ],
+          [
+            41,
+            50
+          ]
+        ]
+      },
+      {
+        "name": "staggered-overlap",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                9,
+                11
+              ],
+              [
+                12,
+                13
+              ],
+              [
+                13,
+                15
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            12,
+            15
+          ]
+        ]
+      },
+      {
+        "name": "tiny-gap-between-clusters",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                9,
+                10
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            9,
+            10
+          ]
+        ]
+      },
+      {
+        "name": "long-chain",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            12
+          ]
+        ]
+      },
+      {
+        "name": "compact-mix",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                10,
+                11
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      {
+        "name": "multiple-clusters",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                4
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                15,
+                18
+              ],
+              [
+                17,
+                20
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            4
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      {
+        "name": "far-apart-pairs",
+        "in": {
+          "intervals": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                2
+              ],
+              [
+                100,
+                200
+              ],
+              [
+                300,
+                400
+              ],
+              [
+                500,
+                600
+              ]
+            ]
+          }
+        },
+        "out": [
+          [
+            1,
+            2
+          ],
+          [
+            100,
+            200
+          ],
+          [
+            300,
+            400
+          ],
+          [
+            500,
+            600
+          ]
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 3], [2, 6], [8, 10], [15, 18]]}",
+      "output": "[[1, 6], [8, 10], [15, 18]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 4], [4, 5]]}",
+      "output": "[[1, 5]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[4, 7], [1, 4]]}",
+      "output": "[[1, 7]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[5, 9]]}",
+      "output": "[[5, 9]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[0, 0]]}",
+      "output": "[[0, 0]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 2], [2, 3], [3, 4], [4, 5]]}",
+      "output": "[[1, 5]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 2], [4, 5], [7, 8]]}",
+      "output": "[[1, 2], [4, 5], [7, 8]]"
+    },
+    {
+      "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 10], [2, 3], [4, 8], [9, 10]]}",
+      "output": "[[1, 10]]"
+    }
+  ]
+}

@@ -1,0 +1,886 @@
+{
+  "id": "partition_list",
+  "title": "Partition List",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "description": "<p>Given the <code>head</code> of a linked list and a value <code>x</code>, partition it such that all nodes <strong>less than</strong> <code>x</code> come before nodes <strong>greater than or equal</strong> to <code>x</code>.</p>\n\n<p>You should <strong>preserve</strong> the original relative order of the nodes in each of the two partitions.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/partition.jpg\" style=\"width: 662px; height: 222px;\" />\n<pre>\n<strong>Input:</strong> head = [1,4,3,2,5,2], x = 3\n<strong>Output:</strong> [1,2,2,4,3,5]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> head = [2,1], x = 2\n<strong>Output:</strong> [1,2]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is in the range <code>[0, 200]</code>.</li>\n\t<li><code>-100 &lt;= Node.val &lt;= 100</code></li>\n\t<li><code>-200 &lt;= x &lt;= 200</code></li>\n</ul>\n",
+  "task": "Solve the 'Partition List' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 200].",
+    "-100 <= Node.val <= 100",
+    "-200 <= x <= 200"
+  ],
+  "hints": [],
+  "method": {
+    "name": "partition",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "head",
+        "type": "list_node"
+      },
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 86,
+      "title": "partition-list",
+      "params": {
+        "head": {
+          "type": "list_node"
+        },
+        "x": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "listNodeToArray(Solution().partition({head}, {x}))",
+        "rust": "ListNode::list_node_to_array(Solution::partition({head}, {x}))",
+        "python3": "list_node_to_array(Solution().partition({head}, {x}))",
+        "python2": "list_node_to_array(Solution().partition({head}, {x}))",
+        "ruby": "list_node_to_array(partition({head}, {x}))",
+        "java": "ListNode.listNodeToArray(new Solution().partition({head}, {x}))",
+        "csharp": "ListNode.ListNodeToArray(new Solution().Partition({head}, {x}))",
+        "kotlin": "listNodeToArray(Solution().partition({head}, {x}))",
+        "go": "listNodeToArray(partition({head}, {x}))",
+        "dart": "list_node_to_array(Solution().partition({head}, {x}))",
+        "swift": "list_node_to_array(Solution().partition({head}, {x}))",
+        "typescript": "listNodeToArray(partition({head}, {x}))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return isinstance(result, list)\n"
+      }
+    },
+    "seed": 86,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "head": [
+            1,
+            4,
+            3,
+            2,
+            5,
+            2
+          ],
+          "x": 3
+        },
+        "out": [
+          1,
+          2,
+          2,
+          4,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "head": [
+            2,
+            1
+          ],
+          "x": 2
+        },
+        "out": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "empty",
+        "in": {
+          "head": [],
+          "x": 0
+        },
+        "out": []
+      },
+      {
+        "name": "single_lt",
+        "in": {
+          "head": [
+            1
+          ],
+          "x": 2
+        },
+        "out": [
+          1
+        ]
+      },
+      {
+        "name": "single_ge",
+        "in": {
+          "head": [
+            2
+          ],
+          "x": 2
+        },
+        "out": [
+          2
+        ]
+      },
+      {
+        "name": "all_lt",
+        "in": {
+          "head": [
+            -2,
+            -1,
+            0
+          ],
+          "x": 5
+        },
+        "out": [
+          -2,
+          -1,
+          0
+        ]
+      },
+      {
+        "name": "all_ge",
+        "in": {
+          "head": [
+            5,
+            6,
+            7
+          ],
+          "x": 5
+        },
+        "out": [
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "head": [
+            3,
+            1,
+            2,
+            3,
+            2,
+            1
+          ],
+          "x": 3
+        },
+        "out": [
+          1,
+          2,
+          2,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "head": [
+            0,
+            -1,
+            5,
+            -2,
+            3
+          ],
+          "x": 0
+        },
+        "out": [
+          -1,
+          -2,
+          0,
+          5,
+          3
+        ]
+      },
+      {
+        "name": "boundary_low",
+        "in": {
+          "head": [
+            -100,
+            100,
+            0
+          ],
+          "x": -200
+        },
+        "out": [
+          -100,
+          100,
+          0
+        ]
+      },
+      {
+        "name": "boundary_high",
+        "in": {
+          "head": [
+            100,
+            -100,
+            0
+          ],
+          "x": 200
+        },
+        "out": [
+          100,
+          -100,
+          0
+        ]
+      },
+      {
+        "name": "pivot_middle",
+        "in": {
+          "head": [
+            7,
+            1,
+            4,
+            3,
+            0,
+            5
+          ],
+          "x": 4
+        },
+        "out": [
+          1,
+          3,
+          0,
+          7,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "all_equal",
+        "in": {
+          "head": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "x": 2
+        },
+        "out": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "head": [
+            1,
+            4,
+            2,
+            5,
+            3,
+            6
+          ],
+          "x": 4
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "negatives",
+        "in": {
+          "head": [
+            -3,
+            -2,
+            -1,
+            0
+          ],
+          "x": -1
+        },
+        "out": [
+          -3,
+          -2,
+          -1,
+          0
+        ]
+      },
+      {
+        "name": "x_between",
+        "in": {
+          "head": [
+            9,
+            8,
+            7,
+            1,
+            2,
+            3
+          ],
+          "x": 4
+        },
+        "out": [
+          1,
+          2,
+          3,
+          9,
+          8,
+          7
+        ]
+      },
+      {
+        "name": "duplicates_front",
+        "in": {
+          "head": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "x": 2
+        },
+        "out": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "duplicates_back",
+        "in": {
+          "head": [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "x": 2
+        },
+        "out": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "small_mixed",
+        "in": {
+          "head": [
+            4,
+            1,
+            3,
+            2
+          ],
+          "x": 3
+        },
+        "out": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "name": "x_absent_between",
+        "in": {
+          "head": [
+            6,
+            1,
+            5,
+            2,
+            4,
+            3
+          ],
+          "x": 4
+        },
+        "out": [
+          1,
+          2,
+          3,
+          6,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "x_is_minimum",
+        "in": {
+          "head": [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9
+          ],
+          "x": 1
+        },
+        "out": [
+          3,
+          1,
+          4,
+          1,
+          5,
+          9
+        ]
+      },
+      {
+        "name": "x_is_maximum",
+        "in": {
+          "head": [
+            8,
+            1,
+            8,
+            2,
+            8,
+            3
+          ],
+          "x": 9
+        },
+        "out": [
+          8,
+          1,
+          8,
+          2,
+          8,
+          3
+        ]
+      },
+      {
+        "name": "pivot_in_middle_run",
+        "in": {
+          "head": [
+            5,
+            1,
+            5,
+            2,
+            5,
+            3,
+            5
+          ],
+          "x": 5
+        },
+        "out": [
+          1,
+          2,
+          3,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "already_partitioned",
+        "in": {
+          "head": [
+            1,
+            2,
+            2,
+            3,
+            4,
+            4,
+            5
+          ],
+          "x": 3
+        },
+        "out": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "reverse_order",
+        "in": {
+          "head": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3
+          ],
+          "x": 6
+        },
+        "out": [
+          5,
+          4,
+          3,
+          9,
+          8,
+          7,
+          6
+        ]
+      },
+      {
+        "name": "interleaved_pairs",
+        "in": {
+          "head": [
+            2,
+            7,
+            2,
+            7,
+            2,
+            7,
+            2,
+            7
+          ],
+          "x": 5
+        },
+        "out": [
+          2,
+          2,
+          2,
+          2,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "name": "zeros_and_ones",
+        "in": {
+          "head": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "x": 1
+        },
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "negatives_and_positives",
+        "in": {
+          "head": [
+            -5,
+            5,
+            -4,
+            4,
+            -3,
+            3
+          ],
+          "x": 0
+        },
+        "out": [
+          -5,
+          -4,
+          -3,
+          5,
+          4,
+          3
+        ]
+      },
+      {
+        "name": "repeated_low_block",
+        "in": {
+          "head": [
+            1,
+            1,
+            1,
+            1,
+            9,
+            9,
+            9
+          ],
+          "x": 5
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "repeated_high_block",
+        "in": {
+          "head": [
+            9,
+            9,
+            9,
+            1,
+            1,
+            1
+          ],
+          "x": 5
+        },
+        "out": [
+          1,
+          1,
+          1,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "mixed_small_blocks",
+        "in": {
+          "head": [
+            4,
+            4,
+            1,
+            1,
+            3,
+            3,
+            2,
+            2
+          ],
+          "x": 3
+        },
+        "out": [
+          1,
+          1,
+          2,
+          2,
+          4,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "long_alt_pattern",
+        "in": {
+          "head": [
+            1,
+            6,
+            2,
+            7,
+            3,
+            8,
+            4,
+            9,
+            5,
+            10
+          ],
+          "x": 6
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "name": "long_prefix_lt",
+        "in": {
+          "head": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9,
+            9,
+            9,
+            9
+          ],
+          "x": 5
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "long_suffix_ge",
+        "in": {
+          "head": [
+            9,
+            9,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "x": 5
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "name": "centered_pivot",
+        "in": {
+          "head": [
+            7,
+            2,
+            6,
+            3,
+            5,
+            4,
+            8
+          ],
+          "x": 5
+        },
+        "out": [
+          2,
+          3,
+          4,
+          7,
+          6,
+          5,
+          8
+        ]
+      },
+      {
+        "name": "stable_low_order",
+        "in": {
+          "head": [
+            4,
+            1,
+            4,
+            2,
+            4,
+            3,
+            4
+          ],
+          "x": 4
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "name": "stable_high_order",
+        "in": {
+          "head": [
+            6,
+            5,
+            7,
+            5,
+            8,
+            5,
+            9
+          ],
+          "x": 5
+        },
+        "out": [
+          6,
+          5,
+          7,
+          5,
+          8,
+          5,
+          9
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "head = [1, 4, 3, 2, 5, 2]\nx = 3",
+      "output": "[1, 2, 2, 4, 3, 5]"
+    },
+    {
+      "input": "head = [2, 1]\nx = 2",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "head = []\nx = 0",
+      "output": "[]"
+    },
+    {
+      "input": "head = [1]\nx = 2",
+      "output": "[1]"
+    },
+    {
+      "input": "head = [2]\nx = 2",
+      "output": "[2]"
+    },
+    {
+      "input": "head = [-2, -1, 0]\nx = 5",
+      "output": "[-2, -1, 0]"
+    },
+    {
+      "input": "head = [5, 6, 7]\nx = 5",
+      "output": "[5, 6, 7]"
+    },
+    {
+      "input": "head = [3, 1, 2, 3, 2, 1]\nx = 3",
+      "output": "[1, 2, 2, 1, 3, 3]"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "id": "remove_invalid_parentheses",
+  "title": "Remove Invalid Parentheses",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Breadth-First Search"
+  ],
+  "description": "<p>Given a string <code>s</code> that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.</p>\n\n<p>Return <em>a list of <strong>unique strings</strong> that are valid with the minimum number of removals</em>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;()())()&quot;\n<strong>Output:</strong> [&quot;(())()&quot;,&quot;()()()&quot;]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;(a)())()&quot;\n<strong>Output:</strong> [&quot;(a())()&quot;,&quot;(a)()()&quot;]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;)(&quot;\n<strong>Output:</strong> [&quot;&quot;]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 25</code></li>\n\t<li><code>s</code> consists of lowercase English letters and parentheses <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>.</li>\n\t<li>There will be at most <code>20</code> parentheses in <code>s</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Remove Invalid Parentheses' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 25",
+    "s consists of lowercase English letters and parentheses '(' and ')'.",
+    "There will be at most 20 parentheses in s."
+  ],
+  "hints": [
+    "Since we do not know which brackets can be removed, we try all the options! We can use recursion.",
+    "In the recursion, for each bracket, we can either use it or remove it.",
+    "Recursion will generate all the valid parentheses strings but we want the ones with the least number of parentheses deleted.",
+    "We can count the number of invalid brackets to be deleted and only generate the valid strings in the recusrion."
+  ],
+  "method": {
+    "name": "removeInvalidParentheses",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 301,
+      "title": "remove-invalid-parentheses",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().removeInvalidParentheses({s})",
+        "rust": "Solution::remove_invalid_parentheses({s})",
+        "python3": "Solution().removeInvalidParentheses({s})",
+        "python2": "Solution().removeInvalidParentheses({s})",
+        "ruby": "remove_invalid_parentheses({s})",
+        "java": "new Solution().removeInvalidParentheses({s})",
+        "csharp": "new Solution().RemoveInvalidParentheses({s})",
+        "kotlin": "Solution().removeInvalidParentheses({s})",
+        "go": "removeInvalidParentheses({s})",
+        "dart": "Solution().removeInvalidParentheses({s})",
+        "swift": "Solution().removeInvalidParentheses({s})",
+        "typescript": "removeInvalidParentheses({s})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().removeInvalidParentheses(s, {result})",
+        "checker": "class Checker:\n    def removeInvalidParentheses(self, s, result):\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, str) for x in result):\n            return False\n        if len(result) != len(set(result)):\n            return False\n\n        def is_valid(text):\n            bal = 0\n            for ch in text:\n                if ch == \"(\":\n                    bal += 1\n                elif ch == \")\":\n                    bal -= 1\n                    if bal < 0:\n                        return False\n            return bal == 0\n\n        level = {s}\n        while True:\n            valid = {x for x in level if is_valid(x)}\n            if valid:\n                return set(result) == valid\n            next_level = set()\n            for text in level:\n                for i, ch in enumerate(text):\n                    if ch in \"()\":\n                        next_level.add(text[:i] + text[i + 1:])\n            level = next_level\n"
+      }
+    },
+    "seed": 301,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "()())()"
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "(a)())()"
+        }
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "s": ")("
+        }
+      },
+      {
+        "name": "single-letter",
+        "in": {
+          "s": "a"
+        }
+      },
+      {
+        "name": "balanced-simple",
+        "in": {
+          "s": "()"
+        }
+      },
+      {
+        "name": "already-valid-nested",
+        "in": {
+          "s": "(())"
+        }
+      },
+      {
+        "name": "leading-close",
+        "in": {
+          "s": ")a"
+        }
+      },
+      {
+        "name": "trailing-open",
+        "in": {
+          "s": "a("
+        }
+      },
+      {
+        "name": "all-closes",
+        "in": {
+          "s": "))))"
+        }
+      },
+      {
+        "name": "all-opens",
+        "in": {
+          "s": "(((("
+        }
+      },
+      {
+        "name": "no-parentheses",
+        "in": {
+          "s": "abcde"
+        }
+      },
+      {
+        "name": "mixed-letters-1",
+        "in": {
+          "s": "a)b(c)d"
+        }
+      },
+      {
+        "name": "mixed-letters-2",
+        "in": {
+          "s": "(a(b)c)d"
+        }
+      },
+      {
+        "name": "min-remove-one",
+        "in": {
+          "s": "())"
+        }
+      },
+      {
+        "name": "min-remove-one-2",
+        "in": {
+          "s": "(()"
+        }
+      },
+      {
+        "name": "alternating-valid",
+        "in": {
+          "s": "()()"
+        }
+      },
+      {
+        "name": "alternating-valid-2",
+        "in": {
+          "s": "(()())"
+        }
+      },
+      {
+        "name": "invalid-with-letter",
+        "in": {
+          "s": "a)bc(d"
+        }
+      },
+      {
+        "name": "invalid-prefix",
+        "in": {
+          "s": ")(()"
+        }
+      },
+      {
+        "name": "invalid-suffix",
+        "in": {
+          "s": "((())"
+        }
+      },
+      {
+        "name": "valid-with-letters",
+        "in": {
+          "s": "a((b))"
+        }
+      },
+      {
+        "name": "invalid-close-middle",
+        "in": {
+          "s": "a((b)c)d)"
+        }
+      },
+      {
+        "name": "invalid-open-middle",
+        "in": {
+          "s": "a)()()("
+        }
+      },
+      {
+        "name": "example-like-1",
+        "in": {
+          "s": "((a)())())"
+        }
+      },
+      {
+        "name": "example-like-2",
+        "in": {
+          "s": "a)b(c)d)e)f"
+        }
+      },
+      {
+        "name": "long-balanced",
+        "in": {
+          "s": "((((((((((abcde))))))))))"
+        }
+      },
+      {
+        "name": "long-unbalanced-closes",
+        "in": {
+          "s": "))))))))))abcde(((((((((("
+        }
+      },
+      {
+        "name": "long-many-letters",
+        "in": {
+          "s": "ab(c)d(e)f(g)h(i)j"
+        }
+      },
+      {
+        "name": "long-all-invalid-mix",
+        "in": {
+          "s": "x(x(x(x(x(x("
+        }
+      },
+      {
+        "name": "long-all-invalid-closes",
+        "in": {
+          "s": "))))abc"
+        }
+      },
+      {
+        "name": "dense-valid",
+        "in": {
+          "s": "(((())))(()())"
+        }
+      },
+      {
+        "name": "dense-invalid",
+        "in": {
+          "s": "(a(b(c)d)e"
+        }
+      },
+      {
+        "name": "letters-around",
+        "in": {
+          "s": "m)no(p)q)r(s)t"
+        }
+      },
+      {
+        "name": "maxish-balanced",
+        "in": {
+          "s": "((((a((((b))))c))))"
+        }
+      },
+      {
+        "name": "maxish-unbalanced",
+        "in": {
+          "s": "((((a((((b))))c)))))"
+        }
+      },
+      {
+        "name": "single-close-followed-by-letters",
+        "in": {
+          "s": ")abc"
+        }
+      },
+      {
+        "name": "many-letters-and-opens",
+        "in": {
+          "s": "abcd((((("
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"()())()\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"(a)())()\"",
+      "output": ""
+    },
+    {
+      "input": "s = \")(\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"()\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"(())\"",
+      "output": ""
+    },
+    {
+      "input": "s = \")a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a(\"",
+      "output": ""
+    }
+  ]
+}

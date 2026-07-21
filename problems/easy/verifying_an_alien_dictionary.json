@@ -1,0 +1,572 @@
+{
+  "id": "verifying_an_alien_dictionary",
+  "title": "Verifying an Alien Dictionary",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "description": "<p>In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different <code>order</code>. The <code>order</code> of the alphabet is some permutation of lowercase letters.</p> <p>Given a sequence of <code>words</code> written in the alien language, and the <code>order</code> of the alphabet, return <code>true</code> if and only if the given <code>words</code> are sorted lexicographically in this alien language.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"\n<strong>Output:</strong> true\n<strong>Explanation: </strong>As 'h' comes before 'l' in this language, then the sequence is sorted.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>As 'd' comes after 'l' in this language, then words[0] &gt; words[1], hence the sequence is unsorted.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>The first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" &gt; \"app\", because 'l' &gt; '∅', where '∅' is defined as the blank character which is less than any other character (<a href=\"https://en.wikipedia.org/wiki/Lexicographical_order\" target=\"_blank\">More info</a>).\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= words.length &lt;= 100</code></li> <li><code>1 &lt;= words[i].length &lt;= 20</code></li> <li><code>order.length == 26</code></li> <li>All characters in <code>words[i]</code> and <code>order</code> are English lowercase letters.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "isAlienSorted",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "words",
+        "type": "array"
+      },
+      {
+        "name": "order",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 953,
+      "title": "verifying-an-alien-dictionary",
+      "params": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "order": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isAlienSorted({words}, {order})",
+        "rust": "Solution::is_alien_sorted({words}, {order})",
+        "python3": "Solution().isAlienSorted({words}, {order})",
+        "python2": "Solution().isAlienSorted({words}, {order})",
+        "ruby": "is_alien_sorted({words}, {order})",
+        "java": "new Solution().isAlienSorted({words}, {order})",
+        "csharp": "new Solution().IsAlienSorted({words}, {order})",
+        "kotlin": "Solution().isAlienSorted({words}, {order})",
+        "go": "isAlienSorted({words}, {order})",
+        "dart": "Solution().isAlienSorted({words}, {order})",
+        "swift": "Solution().isAlienSorted({words}, {order})",
+        "typescript": "isAlienSorted({words}, {order})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 953,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "words": [
+            "ddda",
+            "cbdc",
+            "dbcc",
+            "bbad",
+            "bbcd",
+            "badb"
+          ],
+          "order": "xabpcjnhuvmtygklrefdwqzios"
+        },
+        "out": false
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "words": [
+            "cdcd",
+            "daca",
+            "bbcb",
+            "bccd",
+            "abdc",
+            "adca"
+          ],
+          "order": "tmzindlxjavpsefhkwrgcquoyb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "words": [
+            "ab",
+            "bc",
+            "db",
+            "cc",
+            "dd",
+            "cc"
+          ],
+          "order": "wdkstuamhepxgyinvcfzrqlobj"
+        },
+        "out": false
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "words": [
+            "adcc",
+            "abab"
+          ],
+          "order": "lyfvnoeukthzrcagxwipsjdmqb"
+        },
+        "out": true
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "words": [
+            "caabab",
+            "cdbbda",
+            "ccbbad"
+          ],
+          "order": "gficyovndjlaszbweukqhxmtrp"
+        },
+        "out": false
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "words": [
+            "dcda",
+            "adab",
+            "dbda",
+            "cdbc",
+            "cacb"
+          ],
+          "order": "qoagsphwvtibdnxmjckrezyluf"
+        },
+        "out": false
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "words": [
+            "dacad",
+            "babdb",
+            "bbbcb"
+          ],
+          "order": "ojdeznxvsfbkhpqrglywtciuam"
+        },
+        "out": false
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "words": [
+            "a",
+            "a",
+            "c",
+            "b",
+            "d",
+            "a",
+            "a"
+          ],
+          "order": "ynfkhvwtaxmqlgbzuierjcodps"
+        },
+        "out": false
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "words": [
+            "ba",
+            "bc",
+            "ad",
+            "ab",
+            "ba"
+          ],
+          "order": "inwamrbcgqvtksfyuxzelopdhj"
+        },
+        "out": false
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "words": [
+            "bcb",
+            "bdc",
+            "cba",
+            "ccd",
+            "ddd",
+            "dda",
+            "baa"
+          ],
+          "order": "uyzaqcxfhsprmijongdewlbtvk"
+        },
+        "out": false
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "words": [
+            "aa",
+            "dd",
+            "aa"
+          ],
+          "order": "qunfhjrcygkbwvlsoetizdxpma"
+        },
+        "out": false
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "words": [
+            "cb",
+            "bb",
+            "dc",
+            "ad",
+            "bc",
+            "ba"
+          ],
+          "order": "dlzypmofnhacivxgqetjwbsukr"
+        },
+        "out": false
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "words": [
+            "c",
+            "c",
+            "c"
+          ],
+          "order": "xyfciwlbqsgthueaojnkvdzrmp"
+        },
+        "out": true
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "words": [
+            "a",
+            "a"
+          ],
+          "order": "pbxalychztruvnoifmewqjsdgk"
+        },
+        "out": true
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "words": [
+            "c",
+            "c",
+            "c",
+            "d",
+            "c",
+            "c"
+          ],
+          "order": "sudxobzkrleqgtwimycjpnavfh"
+        },
+        "out": false
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "words": [
+            "d",
+            "c"
+          ],
+          "order": "gyoqbnpltvsmajdkrwhcixfuez"
+        },
+        "out": true
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "words": [
+            "bd",
+            "bc"
+          ],
+          "order": "wjroatmbqxvkngfyldzpishecu"
+        },
+        "out": true
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "words": [
+            "ccdac",
+            "dcdda"
+          ],
+          "order": "mvnhbdzjapryxfoueqkscilgwt"
+        },
+        "out": false
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "words": [
+            "db",
+            "bb"
+          ],
+          "order": "mbdeswlfpvjakutrognxhqiycz"
+        },
+        "out": false
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "words": [
+            "dbcbb",
+            "bcadb",
+            "caabb",
+            "bdcab"
+          ],
+          "order": "qwuvnazyokdplxhsbfitejcgrm"
+        },
+        "out": false
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "words": [
+            "a",
+            "c",
+            "a"
+          ],
+          "order": "qjoerhbxksmpncavdyzgltwufi"
+        },
+        "out": false
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "words": [
+            "accbcc",
+            "aaaddb",
+            "bcbdca",
+            "cbadab",
+            "bbdbbc"
+          ],
+          "order": "dnvfpbuxqaslgctwhriyzjmkoe"
+        },
+        "out": false
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "words": [
+            "cadbc",
+            "daddd",
+            "dacbb"
+          ],
+          "order": "kcedipbornhgzjtxvfaysqumwl"
+        },
+        "out": false
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "words": [
+            "b",
+            "c",
+            "d",
+            "c",
+            "c",
+            "b"
+          ],
+          "order": "ymbgnpoiazxfhqjeclwkurdsvt"
+        },
+        "out": false
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "words": [
+            "db",
+            "ba",
+            "cb",
+            "bd"
+          ],
+          "order": "oagdurtspnkvwmiqclheyxfjzb"
+        },
+        "out": false
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "words": [
+            "acc",
+            "bdd",
+            "dad",
+            "cbd",
+            "cdc"
+          ],
+          "order": "bpydtrmnlkxwgvaciuoqhfzesj"
+        },
+        "out": false
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "words": [
+            "aa",
+            "bc",
+            "ba",
+            "aa",
+            "dd",
+            "bb"
+          ],
+          "order": "tlforyxsjhiamnzbgwkuvecpqd"
+        },
+        "out": false
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "words": [
+            "a",
+            "b",
+            "a",
+            "d"
+          ],
+          "order": "akuyjznxdflqpsiwrtovhembcg"
+        },
+        "out": false
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "words": [
+            "cdd",
+            "cdd"
+          ],
+          "order": "bglnkxjqoztdscavuerwipyfmh"
+        },
+        "out": true
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "words": [
+            "dadc",
+            "acda",
+            "dcda",
+            "dccb"
+          ],
+          "order": "jgflzxavpbrnetksmhucdoqwyi"
+        },
+        "out": false
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "words": [
+            "da",
+            "ab",
+            "da"
+          ],
+          "order": "vpsughdlytenxjicrbqozkmfaw"
+        },
+        "out": false
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "words": [
+            "dd",
+            "cb",
+            "bd"
+          ],
+          "order": "splxnehdytfaikvjqobzrmcugw"
+        },
+        "out": false
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "words": [
+            "cdca",
+            "cbca",
+            "cbda",
+            "bdab",
+            "bdda",
+            "adbb",
+            "bccb"
+          ],
+          "order": "kvmybfhlgoazuqpsdcenrwjtix"
+        },
+        "out": false
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "words": [
+            "dcacac",
+            "bbabba",
+            "cbdbac",
+            "bbbbdb",
+            "cdabaa",
+            "ccabbc"
+          ],
+          "order": "bdpfxcztumsiaglnkeryovwhqj"
+        },
+        "out": false
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "words": [
+            "baadbd",
+            "cabdcb",
+            "babcba",
+            "cbddbb",
+            "acbaac",
+            "dadcbb"
+          ],
+          "order": "kosirnwmyqtbpegfjdhzvlucax"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "words = [\"ddda\", \"cbdc\", \"dbcc\", \"bbad\", \"bbcd\", \"badb\"]\norder = \"xabpcjnhuvmtygklrefdwqzios\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"cdcd\", \"daca\", \"bbcb\", \"bccd\", \"abdc\", \"adca\"]\norder = \"tmzindlxjavpsefhkwrgcquoyb\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"ab\", \"bc\", \"db\", \"cc\", \"dd\", \"cc\"]\norder = \"wdkstuamhepxgyinvcfzrqlobj\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"adcc\", \"abab\"]\norder = \"lyfvnoeukthzrcagxwipsjdmqb\"",
+      "output": "true"
+    },
+    {
+      "input": "words = [\"caabab\", \"cdbbda\", \"ccbbad\"]\norder = \"gficyovndjlaszbweukqhxmtrp\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"dcda\", \"adab\", \"dbda\", \"cdbc\", \"cacb\"]\norder = \"qoagsphwvtibdnxmjckrezyluf\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"dacad\", \"babdb\", \"bbbcb\"]\norder = \"ojdeznxvsfbkhpqrglywtciuam\"",
+      "output": "false"
+    },
+    {
+      "input": "words = [\"a\", \"a\", \"c\", \"b\", \"d\", \"a\", \"a\"]\norder = \"ynfkhvwtaxmqlgbzuierjcodps\"",
+      "output": "false"
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "id": "unique_binary_search_trees_ii",
+  "title": "Unique Binary Search Trees II",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming",
+    "Backtracking",
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return <em>all the structurally unique <strong>BST&#39;</strong>s (binary search trees), which has exactly </em><code>n</code><em> nodes of unique values from</em> <code>1</code> <em>to</em> <code>n</code>. Return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/18/uniquebstn3.jpg\" style=\"width: 600px; height: 148px;\" />\n<pre>\n<strong>Input:</strong> n = 3\n<strong>Output:</strong> [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> [[1]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 8</code></li>\n</ul>\n",
+  "task": "Solve the 'Unique Binary Search Trees II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 8"
+  ],
+  "hints": [],
+  "method": {
+    "name": "generateTrees",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 95,
+      "title": "unique-binary-search-trees-ii",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "treeNodesArrayToVector(Solution().generateTrees({n}))",
+        "rust": "Solution::generate_trees({n}).into_iter().map(TreeNode::tree_node_to_array).collect::<Vec<_>>()",
+        "python3": "[tree_node_to_array(t) for t in Solution().generateTrees({n})]",
+        "python2": "[tree_node_to_array(t) for t in Solution().generateTrees({n})]",
+        "ruby": "generate_trees({n}).map { |e| tree_node_to_array(e) }",
+        "java": "TreeNode.treeNodesArrayToArrayList(new Solution().generateTrees({n}))",
+        "csharp": "TreeNode.TreeNodeListToArrayList(new Solution().GenerateTrees({n}))",
+        "kotlin": "generateTrees({n}).map { treeNodeToArray(it) }",
+        "go": "treesToArrays(generateTrees({n}))",
+        "dart": "generateTrees({n}).map((e) => tree_node_to_array(e)).toList()",
+        "swift": "generateTrees({n}).map { tree_node_to_array($0) }",
+        "typescript": "generateTrees({n}).map((e) => treeNodeToArray(e))"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, {result})",
+        "checker": "class Checker:\n    def _cat(self, n):\n        dp = [0] * (n + 1)\n        dp[0] = 1\n        for i in range(1, n + 1):\n            total = 0\n            for left in range(i):\n                total += dp[left] * dp[i - 1 - left]\n            dp[i] = total\n        return dp[n]\n\n    def _build(self, arr):\n        if not arr:\n            return None\n        nodes = [None if v is None else {\"v\": v, \"l\": None, \"r\": None} for v in arr]\n        kids = nodes[1:]\n        for node in nodes:\n            if node is not None:\n                if kids:\n                    node[\"l\"] = kids.pop(0)\n                if kids:\n                    node[\"r\"] = kids.pop(0)\n        return nodes[0]\n\n    def _inorder(self, node, vals):\n        if node is None:\n            return\n        self._inorder(node[\"l\"], vals)\n        vals.append(node[\"v\"])\n        self._inorder(node[\"r\"], vals)\n\n    def _sig(self, arr):\n        return tuple(arr)\n\n    def check(self, n, result):\n        if not isinstance(result, list) or len(result) != self._cat(n):\n            return False\n\n        seen = set()\n        for tree in result:\n            if not isinstance(tree, list) or not tree:\n                return False\n            sig = self._sig(tree)\n            if sig in seen:\n                return False\n            seen.add(sig)\n            root = self._build(tree)\n            vals = []\n            self._inorder(root, vals)\n            if vals != list(range(1, n + 1)):\n                return False\n        return True\n"
+      }
+    },
+    "seed": 42,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "n": 3
+        },
+        "out": [
+          [
+            1,
+            null,
+            2,
+            null,
+            3
+          ],
+          [
+            1,
+            null,
+            3,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            3,
+            1,
+            null,
+            null,
+            2
+          ],
+          [
+            3,
+            2,
+            null,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "n": 1
+        },
+        "out": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "name": "n_2_static",
+        "in": {
+          "n": 2
+        },
+        "out": [
+          [
+            1,
+            null,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      {
+        "name": "gen_1",
+        "seed": 1,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "gen_2",
+        "seed": 2,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "gen_3",
+        "seed": 3,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "gen_4",
+        "seed": 4,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "gen_5",
+        "seed": 5,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "n_4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n_5",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n_6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n_7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n_8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "repeat_1",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "repeat_2",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "repeat_3",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "repeat_4",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "repeat_5",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "repeat_6",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "repeat_7",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "repeat_8",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "repeat_9",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "repeat_10",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "repeat_11",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "repeat_12",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "repeat_13",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "repeat_14",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "repeat_15",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "repeat_16",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "repeat_17",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "repeat_18",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "repeat_19",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "repeat_20",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "repeat_21",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "repeat_22",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "repeat_23",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "repeat_24",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "repeat_25",
+        "in": {
+          "n": 6
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3",
+      "output": "[[1, null, 2, null, 3], [1, null, 3, 2], [2, 1, 3], [3, 1, null, null, 2], [3, 2, null, 1]]"
+    },
+    {
+      "input": "n = 1",
+      "output": "[[1]]"
+    },
+    {
+      "input": "n = 2",
+      "output": "[[1, null, 2], [2, 1]]"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 8}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 8}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 8}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 8}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 8}",
+      "output": ""
+    }
+  ]
+}

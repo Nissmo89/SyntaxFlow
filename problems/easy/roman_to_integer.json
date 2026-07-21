@@ -1,0 +1,359 @@
+{
+  "id": "roman_to_integer",
+  "title": "Roman to Integer",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String"
+  ],
+  "description": "<p>Roman numerals are represented by seven different symbols: <code>I</code>, <code>V</code>, <code>X</code>, <code>L</code>, <code>C</code>, <code>D</code> and <code>M</code>.</p> <pre><strong>Symbol</strong>       <strong>Value</strong>\nI             1\nV             5\nX             10\nL             50\nC             100\nD             500\nM             1000</pre> <p>For example, <code>2</code> is written as <code>II</code> in Roman numeral, just two ones added together. <code>12</code> is written as <code>XII</code>, which is simply <code>X + II</code>. The number <code>27</code> is written as <code>XXVII</code>, which is <code>XX + V + II</code>.</p> <p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not <code>IIII</code>. Instead, the number four is written as <code>IV</code>. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as <code>IX</code>. There are six instances where subtraction is used:</p> <ul> <li><code>I</code> can be placed before <code>V</code> (5) and <code>X</code> (10) to make 4 and 9. </li> <li><code>X</code> can be placed before <code>L</code> (50) and <code>C</code> (100) to make 40 and 90. </li> <li><code>C</code> can be placed before <code>D</code> (500) and <code>M</code> (1000) to make 400 and 900.</li> </ul> <p>Given a roman numeral, convert it to an integer.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"III\"\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> III = 3.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"LVIII\"\n<strong>Output:</strong> 58\n<strong>Explanation:</strong> L = 50, V= 5, III = 3.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> s = \"MCMXCIV\"\n<strong>Output:</strong> 1994\n<strong>Explanation:</strong> M = 1000, CM = 900, XC = 90 and IV = 4.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 15</code></li> <li><code>s</code> contains only the characters <code>('I', 'V', 'X', 'L', 'C', 'D', 'M')</code>.</li> <li>It is <strong>guaranteed</strong> that <code>s</code> is a valid roman numeral in the range <code>[1, 3999]</code>.</li> </ul>",
+  "hints": [
+    "Problem is simpler to solve by working the string from back to front and using a map."
+  ],
+  "method": {
+    "name": "romanToInt",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 13,
+      "title": "roman-to-integer",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().romanToInt({s})",
+        "rust": "Solution::roman_to_int({s})",
+        "python3": "Solution().romanToInt({s})",
+        "python2": "Solution().romanToInt({s})",
+        "ruby": "roman_to_int({s})",
+        "java": "new Solution().romanToInt({s})",
+        "csharp": "new Solution().RomanToInt({s})",
+        "kotlin": "Solution().romanToInt({s})",
+        "go": "romanToInt({s})",
+        "dart": "Solution().romanToInt({s})",
+        "swift": "Solution().romanToInt({s})",
+        "typescript": "romanToInt({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().romanToInt(s, {result})",
+        "checker": "class Checker:\n    def romanToInt(self, s, result):\n        roman = {\n            \"I\": 1,\n            \"V\": 5,\n            \"X\": 10,\n            \"L\": 50,\n            \"C\": 100,\n            \"D\": 500,\n            \"M\": 1000,\n        }\n        if not isinstance(result, int):\n            return False\n        if not (1 <= len(s) <= 15):\n            return False\n        if any(ch not in roman for ch in s):\n            return False\n        total = 0\n        for a, b in zip(s, s[1:]):\n            if roman[a] < roman[b]:\n                total -= roman[a]\n            else:\n                total += roman[a]\n        total += roman[s[-1]]\n        return 1 <= total <= 3999 and total == result\n"
+      }
+    },
+    "seed": 13,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "III"
+        },
+        "out": 3
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "LVIII"
+        },
+        "out": 58
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "MCMXCIV"
+        },
+        "out": 1994
+      },
+      {
+        "name": "single_i",
+        "in": {
+          "s": "I"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_v",
+        "in": {
+          "s": "V"
+        },
+        "out": 5
+      },
+      {
+        "name": "single_x",
+        "in": {
+          "s": "X"
+        },
+        "out": 10
+      },
+      {
+        "name": "single_l",
+        "in": {
+          "s": "L"
+        },
+        "out": 50
+      },
+      {
+        "name": "single_c",
+        "in": {
+          "s": "C"
+        },
+        "out": 100
+      },
+      {
+        "name": "single_d",
+        "in": {
+          "s": "D"
+        },
+        "out": 500
+      },
+      {
+        "name": "single_m",
+        "in": {
+          "s": "M"
+        },
+        "out": 1000
+      },
+      {
+        "name": "additive_2",
+        "in": {
+          "s": "II"
+        },
+        "out": 2
+      },
+      {
+        "name": "additive_3",
+        "in": {
+          "s": "VIII"
+        },
+        "out": 8
+      },
+      {
+        "name": "additive_4",
+        "in": {
+          "s": "XXX"
+        },
+        "out": 30
+      },
+      {
+        "name": "subtractive_4",
+        "in": {
+          "s": "IV"
+        },
+        "out": 4
+      },
+      {
+        "name": "subtractive_9",
+        "in": {
+          "s": "IX"
+        },
+        "out": 9
+      },
+      {
+        "name": "subtractive_40",
+        "in": {
+          "s": "XL"
+        },
+        "out": 40
+      },
+      {
+        "name": "subtractive_90",
+        "in": {
+          "s": "XC"
+        },
+        "out": 90
+      },
+      {
+        "name": "subtractive_400",
+        "in": {
+          "s": "CD"
+        },
+        "out": 400
+      },
+      {
+        "name": "subtractive_900",
+        "in": {
+          "s": "CM"
+        },
+        "out": 900
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "s": "XLII"
+        },
+        "out": 42
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "s": "XCIX"
+        },
+        "out": 99
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "s": "CDXLIV"
+        },
+        "out": 444
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "s": "DCCVII"
+        },
+        "out": 707
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "s": "MCMLXXXIV"
+        },
+        "out": 1984
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "s": "MMXXIV"
+        },
+        "out": 2024
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "s": "MMMDCCCLXXXVIII"
+        },
+        "out": 3888
+      },
+      {
+        "name": "upper_bound",
+        "in": {
+          "s": "MMMCMXCIX"
+        },
+        "out": 3999
+      },
+      {
+        "name": "near_upper_1",
+        "in": {
+          "s": "MMMCM"
+        },
+        "out": 3900
+      },
+      {
+        "name": "near_upper_2",
+        "in": {
+          "s": "MMMC"
+        },
+        "out": 3100
+      },
+      {
+        "name": "near_upper_3",
+        "in": {
+          "s": "MMMD"
+        },
+        "out": 3500
+      },
+      {
+        "name": "near_upper_4",
+        "in": {
+          "s": "MMMI"
+        },
+        "out": 3001
+      },
+      {
+        "name": "boundary_repeat_1",
+        "in": {
+          "s": "CCXL"
+        },
+        "out": 240
+      },
+      {
+        "name": "boundary_repeat_2",
+        "in": {
+          "s": "CD"
+        },
+        "out": 400
+      },
+      {
+        "name": "boundary_repeat_3",
+        "in": {
+          "s": "DCCC"
+        },
+        "out": 800
+      },
+      {
+        "name": "boundary_repeat_4",
+        "in": {
+          "s": "MM"
+        },
+        "out": 2000
+      },
+      {
+        "name": "boundary_repeat_5",
+        "in": {
+          "s": "LX"
+        },
+        "out": 60
+      },
+      {
+        "name": "boundary_repeat_6",
+        "in": {
+          "s": "XIV"
+        },
+        "out": 14
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"III\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"LVIII\"",
+      "output": "58"
+    },
+    {
+      "input": "s = \"MCMXCIV\"",
+      "output": "1994"
+    },
+    {
+      "input": "s = \"I\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"V\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"X\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"L\"",
+      "output": "50"
+    },
+    {
+      "input": "s = \"C\"",
+      "output": "100"
+    }
+  ]
+}

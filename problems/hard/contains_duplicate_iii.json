@@ -1,0 +1,765 @@
+{
+  "id": "contains_duplicate_iii",
+  "title": "Contains Duplicate III",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Sorting",
+    "Bucket Sort",
+    "Ordered Set"
+  ],
+  "description": "<p>You are given an integer array <code>nums</code> and two integers <code>indexDiff</code> and <code>valueDiff</code>.</p>\n\n<p>Find a pair of indices <code>(i, j)</code> such that:</p>\n\n<ul>\n\t<li><code>i != j</code>,</li>\n\t<li><code>abs(i - j) &lt;= indexDiff</code>.</li>\n\t<li><code>abs(nums[i] - nums[j]) &lt;= valueDiff</code>, and</li>\n</ul>\n\n<p>Return <code>true</code><em> if such pair exists or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,1], indexDiff = 3, valueDiff = 0\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We can choose (i, j) = (0, 3).\nWe satisfy the three conditions:\ni != j --&gt; 0 != 3\nabs(i - j) &lt;= indexDiff --&gt; abs(0 - 3) &lt;= 3\nabs(nums[i] - nums[j]) &lt;= valueDiff --&gt; abs(1 - 1) &lt;= 0\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3\n<strong>Output:</strong> false\n<strong>Explanation:</strong> After trying all the possible pairs (i, j), we cannot satisfy the three conditions, so we return false.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= indexDiff &lt;= nums.length</code></li>\n\t<li><code>0 &lt;= valueDiff &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Contains Duplicate III' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109",
+    "1 <= indexDiff <= nums.length",
+    "0 <= valueDiff <= 109"
+  ],
+  "hints": [
+    "Time complexity O(n logk)  - This will give an indication that sorting is involved for k elements.",
+    "Use already existing state to evaluate next state  -  Like, a set of k sorted numbers are only needed to be tracked. When we are processing the next number in array, then we can utilize the existing sorted state and it is not necessary to sort next overlapping set of k numbers again."
+  ],
+  "method": {
+    "name": "containsNearbyAlmostDuplicate",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "indexDiff",
+        "type": "int"
+      },
+      {
+        "name": "valueDiff",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 220,
+      "title": "contains-duplicate-iii",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "indexDiff": {
+          "type": "int"
+        },
+        "valueDiff": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "rust": "Solution::contains_nearby_almost_duplicate({nums}, {indexDiff}, {valueDiff})",
+        "python3": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "python2": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "ruby": "contains_nearby_almost_duplicate({nums}, {indexDiff}, {valueDiff})",
+        "java": "new Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "csharp": "new Solution().ContainsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "kotlin": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "go": "containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "dart": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "swift": "Solution().containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})",
+        "typescript": "containsNearbyAlmostDuplicate({nums}, {indexDiff}, {valueDiff})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return isinstance(result, bool)\n"
+      }
+    },
+    "seed": 220,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "indexDiff": 3,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            5,
+            9,
+            1,
+            5,
+            9
+          ],
+          "indexDiff": 2,
+          "valueDiff": 3
+        },
+        "out": false
+      },
+      {
+        "name": "two-elements-duplicate",
+        "in": {
+          "nums": [
+            7,
+            7
+          ],
+          "indexDiff": 1,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "two-elements-far-value",
+        "in": {
+          "nums": [
+            1,
+            100
+          ],
+          "indexDiff": 1,
+          "valueDiff": 50
+        },
+        "out": false
+      },
+      {
+        "name": "adjacent-close",
+        "in": {
+          "nums": [
+            4,
+            6
+          ],
+          "indexDiff": 1,
+          "valueDiff": 2
+        },
+        "out": true
+      },
+      {
+        "name": "adjacent-too-far",
+        "in": {
+          "nums": [
+            4,
+            7
+          ],
+          "indexDiff": 1,
+          "valueDiff": 2
+        },
+        "out": false
+      },
+      {
+        "name": "zero-value-duplicate-window",
+        "in": {
+          "nums": [
+            5,
+            1,
+            5
+          ],
+          "indexDiff": 2,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "zero-value-no-duplicate",
+        "in": {
+          "nums": [
+            5,
+            1,
+            2
+          ],
+          "indexDiff": 2,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "negative-numbers-close",
+        "in": {
+          "nums": [
+            -10,
+            -13,
+            -8
+          ],
+          "indexDiff": 2,
+          "valueDiff": 3
+        },
+        "out": true
+      },
+      {
+        "name": "negative-numbers-fail",
+        "in": {
+          "nums": [
+            -10,
+            -14,
+            -19
+          ],
+          "indexDiff": 1,
+          "valueDiff": 3
+        },
+        "out": false
+      },
+      {
+        "name": "same-bucket-within-window",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            10
+          ],
+          "indexDiff": 2,
+          "valueDiff": 3
+        },
+        "out": true
+      },
+      {
+        "name": "same-bucket-outside-window",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            10
+          ],
+          "indexDiff": 1,
+          "valueDiff": 3
+        },
+        "out": true
+      },
+      {
+        "name": "neighbor-bucket-true",
+        "in": {
+          "nums": [
+            1,
+            5
+          ],
+          "indexDiff": 1,
+          "valueDiff": 3
+        },
+        "out": false
+      },
+      {
+        "name": "classic-neighbor-true",
+        "in": {
+          "nums": [
+            1,
+            3
+          ],
+          "indexDiff": 1,
+          "valueDiff": 2
+        },
+        "out": true
+      },
+      {
+        "name": "duplicate-beyond-window",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "indexDiff": 2,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "duplicate-within-window",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "indexDiff": 3,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "large-value-diff",
+        "in": {
+          "nums": [
+            1000000000,
+            -1000000000
+          ],
+          "indexDiff": 1,
+          "valueDiff": 2000000000
+        },
+        "out": true
+      },
+      {
+        "name": "exact-boundary-value",
+        "in": {
+          "nums": [
+            -1000000000,
+            -999999999
+          ],
+          "indexDiff": 1,
+          "valueDiff": 1
+        },
+        "out": true
+      },
+      {
+        "name": "boundary-false",
+        "in": {
+          "nums": [
+            -1000000000,
+            -999999998
+          ],
+          "indexDiff": 1,
+          "valueDiff": 1
+        },
+        "out": false
+      },
+      {
+        "name": "index-diff-equals-length",
+        "in": {
+          "nums": [
+            8,
+            3,
+            6,
+            8
+          ],
+          "indexDiff": 4,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "index-diff-one-no-match",
+        "in": {
+          "nums": [
+            8,
+            3,
+            6,
+            8
+          ],
+          "indexDiff": 1,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "increasing-range-false",
+        "in": {
+          "nums": [
+            0,
+            10,
+            20,
+            30,
+            40
+          ],
+          "indexDiff": 2,
+          "valueDiff": 9
+        },
+        "out": false
+      },
+      {
+        "name": "increasing-range-true",
+        "in": {
+          "nums": [
+            0,
+            10,
+            20,
+            30,
+            40
+          ],
+          "indexDiff": 1,
+          "valueDiff": 10
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-values-large-window",
+        "in": {
+          "nums": [
+            2,
+            9,
+            2,
+            9,
+            2
+          ],
+          "indexDiff": 3,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "repeated-values-too-small-window",
+        "in": {
+          "nums": [
+            2,
+            9,
+            2,
+            9,
+            2
+          ],
+          "indexDiff": 1,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "negative-neighbor-true",
+        "in": {
+          "nums": [
+            -1,
+            -4
+          ],
+          "indexDiff": 1,
+          "valueDiff": 3
+        },
+        "out": true
+      },
+      {
+        "name": "negative-neighbor-false",
+        "in": {
+          "nums": [
+            -1,
+            -5
+          ],
+          "indexDiff": 1,
+          "valueDiff": 3
+        },
+        "out": false
+      },
+      {
+        "name": "zero-diff-same-number-late",
+        "in": {
+          "nums": [
+            11,
+            22,
+            33,
+            44,
+            11
+          ],
+          "indexDiff": 4,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "zero-diff-same-number-outside",
+        "in": {
+          "nums": [
+            11,
+            22,
+            33,
+            44,
+            11
+          ],
+          "indexDiff": 3,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "small-window-multiple-values",
+        "in": {
+          "nums": [
+            1,
+            6,
+            11,
+            16
+          ],
+          "indexDiff": 2,
+          "valueDiff": 5
+        },
+        "out": true
+      },
+      {
+        "name": "small-window-no-close-pairs",
+        "in": {
+          "nums": [
+            1,
+            6,
+            11,
+            16
+          ],
+          "indexDiff": 1,
+          "valueDiff": 4
+        },
+        "out": false
+      },
+      {
+        "name": "large-all-equal",
+        "in": {
+          "nums": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ],
+          "indexDiff": 1,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "large-all-distinct",
+        "in": {
+          "nums": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62,
+            64,
+            66,
+            68,
+            70,
+            72,
+            74,
+            76,
+            78,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            94,
+            96,
+            98
+          ],
+          "indexDiff": 5,
+          "valueDiff": 1
+        },
+        "out": false
+      },
+      {
+        "name": "max-index-diff-close-end",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400,
+            500,
+            600,
+            700,
+            800,
+            900,
+            1000,
+            1100,
+            1200,
+            1300,
+            1400,
+            1500,
+            1600,
+            1700,
+            1800,
+            1900,
+            2000
+          ],
+          "indexDiff": 20,
+          "valueDiff": 0
+        },
+        "out": false
+      },
+      {
+        "name": "max-index-diff-with-duplicate",
+        "in": {
+          "nums": [
+            100,
+            200,
+            300,
+            400,
+            500,
+            600,
+            700,
+            800,
+            900,
+            1000,
+            1100,
+            1200,
+            1300,
+            1400,
+            1500,
+            1600,
+            1700,
+            1800,
+            1900,
+            100
+          ],
+          "indexDiff": 20,
+          "valueDiff": 0
+        },
+        "out": true
+      },
+      {
+        "name": "max-window-small-diff",
+        "in": {
+          "nums": [
+            -50,
+            -40,
+            -30,
+            -20,
+            -10,
+            0,
+            10,
+            20,
+            30,
+            40
+          ],
+          "indexDiff": 10,
+          "valueDiff": 9
+        },
+        "out": false
+      },
+      {
+        "name": "max-window-close-values",
+        "in": {
+          "nums": [
+            -50,
+            -40,
+            -30,
+            -20,
+            -10,
+            0,
+            10,
+            20,
+            30,
+            39
+          ],
+          "indexDiff": 10,
+          "valueDiff": 9
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 3, 1]\nindexDiff = 3\nvalueDiff = 0",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 5, 9, 1, 5, 9]\nindexDiff = 2\nvalueDiff = 3",
+      "output": "false"
+    },
+    {
+      "input": "nums = [7, 7]\nindexDiff = 1\nvalueDiff = 0",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 100]\nindexDiff = 1\nvalueDiff = 50",
+      "output": "false"
+    },
+    {
+      "input": "nums = [4, 6]\nindexDiff = 1\nvalueDiff = 2",
+      "output": "true"
+    },
+    {
+      "input": "nums = [4, 7]\nindexDiff = 1\nvalueDiff = 2",
+      "output": "false"
+    },
+    {
+      "input": "nums = [5, 1, 5]\nindexDiff = 2\nvalueDiff = 0",
+      "output": "true"
+    },
+    {
+      "input": "nums = [5, 1, 2]\nindexDiff = 2\nvalueDiff = 0",
+      "output": "false"
+    }
+  ]
+}

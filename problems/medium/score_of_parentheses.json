@@ -1,0 +1,357 @@
+{
+  "id": "score_of_parentheses",
+  "title": "Score of Parentheses",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "description": "<p>Given a balanced parentheses string <code>s</code>, return <em>the <strong>score</strong> of the string</em>.</p>\n\n<p>The <strong>score</strong> of a balanced parentheses string is based on the following rule:</p>\n\n<ul>\n\t<li><code>&quot;()&quot;</code> has score <code>1</code>.</li>\n\t<li><code>AB</code> has score <code>A + B</code>, where <code>A</code> and <code>B</code> are balanced parentheses strings.</li>\n\t<li><code>(A)</code> has score <code>2 * A</code>, where <code>A</code> is a balanced parentheses string.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;()&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;(())&quot;\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;()()&quot;\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= s.length &lt;= 50</code></li>\n\t<li><code>s</code> consists of only <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>.</li>\n\t<li><code>s</code> is a balanced parentheses string.</li>\n</ul>\n",
+  "task": "Solve the 'Score of Parentheses' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "2 <= s.length <= 50",
+    "s consists of only '(' and ')'.",
+    "s is a balanced parentheses string."
+  ],
+  "hints": [],
+  "method": {
+    "name": "scoreOfParentheses",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 856,
+      "title": "score-of-parentheses",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().scoreOfParentheses({s})",
+        "rust": "Solution::score_of_parentheses({s})",
+        "python3": "Solution().scoreOfParentheses({s})",
+        "python2": "Solution().scoreOfParentheses({s})",
+        "ruby": "score_of_parentheses({s})",
+        "java": "new Solution().scoreOfParentheses({s})",
+        "csharp": "new Solution().ScoreOfParentheses({s})",
+        "kotlin": "Solution().scoreOfParentheses({s})",
+        "go": "scoreOfParentheses({s})",
+        "dart": "Solution().scoreOfParentheses({s})",
+        "swift": "Solution().scoreOfParentheses({s})",
+        "typescript": "scoreOfParentheses({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().scoreOfParentheses(s, {result})",
+        "checker": "class Checker:\n    def scoreOfParentheses(self, s, result):\n        if not isinstance(result, int):\n            return False\n        score_stack = [0]\n        for ch in s:\n            if ch == \"(\":\n                score_stack.append(0)\n            else:\n                last_score = score_stack.pop()\n                score_stack[-1] += max(1, last_score * 2)\n        return result == score_stack[-1]\n"
+      }
+    },
+    "seed": 856,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "s": "()"
+        },
+        "out": 1
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "s": "(())"
+        },
+        "out": 2
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "s": "()()"
+        },
+        "out": 2
+      },
+      {
+        "name": "nested_three",
+        "in": {
+          "s": "((()))"
+        },
+        "out": 4
+      },
+      {
+        "name": "concat_nested",
+        "in": {
+          "s": "(()())"
+        },
+        "out": 4
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "s": "()(())"
+        },
+        "out": 3
+      },
+      {
+        "name": "deep_mix",
+        "in": {
+          "s": "((()()))"
+        },
+        "out": 8
+      },
+      {
+        "name": "deeper_mix",
+        "in": {
+          "s": "(()(()))"
+        },
+        "out": 6
+      },
+      {
+        "name": "triple_pair",
+        "in": {
+          "s": "()()()"
+        },
+        "out": 3
+      },
+      {
+        "name": "depth_four",
+        "in": {
+          "s": "(((())))"
+        },
+        "out": 8
+      },
+      {
+        "name": "mixed_six",
+        "in": {
+          "s": "(()()())"
+        },
+        "out": 6
+      },
+      {
+        "name": "mix_two",
+        "in": {
+          "s": "((())())"
+        },
+        "out": 6
+      },
+      {
+        "name": "mix_three",
+        "in": {
+          "s": "()(()())"
+        },
+        "out": 5
+      },
+      {
+        "name": "deeper_12",
+        "in": {
+          "s": "((()()()))"
+        },
+        "out": 12
+      },
+      {
+        "name": "depth_16",
+        "in": {
+          "s": "(((()())))"
+        },
+        "out": 16
+      },
+      {
+        "name": "outer_pair",
+        "in": {
+          "s": "()((()))"
+        },
+        "out": 5
+      },
+      {
+        "name": "suffix_pair",
+        "in": {
+          "s": "(()())()"
+        },
+        "out": 5
+      },
+      {
+        "name": "nested_concat",
+        "in": {
+          "s": "((())(()))"
+        },
+        "out": 8
+      },
+      {
+        "name": "deep_inner",
+        "in": {
+          "s": "((()(())))"
+        },
+        "out": 12
+      },
+      {
+        "name": "outer_deep_mix",
+        "in": {
+          "s": "()((()()))"
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_ten",
+        "in": {
+          "s": "(((()))())"
+        },
+        "out": 10
+      },
+      {
+        "name": "pair_and_nested",
+        "in": {
+          "s": "((()))()"
+        },
+        "out": 5
+      },
+      {
+        "name": "inner_ten",
+        "in": {
+          "s": "(()(()()))"
+        },
+        "out": 10
+      },
+      {
+        "name": "four_pairs",
+        "in": {
+          "s": "()()()()"
+        },
+        "out": 4
+      },
+      {
+        "name": "deep_16",
+        "in": {
+          "s": "((()()()()))"
+        },
+        "out": 16
+      },
+      {
+        "name": "max_depth_16",
+        "in": {
+          "s": "((((()))))"
+        },
+        "out": 16
+      },
+      {
+        "name": "nested_ten",
+        "in": {
+          "s": "(()((())))"
+        },
+        "out": 10
+      },
+      {
+        "name": "mix_eight",
+        "in": {
+          "s": "((())()())"
+        },
+        "out": 8
+      },
+      {
+        "name": "outer_seven",
+        "in": {
+          "s": "()((())())"
+        },
+        "out": 7
+      },
+      {
+        "name": "big_24",
+        "in": {
+          "s": "(((()()())))"
+        },
+        "out": 24
+      },
+      {
+        "name": "flat_eight",
+        "in": {
+          "s": "(()()()())"
+        },
+        "out": 8
+      },
+      {
+        "name": "deep_ten",
+        "in": {
+          "s": "((()())())"
+        },
+        "out": 10
+      },
+      {
+        "name": "suffix_nine",
+        "in": {
+          "s": "(((())))()"
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_seven",
+        "in": {
+          "s": "()(()(()))"
+        },
+        "out": 7
+      },
+      {
+        "name": "deep_eighteen",
+        "in": {
+          "s": "(()((()())))"
+        },
+        "out": 18
+      },
+      {
+        "name": "deep_twenty",
+        "in": {
+          "s": "((()(()())))"
+        },
+        "out": 20
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"()\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"(())\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"()()\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"((()))\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"(()())\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"()(())\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"((()()))\"",
+      "output": "8"
+    },
+    {
+      "input": "s = \"(()(()))\"",
+      "output": "6"
+    }
+  ]
+}

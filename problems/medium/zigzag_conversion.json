@@ -1,0 +1,399 @@
+{
+  "id": "zigzag_conversion",
+  "title": "Zigzag Conversion",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>The string <code>&quot;PAYPALISHIRING&quot;</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>\n\n<pre>\nP   A   H   N\nA P L S I I G\nY   I   R\n</pre>\n\n<p>And then read line by line: <code>&quot;PAHNAPLSIIGYIR&quot;</code></p>\n\n<p>Write the code that will take a string and make this conversion given a number of rows:</p>\n\n<pre>\nstring convert(string s, int numRows);\n</pre>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;PAYPALISHIRING&quot;, numRows = 3\n<strong>Output:</strong> &quot;PAHNAPLSIIGYIR&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;PAYPALISHIRING&quot;, numRows = 4\n<strong>Output:</strong> &quot;PINALSIGYAHRPI&quot;\n<strong>Explanation:</strong>\nP     I    N\nA   L S  I G\nY A   H R\nP     I\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;A&quot;, numRows = 1\n<strong>Output:</strong> &quot;A&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>s</code> consists of English letters (lower-case and upper-case), <code>&#39;,&#39;</code> and <code>&#39;.&#39;</code>.</li>\n\t<li><code>1 &lt;= numRows &lt;= 1000</code></li>\n</ul>\n",
+  "task": "Solve the 'Zigzag Conversion' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of English letters (lower-case and upper-case), ',' and '.'.",
+    "1 <= numRows <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "convert",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "numRows",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 6,
+      "title": "zigzag-conversion",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "numRows": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().convert({s}, {numRows})",
+        "rust": "Solution::convert({s}, {numRows})",
+        "python3": "Solution().convert({s}, {numRows})",
+        "python2": "Solution().convert({s}, {numRows})",
+        "ruby": "convert({s}, {numRows})",
+        "java": "new Solution().convert({s}, {numRows})",
+        "csharp": "new Solution().Convert({s}, {numRows})",
+        "kotlin": "Solution().convert({s}, {numRows})",
+        "go": "convert({s}, {numRows})",
+        "dart": "Solution().convert({s}, {numRows})",
+        "swift": "Solution().convert({s}, {numRows})",
+        "typescript": "convert({s}, {numRows})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().convert(s, numRows, {result})",
+        "checker": "class Checker:\n    def convert(self, s: str, numRows: int, result: str) -> bool:\n        if not isinstance(result, str):\n            return False\n        if numRows == 1 or numRows >= len(s):\n            return result == s\n        idx, direction = 0, 1\n        rows = [\"\"] * numRows\n        for ch in s:\n            rows[idx] += ch\n            if idx == 0:\n                direction = 1\n            elif idx == numRows - 1:\n                direction = -1\n            idx += direction\n        return result == \"\".join(rows)\n"
+      }
+    },
+    "seed": 6,
+    "tests": [
+      {
+        "name": "ex1_paypal_3",
+        "in": {
+          "s": "PAYPALISHIRING",
+          "numRows": 3
+        },
+        "out": "PAHNAPLSIIGYIR"
+      },
+      {
+        "name": "ex2_paypal_4",
+        "in": {
+          "s": "PAYPALISHIRING",
+          "numRows": 4
+        },
+        "out": "PINALSIGYAHRPI"
+      },
+      {
+        "name": "ex3_single_char",
+        "in": {
+          "s": "A",
+          "numRows": 1
+        },
+        "out": "A"
+      },
+      {
+        "name": "row_one_two_chars",
+        "in": {
+          "s": "AB",
+          "numRows": 1
+        },
+        "out": "AB"
+      },
+      {
+        "name": "two_rows_two_chars",
+        "in": {
+          "s": "AB",
+          "numRows": 2
+        },
+        "out": "AB"
+      },
+      {
+        "name": "two_rows_three_chars",
+        "in": {
+          "s": "ABC",
+          "numRows": 2
+        },
+        "out": "ACB"
+      },
+      {
+        "name": "two_rows_five_chars",
+        "in": {
+          "s": "ABCDE",
+          "numRows": 2
+        },
+        "out": "ACEBD"
+      },
+      {
+        "name": "three_rows_five_chars",
+        "in": {
+          "s": "ABCDE",
+          "numRows": 3
+        },
+        "out": "AEBDC"
+      },
+      {
+        "name": "four_rows_five_chars",
+        "in": {
+          "s": "ABCDE",
+          "numRows": 4
+        },
+        "out": "ABCED"
+      },
+      {
+        "name": "rows_equal_len",
+        "in": {
+          "s": "ABCDE",
+          "numRows": 5
+        },
+        "out": "ABCDE"
+      },
+      {
+        "name": "short_eight_rows3",
+        "in": {
+          "s": "ABCDEFGH",
+          "numRows": 3
+        },
+        "out": "AEBDFHCG"
+      },
+      {
+        "name": "short_eight_rows4",
+        "in": {
+          "s": "ABCDEFGH",
+          "numRows": 4
+        },
+        "out": "AGBFHCED"
+      },
+      {
+        "name": "eleven_rows3",
+        "in": {
+          "s": "ABCDEFGHIJK",
+          "numRows": 3
+        },
+        "out": "AEIBDFHJCGK"
+      },
+      {
+        "name": "eleven_rows5",
+        "in": {
+          "s": "ABCDEFGHIJK",
+          "numRows": 5
+        },
+        "out": "AIBHJCGKDFE"
+      },
+      {
+        "name": "alphabet_rows2",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "numRows": 2
+        },
+        "out": "ACEGIKMOQSUWYBDFHJLNPRTVXZ"
+      },
+      {
+        "name": "alphabet_rows3",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "numRows": 3
+        },
+        "out": "AEIMQUYBDFHJLNPRTVXZCGKOSW"
+      },
+      {
+        "name": "alphabet_rows4",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "numRows": 4
+        },
+        "out": "AGMSYBFHLNRTXZCEIKOQUWDJPV"
+      },
+      {
+        "name": "alphabet_rows5",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "numRows": 5
+        },
+        "out": "AIQYBHJPRXZCGKOSWDFLNTVEMU"
+      },
+      {
+        "name": "lower_rows6",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "numRows": 6
+        },
+        "out": "akubjltvcimswdhnrxegoqyfpz"
+      },
+      {
+        "name": "lower_rows7",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz",
+          "numRows": 7
+        },
+        "out": "amyblnxzckowdjpveiqufhrtgs"
+      },
+      {
+        "name": "mixedcase_rows4",
+        "in": {
+          "s": "AaBbCcDdEeFfGgHhIiJj",
+          "numRows": 4
+        },
+        "out": "ADGJacdfgijBCEFHIbeh"
+      },
+      {
+        "name": "leetcode_rows2",
+        "in": {
+          "s": "leetcode",
+          "numRows": 2
+        },
+        "out": "lecdetoe"
+      },
+      {
+        "name": "leetcode_rows3",
+        "in": {
+          "s": "leetcode",
+          "numRows": 3
+        },
+        "out": "lcetoeed"
+      },
+      {
+        "name": "leetcode_rows4",
+        "in": {
+          "s": "leetcode",
+          "numRows": 4
+        },
+        "out": "ldeoeect"
+      },
+      {
+        "name": "punct_rows3",
+        "in": {
+          "s": "hello,world.",
+          "numRows": 3
+        },
+        "out": "horel,ol.lwd"
+      },
+      {
+        "name": "punct_rows4",
+        "in": {
+          "s": "OpenAI,ChatGPT.",
+          "numRows": 4
+        },
+        "out": "O,PpICGTeAht.na"
+      },
+      {
+        "name": "pangram_rows5",
+        "in": {
+          "s": "TheQuickBrownFoxJumpsOverTheLazyDog",
+          "numRows": 5
+        },
+        "out": "TBJrDhkrxueTyoecoomvhzgQiwFpOeaunsL"
+      },
+      {
+        "name": "repeated_z_rows3",
+        "in": {
+          "s": "zzzzzzzzzz",
+          "numRows": 3
+        },
+        "out": "zzzzzzzzzz"
+      },
+      {
+        "name": "mixed_punct_rows2",
+        "in": {
+          "s": "AbaC,De.fG",
+          "numRows": 2
+        },
+        "out": "Aa,efbCD.G"
+      },
+      {
+        "name": "mixed_punct_rows9",
+        "in": {
+          "s": "AbaC,De.fG",
+          "numRows": 9
+        },
+        "out": "AbaC,De.Gf"
+      },
+      {
+        "name": "repeat_x_rows7",
+        "in": {
+          "s": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "numRows": 7
+        },
+        "out": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+        "name": "zigzag_60_rows8",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH",
+          "numRows": 8
+        },
+        "out": "AOCQEBNPBDPRDFCMQAEOSCGDLRZFNTBHEKSYGMUAFJTXHLVZGIUWIKWYHVJX"
+      },
+      {
+        "name": "zigzag_80_rows10",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab",
+          "numRows": 10
+        },
+        "out": "askcubrtjlbdtvcquimaeswdpvhnzfrxeowgoygqyfnxfpxhpzgmyeqwioahlzdrvjnbikacsukmjbtl"
+      },
+      {
+        "name": "zigzag_120_rows12",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOP",
+          "numRows": 12
+        },
+        "out": "AWSOKGBVXRTNPJLFHCUYQUMQIMEIDTZPVLRHNDJESAOWKSGOCKFRBNXJTFPBLGQCMYIUEQAMHPDLZHVDRZNIOEKAGWCSYOJNFJBFXBTXPKMGICEYAUWLHDZV"
+      },
+      {
+        "name": "near_max_rows_equal_len",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl",
+          "numRows": 1000
+        },
+        "out": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl"
+      },
+      {
+        "name": "near_max_rows_one",
+        "in": {
+          "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM",
+          "numRows": 1
+        },
+        "out": "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"PAYPALISHIRING\"\nnumRows = 3",
+      "output": "\"PAHNAPLSIIGYIR\""
+    },
+    {
+      "input": "s = \"PAYPALISHIRING\"\nnumRows = 4",
+      "output": "\"PINALSIGYAHRPI\""
+    },
+    {
+      "input": "s = \"A\"\nnumRows = 1",
+      "output": "\"A\""
+    },
+    {
+      "input": "s = \"AB\"\nnumRows = 1",
+      "output": "\"AB\""
+    },
+    {
+      "input": "s = \"AB\"\nnumRows = 2",
+      "output": "\"AB\""
+    },
+    {
+      "input": "s = \"ABC\"\nnumRows = 2",
+      "output": "\"ACB\""
+    },
+    {
+      "input": "s = \"ABCDE\"\nnumRows = 2",
+      "output": "\"ACEBD\""
+    },
+    {
+      "input": "s = \"ABCDE\"\nnumRows = 3",
+      "output": "\"AEBDC\""
+    }
+  ]
+}

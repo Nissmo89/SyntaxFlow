@@ -1,0 +1,1407 @@
+{
+  "id": "number_of_enclaves",
+  "title": "Number of Enclaves",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "description": "<p>You are given an <code>m x n</code> binary matrix <code>grid</code>, where <code>0</code> represents a sea cell and <code>1</code> represents a land cell.</p>\n\n<p>A <strong>move</strong> consists of walking from one land cell to another adjacent (<strong>4-directionally</strong>) land cell or walking off the boundary of the <code>grid</code>.</p>\n\n<p>Return <em>the number of land cells in</em> <code>grid</code> <em>for which we cannot walk off the boundary of the grid in any number of <strong>moves</strong></em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/18/enclaves1.jpg\" style=\"width: 333px; height: 333px;\" />\n<pre>\n<strong>Input:</strong> grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> There are three 1s that are enclosed by 0s, and one 1 that is not enclosed because its on the boundary.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/18/enclaves2.jpg\" style=\"width: 333px; height: 333px;\" />\n<pre>\n<strong>Input:</strong> grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> All 1s are either on the boundary or can reach the boundary.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 500</code></li>\n\t<li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Number of Enclaves' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 500",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Can you model this problem as a graph problem?  Create n * m + 1 nodes where n * m nodes represents each cell of the map and one extra node to represent the exterior of the map.",
+    "In the map add edges between neighbors on land cells. And add edges between the exterior and land nodes which are in the boundary.\r\nReturn as answer the number of nodes that are not reachable from the exterior node."
+  ],
+  "method": {
+    "name": "numEnclaves",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "grid",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1020,
+      "title": "number-of-enclaves",
+      "params": {
+        "grid": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numEnclaves({grid})",
+        "rust": "Solution::num_enclaves({grid})",
+        "python3": "Solution().numEnclaves({grid})",
+        "python2": "Solution().numEnclaves({grid})",
+        "ruby": "num_enclaves({grid})",
+        "java": "new Solution().numEnclaves({grid})",
+        "csharp": "new Solution().NumEnclaves({grid})",
+        "kotlin": "Solution().numEnclaves({grid})",
+        "go": "numEnclaves({grid})",
+        "dart": "Solution().numEnclaves({grid})",
+        "swift": "Solution().numEnclaves({grid})",
+        "typescript": "numEnclaves({grid})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "seed": 1020,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "all_zero_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "all_zero_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "single_row_land",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "single_col_land",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1
+              ],
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "border_only",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "one_enclave",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "two_enclave",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 4
+      },
+      {
+        "name": "l_shape",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 3
+      },
+      {
+        "name": "snake_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 7
+      },
+      {
+        "name": "snake_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 6
+      },
+      {
+        "name": "border_touch_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "border_touch_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "border_touch_3",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "corner_cluster",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "isolated_center",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 1
+      },
+      {
+        "name": "no_enclave_path",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 8
+      },
+      {
+        "name": "all_land_3x3",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "all_land_4x4",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "checkerboard_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 2
+      },
+      {
+        "name": "checkerboard_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 2
+      },
+      {
+        "name": "ring_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 8
+      },
+      {
+        "name": "ring_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 7
+      },
+      {
+        "name": "small_mixed_1",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_2",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_3",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_4",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_5",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_6",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_7",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_8",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_9",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_10",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_11",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 3
+      },
+      {
+        "name": "small_mixed_12",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 3
+      },
+      {
+        "name": "small_mixed_13",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_14",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_15",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      },
+      {
+        "name": "small_mixed_16",
+        "in": {
+          "grid": {
+            "elemType": "int",
+            "value": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "out": 0
+      }
+    ],
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    }
+  },
+  "testCases": [
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]}",
+      "output": "3"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 1, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 0, 0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0], [0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0], [0, 0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 1, 1]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1], [1], [1]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 0], [0, 1, 0], [0, 0, 0]]}",
+      "output": "1"
+    }
+  ]
+}

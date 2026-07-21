@@ -1,0 +1,531 @@
+{
+  "id": "number_of_squareful_arrays",
+  "title": "Number of Squareful Arrays",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "description": "<p>An array is <strong>squareful</strong> if the sum of every pair of adjacent elements is a <strong>perfect square</strong>.</p>\n\n<p>Given an integer array nums, return <em>the number of permutations of </em><code>nums</code><em> that are <strong>squareful</strong></em>.</p>\n\n<p>Two permutations <code>perm1</code> and <code>perm2</code> are different if there is some index <code>i</code> such that <code>perm1[i] != perm2[i]</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,17,8]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> [1,8,17] and [17,8,1] are the valid permutations.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,2,2]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 12</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Number of Squareful Arrays' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 12",
+    "0 <= nums[i] <= 109"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numSquarefulPerms",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 996,
+      "title": "number-of-squareful-arrays",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numSquarefulPerms({nums})",
+        "rust": "Solution::num_squareful_perms({nums})",
+        "python3": "Solution().numSquarefulPerms({nums})",
+        "python2": "Solution().numSquarefulPerms({nums})",
+        "ruby": "num_squareful_perms({nums})",
+        "java": "new Solution().numSquarefulPerms({nums})",
+        "csharp": "new Solution().NumSquarefulPerms({nums})",
+        "kotlin": "Solution().numSquarefulPerms({nums})",
+        "go": "numSquarefulPerms({nums})",
+        "dart": "Solution().numSquarefulPerms({nums})",
+        "swift": "Solution().numSquarefulPerms({nums})",
+        "typescript": "numSquarefulPerms({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return True\n"
+      }
+    },
+    "seed": 996,
+    "tests": [
+      {
+        "name": "case_1",
+        "in": {
+          "nums": [
+            11,
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_2",
+        "in": {
+          "nums": [
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_3",
+        "in": {
+          "nums": [
+            11,
+            17,
+            13
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_4",
+        "in": {
+          "nums": [
+            20,
+            6,
+            11,
+            11,
+            7,
+            20,
+            15
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_5",
+        "in": {
+          "nums": [
+            20,
+            4,
+            11,
+            7,
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_6",
+        "in": {
+          "nums": [
+            14,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_7",
+        "in": {
+          "nums": [
+            18,
+            1,
+            19,
+            1,
+            12,
+            15
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_8",
+        "in": {
+          "nums": [
+            7
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_9",
+        "in": {
+          "nums": [
+            20,
+            10,
+            14,
+            0,
+            14,
+            10
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_10",
+        "in": {
+          "nums": [
+            18,
+            16,
+            3,
+            10,
+            12,
+            14,
+            6,
+            17
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_11",
+        "in": {
+          "nums": [
+            14,
+            13,
+            3,
+            6
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_12",
+        "in": {
+          "nums": [
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_13",
+        "in": {
+          "nums": [
+            1,
+            11,
+            11,
+            0,
+            20
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_14",
+        "in": {
+          "nums": [
+            12,
+            10
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_15",
+        "in": {
+          "nums": [
+            19
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_16",
+        "in": {
+          "nums": [
+            0,
+            8,
+            9,
+            18,
+            13,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_17",
+        "in": {
+          "nums": [
+            15,
+            2,
+            2,
+            11,
+            16,
+            18
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_18",
+        "in": {
+          "nums": [
+            2,
+            0,
+            16,
+            13,
+            20,
+            0,
+            10,
+            1
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_19",
+        "in": {
+          "nums": [
+            11,
+            17,
+            10,
+            12,
+            8,
+            10
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_20",
+        "in": {
+          "nums": [
+            17,
+            2,
+            17,
+            2,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_21",
+        "in": {
+          "nums": [
+            20,
+            8,
+            4
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_22",
+        "in": {
+          "nums": [
+            14,
+            16,
+            20
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_23",
+        "in": {
+          "nums": [
+            16,
+            9,
+            5
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_24",
+        "in": {
+          "nums": [
+            20,
+            4
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_25",
+        "in": {
+          "nums": [
+            19,
+            18,
+            20,
+            0,
+            15
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_26",
+        "in": {
+          "nums": [
+            5,
+            15,
+            17,
+            5,
+            12
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_27",
+        "in": {
+          "nums": [
+            6,
+            1,
+            12,
+            16,
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_28",
+        "in": {
+          "nums": [
+            8,
+            3,
+            16,
+            8
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_29",
+        "in": {
+          "nums": [
+            14,
+            18,
+            6,
+            17,
+            15
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_30",
+        "in": {
+          "nums": [
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "case_31",
+        "in": {
+          "nums": [
+            7,
+            0,
+            19,
+            20,
+            5,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_32",
+        "in": {
+          "nums": [
+            19,
+            17,
+            2,
+            13,
+            17
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_33",
+        "in": {
+          "nums": [
+            13,
+            3,
+            17
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_34",
+        "in": {
+          "nums": [
+            18,
+            3,
+            7
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "case_35",
+        "in": {
+          "nums": [
+            3
+          ]
+        },
+        "out": 1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [11, 7]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [3]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [11, 17, 13]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [20, 6, 11, 11, 7, 20, 15]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [20, 4, 11, 7, 2]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [14, 3]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [18, 1, 19, 1, 12, 15]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [7]",
+      "output": "1"
+    }
+  ]
+}

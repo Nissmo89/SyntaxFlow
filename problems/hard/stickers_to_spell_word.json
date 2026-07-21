@@ -1,0 +1,675 @@
+{
+  "id": "stickers_to_spell_word",
+  "title": "Stickers to Spell Word",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask"
+  ],
+  "description": "<p>We are given <code>n</code> different types of <code>stickers</code>. Each sticker has a lowercase English word on it.</p>\n\n<p>You would like to spell out the given string <code>target</code> by cutting individual letters from your collection of stickers and rearranging them. You can use each sticker more than once if you want, and you have infinite quantities of each sticker.</p>\n\n<p>Return <em>the minimum number of stickers that you need to spell out </em><code>target</code>. If the task is impossible, return <code>-1</code>.</p>\n\n<p><strong>Note:</strong> In all test cases, all words were chosen randomly from the <code>1000</code> most common US English words, and <code>target</code> was chosen as a concatenation of two random words.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> stickers = [&quot;with&quot;,&quot;example&quot;,&quot;science&quot;], target = &quot;thehat&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong>\nWe can use 2 &quot;with&quot; stickers, and 1 &quot;example&quot; sticker.\nAfter cutting and rearrange the letters of those stickers, we can form the target &quot;thehat&quot;.\nAlso, this is the minimum number of stickers necessary to form the target string.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> stickers = [&quot;notice&quot;,&quot;possible&quot;], target = &quot;basicbasic&quot;\n<strong>Output:</strong> -1\nExplanation:\nWe cannot form the target &quot;basicbasic&quot; from cutting letters from the given stickers.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == stickers.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 50</code></li>\n\t<li><code>1 &lt;= stickers[i].length &lt;= 10</code></li>\n\t<li><code>1 &lt;= target.length &lt;= 15</code></li>\n\t<li><code>stickers[i]</code> and <code>target</code> consist of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Stickers to Spell Word' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == stickers.length",
+    "1 <= n <= 50",
+    "1 <= stickers[i].length <= 10",
+    "1 <= target.length <= 15",
+    "stickers[i] and target consist of lowercase English letters."
+  ],
+  "hints": [
+    "We want to perform an exhaustive search, but we need to speed it up based on the input data being random.  \r\n\r\nFor all stickers, we can ignore any letters that are not in the target word.  \r\n\r\nWhen our candidate answer won't be smaller than an answer we have already found, we can stop searching this path.  \r\n\r\nWhen a sticker dominates another, we shouldn't include the dominated sticker in our sticker collection.  [Here, we say a sticker `A` dominates `B` if `A.count(letter) >= B.count(letter)` for all letters.]"
+  ],
+  "method": {
+    "name": "minStickers",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "stickers",
+        "type": "array"
+      },
+      {
+        "name": "target",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 691,
+      "title": "stickers-to-spell-word",
+      "params": {
+        "stickers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().minStickers({stickers}, {target})",
+        "rust": "Solution::min_stickers({stickers}, {target})",
+        "python3": "Solution().minStickers({stickers}, {target})",
+        "python2": "Solution().minStickers({stickers}, {target})",
+        "ruby": "min_stickers({stickers}, {target})",
+        "java": "new Solution().minStickers({stickers}, {target})",
+        "csharp": "new Solution().MinStickers({stickers}, {target})",
+        "kotlin": "Solution().minStickers({stickers}, {target})",
+        "go": "minStickers({stickers}, {target})",
+        "dart": "Solution().minStickers({stickers}, {target})",
+        "swift": "Solution().minStickers({stickers}, {target})",
+        "typescript": "minStickers({stickers}, {target})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(stickers, target, {result})",
+        "checker": "class Checker:\n    def check(self, stickers, target, result):\n        if not isinstance(result, int):\n            return False\n\n        from functools import lru_cache\n        from collections import Counter\n\n        target_counts = Counter(target)\n        needed_chars = sorted(target_counts)\n        if not needed_chars:\n            return result == 0\n\n        sticker_counts = []\n        for s in stickers:\n            counts = Counter(s)\n            sticker_counts.append(tuple(counts.get(ch, 0) for ch in needed_chars))\n\n        @lru_cache(None)\n        def dfs(state):\n            if all(x == 0 for x in state):\n                return 0\n            best = float(\"inf\")\n            first = next(i for i, x in enumerate(state) if x > 0)\n            for sc in sticker_counts:\n                if sc[first] == 0:\n                    continue\n                new_state = []\n                for need, have in zip(state, sc):\n                    new_state.append(max(0, need - have))\n                cand = dfs(tuple(new_state))\n                if cand != float(\"inf\"):\n                    best = min(best, 1 + cand)\n            return best\n\n        start = tuple(target_counts[ch] for ch in needed_chars)\n        expected = dfs(start)\n        if expected == float(\"inf\"):\n            expected = -1\n        return result == expected\n"
+      }
+    },
+    "seed": 691,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "stickers": [
+            "with",
+            "example",
+            "science"
+          ],
+          "target": "thehat"
+        },
+        "out": 3
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "stickers": [
+            "notice",
+            "possible"
+          ],
+          "target": "basicbasic"
+        },
+        "out": -1
+      },
+      {
+        "name": "single_exact",
+        "in": {
+          "stickers": [
+            "a"
+          ],
+          "target": "a"
+        },
+        "out": 1
+      },
+      {
+        "name": "single_repeat",
+        "in": {
+          "stickers": [
+            "a"
+          ],
+          "target": "aa"
+        },
+        "out": 2
+      },
+      {
+        "name": "two_letters_one_sticker",
+        "in": {
+          "stickers": [
+            "ab"
+          ],
+          "target": "ba"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_stickers_two_letters",
+        "in": {
+          "stickers": [
+            "ab",
+            "bc"
+          ],
+          "target": "abc"
+        },
+        "out": 2
+      },
+      {
+        "name": "reverse_letters",
+        "in": {
+          "stickers": [
+            "abc",
+            "def"
+          ],
+          "target": "fed"
+        },
+        "out": 1
+      },
+      {
+        "name": "reuse_same_sticker",
+        "in": {
+          "stickers": [
+            "abc",
+            "ab",
+            "bc"
+          ],
+          "target": "cba"
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed_duplicates",
+        "in": {
+          "stickers": [
+            "aaaa",
+            "bbbb"
+          ],
+          "target": "ab"
+        },
+        "out": 2
+      },
+      {
+        "name": "impossible_missing_char",
+        "in": {
+          "stickers": [
+            "abc",
+            "xyz"
+          ],
+          "target": "zzz"
+        },
+        "out": 3
+      },
+      {
+        "name": "balanced_mix",
+        "in": {
+          "stickers": [
+            "aabb",
+            "bccd"
+          ],
+          "target": "abcd"
+        },
+        "out": 2
+      },
+      {
+        "name": "alternating_stickers",
+        "in": {
+          "stickers": [
+            "abab",
+            "baba"
+          ],
+          "target": "aabb"
+        },
+        "out": 1
+      },
+      {
+        "name": "example_like_short",
+        "in": {
+          "stickers": [
+            "leetcode",
+            "practice",
+            "makes"
+          ],
+          "target": "leet"
+        },
+        "out": 1
+      },
+      {
+        "name": "two_words_combined",
+        "in": {
+          "stickers": [
+            "hello",
+            "world"
+          ],
+          "target": "helloworld"
+        },
+        "out": 2
+      },
+      {
+        "name": "simple_cover",
+        "in": {
+          "stickers": [
+            "an",
+            "example",
+            "of",
+            "sticker"
+          ],
+          "target": "stick"
+        },
+        "out": 1
+      },
+      {
+        "name": "exact_two",
+        "in": {
+          "stickers": [
+            "the",
+            "hat"
+          ],
+          "target": "thehat"
+        },
+        "out": 2
+      },
+      {
+        "name": "classic_unreachable",
+        "in": {
+          "stickers": [
+            "these",
+            "guess",
+            "about",
+            "garden",
+            "him"
+          ],
+          "target": "atomher"
+        },
+        "out": 3
+      },
+      {
+        "name": "travel_plan",
+        "in": {
+          "stickers": [
+            "travel",
+            "trip",
+            "plan"
+          ],
+          "target": "planet"
+        },
+        "out": 2
+      },
+      {
+        "name": "color_overlap",
+        "in": {
+          "stickers": [
+            "green",
+            "blue",
+            "red"
+          ],
+          "target": "reed"
+        },
+        "out": 2
+      },
+      {
+        "name": "repeated_single_letter",
+        "in": {
+          "stickers": [
+            "aaa",
+            "aa",
+            "a"
+          ],
+          "target": "aaaaaaa"
+        },
+        "out": 3
+      },
+      {
+        "name": "triple_overlap",
+        "in": {
+          "stickers": [
+            "abca",
+            "bcab",
+            "cabc"
+          ],
+          "target": "abcabc"
+        },
+        "out": 2
+      },
+      {
+        "name": "impossible_missing_letter",
+        "in": {
+          "stickers": [
+            "abc",
+            "ade",
+            "fgh"
+          ],
+          "target": "abcdef"
+        },
+        "out": 3
+      },
+      {
+        "name": "disjoint_pairs",
+        "in": {
+          "stickers": [
+            "ab",
+            "cd",
+            "ef",
+            "gh"
+          ],
+          "target": "abcdefgh"
+        },
+        "out": 4
+      },
+      {
+        "name": "three_pair_cover",
+        "in": {
+          "stickers": [
+            "ab",
+            "ac",
+            "bc"
+          ],
+          "target": "abcabc"
+        },
+        "out": 3
+      },
+      {
+        "name": "recycled_overlap",
+        "in": {
+          "stickers": [
+            "xyz",
+            "yxz",
+            "zxy"
+          ],
+          "target": "xxyz"
+        },
+        "out": 2
+      },
+      {
+        "name": "triple_repeats",
+        "in": {
+          "stickers": [
+            "aaaaa",
+            "bbbbb",
+            "ccccc"
+          ],
+          "target": "abcabcabc"
+        },
+        "out": 3
+      },
+      {
+        "name": "impossible_ordering",
+        "in": {
+          "stickers": [
+            "abcde",
+            "fghij",
+            "klmno"
+          ],
+          "target": "kjihgfedcba"
+        },
+        "out": 3
+      },
+      {
+        "name": "no_help",
+        "in": {
+          "stickers": [
+            "no",
+            "way",
+            "to"
+          ],
+          "target": "noway"
+        },
+        "out": 2
+      },
+      {
+        "name": "exact_match_short",
+        "in": {
+          "stickers": [
+            "miss",
+            "issue",
+            "sue"
+          ],
+          "target": "issue"
+        },
+        "out": 1
+      },
+      {
+        "name": "overflow_cover",
+        "in": {
+          "stickers": [
+            "stack",
+            "overflow",
+            "flow"
+          ],
+          "target": "overflow"
+        },
+        "out": 1
+      },
+      {
+        "name": "partial_overlap",
+        "in": {
+          "stickers": [
+            "aab",
+            "bbc",
+            "cca"
+          ],
+          "target": "abccab"
+        },
+        "out": 3
+      },
+      {
+        "name": "simple_concat",
+        "in": {
+          "stickers": [
+            "cat",
+            "dog",
+            "mouse"
+          ],
+          "target": "catdog"
+        },
+        "out": 2
+      },
+      {
+        "name": "prefix_suffix",
+        "in": {
+          "stickers": [
+            "alpha",
+            "beta",
+            "gamma"
+          ],
+          "target": "alphabet"
+        },
+        "out": 2
+      },
+      {
+        "name": "chain_words",
+        "in": {
+          "stickers": [
+            "rain",
+            "brain",
+            "train"
+          ],
+          "target": "braintrain"
+        },
+        "out": 2
+      },
+      {
+        "name": "three_words",
+        "in": {
+          "stickers": [
+            "one",
+            "two",
+            "three"
+          ],
+          "target": "onetwothree"
+        },
+        "out": 3
+      },
+      {
+        "name": "long_single_char_target",
+        "in": {
+          "stickers": [
+            "zzz",
+            "zz"
+          ],
+          "target": "zzzzzzzzzzzzzzz"
+        },
+        "out": 5
+      },
+      {
+        "name": "all_letters_repeated",
+        "in": {
+          "stickers": [
+            "abc",
+            "bca",
+            "cab"
+          ],
+          "target": "aaabbbccc"
+        },
+        "out": 3
+      },
+      {
+        "name": "max_stickers_cover",
+        "in": {
+          "stickers": [
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij"
+          ],
+          "target": "abcdefghijabcde"
+        },
+        "out": 2
+      },
+      {
+        "name": "max_stickers_impossible",
+        "in": {
+          "stickers": [
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq",
+            "aaaaabbbbb",
+            "cccccddddd",
+            "eeeeefffff",
+            "ggggghhhhh",
+            "iiiiiqqqqq"
+          ],
+          "target": "abcdefghijklmno"
+        },
+        "out": -1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "stickers = [\"with\", \"example\", \"science\"]\ntarget = \"thehat\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"notice\", \"possible\"]\ntarget = \"basicbasic\"",
+      "output": "-1"
+    },
+    {
+      "input": "stickers = [\"a\"]\ntarget = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"a\"]\ntarget = \"aa\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"ab\"]\ntarget = \"ba\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"ab\", \"bc\"]\ntarget = \"abc\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"abc\", \"def\"]\ntarget = \"fed\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"abc\", \"ab\", \"bc\"]\ntarget = \"cba\"",
+      "output": "1"
+    }
+  ]
+}

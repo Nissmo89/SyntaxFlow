@@ -1,0 +1,565 @@
+{
+  "id": "largest_rectangle_in_histogram",
+  "title": "Largest Rectangle in Histogram",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "description": "<p>Given an array of integers <code>heights</code> representing the histogram&#39;s bar height where the width of each bar is <code>1</code>, return <em>the area of the largest rectangle in the histogram</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg\" style=\"width: 522px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,1,5,6,2,3]\n<strong>Output:</strong> 10\n<strong>Explanation:</strong> The above is a histogram where width of each bar is 1.\nThe largest rectangle is shown in the red area, which has an area = 10 units.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram-1.jpg\" style=\"width: 202px; height: 362px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,4]\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= heights.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= heights[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Largest Rectangle in Histogram' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= heights.length <= 105",
+    "0 <= heights[i] <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "largestRectangleArea",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "heights",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 84,
+      "title": "largest-rectangle-in-histogram",
+      "params": {
+        "heights": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().largestRectangleArea({heights})",
+        "rust": "Solution::largest_rectangle_area({heights})",
+        "python3": "Solution().largestRectangleArea({heights})",
+        "python2": "Solution().largestRectangleArea({heights})",
+        "ruby": "largest_rectangle_area({heights})",
+        "java": "new Solution().largestRectangleArea({heights})",
+        "csharp": "new Solution().LargestRectangleArea({heights})",
+        "kotlin": "Solution().largestRectangleArea({heights})",
+        "go": "largestRectangleArea({heights})",
+        "dart": "Solution().largestRectangleArea({heights})",
+        "swift": "Solution().largestRectangleArea({heights})",
+        "typescript": "largestRectangleArea({heights})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 300
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(heights, {result})",
+        "checker": "class Checker:\n    def check(self, heights, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 84,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "heights": [
+            2,
+            1,
+            5,
+            6,
+            2,
+            3
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "heights": [
+            2,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "heights": [
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "single_one",
+        "in": {
+          "heights": [
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_equal",
+        "in": {
+          "heights": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "increasing",
+        "in": {
+          "heights": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "decreasing",
+        "in": {
+          "heights": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "valley",
+        "in": {
+          "heights": [
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "plateau",
+        "in": {
+          "heights": [
+            3,
+            3,
+            3
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "zeros_split",
+        "in": {
+          "heights": [
+            2,
+            0,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "zeros_all",
+        "in": {
+          "heights": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "classic_peak",
+        "in": {
+          "heights": [
+            6,
+            2,
+            5,
+            4,
+            5,
+            1,
+            6
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "alternating",
+        "in": {
+          "heights": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "long_flat",
+        "in": {
+          "heights": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "out": 24
+      },
+      {
+        "name": "small_pit",
+        "in": {
+          "heights": [
+            4,
+            2,
+            0,
+            3,
+            2,
+            5
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "max_height_single",
+        "in": {
+          "heights": [
+            10000
+          ]
+        },
+        "out": 10000
+      },
+      {
+        "name": "max_height_pair",
+        "in": {
+          "heights": [
+            10000,
+            10000
+          ]
+        },
+        "out": 20000
+      },
+      {
+        "name": "max_height_mixed",
+        "in": {
+          "heights": [
+            10000,
+            1,
+            10000
+          ]
+        },
+        "out": 10000
+      },
+      {
+        "name": "left_growing",
+        "in": {
+          "heights": [
+            1,
+            3,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "right_growing",
+        "in": {
+          "heights": [
+            2,
+            1,
+            3,
+            3,
+            2
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "peak_with_zero_end",
+        "in": {
+          "heights": [
+            1,
+            2,
+            3,
+            0
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "peak_with_zero_start",
+        "in": {
+          "heights": [
+            0,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "heights": [
+            1,
+            1,
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mid_plateau",
+        "in": {
+          "heights": [
+            2,
+            4,
+            4,
+            4,
+            2
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "wide_low_bar",
+        "in": {
+          "heights": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "tall_middle",
+        "in": {
+          "heights": [
+            1,
+            2,
+            100,
+            2,
+            1
+          ]
+        },
+        "out": 100
+      },
+      {
+        "name": "mixed_large_small",
+        "in": {
+          "heights": [
+            100,
+            1,
+            100,
+            1,
+            100
+          ]
+        },
+        "out": 100
+      },
+      {
+        "name": "randomish_1",
+        "in": {
+          "heights": [
+            3,
+            6,
+            5,
+            7,
+            4,
+            8,
+            1,
+            0,
+            9
+          ]
+        },
+        "out": 20
+      },
+      {
+        "name": "randomish_2",
+        "in": {
+          "heights": [
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "small_single_peak",
+        "in": {
+          "heights": [
+            2,
+            1,
+            2,
+            3,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "strict_small",
+        "in": {
+          "heights": [
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "broad_plateau",
+        "in": {
+          "heights": [
+            5,
+            5,
+            5,
+            1,
+            5,
+            5,
+            5
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "max_area_from_edges",
+        "in": {
+          "heights": [
+            9,
+            8,
+            7,
+            8,
+            9
+          ]
+        },
+        "out": 35
+      },
+      {
+        "name": "low_high_low",
+        "in": {
+          "heights": [
+            1,
+            10000,
+            1
+          ]
+        },
+        "out": 10000
+      },
+      {
+        "name": "double_peak",
+        "in": {
+          "heights": [
+            4,
+            2,
+            0,
+            4,
+            2,
+            4
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "descending_tail",
+        "in": {
+          "heights": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            1
+          ]
+        },
+        "out": 12
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "heights = [2, 1, 5, 6, 2, 3]",
+      "output": "10"
+    },
+    {
+      "input": "heights = [2, 4]",
+      "output": "4"
+    },
+    {
+      "input": "heights = [0]",
+      "output": "0"
+    },
+    {
+      "input": "heights = [1]",
+      "output": "1"
+    },
+    {
+      "input": "heights = [2, 2, 2, 2]",
+      "output": "8"
+    },
+    {
+      "input": "heights = [1, 2, 3, 4, 5]",
+      "output": "9"
+    },
+    {
+      "input": "heights = [5, 4, 3, 2, 1]",
+      "output": "9"
+    },
+    {
+      "input": "heights = [2, 1, 2]",
+      "output": "3"
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "id": "valid_tic_tac_toe_state",
+  "title": "Valid Tic-Tac-Toe State",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "description": "<p>Given a Tic-Tac-Toe board as a string array <code>board</code>, return <code>true</code> if and only if it is possible to reach this board position during the course of a valid tic-tac-toe game.</p>\n\n<p>The board is a <code>3 x 3</code> array that consists of characters <code>&#39; &#39;</code>, <code>&#39;X&#39;</code>, and <code>&#39;O&#39;</code>. The <code>&#39; &#39;</code> character represents an empty square.</p>\n\n<p>Here are the rules of Tic-Tac-Toe:</p>\n\n<ul>\n\t<li>Players take turns placing characters into empty squares <code>&#39; &#39;</code>.</li>\n\t<li>The first player always places <code>&#39;X&#39;</code> characters, while the second player always places <code>&#39;O&#39;</code> characters.</li>\n\t<li><code>&#39;X&#39;</code> and <code>&#39;O&#39;</code> characters are always placed into empty squares, never filled ones.</li>\n\t<li>The game ends when there are three of the same (non-empty) character filling any row, column, or diagonal.</li>\n\t<li>The game also ends if all squares are non-empty.</li>\n\t<li>No more moves can be played if the game is over.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/15/tictactoe1-grid.jpg\" style=\"width: 253px; height: 253px;\" />\n<pre>\n<strong>Input:</strong> board = [&quot;O  &quot;,&quot;   &quot;,&quot;   &quot;]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The first player always plays &quot;X&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/15/tictactoe2-grid.jpg\" style=\"width: 253px; height: 253px;\" />\n<pre>\n<strong>Input:</strong> board = [&quot;XOX&quot;,&quot; X &quot;,&quot;   &quot;]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Players take turns making moves.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/05/15/tictactoe4-grid.jpg\" style=\"width: 253px; height: 253px;\" />\n<pre>\n<strong>Input:</strong> board = [&quot;XOX&quot;,&quot;O O&quot;,&quot;XOX&quot;]\n<strong>Output:</strong> true\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>board.length == 3</code></li>\n\t<li><code>board[i].length == 3</code></li>\n\t<li><code>board[i][j]</code> is either <code>&#39;X&#39;</code>, <code>&#39;O&#39;</code>, or <code>&#39; &#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'Valid Tic-Tac-Toe State' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "board.length == 3",
+    "board[i].length == 3",
+    "board[i][j] is either 'X', 'O', or ' '."
+  ],
+  "hints": [],
+  "method": {
+    "name": "validTicTacToe",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "board",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 794,
+      "title": "valid-tic-tac-toe-state",
+      "params": {
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().validTicTacToe({board})",
+        "rust": "Solution::valid_tic_tac_toe({board})",
+        "python3": "Solution().validTicTacToe({board})",
+        "python2": "Solution().validTicTacToe({board})",
+        "ruby": "valid_tic_tac_toe({board})",
+        "java": "new Solution().validTicTacToe({board})",
+        "csharp": "new Solution().ValidTicTacToe({board})",
+        "kotlin": "Solution().validTicTacToe({board})",
+        "go": "validTicTacToe({board})",
+        "dart": "Solution().validTicTacToe({board})",
+        "swift": "Solution().validTicTacToe({board})",
+        "typescript": "validTicTacToe({board})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().validTicTacToe(board, {result})",
+        "checker": "class Checker(object):\n    def validTicTacToe(self, board, result):\n        return isinstance(result, bool)\n"
+      }
+    },
+    "seed": 794,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "board": [
+            "O  ",
+            "   ",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "example2",
+        "in": {
+          "board": [
+            "XOX",
+            " X ",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "example3",
+        "in": {
+          "board": [
+            "XOX",
+            "O O",
+            "XOX"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "empty-board",
+        "in": {
+          "board": [
+            "   ",
+            "   ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "one-x-center",
+        "in": {
+          "board": [
+            "   ",
+            " X ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "x-and-o-balanced-no-winner",
+        "in": {
+          "board": [
+            "XO ",
+            "   ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "too-many-o",
+        "in": {
+          "board": [
+            "OO ",
+            "   ",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "too-many-x",
+        "in": {
+          "board": [
+            "XXX",
+            "   ",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "x-wins-row-valid",
+        "in": {
+          "board": [
+            "XXX",
+            "OO ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "x-wins-row-invalid-turn",
+        "in": {
+          "board": [
+            "XXX",
+            "OOO",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-row-valid",
+        "in": {
+          "board": [
+            "XOX",
+            "OOO",
+            "X  "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-row-invalid-turn",
+        "in": {
+          "board": [
+            "OOO",
+            "XX ",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "x-wins-column-valid",
+        "in": {
+          "board": [
+            "X O",
+            "XO ",
+            "X  "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "x-wins-column-invalid",
+        "in": {
+          "board": [
+            "X O",
+            "XO ",
+            "XO "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-column-valid",
+        "in": {
+          "board": [
+            "XO ",
+            "XO ",
+            " O "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-column-invalid",
+        "in": {
+          "board": [
+            "OO ",
+            "XO ",
+            "X  "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "x-wins-diagonal-valid",
+        "in": {
+          "board": [
+            "XOO",
+            "OX ",
+            "  X"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "x-wins-diagonal-invalid",
+        "in": {
+          "board": [
+            "XOO",
+            "OXO",
+            "  X"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-diagonal-valid",
+        "in": {
+          "board": [
+            "XO ",
+            "XO ",
+            "O X"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "o-wins-diagonal-invalid",
+        "in": {
+          "board": [
+            "OO ",
+            "XO ",
+            "X X"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "both-win-invalid",
+        "in": {
+          "board": [
+            "XXX",
+            "OOO",
+            "   "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "full-board-valid-draw",
+        "in": {
+          "board": [
+            "XOX",
+            "OXO",
+            "OXO"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "full-board-invalid-balance",
+        "in": {
+          "board": [
+            "XOX",
+            "XXO",
+            "OXO"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "x-wins-but-o-count-too-high",
+        "in": {
+          "board": [
+            "XXX",
+            "OO ",
+            "OO "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "o-wins-but-x-count-too-high",
+        "in": {
+          "board": [
+            "OOO",
+            "XXO",
+            "X  "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "no-winner-balanced-many-moves",
+        "in": {
+          "board": [
+            "XOX",
+            "OX ",
+            "X O"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "no-winner-x-ahead-by-one",
+        "in": {
+          "board": [
+            "X X",
+            "O O",
+            "X  "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-gap-after-win",
+        "in": {
+          "board": [
+            "XXX",
+            "O O",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-o-wins-with-x-ahead",
+        "in": {
+          "board": [
+            "OOO",
+            "X X",
+            "X  "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "invalid-x-wins-with-equal-counts",
+        "in": {
+          "board": [
+            "XXX",
+            "OO ",
+            "O  "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "invalid-both-win-with-valid-counts",
+        "in": {
+          "board": [
+            "XOX",
+            "OOO",
+            "XXX"
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "center-line-pressure-valid",
+        "in": {
+          "board": [
+            "X  ",
+            "OXO",
+            " X "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "center-line-pressure-invalid",
+        "in": {
+          "board": [
+            "O  ",
+            "OXO",
+            " X "
+          ]
+        },
+        "out": false
+      },
+      {
+        "name": "late-x-win-after-full-board",
+        "in": {
+          "board": [
+            "XXO",
+            "OOX",
+            "XOX"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "late-o-win-after-full-board-invalid",
+        "in": {
+          "board": [
+            "OOX",
+            "XXO",
+            "XOX"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "sparse-valid",
+        "in": {
+          "board": [
+            "X  ",
+            "   ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "sparse-invalid-o-first-and-winner",
+        "in": {
+          "board": [
+            "O  ",
+            "X  ",
+            "   "
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "diagonal-threat-valid",
+        "in": {
+          "board": [
+            "X O",
+            " XO",
+            "  X"
+          ]
+        },
+        "out": true
+      },
+      {
+        "name": "diagonal-threat-invalid",
+        "in": {
+          "board": [
+            "X O",
+            " OO",
+            "  X"
+          ]
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "board = [\"O  \", \"   \", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \" X \", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"O O\", \"XOX\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"   \", \"   \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"   \", \" X \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XO \", \"   \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"OO \", \"   \", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XXX\", \"   \", \"   \"]",
+      "output": "false"
+    }
+  ]
+}

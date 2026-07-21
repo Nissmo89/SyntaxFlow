@@ -1,0 +1,1437 @@
+{
+  "id": "number_of_lines_to_write_string",
+  "title": "Number of Lines To Write String",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "description": "<p>You are given a string <code>s</code> of lowercase English letters and an array <code>widths</code> denoting <strong>how many pixels wide</strong> each lowercase English letter is. Specifically, <code>widths[0]</code> is the width of <code>'a'</code>, <code>widths[1]</code> is the width of <code>'b'</code>, and so on.</p> <p>You are trying to write <code>s</code> across several lines, where <strong>each line is no longer than </strong><code>100</code><strong> pixels</strong>. Starting at the beginning of <code>s</code>, write as many letters on the first line such that the total width does not exceed <code>100</code> pixels. Then, from where you stopped in <code>s</code>, continue writing as many letters as you can on the second line. Continue this process until you have written all of <code>s</code>.</p> <p>Return <em>an array </em><code>result</code><em> of length 2 where:</em></p> <ul> <li><code>result[0]</code><em> is the total number of lines.</em></li> <li><code>result[1]</code><em> is the width of the last line in pixels.</em></li> </ul> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = \"abcdefghijklmnopqrstuvwxyz\"\n<strong>Output:</strong> [3,60]\n<strong>Explanation:</strong> You can write s as follows:\nabcdefghij  // 100 pixels wide\nklmnopqrst  // 100 pixels wide\nuvwxyz      // 60 pixels wide\nThere are a total of 3 lines, and the last line is 60 pixels wide.</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = \"bbbcccdddaaa\"\n<strong>Output:</strong> [2,4]\n<strong>Explanation:</strong> You can write s as follows:\nbbbcccdddaa  // 98 pixels wide\na            // 4 pixels wide\nThere are a total of 2 lines, and the last line is 4 pixels wide.</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>widths.length == 26</code></li> <li><code>2 &lt;= widths[i] &lt;= 10</code></li> <li><code>1 &lt;= s.length &lt;= 1000</code></li> <li><code>s</code> contains only lowercase English letters.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "numberOfLines",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "widths",
+        "type": "array"
+      },
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 806,
+      "title": "number-of-lines-to-write-string",
+      "params": {
+        "widths": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numberOfLines({widths}, {s})",
+        "rust": "Solution::number_of_lines({widths}, {s})",
+        "python3": "Solution().numberOfLines({widths}, {s})",
+        "python2": "Solution().numberOfLines({widths}, {s})",
+        "ruby": "number_of_lines({widths}, {s})",
+        "java": "new Solution().numberOfLines({widths}, {s})",
+        "csharp": "new Solution().NumberOfLines({widths}, {s})",
+        "kotlin": "Solution().numberOfLines({widths}, {s})",
+        "go": "numberOfLines({widths}, {s})",
+        "dart": "Solution().numberOfLines({widths}, {s})",
+        "swift": "Solution().numberOfLines({widths}, {s})",
+        "typescript": "numberOfLines({widths}, {s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({widths}, {s}, {result})",
+        "checker": "class Checker:\n    def check(self, *args):\n        return True\n"
+      }
+    },
+    "seed": 806,
+    "tests": [
+      {
+        "name": "case01",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "a"
+        },
+        "out": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "case02",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aa"
+        },
+        "out": [
+          1,
+          20
+        ]
+      },
+      {
+        "name": "case03",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaa"
+        },
+        "out": [
+          1,
+          30
+        ]
+      },
+      {
+        "name": "case04",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaa"
+        },
+        "out": [
+          1,
+          40
+        ]
+      },
+      {
+        "name": "case05",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaa"
+        },
+        "out": [
+          1,
+          50
+        ]
+      },
+      {
+        "name": "case06",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaa"
+        },
+        "out": [
+          1,
+          60
+        ]
+      },
+      {
+        "name": "case07",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaa"
+        },
+        "out": [
+          1,
+          70
+        ]
+      },
+      {
+        "name": "case08",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaa"
+        },
+        "out": [
+          1,
+          80
+        ]
+      },
+      {
+        "name": "case09",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaa"
+        },
+        "out": [
+          1,
+          90
+        ]
+      },
+      {
+        "name": "case10",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaa"
+        },
+        "out": [
+          1,
+          100
+        ]
+      },
+      {
+        "name": "case11",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          10
+        ]
+      },
+      {
+        "name": "case12",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          20
+        ]
+      },
+      {
+        "name": "case13",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          30
+        ]
+      },
+      {
+        "name": "case14",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          40
+        ]
+      },
+      {
+        "name": "case15",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          50
+        ]
+      },
+      {
+        "name": "case16",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          60
+        ]
+      },
+      {
+        "name": "case17",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          70
+        ]
+      },
+      {
+        "name": "case18",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          80
+        ]
+      },
+      {
+        "name": "case19",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          90
+        ]
+      },
+      {
+        "name": "case20",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          2,
+          100
+        ]
+      },
+      {
+        "name": "case21",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          10
+        ]
+      },
+      {
+        "name": "case22",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          20
+        ]
+      },
+      {
+        "name": "case23",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          30
+        ]
+      },
+      {
+        "name": "case24",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          40
+        ]
+      },
+      {
+        "name": "case25",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          50
+        ]
+      },
+      {
+        "name": "case26",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          60
+        ]
+      },
+      {
+        "name": "case27",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          70
+        ]
+      },
+      {
+        "name": "case28",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          80
+        ]
+      },
+      {
+        "name": "case29",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          90
+        ]
+      },
+      {
+        "name": "case30",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          3,
+          100
+        ]
+      },
+      {
+        "name": "case31",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          4,
+          10
+        ]
+      },
+      {
+        "name": "case32",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          4,
+          20
+        ]
+      },
+      {
+        "name": "case33",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          4,
+          30
+        ]
+      },
+      {
+        "name": "case34",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          4,
+          40
+        ]
+      },
+      {
+        "name": "case35",
+        "in": {
+          "widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "out": [
+          4,
+          50
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"a\"",
+      "output": "[1, 10]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aa\"",
+      "output": "[1, 20]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaa\"",
+      "output": "[1, 30]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaa\"",
+      "output": "[1, 40]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaaa\"",
+      "output": "[1, 50]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaaaa\"",
+      "output": "[1, 60]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaaaaa\"",
+      "output": "[1, 70]"
+    },
+    {
+      "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaaaaaa\"",
+      "output": "[1, 80]"
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+{
+  "id": "insufficient_nodes_in_root_to_leaf_paths",
+  "title": "Insufficient Nodes in Root to Leaf Paths",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "description": "<p>Given the <code>root</code> of a binary tree and an integer <code>limit</code>, delete all <strong>insufficient nodes</strong> in the tree simultaneously, and return <em>the root of the resulting binary tree</em>.</p>\n\n<p>A node is <strong>insufficient</strong> if every root to <strong>leaf</strong> path intersecting this node has a sum strictly less than <code>limit</code>.</p>\n\n<p>A <strong>leaf</strong> is a node with no children.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/06/05/insufficient-11.png\" style=\"width: 500px; height: 207px;\" />\n<pre>\n<strong>Input:</strong> root = [1,2,3,4,-99,-99,7,8,9,-99,-99,12,13,-99,14], limit = 1\n<strong>Output:</strong> [1,2,3,4,null,null,7,8,9,null,14]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/06/05/insufficient-3.png\" style=\"width: 400px; height: 274px;\" />\n<pre>\n<strong>Input:</strong> root = [5,4,8,11,null,17,4,7,1,null,null,5,3], limit = 22\n<strong>Output:</strong> [5,4,8,11,null,17,4,7,null,null,null,5]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/06/11/screen-shot-2019-06-11-at-83301-pm.png\" style=\"width: 250px; height: 199px;\" />\n<pre>\n<strong>Input:</strong> root = [1,2,-3,-5,null,4,null], limit = -1\n<strong>Output:</strong> [1,null,-3,4]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[1, 5000]</code>.</li>\n\t<li><code>-10<sup>5</sup> &lt;= Node.val &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= limit &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Insufficient Nodes in Root to Leaf Paths' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 5000].",
+    "-105 <= Node.val <= 105",
+    "-109 <= limit <= 109"
+  ],
+  "hints": [
+    "Consider a DFS traversal of the tree.  You can keep track of the current path sum from root to this node, and you can also use DFS to return the maximum value of any path from this node to the leaf.  This will tell you if this node is insufficient."
+  ],
+  "method": {
+    "name": "sufficientSubset",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "root",
+        "type": "tree_node"
+      },
+      {
+        "name": "limit",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1080,
+      "title": "insufficient-nodes-in-root-to-leaf-paths",
+      "params": {
+        "root": {
+          "type": "tree_node"
+        },
+        "limit": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().sufficientSubset({root}, {limit})",
+        "rust": "Solution::sufficient_subset({root}, {limit})",
+        "python3": "Solution().sufficientSubset({root}, {limit})",
+        "python2": "Solution().sufficientSubset({root}, {limit})",
+        "ruby": "sufficient_subset({root}, {limit})",
+        "java": "new Solution().sufficientSubset({root}, {limit})",
+        "csharp": "new Solution().SufficientSubset({root}, {limit})",
+        "kotlin": "Solution().sufficientSubset({root}, {limit})",
+        "go": "sufficientSubset({root}, {limit})",
+        "dart": "Solution().sufficientSubset({root}, {limit})",
+        "swift": "Solution().sufficientSubset({root}, {limit})",
+        "typescript": "sufficientSubset({root}, {limit})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().sufficientSubset(root, limit, {result})",
+        "checker": "class Checker:\n    def sufficientSubset(self, root, limit, result):\n        def normalize(node):\n            if node is None:\n                return None\n            if isinstance(node, list):\n                if not node:\n                    return None\n                nodes = [None if x is None else TreeNode(x) for x in node]\n                kids = nodes[::-1]\n                root = kids.pop()\n                for item in nodes:\n                    if item is not None:\n                        if kids:\n                            item.left = kids.pop()\n                        if kids:\n                            item.right = kids.pop()\n                return root\n            if isinstance(node, dict):\n                return TreeNode(\n                    node.get(\"val\", node.get(\"value\")),\n                    normalize(node.get(\"left\")),\n                    normalize(node.get(\"right\")),\n                )\n            return node\n\n        def serialize(node):\n            if node is None:\n                return None\n            out = []\n            queue = [node]\n            while queue:\n                cur = queue.pop(0)\n                if cur is None:\n                    out.append(None)\n                else:\n                    out.append(cur.val)\n                    queue.append(cur.left)\n                    queue.append(cur.right)\n            while out and out[-1] is None:\n                out.pop()\n            return out\n\n        expected = normalize(root)\n        actual = normalize(result)\n\n        def dfs(node, path_sum):\n            if not node:\n                return False\n            curr = path_sum + node.val\n            if not node.left and not node.right:\n                return curr >= limit\n            left_good = dfs(node.left, curr)\n            right_good = dfs(node.right, curr)\n            if not left_good:\n                node.left = None\n            if not right_good:\n                node.right = None\n            return left_good or right_good\n\n        return serialize(expected if dfs(expected, 0) else None) == serialize(actual)\n"
+      }
+    },
+    "seed": 1080,
+    "tests": [
+      {
+        "name": "t01",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            null,
+            7,
+            8,
+            9,
+            null,
+            null,
+            12,
+            13,
+            null,
+            14
+          ],
+          "limit": 1
+        }
+      },
+      {
+        "name": "t02",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            11,
+            null,
+            17,
+            4,
+            7,
+            1,
+            null,
+            null,
+            5,
+            3
+          ],
+          "limit": 22
+        }
+      },
+      {
+        "name": "t03",
+        "in": {
+          "root": [
+            1,
+            2,
+            -3,
+            -5,
+            null,
+            4,
+            null
+          ],
+          "limit": -1
+        }
+      },
+      {
+        "name": "t04",
+        "in": {
+          "root": [
+            1
+          ],
+          "limit": 2
+        }
+      },
+      {
+        "name": "t05",
+        "in": {
+          "root": [
+            1
+          ],
+          "limit": 1
+        }
+      },
+      {
+        "name": "t06",
+        "in": {
+          "root": [
+            0
+          ],
+          "limit": 0
+        }
+      },
+      {
+        "name": "t07",
+        "in": {
+          "root": [
+            0
+          ],
+          "limit": 1
+        }
+      },
+      {
+        "name": "t08",
+        "in": {
+          "root": [
+            -5
+          ],
+          "limit": -5
+        }
+      },
+      {
+        "name": "t09",
+        "in": {
+          "root": [
+            -5
+          ],
+          "limit": -4
+        }
+      },
+      {
+        "name": "t10",
+        "in": {
+          "root": [
+            5,
+            4,
+            8
+          ],
+          "limit": 10
+        }
+      },
+      {
+        "name": "t11",
+        "in": {
+          "root": [
+            5,
+            4,
+            8
+          ],
+          "limit": 13
+        }
+      },
+      {
+        "name": "t12",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            1,
+            2,
+            3,
+            4
+          ],
+          "limit": 10
+        }
+      },
+      {
+        "name": "t13",
+        "in": {
+          "root": [
+            5,
+            4,
+            8,
+            1,
+            2,
+            3,
+            4
+          ],
+          "limit": 12
+        }
+      },
+      {
+        "name": "t14",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            null,
+            4,
+            null,
+            5
+          ],
+          "limit": 8
+        }
+      },
+      {
+        "name": "t15",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            null,
+            4,
+            null,
+            5
+          ],
+          "limit": 9
+        }
+      },
+      {
+        "name": "t16",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            5,
+            null
+          ],
+          "limit": 7
+        }
+      },
+      {
+        "name": "t17",
+        "in": {
+          "root": [
+            1,
+            2,
+            3,
+            4,
+            null,
+            5,
+            null
+          ],
+          "limit": 6
+        }
+      },
+      {
+        "name": "t18",
+        "in": {
+          "root": [
+            2,
+            -1,
+            -2
+          ],
+          "limit": 0
+        }
+      },
+      {
+        "name": "t19",
+        "in": {
+          "root": [
+            2,
+            -1,
+            -2
+          ],
+          "limit": 1
+        }
+      },
+      {
+        "name": "t20",
+        "in": {
+          "root": [
+            1,
+            -2,
+            -3,
+            1,
+            3,
+            -2,
+            null,
+            -1
+          ],
+          "limit": -1
+        }
+      },
+      {
+        "name": "t21",
+        "in": {
+          "root": [
+            1,
+            -2,
+            -3,
+            1,
+            3,
+            -2,
+            null,
+            -1
+          ],
+          "limit": 0
+        }
+      },
+      {
+        "name": "t22",
+        "in": {
+          "root": [
+            10,
+            5,
+            5,
+            4,
+            4,
+            4,
+            4
+          ],
+          "limit": 19
+        }
+      },
+      {
+        "name": "t23",
+        "in": {
+          "root": [
+            10,
+            5,
+            5,
+            4,
+            4,
+            4,
+            4
+          ],
+          "limit": 20
+        }
+      },
+      {
+        "name": "t24",
+        "in": {
+          "root": [
+            3,
+            1,
+            2,
+            null,
+            null,
+            1,
+            1
+          ],
+          "limit": 5
+        }
+      },
+      {
+        "name": "t25",
+        "in": {
+          "root": [
+            3,
+            1,
+            2,
+            null,
+            null,
+            1,
+            1
+          ],
+          "limit": 6
+        }
+      },
+      {
+        "name": "t26",
+        "in": {
+          "root": [
+            7,
+            3,
+            4,
+            2,
+            null,
+            null,
+            5,
+            1,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            6
+          ],
+          "limit": 13
+        }
+      },
+      {
+        "name": "t27",
+        "in": {
+          "root": [
+            7,
+            3,
+            4,
+            2,
+            null,
+            null,
+            5,
+            1,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            6
+          ],
+          "limit": 14
+        }
+      },
+      {
+        "name": "t28",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "limit": 4
+        }
+      },
+      {
+        "name": "t29",
+        "in": {
+          "root": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "limit": 5
+        }
+      },
+      {
+        "name": "t30",
+        "in": {
+          "root": [
+            -1,
+            -2,
+            -3,
+            -4,
+            -5,
+            -6,
+            -7
+          ],
+          "limit": -6
+        }
+      },
+      {
+        "name": "t31",
+        "in": {
+          "root": [
+            -1,
+            -2,
+            -3,
+            -4,
+            -5,
+            -6,
+            -7
+          ],
+          "limit": -10
+        }
+      },
+      {
+        "name": "t32",
+        "in": {
+          "root": [
+            4,
+            9,
+            0,
+            5,
+            1,
+            null,
+            6
+          ],
+          "limit": 12
+        }
+      },
+      {
+        "name": "t33",
+        "in": {
+          "root": [
+            4,
+            9,
+            0,
+            5,
+            1,
+            null,
+            6
+          ],
+          "limit": 15
+        }
+      },
+      {
+        "name": "t34",
+        "in": {
+          "root": [
+            8,
+            4,
+            4,
+            4,
+            null,
+            null,
+            4
+          ],
+          "limit": 16
+        }
+      },
+      {
+        "name": "t35",
+        "in": {
+          "root": [
+            8,
+            4,
+            4,
+            4,
+            null,
+            null,
+            4
+          ],
+          "limit": 17
+        }
+      },
+      {
+        "name": "t36",
+        "in": {
+          "root": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "limit": 6
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 7, 8, 9, null, null, 12, 13, null, 14]\nlimit = 1",
+      "output": ""
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 17, 4, 7, 1, null, null, 5, 3]\nlimit = 22",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, -3, -5, null, 4, null]\nlimit = -1",
+      "output": ""
+    },
+    {
+      "input": "root = [1]\nlimit = 2",
+      "output": ""
+    },
+    {
+      "input": "root = [1]\nlimit = 1",
+      "output": ""
+    },
+    {
+      "input": "root = [0]\nlimit = 0",
+      "output": ""
+    },
+    {
+      "input": "root = [0]\nlimit = 1",
+      "output": ""
+    },
+    {
+      "input": "root = [-5]\nlimit = -5",
+      "output": ""
+    }
+  ]
+}

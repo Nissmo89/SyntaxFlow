@@ -1,0 +1,1371 @@
+{
+  "id": "flower_planting_with_no_adjacent",
+  "title": "Flower Planting With No Adjacent",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "description": "<p>You have <code>n</code> gardens, labeled from <code>1</code> to <code>n</code>, and an array <code>paths</code> where <code>paths[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> describes a bidirectional path between garden <code>x<sub>i</sub></code> to garden <code>y<sub>i</sub></code>. In each garden, you want to plant one of 4 types of flowers.</p>\n\n<p>All gardens have <strong>at most 3</strong> paths coming into or leaving it.</p>\n\n<p>Your task is to choose a flower type for each garden such that, for any two gardens connected by a path, they have different types of flowers.</p>\n\n<p>Return <em><strong>any</strong> such a choice as an array </em><code>answer</code><em>, where </em><code>answer[i]</code><em> is the type of flower planted in the </em><code>(i+1)<sup>th</sup></code><em> garden. The flower types are denoted </em><code>1</code><em>, </em><code>2</code><em>, </em><code>3</code><em>, or </em><code>4</code><em>. It is guaranteed an answer exists.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3, paths = [[1,2],[2,3],[3,1]]\n<strong>Output:</strong> [1,2,3]\n<strong>Explanation:</strong>\nGardens 1 and 2 have different types.\nGardens 2 and 3 have different types.\nGardens 3 and 1 have different types.\nHence, [1,2,3] is a valid answer. Other valid answers include [1,2,4], [1,4,2], and [3,2,1].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4, paths = [[1,2],[3,4]]\n<strong>Output:</strong> [1,2,1,2]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4, paths = [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]\n<strong>Output:</strong> [1,2,3,4]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= paths.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>paths[i].length == 2</code></li>\n\t<li><code>1 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= n</code></li>\n\t<li><code>x<sub>i</sub> != y<sub>i</sub></code></li>\n\t<li>Every garden has <strong>at most 3</strong> paths coming into or leaving it.</li>\n</ul>\n",
+  "task": "Solve the 'Flower Planting With No Adjacent' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 104",
+    "0 <= paths.length <= 2 * 104",
+    "paths[i].length == 2",
+    "1 <= xi, yi <= n",
+    "xi != yi",
+    "Every garden has at most 3 paths coming into or leaving it."
+  ],
+  "hints": [
+    "Since each garden is connected to at most 3 gardens, there's always an available color for each garden.  For example, if one garden is next to gardens with colors 1, 3, 4,  then color #2 is available."
+  ],
+  "method": {
+    "name": "gardenNoAdj",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "paths",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1042,
+      "title": "flower-planting-with-no-adjacent",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().gardenNoAdj({n}, {paths})",
+        "rust": "Solution::garden_no_adj({n}, {paths})",
+        "python3": "Solution().gardenNoAdj({n}, {paths})",
+        "python2": "Solution().gardenNoAdj({n}, {paths})",
+        "ruby": "garden_no_adj({n}, {paths})",
+        "java": "new Solution().gardenNoAdj({n}, {paths})",
+        "csharp": "new Solution().GardenNoAdj({n}, {paths})",
+        "kotlin": "Solution().gardenNoAdj({n}, {paths})",
+        "go": "gardenNoAdj({n}, {paths})",
+        "dart": "Solution().gardenNoAdj({n}, {paths})",
+        "swift": "Solution().gardenNoAdj({n}, {paths})",
+        "typescript": "gardenNoAdj({n}, {paths})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().gardenNoAdj(n, paths, {result})",
+        "checker": "class Checker:\n    def gardenNoAdj(self, n, paths, result):\n        if not isinstance(result, list) or len(result) != n:\n            return False\n        if any((not isinstance(x, int)) or x < 1 or x > 4 for x in result):\n            return False\n        for u, v in paths:\n            if result[u - 1] == result[v - 1]:\n                return False\n        return True\n"
+      }
+    },
+    "seed": 1042,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 3,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 4,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "n": 4,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "single-garden",
+        "in": {
+          "n": 1,
+          "paths": []
+        }
+      },
+      {
+        "name": "two-gardens",
+        "in": {
+          "n": 2,
+          "paths": [
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "three-line",
+        "in": {
+          "n": 3,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "four-cycle",
+        "in": {
+          "n": 4,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "star-1",
+        "in": {
+          "n": 5,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "path-5",
+        "in": {
+          "n": 5,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "disconnected-1",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "disconnected-2",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "triangle-plus-edge",
+        "in": {
+          "n": 5,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        }
+      },
+      {
+        "name": "dense-1",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "dense-2",
+        "in": {
+          "n": 7,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "dense-3",
+        "in": {
+          "n": 7,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "sparse-1",
+        "in": {
+          "n": 8,
+          "paths": [
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              7
+            ]
+          ]
+        }
+      },
+      {
+        "name": "sparse-2",
+        "in": {
+          "n": 8,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "sparse-3",
+        "in": {
+          "n": 8,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "ring-8",
+        "in": {
+          "n": 8,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "wheel-lite",
+        "in": {
+          "n": 8,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "name": "tree-1",
+        "in": {
+          "n": 9,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              7,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "name": "tree-2",
+        "in": {
+          "n": 9,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-5",
+        "in": {
+          "n": 5,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-6",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-with-chord",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-with-two-chords",
+        "in": {
+          "n": 6,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "name": "ladder-1",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "ladder-2",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        }
+      },
+      {
+        "name": "fan-1",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "name": "fan-2",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "name": "split-graph",
+        "in": {
+          "n": 11,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ]
+        }
+      },
+      {
+        "name": "sparse-chain",
+        "in": {
+          "n": 11,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "name": "mixed-1",
+        "in": {
+          "n": 12,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "name": "mixed-2",
+        "in": {
+          "n": 12,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-10",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              10,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "cycle-with-tail",
+        "in": {
+          "n": 10,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "name": "max-ish-sparse",
+        "in": {
+          "n": 15,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              12,
+              13
+            ],
+            [
+              13,
+              14
+            ],
+            [
+              14,
+              15
+            ]
+          ]
+        }
+      },
+      {
+        "name": "max-ish-tree",
+        "in": {
+          "n": 15,
+          "paths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              14
+            ],
+            [
+              7,
+              15
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3\npaths = [[1, 2], [2, 3], [3, 1]]",
+      "output": ""
+    },
+    {
+      "input": "n = 4\npaths = [[1, 2], [3, 4]]",
+      "output": ""
+    },
+    {
+      "input": "n = 4\npaths = [[1, 2], [2, 3], [3, 4], [4, 1], [1, 3], [2, 4]]",
+      "output": ""
+    },
+    {
+      "input": "n = 1\npaths = []",
+      "output": ""
+    },
+    {
+      "input": "n = 2\npaths = [[1, 2]]",
+      "output": ""
+    },
+    {
+      "input": "n = 3\npaths = [[1, 2], [2, 3]]",
+      "output": ""
+    },
+    {
+      "input": "n = 4\npaths = [[1, 2], [2, 3], [3, 4], [4, 1]]",
+      "output": ""
+    },
+    {
+      "input": "n = 5\npaths = [[1, 2], [1, 3], [1, 4], [1, 5]]",
+      "output": ""
+    }
+  ]
+}

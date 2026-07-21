@@ -1,0 +1,361 @@
+{
+  "id": "student_attendance_record_i",
+  "title": "Student Attendance Record I",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>You are given a string <code>s</code> representing an attendance record for a student where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:</p> <ul> <li><code>'A'</code>: Absent.</li> <li><code>'L'</code>: Late.</li> <li><code>'P'</code>: Present.</li> </ul> <p>The student is eligible for an attendance award if they meet <strong>both</strong> of the following criteria:</p> <ul> <li>The student was absent (<code>'A'</code>) for <strong>strictly</strong> fewer than 2 days <strong>total</strong>.</li> <li>The student was <strong>never</strong> late (<code>'L'</code>) for 3 or more <strong>consecutive</strong> days.</li> </ul> <p>Return <code>true</code><em> if the student is eligible for an attendance award, or </em><code>false</code><em> otherwise</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"PPALLP\"\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The student has fewer than 2 absences and was never late 3 or more consecutive days.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"PPALLL\"\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The student was late 3 consecutive days in the last 3 days, so is not eligible for the award.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 1000</code></li> <li><code>s[i]</code> is either <code>'A'</code>, <code>'L'</code>, or <code>'P'</code>.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "checkRecord",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 551,
+      "title": "student-attendance-record-i",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().checkRecord({s})",
+        "rust": "Solution::check_record({s})",
+        "python3": "Solution().checkRecord({s})",
+        "python2": "Solution().checkRecord({s})",
+        "ruby": "check_record({s})",
+        "java": "new Solution().checkRecord({s})",
+        "csharp": "new Solution().CheckRecord({s})",
+        "kotlin": "Solution().checkRecord({s})",
+        "go": "checkRecord({s})",
+        "dart": "Solution().checkRecord({s})",
+        "swift": "Solution().checkRecord({s})",
+        "typescript": "checkRecord({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(s, {result})",
+        "checker": "class Checker:\n    def check(self, s, result):\n        if not isinstance(result, bool):\n            return False\n        return result == (s.count(\"A\") < 2 and \"LLL\" not in s)\n"
+      }
+    },
+    "seed": 551,
+    "tests": [
+      {
+        "name": "example_pass",
+        "in": {
+          "s": "PPALLP"
+        },
+        "out": true
+      },
+      {
+        "name": "example_fail_late",
+        "in": {
+          "s": "PPALLL"
+        },
+        "out": false
+      },
+      {
+        "name": "single_present",
+        "in": {
+          "s": "P"
+        },
+        "out": true
+      },
+      {
+        "name": "single_absent",
+        "in": {
+          "s": "A"
+        },
+        "out": true
+      },
+      {
+        "name": "single_late",
+        "in": {
+          "s": "L"
+        },
+        "out": true
+      },
+      {
+        "name": "two_absences",
+        "in": {
+          "s": "AA"
+        },
+        "out": false
+      },
+      {
+        "name": "separated_absences",
+        "in": {
+          "s": "APA"
+        },
+        "out": false
+      },
+      {
+        "name": "two_lates_allowed",
+        "in": {
+          "s": "LL"
+        },
+        "out": true
+      },
+      {
+        "name": "three_lates_forbidden",
+        "in": {
+          "s": "LLL"
+        },
+        "out": false
+      },
+      {
+        "name": "late_streak_reset_by_present",
+        "in": {
+          "s": "LLPLL"
+        },
+        "out": true
+      },
+      {
+        "name": "late_streak_reset_by_absent",
+        "in": {
+          "s": "LLALL"
+        },
+        "out": true
+      },
+      {
+        "name": "absent_and_triple_late",
+        "in": {
+          "s": "ALLL"
+        },
+        "out": false
+      },
+      {
+        "name": "alternating_good",
+        "in": {
+          "s": "PLPLPLP"
+        },
+        "out": true
+      },
+      {
+        "name": "all_present_short",
+        "in": {
+          "s": "PPPPPPPPPP"
+        },
+        "out": true
+      },
+      {
+        "name": "all_late_two",
+        "in": {
+          "s": "LL"
+        },
+        "out": true
+      },
+      {
+        "name": "all_late_four",
+        "in": {
+          "s": "LLLL"
+        },
+        "out": false
+      },
+      {
+        "name": "late_at_start",
+        "in": {
+          "s": "LLPPA"
+        },
+        "out": true
+      },
+      {
+        "name": "late_at_end",
+        "in": {
+          "s": "PALLL"
+        },
+        "out": false
+      },
+      {
+        "name": "two_absences_far_apart",
+        "in": {
+          "s": "PALAP"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated_safe_pairs",
+        "in": {
+          "s": "LLPLLPLL"
+        },
+        "out": true
+      },
+      {
+        "name": "two_absences_no_late_issue",
+        "in": {
+          "s": "APAPAP"
+        },
+        "out": false
+      },
+      {
+        "name": "complex_good_mix",
+        "in": {
+          "s": "ALPLLP"
+        },
+        "out": true
+      },
+      {
+        "name": "complex_bad_mix",
+        "in": {
+          "s": "ALALLPPA"
+        },
+        "out": false
+      },
+      {
+        "name": "streak_after_reset_fails",
+        "in": {
+          "s": "LPLLLP"
+        },
+        "out": false
+      },
+      {
+        "name": "near_three_but_reset",
+        "in": {
+          "s": "LLPLLPLLP"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed_end_absence",
+        "in": {
+          "s": "PLPAPL"
+        },
+        "out": true
+      },
+      {
+        "name": "absent_near_end",
+        "in": {
+          "s": "PPPPLAPP"
+        },
+        "out": true
+      },
+      {
+        "name": "double_absent_with_safe_lates",
+        "in": {
+          "s": "LAPALP"
+        },
+        "out": false
+      },
+      {
+        "name": "exact_boundary_good",
+        "in": {
+          "s": "LLAPLLAP"
+        },
+        "out": false
+      },
+      {
+        "name": "exact_boundary_good_single_absence",
+        "in": {
+          "s": "LLPPLLAP"
+        },
+        "out": true
+      },
+      {
+        "name": "generated_len_8",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 8,
+            "alphabet": "ALP"
+          }
+        },
+        "seed": 55101
+      },
+      {
+        "name": "generated_len_25",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 25,
+            "alphabet": "ALP"
+          }
+        },
+        "seed": 55102
+      },
+      {
+        "name": "generated_len_100",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 100,
+            "alphabet": "ALP"
+          }
+        },
+        "seed": 55103
+      },
+      {
+        "name": "generated_len_999",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 999,
+            "alphabet": "ALP"
+          }
+        },
+        "seed": 55104
+      },
+      {
+        "name": "generated_len_1000",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "ALP"
+          }
+        },
+        "seed": 55105
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"PPALLP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"PPALLL\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"P\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"A\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"L\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"AA\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"APA\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LL\"",
+      "output": "true"
+    }
+  ]
+}

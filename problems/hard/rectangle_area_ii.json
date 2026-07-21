@@ -1,0 +1,1000 @@
+{
+  "id": "rectangle_area_ii",
+  "title": "Rectangle Area II",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Segment Tree",
+    "Sweep Line",
+    "Ordered Set"
+  ],
+  "description": "<p>You are given a 2D array of axis-aligned <code>rectangles</code>. Each <code>rectangle[i] = [x<sub>i1</sub>, y<sub>i1</sub>, x<sub>i2</sub>, y<sub>i2</sub>]</code> denotes the <code>i<sup>th</sup></code> rectangle where <code>(x<sub>i1</sub>, y<sub>i1</sub>)</code> are the coordinates of the <strong>bottom-left corner</strong>, and <code>(x<sub>i2</sub>, y<sub>i2</sub>)</code> are the coordinates of the <strong>top-right corner</strong>.</p>\n\n<p>Calculate the <strong>total area</strong> covered by all <code>rectangles</code> in the plane. Any area covered by two or more rectangles should only be counted <strong>once</strong>.</p>\n\n<p>Return <em>the <strong>total area</strong></em>. Since the answer may be too large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/06/rectangle_area_ii_pic.png\" style=\"width: 600px; height: 450px;\" />\n<pre>\n<strong>Input:</strong> rectangles = [[0,0,2,2],[1,0,2,3],[1,0,3,1]]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> A total area of 6 is covered by all three rectangles, as illustrated in the picture.\nFrom (1,1) to (2,2), the green and red rectangles overlap.\nFrom (1,0) to (2,3), all three rectangles overlap.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> rectangles = [[0,0,1000000000,1000000000]]\n<strong>Output:</strong> 49\n<strong>Explanation:</strong> The answer is 10<sup>18</sup> modulo (10<sup>9</sup> + 7), which is 49.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= rectangles.length &lt;= 200</code></li>\n\t<li><code>rectanges[i].length == 4</code></li>\n\t<li><code>0 &lt;= x<sub>i1</sub>, y<sub>i1</sub>, x<sub>i2</sub>, y<sub>i2</sub> &lt;= 10<sup>9</sup></code></li>\n\t<li><code>x<sub>i1 &lt;= </sub>x<sub>i2</sub></code></li>\n\t<li><code>y<sub>i1 &lt;=</sub> y<sub>i2</sub></code></li>\n\t<li>All rectangles have non zero area.</li>\n</ul>\n",
+  "task": "Solve the 'Rectangle Area II' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= rectangles.length <= 200",
+    "rectanges[i].length == 4",
+    "0 <= xi1, yi1, xi2, yi2 <= 109",
+    "xi1 <= xi2",
+    "yi1 <= yi2",
+    "All rectangles have non zero area."
+  ],
+  "hints": [],
+  "method": {
+    "name": "rectangleArea",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "rectangles",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 850,
+      "title": "rectangle-area-ii",
+      "params": {
+        "rectangles": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().rectangleArea({rectangles})",
+        "rust": "Solution::rectangle_area({rectangles})",
+        "python3": "Solution().rectangleArea({rectangles})",
+        "python2": "Solution().rectangleArea({rectangles})",
+        "ruby": "rectangle_area({rectangles})",
+        "java": "new Solution().rectangleArea({rectangles})",
+        "csharp": "new Solution().RectangleArea({rectangles})",
+        "kotlin": "Solution().rectangleArea({rectangles})",
+        "go": "rectangleArea({rectangles})",
+        "dart": "Solution().rectangleArea({rectangles})",
+        "swift": "Solution().rectangleArea({rectangles})",
+        "typescript": "rectangleArea({rectangles})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().ok({result})",
+        "checker": "class Checker:\n    def ok(self, result):\n        return True\n"
+      }
+    },
+    "seed": 850,
+    "tests": [
+      {
+        "name": "example-one",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              0,
+              3,
+              1
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "example-two",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1000000000,
+              1000000000
+            ]
+          ]
+        },
+        "out": 49
+      },
+      {
+        "name": "unit-square",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              1
+            ]
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "horizontal-strip-pair",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              0,
+              3,
+              1
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "vertical-strip-pair",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              4
+            ],
+            [
+              0,
+              1,
+              1,
+              3
+            ]
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "disjoint-two",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              3,
+              0,
+              5,
+              2
+            ]
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "touching-edge",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              4,
+              2
+            ]
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "touching-corner",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "full-containment",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              5,
+              5
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "nested-three",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              10,
+              10
+            ],
+            [
+              2,
+              2,
+              8,
+              8
+            ],
+            [
+              4,
+              4,
+              6,
+              6
+            ]
+          ]
+        },
+        "out": 100
+      },
+      {
+        "name": "partial-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              3,
+              3
+            ],
+            [
+              2,
+              2,
+              5,
+              5
+            ]
+          ]
+        },
+        "out": 17
+      },
+      {
+        "name": "overlap-chain",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              4
+            ],
+            [
+              1,
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              2,
+              4,
+              6
+            ]
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "staircase",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              1,
+              3,
+              3
+            ],
+            [
+              2,
+              2,
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "strip-union",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              4
+            ],
+            [
+              1,
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              0,
+              3,
+              4
+            ]
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "wide-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              6,
+              2
+            ],
+            [
+              2,
+              1,
+              8,
+              3
+            ],
+            [
+              4,
+              0,
+              10,
+              2
+            ]
+          ]
+        },
+        "out": 26
+      },
+      {
+        "name": "tall-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              6
+            ],
+            [
+              1,
+              2,
+              3,
+              8
+            ],
+            [
+              0,
+              4,
+              2,
+              10
+            ]
+          ]
+        },
+        "out": 26
+      },
+      {
+        "name": "corner-grid",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              4,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              4
+            ],
+            [
+              2,
+              2,
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "cross-center",
+        "in": {
+          "rectangles": [
+            [
+              1,
+              0,
+              3,
+              4
+            ],
+            [
+              0,
+              1,
+              4,
+              3
+            ]
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "three-way-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              4,
+              4
+            ],
+            [
+              1,
+              1,
+              5,
+              5
+            ],
+            [
+              2,
+              2,
+              6,
+              6
+            ]
+          ]
+        },
+        "out": 30
+      },
+      {
+        "name": "shared-strip",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              5,
+              5
+            ],
+            [
+              1,
+              0,
+              4,
+              5
+            ],
+            [
+              2,
+              0,
+              3,
+              5
+            ]
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "disjoint-triple",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              3,
+              3
+            ],
+            [
+              4,
+              4,
+              5,
+              5
+            ]
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "aligned-stack",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              3,
+              1
+            ],
+            [
+              0,
+              1,
+              3,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              3
+            ]
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "thin-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              5,
+              1
+            ],
+            [
+              4,
+              0,
+              9,
+              1
+            ],
+            [
+              8,
+              0,
+              13,
+              1
+            ]
+          ]
+        },
+        "out": 13
+      },
+      {
+        "name": "large-single",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1000000000,
+              1000000000
+            ]
+          ]
+        },
+        "out": 49
+      },
+      {
+        "name": "large-nested",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1000000000,
+              1000000000
+            ],
+            [
+              1,
+              1,
+              999999999,
+              999999999
+            ]
+          ]
+        },
+        "out": 49
+      },
+      {
+        "name": "large-disjoint",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              500000000,
+              1000000000
+            ],
+            [
+              500000000,
+              0,
+              1000000000,
+              1000000000
+            ]
+          ]
+        },
+        "out": 49
+      },
+      {
+        "name": "large-partial",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1000000000,
+              500000000
+            ],
+            [
+              500000000,
+              250000000,
+              1000000000,
+              1000000000
+            ]
+          ]
+        },
+        "out": 750000042
+      },
+      {
+        "name": "large-cross",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1000000000,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              1000000000
+            ]
+          ]
+        },
+        "out": 999999992
+      },
+      {
+        "name": "three-small-offset",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              1,
+              4,
+              2
+            ],
+            [
+              3,
+              0,
+              5,
+              4
+            ]
+          ]
+        },
+        "out": 15
+      },
+      {
+        "name": "nested-left",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              8,
+              8
+            ],
+            [
+              0,
+              0,
+              4,
+              4
+            ],
+            [
+              0,
+              0,
+              2,
+              2
+            ]
+          ]
+        },
+        "out": 64
+      },
+      {
+        "name": "nested-right",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              8,
+              8
+            ],
+            [
+              4,
+              4,
+              8,
+              8
+            ],
+            [
+              6,
+              6,
+              8,
+              8
+            ]
+          ]
+        },
+        "out": 64
+      },
+      {
+        "name": "overlap-fan",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              5
+            ],
+            [
+              1,
+              0,
+              3,
+              5
+            ],
+            [
+              2,
+              0,
+              4,
+              5
+            ],
+            [
+              3,
+              0,
+              5,
+              5
+            ]
+          ]
+        },
+        "out": 25
+      },
+      {
+        "name": "tiny-lattice",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              3,
+              2
+            ]
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "asymmetric-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              4,
+              6
+            ],
+            [
+              1,
+              2,
+              5,
+              4
+            ],
+            [
+              3,
+              1,
+              6,
+              5
+            ]
+          ]
+        },
+        "out": 32
+      },
+      {
+        "name": "far-apart-four",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              1,
+              3
+            ],
+            [
+              2,
+              0,
+              3,
+              3
+            ],
+            [
+              4,
+              0,
+              5,
+              3
+            ],
+            [
+              6,
+              0,
+              7,
+              3
+            ]
+          ]
+        },
+        "out": 12
+      },
+      {
+        "name": "overlapping-columns",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              2,
+              4
+            ],
+            [
+              1,
+              0,
+              3,
+              4
+            ],
+            [
+              2,
+              0,
+              4,
+              4
+            ]
+          ]
+        },
+        "out": 16
+      },
+      {
+        "name": "box-with-hole-overlap",
+        "in": {
+          "rectangles": [
+            [
+              0,
+              0,
+              6,
+              6
+            ],
+            [
+              1,
+              1,
+              5,
+              5
+            ],
+            [
+              2,
+              2,
+              4,
+              4
+            ],
+            [
+              3,
+              0,
+              6,
+              3
+            ]
+          ]
+        },
+        "out": 36
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "rectangles = [[0, 0, 2, 2], [1, 0, 2, 3], [1, 0, 3, 1]]",
+      "output": "6"
+    },
+    {
+      "input": "rectangles = [[0, 0, 1000000000, 1000000000]]",
+      "output": "49"
+    },
+    {
+      "input": "rectangles = [[0, 0, 1, 1]]",
+      "output": "1"
+    },
+    {
+      "input": "rectangles = [[0, 0, 4, 1], [1, 0, 3, 1]]",
+      "output": "4"
+    },
+    {
+      "input": "rectangles = [[0, 0, 1, 4], [0, 1, 1, 3]]",
+      "output": "4"
+    },
+    {
+      "input": "rectangles = [[0, 0, 2, 2], [3, 0, 5, 2]]",
+      "output": "8"
+    },
+    {
+      "input": "rectangles = [[0, 0, 2, 2], [2, 0, 4, 2]]",
+      "output": "8"
+    },
+    {
+      "input": "rectangles = [[0, 0, 2, 2], [2, 2, 4, 4]]",
+      "output": "8"
+    }
+  ]
+}

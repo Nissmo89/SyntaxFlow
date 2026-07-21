@@ -1,0 +1,631 @@
+{
+  "id": "array_partition",
+  "title": "Array Partition",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Counting Sort"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> of <code>2n</code> integers, group these integers into <code>n</code> pairs <code>(a<sub>1</sub>, b<sub>1</sub>), (a<sub>2</sub>, b<sub>2</sub>), ..., (a<sub>n</sub>, b<sub>n</sub>)</code> such that the sum of <code>min(a<sub>i</sub>, b<sub>i</sub>)</code> for all <code>i</code> is <strong>maximized</strong>. Return<em> the maximized sum</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums = [1,4,3,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> All possible pairings (ignoring the ordering of elements) are:\n1. (1, 4), (2, 3) -&gt; min(1, 4) + min(2, 3) = 1 + 2 = 3\n2. (1, 3), (2, 4) -&gt; min(1, 3) + min(2, 4) = 1 + 2 = 3\n3. (1, 2), (3, 4) -&gt; min(1, 2) + min(3, 4) = 1 + 3 = 4\nSo the maximum possible sum is 4.</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums = [6,2,6,5,1,2]\n<strong>Output:</strong> 9\n<strong>Explanation:</strong> The optimal pairing is (2, 1), (2, 5), (6, 6). min(2, 1) + min(2, 5) + min(6, 6) = 1 + 2 + 6 = 9.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li> <li><code>nums.length == 2 * n</code></li> <li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li> </ul>",
+  "hints": [
+    "Obviously, brute force won't help here. Think of something else, take some example like 1,2,3,4.",
+    "How will you make pairs to get the result? There must be some pattern.",
+    "Did you observe that- Minimum element gets add into the result in sacrifice of maximum element.",
+    "Still won't able to find pairs? Sort the array and try to find the pattern."
+  ],
+  "method": {
+    "name": "arrayPairSum",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 561,
+      "title": "array-partition",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().arrayPairSum({nums})",
+        "rust": "Solution::array_pair_sum({nums})",
+        "python3": "Solution().arrayPairSum({nums})",
+        "python2": "Solution().arrayPairSum({nums})",
+        "ruby": "array_pair_sum({nums})",
+        "java": "new Solution().arrayPairSum({nums})",
+        "csharp": "new Solution().ArrayPairSum({nums})",
+        "kotlin": "Solution().arrayPairSum({nums})",
+        "go": "arrayPairSum({nums})",
+        "dart": "Solution().arrayPairSum({nums})",
+        "swift": "Solution().arrayPairSum({nums})",
+        "typescript": "arrayPairSum({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().arrayPairSum(nums, {result})",
+        "checker": "class Checker:\n    def arrayPairSum(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        return result == sum(sorted(nums)[::2])\n"
+      }
+    },
+    "seed": 561,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "nums": [
+            1,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "example2",
+        "in": {
+          "nums": [
+            6,
+            2,
+            6,
+            5,
+            1,
+            2
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "single_pair_positive",
+        "in": {
+          "nums": [
+            7,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "single_pair_negative",
+        "in": {
+          "nums": [
+            -5,
+            -1
+          ]
+        },
+        "out": -5
+      },
+      {
+        "name": "all_zero",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "ascending_even",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "descending_even",
+        "in": {
+          "nums": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed_signs_small",
+        "in": {
+          "nums": [
+            -1,
+            0,
+            1,
+            2
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "with_duplicates",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "all_same_negative",
+        "in": {
+          "nums": [
+            -4,
+            -4,
+            -4,
+            -4
+          ]
+        },
+        "out": -8
+      },
+      {
+        "name": "extreme_bounds",
+        "in": {
+          "nums": [
+            -10000,
+            10000,
+            -9999,
+            9999
+          ]
+        },
+        "out": -1
+      },
+      {
+        "name": "alt_high_low",
+        "in": {
+          "nums": [
+            10000,
+            -10000,
+            9999,
+            -9999,
+            5000,
+            -5000
+          ]
+        },
+        "out": -5001
+      },
+      {
+        "name": "odd_pattern",
+        "in": {
+          "nums": [
+            9,
+            1,
+            8,
+            2,
+            7,
+            3,
+            6,
+            4
+          ]
+        },
+        "out": 18
+      },
+      {
+        "name": "negatives_only",
+        "in": {
+          "nums": [
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3
+          ]
+        },
+        "out": -18
+      },
+      {
+        "name": "zeros_and_negatives",
+        "in": {
+          "nums": [
+            0,
+            -1,
+            0,
+            -2,
+            0,
+            -3
+          ]
+        },
+        "out": -4
+      },
+      {
+        "name": "zeros_and_positives",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            2,
+            0,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "large_duplicates",
+        "in": {
+          "nums": [
+            10000,
+            10000,
+            10000,
+            10000
+          ]
+        },
+        "out": 20000
+      },
+      {
+        "name": "min_duplicates",
+        "in": {
+          "nums": [
+            -10000,
+            -10000,
+            -10000,
+            -10000
+          ]
+        },
+        "out": -20000
+      },
+      {
+        "name": "balanced_repeats",
+        "in": {
+          "nums": [
+            5,
+            5,
+            4,
+            4,
+            3,
+            3,
+            2,
+            2
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "scattered_values",
+        "in": {
+          "nums": [
+            13,
+            -7,
+            22,
+            0,
+            5,
+            -3,
+            8,
+            1
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "nine_pairs",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0,
+            -1,
+            -2,
+            -3,
+            -4,
+            -5,
+            -6,
+            -7,
+            -8
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "alternating_pairs",
+        "in": {
+          "nums": [
+            2,
+            9,
+            1,
+            8,
+            0,
+            7,
+            -1,
+            6,
+            -2,
+            5
+          ]
+        },
+        "out": 14
+      },
+      {
+        "name": "clustered_neg_pos",
+        "in": {
+          "nums": [
+            -10,
+            -9,
+            -8,
+            50,
+            51,
+            52
+          ]
+        },
+        "out": 33
+      },
+      {
+        "name": "near_zero_mix",
+        "in": {
+          "nums": [
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "out": 0
+      },
+      {
+        "name": "palindrome_values",
+        "in": {
+          "nums": [
+            4,
+            1,
+            4,
+            1,
+            4,
+            1,
+            4,
+            1
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "sparse_extremes",
+        "in": {
+          "nums": [
+            10000,
+            -9998,
+            9998,
+            -10000,
+            123,
+            -123
+          ]
+        },
+        "out": -125
+      },
+      {
+        "name": "longer_small",
+        "in": {
+          "nums": [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6,
+            5,
+            3
+          ]
+        },
+        "out": 17
+      },
+      {
+        "name": "many_zeros",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "even_neg_repeat",
+        "in": {
+          "nums": [
+            -1,
+            -1,
+            -2,
+            -2,
+            -3,
+            -3,
+            -4,
+            -4
+          ]
+        },
+        "out": -10
+      },
+      {
+        "name": "wide_range",
+        "in": {
+          "nums": [
+            17,
+            -20,
+            35,
+            -40,
+            50,
+            -60,
+            70,
+            -80,
+            90,
+            -100
+          ]
+        },
+        "out": -75
+      },
+      {
+        "name": "gen_len_2",
+        "seed": 56101,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_len_20",
+        "seed": 56102,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_len_200",
+        "seed": 56103,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 200,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_len_19998",
+        "seed": 56104,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 19998,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_len_20000",
+        "seed": 56105,
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 20000,
+            "of": {
+              "gen": "int",
+              "min": -10000,
+              "max": 10000
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 4, 3, 2]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [6, 2, 6, 5, 1, 2]",
+      "output": "9"
+    },
+    {
+      "input": "nums = [7, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [-5, -1]",
+      "output": "-5"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6]",
+      "output": "9"
+    },
+    {
+      "input": "nums = [6, 5, 4, 3, 2, 1]",
+      "output": "9"
+    },
+    {
+      "input": "nums = [-1, 0, 1, 2]",
+      "output": "0"
+    }
+  ]
+}

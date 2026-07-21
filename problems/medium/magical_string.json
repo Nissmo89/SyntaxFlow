@@ -1,0 +1,397 @@
+{
+  "id": "magical_string",
+  "title": "Magical String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>A magical string <code>s</code> consists of only <code>&#39;1&#39;</code> and <code>&#39;2&#39;</code> and obeys the following rule:</p>\n\n<ul>\n\t<li>Concatenating the sequence of lengths of its consecutive groups of identical characters <code>&#39;1&#39;</code> and <code>&#39;2&#39;</code> generates the string <code>s</code> itself.</li>\n</ul>\n\n<p>The first few elements of <code>s</code> is <code>s = &quot;1221121221221121122&hellip;&hellip;&quot;</code>. If we group the consecutive <code>1</code>&#39;s and <code>2</code>&#39;s in <code>s</code>, it will be <code>&quot;1 22 11 2 1 22 1 22 11 2 11 22 ......&quot;</code> and counting the occurrences of <code>1</code>&#39;s or <code>2</code>&#39;s in each group yields the sequence&nbsp;<code>&quot;1 2 2 1 1 2 1 2 2 1 2 2 ......&quot;</code>.</p>\n\n<p>You can see that concatenating the occurrence sequence gives us&nbsp;<code>s</code> itself.</p>\n\n<p>Given an integer <code>n</code>, return the number of <code>1</code>&#39;s in the first <code>n</code> number in the magical string <code>s</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 6\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The first 6 elements of magical string s is &quot;122112&quot; and it contains three 1&#39;s, so return 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Magical String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 105"
+  ],
+  "hints": [],
+  "method": {
+    "name": "magicalString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 481,
+      "title": "magical-string",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().magicalString({n})",
+        "rust": "Solution::magical_string({n})",
+        "python3": "Solution().magicalString({n})",
+        "python2": "Solution().magicalString({n})",
+        "ruby": "magical_string({n})",
+        "java": "new Solution().magicalString({n})",
+        "csharp": "new Solution().MagicalString({n})",
+        "kotlin": "Solution().magicalString({n})",
+        "go": "magicalString({n})",
+        "dart": "Solution().magicalString({n})",
+        "swift": "Solution().magicalString({n})",
+        "typescript": "magicalString({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, {result})",
+        "checker": "class Checker:\n    def check(self, n, result):\n        return isinstance(result, int) and 0 <= result <= n\n"
+      }
+    },
+    "seed": 481,
+    "tests": [
+      {
+        "name": "n-1",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n-2",
+        "in": {
+          "n": 2
+        },
+        "out": 1
+      },
+      {
+        "name": "n-3",
+        "in": {
+          "n": 3
+        },
+        "out": 1
+      },
+      {
+        "name": "n-4",
+        "in": {
+          "n": 4
+        },
+        "out": 2
+      },
+      {
+        "name": "n-5",
+        "in": {
+          "n": 5
+        },
+        "out": 3
+      },
+      {
+        "name": "n-6",
+        "in": {
+          "n": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "n-7",
+        "in": {
+          "n": 7
+        },
+        "out": 4
+      },
+      {
+        "name": "n-8",
+        "in": {
+          "n": 8
+        },
+        "out": 4
+      },
+      {
+        "name": "n-9",
+        "in": {
+          "n": 9
+        },
+        "out": 4
+      },
+      {
+        "name": "n-10",
+        "in": {
+          "n": 10
+        },
+        "out": 5
+      },
+      {
+        "name": "n-11",
+        "in": {
+          "n": 11
+        },
+        "out": 5
+      },
+      {
+        "name": "n-12",
+        "in": {
+          "n": 12
+        },
+        "out": 5
+      },
+      {
+        "name": "n-13",
+        "in": {
+          "n": 13
+        },
+        "out": 6
+      },
+      {
+        "name": "n-14",
+        "in": {
+          "n": 14
+        },
+        "out": 7
+      },
+      {
+        "name": "n-15",
+        "in": {
+          "n": 15
+        },
+        "out": 7
+      },
+      {
+        "name": "n-16",
+        "in": {
+          "n": 16
+        },
+        "out": 8
+      },
+      {
+        "name": "n-17",
+        "in": {
+          "n": 17
+        },
+        "out": 9
+      },
+      {
+        "name": "n-18",
+        "in": {
+          "n": 18
+        },
+        "out": 9
+      },
+      {
+        "name": "n-19",
+        "in": {
+          "n": 19
+        },
+        "out": 9
+      },
+      {
+        "name": "n-20",
+        "in": {
+          "n": 20
+        },
+        "out": 10
+      },
+      {
+        "name": "n-21",
+        "in": {
+          "n": 21
+        },
+        "out": 10
+      },
+      {
+        "name": "n-22",
+        "in": {
+          "n": 22
+        },
+        "out": 11
+      },
+      {
+        "name": "n-23",
+        "in": {
+          "n": 23
+        },
+        "out": 12
+      },
+      {
+        "name": "n-24",
+        "in": {
+          "n": 24
+        },
+        "out": 12
+      },
+      {
+        "name": "n-25",
+        "in": {
+          "n": 25
+        },
+        "out": 13
+      },
+      {
+        "name": "n-26",
+        "in": {
+          "n": 26
+        },
+        "out": 13
+      },
+      {
+        "name": "n-27",
+        "in": {
+          "n": 27
+        },
+        "out": 13
+      },
+      {
+        "name": "n-28",
+        "in": {
+          "n": 28
+        },
+        "out": 14
+      },
+      {
+        "name": "n-29",
+        "in": {
+          "n": 29
+        },
+        "out": 15
+      },
+      {
+        "name": "n-30",
+        "in": {
+          "n": 30
+        },
+        "out": 15
+      },
+      {
+        "name": "n-31",
+        "in": {
+          "n": 31
+        },
+        "out": 16
+      },
+      {
+        "name": "n-32",
+        "in": {
+          "n": 32
+        },
+        "out": 17
+      },
+      {
+        "name": "n-33",
+        "in": {
+          "n": 33
+        },
+        "out": 17
+      },
+      {
+        "name": "n-34",
+        "in": {
+          "n": 34
+        },
+        "out": 18
+      },
+      {
+        "name": "n-35",
+        "in": {
+          "n": 35
+        },
+        "out": 18
+      },
+      {
+        "name": "n-40",
+        "in": {
+          "n": 40
+        },
+        "out": 20
+      },
+      {
+        "name": "n-100",
+        "in": {
+          "n": 100
+        },
+        "out": 49
+      },
+      {
+        "name": "n-1000",
+        "in": {
+          "n": 1000
+        },
+        "out": 502
+      },
+      {
+        "name": "n-10000",
+        "in": {
+          "n": 10000
+        },
+        "out": 4996
+      },
+      {
+        "name": "n-50000",
+        "in": {
+          "n": 50000
+        },
+        "out": 24985
+      },
+      {
+        "name": "n-99999",
+        "in": {
+          "n": 99999
+        },
+        "out": 49972
+      },
+      {
+        "name": "n-100000",
+        "in": {
+          "n": 100000
+        },
+        "out": 49972
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "1"
+    },
+    {
+      "input": "n = 3",
+      "output": "1"
+    },
+    {
+      "input": "n = 4",
+      "output": "2"
+    },
+    {
+      "input": "n = 5",
+      "output": "3"
+    },
+    {
+      "input": "n = 6",
+      "output": "3"
+    },
+    {
+      "input": "n = 7",
+      "output": "4"
+    },
+    {
+      "input": "n = 8",
+      "output": "4"
+    }
+  ]
+}

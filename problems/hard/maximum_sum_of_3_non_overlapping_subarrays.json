@@ -1,0 +1,950 @@
+{
+  "id": "maximum_sum_of_3_non_overlapping_subarrays",
+  "title": "Maximum Sum of 3 Non-Overlapping Subarrays",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "description": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, find three non-overlapping subarrays of length <code>k</code> with maximum sum and return them.</p>\n\n<p>Return the result as a list of indices representing the starting position of each interval (<strong>0-indexed</strong>). If there are multiple answers, return the lexicographically smallest one.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,1,2,6,7,5,1], k = 2\n<strong>Output:</strong> [0,3,5]\n<strong>Explanation:</strong> Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].\nWe could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,1,2,1,2,1,2,1], k = 2\n<strong>Output:</strong> [0,2,4]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;&nbsp;2<sup>16</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= floor(nums.length / 3)</code></li>\n</ul>\n",
+  "task": "Solve the 'Maximum Sum of 3 Non-Overlapping Subarrays' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 104",
+    "1 <= nums[i] <\u00a0216",
+    "1 <= k <= floor(nums.length / 3)"
+  ],
+  "hints": [],
+  "method": {
+    "name": "maxSumOfThreeSubarrays",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 689,
+      "title": "maximum-sum-of-3-non-overlapping-subarrays",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "rust": "Solution::max_sum_of_three_subarrays({nums}, {k})",
+        "python3": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "python2": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "ruby": "max_sum_of_three_subarrays({nums}, {k})",
+        "java": "new Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "csharp": "new Solution().MaxSumOfThreeSubarrays({nums}, {k})",
+        "kotlin": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "go": "maxSumOfThreeSubarrays({nums}, {k})",
+        "dart": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "swift": "Solution().maxSumOfThreeSubarrays({nums}, {k})",
+        "typescript": "maxSumOfThreeSubarrays({nums}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().maxSumOfThreeSubarrays(nums, k, {result})",
+        "checker": "class Checker:\n    def maxSumOfThreeSubarrays(self, nums, k, result):\n        if not isinstance(result, list) or len(result) != 3:\n            return False\n        if any((not isinstance(x, int)) for x in result):\n            return False\n        i, j, l = result\n        if not (0 <= i < j < l):\n            return False\n        if j - i < k or l - j < k:\n            return False\n        n = len(nums)\n        if l + k > n:\n            return False\n        if k <= 0 or 3 * k > n:\n            return False\n\n        sum1 = sum(nums[:k])\n        sum2 = sum(nums[k:2 * k])\n        sum3 = sum(nums[2 * k:3 * k])\n\n        max1 = sum1\n        max12 = sum1 + sum2\n        max123 = sum1 + sum2 + sum3\n\n        index1 = 0\n        index12_1 = 0\n        index12_2 = k\n        ans = [0, k, 2 * k]\n\n        for idx in range(1, n - 3 * k + 1):\n            sum1 = sum1 - nums[idx - 1] + nums[idx + k - 1]\n            sum2 = sum2 - nums[idx + k - 1] + nums[idx + 2 * k - 1]\n            sum3 = sum3 - nums[idx + 2 * k - 1] + nums[idx + 3 * k - 1]\n\n            if sum1 > max1:\n                max1 = sum1\n                index1 = idx\n\n            if max1 + sum2 > max12:\n                max12 = max1 + sum2\n                index12_1 = index1\n                index12_2 = idx + k\n\n            if max12 + sum3 > max123:\n                max123 = max12 + sum3\n                ans = [index12_1, index12_2, idx + 2 * k]\n\n        return result == ans\n"
+      }
+    },
+    "seed": 689,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            6,
+            7,
+            5,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "min_k_all_equal",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "min_k_all_equal_2",
+        "in": {
+          "nums": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "increasing_k1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "k": 1
+        },
+        "out": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "decreasing_k1",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "exact_three_windows",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 3
+        },
+        "out": [
+          0,
+          3,
+          6
+        ]
+      },
+      {
+        "name": "alternating_peaks",
+        "in": {
+          "nums": [
+            10,
+            1,
+            10,
+            1,
+            10,
+            1,
+            10,
+            1,
+            10
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "small_mix_k2",
+        "in": {
+          "nums": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            1,
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "spaced_highs",
+        "in": {
+          "nums": [
+            100,
+            1,
+            1,
+            100,
+            1,
+            1,
+            100,
+            1,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          3,
+          6
+        ]
+      },
+      {
+        "name": "tie_break_middle",
+        "in": {
+          "nums": [
+            1,
+            100,
+            1,
+            100,
+            1,
+            100,
+            1,
+            100,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "all_three_equal_windows",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "mixed_peaks_k2",
+        "in": {
+          "nums": [
+            9,
+            1,
+            2,
+            9,
+            1,
+            2,
+            9,
+            1,
+            2
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          5
+        ]
+      },
+      {
+        "name": "repeating_pattern_k2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3,
+            1,
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          1,
+          4,
+          7
+        ]
+      },
+      {
+        "name": "alternating_k1_longer",
+        "in": {
+          "nums": [
+            6,
+            1,
+            6,
+            1,
+            6,
+            1,
+            6,
+            1,
+            6,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "descending_tail_k1",
+        "in": {
+          "nums": [
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0,
+            1,
+            2
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "example_with_tail_noise",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            6,
+            7,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "increasing_even_k2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "k": 2
+        },
+        "out": [
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "all_equal_k4",
+        "in": {
+          "nums": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "k": 4
+        },
+        "out": [
+          0,
+          4,
+          8
+        ]
+      },
+      {
+        "name": "repeating_13",
+        "in": {
+          "nums": [
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "k3_regular",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ],
+          "k": 3
+        },
+        "out": [
+          0,
+          3,
+          6
+        ]
+      },
+      {
+        "name": "large_values_k1",
+        "in": {
+          "nums": [
+            1000,
+            2000,
+            3000,
+            4000,
+            5000,
+            6000,
+            7000,
+            8000,
+            9000
+          ],
+          "k": 1
+        },
+        "out": [
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "arithmetic_like_k2",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11,
+            13,
+            14,
+            16,
+            17,
+            19,
+            20,
+            22
+          ],
+          "k": 2
+        },
+        "out": [
+          9,
+          11,
+          13
+        ]
+      },
+      {
+        "name": "repeated_blocks",
+        "in": {
+          "nums": [
+            9,
+            9,
+            1,
+            1,
+            9,
+            9,
+            1,
+            1,
+            9,
+            9,
+            1,
+            1,
+            9,
+            9,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          4,
+          8
+        ]
+      },
+      {
+        "name": "two_big_clusters",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            9,
+            9,
+            9,
+            2,
+            2,
+            2,
+            9,
+            9,
+            9
+          ],
+          "k": 2
+        },
+        "out": [
+          2,
+          4,
+          9
+        ]
+      },
+      {
+        "name": "alternating_k1_shifted",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          "k": 1
+        },
+        "out": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "repeating_fives",
+        "in": {
+          "nums": [
+            5,
+            1,
+            5,
+            1,
+            5,
+            1,
+            5,
+            1,
+            5,
+            1,
+            5,
+            1,
+            5
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "repeating_fours",
+        "in": {
+          "nums": [
+            1,
+            4,
+            1,
+            4,
+            1,
+            4,
+            1,
+            4,
+            1,
+            4,
+            1,
+            4,
+            1,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "separated_nines",
+        "in": {
+          "nums": [
+            9,
+            1,
+            1,
+            1,
+            9,
+            1,
+            1,
+            1,
+            9,
+            1,
+            1,
+            1,
+            9,
+            1,
+            1,
+            1
+          ],
+          "k": 3
+        },
+        "out": [
+          0,
+          3,
+          6
+        ]
+      },
+      {
+        "name": "varied_k2",
+        "in": {
+          "nums": [
+            6,
+            2,
+            5,
+            2,
+            6,
+            2,
+            5,
+            2,
+            6
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          3,
+          7
+        ]
+      },
+      {
+        "name": "increasing_blocks_k2",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          "k": 2
+        },
+        "out": [
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "alternating_eights_k1",
+        "in": {
+          "nums": [
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8,
+            1,
+            8
+          ],
+          "k": 1
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "repeating_four_blocks_k4",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4
+          ],
+          "k": 4
+        },
+        "out": [
+          0,
+          4,
+          8
+        ]
+      },
+      {
+        "name": "descending_with_flat_tail",
+        "in": {
+          "nums": [
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "out": [
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "odd_increasing_k1",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17
+          ],
+          "k": 1
+        },
+        "out": [
+          6,
+          7,
+          8
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 1, 2, 6, 7, 5, 1]\nk = 2",
+      "output": "[0, 3, 5]"
+    },
+    {
+      "input": "nums = [1, 2, 1, 2, 1, 2, 1, 2, 1]\nk = 2",
+      "output": "[0, 2, 4]"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1]\nk = 1",
+      "output": "[0, 1, 2]"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5, 5, 5]\nk = 1",
+      "output": "[0, 1, 2]"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6]\nk = 1",
+      "output": "[3, 4, 5]"
+    },
+    {
+      "input": "nums = [9, 8, 7, 6, 5, 4, 3, 2, 1]\nk = 1",
+      "output": "[0, 1, 2]"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 1, 1, 1]\nk = 3",
+      "output": "[0, 3, 6]"
+    },
+    {
+      "input": "nums = [10, 1, 10, 1, 10, 1, 10, 1, 10]\nk = 1",
+      "output": "[0, 2, 4]"
+    }
+  ]
+}

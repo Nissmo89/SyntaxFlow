@@ -1,0 +1,361 @@
+{
+  "id": "cracking_the_safe",
+  "title": "Cracking the Safe",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Depth-First Search",
+    "Graph Theory",
+    "Eulerian Circuit"
+  ],
+  "description": "<p>There is a safe protected by a password. The password is a sequence of <code>n</code> digits where each digit can be in the range <code>[0, k - 1]</code>.</p>\n\n<p>The safe has a peculiar way of checking the password. When you enter in a sequence, it checks the <strong>most recent </strong><code>n</code><strong> digits</strong> that were entered each time you type a digit.</p>\n\n<ul>\n\t<li>For example, the correct password is <code>&quot;345&quot;</code> and you enter in <code>&quot;012345&quot;</code>:\n\n\t<ul>\n\t\t<li>After typing <code>0</code>, the most recent <code>3</code> digits is <code>&quot;0&quot;</code>, which is incorrect.</li>\n\t\t<li>After typing <code>1</code>, the most recent <code>3</code> digits is <code>&quot;01&quot;</code>, which is incorrect.</li>\n\t\t<li>After typing <code>2</code>, the most recent <code>3</code> digits is <code>&quot;012&quot;</code>, which is incorrect.</li>\n\t\t<li>After typing <code>3</code>, the most recent <code>3</code> digits is <code>&quot;123&quot;</code>, which is incorrect.</li>\n\t\t<li>After typing <code>4</code>, the most recent <code>3</code> digits is <code>&quot;234&quot;</code>, which is incorrect.</li>\n\t\t<li>After typing <code>5</code>, the most recent <code>3</code> digits is <code>&quot;345&quot;</code>, which is correct and the safe unlocks.</li>\n\t</ul>\n\t</li>\n</ul>\n\n<p>Return <em>any string of <strong>minimum length</strong> that will unlock the safe <strong>at some point</strong> of entering it</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1, k = 2\n<strong>Output:</strong> &quot;10&quot;\n<strong>Explanation:</strong> The password is a single digit, so enter each digit. &quot;01&quot; would also unlock the safe.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2, k = 2\n<strong>Output:</strong> &quot;01100&quot;\n<strong>Explanation:</strong> For each possible password:\n- &quot;00&quot; is typed in starting from the 4<sup>th</sup> digit.\n- &quot;01&quot; is typed in starting from the 1<sup>st</sup> digit.\n- &quot;10&quot; is typed in starting from the 3<sup>rd</sup> digit.\n- &quot;11&quot; is typed in starting from the 2<sup>nd</sup> digit.\nThus &quot;01100&quot; will unlock the safe. &quot;10011&quot;, and &quot;11001&quot; would also unlock the safe.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 4</code></li>\n\t<li><code>1 &lt;= k &lt;= 10</code></li>\n\t<li><code>1 &lt;= k<sup>n</sup> &lt;= 4096</code></li>\n</ul>\n",
+  "task": "Solve the 'Cracking the Safe' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 4",
+    "1 <= k <= 10",
+    "1 <= kn <= 4096"
+  ],
+  "hints": [
+    "We can think of this problem as the problem of finding an Euler path (a path visiting every edge exactly once) on the following graph: there are <code>k<sup>n-1</sup></code> nodes with each node having <code>k</code> edges.  It turns out this graph always has an Eulerian circuit (path starting where it ends.)\r\n\r\nWe should visit each node in \"post-order\" so as to not get stuck in the graph prematurely."
+  ],
+  "method": {
+    "name": "crackSafe",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 753,
+      "title": "cracking-the-safe",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "k": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().crackSafe({n}, {k})",
+        "rust": "Solution::crack_safe({n}, {k})",
+        "python3": "Solution().crackSafe({n}, {k})",
+        "python2": "Solution().crackSafe({n}, {k})",
+        "ruby": "crack_safe({n}, {k})",
+        "java": "new Solution().crackSafe({n}, {k})",
+        "csharp": "new Solution().CrackSafe({n}, {k})",
+        "kotlin": "Solution().crackSafe({n}, {k})",
+        "go": "crackSafe({n}, {k})",
+        "dart": "Solution().crackSafe({n}, {k})",
+        "swift": "Solution().crackSafe({n}, {k})",
+        "typescript": "crackSafe({n}, {k})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2500,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, k, {result})",
+        "checker": "class Checker:\n    def check(self, n, k, result):\n        if not isinstance(result, str):\n            return False\n        if n < 1 or n > 4 or k < 1 or k > 10:\n            return False\n        if k ** n > 4096:\n            return False\n        expected_length = (k ** n) + n - 1\n        if len(result) != expected_length:\n            return False\n        alphabet = set(str(i) for i in range(k))\n        if any(ch not in alphabet for ch in result):\n            return False\n        seen = set()\n        for i in range(len(result) - n + 1):\n            window = result[i:i + n]\n            if window in seen:\n                return False\n            seen.add(window)\n        return len(seen) == k ** n\n"
+      }
+    },
+    "seed": 753,
+    "tests": [
+      {
+        "name": "example_n1_k2",
+        "in": {
+          "n": 1,
+          "k": 2
+        }
+      },
+      {
+        "name": "example_n2_k2",
+        "in": {
+          "n": 2,
+          "k": 2
+        }
+      },
+      {
+        "name": "min_both_one",
+        "in": {
+          "n": 1,
+          "k": 1
+        }
+      },
+      {
+        "name": "single_digit_k3",
+        "in": {
+          "n": 1,
+          "k": 3
+        }
+      },
+      {
+        "name": "single_digit_k4",
+        "in": {
+          "n": 1,
+          "k": 4
+        }
+      },
+      {
+        "name": "single_digit_k5",
+        "in": {
+          "n": 1,
+          "k": 5
+        }
+      },
+      {
+        "name": "single_digit_k6",
+        "in": {
+          "n": 1,
+          "k": 6
+        }
+      },
+      {
+        "name": "single_digit_k7",
+        "in": {
+          "n": 1,
+          "k": 7
+        }
+      },
+      {
+        "name": "single_digit_k8",
+        "in": {
+          "n": 1,
+          "k": 8
+        }
+      },
+      {
+        "name": "single_digit_k9",
+        "in": {
+          "n": 1,
+          "k": 9
+        }
+      },
+      {
+        "name": "single_digit_k10",
+        "in": {
+          "n": 1,
+          "k": 10
+        }
+      },
+      {
+        "name": "n2_unary",
+        "in": {
+          "n": 2,
+          "k": 1
+        }
+      },
+      {
+        "name": "n2_k3",
+        "in": {
+          "n": 2,
+          "k": 3
+        }
+      },
+      {
+        "name": "n2_k4",
+        "in": {
+          "n": 2,
+          "k": 4
+        }
+      },
+      {
+        "name": "n2_k5",
+        "in": {
+          "n": 2,
+          "k": 5
+        }
+      },
+      {
+        "name": "n2_k6",
+        "in": {
+          "n": 2,
+          "k": 6
+        }
+      },
+      {
+        "name": "n2_k7",
+        "in": {
+          "n": 2,
+          "k": 7
+        }
+      },
+      {
+        "name": "n2_k8",
+        "in": {
+          "n": 2,
+          "k": 8
+        }
+      },
+      {
+        "name": "n2_k9",
+        "in": {
+          "n": 2,
+          "k": 9
+        }
+      },
+      {
+        "name": "n2_k10",
+        "in": {
+          "n": 2,
+          "k": 10
+        }
+      },
+      {
+        "name": "n3_unary",
+        "in": {
+          "n": 3,
+          "k": 1
+        }
+      },
+      {
+        "name": "n3_k2",
+        "in": {
+          "n": 3,
+          "k": 2
+        }
+      },
+      {
+        "name": "n3_k3",
+        "in": {
+          "n": 3,
+          "k": 3
+        }
+      },
+      {
+        "name": "n3_k4",
+        "in": {
+          "n": 3,
+          "k": 4
+        }
+      },
+      {
+        "name": "n3_k5",
+        "in": {
+          "n": 3,
+          "k": 5
+        }
+      },
+      {
+        "name": "n3_k6",
+        "in": {
+          "n": 3,
+          "k": 6
+        }
+      },
+      {
+        "name": "n3_k7",
+        "in": {
+          "n": 3,
+          "k": 7
+        }
+      },
+      {
+        "name": "n3_k8",
+        "in": {
+          "n": 3,
+          "k": 8
+        }
+      },
+      {
+        "name": "n3_k9",
+        "in": {
+          "n": 3,
+          "k": 9
+        }
+      },
+      {
+        "name": "n4_unary",
+        "in": {
+          "n": 4,
+          "k": 1
+        }
+      },
+      {
+        "name": "n4_binary",
+        "in": {
+          "n": 4,
+          "k": 2
+        }
+      },
+      {
+        "name": "n4_k3",
+        "in": {
+          "n": 4,
+          "k": 3
+        }
+      },
+      {
+        "name": "n4_k4",
+        "in": {
+          "n": 4,
+          "k": 4
+        }
+      },
+      {
+        "name": "n4_k5",
+        "in": {
+          "n": 4,
+          "k": 5
+        }
+      },
+      {
+        "name": "n4_k6",
+        "in": {
+          "n": 4,
+          "k": 6
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 2\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 7",
+      "output": ""
+    }
+  ]
+}

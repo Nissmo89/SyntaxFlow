@@ -1,0 +1,558 @@
+{
+  "id": "similar_string_groups",
+  "title": "Similar String Groups",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find"
+  ],
+  "description": "<p>Two strings, <code>X</code> and <code>Y</code>, are considered similar if either they are identical or we can make them equivalent by swapping at most two letters (in distinct positions) within the string <code>X</code>.</p>\n\n<p>For example, <code>&quot;tars&quot;</code>&nbsp;and <code>&quot;rats&quot;</code>&nbsp;are similar (swapping at positions <code>0</code> and <code>2</code>), and <code>&quot;rats&quot;</code> and <code>&quot;arts&quot;</code> are similar, but <code>&quot;star&quot;</code> is not similar to <code>&quot;tars&quot;</code>, <code>&quot;rats&quot;</code>, or <code>&quot;arts&quot;</code>.</p>\n\n<p>Together, these form two connected groups by similarity: <code>{&quot;tars&quot;, &quot;rats&quot;, &quot;arts&quot;}</code> and <code>{&quot;star&quot;}</code>.&nbsp; Notice that <code>&quot;tars&quot;</code> and <code>&quot;arts&quot;</code> are in the same group even though they are not similar.&nbsp; Formally, each group is such that a word is in the group if and only if it is similar to at least one other word in the group.</p>\n\n<p>We are given a list <code>strs</code> of strings where every string in <code>strs</code> is an anagram of every other string in <code>strs</code>. How many groups are there?</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> strs = [&quot;tars&quot;,&quot;rats&quot;,&quot;arts&quot;,&quot;star&quot;]\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> strs = [&quot;omv&quot;,&quot;ovm&quot;]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= strs.length &lt;= 300</code></li>\n\t<li><code>1 &lt;= strs[i].length &lt;= 300</code></li>\n\t<li><code>strs[i]</code> consists of lowercase letters only.</li>\n\t<li>All words in <code>strs</code> have the same length and are anagrams of each other.</li>\n</ul>\n",
+  "task": "Solve the 'Similar String Groups' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= strs.length <= 300",
+    "1 <= strs[i].length <= 300",
+    "strs[i] consists of lowercase letters only.",
+    "All words in strs have the same length and are anagrams of each other."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numSimilarGroups",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "strs",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 839,
+      "title": "similar-string-groups",
+      "params": {
+        "strs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().numSimilarGroups({strs})",
+        "rust": "Solution::num_similar_groups({strs})",
+        "python3": "Solution().numSimilarGroups({strs})",
+        "python2": "Solution().numSimilarGroups({strs})",
+        "ruby": "num_similar_groups({strs})",
+        "java": "new Solution().numSimilarGroups({strs})",
+        "csharp": "new Solution().NumSimilarGroups({strs})",
+        "kotlin": "Solution().numSimilarGroups({strs})",
+        "go": "numSimilarGroups({strs})",
+        "dart": "Solution().numSimilarGroups({strs})",
+        "swift": "Solution().numSimilarGroups({strs})",
+        "typescript": "numSimilarGroups({strs})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numSimilarGroups(strs, {result})",
+        "checker": "class Checker:\n    def numSimilarGroups(self, strs, result):\n        if not isinstance(result, int):\n            return False\n        n = len(strs)\n        parent = list(range(n))\n\n        def find(x):\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a, b):\n            ra, rb = find(a), find(b)\n            if ra != rb:\n                parent[rb] = ra\n\n        for i in range(n):\n            for j in range(i + 1, n):\n                diff = 0\n                for a, b in zip(strs[i], strs[j]):\n                    if a != b:\n                        diff += 1\n                        if diff > 2:\n                            break\n                if diff == 0 or diff == 2:\n                    union(i, j)\n        expected = len({find(i) for i in range(n)})\n        return result == expected\n"
+      }
+    },
+    "seed": 839,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "strs": [
+            "tars",
+            "rats",
+            "arts",
+            "star"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "strs": [
+            "omv",
+            "ovm"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-word",
+        "in": {
+          "strs": [
+            "abc"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-identical",
+        "in": {
+          "strs": [
+            "aaa",
+            "aaa"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "one-swap",
+        "in": {
+          "strs": [
+            "ab",
+            "ba"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "no-similarity",
+        "in": {
+          "strs": [
+            "abcd",
+            "badc",
+            "cdab"
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "chain-of-three",
+        "in": {
+          "strs": [
+            "abcd",
+            "abdc",
+            "acbd"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-groups",
+        "in": {
+          "strs": [
+            "abc",
+            "acb",
+            "xyz",
+            "xzy"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "duplicate-heavy",
+        "in": {
+          "strs": [
+            "abc",
+            "abc",
+            "bac",
+            "bca"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "same-letter",
+        "in": {
+          "strs": [
+            "aaaa",
+            "aaaa",
+            "aaaa"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "four-cycle-1",
+        "in": {
+          "strs": [
+            "tars",
+            "star",
+            "rats",
+            "arts"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "four-cycle-2",
+        "in": {
+          "strs": [
+            "abcd",
+            "abdc",
+            "acbd",
+            "bacd"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "four-cycle-3",
+        "in": {
+          "strs": [
+            "aabb",
+            "abab",
+            "abba",
+            "baab"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "disconnected-pairs",
+        "in": {
+          "strs": [
+            "abcd",
+            "abdc",
+            "wxyz",
+            "wxzy"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "disconnected-triples",
+        "in": {
+          "strs": [
+            "abcde",
+            "abced",
+            "edcba",
+            "ecdba"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "long-letters-1",
+        "in": {
+          "strs": [
+            "abcdefghij",
+            "abcdfeghij",
+            "abcfdeghij"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-letters-2",
+        "in": {
+          "strs": [
+            "qwerty",
+            "qwerty",
+            "qewrty",
+            "weqrty"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-letters-3",
+        "in": {
+          "strs": [
+            "abcdef",
+            "abcfed",
+            "fedcba",
+            "fedcab"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "long-letters-4",
+        "in": {
+          "strs": [
+            "aabc",
+            "abac",
+            "baac",
+            "baca"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-letters-5",
+        "in": {
+          "strs": [
+            "nopqrs",
+            "nopqsr",
+            "npoqrs",
+            "onpqrs"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "long-letters-6",
+        "in": {
+          "strs": [
+            "abcdefghijkl",
+            "abcdefghijlk",
+            "abcdefghikjl",
+            "abcdefghijkl"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-7",
+        "in": {
+          "strs": [
+            "abc",
+            "acb",
+            "bac",
+            "bca",
+            "cab",
+            "cba"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-8",
+        "in": {
+          "strs": [
+            "abcd",
+            "badc",
+            "cdab",
+            "dcba"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "group-count-9",
+        "in": {
+          "strs": [
+            "abcd",
+            "abdc",
+            "bacd",
+            "badc"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-10",
+        "in": {
+          "strs": [
+            "abcdef",
+            "abcfde",
+            "abcdef",
+            "abcfed"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-11",
+        "in": {
+          "strs": [
+            "kites",
+            "skite",
+            "kites",
+            "kiets"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "group-count-12",
+        "in": {
+          "strs": [
+            "listen",
+            "silent",
+            "enlist",
+            "inlets"
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "group-count-13",
+        "in": {
+          "strs": [
+            "aaabbb",
+            "aababb",
+            "abaabb",
+            "baaabb"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-14",
+        "in": {
+          "strs": [
+            "abcdefg",
+            "abcdgfe",
+            "agbcdef"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "group-count-15",
+        "in": {
+          "strs": [
+            "xyzabc",
+            "xyazbc",
+            "xyyabc",
+            "zxyabc"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-16",
+        "in": {
+          "strs": [
+            "abcdefgh",
+            "abcdefhg",
+            "abcdegfh",
+            "abcedfgh"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-17",
+        "in": {
+          "strs": [
+            "aaaabbbb",
+            "aaababbb",
+            "abababab",
+            "bbbbaaaa"
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "group-count-18",
+        "in": {
+          "strs": [
+            "zyxw",
+            "zxyw",
+            "yzxw",
+            "yxzw"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-19",
+        "in": {
+          "strs": [
+            "a",
+            "a",
+            "a",
+            "a"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-20",
+        "in": {
+          "strs": [
+            "ab",
+            "ba",
+            "ab",
+            "ba"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-21",
+        "in": {
+          "strs": [
+            "abcde",
+            "acbde",
+            "bacde",
+            "bcade",
+            "cabde"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-22",
+        "in": {
+          "strs": [
+            "abcde",
+            "abced",
+            "abdce",
+            "acbde"
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "group-count-23",
+        "in": {
+          "strs": [
+            "abcdefghij",
+            "abcedfghij",
+            "abcdefghji",
+            "abcdefgihj"
+          ]
+        },
+        "out": 1
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "strs = [\"tars\", \"rats\", \"arts\", \"star\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"omv\", \"ovm\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abc\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"aaa\", \"aaa\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"ab\", \"ba\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcd\", \"badc\", \"cdab\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"abcd\", \"abdc\", \"acbd\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abc\", \"acb\", \"xyz\", \"xzy\"]",
+      "output": "2"
+    }
+  ]
+}

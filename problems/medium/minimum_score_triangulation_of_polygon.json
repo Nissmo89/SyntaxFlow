@@ -1,0 +1,644 @@
+{
+  "id": "minimum_score_triangulation_of_polygon",
+  "title": "Minimum Score Triangulation of Polygon",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You have a convex <code>n</code>-sided polygon where each vertex has an integer value. You are given an integer array <code>values</code> where <code>values[i]</code> is the value of the <code>i<sup>th</sup></code> vertex in <strong>clockwise order</strong>.</p>\n\n<p><strong>Polygon</strong> <strong>triangulation</strong> is a process where you divide a polygon into a set of triangles and the vertices of each triangle must also be vertices of the original polygon. Note that no other shapes other than triangles are allowed in the division. This process will result in <code>n - 2</code> triangles.</p>\n\n<p>You will <strong>triangulate</strong> the polygon. For each triangle, the <em>weight</em> of that triangle is the product of the values at its vertices. The total score of the triangulation is the sum of these <em>weights</em> over all <code>n - 2</code> triangles.</p>\n\n<p>Return the<em> minimum possible score </em>that you can achieve with some<em> </em><strong>triangulation</strong><em> </em>of the polygon.</p>\n\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<p><strong class=\"example\"><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/10/23/ex0-2.png\" style=\"width: 200px; height: 200px;\" /></strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">values = [1,2,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">6</span></p>\n\n<p><strong>Explanation:</strong> The polygon is already triangulated, and the score of the only triangle is 6.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/10/23/ex1-2.png\" style=\"width: 432px; height: 200px;\" /></p>\n\n<p><strong>Input:</strong> <span class=\"example-io\">values = [3,7,4,5]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">144</span></p>\n\n<p><strong>Explanation:</strong> There are two triangulations, with possible scores: 3*7*5 + 4*5*7 = 245, or 3*4*5 + 3*4*7 = 144.<br />\nThe minimum score is 144.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<p><strong class=\"example\"><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/10/23/ex2.png\" style=\"width: 200px; height: 200px;\" />\u200b\u200b\u200b\u200b\u200b\u200b\u200b</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">values = [1,3,1,4,1,5]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">13</span></p>\n\n<p><strong>Explanation:</strong> The minimum score triangulation is 1*1*3 + 1*1*4 + 1*1*5 + 1*1*1 = 13.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == values.length</code></li>\n\t<li><code>3 &lt;= n &lt;= 50</code></li>\n\t<li><code>1 &lt;= values[i] &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Minimum Score Triangulation of Polygon' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == values.length",
+    "3 <= n <= 50",
+    "1 <= values[i] <= 100"
+  ],
+  "hints": [
+    "Without loss of generality, there is a triangle that uses adjacent vertices A[0] and A[N-1] (where N = A.length).  Depending on your choice K of it, this breaks down the triangulation into two subproblems A[1:K] and A[K+1:N-1]."
+  ],
+  "method": {
+    "name": "minScoreTriangulation",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "values",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 1039,
+      "title": "minimum-score-triangulation-of-polygon",
+      "params": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().minScoreTriangulation({values})",
+        "rust": "Solution::min_score_triangulation({values})",
+        "python3": "Solution().minScoreTriangulation({values})",
+        "python2": "Solution().minScoreTriangulation({values})",
+        "ruby": "min_score_triangulation({values})",
+        "java": "new Solution().minScoreTriangulation({values})",
+        "csharp": "new Solution().MinScoreTriangulation({values})",
+        "kotlin": "Solution().minScoreTriangulation({values})",
+        "go": "minScoreTriangulation({values})",
+        "dart": "Solution().minScoreTriangulation({values})",
+        "swift": "Solution().minScoreTriangulation({values})",
+        "typescript": "minScoreTriangulation({values})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().minScoreTriangulation(values, {result})",
+        "checker": "class Checker:\n    def minScoreTriangulation(self, values, result):\n        n = len(values)\n        dp = [[0] * n for _ in range(n)]\n        for i in range(n - 1, -1, -1):\n            for j in range(i + 2, n):\n                best = None\n                for k in range(i + 1, j):\n                    cand = dp[i][k] + values[i] * values[k] * values[j] + dp[k][j]\n                    if best is None or cand < best:\n                        best = cand\n                dp[i][j] = 0 if best is None else best\n        return dp[0][n - 1] == result\n"
+      }
+    },
+    "seed": 1039,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "values": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "values": [
+            3,
+            7,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "values": [
+            1,
+            3,
+            1,
+            4,
+            1,
+            5
+          ]
+        }
+      },
+      {
+        "name": "short_equal",
+        "in": {
+          "values": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "name": "short_square",
+        "in": {
+          "values": [
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "short_alternating",
+        "in": {
+          "values": [
+            1,
+            2,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "descending_5",
+        "in": {
+          "values": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        }
+      },
+      {
+        "name": "ascending_5",
+        "in": {
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "mixed_1",
+        "in": {
+          "values": [
+            1,
+            5,
+            1,
+            5,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_2",
+        "in": {
+          "values": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "name": "mixed_3",
+        "in": {
+          "values": [
+            9,
+            8,
+            7
+          ]
+        }
+      },
+      {
+        "name": "mixed_4",
+        "in": {
+          "values": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "name": "mixed_5",
+        "in": {
+          "values": [
+            2,
+            3,
+            1,
+            5,
+            4
+          ]
+        }
+      },
+      {
+        "name": "mixed_6",
+        "in": {
+          "values": [
+            4,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "mixed_7",
+        "in": {
+          "values": [
+            2,
+            5,
+            3,
+            7,
+            2,
+            6
+          ]
+        }
+      },
+      {
+        "name": "mixed_8",
+        "in": {
+          "values": [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      {
+        "name": "mixed_9",
+        "in": {
+          "values": [
+            10,
+            20,
+            30
+          ]
+        }
+      },
+      {
+        "name": "mixed_10",
+        "in": {
+          "values": [
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "mixed_11",
+        "in": {
+          "values": [
+            8,
+            1,
+            9,
+            1,
+            8
+          ]
+        }
+      },
+      {
+        "name": "mixed_12",
+        "in": {
+          "values": [
+            3,
+            1,
+            5,
+            8
+          ]
+        }
+      },
+      {
+        "name": "mixed_13",
+        "in": {
+          "values": [
+            1,
+            4,
+            2,
+            8,
+            3
+          ]
+        }
+      },
+      {
+        "name": "mixed_14",
+        "in": {
+          "values": [
+            7,
+            2,
+            6,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "name": "mixed_15",
+        "in": {
+          "values": [
+            1,
+            2,
+            100,
+            2,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_16",
+        "in": {
+          "values": [
+            9,
+            1,
+            1,
+            9
+          ]
+        }
+      },
+      {
+        "name": "mixed_17",
+        "in": {
+          "values": [
+            4,
+            6,
+            2,
+            7,
+            3,
+            5
+          ]
+        }
+      },
+      {
+        "name": "mixed_18",
+        "in": {
+          "values": [
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1
+          ]
+        }
+      },
+      {
+        "name": "mixed_19",
+        "in": {
+          "values": [
+            100,
+            99,
+            98
+          ]
+        }
+      },
+      {
+        "name": "gen_01",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 7,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 10
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_02",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 15
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_03",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 9,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 20
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_04",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 10,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 25
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_05",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 11,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 30
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_06",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 35
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_07",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 13,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 40
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_08",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 14,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 45
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_09",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 15,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 50
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_10",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 16,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 55
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_11",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 17,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 60
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_12",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 18,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 65
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "gen_13",
+        "in": {
+          "values": {
+            "gen": "array",
+            "len": 19,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 70
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "values = [1, 2, 3]",
+      "output": ""
+    },
+    {
+      "input": "values = [3, 7, 4, 5]",
+      "output": ""
+    },
+    {
+      "input": "values = [1, 3, 1, 4, 1, 5]",
+      "output": ""
+    },
+    {
+      "input": "values = [1, 1, 1]",
+      "output": ""
+    },
+    {
+      "input": "values = [2, 2, 2, 2]",
+      "output": ""
+    },
+    {
+      "input": "values = [1, 2, 1, 2]",
+      "output": ""
+    },
+    {
+      "input": "values = [5, 4, 3, 2, 1]",
+      "output": ""
+    },
+    {
+      "input": "values = [1, 2, 3, 4, 5]",
+      "output": ""
+    }
+  ]
+}

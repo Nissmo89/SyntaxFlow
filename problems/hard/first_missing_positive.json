@@ -1,0 +1,556 @@
+{
+  "id": "first_missing_positive",
+  "title": "First Missing Positive",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "description": "<p>Given an unsorted integer array <code>nums</code>. Return the <em>smallest positive integer</em> that is <em>not present</em> in <code>nums</code>.</p>\n\n<p>You must implement an algorithm that runs in <code>O(n)</code> time and uses <code>O(1)</code> auxiliary space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,0]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The numbers in the range [1,2] are all in the array.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,-1,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 1 is in the array but 2 is missing.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,8,9,11,12]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The smallest positive integer 1 is missing.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'First Missing Positive' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-231 <= nums[i] <= 231 - 1"
+  ],
+  "hints": [
+    "Think about how you would solve the problem in non-constant space.  Can you apply that logic to the existing space?",
+    "We don't care about duplicates or non-positive integers",
+    "Remember that O(2n) = O(n)"
+  ],
+  "method": {
+    "name": "firstMissingPositive",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 41,
+      "title": "first-missing-positive",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().firstMissingPositive({nums})",
+        "rust": "Solution::first_missing_positive({nums})",
+        "python3": "Solution().firstMissingPositive({nums})",
+        "python2": "Solution().firstMissingPositive({nums})",
+        "ruby": "first_missing_positive({nums})",
+        "java": "new Solution().firstMissingPositive({nums})",
+        "csharp": "new Solution().FirstMissingPositive({nums})",
+        "kotlin": "Solution().firstMissingPositive({nums})",
+        "go": "firstMissingPositive({nums})",
+        "dart": "Solution().firstMissingPositive({nums})",
+        "swift": "Solution().firstMissingPositive({nums})",
+        "typescript": "firstMissingPositive({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(nums, {result})",
+        "checker": "class Checker:\n    def check(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        if result <= 0:\n            return False\n        seen = set(nums)\n        if result in seen:\n            return False\n        for value in range(1, result):\n            if value not in seen:\n                return False\n        return True\n"
+      }
+    },
+    "seed": 41,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            2,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            3,
+            4,
+            -1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            7,
+            8,
+            9,
+            11,
+            12
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-one",
+        "in": {
+          "nums": [
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "single-two",
+        "in": {
+          "nums": [
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-negative",
+        "in": {
+          "nums": [
+            -1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "single-zero",
+        "in": {
+          "nums": [
+            0
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "already-1-to-4",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "missing-2",
+        "in": {
+          "nums": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "missing-1-with-zeros",
+        "in": {
+          "nums": [
+            0,
+            0,
+            2,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "negatives-only",
+        "in": {
+          "nums": [
+            -3,
+            -2,
+            -1,
+            -5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed-with-large-gap",
+        "in": {
+          "nums": [
+            100,
+            101,
+            102,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "duplicates-1",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "duplicates-2",
+        "in": {
+          "nums": [
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "duplicates-mixed",
+        "in": {
+          "nums": [
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "consecutive-middle-missing",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "small-gap-after-prefix",
+        "in": {
+          "nums": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "unsorted-need-swap-1",
+        "in": {
+          "nums": [
+            3,
+            1,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "unsorted-need-swap-2",
+        "in": {
+          "nums": [
+            2,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "missing-3",
+        "in": {
+          "nums": [
+            1,
+            2,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "missing-4",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "contains-int-bounds",
+        "in": {
+          "nums": [
+            2147483647,
+            -2147483648,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "contains-one-and-highs",
+        "in": {
+          "nums": [
+            1,
+            100000,
+            99999,
+            100001
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all-high-values",
+        "in": {
+          "nums": [
+            50,
+            60,
+            70,
+            80,
+            90
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "prefix-and-missing-middle",
+        "in": {
+          "nums": [
+            1,
+            2,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "random-small-1",
+        "in": {
+          "nums": [
+            4,
+            2,
+            1,
+            9,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "random-small-2",
+        "in": {
+          "nums": [
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "random-small-3",
+        "in": {
+          "nums": [
+            2,
+            4,
+            6,
+            8,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "random-small-4",
+        "in": {
+          "nums": [
+            1,
+            2,
+            0,
+            2,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "random-small-5",
+        "in": {
+          "nums": [
+            3,
+            5,
+            -1,
+            1,
+            2
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "gen-large-1",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 100000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 1001
+      },
+      {
+        "name": "gen-large-2",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 99999,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 1002
+      },
+      {
+        "name": "gen-large-3",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 75000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 1003
+      },
+      {
+        "name": "gen-large-4",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 50000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 1004
+      },
+      {
+        "name": "gen-large-5",
+        "in": {
+          "nums": {
+            "gen": "array",
+            "len": 60000,
+            "of": {
+              "gen": "int",
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "distinct": false,
+            "sorted": false,
+            "elemType": "int"
+          }
+        },
+        "seed": 1005
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [1, 2, 0]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [3, 4, -1, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [7, 8, 9, 11, 12]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [-1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "5"
+    }
+  ]
+}

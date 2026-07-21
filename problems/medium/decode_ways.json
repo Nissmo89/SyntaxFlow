@@ -1,0 +1,349 @@
+{
+  "id": "decode_ways",
+  "title": "Decode Ways",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>You have intercepted a secret message encoded as a string of numbers. The message is <strong>decoded</strong> via the following mapping:</p>\n\n<p><code>&quot;1&quot; -&gt; &#39;A&#39;<br />\n&quot;2&quot; -&gt; &#39;B&#39;<br />\n...<br />\n&quot;25&quot; -&gt; &#39;Y&#39;<br />\n&quot;26&quot; -&gt; &#39;Z&#39;</code></p>\n\n<p>However, while decoding the message, you realize that there are many different ways you can decode the message because some codes are contained in other codes (<code>&quot;2&quot;</code> and <code>&quot;5&quot;</code> vs <code>&quot;25&quot;</code>).</p>\n\n<p>For example, <code>&quot;11106&quot;</code> can be decoded into:</p>\n\n<ul>\n\t<li><code>&quot;AAJF&quot;</code> with the grouping <code>(1, 1, 10, 6)</code></li>\n\t<li><code>&quot;KJF&quot;</code> with the grouping <code>(11, 10, 6)</code></li>\n\t<li>The grouping <code>(1, 11, 06)</code> is invalid because <code>&quot;06&quot;</code> is not a valid code (only <code>&quot;6&quot;</code> is valid).</li>\n</ul>\n\n<p>Note: there may be strings that are impossible to decode.<br />\n<br />\nGiven a string s containing only digits, return the <strong>number of ways</strong> to <strong>decode</strong> it. If the entire string cannot be decoded in any valid way, return <code>0</code>.</p>\n\n<p>The test cases are generated so that the answer fits in a <strong>32-bit</strong> integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;12&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>&quot;12&quot; could be decoded as &quot;AB&quot; (1 2) or &quot;L&quot; (12).</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;226&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>&quot;226&quot; could be decoded as &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), or &quot;BBF&quot; (2 2 6).</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;06&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>&quot;06&quot; cannot be mapped to &quot;F&quot; because of the leading zero (&quot;6&quot; is different from &quot;06&quot;). In this case, the string is not a valid encoding, so return 0.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> contains only digits and may contain leading zero(s).</li>\n</ul>\n",
+  "task": "Solve the 'Decode Ways' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s contains only digits and may contain leading zero(s)."
+  ],
+  "hints": [],
+  "method": {
+    "name": "numDecodings",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 91,
+      "title": "decode-ways",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numDecodings({s})",
+        "rust": "Solution::num_decodings({s})",
+        "python3": "Solution().numDecodings({s})",
+        "python2": "Solution().numDecodings({s})",
+        "ruby": "num_decodings({s})",
+        "java": "new Solution().numDecodings({s})",
+        "csharp": "new Solution().NumDecodings({s})",
+        "kotlin": "Solution().numDecodings({s})",
+        "go": "numDecodings({s})",
+        "dart": "Solution().numDecodings({s})",
+        "swift": "Solution().numDecodings({s})",
+        "typescript": "numDecodings({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 200,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return isinstance(result, int)\n"
+      }
+    },
+    "seed": 91,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "12"
+        },
+        "out": 2
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "226"
+        },
+        "out": 3
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "06"
+        },
+        "out": 0
+      },
+      {
+        "name": "single_digit",
+        "in": {
+          "s": "8"
+        },
+        "out": 1
+      },
+      {
+        "name": "leading_zero",
+        "in": {
+          "s": "01"
+        },
+        "out": 0
+      },
+      {
+        "name": "zero_inside",
+        "in": {
+          "s": "101"
+        },
+        "out": 1
+      },
+      {
+        "name": "forced_tens",
+        "in": {
+          "s": "11106"
+        },
+        "out": 2
+      },
+      {
+        "name": "many_ones",
+        "in": {
+          "s": "1111111111"
+        },
+        "out": 89
+      },
+      {
+        "name": "mixed_valid",
+        "in": {
+          "s": "2611055971756562"
+        },
+        "out": 4
+      },
+      {
+        "name": "invalid_trailing_zero",
+        "in": {
+          "s": "100"
+        },
+        "out": 0
+      },
+      {
+        "name": "many_twos",
+        "in": {
+          "s": "2222222222"
+        },
+        "out": 89
+      },
+      {
+        "name": "alternating_valid",
+        "in": {
+          "s": "121212"
+        },
+        "out": 13
+      },
+      {
+        "name": "long_zero_block",
+        "in": {
+          "s": "1111001111"
+        },
+        "out": 0
+      },
+      {
+        "name": "all_nines",
+        "in": {
+          "s": "999999"
+        },
+        "out": 1
+      },
+      {
+        "name": "pair_chain",
+        "in": {
+          "s": "262626"
+        },
+        "out": 8
+      },
+      {
+        "name": "mixed_zeros",
+        "in": {
+          "s": "301"
+        },
+        "out": 0
+      },
+      {
+        "name": "edge_20",
+        "in": {
+          "s": "10101010101010101010"
+        },
+        "out": 1
+      },
+      {
+        "name": "edge_1s_long",
+        "in": {
+          "s": "11111111111111111111"
+        },
+        "out": 10946
+      },
+      {
+        "name": "two_digit_boundary_27",
+        "in": {
+          "s": "27"
+        },
+        "out": 1
+      },
+      {
+        "name": "exact_ten",
+        "in": {
+          "s": "10"
+        },
+        "out": 1
+      },
+      {
+        "name": "exact_twenty",
+        "in": {
+          "s": "20"
+        },
+        "out": 1
+      },
+      {
+        "name": "impossible_thirty",
+        "in": {
+          "s": "30"
+        },
+        "out": 0
+      },
+      {
+        "name": "internal_zero_chain",
+        "in": {
+          "s": "2101"
+        },
+        "out": 1
+      },
+      {
+        "name": "double_zero_break",
+        "in": {
+          "s": "110"
+        },
+        "out": 1
+      },
+      {
+        "name": "zero_after_two",
+        "in": {
+          "s": "230"
+        },
+        "out": 0
+      },
+      {
+        "name": "mixed_small",
+        "in": {
+          "s": "1201234"
+        },
+        "out": 3
+      },
+      {
+        "name": "long_nines",
+        "in": {
+          "s": "99999999999999999999999999999999999999999999999999"
+        },
+        "out": 1
+      },
+      {
+        "name": "long_alternating_27",
+        "in": {
+          "s": "27272727272727272727272727272727272727272727272727"
+        },
+        "out": 1
+      },
+      {
+        "name": "long_alternating_26",
+        "in": {
+          "s": "26262626262626262626262626262626262626262626262626"
+        },
+        "out": 33554432
+      },
+      {
+        "name": "long_repeating_1110",
+        "in": {
+          "s": "1110111011101110111011101110111011101110111011101110111011101110111011101110111011101110111011101110"
+        },
+        "out": 33554432
+      },
+      {
+        "name": "long_repeating_2610",
+        "in": {
+          "s": "2610261026102610261026102610261026102610261026102610261026102610261026102610261026102610261026102610"
+        },
+        "out": 33554432
+      },
+      {
+        "name": "long_repeating_1010",
+        "in": {
+          "s": "1010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010"
+        },
+        "out": 1
+      },
+      {
+        "name": "long_repeating_3030",
+        "in": {
+          "s": "3030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030"
+        },
+        "out": 0
+      },
+      {
+        "name": "long_mixed_zeroes",
+        "in": {
+          "s": "1001001001001001001001001001001001001001001001001001001001001001001001001001001001001001001001001001"
+        },
+        "out": 0
+      },
+      {
+        "name": "long_trailing_zero",
+        "in": {
+          "s": "11111111111111111111111111111111111111111111"
+        },
+        "out": 1134903170
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"12\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"226\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"06\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"8\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"01\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"101\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"11106\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"1111111111\"",
+      "output": "89"
+    }
+  ]
+}

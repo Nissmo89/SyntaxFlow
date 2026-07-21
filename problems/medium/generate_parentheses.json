@@ -1,0 +1,504 @@
+{
+  "id": "generate_parentheses",
+  "title": "Generate Parentheses",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "description": "<p>Given <code>n</code> pairs of parentheses, write a function to <em>generate all combinations of well-formed parentheses</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> n = 3\n<strong>Output:</strong> [\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> n = 1\n<strong>Output:</strong> [\"()\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 8</code></li>\n</ul>\n",
+  "task": "Solve the 'Generate Parentheses' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 8"
+  ],
+  "hints": [],
+  "method": {
+    "name": "generateParenthesis",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 22,
+      "title": "generate-parentheses",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().generateParenthesis({n})",
+        "rust": "Solution::generate_parenthesis({n})",
+        "python3": "Solution().generateParenthesis({n})",
+        "python2": "Solution().generateParenthesis({n})",
+        "ruby": "generate_parenthesis({n})",
+        "java": "new Solution().generateParenthesis({n})",
+        "csharp": "new Solution().GenerateParenthesis({n})",
+        "kotlin": "Solution().generateParenthesis({n})",
+        "go": "generateParenthesis({n})",
+        "dart": "Solution().generateParenthesis({n})",
+        "swift": "Solution().generateParenthesis({n})",
+        "typescript": "generateParenthesis({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().generateParenthesis(n, {result})",
+        "checker": "class Checker:\n    def generateParenthesis(self, n, result):\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, str) for x in result):\n            return False\n\n        expected = []\n\n        def backtrack(s, open_count, close_count):\n            if open_count == n and close_count == n:\n                expected.append(s)\n                return\n            if open_count < n:\n                backtrack(s + \"(\", open_count + 1, close_count)\n            if close_count < open_count:\n                backtrack(s + \")\", open_count, close_count + 1)\n\n        backtrack(\"\", 0, 0)\n        return sorted(result) == sorted(expected) and len(result) == len(set(result))\n"
+      }
+    },
+    "seed": 22,
+    "tests": [
+      {
+        "name": "example 1",
+        "in": {
+          "n": 3
+        }
+      },
+      {
+        "name": "example 2",
+        "in": {
+          "n": 1
+        }
+      },
+      {
+        "name": "n equals 2",
+        "in": {
+          "n": 2
+        }
+      },
+      {
+        "name": "n equals 4",
+        "in": {
+          "n": 4
+        }
+      },
+      {
+        "name": "n equals 5",
+        "in": {
+          "n": 5
+        }
+      },
+      {
+        "name": "n equals 6",
+        "in": {
+          "n": 6
+        }
+      },
+      {
+        "name": "n equals 7",
+        "in": {
+          "n": 7
+        }
+      },
+      {
+        "name": "n equals 8",
+        "in": {
+          "n": 8
+        }
+      },
+      {
+        "name": "generated 01",
+        "seed": 101,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 02",
+        "seed": 102,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 03",
+        "seed": 103,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 04",
+        "seed": 104,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 05",
+        "seed": 105,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 06",
+        "seed": 106,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 07",
+        "seed": 107,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 08",
+        "seed": 108,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 09",
+        "seed": 109,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 10",
+        "seed": 110,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 11",
+        "seed": 111,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 12",
+        "seed": 112,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 13",
+        "seed": 113,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 14",
+        "seed": 114,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 15",
+        "seed": 115,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 16",
+        "seed": 116,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 17",
+        "seed": 117,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 18",
+        "seed": 118,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 19",
+        "seed": 119,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 20",
+        "seed": 120,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 21",
+        "seed": 121,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 22",
+        "seed": 122,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 23",
+        "seed": 123,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 24",
+        "seed": 124,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 25",
+        "seed": 125,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 26",
+        "seed": 126,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 27",
+        "seed": 127,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 28",
+        "seed": 128,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 29",
+        "seed": 129,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 30",
+        "seed": 130,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 31",
+        "seed": 131,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated 32",
+        "seed": 132,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 8
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3",
+      "output": ""
+    },
+    {
+      "input": "n = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 2",
+      "output": ""
+    },
+    {
+      "input": "n = 4",
+      "output": ""
+    },
+    {
+      "input": "n = 5",
+      "output": ""
+    },
+    {
+      "input": "n = 6",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": ""
+    },
+    {
+      "input": "n = 8",
+      "output": ""
+    }
+  ]
+}

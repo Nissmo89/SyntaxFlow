@@ -1,0 +1,449 @@
+{
+  "id": "knight_probability_in_chessboard",
+  "title": "Knight Probability in Chessboard",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "description": "<p>On an <code>n x n</code> chessboard, a knight starts at the cell <code>(row, column)</code> and attempts to make exactly <code>k</code> moves. The rows and columns are <strong>0-indexed</strong>, so the top-left cell is <code>(0, 0)</code>, and the bottom-right cell is <code>(n - 1, n - 1)</code>.</p>\n\n<p>A chess knight has eight possible moves it can make, as illustrated below. Each move is two cells in a cardinal direction, then one cell in an orthogonal direction.</p>\n<img src=\"https://assets.leetcode.com/uploads/2018/10/12/knight.png\" style=\"width: 300px; height: 300px;\" />\n<p>Each time the knight is to move, it chooses one of eight possible moves uniformly at random (even if the piece would go off the chessboard) and moves there.</p>\n\n<p>The knight continues moving until it has made exactly <code>k</code> moves or has moved off the chessboard.</p>\n\n<p>Return <em>the probability that the knight remains on the board after it has stopped moving</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3, k = 2, row = 0, column = 0\n<strong>Output:</strong> 0.06250\n<strong>Explanation:</strong> There are two moves (to (1,2), (2,1)) that will keep the knight on the board.\nFrom each of those positions, there are also two moves that will keep the knight on the board.\nThe total probability the knight stays on the board is 0.0625.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1, k = 0, row = 0, column = 0\n<strong>Output:</strong> 1.00000\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 25</code></li>\n\t<li><code>0 &lt;= k &lt;= 100</code></li>\n\t<li><code>0 &lt;= row, column &lt;= n - 1</code></li>\n</ul>\n",
+  "task": "Solve the 'Knight Probability in Chessboard' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 25",
+    "0 <= k <= 100",
+    "0 <= row, column <= n - 1"
+  ],
+  "hints": [],
+  "method": {
+    "name": "knightProbability",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "row",
+        "type": "int"
+      },
+      {
+        "name": "column",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 688,
+      "title": "knight-probability-in-chessboard",
+      "params": {
+        "n": {
+          "type": "int"
+        },
+        "k": {
+          "type": "int"
+        },
+        "row": {
+          "type": "int"
+        },
+        "column": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "rust": "Solution::knight_probability({n}, {k}, {row}, {column})",
+        "python3": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "python2": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "ruby": "knight_probability({n}, {k}, {row}, {column})",
+        "java": "new Solution().knightProbability({n}, {k}, {row}, {column})",
+        "csharp": "new Solution().KnightProbability({n}, {k}, {row}, {column})",
+        "kotlin": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "go": "knightProbability({n}, {k}, {row}, {column})",
+        "dart": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "swift": "Solution().knightProbability({n}, {k}, {row}, {column})",
+        "typescript": "knightProbability({n}, {k}, {row}, {column})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 512
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().knightProbability(n, k, row, column, {result})",
+        "checker": "import math\nfrom functools import lru_cache\n\nclass Checker:\n    def knightProbability(self, n, k, row, column, result):\n        if not isinstance(result, (int, float)):\n            return False\n        if not math.isfinite(result):\n            return False\n        if result < -1e-12 or result > 1.0 + 1e-12:\n            return False\n\n        moves = ((1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1))\n\n        @lru_cache(None)\n        def dp(steps, r, c):\n            if r < 0 or r >= n or c < 0 or c >= n:\n                return 0.0\n            if steps == 0:\n                return 1.0\n            total = 0.0\n            for dr, dc in moves:\n                total += dp(steps - 1, r + dr, c + dc)\n            return total / 8.0\n\n        expected = dp(k, row, column)\n        return abs(float(result) - expected) <= 1e-9 + 1e-12 * max(1.0, abs(expected))\n"
+      }
+    },
+    "seed": 688,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "n": 3,
+          "k": 2,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "n": 1,
+          "k": 0,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "n1-k1",
+        "in": {
+          "n": 1,
+          "k": 1,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "n1-k100",
+        "in": {
+          "n": 1,
+          "k": 100,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "corner-k1",
+        "in": {
+          "n": 2,
+          "k": 1,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "corner-k2",
+        "in": {
+          "n": 2,
+          "k": 2,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "edge-3x3-k1",
+        "in": {
+          "n": 3,
+          "k": 1,
+          "row": 0,
+          "column": 1
+        }
+      },
+      {
+        "name": "center-3x3-k1",
+        "in": {
+          "n": 3,
+          "k": 1,
+          "row": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "center-3x3-k2",
+        "in": {
+          "n": 3,
+          "k": 2,
+          "row": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "center-4x4-k3",
+        "in": {
+          "n": 4,
+          "k": 3,
+          "row": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "center-4x4-k4",
+        "in": {
+          "n": 4,
+          "k": 4,
+          "row": 1,
+          "column": 2
+        }
+      },
+      {
+        "name": "corner-4x4-k4",
+        "in": {
+          "n": 4,
+          "k": 4,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "mid-5x5-k2",
+        "in": {
+          "n": 5,
+          "k": 2,
+          "row": 2,
+          "column": 2
+        }
+      },
+      {
+        "name": "edge-5x5-k5",
+        "in": {
+          "n": 5,
+          "k": 5,
+          "row": 0,
+          "column": 2
+        }
+      },
+      {
+        "name": "corner-5x5-k6",
+        "in": {
+          "n": 5,
+          "k": 6,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "center-6x6-k1",
+        "in": {
+          "n": 6,
+          "k": 1,
+          "row": 3,
+          "column": 3
+        }
+      },
+      {
+        "name": "center-6x6-k2",
+        "in": {
+          "n": 6,
+          "k": 2,
+          "row": 3,
+          "column": 3
+        }
+      },
+      {
+        "name": "edge-6x6-k7",
+        "in": {
+          "n": 6,
+          "k": 7,
+          "row": 0,
+          "column": 5
+        }
+      },
+      {
+        "name": "corner-7x7-k8",
+        "in": {
+          "n": 7,
+          "k": 8,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "center-7x7-k9",
+        "in": {
+          "n": 7,
+          "k": 9,
+          "row": 3,
+          "column": 3
+        }
+      },
+      {
+        "name": "near-edge-8x8-k10",
+        "in": {
+          "n": 8,
+          "k": 10,
+          "row": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "center-8x8-k10",
+        "in": {
+          "n": 8,
+          "k": 10,
+          "row": 3,
+          "column": 4
+        }
+      },
+      {
+        "name": "corner-8x8-k11",
+        "in": {
+          "n": 8,
+          "k": 11,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "center-10x10-k12",
+        "in": {
+          "n": 10,
+          "k": 12,
+          "row": 5,
+          "column": 5
+        }
+      },
+      {
+        "name": "edge-10x10-k12",
+        "in": {
+          "n": 10,
+          "k": 12,
+          "row": 0,
+          "column": 9
+        }
+      },
+      {
+        "name": "corner-12x12-k15",
+        "in": {
+          "n": 12,
+          "k": 15,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "center-12x12-k15",
+        "in": {
+          "n": 12,
+          "k": 15,
+          "row": 6,
+          "column": 6
+        }
+      },
+      {
+        "name": "edge-15x15-k20",
+        "in": {
+          "n": 15,
+          "k": 20,
+          "row": 0,
+          "column": 7
+        }
+      },
+      {
+        "name": "center-15x15-k20",
+        "in": {
+          "n": 15,
+          "k": 20,
+          "row": 7,
+          "column": 7
+        }
+      },
+      {
+        "name": "corner-20x20-k25",
+        "in": {
+          "n": 20,
+          "k": 25,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "center-20x20-k25",
+        "in": {
+          "n": 20,
+          "k": 25,
+          "row": 10,
+          "column": 10
+        }
+      },
+      {
+        "name": "edge-20x20-k40",
+        "in": {
+          "n": 20,
+          "k": 40,
+          "row": 0,
+          "column": 19
+        }
+      },
+      {
+        "name": "center-25x25-k50",
+        "in": {
+          "n": 25,
+          "k": 50,
+          "row": 12,
+          "column": 12
+        }
+      },
+      {
+        "name": "corner-25x25-k50",
+        "in": {
+          "n": 25,
+          "k": 50,
+          "row": 0,
+          "column": 0
+        }
+      },
+      {
+        "name": "edge-25x25-k100",
+        "in": {
+          "n": 25,
+          "k": 100,
+          "row": 0,
+          "column": 24
+        }
+      },
+      {
+        "name": "center-25x25-k100",
+        "in": {
+          "n": 25,
+          "k": 100,
+          "row": 12,
+          "column": 12
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 3\nk = 2\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 0\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 1\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 1\nk = 100\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 2\nk = 1\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 2\nk = 2\nrow = 0\ncolumn = 0",
+      "output": ""
+    },
+    {
+      "input": "n = 3\nk = 1\nrow = 0\ncolumn = 1",
+      "output": ""
+    },
+    {
+      "input": "n = 3\nk = 1\nrow = 1\ncolumn = 1",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "id": "number_of_atoms",
+  "title": "Number of Atoms",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Sorting"
+  ],
+  "description": "<p>Given a string <code>formula</code> representing a chemical formula, return <em>the count of each atom</em>.</p>\n\n<p>The atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.</p>\n\n<p>One or more digits representing that element&#39;s count may follow if the count is greater than <code>1</code>. If the count is <code>1</code>, no digits will follow.</p>\n\n<ul>\n\t<li>For example, <code>&quot;H2O&quot;</code> and <code>&quot;H2O2&quot;</code> are possible, but <code>&quot;H1O2&quot;</code> is impossible.</li>\n</ul>\n\n<p>Two formulas are concatenated together to produce another formula.</p>\n\n<ul>\n\t<li>For example, <code>&quot;H2O2He3Mg4&quot;</code> is also a formula.</li>\n</ul>\n\n<p>A formula placed in parentheses, and a count (optionally added) is also a formula.</p>\n\n<ul>\n\t<li>For example, <code>&quot;(H2O2)&quot;</code> and <code>&quot;(H2O2)3&quot;</code> are formulas.</li>\n</ul>\n\n<p>Return the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than <code>1</code>), followed by the second name (in sorted order), followed by its count (if that count is more than <code>1</code>), and so on.</p>\n\n<p>The test cases are generated so that all the values in the output fit in a <strong>32-bit</strong> integer.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> formula = &quot;H2O&quot;\n<strong>Output:</strong> &quot;H2O&quot;\n<strong>Explanation:</strong> The count of elements are {&#39;H&#39;: 2, &#39;O&#39;: 1}.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> formula = &quot;Mg(OH)2&quot;\n<strong>Output:</strong> &quot;H2MgO2&quot;\n<strong>Explanation:</strong> The count of elements are {&#39;H&#39;: 2, &#39;Mg&#39;: 1, &#39;O&#39;: 2}.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> formula = &quot;K4(ON(SO3)2)2&quot;\n<strong>Output:</strong> &quot;K4N2O14S4&quot;\n<strong>Explanation:</strong> The count of elements are {&#39;K&#39;: 4, &#39;N&#39;: 2, &#39;O&#39;: 14, &#39;S&#39;: 4}.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= formula.length &lt;= 1000</code></li>\n\t<li><code>formula</code> consists of English letters, digits, <code>&#39;(&#39;</code>, and <code>&#39;)&#39;</code>.</li>\n\t<li><code>formula</code> is always valid.</li>\n</ul>\n",
+  "task": "Solve the 'Number of Atoms' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= formula.length <= 1000",
+    "formula consists of English letters, digits, '(', and ')'.",
+    "formula is always valid."
+  ],
+  "hints": [
+    "To parse formula[i:], when we see a `'('`, we will parse recursively whatever is inside the brackets (up to the correct closing ending bracket) and add it to our count, multiplying by the following multiplicity if there is one.\r\n\r\nOtherwise, we should see an uppercase character: we will parse the rest of the letters to get the name, and add that (plus the multiplicity if there is one.)"
+  ],
+  "method": {
+    "name": "countOfAtoms",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "formula",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 726,
+      "title": "number-of-atoms",
+      "params": {
+        "formula": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countOfAtoms({formula})",
+        "rust": "Solution::count_of_atoms({formula})",
+        "python3": "Solution().countOfAtoms({formula})",
+        "python2": "Solution().countOfAtoms({formula})",
+        "ruby": "count_of_atoms({formula})",
+        "java": "new Solution().countOfAtoms({formula})",
+        "csharp": "new Solution().CountOfAtoms({formula})",
+        "kotlin": "Solution().countOfAtoms({formula})",
+        "go": "countOfAtoms({formula})",
+        "dart": "Solution().countOfAtoms({formula})",
+        "swift": "Solution().countOfAtoms({formula})",
+        "typescript": "countOfAtoms({formula})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(formula, {result})",
+        "checker": "class Checker:\n    def check(self, formula, result):\n        if not isinstance(formula, str) or not isinstance(result, str):\n            return False\n        i = 0\n        n = len(formula)\n\n        def parse():\n            nonlocal i\n            counts = {}\n            while i < n and formula[i] != ')':\n                if formula[i] == '(':\n                    i += 1\n                    inner = parse()\n                    if inner is None or i >= n or formula[i] != ')':\n                        return None\n                    i += 1\n                    mult = 0\n                    while i < n and formula[i].isdigit():\n                        mult = mult * 10 + int(formula[i])\n                        i += 1\n                    if mult == 0:\n                        mult = 1\n                    for atom, cnt in inner.items():\n                        counts[atom] = counts.get(atom, 0) + cnt * mult\n                    continue\n\n                if not formula[i].isupper():\n                    return None\n                start = i\n                i += 1\n                while i < n and formula[i].islower():\n                    i += 1\n                atom = formula[start:i]\n                mult = 0\n                while i < n and formula[i].isdigit():\n                    mult = mult * 10 + int(formula[i])\n                    i += 1\n                if mult == 0:\n                    mult = 1\n                counts[atom] = counts.get(atom, 0) + mult\n            return counts\n\n        counts = parse()\n        if counts is None or i != n:\n            return False\n        expected = \"\".join(\n            atom + (str(counts[atom]) if counts[atom] > 1 else \"\")\n            for atom in sorted(counts)\n        )\n        return result == expected\n"
+      }
+    },
+    "seed": 726,
+    "tests": [
+      {
+        "name": "example_h2o",
+        "in": {
+          "formula": "H2O"
+        },
+        "out": "H2O"
+      },
+      {
+        "name": "example_mg_oh_2",
+        "in": {
+          "formula": "Mg(OH)2"
+        },
+        "out": "H2MgO2"
+      },
+      {
+        "name": "example_nested_sulfite",
+        "in": {
+          "formula": "K4(ON(SO3)2)2"
+        },
+        "out": "K4N2O14S4"
+      },
+      {
+        "name": "single_atom_large_count",
+        "in": {
+          "formula": "Be32"
+        },
+        "out": "Be32"
+      },
+      {
+        "name": "single_atom_implicit_one",
+        "in": {
+          "formula": "He"
+        },
+        "out": "He"
+      },
+      {
+        "name": "lexical_order_simple_binary",
+        "in": {
+          "formula": "NaCl"
+        },
+        "out": "ClNa"
+      },
+      {
+        "name": "glucose_flat_formula",
+        "in": {
+          "formula": "C6H12O6"
+        },
+        "out": "C6H12O6"
+      },
+      {
+        "name": "redundant_parentheses_single_atom",
+        "in": {
+          "formula": "((H))"
+        },
+        "out": "H"
+      },
+      {
+        "name": "nested_groups_multiple_counts",
+        "in": {
+          "formula": "((H)2(O2)3)4"
+        },
+        "out": "H8O24"
+      },
+      {
+        "name": "iron_cyanide",
+        "in": {
+          "formula": "Fe(CN)6"
+        },
+        "out": "C6FeN6"
+      },
+      {
+        "name": "ammonium_sulfate",
+        "in": {
+          "formula": "(NH4)2SO4"
+        },
+        "out": "H8N2O4S"
+      },
+      {
+        "name": "aluminum_sulfate",
+        "in": {
+          "formula": "Al2(SO4)3"
+        },
+        "out": "Al2O12S3"
+      },
+      {
+        "name": "concatenated_acetic_acid",
+        "in": {
+          "formula": "CH3COOH"
+        },
+        "out": "C2H4O2"
+      },
+      {
+        "name": "repeated_salt_and_water_group",
+        "in": {
+          "formula": "((NaCl)2(H2O)3)2"
+        },
+        "out": "Cl4H12Na4O6"
+      },
+      {
+        "name": "multi_letter_atoms_inside_group",
+        "in": {
+          "formula": "Ti2(He3Mg4)5"
+        },
+        "out": "He15Mg20Ti2"
+      },
+      {
+        "name": "nested_argon_boron",
+        "in": {
+          "formula": "(B2(Ar3)4)5"
+        },
+        "out": "Ar60B10"
+      },
+      {
+        "name": "lead_chlorate",
+        "in": {
+          "formula": "Pb(ClO3)2"
+        },
+        "out": "Cl2O6Pb"
+      },
+      {
+        "name": "branched_silicon_hydrocarbon",
+        "in": {
+          "formula": "Si(C3H7)4"
+        },
+        "out": "C12H28Si"
+      },
+      {
+        "name": "concatenation_then_suffix_atom",
+        "in": {
+          "formula": "(H2O2)3He2"
+        },
+        "out": "H6He2O6"
+      },
+      {
+        "name": "tertiary_butyl_style_group",
+        "in": {
+          "formula": "((CH3)3C)2O"
+        },
+        "out": "C8H18O"
+      },
+      {
+        "name": "inner_group_after_atom",
+        "in": {
+          "formula": "Zn(OH(Cl2)3)2"
+        },
+        "out": "Cl12H2O2Zn"
+      },
+      {
+        "name": "nested_oxide_and_water",
+        "in": {
+          "formula": "((Fe2O3)4(H2O)5)6"
+        },
+        "out": "Fe48H60O102"
+      },
+      {
+        "name": "sucrose_flat_formula",
+        "in": {
+          "formula": "C12H22O11"
+        },
+        "out": "C12H22O11"
+      },
+      {
+        "name": "krypton_xenon_pair",
+        "in": {
+          "formula": "(KrXe2)12"
+        },
+        "out": "Kr12Xe24"
+      },
+      {
+        "name": "permanganate_style_flat",
+        "in": {
+          "formula": "MnO4"
+        },
+        "out": "MnO4"
+      },
+      {
+        "name": "cobalt_hydroxide_phosphate_combo",
+        "in": {
+          "formula": "((Co3(OH)2)4P2O7)3"
+        },
+        "out": "Co36H24O45P6"
+      },
+      {
+        "name": "deep_nested_doubling",
+        "in": {
+          "formula": "((((((((((((((((((((H)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2)2"
+        },
+        "out": "H1048576"
+      },
+      {
+        "name": "water_and_beryllium_nested",
+        "in": {
+          "formula": "((H2O)2(Be3)4)5"
+        },
+        "out": "Be60H20O10"
+      },
+      {
+        "name": "gold_bismuth_cadmium_chain",
+        "in": {
+          "formula": "Au(Bi(Cd3)2)4"
+        },
+        "out": "AuBi4Cd24"
+      },
+      {
+        "name": "nitrogen_oxide_and_helium_mix",
+        "in": {
+          "formula": "((N2O)3(He4)5)2"
+        },
+        "out": "He40N12O6"
+      },
+      {
+        "name": "three_multi_letter_atoms_sorted",
+        "in": {
+          "formula": "Uuo2He3Mg4"
+        },
+        "out": "He3Mg4Uuo2"
+      },
+      {
+        "name": "lithium_beryllium_water_deep_nested",
+        "in": {
+          "formula": "(Li3(Be2(H2O)4)5)6"
+        },
+        "out": "Be60H240Li18O120"
+      },
+      {
+        "name": "chlorine_and_sodium_nested_multipliers",
+        "in": {
+          "formula": "((Cl2)3((Na)2)4)5"
+        },
+        "out": "Cl30Na40"
+      },
+      {
+        "name": "generated_h_only_len_32",
+        "in": {
+          "formula": {
+            "gen": "str",
+            "len": 32,
+            "alphabet": "H"
+          }
+        },
+        "seed": 7261
+      },
+      {
+        "name": "generated_h_only_len_128",
+        "in": {
+          "formula": {
+            "gen": "str",
+            "len": 128,
+            "alphabet": "H"
+          }
+        },
+        "seed": 7262
+      },
+      {
+        "name": "generated_h_only_len_512",
+        "in": {
+          "formula": {
+            "gen": "str",
+            "len": 512,
+            "alphabet": "H"
+          }
+        },
+        "seed": 7263
+      },
+      {
+        "name": "generated_h_only_len_999",
+        "in": {
+          "formula": {
+            "gen": "str",
+            "len": 999,
+            "alphabet": "H"
+          }
+        },
+        "seed": 7264
+      },
+      {
+        "name": "generated_h_only_len_1000",
+        "in": {
+          "formula": {
+            "gen": "str",
+            "len": 1000,
+            "alphabet": "H"
+          }
+        },
+        "seed": 7265
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "formula = \"H2O\"",
+      "output": "\"H2O\""
+    },
+    {
+      "input": "formula = \"Mg(OH)2\"",
+      "output": "\"H2MgO2\""
+    },
+    {
+      "input": "formula = \"K4(ON(SO3)2)2\"",
+      "output": "\"K4N2O14S4\""
+    },
+    {
+      "input": "formula = \"Be32\"",
+      "output": "\"Be32\""
+    },
+    {
+      "input": "formula = \"He\"",
+      "output": "\"He\""
+    },
+    {
+      "input": "formula = \"NaCl\"",
+      "output": "\"ClNa\""
+    },
+    {
+      "input": "formula = \"C6H12O6\"",
+      "output": "\"C6H12O6\""
+    },
+    {
+      "input": "formula = \"((H))\"",
+      "output": "\"H\""
+    }
+  ]
+}

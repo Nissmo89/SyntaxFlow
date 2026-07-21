@@ -1,0 +1,363 @@
+{
+  "id": "integer_to_roman",
+  "title": "Integer to Roman",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String"
+  ],
+  "description": "<p>Seven different symbols represent Roman numerals with the following values:</p>\n\n<table>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>Symbol</th>\n\t\t\t<th>Value</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>I</td>\n\t\t\t<td>1</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>V</td>\n\t\t\t<td>5</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>X</td>\n\t\t\t<td>10</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>L</td>\n\t\t\t<td>50</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>C</td>\n\t\t\t<td>100</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>D</td>\n\t\t\t<td>500</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>M</td>\n\t\t\t<td>1000</td>\n\t\t</tr>\n\t</tbody>\n</table>\n\n<p>Roman numerals are formed by appending&nbsp;the conversions of&nbsp;decimal place values&nbsp;from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules:</p>\n\n<ul>\n\t<li>If the value does not start with 4 or&nbsp;9, select the symbol of the maximal value that can be subtracted from the input, append that symbol to the result, subtract its value, and convert the remainder to a Roman numeral.</li>\n\t<li>If the value starts with 4 or 9 use the&nbsp;<strong>subtractive form</strong>&nbsp;representing&nbsp;one symbol subtracted from the following symbol, for example,&nbsp;4 is 1 (<code>I</code>) less than 5 (<code>V</code>): <code>IV</code>&nbsp;and 9 is 1 (<code>I</code>) less than 10 (<code>X</code>): <code>IX</code>.&nbsp;Only the following subtractive forms are used: 4 (<code>IV</code>), 9 (<code>IX</code>),&nbsp;40 (<code>XL</code>), 90 (<code>XC</code>), 400 (<code>CD</code>) and 900 (<code>CM</code>).</li>\n\t<li>Only powers of 10 (<code>I</code>, <code>X</code>, <code>C</code>, <code>M</code>) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5&nbsp;(<code>V</code>), 50 (<code>L</code>), or 500 (<code>D</code>) multiple times. If you need to append a symbol&nbsp;4 times&nbsp;use the <strong>subtractive form</strong>.</li>\n</ul>\n\n<p>Given an integer, convert it to a Roman numeral.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">num = 3749</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;MMMDCCXLIX&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\n3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)\n 700 = DCC as 500 (D) + 100 (C) + 100 (C)\n  40 = XL as 10 (X) less of 50 (L)\n   9 = IX as 1 (I) less of 10 (X)\nNote: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">num = 58</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;LVIII&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\n50 = L\n 8 = VIII\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">num = 1994</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;MCMXCIV&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\n1000 = M\n 900 = CM\n  90 = XC\n   4 = IV\n</pre>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num &lt;= 3999</code></li>\n</ul>\n",
+  "task": "Solve the 'Integer to Roman' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= num <= 3999"
+  ],
+  "hints": [],
+  "method": {
+    "name": "intToRoman",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 12,
+      "title": "integer-to-roman",
+      "params": {
+        "num": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().intToRoman({num})",
+        "rust": "Solution::int_to_roman({num})",
+        "python3": "Solution().intToRoman({num})",
+        "python2": "Solution().intToRoman({num})",
+        "ruby": "int_to_roman({num})",
+        "java": "new Solution().intToRoman({num})",
+        "csharp": "new Solution().IntToRoman({num})",
+        "kotlin": "Solution().intToRoman({num})",
+        "go": "intToRoman({num})",
+        "dart": "Solution().intToRoman({num})",
+        "swift": "Solution().intToRoman({num})",
+        "typescript": "intToRoman({num})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Solution().intToRoman(num)",
+        "checker": "class Checker:\n    def intToRoman(self, num, result):\n        if not isinstance(result, str):\n            return False\n        expected = Solution().intToRoman(num)\n        return result == expected\n"
+      }
+    },
+    "seed": 12,
+    "tests": [
+      {
+        "name": "one",
+        "in": {
+          "num": 1
+        },
+        "out": "I"
+      },
+      {
+        "name": "two",
+        "in": {
+          "num": 2
+        },
+        "out": "II"
+      },
+      {
+        "name": "three",
+        "in": {
+          "num": 3
+        },
+        "out": "III"
+      },
+      {
+        "name": "four",
+        "in": {
+          "num": 4
+        },
+        "out": "IV"
+      },
+      {
+        "name": "five",
+        "in": {
+          "num": 5
+        },
+        "out": "V"
+      },
+      {
+        "name": "six",
+        "in": {
+          "num": 6
+        },
+        "out": "VI"
+      },
+      {
+        "name": "seven",
+        "in": {
+          "num": 7
+        },
+        "out": "VII"
+      },
+      {
+        "name": "eight",
+        "in": {
+          "num": 8
+        },
+        "out": "VIII"
+      },
+      {
+        "name": "nine",
+        "in": {
+          "num": 9
+        },
+        "out": "IX"
+      },
+      {
+        "name": "ten",
+        "in": {
+          "num": 10
+        },
+        "out": "X"
+      },
+      {
+        "name": "fourteen",
+        "in": {
+          "num": 14
+        },
+        "out": "XIV"
+      },
+      {
+        "name": "nineteen",
+        "in": {
+          "num": 19
+        },
+        "out": "XIX"
+      },
+      {
+        "name": "twenty",
+        "in": {
+          "num": 20
+        },
+        "out": "XX"
+      },
+      {
+        "name": "thirty_nine",
+        "in": {
+          "num": 39
+        },
+        "out": "XXXIX"
+      },
+      {
+        "name": "forty",
+        "in": {
+          "num": 40
+        },
+        "out": "XL"
+      },
+      {
+        "name": "forty_nine",
+        "in": {
+          "num": 49
+        },
+        "out": "XLIX"
+      },
+      {
+        "name": "fifty",
+        "in": {
+          "num": 50
+        },
+        "out": "L"
+      },
+      {
+        "name": "fifty_eight",
+        "in": {
+          "num": 58
+        },
+        "out": "LVIII"
+      },
+      {
+        "name": "sixty_nine",
+        "in": {
+          "num": 69
+        },
+        "out": "LXIX"
+      },
+      {
+        "name": "eighty_seven",
+        "in": {
+          "num": 87
+        },
+        "out": "LXXXVII"
+      },
+      {
+        "name": "ninety",
+        "in": {
+          "num": 90
+        },
+        "out": "XC"
+      },
+      {
+        "name": "ninety_four",
+        "in": {
+          "num": 94
+        },
+        "out": "XCIV"
+      },
+      {
+        "name": "ninety_nine",
+        "in": {
+          "num": 99
+        },
+        "out": "XCIX"
+      },
+      {
+        "name": "one_hundred",
+        "in": {
+          "num": 100
+        },
+        "out": "C"
+      },
+      {
+        "name": "four_hundred",
+        "in": {
+          "num": 400
+        },
+        "out": "CD"
+      },
+      {
+        "name": "four_hundred_forty_four",
+        "in": {
+          "num": 444
+        },
+        "out": "CDXLIV"
+      },
+      {
+        "name": "five_hundred",
+        "in": {
+          "num": 500
+        },
+        "out": "D"
+      },
+      {
+        "name": "eight_hundred",
+        "in": {
+          "num": 800
+        },
+        "out": "DCCC"
+      },
+      {
+        "name": "nine_hundred",
+        "in": {
+          "num": 900
+        },
+        "out": "CM"
+      },
+      {
+        "name": "nine_hundred_ninety_nine",
+        "in": {
+          "num": 999
+        },
+        "out": "CMXCIX"
+      },
+      {
+        "name": "one_thousand",
+        "in": {
+          "num": 1000
+        },
+        "out": "M"
+      },
+      {
+        "name": "one_thousand_nine_hundred_ninety_four",
+        "in": {
+          "num": 1994
+        },
+        "out": "MCMXCIV"
+      },
+      {
+        "name": "two_thousand_twenty_four",
+        "in": {
+          "num": 2024
+        },
+        "out": "MMXXIV"
+      },
+      {
+        "name": "three_thousand_nine_hundred_ninety_nine",
+        "in": {
+          "num": 3999
+        },
+        "out": "MMMCMXCIX"
+      },
+      {
+        "name": "extra_large_low",
+        "in": {
+          "num": 1666
+        },
+        "out": "MDCLXVI"
+      },
+      {
+        "name": "extra_large_mid",
+        "in": {
+          "num": 2444
+        },
+        "out": "MMCDXLIV"
+      },
+      {
+        "name": "extra_large_high",
+        "in": {
+          "num": 3888
+        },
+        "out": "MMMDCCCLXXXVIII"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "num = 1",
+      "output": "\"I\""
+    },
+    {
+      "input": "num = 2",
+      "output": "\"II\""
+    },
+    {
+      "input": "num = 3",
+      "output": "\"III\""
+    },
+    {
+      "input": "num = 4",
+      "output": "\"IV\""
+    },
+    {
+      "input": "num = 5",
+      "output": "\"V\""
+    },
+    {
+      "input": "num = 6",
+      "output": "\"VI\""
+    },
+    {
+      "input": "num = 7",
+      "output": "\"VII\""
+    },
+    {
+      "input": "num = 8",
+      "output": "\"VIII\""
+    }
+  ]
+}

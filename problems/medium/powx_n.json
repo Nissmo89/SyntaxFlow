@@ -1,0 +1,439 @@
+{
+  "id": "powx_n",
+  "title": "Pow(x, n)",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "description": "<p>Implement <a href=\"http://www.cplusplus.com/reference/valarray/pow/\" target=\"_blank\">pow(x, n)</a>, which calculates <code>x</code> raised to the power <code>n</code> (i.e., <code>x<sup>n</sup></code>).</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 2.00000, n = 10\n<strong>Output:</strong> 1024.00000\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 2.10000, n = 3\n<strong>Output:</strong> 9.26100\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 2.00000, n = -2\n<strong>Output:</strong> 0.25000\n<strong>Explanation:</strong> 2<sup>-2</sup> = 1/2<sup>2</sup> = 1/4 = 0.25\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-100.0 &lt; x &lt; 100.0</code></li>\n\t<li><code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup>-1</code></li>\n\t<li><code>n</code> is an integer.</li>\n\t<li>Either <code>x</code> is not zero or <code>n &gt; 0</code>.</li>\n\t<li><code>-10<sup>4</sup> &lt;= x<sup>n</sup> &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Pow(x, n)' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "-100.0 < x < 100.0",
+    "-231 <= n <= 231-1",
+    "n is an integer.",
+    "Either x is not zero or n > 0.",
+    "-104 <= xn <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "myPow",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "x",
+        "type": "double"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 50,
+      "title": "powx-n",
+      "params": {
+        "x": {
+          "type": "double"
+        },
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().myPow({x}, {n})",
+        "rust": "Solution::my_pow({x}, {n})",
+        "python3": "Solution().myPow({x}, {n})",
+        "python2": "Solution().myPow({x}, {n})",
+        "ruby": "my_pow({x}, {n})",
+        "java": "new Solution().myPow({x}, {n})",
+        "csharp": "new Solution().MyPow({x}, {n})",
+        "kotlin": "Solution().myPow({x}, {n})",
+        "go": "myPow({x}, {n})",
+        "dart": "Solution().myPow({x}, {n})",
+        "swift": "Solution().myPow({x}, {n})",
+        "typescript": "myPow({x}, {n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().myPow(x, n, {result})",
+        "checker": "import math\n\nclass Checker:\n    def myPow(self, x, n, result):\n        if math.isnan(result) or math.isinf(result):\n            return False\n        if x == 0:\n            expected = 0.0\n        elif n == 0:\n            expected = 1.0\n        elif x == 1:\n            expected = 1.0\n        elif x == -1:\n            expected = 1.0 if n % 2 == 0 else -1.0\n        else:\n            expected = math.pow(x, n)\n        return math.isclose(result, expected, rel_tol=1e-9, abs_tol=1e-9)\n"
+      }
+    },
+    "seed": 50,
+    "tests": [
+      {
+        "name": "example1",
+        "in": {
+          "x": 2.0,
+          "n": 10
+        }
+      },
+      {
+        "name": "example2",
+        "in": {
+          "x": 2.1,
+          "n": 3
+        }
+      },
+      {
+        "name": "example3",
+        "in": {
+          "x": 2.0,
+          "n": -2
+        }
+      },
+      {
+        "name": "zero_positive",
+        "in": {
+          "x": 0.0,
+          "n": 7
+        }
+      },
+      {
+        "name": "zero_large_positive",
+        "in": {
+          "x": 0.0,
+          "n": 2147483647
+        }
+      },
+      {
+        "name": "one_zero",
+        "in": {
+          "x": 1.0,
+          "n": 0
+        }
+      },
+      {
+        "name": "one_positive",
+        "in": {
+          "x": 1.0,
+          "n": 2147483647
+        }
+      },
+      {
+        "name": "one_negative",
+        "in": {
+          "x": 1.0,
+          "n": -2147483648
+        }
+      },
+      {
+        "name": "neg_one_even",
+        "in": {
+          "x": -1.0,
+          "n": 2147483646
+        }
+      },
+      {
+        "name": "neg_one_odd",
+        "in": {
+          "x": -1.0,
+          "n": 2147483647
+        }
+      },
+      {
+        "name": "neg_one_negative_even",
+        "in": {
+          "x": -1.0,
+          "n": -2147483648
+        }
+      },
+      {
+        "name": "neg_one_negative_odd",
+        "in": {
+          "x": -1.0,
+          "n": -2147483647
+        }
+      },
+      {
+        "name": "positive_unit_exponent",
+        "in": {
+          "x": 2.0,
+          "n": 1
+        }
+      },
+      {
+        "name": "negative_base_odd",
+        "in": {
+          "x": -2.0,
+          "n": 3
+        }
+      },
+      {
+        "name": "negative_base_even",
+        "in": {
+          "x": -2.0,
+          "n": 4
+        }
+      },
+      {
+        "name": "negative_base_negative_odd",
+        "in": {
+          "x": -2.0,
+          "n": -3
+        }
+      },
+      {
+        "name": "negative_base_negative_even",
+        "in": {
+          "x": -2.0,
+          "n": -4
+        }
+      },
+      {
+        "name": "fractional_positive",
+        "in": {
+          "x": 0.5,
+          "n": 5
+        }
+      },
+      {
+        "name": "fractional_negative",
+        "in": {
+          "x": 0.5,
+          "n": -5
+        }
+      },
+      {
+        "name": "near_one_small",
+        "in": {
+          "x": 1.0001,
+          "n": 1000
+        }
+      },
+      {
+        "name": "near_one_negative",
+        "in": {
+          "x": 1.0001,
+          "n": -1000
+        }
+      },
+      {
+        "name": "tenth_power",
+        "in": {
+          "x": 10.0,
+          "n": 4
+        }
+      },
+      {
+        "name": "tenth_negative",
+        "in": {
+          "x": 10.0,
+          "n": -4
+        }
+      },
+      {
+        "name": "pi_small",
+        "in": {
+          "x": 3.14159,
+          "n": 2
+        }
+      },
+      {
+        "name": "pi_negative",
+        "in": {
+          "x": 3.14159,
+          "n": -2
+        }
+      },
+      {
+        "name": "small_fraction",
+        "in": {
+          "x": 0.25,
+          "n": 8
+        }
+      },
+      {
+        "name": "small_fraction_negative",
+        "in": {
+          "x": 0.25,
+          "n": -8
+        }
+      },
+      {
+        "name": "mixed_sign_large",
+        "in": {
+          "x": -0.75,
+          "n": 11
+        }
+      },
+      {
+        "name": "mixed_sign_large_negative",
+        "in": {
+          "x": -0.75,
+          "n": -11
+        }
+      },
+      {
+        "name": "generated_a",
+        "in": {
+          "x": {
+            "gen": "float",
+            "min": 0.1,
+            "max": 9.9,
+            "precision": 4
+          },
+          "n": {
+            "gen": "int",
+            "min": -50,
+            "max": 50
+          }
+        }
+      },
+      {
+        "name": "generated_b",
+        "in": {
+          "x": {
+            "gen": "float",
+            "min": -9.9,
+            "max": -0.1,
+            "precision": 4
+          },
+          "n": {
+            "gen": "int",
+            "min": -31,
+            "max": 31
+          }
+        }
+      },
+      {
+        "name": "generated_c",
+        "in": {
+          "x": {
+            "gen": "float",
+            "min": 0.01,
+            "max": 1.99,
+            "precision": 4
+          },
+          "n": {
+            "gen": "int",
+            "min": -100,
+            "max": 100
+          }
+        }
+      },
+      {
+        "name": "generated_d",
+        "in": {
+          "x": {
+            "gen": "float",
+            "min": 1.01,
+            "max": 2.5,
+            "precision": 4
+          },
+          "n": {
+            "gen": "int",
+            "min": -20,
+            "max": 20
+          }
+        }
+      },
+      {
+        "name": "generated_e",
+        "in": {
+          "x": {
+            "gen": "float",
+            "min": -2.5,
+            "max": 2.5,
+            "precision": 4
+          },
+          "n": {
+            "gen": "int",
+            "min": -15,
+            "max": 15
+          }
+        }
+      },
+      {
+        "name": "high_positive_even",
+        "in": {
+          "x": 1.25,
+          "n": 32
+        }
+      },
+      {
+        "name": "high_positive_negative",
+        "in": {
+          "x": 1.25,
+          "n": -32
+        }
+      },
+      {
+        "name": "high_negative_even",
+        "in": {
+          "x": -1.25,
+          "n": 32
+        }
+      },
+      {
+        "name": "high_negative_odd",
+        "in": {
+          "x": -1.25,
+          "n": 33
+        }
+      },
+      {
+        "name": "high_negative_even_negexp",
+        "in": {
+          "x": -1.25,
+          "n": -32
+        }
+      },
+      {
+        "name": "high_negative_odd_negexp",
+        "in": {
+          "x": -1.25,
+          "n": -33
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "x = 2.0\nn = 10",
+      "output": ""
+    },
+    {
+      "input": "x = 2.1\nn = 3",
+      "output": ""
+    },
+    {
+      "input": "x = 2.0\nn = -2",
+      "output": ""
+    },
+    {
+      "input": "x = 0.0\nn = 7",
+      "output": ""
+    },
+    {
+      "input": "x = 0.0\nn = 2147483647",
+      "output": ""
+    },
+    {
+      "input": "x = 1.0\nn = 0",
+      "output": ""
+    },
+    {
+      "input": "x = 1.0\nn = 2147483647",
+      "output": ""
+    },
+    {
+      "input": "x = 1.0\nn = -2147483648",
+      "output": ""
+    }
+  ]
+}

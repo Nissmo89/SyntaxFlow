@@ -1,0 +1,1095 @@
+{
+  "id": "bricks_falling_when_hit",
+  "title": "Bricks Falling When Hit",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Matrix"
+  ],
+  "description": "<p>You are given an <code>m x n</code> binary <code>grid</code>, where each <code>1</code> represents a brick and <code>0</code> represents an empty space. A brick is <strong>stable</strong> if:</p>\n\n<ul>\n\t<li>It is directly connected to the top of the grid, or</li>\n\t<li>At least one other brick in its four adjacent cells is <strong>stable</strong>.</li>\n</ul>\n\n<p>You are also given an array <code>hits</code>, which is a sequence of erasures we want to apply. Each time we want to erase the brick at the location <code>hits[i] = (row<sub>i</sub>, col<sub>i</sub>)</code>. The brick on that location&nbsp;(if it exists) will disappear. Some other bricks may no longer be stable because of that erasure and will <strong>fall</strong>. Once a brick falls, it is <strong>immediately</strong> erased from the <code>grid</code> (i.e., it does not land on other stable bricks).</p>\n\n<p>Return <em>an array </em><code>result</code><em>, where each </em><code>result[i]</code><em> is the number of bricks that will <strong>fall</strong> after the </em><code>i<sup>th</sup></code><em> erasure is applied.</em></p>\n\n<p><strong>Note</strong> that an erasure may refer to a location with no brick, and if it does, no bricks drop.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]\n<strong>Output:</strong> [2]\n<strong>Explanation: </strong>Starting with the grid:\n[[1,0,0,0],\n [<u>1</u>,1,1,0]]\nWe erase the underlined brick at (1,0), resulting in the grid:\n[[1,0,0,0],\n [0,<u>1</u>,<u>1</u>,0]]\nThe two underlined bricks are no longer stable as they are no longer connected to the top nor adjacent to another stable brick, so they will fall. The resulting grid is:\n[[1,0,0,0],\n [0,0,0,0]]\nHence the result is [2].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]]\n<strong>Output:</strong> [0,0]\n<strong>Explanation: </strong>Starting with the grid:\n[[1,0,0,0],\n [1,<u>1</u>,0,0]]\nWe erase the underlined brick at (1,1), resulting in the grid:\n[[1,0,0,0],\n [1,0,0,0]]\nAll remaining bricks are still stable, so no bricks fall. The grid remains the same:\n[[1,0,0,0],\n [<u>1</u>,0,0,0]]\nNext, we erase the underlined brick at (1,0), resulting in the grid:\n[[1,0,0,0],\n [0,0,0,0]]\nOnce again, all remaining bricks are still stable, so no bricks fall.\nHence the result is [0,0].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 200</code></li>\n\t<li><code>grid[i][j]</code> is <code>0</code> or <code>1</code>.</li>\n\t<li><code>1 &lt;= hits.length &lt;= 4 * 10<sup>4</sup></code></li>\n\t<li><code>hits[i].length == 2</code></li>\n\t<li><code>0 &lt;= x<sub>i&nbsp;</sub>&lt;= m - 1</code></li>\n\t<li><code>0 &lt;=&nbsp;y<sub>i</sub> &lt;= n - 1</code></li>\n\t<li>All <code>(x<sub>i</sub>, y<sub>i</sub>)</code> are unique.</li>\n</ul>\n",
+  "task": "Solve the 'Bricks Falling When Hit' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "grid[i][j] is 0 or 1.",
+    "1 <= hits.length <= 4 * 104",
+    "hits[i].length == 2",
+    "0 <= xi\u00a0<= m - 1",
+    "0 <=\u00a0yi <= n - 1",
+    "All (xi, yi) are unique."
+  ],
+  "hints": [],
+  "method": {
+    "name": "hitBricks",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "grid",
+        "type": "array"
+      },
+      {
+        "name": "hits",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 803,
+      "title": "bricks-falling-when-hit",
+      "params": {
+        "grid": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            }
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().hitBricks({grid}, {hits})",
+        "rust": "Solution::hit_bricks({grid}, {hits})",
+        "python3": "Solution().hitBricks({grid}, {hits})",
+        "python2": "Solution().hitBricks({grid}, {hits})",
+        "ruby": "hit_bricks({grid}, {hits})",
+        "java": "new Solution().hitBricks({grid}, {hits})",
+        "csharp": "new Solution().HitBricks({grid}, {hits})",
+        "kotlin": "Solution().hitBricks({grid}, {hits})",
+        "go": "hitBricks({grid}, {hits})",
+        "dart": "Solution().hitBricks({grid}, {hits})",
+        "swift": "Solution().hitBricks({grid}, {hits})",
+        "typescript": "hitBricks({grid}, {hits})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 500,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(grid, hits, {result})",
+        "checker": "class Checker:\n    def check(self, grid, hits, result):\n        rows = len(grid)\n        cols = len(grid[0])\n        work = [row[:] for row in grid]\n        for r, c in hits:\n            if 0 <= r < rows and 0 <= c < cols:\n                work[r][c] -= 1\n\n        parent = list(range(rows * cols + 1))\n        size = [1] * (rows * cols + 1)\n        roof = rows * cols\n\n        def idx(r, c):\n            return r * cols + c\n\n        def find(x):\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a, b):\n            ra = find(a)\n            rb = find(b)\n            if ra == rb:\n                return\n            if size[ra] < size[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            size[ra] += size[rb]\n\n        def roof_size():\n            return size[find(roof)]\n\n        for r in range(rows):\n            for c in range(cols):\n                if work[r][c] != 1:\n                    continue\n                if r == 0:\n                    union(idx(r, c), roof)\n                if r > 0 and work[r - 1][c] == 1:\n                    union(idx(r, c), idx(r - 1, c))\n                if c > 0 and work[r][c - 1] == 1:\n                    union(idx(r, c), idx(r, c - 1))\n\n        ans = [0] * len(hits)\n        for i in range(len(hits) - 1, -1, -1):\n            r, c = hits[i]\n            if grid[r][c] == 0:\n                continue\n            prev = roof_size()\n            work[r][c] += 1\n            if work[r][c] != 1:\n                continue\n            cur = idx(r, c)\n            if r == 0:\n                union(cur, roof)\n            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < rows and 0 <= nc < cols and work[nr][nc] == 1:\n                    union(cur, idx(nr, nc))\n            ans[i] = max(0, roof_size() - prev - 1)\n\n        return result == ans\n"
+      }
+    },
+    "seed": 803,
+    "tests": [
+      {
+        "name": "case01",
+        "in": {
+          "grid": [
+            [
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case02",
+        "in": {
+          "grid": [
+            [
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case03",
+        "in": {
+          "grid": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case04",
+        "in": {
+          "grid": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case05",
+        "in": {
+          "grid": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case06",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case07",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case08",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case09",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case10",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case11",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case12",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case13",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case14",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case15",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case16",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case17",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case18",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case19",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case20",
+        "in": {
+          "grid": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case21",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case22",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case23",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case24",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case25",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case26",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case27",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case28",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case29",
+        "in": {
+          "grid": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case30",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case31",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case32",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case33",
+        "in": {
+          "grid": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case34",
+        "in": {
+          "grid": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "hits": [
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "name": "case35",
+        "in": {
+          "grid": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "hits": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "grid = [[1]]\nhits = [[0, 0]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1]]\nhits = [[0, 0], [0, 0]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 0], [1, 1]]\nhits = [[1, 0]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 1], [1, 0]]\nhits = [[1, 0]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 1], [1, 1]]\nhits = [[1, 1]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 0, 1], [1, 1, 1]]\nhits = [[1, 1]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 1, 1], [0, 1, 0], [0, 1, 0]]\nhits = [[0, 1]]",
+      "output": ""
+    },
+    {
+      "input": "grid = [[1, 1, 0], [1, 1, 1], [0, 1, 0]]\nhits = [[1, 1]]",
+      "output": ""
+    }
+  ]
+}

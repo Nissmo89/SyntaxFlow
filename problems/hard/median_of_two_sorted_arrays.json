@@ -1,0 +1,1007 @@
+{
+  "id": "median_of_two_sorted_arrays",
+  "title": "Median of Two Sorted Arrays",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer"
+  ],
+  "description": "<p>Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and <code>n</code> respectively, return <strong>the median</strong> of the two sorted arrays.</p>\n\n<p>The overall run time complexity should be <code>O(log (m+n))</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [1,3], nums2 = [2]\n<strong>Output:</strong> 2.00000\n<strong>Explanation:</strong> merged array = [1,2,3] and median is 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [1,2], nums2 = [3,4]\n<strong>Output:</strong> 2.50000\n<strong>Explanation:</strong> merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>nums1.length == m</code></li>\n\t<li><code>nums2.length == n</code></li>\n\t<li><code>0 &lt;= m &lt;= 1000</code></li>\n\t<li><code>0 &lt;= n &lt;= 1000</code></li>\n\t<li><code>1 &lt;= m + n &lt;= 2000</code></li>\n\t<li><code>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Median of Two Sorted Arrays' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "nums1.length == m",
+    "nums2.length == n",
+    "0 <= m <= 1000",
+    "0 <= n <= 1000",
+    "1 <= m + n <= 2000",
+    "-106 <= nums1[i], nums2[i] <= 106"
+  ],
+  "hints": [],
+  "method": {
+    "name": "findMedianSortedArrays",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "array"
+      },
+      {
+        "name": "nums2",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 4,
+      "title": "median-of-two-sorted-arrays",
+      "params": {
+        "nums1": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "nums2": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "rust": "Solution::find_median_sorted_arrays({nums1}, {nums2})",
+        "python3": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "python2": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "ruby": "find_median_sorted_arrays({nums1}, {nums2})",
+        "java": "new Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "csharp": "new Solution().FindMedianSortedArrays({nums1}, {nums2})",
+        "kotlin": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "go": "findMedianSortedArrays({nums1}, {nums2})",
+        "dart": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "swift": "Solution().findMedianSortedArrays({nums1}, {nums2})",
+        "typescript": "findMedianSortedArrays({nums1}, {nums2})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 64
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().findMedianSortedArrays(nums1, nums2, {result})",
+        "checker": "class Checker:\n    def findMedianSortedArrays(self, nums1, nums2, result):\n        merged = sorted(nums1 + nums2)\n        n = len(merged)\n        if n == 0:\n            return False\n        if n % 2 == 1:\n            expected = float(merged[n // 2])\n        else:\n            expected = (merged[n // 2 - 1] + merged[n // 2]) / 2.0\n        return abs(result - expected) <= 1e-9\n"
+      }
+    },
+    "seed": 4,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "nums1": [
+            1,
+            3
+          ],
+          "nums2": [
+            2
+          ]
+        },
+        "out": 2.0
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            3,
+            4
+          ]
+        },
+        "out": 2.5
+      },
+      {
+        "name": "single-left",
+        "in": {
+          "nums1": [
+            1
+          ],
+          "nums2": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": 2,
+              "max": 4
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "single-right",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -3,
+              "max": -1
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": [
+            0
+          ]
+        }
+      },
+      {
+        "name": "empty-first",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 0,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": [
+            7
+          ]
+        }
+      },
+      {
+        "name": "empty-second",
+        "in": {
+          "nums1": [
+            -5
+          ],
+          "nums2": {
+            "gen": "array",
+            "len": 0,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 0
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "odd-total-small",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            3
+          ]
+        },
+        "out": 2.0
+      },
+      {
+        "name": "even-total-small",
+        "in": {
+          "nums1": [
+            1,
+            2
+          ],
+          "nums2": [
+            3,
+            4
+          ]
+        },
+        "out": 2.5
+      },
+      {
+        "name": "duplicate-heavy-1",
+        "in": {
+          "nums1": [
+            2,
+            2,
+            2
+          ],
+          "nums2": [
+            2,
+            2
+          ]
+        },
+        "out": 2.0
+      },
+      {
+        "name": "duplicate-heavy-2",
+        "in": {
+          "nums1": [
+            1,
+            1,
+            1
+          ],
+          "nums2": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1.0
+      },
+      {
+        "name": "negatives-even",
+        "in": {
+          "nums1": [
+            -5,
+            -3
+          ],
+          "nums2": [
+            -4,
+            -2
+          ]
+        },
+        "out": -3.5
+      },
+      {
+        "name": "negatives-odd",
+        "in": {
+          "nums1": [
+            -10,
+            -5,
+            -1
+          ],
+          "nums2": [
+            -6,
+            -4
+          ]
+        },
+        "out": -5.0
+      },
+      {
+        "name": "one-large-gap",
+        "in": {
+          "nums1": [
+            1
+          ],
+          "nums2": [
+            100,
+            101,
+            102
+          ]
+        },
+        "out": 100.5
+      },
+      {
+        "name": "boundary-min",
+        "in": {
+          "nums1": [
+            -1000000
+          ],
+          "nums2": [
+            1000000
+          ]
+        },
+        "out": 0.0
+      },
+      {
+        "name": "boundary-max",
+        "in": {
+          "nums1": [
+            999999,
+            1000000
+          ],
+          "nums2": [
+            1000000
+          ]
+        },
+        "out": 1000000.0
+      },
+      {
+        "name": "mixed-small-1",
+        "in": {
+          "nums1": [
+            1,
+            4,
+            7
+          ],
+          "nums2": [
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        "out": 4.0
+      },
+      {
+        "name": "mixed-small-2",
+        "in": {
+          "nums1": [
+            0,
+            10
+          ],
+          "nums2": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 3.0
+      },
+      {
+        "name": "generated-1",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 1,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": -999990
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -999989,
+              "max": -999980
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-2",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 2,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": -50
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": -49,
+              "max": 0
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-3",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 3,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 10
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": 11,
+              "max": 20
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-4",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 4,
+            "of": {
+              "gen": "int",
+              "min": -20,
+              "max": -1
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 20
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-5",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 5,
+            "of": {
+              "gen": "int",
+              "min": 100,
+              "max": 200
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 6,
+            "of": {
+              "gen": "int",
+              "min": 201,
+              "max": 300
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-6",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 8,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 7,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": 1000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-7",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 9,
+            "of": {
+              "gen": "int",
+              "min": -5000,
+              "max": -1000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 10,
+            "of": {
+              "gen": "int",
+              "min": -999,
+              "max": 5000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-8",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 12,
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 11,
+            "of": {
+              "gen": "int",
+              "min": -50,
+              "max": 50
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-9",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 13,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 14,
+            "of": {
+              "gen": "int",
+              "min": 0,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-10",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 15,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 16,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-11",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 17,
+            "of": {
+              "gen": "int",
+              "min": -250,
+              "max": -1
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 18,
+            "of": {
+              "gen": "int",
+              "min": 1,
+              "max": 250
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-12",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 19,
+            "of": {
+              "gen": "int",
+              "min": -5,
+              "max": 5
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 20,
+            "of": {
+              "gen": "int",
+              "min": -5,
+              "max": 5
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-13",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 21,
+            "of": {
+              "gen": "int",
+              "min": 50,
+              "max": 60
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 22,
+            "of": {
+              "gen": "int",
+              "min": 61,
+              "max": 70
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-14",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 23,
+            "of": {
+              "gen": "int",
+              "min": -70,
+              "max": -60
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 24,
+            "of": {
+              "gen": "int",
+              "min": 60,
+              "max": 70
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-15",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 25,
+            "of": {
+              "gen": "int",
+              "min": -1000,
+              "max": -500
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 26,
+            "of": {
+              "gen": "int",
+              "min": 500,
+              "max": 1000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-16",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 27,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 28,
+            "of": {
+              "gen": "int",
+              "min": -100,
+              "max": 100
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-17",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 29,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": -999000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 30,
+            "of": {
+              "gen": "int",
+              "min": 999000,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-18",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 31,
+            "of": {
+              "gen": "int",
+              "min": -200,
+              "max": -100
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 32,
+            "of": {
+              "gen": "int",
+              "min": -99,
+              "max": 100
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-19",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 33,
+            "of": {
+              "gen": "int",
+              "min": 100,
+              "max": 200
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 34,
+            "of": {
+              "gen": "int",
+              "min": 200,
+              "max": 300
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-20",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 35,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 36,
+            "of": {
+              "gen": "int",
+              "min": -1000000,
+              "max": 1000000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-21",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 37,
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": 1
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 38,
+            "of": {
+              "gen": "int",
+              "min": -1,
+              "max": 1
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-22",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 39,
+            "of": {
+              "gen": "int",
+              "min": 1000,
+              "max": 2000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 40,
+            "of": {
+              "gen": "int",
+              "min": 2000,
+              "max": 3000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      },
+      {
+        "name": "generated-23",
+        "in": {
+          "nums1": {
+            "gen": "array",
+            "len": 41,
+            "of": {
+              "gen": "int",
+              "min": -3000,
+              "max": -2000
+            },
+            "sorted": true,
+            "elemType": "int"
+          },
+          "nums2": {
+            "gen": "array",
+            "len": 42,
+            "of": {
+              "gen": "int",
+              "min": 2000,
+              "max": 3000
+            },
+            "sorted": true,
+            "elemType": "int"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums1 = [1, 3]\nnums2 = [2]",
+      "output": "2.0"
+    },
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [3, 4]",
+      "output": "2.5"
+    },
+    {
+      "input": "nums1 = [1]\nnums2 = {\"gen\": \"array\", \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": 2, \"max\": 4}, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums1 = {\"gen\": \"array\", \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": -1}, \"sorted\": true, \"elemType\": \"int\"}\nnums2 = [0]",
+      "output": ""
+    },
+    {
+      "input": "nums1 = {\"gen\": \"array\", \"len\": 0, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}, \"sorted\": true, \"elemType\": \"int\"}\nnums2 = [7]",
+      "output": ""
+    },
+    {
+      "input": "nums1 = [-5]\nnums2 = {\"gen\": \"array\", \"len\": 0, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [3]",
+      "output": "2.0"
+    },
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [3, 4]",
+      "output": "2.5"
+    }
+  ]
+}

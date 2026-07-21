@@ -1,0 +1,286 @@
+{
+  "id": "count_numbers_with_unique_digits",
+  "title": "Count Numbers with Unique Digits",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return the count of all numbers with unique digits, <code>x</code>, where <code>0 &lt;= x &lt; 10<sup>n</sup></code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 2\n<strong>Output:</strong> 91\n<strong>Explanation:</strong> The answer should be the total numbers in the range of 0 &le; x &lt; 100, excluding 11,22,33,44,55,66,77,88,99\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 0\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 8</code></li>\n</ul>\n",
+  "task": "Solve the 'Count Numbers with Unique Digits' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= n <= 8"
+  ],
+  "hints": [
+    "A direct way is to use the backtracking approach.",
+    "Backtracking should contains three states which are (the current number, number of steps to get that number and a bitmask which represent which number is marked as visited so far in the current number). Start with state (0,0,0) and count all valid number till we reach number of steps equals to 10<sup>n</sup>.",
+    "This problem can also be solved using a dynamic programming approach and some knowledge of combinatorics.",
+    "Let f(k) = count of numbers with unique digits with length equals k.",
+    "f(1) = 10, ..., f(k) = 9 * 9 * 8 * ... (9 - k + 2) [The first factor is 9 because a number cannot start with 0]."
+  ],
+  "method": {
+    "name": "countNumbersWithUniqueDigits",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 357,
+      "title": "count-numbers-with-unique-digits",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().countNumbersWithUniqueDigits({n})",
+        "rust": "Solution::count_numbers_with_unique_digits({n})",
+        "python3": "Solution().countNumbersWithUniqueDigits({n})",
+        "python2": "Solution().countNumbersWithUniqueDigits({n})",
+        "ruby": "count_numbers_with_unique_digits({n})",
+        "java": "new Solution().countNumbersWithUniqueDigits({n})",
+        "csharp": "new Solution().CountNumbersWithUniqueDigits({n})",
+        "kotlin": "Solution().countNumbersWithUniqueDigits({n})",
+        "go": "countNumbersWithUniqueDigits({n})",
+        "dart": "Solution().countNumbersWithUniqueDigits({n})",
+        "swift": "Solution().countNumbersWithUniqueDigits({n})",
+        "typescript": "countNumbersWithUniqueDigits({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(n, {result})",
+        "checker": "class Checker:\n    def check(self, n, result):\n        if not isinstance(n, int) or not isinstance(result, int):\n            return False\n        if n < 0 or n > 8:\n            return False\n        if n == 0:\n            return result == 1\n        expected = 10\n        current = 9\n        for i in range(2, n + 1):\n            current *= 10 - (i - 1)\n            expected += current\n        return result == expected\n"
+      }
+    },
+    "seed": 357,
+    "tests": [
+      {
+        "name": "n0",
+        "in": {
+          "n": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "n1",
+        "in": {
+          "n": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "n2",
+        "in": {
+          "n": 2
+        },
+        "out": 91
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": 3
+        },
+        "out": 739
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": 4
+        },
+        "out": 5275
+      },
+      {
+        "name": "n5",
+        "in": {
+          "n": 5
+        },
+        "out": 32491
+      },
+      {
+        "name": "n6",
+        "in": {
+          "n": 6
+        },
+        "out": 168571
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": 7
+        },
+        "out": 712891
+      },
+      {
+        "name": "n8",
+        "in": {
+          "n": 8
+        },
+        "out": 2345851
+      },
+      {
+        "name": "generated_range_a",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated_range_b",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated_range_c",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated_range_d",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "generated_range_e",
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 0,
+            "max": 8
+          }
+        }
+      },
+      {
+        "name": "repeat_n0",
+        "in": {
+          "n": 0
+        },
+        "out": 1
+      },
+      {
+        "name": "repeat_n8",
+        "in": {
+          "n": 8
+        },
+        "out": 2345851
+      },
+      {
+        "name": "repeat_n4",
+        "in": {
+          "n": 4
+        },
+        "out": 5275
+      },
+      {
+        "name": "repeat_n2",
+        "in": {
+          "n": 2
+        },
+        "out": 91
+      },
+      {
+        "name": "repeat_n6",
+        "in": {
+          "n": 6
+        },
+        "out": 168571
+      },
+      {
+        "name": "repeat_n1",
+        "in": {
+          "n": 1
+        },
+        "out": 10
+      },
+      {
+        "name": "repeat_n7",
+        "in": {
+          "n": 7
+        },
+        "out": 712891
+      },
+      {
+        "name": "repeat_n3",
+        "in": {
+          "n": 3
+        },
+        "out": 739
+      },
+      {
+        "name": "repeat_n5",
+        "in": {
+          "n": 5
+        },
+        "out": 32491
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 1",
+      "output": "10"
+    },
+    {
+      "input": "n = 2",
+      "output": "91"
+    },
+    {
+      "input": "n = 3",
+      "output": "739"
+    },
+    {
+      "input": "n = 4",
+      "output": "5275"
+    },
+    {
+      "input": "n = 5",
+      "output": "32491"
+    },
+    {
+      "input": "n = 6",
+      "output": "168571"
+    },
+    {
+      "input": "n = 7",
+      "output": "712891"
+    }
+  ]
+}

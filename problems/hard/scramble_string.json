@@ -1,0 +1,392 @@
+{
+  "id": "scramble_string",
+  "title": "Scramble String",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "description": "<p>We can scramble a string s to get a string t using the following algorithm:</p>\n\n<ol>\n\t<li>If the length of the string is 1, stop.</li>\n\t<li>If the length of the string is &gt; 1, do the following:\n\t<ul>\n\t\t<li>Split the string into two non-empty substrings at a random index, i.e., if the string is <code>s</code>, divide it to <code>x</code> and <code>y</code> where <code>s = x + y</code>.</li>\n\t\t<li><strong>Randomly</strong>&nbsp;decide to swap the two substrings or to keep them in the same order. i.e., after this step, <code>s</code> may become <code>s = x + y</code> or <code>s = y + x</code>.</li>\n\t\t<li>Apply step 1 recursively on each of the two substrings <code>x</code> and <code>y</code>.</li>\n\t</ul>\n\t</li>\n</ol>\n\n<p>Given two strings <code>s1</code> and <code>s2</code> of <strong>the same length</strong>, return <code>true</code> if <code>s2</code> is a scrambled string of <code>s1</code>, otherwise, return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> One possible scenario applied on s1 is:\n&quot;great&quot; --&gt; &quot;gr/eat&quot; // divide at random index.\n&quot;gr/eat&quot; --&gt; &quot;gr/eat&quot; // random decision is not to swap the two substrings and keep them in order.\n&quot;gr/eat&quot; --&gt; &quot;g/r / e/at&quot; // apply the same algorithm recursively on both substrings. divide at random index each of them.\n&quot;g/r / e/at&quot; --&gt; &quot;r/g / e/at&quot; // random decision was to swap the first substring and to keep the second substring in the same order.\n&quot;r/g / e/at&quot; --&gt; &quot;r/g / e/ a/t&quot; // again apply the algorithm recursively, divide &quot;at&quot; to &quot;a/t&quot;.\n&quot;r/g / e/ a/t&quot; --&gt; &quot;r/g / e/ a/t&quot; // random decision is to keep both substrings in the same order.\nThe algorithm stops now, and the result string is &quot;rgeat&quot; which is s2.\nAs one possible scenario led s1 to be scrambled to s2, we return true.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;\n<strong>Output:</strong> false\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;a&quot;, s2 = &quot;a&quot;\n<strong>Output:</strong> true\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>s1.length == s2.length</code></li>\n\t<li><code>1 &lt;= s1.length &lt;= 30</code></li>\n\t<li><code>s1</code> and <code>s2</code> consist of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Scramble String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "s1.length == s2.length",
+    "1 <= s1.length <= 30",
+    "s1 and s2 consist of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "isScramble",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s1",
+        "type": "string"
+      },
+      {
+        "name": "s2",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 87,
+      "title": "scramble-string",
+      "params": {
+        "s1": {
+          "type": "string"
+        },
+        "s2": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isScramble({s1}, {s2})",
+        "rust": "Solution::is_scramble({s1}, {s2})",
+        "python3": "Solution().isScramble({s1}, {s2})",
+        "python2": "Solution().isScramble({s1}, {s2})",
+        "ruby": "is_scramble({s1}, {s2})",
+        "java": "new Solution().isScramble({s1}, {s2})",
+        "csharp": "new Solution().IsScramble({s1}, {s2})",
+        "kotlin": "Solution().isScramble({s1}, {s2})",
+        "go": "isScramble({s1}, {s2})",
+        "dart": "Solution().isScramble({s1}, {s2})",
+        "swift": "Solution().isScramble({s1}, {s2})",
+        "typescript": "isScramble({s1}, {s2})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 3000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isScramble(s1, s2, {result})",
+        "checker": "class Checker:\n    def isScramble(self, s1, s2, result):\n        return isinstance(result, bool)\n"
+      }
+    },
+    "seed": 87,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s1": "great",
+          "s2": "rgeat"
+        },
+        "out": true
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s1": "abcde",
+          "s2": "caebd"
+        },
+        "out": false
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s1": "a",
+          "s2": "a"
+        },
+        "out": true
+      },
+      {
+        "name": "equal",
+        "in": {
+          "s1": "abc",
+          "s2": "abc"
+        },
+        "out": true
+      },
+      {
+        "name": "swap_two",
+        "in": {
+          "s1": "ab",
+          "s2": "ba"
+        },
+        "out": true
+      },
+      {
+        "name": "anagram_false",
+        "in": {
+          "s1": "abcd",
+          "s2": "bdac"
+        },
+        "out": false
+      },
+      {
+        "name": "repeated_true",
+        "in": {
+          "s1": "aabb",
+          "s2": "bbaa"
+        },
+        "out": true
+      },
+      {
+        "name": "repeated_false",
+        "in": {
+          "s1": "aaab",
+          "s2": "abac"
+        },
+        "out": false
+      },
+      {
+        "name": "nested_true",
+        "in": {
+          "s1": "great",
+          "s2": "rgtae"
+        },
+        "out": true
+      },
+      {
+        "name": "short_false",
+        "in": {
+          "s1": "ab",
+          "s2": "ca"
+        },
+        "out": false
+      },
+      {
+        "name": "short_true",
+        "in": {
+          "s1": "abc",
+          "s2": "bca"
+        },
+        "out": true
+      },
+      {
+        "name": "longer_true",
+        "in": {
+          "s1": "abcdefghijkl",
+          "s2": "efghabcdijkl"
+        },
+        "out": true
+      },
+      {
+        "name": "longer_false",
+        "in": {
+          "s1": "abcdefghijkl",
+          "s2": "efghabdcijkm"
+        },
+        "out": false
+      },
+      {
+        "name": "one_swap_true",
+        "in": {
+          "s1": "abcd",
+          "s2": "badc"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed_repeat_true",
+        "in": {
+          "s1": "aabc",
+          "s2": "abca"
+        },
+        "out": true
+      },
+      {
+        "name": "mixed_repeat_false",
+        "in": {
+          "s1": "aabc",
+          "s2": "abdc"
+        },
+        "out": false
+      },
+      {
+        "name": "self_1",
+        "in": {
+          "s1": "abca",
+          "s2": "abca"
+        },
+        "out": true
+      },
+      {
+        "name": "self_2",
+        "in": {
+          "s1": "zzzz",
+          "s2": "zzzz"
+        },
+        "out": true
+      },
+      {
+        "name": "swap_three_true",
+        "in": {
+          "s1": "abc",
+          "s2": "cab"
+        },
+        "out": true
+      },
+      {
+        "name": "swap_four_true",
+        "in": {
+          "s1": "abcd",
+          "s2": "cdab"
+        },
+        "out": true
+      },
+      {
+        "name": "swap_five_true",
+        "in": {
+          "s1": "abcde",
+          "s2": "eabcd"
+        },
+        "out": true
+      },
+      {
+        "name": "short_false_2",
+        "in": {
+          "s1": "abcd",
+          "s2": "abce"
+        },
+        "out": false
+      },
+      {
+        "name": "short_false_3",
+        "in": {
+          "s1": "abcde",
+          "s2": "abcdf"
+        },
+        "out": false
+      },
+      {
+        "name": "short_false_4",
+        "in": {
+          "s1": "aabb",
+          "s2": "aabc"
+        },
+        "out": false
+      },
+      {
+        "name": "short_false_5",
+        "in": {
+          "s1": "aabbcc",
+          "s2": "aabbcd"
+        },
+        "out": false
+      },
+      {
+        "name": "short_false_6",
+        "in": {
+          "s1": "abcabc",
+          "s2": "abcbad"
+        },
+        "out": false
+      },
+      {
+        "name": "repeat_true_2",
+        "in": {
+          "s1": "aabbcc",
+          "s2": "bbaacc"
+        },
+        "out": true
+      },
+      {
+        "name": "repeat_true_3",
+        "in": {
+          "s1": "aabbcc",
+          "s2": "ccbbaa"
+        },
+        "out": true
+      },
+      {
+        "name": "repeat_true_4",
+        "in": {
+          "s1": "aaabbb",
+          "s2": "bbbaaa"
+        },
+        "out": true
+      },
+      {
+        "name": "repeat_true_5",
+        "in": {
+          "s1": "abccba",
+          "s2": "baccab"
+        },
+        "out": true
+      },
+      {
+        "name": "repeat_false_2",
+        "in": {
+          "s1": "abccba",
+          "s2": "bacabd"
+        },
+        "out": false
+      },
+      {
+        "name": "long_true_2",
+        "in": {
+          "s1": "abcdefghijklmn",
+          "s2": "efghijklmnabcd"
+        },
+        "out": true
+      },
+      {
+        "name": "long_false_2",
+        "in": {
+          "s1": "abcdefghijklmn",
+          "s2": "efghijklmnabce"
+        },
+        "out": false
+      },
+      {
+        "name": "long_true_3",
+        "in": {
+          "s1": "aabbccddeeff",
+          "s2": "ddeeffaabbcc"
+        },
+        "out": true
+      },
+      {
+        "name": "long_false_3",
+        "in": {
+          "s1": "aabbccddeeff",
+          "s2": "ddeeffaabbcd"
+        },
+        "out": false
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s1 = \"great\"\ns2 = \"rgeat\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcde\"\ns2 = \"caebd\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"a\"\ns2 = \"a\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"ab\"\ns2 = \"ba\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"bdac\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"aabb\"\ns2 = \"bbaa\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aaab\"\ns2 = \"abac\"",
+      "output": "false"
+    }
+  ]
+}

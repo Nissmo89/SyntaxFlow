@@ -1,0 +1,539 @@
+{
+  "id": "substring_with_concatenation_of_all_words",
+  "title": "Substring with Concatenation of All Words",
+  "difficulty": "Hard",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "description": "<p>You are given a string <code>s</code> and an array of strings <code>words</code>. All the strings of <code>words</code> are of <strong>the same length</strong>.</p>\n\n<p>A <strong>concatenated string</strong> is a string that exactly contains all the strings of any permutation of <code>words</code> concatenated.</p>\n\n<ul>\n\t<li>For example, if <code>words = [&quot;ab&quot;,&quot;cd&quot;,&quot;ef&quot;]</code>, then <code>&quot;abcdef&quot;</code>, <code>&quot;abefcd&quot;</code>, <code>&quot;cdabef&quot;</code>, <code>&quot;cdefab&quot;</code>, <code>&quot;efabcd&quot;</code>, and <code>&quot;efcdab&quot;</code> are all concatenated strings. <code>&quot;acdbef&quot;</code> is not a concatenated string because it is not the concatenation of any permutation of <code>words</code>.</li>\n</ul>\n\n<p>Return an array of <em>the starting indices</em> of all the concatenated substrings in <code>s</code>. You can return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;barfoothefoobarman&quot;, words = [&quot;foo&quot;,&quot;bar&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[0,9]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The substring starting at 0 is <code>&quot;barfoo&quot;</code>. It is the concatenation of <code>[&quot;bar&quot;,&quot;foo&quot;]</code> which is a permutation of <code>words</code>.<br />\nThe substring starting at 9 is <code>&quot;foobar&quot;</code>. It is the concatenation of <code>[&quot;foo&quot;,&quot;bar&quot;]</code> which is a permutation of <code>words</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;wordgoodgoodgoodbestword&quot;, words = [&quot;word&quot;,&quot;good&quot;,&quot;best&quot;,&quot;word&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There is no concatenated substring.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;barfoofoobarthefoobarman&quot;, words = [&quot;bar&quot;,&quot;foo&quot;,&quot;the&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[6,9,12]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The substring starting at 6 is <code>&quot;foobarthe&quot;</code>. It is the concatenation of <code>[&quot;foo&quot;,&quot;bar&quot;,&quot;the&quot;]</code>.<br />\nThe substring starting at 9 is <code>&quot;barthefoo&quot;</code>. It is the concatenation of <code>[&quot;bar&quot;,&quot;the&quot;,&quot;foo&quot;]</code>.<br />\nThe substring starting at 12 is <code>&quot;thefoobar&quot;</code>. It is the concatenation of <code>[&quot;the&quot;,&quot;foo&quot;,&quot;bar&quot;]</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= words.length &lt;= 5000</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 30</code></li>\n\t<li><code>s</code> and <code>words[i]</code> consist of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Substring with Concatenation of All Words' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "1 <= words.length <= 5000",
+    "1 <= words[i].length <= 30",
+    "s and words[i] consist of lowercase English letters."
+  ],
+  "hints": [],
+  "method": {
+    "name": "findSubstring",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "words",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 30,
+      "title": "substring-with-concatenation-of-all-words",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().findSubstring({s}, {words})",
+        "rust": "Solution::find_substring({s}, {words})",
+        "python3": "Solution().findSubstring({s}, {words})",
+        "python2": "Solution().findSubstring({s}, {words})",
+        "ruby": "find_substring({s}, {words})",
+        "java": "new Solution().findSubstring({s}, {words})",
+        "csharp": "new Solution().FindSubstring({s}, {words})",
+        "kotlin": "Solution().findSubstring({s}, {words})",
+        "go": "findSubstring({s}, {words})",
+        "dart": "Solution().findSubstring({s}, {words})",
+        "swift": "Solution().findSubstring({s}, {words})",
+        "typescript": "findSubstring({s}, {words})"
+      }
+    },
+    "judge": {
+      "type": "ignore_order"
+    },
+    "limits": {
+      "time_ms": 2000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(s, words, {result})",
+        "checker": "from collections import Counter, defaultdict\n\nclass Checker:\n    def check(self, s, words, result):\n        if not isinstance(result, list):\n            return False\n        if any(not isinstance(x, int) for x in result):\n            return False\n        if len(result) != len(set(result)):\n            return False\n\n        if not s or not words:\n            return result == []\n\n        word_len = len(words[0])\n        if word_len == 0:\n            return False\n        if any(len(w) != word_len for w in words):\n            return False\n\n        word_count = len(words)\n        target = Counter(words)\n        expected = []\n\n        for offset in range(word_len):\n            left = offset\n            right = offset\n            window = defaultdict(int)\n            used = 0\n\n            while right + word_len <= len(s):\n                word = s[right:right + word_len]\n                right += word_len\n\n                if word in target:\n                    window[word] += 1\n                    used += 1\n                    while window[word] > target[word]:\n                        left_word = s[left:left + word_len]\n                        window[left_word] -= 1\n                        left += word_len\n                        used -= 1\n                    if used == word_count:\n                        expected.append(left)\n                        left_word = s[left:left + word_len]\n                        window[left_word] -= 1\n                        left += word_len\n                        used -= 1\n                else:\n                    window.clear()\n                    used = 0\n                    left = right\n\n        return sorted(result) == sorted(expected)\n"
+      }
+    },
+    "seed": 30,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "barfoothefoobarman",
+          "words": [
+            "foo",
+            "bar"
+          ]
+        }
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": "wordgoodgoodgoodbestword",
+          "words": [
+            "word",
+            "good",
+            "best",
+            "word"
+          ]
+        }
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "barfoofoobarthefoobarman",
+          "words": [
+            "bar",
+            "foo",
+            "the"
+          ]
+        }
+      },
+      {
+        "name": "single_exact_match",
+        "in": {
+          "s": "barfoo",
+          "words": [
+            "bar",
+            "foo"
+          ]
+        }
+      },
+      {
+        "name": "single_reverse_match",
+        "in": {
+          "s": "foobar",
+          "words": [
+            "bar",
+            "foo"
+          ]
+        }
+      },
+      {
+        "name": "no_match_wrong_order_chars",
+        "in": {
+          "s": "acdbef",
+          "words": [
+            "ab",
+            "cd",
+            "ef"
+          ]
+        }
+      },
+      {
+        "name": "one_word_exact",
+        "in": {
+          "s": "abcde",
+          "words": [
+            "bcd"
+          ]
+        }
+      },
+      {
+        "name": "one_word_missing",
+        "in": {
+          "s": "abcde",
+          "words": [
+            "fgh"
+          ]
+        }
+      },
+      {
+        "name": "duplicate_words_basic",
+        "in": {
+          "s": "wordgoodgoodgoodbestword",
+          "words": [
+            "good",
+            "good",
+            "best",
+            "word"
+          ]
+        }
+      },
+      {
+        "name": "duplicate_words_with_overlap",
+        "in": {
+          "s": "aaaabaaaab",
+          "words": [
+            "aa",
+            "aa",
+            "ba"
+          ]
+        }
+      },
+      {
+        "name": "repeated_small_words",
+        "in": {
+          "s": "aaaaaa",
+          "words": [
+            "aa",
+            "aa",
+            "aa"
+          ]
+        }
+      },
+      {
+        "name": "repeated_small_words_offset",
+        "in": {
+          "s": "xaaaaaaay",
+          "words": [
+            "aa",
+            "aa",
+            "aa"
+          ]
+        }
+      },
+      {
+        "name": "overlapping_matches",
+        "in": {
+          "s": "foofoobarfoo",
+          "words": [
+            "foo",
+            "foo",
+            "bar"
+          ]
+        }
+      },
+      {
+        "name": "multiple_offsets",
+        "in": {
+          "s": "aaabbbcccaaabbbccc",
+          "words": [
+            "aaa",
+            "bbb",
+            "ccc"
+          ]
+        }
+      },
+      {
+        "name": "multiple_offsets_shifted",
+        "in": {
+          "s": "xaaabbbcccaaabbbcccy",
+          "words": [
+            "aaa",
+            "bbb",
+            "ccc"
+          ]
+        }
+      },
+      {
+        "name": "all_same_word",
+        "in": {
+          "s": "abcabcabcabc",
+          "words": [
+            "abc",
+            "abc",
+            "abc",
+            "abc"
+          ]
+        }
+      },
+      {
+        "name": "all_same_word_with_noise",
+        "in": {
+          "s": "zabcabcabcabcz",
+          "words": [
+            "abc",
+            "abc",
+            "abc"
+          ]
+        }
+      },
+      {
+        "name": "long_word_len_30",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabcd",
+          "words": [
+            "abcdefghijklmnopqrstuvwxyzabcd"
+          ]
+        }
+      },
+      {
+        "name": "long_word_len_30_missing",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyzabce",
+          "words": [
+            "abcdefghijklmnopqrstuvwxyzabcd"
+          ]
+        }
+      },
+      {
+        "name": "prefix_suffix_noise",
+        "in": {
+          "s": "zzbarfoobaz",
+          "words": [
+            "bar",
+            "foo"
+          ]
+        }
+      },
+      {
+        "name": "internal_noise_breaks_window",
+        "in": {
+          "s": "barfooxthebarfoo",
+          "words": [
+            "bar",
+            "foo",
+            "the"
+          ]
+        }
+      },
+      {
+        "name": "windows_at_end",
+        "in": {
+          "s": "zzbarfoothe",
+          "words": [
+            "bar",
+            "foo",
+            "the"
+          ]
+        }
+      },
+      {
+        "name": "windows_at_beginning",
+        "in": {
+          "s": "barfoothezz",
+          "words": [
+            "bar",
+            "foo",
+            "the"
+          ]
+        }
+      },
+      {
+        "name": "many_repeated_hits",
+        "in": {
+          "s": "catdogcatdogcatdog",
+          "words": [
+            "cat",
+            "dog",
+            "cat"
+          ]
+        }
+      },
+      {
+        "name": "many_repeated_hits_2",
+        "in": {
+          "s": "dogcatcatdogcat",
+          "words": [
+            "cat",
+            "dog",
+            "cat"
+          ]
+        }
+      },
+      {
+        "name": "no_match_due_length",
+        "in": {
+          "s": "short",
+          "words": [
+            "longer"
+          ]
+        }
+      },
+      {
+        "name": "no_match_due_characters",
+        "in": {
+          "s": "abcabcabc",
+          "words": [
+            "abd",
+            "cba"
+          ]
+        }
+      },
+      {
+        "name": "unsatisfied_duplicate_requirement",
+        "in": {
+          "s": "aaaabbbb",
+          "words": [
+            "aa",
+            "ab",
+            "bb"
+          ]
+        }
+      },
+      {
+        "name": "repeated_pattern_exact",
+        "in": {
+          "s": "abcdefabcdefabcdef",
+          "words": [
+            "abc",
+            "def",
+            "abc"
+          ]
+        }
+      },
+      {
+        "name": "repeated_pattern_offset",
+        "in": {
+          "s": "xabcdefabcdefabcdefy",
+          "words": [
+            "abc",
+            "def",
+            "abc"
+          ]
+        }
+      },
+      {
+        "name": "adjacent_matches",
+        "in": {
+          "s": "foobarbazfoobarbaz",
+          "words": [
+            "foo",
+            "bar",
+            "baz"
+          ]
+        }
+      },
+      {
+        "name": "adjacent_matches_shifted",
+        "in": {
+          "s": "zfoobarbazfoobarbaz",
+          "words": [
+            "foo",
+            "bar",
+            "baz"
+          ]
+        }
+      },
+      {
+        "name": "single_char_words",
+        "in": {
+          "s": "aaabbbcccabc",
+          "words": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      {
+        "name": "single_char_words_duplicates",
+        "in": {
+          "s": "aaabbbcccaaa",
+          "words": [
+            "a",
+            "a",
+            "b"
+          ]
+        }
+      },
+      {
+        "name": "near_max_no_match",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "words": [
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "cccccccccccccccccccccccccccccc"
+          ]
+        }
+      },
+      {
+        "name": "near_max_repeated_blocks",
+        "in": {
+          "s": "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij",
+          "words": [
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij",
+            "abcdefghij"
+          ]
+        }
+      },
+      {
+        "name": "near_max_overlapping_repeats",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "words": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        }
+      },
+      {
+        "name": "mixed_length_boundary_valid",
+        "in": {
+          "s": "qwertyqwertyuiopqwerty",
+          "words": [
+            "qwerty",
+            "qwerty"
+          ]
+        }
+      },
+      {
+        "name": "mixed_length_boundary_missing",
+        "in": {
+          "s": "qwertyuiopasdfgh",
+          "words": [
+            "qwerty",
+            "uiopas",
+            "dfghjk"
+          ]
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"barfoothefoobarman\"\nwords = [\"foo\", \"bar\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"wordgoodgoodgoodbestword\"\nwords = [\"word\", \"good\", \"best\", \"word\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"barfoofoobarthefoobarman\"\nwords = [\"bar\", \"foo\", \"the\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"barfoo\"\nwords = [\"bar\", \"foo\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"foobar\"\nwords = [\"bar\", \"foo\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"acdbef\"\nwords = [\"ab\", \"cd\", \"ef\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcde\"\nwords = [\"bcd\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcde\"\nwords = [\"fgh\"]",
+      "output": ""
+    }
+  ]
+}

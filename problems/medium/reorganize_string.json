@@ -1,0 +1,364 @@
+{
+  "id": "reorganize_string",
+  "title": "Reorganize String",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "description": "<p>Given a string <code>s</code>, rearrange the characters of <code>s</code> so that any two adjacent characters are not the same.</p>\n\n<p>Return <em>any possible rearrangement of</em> <code>s</code> <em>or return</em> <code>&quot;&quot;</code> <em>if not possible</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = \"aab\"\n<strong>Output:</strong> \"aba\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = \"aaab\"\n<strong>Output:</strong> \"\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 500</code></li>\n\t<li><code>s</code> consists of lowercase English letters.</li>\n</ul>\n",
+  "task": "Solve the 'Reorganize String' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Alternate placing the most common letters."
+  ],
+  "method": {
+    "name": "reorganizeString",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 767,
+      "title": "reorganize-string",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().reorganizeString({s})",
+        "rust": "Solution::reorganize_string({s})",
+        "python3": "Solution().reorganizeString({s})",
+        "python2": "Solution().reorganizeString({s})",
+        "ruby": "reorganize_string({s})",
+        "java": "new Solution().reorganizeString({s})",
+        "csharp": "new Solution().ReorganizeString({s})",
+        "kotlin": "Solution().reorganizeString({s})",
+        "go": "reorganizeString({s})",
+        "dart": "Solution().reorganizeString({s})",
+        "swift": "Solution().reorganizeString({s})",
+        "typescript": "reorganizeString({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 128
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(s, {result})",
+        "checker": "from collections import Counter\n\nclass Checker:\n    def check(self, s, result):\n        if not isinstance(result, str):\n            return False\n\n        n = len(s)\n        counts = Counter(s)\n        possible = max(counts.values()) <= (n + 1) // 2\n\n        if result == \"\":\n            return not possible\n\n        if not possible:\n            return False\n\n        if len(result) != n:\n            return False\n\n        if Counter(result) != counts:\n            return False\n\n        for i in range(1, n):\n            if result[i] == result[i - 1]:\n                return False\n\n        return True\n"
+      }
+    },
+    "seed": 767,
+    "tests": [
+      {
+        "name": "example_possible_aab",
+        "in": {
+          "s": "aab"
+        }
+      },
+      {
+        "name": "example_impossible_aaab",
+        "in": {
+          "s": "aaab"
+        }
+      },
+      {
+        "name": "single_char",
+        "in": {
+          "s": "a"
+        }
+      },
+      {
+        "name": "two_distinct",
+        "in": {
+          "s": "ab"
+        }
+      },
+      {
+        "name": "two_same_impossible",
+        "in": {
+          "s": "aa"
+        }
+      },
+      {
+        "name": "all_unique_small",
+        "in": {
+          "s": "abc"
+        }
+      },
+      {
+        "name": "simple_balanced",
+        "in": {
+          "s": "aabb"
+        }
+      },
+      {
+        "name": "threshold_possible_len5",
+        "in": {
+          "s": "aaabc"
+        }
+      },
+      {
+        "name": "threshold_impossible_len5",
+        "in": {
+          "s": "aaaab"
+        }
+      },
+      {
+        "name": "known_case_vvvlo",
+        "in": {
+          "s": "vvvlo"
+        }
+      },
+      {
+        "name": "possible_six_chars",
+        "in": {
+          "s": "aaabbc"
+        }
+      },
+      {
+        "name": "impossible_seven_chars",
+        "in": {
+          "s": "aaaaabc"
+        }
+      },
+      {
+        "name": "balanced_triples",
+        "in": {
+          "s": "aaabbbccc"
+        }
+      },
+      {
+        "name": "skewed_but_possible",
+        "in": {
+          "s": "zzzzxyyy"
+        }
+      },
+      {
+        "name": "skewed_and_impossible",
+        "in": {
+          "s": "zzzzzyy"
+        }
+      },
+      {
+        "name": "already_unique_longer",
+        "in": {
+          "s": "qwerty"
+        }
+      },
+      {
+        "name": "odd_balanced_two_letters",
+        "in": {
+          "s": "bbbaa"
+        }
+      },
+      {
+        "name": "palindrome_counts",
+        "in": {
+          "s": "baaba"
+        }
+      },
+      {
+        "name": "two_heavy_plus_single",
+        "in": {
+          "s": "cccccddddde"
+        }
+      },
+      {
+        "name": "one_too_heavy",
+        "in": {
+          "s": "cccccccdddde"
+        }
+      },
+      {
+        "name": "full_alphabet",
+        "in": {
+          "s": "abcdefghijklmnopqrstuvwxyz"
+        }
+      },
+      {
+        "name": "equal_two_blocks",
+        "in": {
+          "s": "aaaaabbbbb"
+        }
+      },
+      {
+        "name": "equal_blocks_plus_tail",
+        "in": {
+          "s": "aaaaabbbbbc"
+        }
+      },
+      {
+        "name": "layered_frequencies",
+        "in": {
+          "s": "aaaabbbbcccd"
+        }
+      },
+      {
+        "name": "repeated_pairs_and_triples",
+        "in": {
+          "s": "mmnnnooopp"
+        }
+      },
+      {
+        "name": "four_groups_one_dominant",
+        "in": {
+          "s": "xxyyzzzzaa"
+        }
+      },
+      {
+        "name": "all_same_medium",
+        "in": {
+          "s": "mmmmmmmmmmm"
+        }
+      },
+      {
+        "name": "near_max_all_same",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      {
+        "name": "near_max_two_equal",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      {
+        "name": "near_max_two_threshold_impossible",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      {
+        "name": "near_max_three_balanced",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      {
+        "name": "near_max_three_skew_possible",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      {
+        "name": "near_max_three_skew_impossible",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      {
+        "name": "near_max_almost_threshold",
+        "in": {
+          "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+        }
+      },
+      {
+        "name": "generated_len_1",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 1,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated_len_7",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 7,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated_len_25",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 25,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated_len_120",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 120,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      },
+      {
+        "name": "generated_len_500",
+        "in": {
+          "s": {
+            "gen": "str",
+            "len": 500,
+            "alphabet": "abcdefghijklmnopqrstuvwxyz"
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"aab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"a\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"ab\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aabb\"",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaabc\"",
+      "output": ""
+    }
+  ]
+}

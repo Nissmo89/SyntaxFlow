@@ -1,0 +1,868 @@
+{
+  "id": "car_fleet",
+  "title": "Car Fleet",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Stack",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "description": "<p>There are <code>n</code> cars at given miles away from the starting mile 0, traveling to reach the mile <code>target</code>.</p>\n\n<p>You are given two integer arrays&nbsp;<code>position</code> and <code>speed</code>, both of length <code>n</code>, where <code>position[i]</code> is the starting mile of the <code>i<sup>th</sup></code> car and <code>speed[i]</code> is the speed of the <code>i<sup>th</sup></code> car in miles per hour.</p>\n\n<p>A car cannot pass another car, but it can catch up and then travel next to it at the speed of the slower car.</p>\n\n<p>A <strong>car fleet</strong> is a single car or a group of cars driving next to each other. The speed of the car fleet is the <strong>minimum</strong> speed of any car in the fleet.</p>\n\n<p>If a car catches up to a car fleet at the mile <code>target</code>, it will still be considered as part of the car fleet.</p>\n\n<p>Return the number of car fleets that will arrive at the destination.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting each other at 12. The fleet forms at <code>target</code>.</li>\n\t<li>The car starting at 0 (speed 1) does not catch up to any other car, so it is a fleet by itself.</li>\n\t<li>The cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches <code>target</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 10, position = [3], speed = [3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\nThere is only one car, hence there is only one fleet.</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 100, position = [0,2,4], speed = [4,2,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at 4. The car starting at 4 (speed 1) travels to 5.</li>\n\t<li>Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches <code>target</code>.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == position.length == speed.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt; target &lt;= 10<sup>6</sup></code></li>\n\t<li><code>0 &lt;= position[i] &lt; target</code></li>\n\t<li>All the values of <code>position</code> are <strong>unique</strong>.</li>\n\t<li><code>0 &lt; speed[i] &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Car Fleet' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "n == position.length == speed.length",
+    "1 <= n <= 105",
+    "0 < target <= 106",
+    "0 <= position[i] < target",
+    "All the values of position are unique.",
+    "0 < speed[i] <= 106"
+  ],
+  "hints": [],
+  "method": {
+    "name": "carFleet",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "position",
+        "type": "array"
+      },
+      {
+        "name": "speed",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 853,
+      "title": "car-fleet",
+      "params": {
+        "target": {
+          "type": "int"
+        },
+        "position": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        },
+        "speed": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().carFleet({target}, {position}, {speed})",
+        "rust": "Solution::car_fleet({target}, {position}, {speed})",
+        "python3": "Solution().carFleet({target}, {position}, {speed})",
+        "python2": "Solution().carFleet({target}, {position}, {speed})",
+        "ruby": "car_fleet({target}, {position}, {speed})",
+        "java": "new Solution().carFleet({target}, {position}, {speed})",
+        "csharp": "new Solution().CarFleet({target}, {position}, {speed})",
+        "kotlin": "Solution().carFleet({target}, {position}, {speed})",
+        "go": "carFleet({target}, {position}, {speed})",
+        "dart": "Solution().carFleet({target}, {position}, {speed})",
+        "swift": "Solution().carFleet({target}, {position}, {speed})",
+        "typescript": "carFleet({target}, {position}, {speed})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().carFleet(target, position, speed, {result})",
+        "checker": "class Checker:\n    def carFleet(self, target, position, speed, result):\n        if not isinstance(result, int):\n            return False\n        cars = sorted(zip(position, speed), reverse=True)\n        fleets = 0\n        last_time = -1\n        for p, s in cars:\n            t = (target - p) / s\n            if t > last_time:\n                fleets += 1\n                last_time = t\n        return result == fleets\n"
+      }
+    },
+    "seed": 853,
+    "tests": [
+      {
+        "name": "ex1",
+        "in": {
+          "target": 12,
+          "position": [
+            10,
+            8,
+            0,
+            5,
+            3
+          ],
+          "speed": [
+            2,
+            4,
+            1,
+            1,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "ex2",
+        "in": {
+          "target": 10,
+          "position": [
+            3
+          ],
+          "speed": [
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "ex3",
+        "in": {
+          "target": 100,
+          "position": [
+            0,
+            2,
+            4
+          ],
+          "speed": [
+            4,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_cars_merge",
+        "in": {
+          "target": 10,
+          "position": [
+            6,
+            8
+          ],
+          "speed": [
+            3,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "three_cars_one_fleet",
+        "in": {
+          "target": 10,
+          "position": [
+            0,
+            4,
+            2
+          ],
+          "speed": [
+            2,
+            1,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "three_distinct",
+        "in": {
+          "target": 17,
+          "position": [
+            8,
+            12,
+            16
+          ],
+          "speed": [
+            4,
+            2,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "chain_merge",
+        "in": {
+          "target": 20,
+          "position": [
+            5,
+            10,
+            15
+          ],
+          "speed": [
+            5,
+            4,
+            3
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "four_all_separate",
+        "in": {
+          "target": 30,
+          "position": [
+            0,
+            5,
+            10,
+            15
+          ],
+          "speed": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "one_fleet_by_slow_front",
+        "in": {
+          "target": 30,
+          "position": [
+            10,
+            20,
+            25
+          ],
+          "speed": [
+            5,
+            4,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_merge",
+        "in": {
+          "target": 50,
+          "position": [
+            10,
+            20,
+            30,
+            40
+          ],
+          "speed": [
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "mixed_two",
+        "in": {
+          "target": 25,
+          "position": [
+            1,
+            3,
+            6,
+            10
+          ],
+          "speed": [
+            2,
+            1,
+            4,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all_one",
+        "in": {
+          "target": 40,
+          "position": [
+            2,
+            8,
+            14,
+            20
+          ],
+          "speed": [
+            6,
+            5,
+            4,
+            3
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "five_all",
+        "in": {
+          "target": 100,
+          "position": [
+            10,
+            30,
+            50,
+            70,
+            90
+          ],
+          "speed": [
+            10,
+            9,
+            8,
+            7,
+            6
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "five_separate",
+        "in": {
+          "target": 100,
+          "position": [
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "speed": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "two_fleets",
+        "in": {
+          "target": 100,
+          "position": [
+            20,
+            40,
+            60,
+            80
+          ],
+          "speed": [
+            2,
+            4,
+            1,
+            3
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "short_two",
+        "in": {
+          "target": 12,
+          "position": [
+            6,
+            4,
+            2
+          ],
+          "speed": [
+            4,
+            6,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "small_one",
+        "in": {
+          "target": 13,
+          "position": [
+            0,
+            5,
+            8
+          ],
+          "speed": [
+            4,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two_equal_times",
+        "in": {
+          "target": 100,
+          "position": [
+            0,
+            50
+          ],
+          "speed": [
+            1,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "faster_back_catches_front",
+        "in": {
+          "target": 100,
+          "position": [
+            0,
+            50
+          ],
+          "speed": [
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "monotone_positions",
+        "in": {
+          "target": 100,
+          "position": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "speed": [
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "reverse_positions",
+        "in": {
+          "target": 100,
+          "position": [
+            90,
+            80,
+            70,
+            60
+          ],
+          "speed": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "all_equal_speeds",
+        "in": {
+          "target": 100,
+          "position": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "speed": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "three_fleets",
+        "in": {
+          "target": 18,
+          "position": [
+            3,
+            6,
+            9,
+            12,
+            15
+          ],
+          "speed": [
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "all_distinct_ascending",
+        "in": {
+          "target": 15,
+          "position": [
+            1,
+            4,
+            7,
+            10,
+            13
+          ],
+          "speed": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "same_speeds_many",
+        "in": {
+          "target": 9,
+          "position": [
+            0,
+            2,
+            4,
+            6,
+            8
+          ],
+          "speed": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "many_merge",
+        "in": {
+          "target": 9,
+          "position": [
+            0,
+            2,
+            4,
+            6,
+            8
+          ],
+          "speed": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "zigzag_one",
+        "in": {
+          "target": 50,
+          "position": [
+            1,
+            10,
+            20,
+            30,
+            40
+          ],
+          "speed": [
+            10,
+            1,
+            10,
+            1,
+            10
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "five_same",
+        "in": {
+          "target": 60,
+          "position": [
+            5,
+            15,
+            25,
+            35,
+            45
+          ],
+          "speed": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "slow_front_blocks",
+        "in": {
+          "target": 60,
+          "position": [
+            5,
+            10,
+            20,
+            30,
+            50
+          ],
+          "speed": [
+            6,
+            5,
+            4,
+            3,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "increasing_speed_positions",
+        "in": {
+          "target": 30,
+          "position": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "speed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "decreasing_speed_positions",
+        "in": {
+          "target": 30,
+          "position": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "speed": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "six_all",
+        "in": {
+          "target": 100,
+          "position": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "speed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "six_one",
+        "in": {
+          "target": 100,
+          "position": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "speed": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "six_stacked",
+        "in": {
+          "target": 70,
+          "position": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "speed": [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "six_separate",
+        "in": {
+          "target": 70,
+          "position": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "speed": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "mixed_small",
+        "in": {
+          "target": 100,
+          "position": [
+            1,
+            25,
+            50,
+            75
+          ],
+          "speed": [
+            24,
+            1,
+            25,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "more_fleets",
+        "in": {
+          "target": 40,
+          "position": [
+            5,
+            15,
+            25,
+            35
+          ],
+          "speed": [
+            3,
+            1,
+            2,
+            4
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "clustered",
+        "in": {
+          "target": 80,
+          "position": [
+            2,
+            18,
+            33,
+            47,
+            60
+          ],
+          "speed": [
+            8,
+            7,
+            6,
+            5,
+            4
+          ]
+        },
+        "out": 5
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "target = 12\nposition = [10, 8, 0, 5, 3]\nspeed = [2, 4, 1, 1, 3]",
+      "output": "3"
+    },
+    {
+      "input": "target = 10\nposition = [3]\nspeed = [3]",
+      "output": "1"
+    },
+    {
+      "input": "target = 100\nposition = [0, 2, 4]\nspeed = [4, 2, 1]",
+      "output": "1"
+    },
+    {
+      "input": "target = 10\nposition = [6, 8]\nspeed = [3, 2]",
+      "output": "2"
+    },
+    {
+      "input": "target = 10\nposition = [0, 4, 2]\nspeed = [2, 1, 3]",
+      "output": "1"
+    },
+    {
+      "input": "target = 17\nposition = [8, 12, 16]\nspeed = [4, 2, 1]",
+      "output": "2"
+    },
+    {
+      "input": "target = 20\nposition = [5, 10, 15]\nspeed = [5, 4, 3]",
+      "output": "3"
+    },
+    {
+      "input": "target = 30\nposition = [0, 5, 10, 15]\nspeed = [1, 2, 3, 4]",
+      "output": "4"
+    }
+  ]
+}

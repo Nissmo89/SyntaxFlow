@@ -1,0 +1,350 @@
+{
+  "id": "palindrome_number",
+  "title": "Palindrome Number",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Math"
+  ],
+  "description": "<p>Given an integer <code>x</code>, return <code>true</code><em> if </em><code>x</code><em> is a </em><span class=\"cursor-pointer relative text-dark-blue-s text-sm\" data-keyword=\"palindrome-integer\"><button aria-controls=\"radix-_r_1m_\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"\" data-state=\"closed\" type=\"button\"><em><strong>palindrome</strong></em></button></span><em>, and </em><code>false</code><em> otherwise</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> x = 121\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 121 reads as 121 from left to right and from right to left.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> x = -121\n<strong>Output:</strong> false\n<strong>Explanation:</strong> From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> x = 10\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Reads 01 from right to left. Therefore it is not a palindrome.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>-2<sup>31</sup> &lt;= x &lt;= 2<sup>31</sup> - 1</code></li> </ul> <p> </p> <strong>Follow up:</strong> Could you solve it without converting the integer to a string?",
+  "hints": [
+    "Beware of overflow when you reverse the integer."
+  ],
+  "method": {
+    "name": "isPalindrome",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 9,
+      "title": "palindrome-number",
+      "params": {
+        "x": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().isPalindrome({x})",
+        "rust": "Solution::is_palindrome({x})",
+        "python3": "Solution().isPalindrome({x})",
+        "python2": "Solution().isPalindrome({x})",
+        "ruby": "is_palindrome({x})",
+        "java": "new Solution().isPalindrome({x})",
+        "csharp": "new Solution().IsPalindrome({x})",
+        "kotlin": "Solution().isPalindrome({x})",
+        "go": "isPalindrome({x})",
+        "dart": "Solution().isPalindrome({x})",
+        "swift": "Solution().isPalindrome({x})",
+        "typescript": "isPalindrome({x})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().isPalindrome(x, {result})",
+        "checker": "class Checker:\n    def isPalindrome(self, x, result):\n        if not isinstance(result, bool):\n            return False\n        if x < 0:\n            expected = False\n        else:\n            num = x\n            rev = 0\n            while num != 0:\n                rev = rev * 10 + num % 10\n                num //= 10\n            expected = rev == x\n        return result == expected\n"
+      }
+    },
+    "seed": 9,
+    "tests": [
+      {
+        "name": "Example 1",
+        "in": {
+          "x": 121
+        },
+        "out": true
+      },
+      {
+        "name": "Example 2",
+        "in": {
+          "x": -121
+        },
+        "out": false
+      },
+      {
+        "name": "Example 3",
+        "in": {
+          "x": 10
+        },
+        "out": false
+      },
+      {
+        "name": "Zero",
+        "in": {
+          "x": 0
+        },
+        "out": true
+      },
+      {
+        "name": "Single digit positive",
+        "in": {
+          "x": 7
+        },
+        "out": true
+      },
+      {
+        "name": "Single digit negative",
+        "in": {
+          "x": -7
+        },
+        "out": false
+      },
+      {
+        "name": "Two digits palindrome",
+        "in": {
+          "x": 11
+        },
+        "out": true
+      },
+      {
+        "name": "Two digits non-palindrome",
+        "in": {
+          "x": 12
+        },
+        "out": false
+      },
+      {
+        "name": "Trailing zero not palindrome",
+        "in": {
+          "x": 100
+        },
+        "out": false
+      },
+      {
+        "name": "Odd length palindrome",
+        "in": {
+          "x": 12321
+        },
+        "out": true
+      },
+      {
+        "name": "Even length palindrome",
+        "in": {
+          "x": 1221
+        },
+        "out": true
+      },
+      {
+        "name": "Odd length non-palindrome",
+        "in": {
+          "x": 12331
+        },
+        "out": false
+      },
+      {
+        "name": "Even length non-palindrome",
+        "in": {
+          "x": 1231
+        },
+        "out": false
+      },
+      {
+        "name": "Repeated digits palindrome",
+        "in": {
+          "x": 7777777
+        },
+        "out": true
+      },
+      {
+        "name": "Repeated digits non-palindrome",
+        "in": {
+          "x": 7777778
+        },
+        "out": false
+      },
+      {
+        "name": "Middle zero palindrome",
+        "in": {
+          "x": 1002001
+        },
+        "out": true
+      },
+      {
+        "name": "Middle zero non-palindrome",
+        "in": {
+          "x": 1002101
+        },
+        "out": false
+      },
+      {
+        "name": "Large even palindrome",
+        "in": {
+          "x": 2147447412
+        },
+        "out": true
+      },
+      {
+        "name": "Large even non-palindrome",
+        "in": {
+          "x": 2147447413
+        },
+        "out": false
+      },
+      {
+        "name": "Large odd palindrome",
+        "in": {
+          "x": 2147412
+        },
+        "out": true
+      },
+      {
+        "name": "Large odd non-palindrome",
+        "in": {
+          "x": 2147413
+        },
+        "out": false
+      },
+      {
+        "name": "Max int",
+        "in": {
+          "x": 2147483647
+        },
+        "out": false
+      },
+      {
+        "name": "Min int",
+        "in": {
+          "x": -2147483648
+        },
+        "out": false
+      },
+      {
+        "name": "Near max palindrome",
+        "in": {
+          "x": 2000000002
+        },
+        "out": true
+      },
+      {
+        "name": "Near max non-palindrome",
+        "in": {
+          "x": 2000000003
+        },
+        "out": false
+      },
+      {
+        "name": "Power of ten plus one",
+        "in": {
+          "x": 1000000001
+        },
+        "out": true
+      },
+      {
+        "name": "Power of ten minus one",
+        "in": {
+          "x": 999999999
+        },
+        "out": true
+      },
+      {
+        "name": "Power of ten minus one variant",
+        "in": {
+          "x": 999999998
+        },
+        "out": false
+      },
+      {
+        "name": "Palindrome with interior zeroes",
+        "in": {
+          "x": 1003001
+        },
+        "out": true
+      },
+      {
+        "name": "Palindrome with interior zeroes valid",
+        "in": {
+          "x": 1003101
+        },
+        "out": false
+      },
+      {
+        "name": "Asymmetric digits",
+        "in": {
+          "x": 123454321
+        },
+        "out": true
+      },
+      {
+        "name": "Asymmetric digits non-palindrome",
+        "in": {
+          "x": 123454322
+        },
+        "out": false
+      },
+      {
+        "name": "Even digits with zeros",
+        "in": {
+          "x": 1000000001
+        },
+        "out": true
+      },
+      {
+        "name": "Even digits with one mismatch",
+        "in": {
+          "x": 1000000002
+        },
+        "out": false
+      },
+      {
+        "name": "Short negative with zero",
+        "in": {
+          "x": -101
+        },
+        "out": false
+      },
+      {
+        "name": "Short positive with zero",
+        "in": {
+          "x": 101
+        },
+        "out": true
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "x = 121",
+      "output": "true"
+    },
+    {
+      "input": "x = -121",
+      "output": "false"
+    },
+    {
+      "input": "x = 10",
+      "output": "false"
+    },
+    {
+      "input": "x = 0",
+      "output": "true"
+    },
+    {
+      "input": "x = 7",
+      "output": "true"
+    },
+    {
+      "input": "x = -7",
+      "output": "false"
+    },
+    {
+      "input": "x = 11",
+      "output": "true"
+    },
+    {
+      "input": "x = 12",
+      "output": "false"
+    }
+  ]
+}

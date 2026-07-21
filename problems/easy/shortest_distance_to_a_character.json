@@ -1,0 +1,658 @@
+{
+  "id": "shortest_distance_to_a_character",
+  "title": "Shortest Distance to a Character",
+  "difficulty": "Easy",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "description": "<p>Given a string <code>s</code> and a character <code>c</code> that occurs in <code>s</code>, return <em>an array of integers </em><code>answer</code><em> where </em><code>answer.length == s.length</code><em> and </em><code>answer[i]</code><em> is the <strong>distance</strong> from index </em><code>i</code><em> to the <strong>closest</strong> occurrence of character </em><code>c</code><em> in </em><code>s</code>.</p> <p>The <strong>distance</strong> between two indices <code>i</code> and <code>j</code> is <code>abs(i - j)</code>, where <code>abs</code> is the absolute value function.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> s = \"loveleetcode\", c = \"e\"\n<strong>Output:</strong> [3,2,1,0,1,0,0,1,2,2,1,0]\n<strong>Explanation:</strong> The character 'e' appears at indices 3, 5, 6, and 11 (0-indexed).\nThe closest occurrence of 'e' for index 0 is at index 3, so the distance is abs(0 - 3) = 3.\nThe closest occurrence of 'e' for index 1 is at index 3, so the distance is abs(1 - 3) = 2.\nFor index 4, there is a tie between the 'e' at index 3 and the 'e' at index 5, but the distance is still the same: abs(4 - 3) == abs(4 - 5) = 1.\nThe closest occurrence of 'e' for index 8 is at index 6, so the distance is abs(8 - 6) = 2.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> s = \"aaab\", c = \"b\"\n<strong>Output:</strong> [3,2,1,0]\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li> <li><code>s[i]</code> and <code>c</code> are lowercase English letters.</li> <li>It is guaranteed that <code>c</code> occurs at least once in <code>s</code>.</li> </ul>",
+  "hints": [],
+  "method": {
+    "name": "shortestToChar",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      },
+      {
+        "name": "c",
+        "type": "char"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 821,
+      "title": "shortest-distance-to-a-character",
+      "params": {
+        "s": {
+          "type": "string"
+        },
+        "c": {
+          "type": "char"
+        }
+      },
+      "call": {
+        "cpp": "Solution().shortestToChar({s}, {c})",
+        "rust": "Solution::shortest_to_char({s}, {c})",
+        "python3": "Solution().shortestToChar({s}, {c})",
+        "python2": "Solution().shortestToChar({s}, {c})",
+        "ruby": "shortest_to_char({s}, {c})",
+        "java": "new Solution().shortestToChar({s}, {c})",
+        "csharp": "new Solution().ShortestToChar({s}, {c})",
+        "kotlin": "Solution().shortestToChar({s}, {c})",
+        "go": "shortestToChar({s}, {c})",
+        "dart": "Solution().shortestToChar({s}, {c})",
+        "swift": "Solution().shortestToChar({s}, {c})",
+        "typescript": "shortestToChar({s}, {c})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check({result})",
+        "checker": "class Checker:\n    def check(self, result):\n        return isinstance(result, list)\n"
+      }
+    },
+    "seed": 821,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "s": "loveleetcode",
+          "c": "e"
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          2,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "s": "aaab",
+          "c": "b"
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "single",
+        "in": {
+          "s": "a",
+          "c": "a"
+        },
+        "out": [
+          0
+        ]
+      },
+      {
+        "name": "two-left",
+        "in": {
+          "s": "ab",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "two-right",
+        "in": {
+          "s": "ab",
+          "c": "b"
+        },
+        "out": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "aba-a",
+        "in": {
+          "s": "aba",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "aba-b",
+        "in": {
+          "s": "aba",
+          "c": "b"
+        },
+        "out": [
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "abca-a",
+        "in": {
+          "s": "abca",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "abca-c",
+        "in": {
+          "s": "abca",
+          "c": "c"
+        },
+        "out": [
+          2,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "all-same",
+        "in": {
+          "s": "zzzz",
+          "c": "z"
+        },
+        "out": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "trailing-target",
+        "in": {
+          "s": "zzzzy",
+          "c": "y"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "leading-target",
+        "in": {
+          "s": "yzzzz",
+          "c": "y"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "abcde-a",
+        "in": {
+          "s": "abcde",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "abcde-e",
+        "in": {
+          "s": "abcde",
+          "c": "e"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "abcde-c",
+        "in": {
+          "s": "abcde",
+          "c": "c"
+        },
+        "out": [
+          2,
+          1,
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "alternating-a",
+        "in": {
+          "s": "ababab",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "alternating-b",
+        "in": {
+          "s": "ababab",
+          "c": "b"
+        },
+        "out": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "baaaab-b",
+        "in": {
+          "s": "baaaab",
+          "c": "b"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "baaaab-a",
+        "in": {
+          "s": "baaaab",
+          "c": "a"
+        },
+        "out": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "aaaab-b",
+        "in": {
+          "s": "aaaab",
+          "c": "b"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "bbaab-a",
+        "in": {
+          "s": "bbaab",
+          "c": "a"
+        },
+        "out": [
+          2,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "cabba-c",
+        "in": {
+          "s": "cabba",
+          "c": "c"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "cabba-b",
+        "in": {
+          "s": "cabba",
+          "c": "b"
+        },
+        "out": [
+          2,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "mississippi-i",
+        "in": {
+          "s": "mississippi",
+          "c": "i"
+        },
+        "out": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "mississippi-m",
+        "in": {
+          "s": "mississippi",
+          "c": "m"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "name": "leetcode-l",
+        "in": {
+          "s": "leetcode",
+          "c": "l"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "leetcode-t",
+        "in": {
+          "s": "leetcode",
+          "c": "t"
+        },
+        "out": [
+          3,
+          2,
+          1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "prefix-run",
+        "in": {
+          "s": "eeeeabc",
+          "c": "a"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "double-center",
+        "in": {
+          "s": "abcdeedcba",
+          "c": "e"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "aabbccdd-c",
+        "in": {
+          "s": "aabbccdd",
+          "c": "c"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "repeated-block-q",
+        "in": {
+          "s": "qwertyqwerty",
+          "c": "q"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          2,
+          1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "long-tail",
+        "in": {
+          "s": "xxxxxxxxxy",
+          "c": "y"
+        },
+        "out": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "long-head",
+        "in": {
+          "s": "yxxxxxxxxx",
+          "c": "y"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "name": "symmetric-a",
+        "in": {
+          "s": "abbbbba",
+          "c": "a"
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "repeated-b",
+        "in": {
+          "s": "abcabcabc",
+          "c": "b"
+        },
+        "out": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "centered-a",
+        "in": {
+          "s": "ccccabcccc",
+          "c": "a"
+        },
+        "out": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"loveleetcode\"\nc = \"e\"",
+      "output": "[3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]"
+    },
+    {
+      "input": "s = \"aaab\"\nc = \"b\"",
+      "output": "[3, 2, 1, 0]"
+    },
+    {
+      "input": "s = \"a\"\nc = \"a\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"ab\"\nc = \"a\"",
+      "output": "[0, 1]"
+    },
+    {
+      "input": "s = \"ab\"\nc = \"b\"",
+      "output": "[1, 0]"
+    },
+    {
+      "input": "s = \"aba\"\nc = \"a\"",
+      "output": "[0, 1, 0]"
+    },
+    {
+      "input": "s = \"aba\"\nc = \"b\"",
+      "output": "[1, 0, 1]"
+    },
+    {
+      "input": "s = \"abca\"\nc = \"a\"",
+      "output": "[0, 1, 1, 0]"
+    }
+  ]
+}

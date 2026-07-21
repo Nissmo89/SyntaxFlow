@@ -1,0 +1,662 @@
+{
+  "id": "wiggle_subsequence",
+  "title": "Wiggle Subsequence",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "description": "<p>A <strong>wiggle sequence</strong> is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle sequences.</p>\n\n<ul>\n\t<li>For example, <code>[1, 7, 4, 9, 2, 5]</code> is a <strong>wiggle sequence</strong> because the differences <code>(6, -3, 5, -7, 3)</code> alternate between positive and negative.</li>\n\t<li>In contrast, <code>[1, 4, 7, 2, 5]</code> and <code>[1, 7, 4, 5, 5]</code> are not wiggle sequences. The first is not because its first two differences are positive, and the second is not because its last difference is zero.</li>\n</ul>\n\n<p>A <strong>subsequence</strong> is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order.</p>\n\n<p>Given an integer array <code>nums</code>, return <em>the length of the longest <strong>wiggle subsequence</strong> of </em><code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,7,4,9,2,5]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The entire sequence is a wiggle sequence with differences (6, -3, 5, -7, 3).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,17,5,10,13,15,10,5,16,8]\n<strong>Output:</strong> 7\n<strong>Explanation:</strong> There are several subsequences that achieve this length.\nOne is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5,6,7,8,9]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you solve this in <code>O(n)</code> time?</p>\n",
+  "task": "Solve the 'Wiggle Subsequence' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] <= 1000"
+  ],
+  "hints": [],
+  "method": {
+    "name": "wiggleMaxLength",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "nums",
+        "type": "array"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 376,
+      "title": "wiggle-subsequence",
+      "params": {
+        "nums": {
+          "type": "array",
+          "items": {
+            "type": "int"
+          }
+        }
+      },
+      "call": {
+        "cpp": "Solution().wiggleMaxLength({nums})",
+        "rust": "Solution::wiggle_max_length({nums})",
+        "python3": "Solution().wiggleMaxLength({nums})",
+        "python2": "Solution().wiggleMaxLength({nums})",
+        "ruby": "wiggle_max_length({nums})",
+        "java": "new Solution().wiggleMaxLength({nums})",
+        "csharp": "new Solution().WiggleMaxLength({nums})",
+        "kotlin": "Solution().wiggleMaxLength({nums})",
+        "go": "wiggleMaxLength({nums})",
+        "dart": "Solution().wiggleMaxLength({nums})",
+        "swift": "Solution().wiggleMaxLength({nums})",
+        "typescript": "wiggleMaxLength({nums})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().wiggleMaxLength(nums, {result})",
+        "checker": "class Checker:\n    def wiggleMaxLength(self, nums, result):\n        if not isinstance(result, int):\n            return False\n        if len(nums) < 2:\n            return result == len(nums)\n        up = 1\n        down = 1\n        for i in range(1, len(nums)):\n            if nums[i] > nums[i - 1]:\n                up = down + 1\n            elif nums[i] < nums[i - 1]:\n                down = up + 1\n        expected = up if up > down else down\n        return result == expected\n"
+      }
+    },
+    "seed": 376,
+    "tests": [
+      {
+        "name": "single-element",
+        "in": {
+          "nums": [
+            5
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "two-increasing",
+        "in": {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "two-equal",
+        "in": {
+          "nums": [
+            2,
+            2
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "example-1",
+        "in": {
+          "nums": [
+            1,
+            7,
+            4,
+            9,
+            2,
+            5
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "nums": [
+            1,
+            17,
+            5,
+            10,
+            13,
+            15,
+            10,
+            5,
+            16,
+            8
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "example-3",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "strictly-decreasing",
+        "in": {
+          "nums": [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "all-equal",
+        "in": {
+          "nums": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "out": 1
+      },
+      {
+        "name": "plateau-then-rise",
+        "in": {
+          "nums": [
+            1,
+            1,
+            2
+          ]
+        },
+        "out": 2
+      },
+      {
+        "name": "rise-plateau-fall",
+        "in": {
+          "nums": [
+            1,
+            2,
+            2,
+            1
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "repeated-plateaus",
+        "in": {
+          "nums": [
+            3,
+            3,
+            3,
+            2,
+            5
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "zero-heavy-small",
+        "in": {
+          "nums": [
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "alternating-from-zero",
+        "in": {
+          "nums": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "alternating-starting-down",
+        "in": {
+          "nums": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "alternating-long",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "up-down-up-down",
+        "in": {
+          "nums": [
+            1,
+            2,
+            3,
+            2,
+            1,
+            2,
+            3,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "fully-alternating-growth",
+        "in": {
+          "nums": [
+            1,
+            3,
+            2,
+            4,
+            3,
+            5,
+            4,
+            6
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "max-min-alternating",
+        "in": {
+          "nums": [
+            1000,
+            0,
+            1000,
+            0,
+            1000
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "zero-max-alternating",
+        "in": {
+          "nums": [
+            0,
+            1000,
+            0,
+            1000,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "rise-then-fall-run",
+        "in": {
+          "nums": [
+            4,
+            8,
+            12,
+            16,
+            15,
+            14,
+            13,
+            12
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "nontrivial-example-short",
+        "in": {
+          "nums": [
+            1,
+            4,
+            7,
+            2,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "nontrivial-example-with-equal-tail",
+        "in": {
+          "nums": [
+            1,
+            7,
+            4,
+            5,
+            5
+          ]
+        },
+        "out": 4
+      },
+      {
+        "name": "repeated-peaks",
+        "in": {
+          "nums": [
+            10,
+            20,
+            10,
+            20,
+            10,
+            20,
+            10
+          ]
+        },
+        "out": 7
+      },
+      {
+        "name": "plateaus-and-swings",
+        "in": {
+          "nums": [
+            10,
+            10,
+            10,
+            20,
+            10,
+            10,
+            30,
+            20,
+            20,
+            40
+          ]
+        },
+        "out": 6
+      },
+      {
+        "name": "long-alternation-with-duplicates",
+        "in": {
+          "nums": [
+            1,
+            5,
+            4,
+            5,
+            4,
+            5,
+            4,
+            5,
+            4,
+            5
+          ]
+        },
+        "out": 10
+      },
+      {
+        "name": "oscillate-with-spikes",
+        "in": {
+          "nums": [
+            1,
+            4,
+            2,
+            3,
+            1,
+            2,
+            0,
+            1
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "decreasing-alternation",
+        "in": {
+          "nums": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "alternating-high-low",
+        "in": {
+          "nums": [
+            8,
+            1,
+            7,
+            2,
+            6,
+            3,
+            5,
+            4
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "alternating-zeros",
+        "in": {
+          "nums": [
+            0,
+            2,
+            0,
+            2,
+            0,
+            2,
+            0,
+            2,
+            0
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "mixed-peaks",
+        "in": {
+          "nums": [
+            1,
+            3,
+            5,
+            4,
+            7,
+            2,
+            8,
+            1,
+            9
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "alternating-end-rise",
+        "in": {
+          "nums": [
+            9,
+            1,
+            8,
+            2,
+            7,
+            3,
+            6,
+            4,
+            5
+          ]
+        },
+        "out": 9
+      },
+      {
+        "name": "short-alternation",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "long-short-long",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 11
+      },
+      {
+        "name": "max-range-alternating",
+        "in": {
+          "nums": [
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000,
+            1,
+            1000
+          ]
+        },
+        "out": 8
+      },
+      {
+        "name": "blocky-duplicates",
+        "in": {
+          "nums": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "out": 5
+      },
+      {
+        "name": "valley-to-peak",
+        "in": {
+          "nums": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "out": 3
+      },
+      {
+        "name": "duplicated-turns",
+        "in": {
+          "nums": [
+            1,
+            2,
+            1,
+            1,
+            2,
+            1,
+            1,
+            2,
+            1
+          ]
+        },
+        "out": 7
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "nums = [5]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 2]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 7, 4, 9, 2, 5]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [1, 17, 5, 10, 13, 15, 10, 5, 16, 8]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [9, 8, 7, 6, 5, 4, 3, 2, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1]",
+      "output": "1"
+    }
+  ]
+}

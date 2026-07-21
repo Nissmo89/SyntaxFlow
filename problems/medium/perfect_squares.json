@@ -1,0 +1,378 @@
+{
+  "id": "perfect_squares",
+  "title": "Perfect Squares",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Breadth-First Search"
+  ],
+  "description": "<p>Given an integer <code>n</code>, return <em>the least number of perfect square numbers that sum to</em> <code>n</code>.</p>\n\n<p>A <strong>perfect square</strong> is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, <code>1</code>, <code>4</code>, <code>9</code>, and <code>16</code> are perfect squares while <code>3</code> and <code>11</code> are not.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 12\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> 12 = 4 + 4 + 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 13\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 13 = 4 + 9.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+  "task": "Solve the 'Perfect Squares' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= n <= 104"
+  ],
+  "hints": [],
+  "method": {
+    "name": "numSquares",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 279,
+      "title": "perfect-squares",
+      "params": {
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().numSquares({n})",
+        "rust": "Solution::num_squares({n})",
+        "python3": "Solution().numSquares({n})",
+        "python2": "Solution().numSquares({n})",
+        "ruby": "num_squares({n})",
+        "java": "new Solution().numSquares({n})",
+        "csharp": "new Solution().NumSquares({n})",
+        "kotlin": "Solution().numSquares({n})",
+        "go": "numSquares({n})",
+        "dart": "Solution().numSquares({n})",
+        "swift": "Solution().numSquares({n})",
+        "typescript": "numSquares({n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().numSquares(n, {result})",
+        "checker": "import math\n\nclass Checker:\n    def numSquares(self, n, result):\n        if not isinstance(n, int) or not isinstance(result, int):\n            return False\n        if n < 1 or n > 10000:\n            return False\n        if result < 1 or result > 4:\n            return False\n\n        x = n\n        while x % 4 == 0:\n            x //= 4\n        if x % 8 == 7:\n            expected = 4\n        else:\n            r = math.isqrt(n)\n            if r * r == n:\n                expected = 1\n            else:\n                is_two = False\n                for a in range(1, r + 1):\n                    b2 = n - a * a\n                    b = math.isqrt(b2)\n                    if b * b == b2:\n                        is_two = True\n                        break\n                expected = 2 if is_two else 3\n        return result == expected\n"
+      }
+    },
+    "seed": 279,
+    "tests": [
+      {
+        "name": "n1",
+        "in": {
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "n2",
+        "in": {
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "n3",
+        "in": {
+          "n": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "n4",
+        "in": {
+          "n": 4
+        },
+        "out": 1
+      },
+      {
+        "name": "n5",
+        "in": {
+          "n": 5
+        },
+        "out": 2
+      },
+      {
+        "name": "n6",
+        "in": {
+          "n": 6
+        },
+        "out": 3
+      },
+      {
+        "name": "n7",
+        "in": {
+          "n": 7
+        },
+        "out": 4
+      },
+      {
+        "name": "n8",
+        "in": {
+          "n": 8
+        },
+        "out": 2
+      },
+      {
+        "name": "n9",
+        "in": {
+          "n": 9
+        },
+        "out": 1
+      },
+      {
+        "name": "n10",
+        "in": {
+          "n": 10
+        },
+        "out": 2
+      },
+      {
+        "name": "n11",
+        "in": {
+          "n": 11
+        },
+        "out": 3
+      },
+      {
+        "name": "n12",
+        "in": {
+          "n": 12
+        },
+        "out": 3
+      },
+      {
+        "name": "n13",
+        "in": {
+          "n": 13
+        },
+        "out": 2
+      },
+      {
+        "name": "n14",
+        "in": {
+          "n": 14
+        },
+        "out": 3
+      },
+      {
+        "name": "n15",
+        "in": {
+          "n": 15
+        },
+        "out": 4
+      },
+      {
+        "name": "n16",
+        "in": {
+          "n": 16
+        },
+        "out": 1
+      },
+      {
+        "name": "n17",
+        "in": {
+          "n": 17
+        },
+        "out": 2
+      },
+      {
+        "name": "n18",
+        "in": {
+          "n": 18
+        },
+        "out": 2
+      },
+      {
+        "name": "n19",
+        "in": {
+          "n": 19
+        },
+        "out": 3
+      },
+      {
+        "name": "n20",
+        "in": {
+          "n": 20
+        },
+        "out": 2
+      },
+      {
+        "name": "n23",
+        "in": {
+          "n": 23
+        },
+        "out": 4
+      },
+      {
+        "name": "n24",
+        "in": {
+          "n": 24
+        },
+        "out": 3
+      },
+      {
+        "name": "n25",
+        "in": {
+          "n": 25
+        },
+        "out": 1
+      },
+      {
+        "name": "n26",
+        "in": {
+          "n": 26
+        },
+        "out": 2
+      },
+      {
+        "name": "n27",
+        "in": {
+          "n": 27
+        },
+        "out": 3
+      },
+      {
+        "name": "n28",
+        "in": {
+          "n": 28
+        },
+        "out": 4
+      },
+      {
+        "name": "n31",
+        "in": {
+          "n": 31
+        },
+        "out": 4
+      },
+      {
+        "name": "n32",
+        "in": {
+          "n": 32
+        },
+        "out": 2
+      },
+      {
+        "name": "n36",
+        "in": {
+          "n": 36
+        },
+        "out": 1
+      },
+      {
+        "name": "n43",
+        "in": {
+          "n": 43
+        },
+        "out": 3
+      },
+      {
+        "name": "n44",
+        "in": {
+          "n": 44
+        },
+        "out": 3
+      },
+      {
+        "name": "n50",
+        "in": {
+          "n": 50
+        },
+        "out": 2
+      },
+      {
+        "name": "n99",
+        "in": {
+          "n": 99
+        },
+        "out": 3
+      },
+      {
+        "name": "n100",
+        "in": {
+          "n": 100
+        },
+        "out": 1
+      },
+      {
+        "name": "n9999",
+        "in": {
+          "n": 9999
+        },
+        "out": 4
+      },
+      {
+        "name": "n10000",
+        "in": {
+          "n": 10000
+        },
+        "out": 1
+      },
+      {
+        "name": "gen_medium_domain",
+        "seed": 27901,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 5000
+          }
+        }
+      },
+      {
+        "name": "gen_full_domain",
+        "seed": 27902,
+        "in": {
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 10000
+          }
+        }
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "n = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 2",
+      "output": "2"
+    },
+    {
+      "input": "n = 3",
+      "output": "3"
+    },
+    {
+      "input": "n = 4",
+      "output": "1"
+    },
+    {
+      "input": "n = 5",
+      "output": "2"
+    },
+    {
+      "input": "n = 6",
+      "output": "3"
+    },
+    {
+      "input": "n = 7",
+      "output": "4"
+    },
+    {
+      "input": "n = 8",
+      "output": "2"
+    }
+  ]
+}

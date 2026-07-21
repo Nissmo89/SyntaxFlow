@@ -1,0 +1,431 @@
+{
+  "id": "unique_paths",
+  "title": "Unique Paths",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "description": "<p>There is a robot on an <code>m x n</code> grid. The robot is initially located at the <strong>top-left corner</strong> (i.e., <code>grid[0][0]</code>). The robot tries to move to the <strong>bottom-right corner</strong> (i.e., <code>grid[m - 1][n - 1]</code>). The robot can only move either down or right at any point in time.</p>\n\n<p>Given the two integers <code>m</code> and <code>n</code>, return <em>the number of possible unique paths that the robot can take to reach the bottom-right corner</em>.</p>\n\n<p>The test cases are generated so that the answer will be less than or equal to <code>2 * 10<sup>9</sup></code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img src=\"https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png\" style=\"width: 400px; height: 183px;\" />\n<pre>\n<strong>Input:</strong> m = 3, n = 7\n<strong>Output:</strong> 28\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> m = 3, n = 2\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:\n1. Right -&gt; Down -&gt; Down\n2. Down -&gt; Down -&gt; Right\n3. Down -&gt; Right -&gt; Down\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= m, n &lt;= 100</code></li>\n</ul>\n",
+  "task": "Solve the 'Unique Paths' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "1 <= m, n <= 100"
+  ],
+  "hints": [],
+  "method": {
+    "name": "uniquePaths",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 62,
+      "title": "unique-paths",
+      "params": {
+        "m": {
+          "type": "int"
+        },
+        "n": {
+          "type": "int"
+        }
+      },
+      "call": {
+        "cpp": "Solution().uniquePaths({m}, {n})",
+        "rust": "Solution::unique_paths({m}, {n})",
+        "python3": "Solution().uniquePaths({m}, {n})",
+        "python2": "Solution().uniquePaths({m}, {n})",
+        "ruby": "unique_paths({m}, {n})",
+        "java": "new Solution().uniquePaths({m}, {n})",
+        "csharp": "new Solution().UniquePaths({m}, {n})",
+        "kotlin": "Solution().uniquePaths({m}, {n})",
+        "go": "uniquePaths({m}, {n})",
+        "dart": "Solution().uniquePaths({m}, {n})",
+        "swift": "Solution().uniquePaths({m}, {n})",
+        "typescript": "uniquePaths({m}, {n})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().uniquePaths(m, n, {result})",
+        "checker": "from math import comb\n\nclass Checker:\n    def uniquePaths(self, m, n, result):\n        if not isinstance(result, int):\n            return False\n        if m < 1 or n < 1:\n            return False\n        expected = comb(m + n - 2, m - 1)\n        return result == expected\n"
+      }
+    },
+    "seed": 62,
+    "tests": [
+      {
+        "name": "example-1",
+        "in": {
+          "m": 3,
+          "n": 7
+        },
+        "out": 28
+      },
+      {
+        "name": "example-2",
+        "in": {
+          "m": 3,
+          "n": 2
+        },
+        "out": 3
+      },
+      {
+        "name": "single-cell",
+        "in": {
+          "m": 1,
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "one-row-small",
+        "in": {
+          "m": 1,
+          "n": 7
+        },
+        "out": 1
+      },
+      {
+        "name": "one-column-small",
+        "in": {
+          "m": 7,
+          "n": 1
+        },
+        "out": 1
+      },
+      {
+        "name": "two-by-two",
+        "in": {
+          "m": 2,
+          "n": 2
+        },
+        "out": 2
+      },
+      {
+        "name": "two-by-three",
+        "in": {
+          "m": 2,
+          "n": 3
+        },
+        "out": 3
+      },
+      {
+        "name": "three-by-three",
+        "in": {
+          "m": 3,
+          "n": 3
+        },
+        "out": 6
+      },
+      {
+        "name": "four-by-four",
+        "in": {
+          "m": 4,
+          "n": 4
+        },
+        "out": 20
+      },
+      {
+        "name": "five-by-five",
+        "in": {
+          "m": 5,
+          "n": 5
+        },
+        "out": 70
+      },
+      {
+        "name": "three-by-four",
+        "in": {
+          "m": 3,
+          "n": 4
+        },
+        "out": 10
+      },
+      {
+        "name": "four-by-five",
+        "in": {
+          "m": 4,
+          "n": 5
+        },
+        "out": 35
+      },
+      {
+        "name": "six-by-six",
+        "in": {
+          "m": 6,
+          "n": 6
+        },
+        "out": 252
+      },
+      {
+        "name": "two-by-seven",
+        "in": {
+          "m": 2,
+          "n": 7
+        },
+        "out": 7
+      },
+      {
+        "name": "seven-by-two",
+        "in": {
+          "m": 7,
+          "n": 2
+        },
+        "out": 7
+      },
+      {
+        "name": "eight-by-three",
+        "in": {
+          "m": 8,
+          "n": 3
+        },
+        "out": 36
+      },
+      {
+        "name": "three-by-eight",
+        "in": {
+          "m": 3,
+          "n": 8
+        },
+        "out": 36
+      },
+      {
+        "name": "ten-by-ten",
+        "in": {
+          "m": 10,
+          "n": 10
+        },
+        "out": 48620
+      },
+      {
+        "name": "ten-by-two",
+        "in": {
+          "m": 10,
+          "n": 2
+        },
+        "out": 10
+      },
+      {
+        "name": "two-by-ten",
+        "in": {
+          "m": 2,
+          "n": 10
+        },
+        "out": 10
+      },
+      {
+        "name": "fifteen-by-two",
+        "in": {
+          "m": 15,
+          "n": 2
+        },
+        "out": 15
+      },
+      {
+        "name": "fifteen-by-three",
+        "in": {
+          "m": 15,
+          "n": 3
+        },
+        "out": 120
+      },
+      {
+        "name": "twenty-by-four",
+        "in": {
+          "m": 20,
+          "n": 4
+        },
+        "out": 1540
+      },
+      {
+        "name": "twenty-by-five",
+        "in": {
+          "m": 20,
+          "n": 5
+        },
+        "out": 8855
+      },
+      {
+        "name": "thirty-by-six",
+        "in": {
+          "m": 30,
+          "n": 6
+        },
+        "out": 278256
+      },
+      {
+        "name": "mid-large-one",
+        "in": {
+          "m": 23,
+          "n": 12
+        },
+        "out": 193536720
+      },
+      {
+        "name": "mid-large-two",
+        "in": {
+          "m": 12,
+          "n": 12
+        },
+        "out": 705432
+      },
+      {
+        "name": "near-max-one",
+        "in": {
+          "m": 34,
+          "n": 11
+        },
+        "out": 1917334783
+      },
+      {
+        "name": "near-max-two",
+        "in": {
+          "m": 69,
+          "n": 8
+        },
+        "out": 1984829850
+      },
+      {
+        "name": "near-max-symmetric",
+        "in": {
+          "m": 8,
+          "n": 69
+        },
+        "out": 1984829850
+      },
+      {
+        "name": "generated-a",
+        "in": {
+          "m": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          },
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        },
+        "seed": 1001
+      },
+      {
+        "name": "generated-b",
+        "in": {
+          "m": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          },
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        },
+        "seed": 1002
+      },
+      {
+        "name": "generated-c",
+        "in": {
+          "m": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          },
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        },
+        "seed": 1003
+      },
+      {
+        "name": "generated-d",
+        "in": {
+          "m": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          },
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        },
+        "seed": 1004
+      },
+      {
+        "name": "generated-e",
+        "in": {
+          "m": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          },
+          "n": {
+            "gen": "int",
+            "min": 1,
+            "max": 16
+          }
+        },
+        "seed": 1005
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "m = 3\nn = 7",
+      "output": "28"
+    },
+    {
+      "input": "m = 3\nn = 2",
+      "output": "3"
+    },
+    {
+      "input": "m = 1\nn = 1",
+      "output": "1"
+    },
+    {
+      "input": "m = 1\nn = 7",
+      "output": "1"
+    },
+    {
+      "input": "m = 7\nn = 1",
+      "output": "1"
+    },
+    {
+      "input": "m = 2\nn = 2",
+      "output": "2"
+    },
+    {
+      "input": "m = 2\nn = 3",
+      "output": "3"
+    },
+    {
+      "input": "m = 3\nn = 3",
+      "output": "6"
+    }
+  ]
+}

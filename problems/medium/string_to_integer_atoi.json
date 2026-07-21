@@ -1,0 +1,383 @@
+{
+  "id": "string_to_integer_atoi",
+  "title": "String to Integer (atoi)",
+  "difficulty": "Medium",
+  "category": "Algorithms",
+  "tags": [
+    "String"
+  ],
+  "description": "<p>Implement the <code>myAtoi(string s)</code> function, which converts a string to a 32-bit signed integer.</p>\n\n<p>The algorithm for <code>myAtoi(string s)</code> is as follows:</p>\n\n<ol>\n\t<li><strong>Whitespace</strong>: Ignore any leading whitespace (<code>&quot; &quot;</code>).</li>\n\t<li><strong>Signedness</strong>: Determine the sign by checking if the next character is <code>&#39;-&#39;</code> or <code>&#39;+&#39;</code>, assuming positivity if neither present.</li>\n\t<li><strong>Conversion</strong>: Read the integer by skipping leading zeros&nbsp;until a non-digit character is encountered or the end of the string is reached. If no digits were read, then the result is 0.</li>\n\t<li><strong>Rounding</strong>: If the integer is out of the 32-bit signed integer range <code>[-2<sup>31</sup>, 2<sup>31</sup> - 1]</code>, then round the integer to remain in the range. Specifically, integers less than <code>-2<sup>31</sup></code> should be rounded to <code>-2<sup>31</sup></code>, and integers greater than <code>2<sup>31</sup> - 1</code> should be rounded to <code>2<sup>31</sup> - 1</code>.</li>\n</ol>\n\n<p>Return the integer as the final result.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;42&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">42</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\nThe underlined characters are what is read in and the caret is the current reader position.\nStep 1: &quot;42&quot; (no characters read because there is no leading whitespace)\n         ^\nStep 2: &quot;42&quot; (no characters read because there is neither a &#39;-&#39; nor &#39;+&#39;)\n         ^\nStep 3: &quot;<u>42</u>&quot; (&quot;42&quot; is read in)\n           ^\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot; -042&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-42</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\nStep 1: &quot;<u>   </u>-042&quot; (leading whitespace is read and ignored)\n            ^\nStep 2: &quot;   <u>-</u>042&quot; (&#39;-&#39; is read, so the result should be negative)\n             ^\nStep 3: &quot;   -<u>042</u>&quot; (&quot;042&quot; is read in, leading zeros ignored in the result)\n               ^\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;1337c0d3&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1337</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\nStep 1: &quot;1337c0d3&quot; (no characters read because there is no leading whitespace)\n         ^\nStep 2: &quot;1337c0d3&quot; (no characters read because there is neither a &#39;-&#39; nor &#39;+&#39;)\n         ^\nStep 3: &quot;<u>1337</u>c0d3&quot; (&quot;1337&quot; is read in; reading stops because the next character is a non-digit)\n             ^\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;0-1&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<pre>\nStep 1: &quot;0-1&quot; (no characters read because there is no leading whitespace)\n         ^\nStep 2: &quot;0-1&quot; (no characters read because there is neither a &#39;-&#39; nor &#39;+&#39;)\n         ^\nStep 3: &quot;<u>0</u>-1&quot; (&quot;0&quot; is read in; reading stops because the next character is a non-digit)\n          ^\n</pre>\n</div>\n\n<p><strong class=\"example\">Example 5:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;words and 987&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Reading stops at the first non-digit character &#39;w&#39;.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= s.length &lt;= 200</code></li>\n\t<li><code>s</code> consists of English letters (lower-case and upper-case), digits (<code>0-9</code>), <code>&#39; &#39;</code>, <code>&#39;+&#39;</code>, <code>&#39;-&#39;</code>, and <code>&#39;.&#39;</code>.</li>\n</ul>\n",
+  "task": "Solve the 'String to Integer (atoi)' problem on LeetCode.",
+  "inputFormat": "Passed directly as parameters.",
+  "outputFormat": "Returned value from the solution method.",
+  "constraints": [
+    "0 <= s.length <= 200",
+    "s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'."
+  ],
+  "hints": [],
+  "method": {
+    "name": "myAtoi",
+    "returnType": "auto",
+    "params": [
+      {
+        "name": "s",
+        "type": "string"
+      }
+    ]
+  },
+  "manifest": {
+    "entry": {
+      "id": 8,
+      "title": "string-to-integer-atoi",
+      "params": {
+        "s": {
+          "type": "string"
+        }
+      },
+      "call": {
+        "cpp": "Solution().myAtoi({s})",
+        "rust": "Solution::my_atoi({s})",
+        "python3": "Solution().myAtoi({s})",
+        "python2": "Solution().myAtoi({s})",
+        "ruby": "my_atoi({s})",
+        "java": "new Solution().myAtoi({s})",
+        "csharp": "new Solution().MyAtoi({s})",
+        "kotlin": "Solution().myAtoi({s})",
+        "go": "myAtoi({s})",
+        "dart": "Solution().myAtoi({s})",
+        "swift": "Solution().myAtoi({s})",
+        "typescript": "myAtoi({s})"
+      }
+    },
+    "judge": {
+      "type": "exact"
+    },
+    "limits": {
+      "time_ms": 1000,
+      "memory_mb": 256
+    },
+    "oracle": {
+      "python3": {
+        "call": "Checker().check(result, expected)",
+        "checker": "class Checker:\n    def check(self, result, expected):\n        return result == expected\n"
+      }
+    },
+    "seed": 8,
+    "tests": [
+      {
+        "name": "example_1",
+        "in": {
+          "s": "42"
+        },
+        "out": 42
+      },
+      {
+        "name": "example_2",
+        "in": {
+          "s": " -042"
+        },
+        "out": -42
+      },
+      {
+        "name": "example_3",
+        "in": {
+          "s": "1337c0d3"
+        },
+        "out": 1337
+      },
+      {
+        "name": "example_4",
+        "in": {
+          "s": "0-1"
+        },
+        "out": 0
+      },
+      {
+        "name": "example_5",
+        "in": {
+          "s": "words and 987"
+        },
+        "out": 0
+      },
+      {
+        "name": "empty_string",
+        "in": {
+          "s": ""
+        },
+        "out": 0
+      },
+      {
+        "name": "spaces_only",
+        "in": {
+          "s": "    "
+        },
+        "out": 0
+      },
+      {
+        "name": "single_zero",
+        "in": {
+          "s": "0"
+        },
+        "out": 0
+      },
+      {
+        "name": "leading_zeros",
+        "in": {
+          "s": "0000000000012345678"
+        },
+        "out": 12345678
+      },
+      {
+        "name": "positive_sign",
+        "in": {
+          "s": "+1"
+        },
+        "out": 1
+      },
+      {
+        "name": "negative_sign",
+        "in": {
+          "s": "-1"
+        },
+        "out": -1
+      },
+      {
+        "name": "sign_only_plus",
+        "in": {
+          "s": "+"
+        },
+        "out": 0
+      },
+      {
+        "name": "sign_only_minus",
+        "in": {
+          "s": "-"
+        },
+        "out": 0
+      },
+      {
+        "name": "sign_then_space",
+        "in": {
+          "s": "+ 1"
+        },
+        "out": 0
+      },
+      {
+        "name": "space_before_number",
+        "in": {
+          "s": "   123"
+        },
+        "out": 123
+      },
+      {
+        "name": "space_before_negative",
+        "in": {
+          "s": "   -123"
+        },
+        "out": -123
+      },
+      {
+        "name": "plus_with_leading_zeros",
+        "in": {
+          "s": "   +00099"
+        },
+        "out": 99
+      },
+      {
+        "name": "minus_with_leading_zeros",
+        "in": {
+          "s": "   -00099"
+        },
+        "out": -99
+      },
+      {
+        "name": "stops_at_letters",
+        "in": {
+          "s": "4193 with words"
+        },
+        "out": 4193
+      },
+      {
+        "name": "stops_at_dot",
+        "in": {
+          "s": "3.14159"
+        },
+        "out": 3
+      },
+      {
+        "name": "stops_at_internal_sign",
+        "in": {
+          "s": "12-34"
+        },
+        "out": 12
+      },
+      {
+        "name": "stops_at_internal_plus",
+        "in": {
+          "s": "12+34"
+        },
+        "out": 12
+      },
+      {
+        "name": "non_digit_prefix",
+        "in": {
+          "s": "abc123"
+        },
+        "out": 0
+      },
+      {
+        "name": "sign_after_text",
+        "in": {
+          "s": "abc-123"
+        },
+        "out": 0
+      },
+      {
+        "name": "whitespace_and_text",
+        "in": {
+          "s": "   words"
+        },
+        "out": 0
+      },
+      {
+        "name": "max_int_exact",
+        "in": {
+          "s": "2147483647"
+        },
+        "out": 2147483647
+      },
+      {
+        "name": "max_int_overflow_by_one",
+        "in": {
+          "s": "2147483648"
+        },
+        "out": 2147483647
+      },
+      {
+        "name": "max_int_overflow_with_spaces",
+        "in": {
+          "s": "   2147483648"
+        },
+        "out": 2147483647
+      },
+      {
+        "name": "min_int_exact",
+        "in": {
+          "s": "-2147483648"
+        },
+        "out": -2147483648
+      },
+      {
+        "name": "min_int_underflow_by_one",
+        "in": {
+          "s": "-2147483649"
+        },
+        "out": -2147483648
+      },
+      {
+        "name": "min_int_underflow_with_spaces",
+        "in": {
+          "s": "   -2147483649"
+        },
+        "out": -2147483648
+      },
+      {
+        "name": "max_int_with_trailing_words",
+        "in": {
+          "s": "2147483647 and more"
+        },
+        "out": 2147483647
+      },
+      {
+        "name": "many_leading_spaces",
+        "in": {
+          "s": "          7"
+        },
+        "out": 7
+      },
+      {
+        "name": "many_spaces_then_sign_and_zero",
+        "in": {
+          "s": "          -000000000000000000000000000000000000000000000001"
+        },
+        "out": -1
+      },
+      {
+        "name": "huge_positive_clamp",
+        "in": {
+          "s": "99999999999999999999999999999999999999999999999999999999"
+        },
+        "out": 2147483647
+      },
+      {
+        "name": "huge_negative_clamp",
+        "in": {
+          "s": "-99999999999999999999999999999999999999999999999999999999"
+        },
+        "out": -2147483648
+      },
+      {
+        "name": "mixed_alpha_numeric_prefix",
+        "in": {
+          "s": "  -0012a42"
+        },
+        "out": -12
+      },
+      {
+        "name": "plus_then_digits_then_text",
+        "in": {
+          "s": "+00000000000000000000000000000000000000000000000000000000042xyz"
+        },
+        "out": 42
+      },
+      {
+        "name": "zero_followed_by_minus",
+        "in": {
+          "s": "00000-42"
+        },
+        "out": 0
+      },
+      {
+        "name": "minus_followed_by_plus",
+        "in": {
+          "s": "-+12"
+        },
+        "out": 0
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "input": "s = \"42\"",
+      "output": "42"
+    },
+    {
+      "input": "s = \" -042\"",
+      "output": "-42"
+    },
+    {
+      "input": "s = \"1337c0d3\"",
+      "output": "1337"
+    },
+    {
+      "input": "s = \"0-1\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"words and 987\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"\"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"    \"",
+      "output": "0"
+    },
+    {
+      "input": "s = \"0\"",
+      "output": "0"
+    }
+  ]
+}
