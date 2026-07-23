@@ -67,6 +67,21 @@ QString Backend::getProblemTemplate(const QString &languageId, const QString &pr
         if (file.open(QIODevice::ReadOnly)) {
             QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
             QJsonObject obj = doc.object();
+            
+            // Check for func_sign from LeetCode
+            if (obj.contains("func_sign")) {
+                QJsonObject funcSign = obj["func_sign"].toObject();
+                QString leetcodeLangSlug = languageId;
+                if (languageId == "python") leetcodeLangSlug = "python3";
+                
+                if (funcSign.contains(leetcodeLangSlug)) {
+                    return funcSign[leetcodeLangSlug].toString();
+                } else if (languageId == "python" && funcSign.contains("python")) {
+                    return funcSign["python"].toString();
+                }
+            }
+
+            // Fallback to legacy schema generator
             if (obj.contains("method")) {
                 MethodSchema schema = MethodSchema::fromJson(obj["method"].toObject());
                 if (schema.isValid()) {
