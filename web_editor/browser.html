@@ -412,6 +412,8 @@
     var pct = total > 0 ? (solvedCount / total * 100) : 0;
     document.getElementById('progressFill').style.width = pct + '%';
 
+    var fragment = document.createDocumentFragment();
+
     filtered.forEach(function(p) {
       var card = document.createElement('div');
       var diffClass = (p.difficulty || 'easy').toLowerCase();
@@ -424,9 +426,15 @@
         }
       };
 
-      var topicsHtml = (p.topics || []).map(function(t) {
+      var topics = p.topics || [];
+      var displayTopics = topics.slice(0, 3);
+      var topicsHtml = displayTopics.map(function(t) {
         return '<span class="tag-chip">' + escapeHtml(t) + '</span>';
       }).join(' ');
+
+      if (topics.length > 3) {
+        topicsHtml += ' <span class="tag-chip">+' + (topics.length - 3) + '</span>';
+      }
 
       var statusHtml = isSolved 
         ? '<div class="solved-badge">✓ Solved</div>'
@@ -443,8 +451,10 @@
         ${statusHtml}
       `;
 
-      container.appendChild(card);
+      fragment.appendChild(card);
     });
+
+    container.appendChild(fragment);
   }
 
   function escapeHtml(str) {
