@@ -199,10 +199,6 @@
 <script>
   var panelBridge = null;
 
-  new QWebChannel(qt.webchannelTransport, function(channel) {
-    panelBridge = channel.objects.panelBridge;
-  });
-
   window.setProblemData = function(data) {
     if (typeof data === 'string') {
       try { data = JSON.parse(data); } catch(e){}
@@ -241,6 +237,32 @@
 
     document.getElementById('content').innerHTML = marked.parse(markdownText);
   };
+
+  function setupWebChannel(callback) {
+    function tryConnect() {
+      if (typeof qt !== "undefined" && typeof qt.webchannelTransport !== "undefined") {
+        new QWebChannel(qt.webchannelTransport, function(channel) {
+          callback(channel);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    if (!tryConnect()) {
+      var retries = 0;
+      var timer = setInterval(function() {
+        retries++;
+        if (tryConnect() || retries > 50) {
+          clearInterval(timer);
+        }
+      }, 100);
+    }
+  }
+
+  setupWebChannel(function(channel) {
+    panelBridge = channel.objects.panelBridge;
+  });
 </script>
 
 </body>

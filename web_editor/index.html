@@ -31,6 +31,7 @@
   <script src="addons/foldgutter.min.js"></script>
   <script src="addons/brace-fold.min.js"></script>
   <script src="addons/comment.min.js"></script>
+  <script src="addons/simple-mode.min.js"></script>
 
   <!-- Language Modes -->
   <script src="modes/clike.min.js"></script>
@@ -43,59 +44,6 @@
 
   <!-- Qt WebChannel -->
   <script src="qwebchannel.js"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background-color: #1e1e1e;
-      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    }
-
-    .CodeMirror {
-      height: 100% !important;
-      width: 100% !important;
-      font-size: 14px;
-      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-      line-height: 1.5;
-    }
-
-    /* Custom Scrollbars */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #181818;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #333333;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555555;
-    }
-
-    /* Active line highlight styling */
-    .CodeMirror-activeline-background {
-      background: rgba(255, 255, 255, 0.05) !important;
-    }
-
-    /* Fold gutter adjustment */
-    .CodeMirror-foldgutter {
-      width: 16px;
-    }
-    .CodeMirror-foldmarker {
-      color: #888;
-      background-color: #333;
-      border-radius: 3px;
-      padding: 0 4px;
-      font-family: sans-serif;
-    }
-  </style>
 </head>
 <body>
 
@@ -105,6 +53,109 @@
   var editorBridge = null;
   var editor = null;
   var isInternalChange = false;
+
+  // Global functions exposed to C++ early
+  window.setCode = function(code) {
+    if (!editor) return;
+    isInternalChange = true;
+    var cursor = editor.getCursor();
+    editor.setValue(code || "");
+    editor.setCursor(cursor);
+    isInternalChange = false;
+  };
+
+  window.getCode = function() {
+    return editor ? editor.getValue() : "";
+  };
+
+  window.setLanguage = function(langId) {
+    if (!editor) return;
+    var mode = getModeForLanguage(langId);
+    editor.setOption('mode', mode);
+  };
+
+  window.setTheme = function(themeName) {
+    if (!editor) return;
+    var theme = getThemeName(themeName);
+    editor.setOption('theme', theme);
+  };
+
+  window.setFontSize = function(size) {
+    if (!editor) return;
+    document.querySelector('.CodeMirror').style.fontSize = size + 'px';
+    editor.refresh();
+  };
+
+  window.setTabSize = function(size) {
+    if (!editor) return;
+    editor.setOption('tabSize', size);
+    editor.setOption('indentUnit', size);
+  };
+
+  window.setWordWrap = function(enabled) {
+    if (!editor) return;
+    editor.setOption('lineWrapping', !!enabled);
+  };
+
+  window.setReadOnly = function(readOnly) {
+    if (!editor) return;
+    editor.setOption('readOnly', !!readOnly);
+  };
+
+  window.setShowWhitespace = function(enabled) {};
+  window.setShowIndentGuides = function(enabled) {};
+
+  window.goToLine = function(line) {
+    if (!editor) return;
+    var l = Math.max(0, line - 1);
+    editor.setCursor({line: l, ch: 0});
+    editor.scrollIntoView({line: l, ch: 0}, 100);
+    editor.focus();
+  };
+
+  window.toggleComment = function() {
+    if (!editor) return;
+    var from = editor.getCursor("from");
+    var to = editor.getCursor("to");
+    editor.toggleComment(from, to);
+  };
+
+  window.duplicateLine = function() {
+    if (!editor) return;
+    var pos = editor.getCursor();
+    var line = editor.getLine(pos.line);
+    editor.replaceRange(line + "\n", {line: pos.line, ch: 0});
+  };
+
+  window.deleteLine = function() {
+    if (!editor) return;
+    var pos = editor.getCursor();
+    editor.replaceRange("", {line: pos.line, ch: 0}, {line: pos.line + 1, ch: 0});
+  };
+
+  window.moveLineUp = function() {
+    if (!editor) return;
+    var pos = editor.getCursor();
+    if (pos.line === 0) return;
+    var currentLine = editor.getLine(pos.line);
+    var prevLine = editor.getLine(pos.line - 1);
+    editor.replaceRange(currentLine + "\n" + prevLine, {line: pos.line - 1, ch: 0}, {line: pos.line, ch: currentLine.length});
+    editor.setCursor({line: pos.line - 1, ch: pos.ch});
+  };
+
+  window.moveLineDown = function() {
+    if (!editor) return;
+    var pos = editor.getCursor();
+    if (pos.line >= editor.lineCount() - 1) return;
+    var currentLine = editor.getLine(pos.line);
+    var nextLine = editor.getLine(pos.line + 1);
+    editor.replaceRange(nextLine + "\n" + currentLine, {line: pos.line, ch: 0}, {line: pos.line + 1, ch: nextLine.length});
+    editor.setCursor({line: pos.line + 1, ch: pos.ch});
+  };
+
+  window.focusEditor = function() {
+    if (editor) editor.focus();
+  };
 
   // Language mapping helper
   function getModeForLanguage(langId) {
@@ -151,52 +202,73 @@
     return 'monokai';
   }
 
-  // Initialize CodeMirror
-  editor = CodeMirror(document.getElementById('editor-container'), {
-    value: "",
-    mode: "text/x-c++src",
-    theme: "monokai",
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    lineWrapping: false,
-    autoCloseBrackets: true,
-    matchBrackets: true,
-    styleActiveLine: true,
-    foldGutter: true,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-    extraKeys: {
-      "Ctrl-Space": "autocomplete",
-      "Ctrl-/": function(cm) { window.toggleComment(); },
-      "Cmd-/": function(cm) { window.toggleComment(); }
-    }
-  });
-
-  // Attach WebChannel
-  new QWebChannel(qt.webchannelTransport, function(channel) {
-    editorBridge = channel.objects.editorBridge;
-    
-    // Listen to changes in CodeMirror
-    editor.on('change', function(cm, changeObj) {
-      if (isInternalChange) return;
-      if (editorBridge && editorBridge.onTextChanged) {
-        editorBridge.onTextChanged(cm.getValue());
+  // Initialize CodeMirror after DOM ready
+  document.addEventListener("DOMContentLoaded", function() {
+    editor = CodeMirror(document.getElementById('editor-container'), {
+      value: "",
+      mode: "text/x-c++src",
+      theme: "monokai",
+      lineNumbers: true,
+      tabSize: 4,
+      indentUnit: 4,
+      lineWrapping: false,
+      autoCloseBrackets: true,
+      matchBrackets: true,
+      styleActiveLine: true,
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+      extraKeys: {
+        "Ctrl-Space": "autocomplete",
+        "Ctrl-/": function(cm) { window.toggleComment(); },
+        "Cmd-/": function(cm) { window.toggleComment(); }
       }
     });
 
-    // Listen to cursor movement
-    editor.on('cursorActivity', function(cm) {
-      var pos = cm.getCursor();
-      if (editorBridge && editorBridge.onCursorPositionChanged) {
-        editorBridge.onCursorPositionChanged(pos.line + 1, pos.ch + 1);
+    // Attach WebChannel safely
+    setupWebChannel(function(channel) {
+      editorBridge = channel.objects.editorBridge;
+      
+      editor.on('change', function(cm, changeObj) {
+        if (isInternalChange) return;
+        if (editorBridge && editorBridge.onTextChanged) {
+          editorBridge.onTextChanged(cm.getValue());
+        }
+      });
+
+      editor.on('cursorActivity', function(cm) {
+        var pos = cm.getCursor();
+        if (editorBridge && editorBridge.onCursorPositionChanged) {
+          editorBridge.onCursorPositionChanged(pos.line + 1, pos.ch + 1);
+        }
+      });
+
+      if (editorBridge && editorBridge.onEditorReady) {
+        editorBridge.onEditorReady();
       }
     });
-
-    // Notify C++ bridge that editor is ready
-    if (editorBridge && editorBridge.onEditorReady) {
-      editorBridge.onEditorReady();
-    }
   });
+
+  function setupWebChannel(callback) {
+    function tryConnect() {
+      if (typeof qt !== "undefined" && typeof qt.webchannelTransport !== "undefined") {
+        new QWebChannel(qt.webchannelTransport, function(channel) {
+          callback(channel);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    if (!tryConnect()) {
+      var retries = 0;
+      var timer = setInterval(function() {
+        retries++;
+        if (tryConnect() || retries > 50) {
+          clearInterval(timer);
+        }
+      }, 100);
+    }
+  }
 
   // Public API methods callable from C++
   window.setCode = function(code) {

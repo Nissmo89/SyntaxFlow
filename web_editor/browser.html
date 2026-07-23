@@ -348,13 +348,6 @@
   var currentFilter = 'all';
   var searchQuery = '';
 
-  new QWebChannel(qt.webchannelTransport, function(channel) {
-    browserBridge = channel.objects.browserBridge;
-    if (browserBridge && browserBridge.onBrowserReady) {
-      browserBridge.onBrowserReady();
-    }
-  });
-
   window.loadProblems = function(problemsJson, solvedData) {
     if (typeof problemsJson === 'string') {
       try { allProblems = JSON.parse(problemsJson); } catch(e){}
@@ -373,6 +366,35 @@
     solvedMap = solvedData || {};
     render();
   };
+
+  function setupWebChannel(callback) {
+    function tryConnect() {
+      if (typeof qt !== "undefined" && typeof qt.webchannelTransport !== "undefined") {
+        new QWebChannel(qt.webchannelTransport, function(channel) {
+          callback(channel);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    if (!tryConnect()) {
+      var retries = 0;
+      var timer = setInterval(function() {
+        retries++;
+        if (tryConnect() || retries > 50) {
+          clearInterval(timer);
+        }
+      }, 100);
+    }
+  }
+
+  setupWebChannel(function(channel) {
+    browserBridge = channel.objects.browserBridge;
+    if (browserBridge && browserBridge.onBrowserReady) {
+      browserBridge.onBrowserReady();
+    }
+  });
 
   function setFilter(filter) {
     currentFilter = filter;
