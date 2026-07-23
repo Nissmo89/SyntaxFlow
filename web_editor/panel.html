@@ -239,8 +239,11 @@
   };
 
   function setupWebChannel(callback) {
-    function connect() {
+    var connected = false;
+    function tryConnect() {
+      if (connected) return true;
       if (typeof qt !== "undefined" && qt.webchannelTransport) {
+        connected = true;
         new QWebChannel(qt.webchannelTransport, function(channel) {
           callback(channel);
         });
@@ -249,15 +252,16 @@
       return false;
     }
 
-    if (connect()) return;
+    if (tryConnect()) return;
 
-    var attempts = 0;
+    document.addEventListener("DOMContentLoaded", tryConnect);
+    window.addEventListener("load", tryConnect);
+
     var timer = setInterval(function() {
-      attempts++;
-      if (connect() || attempts > 200) {
+      if (tryConnect()) {
         clearInterval(timer);
       }
-    }, 10);
+    }, 20);
   }
 
   setupWebChannel(function(channel) {
