@@ -1,6 +1,8 @@
 name: Fetch LeetCode Signatures
 
 on:
+  push:
+    branches: [ "main" ]
   schedule:
     # Run every 6 hours to gradually process all problems without hitting hard rate limits
     - cron: '0 */6 * * *'
