@@ -16,10 +16,8 @@
 
 
 class QStackedLayout;
-class CodeEditor;
+class WebWorkspace;
 class ProblemBrowser;
-class ProblemPanel;
-class TestCasePanel;
 class HoverSidebar;
 class Backend;
 
@@ -42,7 +40,7 @@ private slots:
     void onNavigateToBrowser();
 
     // Code Execution
-    void onRunCurrentTest();
+    void onRunCurrentTest(int index);
     void onRunAllTests();
     void onStopExecution();
 
@@ -55,11 +53,10 @@ private slots:
     void onExecutionFinished();
 
     // Language
-    void onLanguageChanged(int index);
+    void onLanguageChanged(const QString &langId);
     void populateLanguages();
 
-    // Editor
-    void onEditorCursorChanged(int line, int column);
+    // Editor (Removed unused cursor changed)
 
 private:
     // Setup
@@ -73,8 +70,6 @@ private:
 
     // UI State
     void setExecutionState(bool running);
-    void updateLanguageIndicator();
-    void updateStatusBar(int line, int column);
 
     // Solution persistence
     void saveSolution(const QString &problemId, const QString &languageId, const QString &code);
@@ -91,6 +86,7 @@ private:
     Backend *m_backend = nullptr;
     QString m_currentProblemId;
     QString m_currentProblemPath;
+    QString m_currentLangId = "cpp";
     bool m_runningAllTests = false;
 
     // ─── Progress ───
@@ -105,22 +101,13 @@ private:
 
     // ─── Editor Page ───
     QWidget *editorPage = nullptr;
-    QSplitter *mainHorizontalSplitter = nullptr;
-    QSplitter *rightVerticalSplitter = nullptr;
+    WebWorkspace *m_workspace = nullptr;
 
-    ProblemPanel *problemPanel = nullptr;
-    CodeEditor *codeEditor = nullptr;
-    TestCasePanel *testCasePanel = nullptr;
-
-    // ─── Toolbar ───
-    QComboBox  *languageCombo      = nullptr;
-    QLabel     *langIndicator      = nullptr;
-    QLabel     *cursorPosLabel     = nullptr;
-    QLabel     *problemTitleLabel  = nullptr;
-    QPushButton *backButton        = nullptr;
-    QPushButton *runButton         = nullptr;
-    QPushButton *stopButton        = nullptr;
-    QPushButton *submitButton      = nullptr;
+    // ─── Toolbar (Kept for Browser View compatibility if needed, or removed if handled inside WebWorkspace)
+    // Wait, the UnifiedEditor handles the toolbar inside the Web UI. We don't need Qt toolbar buttons.
+    // I'll keep the variables just in case they are referenced in setupBrowserPage, but they shouldn't be.
+    // Actually, submitButton and runButton are referenced in onNavigateToBrowser. 
+    // I will remove them and handle it cleanly.
 
     // ─── Sidebar ───
     HoverSidebar *sidebar = nullptr;

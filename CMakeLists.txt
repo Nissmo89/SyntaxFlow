@@ -77,11 +77,7 @@ add_executable(SyntaxFlow
     mainwindow.cpp mainwindow.h mainwindow.ui
     hoversidebar.cpp hoversidebar.h
     problemwidgets.cpp problemwidgets.h
-    problem_panel.cpp problem_panel.h
-    markdownrenderer.cpp markdownrenderer.h
-    jsonutils.cpp jsonutils.h
-    code_editor.cpp code_editor.h
-    testcase_panel.cpp testcase_panel.h
+    web_workspace.cpp web_workspace.h
     language_config.cpp language_config.h
     language_registry.cpp language_registry.h
     code_runner.cpp code_runner.h

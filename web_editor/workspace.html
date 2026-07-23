@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unified SyntaxFlow Workspace</title>
+  
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="codemirror.min.css">
+  <link rel="stylesheet" href="addons/show-hint.min.css">
+  <link rel="stylesheet" href="addons/foldgutter.min.css">
+  <link rel="stylesheet" href="themes/monokai.min.css">
+  <link rel="stylesheet" href="themes/dracula.min.css">
+  <link rel="stylesheet" href="themes/material-darker.min.css">
+  <link rel="stylesheet" href="themes/nord.min.css">
+  <link rel="stylesheet" href="themes/material.min.css">
+
+  <!-- Highlight.js CSS for Markdown -->
+  <link rel="stylesheet" href="highlight-tokyo-night.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background-color: #0d1117; color: #c9d1d9;
+      font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex; flex-direction: column; height: 100vh; width: 100vw;
+    }
+    
+    .toolbar {
+      height: 48px; background: #161b22; display: flex; align-items: center;
+      padding: 0 16px; border-bottom: 1px solid #30363d;
+      gap: 12px;
+    }
+
+    .btn {
+      background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
+      padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
+      font-weight: 500; transition: all 0.2s ease;
+    }
+    .btn:hover { background: #30363d; }
+    .btn-primary { background: #238636; border-color: rgba(240,246,252,0.1); color: #fff; }
+    .btn-primary:hover { background: #2ea043; }
+    .btn-run { color: #58a6ff; }
+    
+    select.btn { outline: none; appearance: none; padding-right: 24px; }
+
+    .main-workspace {
+      display: flex; flex: 1; overflow: hidden;
+    }
+
+    .pane { overflow: auto; position: relative; }
+    .left-pane { width: 40%; background: #0d1117; display: flex; flex-direction: column; }
+    
+    .resizer-v {
+      width: 6px; background: #21262d; cursor: col-resize; z-index: 10;
+      transition: background 0.2s;
+    }
+    .resizer-v:hover, .resizer-v.active { background: #58a6ff; }
+
+    .right-pane { width: calc(60% - 6px); display: flex; flex-direction: column; background: #0d1117; }
+    
+    .top-pane { height: 65%; display: flex; flex-direction: column; }
+    .bottom-pane { height: calc(35% - 6px); background: #0d1117; display: flex; flex-direction: column; }
+
+    .resizer-h {
+      height: 6px; background: #21262d; cursor: row-resize; z-index: 10;
+      transition: background 0.2s;
+    }
+    .resizer-h:hover, .resizer-h.active { background: #58a6ff; }
+
+    /* Problem Description Styling */
+    .problem-content { padding: 24px; overflow-y: auto; flex: 1; }
+    .problem-content h1 { font-size: 22px; color: #f0f6fc; margin-top: 0; }
+    .diff-pill {
+      font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;
+      margin-right: 8px;
+    }
+    .diff-easy { color: #3fb950; background: rgba(63, 185, 80, 0.1); }
+    .diff-medium { color: #d29922; background: rgba(210, 153, 34, 0.1); }
+    .diff-hard { color: #f85149; background: rgba(248, 81, 73, 0.1); }
+    .tag-chip { font-size: 11px; background: #21262d; padding: 2px 8px; border-radius: 12px; margin-right: 6px; }
+    
+    .problem-content pre { background: #161b22 !important; padding: 12px; border-radius: 6px; overflow-x: auto; }
+    .problem-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    .problem-content p { line-height: 1.6; }
+
+    /* Code Editor wrapper */
+    .editor-wrapper { flex: 1; position: relative; }
+    .CodeMirror { height: 100% !important; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+
+    /* Test Case Panel */
+    .testcase-header {
+      display: flex; background: #161b22; border-bottom: 1px solid #30363d;
+    }
+    .tc-tab {
+      padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500;
+      color: #8b949e; border-bottom: 2px solid transparent;
+    }
+    .tc-tab.active { color: #c9d1d9; border-bottom-color: #58a6ff; }
+    
+    .testcase-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .case-list-bar {
+      display: flex; gap: 8px; padding: 12px 16px 0; overflow-x: auto;
+    }
+    .case-pill {
+      padding: 6px 12px; background: #21262d; border-radius: 6px; cursor: pointer;
+      font-size: 12px; font-weight: 500; color: #8b949e; border: 1px solid transparent;
+    }
+    .case-pill.active { background: #30363d; color: #c9d1d9; }
+    .case-pill.passed { color: #3fb950; }
+    .case-pill.failed { color: #f85149; }
+    .case-pill.running { color: #d29922; }
+
+    .case-content { padding: 16px; overflow-y: auto; flex: 1; }
+    .case-field { margin-bottom: 16px; }
+    .case-field-title { font-size: 12px; color: #8b949e; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; }
+    .case-field-val {
+      background: #0d1117; padding: 10px; border-radius: 6px; border: 1px solid #30363d;
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; white-space: pre-wrap;
+    }
+    .val-expected { border-left: 3px solid #3fb950; }
+    .val-actual-pass { border-left: 3px solid #3fb950; }
+    .val-actual-fail { border-left: 3px solid #f85149; }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; border: 2px solid #0d1117; }
+    ::-webkit-scrollbar-thumb:hover { background: #484f58; }
+  </style>
+
+  <script src="codemirror.min.js"></script>
+  <script src="addons/matchbrackets.min.js"></script>
+  <script src="addons/closebrackets.min.js"></script>
+  <script src="addons/active-line.min.js"></script>
+  <script src="addons/show-hint.min.js"></script>
+  <script src="addons/foldcode.min.js"></script>
+  <script src="addons/foldgutter.min.js"></script>
+  <script src="addons/brace-fold.min.js"></script>
+  <script src="addons/comment.min.js"></script>
+  <script src="addons/simple-mode.min.js"></script>
+  <script src="modes/clike.min.js"></script>
+  <script src="modes/python.min.js"></script>
+  <script src="modes/javascript.min.js"></script>
+  <script src="modes/rust.min.js"></script>
+  <script src="modes/go.min.js"></script>
+  <script src="modes/xml.min.js"></script>
+  <script src="modes/css.min.js"></script>
+  
+  <script src="marked.min.js"></script>
+  <script src="highlight.min.js"></script>
+  <script src="qwebchannel.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="toolbar">
+    <button class="btn" id="btnBack">← Back</button>
+    <div style="flex: 1;"></div>
+    <select class="btn" id="langSelect"></select>
+    <button class="btn btn-run" id="btnRun">▶ Run</button>
+    <button class="btn btn-primary" id="btnSubmit">Submit</button>
+  </div>
+
+  <div class="main-workspace">
+    <div class="pane left-pane" id="leftPane">
+      <div class="problem-content">
+        <h1 id="probTitle">Loading...</h1>
+        <div style="margin-bottom: 20px; display: flex; align-items: center; flex-wrap: wrap;">
+          <span id="probDiff" class="diff-pill diff-easy">EASY</span>
+          <div id="probTags"></div>
+        </div>
+        <div id="probDesc"></div>
+      </div>
+    </div>
+    
+    <div class="resizer-v" id="resizerV"></div>
+    
+    <div class="pane right-pane" id="rightPane">
+      <div class="pane top-pane" id="topPane">
+        <div class="editor-wrapper" id="editorContainer"></div>
+      </div>
+      
+      <div class="resizer-h" id="resizerH"></div>
+      
+      <div class="pane bottom-pane" id="bottomPane">
+        <div class="testcase-header">
+          <div class="tc-tab active" id="tabTestcase">Testcases</div>
+          <div class="tc-tab" id="tabResult">Test Result</div>
+        </div>
+        <div class="testcase-body">
+          <div class="case-list-bar" id="caseTabs"></div>
+          <div class="case-content" id="caseContent">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── STATE ───
+  let workspaceBridge = null;
+  let editor = null;
+  let isInternalChange = false;
+  let testCases = [];
+  let currentCaseIndex = 0;
+  let currentView = 'testcase'; // 'testcase' or 'result'
+
+  // ─── RESIZER LOGIC ───
+  const resizerV = document.getElementById('resizerV');
+  const leftPane = document.getElementById('leftPane');
+  const rightPane = document.getElementById('rightPane');
+  
+  let isResizingV = false;
+  resizerV.addEventListener('mousedown', (e) => { isResizingV = true; resizerV.classList.add('active'); });
+  
+  const resizerH = document.getElementById('resizerH');
+  const topPane = document.getElementById('topPane');
+  const bottomPane = document.getElementById('bottomPane');
+  let isResizingH = false;
+  resizerH.addEventListener('mousedown', (e) => { isResizingH = true; resizerH.classList.add('active'); });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isResizingV) {
+      let totalW = document.body.clientWidth;
+      let newLW = (e.clientX / totalW) * 100;
+      if (newLW > 10 && newLW < 90) {
+        leftPane.style.width = newLW + '%';
+        rightPane.style.width = `calc(${100 - newLW}% - 6px)`;
+      }
+    }
+    if (isResizingH) {
+      let topOffset = topPane.getBoundingClientRect().top;
+      let totalH = rightPane.clientHeight;
+      let newTH = ((e.clientY - topOffset) / totalH) * 100;
+      if (newTH > 10 && newTH < 90) {
+        topPane.style.height = newTH + '%';
+        bottomPane.style.height = `calc(${100 - newTH}% - 6px)`;
+      }
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isResizingV = false; isResizingH = false;
+    resizerV.classList.remove('active'); resizerH.classList.remove('active');
+  });
+
+  // ─── CODEMIRROR INIT ───
+  editor = CodeMirror(document.getElementById('editorContainer'), {
+    value: "", mode: "text/x-c++src", theme: "monokai",
+    lineNumbers: true, tabSize: 4, indentUnit: 4, lineWrapping: false,
+    autoCloseBrackets: true, matchBrackets: true, styleActiveLine: true,
+    foldGutter: true, gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    extraKeys: { "Ctrl-Space": "autocomplete" }
+  });
+
+  editor.on('change', function(cm) {
+    if (isInternalChange) return;
+    if (workspaceBridge) workspaceBridge.onTextChanged(cm.getValue());
+  });
+  editor.on('cursorActivity', function(cm) {
+    let pos = cm.getCursor();
+    if (workspaceBridge) workspaceBridge.onCursorPositionChanged(pos.line + 1, pos.ch + 1);
+  });
+
+  // ─── UI EVENTS ───
+  document.getElementById('btnBack').onclick = () => { if(workspaceBridge) workspaceBridge.onBackRequested(); };
+  document.getElementById('btnRun').onclick = () => { if(workspaceBridge) workspaceBridge.onRunRequested(currentCaseIndex); };
+  document.getElementById('btnSubmit').onclick = () => { if(workspaceBridge) workspaceBridge.onSubmitRequested(); };
+  
+  document.getElementById('langSelect').onchange = (e) => {
+    let lang = e.target.value;
+    window.setLanguage(lang);
+    if(workspaceBridge) workspaceBridge.onLanguageChanged(lang);
+  };
+
+  document.getElementById('tabTestcase').onclick = () => { currentView = 'testcase'; renderTabs(); renderCaseContent(); };
+  document.getElementById('tabResult').onclick = () => { currentView = 'result'; renderTabs(); renderCaseContent(); };
+
+  // ─── C++ API EXPOSED ───
+  window.setProblemData = function(data) {
+    document.getElementById('probTitle').textContent = data.title || 'Untitled';
+    let diff = (data.difficulty || 'easy').toLowerCase();
+    let pDiff = document.getElementById('probDiff');
+    pDiff.textContent = diff.toUpperCase();
+    pDiff.className = `diff-pill diff-${diff}`;
+    
+    let tagsHtml = (data.tags || []).map(t => `<span class="tag-chip">${t}</span>`).join('');
+    document.getElementById('probTags').innerHTML = tagsHtml;
+    
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
+        return hljs.highlightAuto(code).value;
+      }
+    });
+    document.getElementById('probDesc').innerHTML = marked.parse(data.markdown || data.description || '');
+  };
+
+  window.setTestCases = function(tcList) {
+    testCases = tcList.map(tc => ({ ...tc, status: 'pending', actualOutput: '' }));
+    currentCaseIndex = 0;
+    currentView = 'testcase';
+    renderTabs();
+    renderCaseContent();
+  };
+
+  window.setTestResult = function(res) {
+    let tc = testCases[res.index];
+    if (tc) {
+      tc.actualOutput = res.actualOutput;
+      tc.status = res.passed ? 'passed' : 'failed';
+    }
+    currentView = 'result';
+    renderTabs();
+    renderCaseContent();
+  };
+
+  window.setTestRunning = function(idx) {
+    if (testCases[idx]) {
+      testCases[idx].status = 'running';
+    }
+    currentView = 'result';
+    renderTabs();
+    renderCaseContent();
+  };
+
+  window.clearAllResults = function() {
+    testCases.forEach(tc => { tc.status = 'pending'; tc.actualOutput = ''; });
+    currentView = 'testcase';
+    renderTabs();
+    renderCaseContent();
+  };
+
+  window.setCode = function(code) {
+    isInternalChange = true;
+    editor.setValue(code || "");
+    isInternalChange = false;
+  };
+
+  window.setLanguages = function(data) {
+    let sel = document.getElementById('langSelect');
+    sel.innerHTML = '';
+    data.languages.forEach(l => {
+      let opt = document.createElement('option');
+      opt.value = l; opt.textContent = l.toUpperCase();
+      sel.appendChild(opt);
+    });
+    sel.value = data.current;
+    window.setLanguage(data.current);
+  };
+
+  window.setLanguage = function(langId) {
+    let mode = 'text/x-c++src';
+    let l = langId.toLowerCase();
+    if(l==='python' || l==='py') mode = 'python';
+    else if(l==='javascript' || l==='js') mode = 'javascript';
+    else if(l==='rust' || l==='rs') mode = 'rust';
+    else if(l==='go') mode = 'go';
+    editor.setOption('mode', mode);
+  };
+
+  // ─── RENDERERS ───
+  function renderTabs() {
+    document.getElementById('tabTestcase').className = `tc-tab ${currentView==='testcase'?'active':''}`;
+    document.getElementById('tabResult').className = `tc-tab ${currentView==='result'?'active':''}`;
+    
+    let html = '';
+    testCases.forEach((tc, i) => {
+      let active = i === currentCaseIndex ? 'active' : '';
+      let status = tc.status; // pending, running, passed, failed
+      let dot = '';
+      if(status==='passed') dot = '✓ ';
+      if(status==='failed') dot = '✗ ';
+      if(status==='running') dot = '◌ ';
+      html += `<div class="case-pill ${active} ${status}" onclick="selectCase(${i})">${dot}Case ${i+1}</div>`;
+    });
+    document.getElementById('caseTabs').innerHTML = html;
+  }
+
+  window.selectCase = function(i) {
+    currentCaseIndex = i;
+    renderTabs();
+    renderCaseContent();
+  };
+
+  function renderCaseContent() {
+    let tc = testCases[currentCaseIndex];
+    if (!tc) { document.getElementById('caseContent').innerHTML = ''; return; }
+    
+    let html = '';
+    if (currentView === 'testcase') {
+      html = `
+        <div class="case-field">
+          <div class="case-field-title">Input</div>
+          <div class="case-field-val">${tc.input}</div>
+        </div>
+        <div class="case-field">
+          <div class="case-field-title">Expected Output</div>
+          <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
+        </div>
+      `;
+    } else {
+      let actClass = tc.status === 'passed' ? 'val-actual-pass' : (tc.status === 'failed' ? 'val-actual-fail' : '');
+      html = `
+        <div class="case-field">
+          <div class="case-field-title">Status: ${tc.status.toUpperCase()}</div>
+        </div>
+        <div class="case-field">
+          <div class="case-field-title">Your Output</div>
+          <div class="case-field-val ${actClass}">${tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—')}</div>
+        </div>
+        <div class="case-field">
+          <div class="case-field-title">Expected Output</div>
+          <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
+        </div>
+      `;
+    }
+    document.getElementById('caseContent').innerHTML = html;
+  }
+
+  // ─── WEBCHANNEL INIT ───
+  function setupWebChannel(cb) {
+    let connected = false;
+    function tryConnect() {
+      if (connected) return true;
+      if (typeof qt !== "undefined" && qt.webChannelTransport) {
+        connected = true;
+        new QWebChannel(qt.webChannelTransport, function(ch) { cb(ch); });
+        return true;
+      }
+      return false;
+    }
+    if (tryConnect()) return;
+    document.addEventListener("DOMContentLoaded", tryConnect);
+    window.addEventListener("load", tryConnect);
+    let timer = setInterval(() => { if (tryConnect()) clearInterval(timer); }, 20);
+  }
+
+  setupWebChannel(function(channel) {
+    workspaceBridge = channel.objects.workspaceBridge;
+    if (workspaceBridge) workspaceBridge.onWorkspaceReady();
+  });
+
+</script>
+</body>
+</html>
