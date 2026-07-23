@@ -347,6 +347,16 @@
   var solvedMap = {};
   var currentFilter = 'all';
   var searchQuery = '';
+  var pendingPath = null;
+
+  window.openProblemPath = function(path) {
+    if (browserBridge && typeof browserBridge.openProblem === 'function') {
+      browserBridge.openProblem(path);
+    } else {
+      console.warn("browserBridge not ready yet, queuing:", path);
+      pendingPath = path;
+    }
+  };
 
   window.loadProblems = function(problemsJson, solvedData) {
     if (typeof problemsJson === 'string') {
@@ -368,8 +378,8 @@
   };
 
   function setupWebChannel(callback) {
-    function tryConnect() {
-      if (typeof qt !== "undefined" && typeof qt.webchannelTransport !== "undefined") {
+    function connect() {
+      if (typeof qt !== "undefined" && qt.webchannelTransport) {
         new QWebChannel(qt.webchannelTransport, function(channel) {
           callback(channel);
         });
@@ -378,21 +388,28 @@
       return false;
     }
 
-    if (!tryConnect()) {
-      var retries = 0;
-      var timer = setInterval(function() {
-        retries++;
-        if (tryConnect() || retries > 50) {
-          clearInterval(timer);
-        }
-      }, 100);
-    }
+    if (connect()) return;
+
+    var attempts = 0;
+    var timer = setInterval(function() {
+      attempts++;
+      if (connect() || attempts > 200) {
+        clearInterval(timer);
+      }
+    }, 10);
   }
 
   setupWebChannel(function(channel) {
     browserBridge = channel.objects.browserBridge;
+    window.browserBridge = browserBridge;
+
     if (browserBridge && browserBridge.onBrowserReady) {
       browserBridge.onBrowserReady();
+    }
+
+    if (pendingPath && browserBridge && typeof browserBridge.openProblem === 'function') {
+      browserBridge.openProblem(pendingPath);
+      pendingPath = null;
     }
   });
 
@@ -443,12 +460,8 @@
 
       card.className = 'card ' + diffClass;
       card.onclick = function(e) {
-        console.log("Card clicked:", p.id, p.path);
-        if (browserBridge && typeof browserBridge.openProblem === 'function') {
-          browserBridge.openProblem(p.path);
-        } else {
-          console.error("browserBridge or openProblem method not available:", browserBridge);
-        }
+        e.preventDefault();
+        window.openProblemPath(p.path);
       };
 
       var topics = p.topics || [];
