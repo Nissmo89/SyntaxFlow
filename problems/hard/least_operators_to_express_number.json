@@ -388,5 +388,26 @@
       "input": "x = 4\ntarget = 143",
       "output": "9"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int leastOpsExpressTarget(int x, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int leastOpsExpressTarget(int x, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def leastOpsExpressTarget(self, x: int, target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def leastOpsExpressTarget(self, x, target):\n        \"\"\"\n        :type x: int\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} target\n * @return {number}\n */\nvar leastOpsExpressTarget = function(x, target) {\n    \n};",
+    "typescript": "function leastOpsExpressTarget(x: number, target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LeastOpsExpressTarget(int x, int target) {\n        \n    }\n}",
+    "c": "int leastOpsExpressTarget(int x, int target) {\n    \n}",
+    "golang": "func leastOpsExpressTarget(x int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun leastOpsExpressTarget(x: Int, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func leastOpsExpressTarget(_ x: Int, _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn least_ops_express_target(x: i32, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @param {Integer} target\n# @return {Integer}\ndef least_ops_express_target(x, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @param Integer $target\n     * @return Integer\n     */\n    function leastOpsExpressTarget($x, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int leastOpsExpressTarget(int x, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def leastOpsExpressTarget(x: Int, target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec least_ops_express_target(x :: integer, target :: integer) :: integer\n  def least_ops_express_target(x, target) do\n    \n  end\nend",
+    "erlang": "-spec least_ops_express_target(X :: integer(), Target :: integer()) -> integer().\nleast_ops_express_target(X, Target) ->\n  .",
+    "racket": "(define/contract (least-ops-express-target x target)\n  (-> exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

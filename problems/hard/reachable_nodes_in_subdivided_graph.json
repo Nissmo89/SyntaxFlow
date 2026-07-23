@@ -1096,5 +1096,26 @@
       "input": "edges = [[0, 1, 2], [1, 2, 2], [0, 2, 2]]\nmaxMoves = 10\nn = 3",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int reachableNodes(vector<vector<int>>& edges, int maxMoves, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int reachableNodes(int[][] edges, int maxMoves, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reachableNodes(self, edges: List[List[int]], maxMoves: int, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def reachableNodes(self, edges, maxMoves, n):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type maxMoves: int\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {number} maxMoves\n * @param {number} n\n * @return {number}\n */\nvar reachableNodes = function(edges, maxMoves, n) {\n    \n};",
+    "typescript": "function reachableNodes(edges: number[][], maxMoves: number, n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ReachableNodes(int[][] edges, int maxMoves, int n) {\n        \n    }\n}",
+    "c": "int reachableNodes(int** edges, int edgesSize, int* edgesColSize, int maxMoves, int n) {\n    \n}",
+    "golang": "func reachableNodes(edges [][]int, maxMoves int, n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun reachableNodes(edges: Array<IntArray>, maxMoves: Int, n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reachableNodes(_ edges: [[Int]], _ maxMoves: Int, _ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reachable_nodes(edges: Vec<Vec<i32>>, max_moves: i32, n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Integer} max_moves\n# @param {Integer} n\n# @return {Integer}\ndef reachable_nodes(edges, max_moves, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Integer $maxMoves\n     * @param Integer $n\n     * @return Integer\n     */\n    function reachableNodes($edges, $maxMoves, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int reachableNodes(List<List<int>> edges, int maxMoves, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reachableNodes(edges: Array[Array[Int]], maxMoves: Int, n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reachable_nodes(edges :: [[integer]], max_moves :: integer, n :: integer) :: integer\n  def reachable_nodes(edges, max_moves, n) do\n    \n  end\nend",
+    "erlang": "-spec reachable_nodes(Edges :: [[integer()]], MaxMoves :: integer(), N :: integer()) -> integer().\nreachable_nodes(Edges, MaxMoves, N) ->\n  .",
+    "racket": "(define/contract (reachable-nodes edges maxMoves n)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

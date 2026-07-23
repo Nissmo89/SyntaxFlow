@@ -407,5 +407,26 @@
       "input": "left = \"122\"\nright = \"483\"",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int superpalindromesInRange(string left, string right) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int superpalindromesInRange(String left, String right) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def superpalindromesInRange(self, left: str, right: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def superpalindromesInRange(self, left, right):\n        \"\"\"\n        :type left: str\n        :type right: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} left\n * @param {string} right\n * @return {number}\n */\nvar superpalindromesInRange = function(left, right) {\n    \n};",
+    "typescript": "function superpalindromesInRange(left: string, right: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SuperpalindromesInRange(string left, string right) {\n        \n    }\n}",
+    "c": "int superpalindromesInRange(char* left, char* right) {\n    \n}",
+    "golang": "func superpalindromesInRange(left string, right string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun superpalindromesInRange(left: String, right: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func superpalindromesInRange(_ left: String, _ right: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn superpalindromes_in_range(left: String, right: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} left\n# @param {String} right\n# @return {Integer}\ndef superpalindromes_in_range(left, right)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $left\n     * @param String $right\n     * @return Integer\n     */\n    function superpalindromesInRange($left, $right) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int superpalindromesInRange(String left, String right) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def superpalindromesInRange(left: String, right: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec superpalindromes_in_range(left :: String.t, right :: String.t) :: integer\n  def superpalindromes_in_range(left, right) do\n    \n  end\nend",
+    "erlang": "-spec superpalindromes_in_range(Left :: unicode:unicode_binary(), Right :: unicode:unicode_binary()) -> integer().\nsuperpalindromes_in_range(Left, Right) ->\n  .",
+    "racket": "(define/contract (superpalindromes-in-range left right)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

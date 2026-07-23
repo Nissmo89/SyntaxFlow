@@ -1075,5 +1075,26 @@
       "input": "blocked = [[0, 1], [1, 1], [1, 0]]\nsource = [0, 0]\ntarget = [3, 3]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isEscapePossible(vector<vector<int>>& blocked, vector<int>& source, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isEscapePossible(int[][] blocked, int[] source, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isEscapePossible(self, blocked: List[List[int]], source: List[int], target: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isEscapePossible(self, blocked, source, target):\n        \"\"\"\n        :type blocked: List[List[int]]\n        :type source: List[int]\n        :type target: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} blocked\n * @param {number[]} source\n * @param {number[]} target\n * @return {boolean}\n */\nvar isEscapePossible = function(blocked, source, target) {\n    \n};",
+    "typescript": "function isEscapePossible(blocked: number[][], source: number[], target: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsEscapePossible(int[][] blocked, int[] source, int[] target) {\n        \n    }\n}",
+    "c": "bool isEscapePossible(int** blocked, int blockedSize, int* blockedColSize, int* source, int sourceSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func isEscapePossible(blocked [][]int, source []int, target []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isEscapePossible(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isEscapePossible(_ blocked: [[Int]], _ source: [Int], _ target: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_escape_possible(blocked: Vec<Vec<i32>>, source: Vec<i32>, target: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} blocked\n# @param {Integer[]} source\n# @param {Integer[]} target\n# @return {Boolean}\ndef is_escape_possible(blocked, source, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $blocked\n     * @param Integer[] $source\n     * @param Integer[] $target\n     * @return Boolean\n     */\n    function isEscapePossible($blocked, $source, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isEscapePossible(List<List<int>> blocked, List<int> source, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isEscapePossible(blocked: Array[Array[Int]], source: Array[Int], target: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_escape_possible(blocked :: [[integer]], source :: [integer], target :: [integer]) :: boolean\n  def is_escape_possible(blocked, source, target) do\n    \n  end\nend",
+    "erlang": "-spec is_escape_possible(Blocked :: [[integer()]], Source :: [integer()], Target :: [integer()]) -> boolean().\nis_escape_possible(Blocked, Source, Target) ->\n  .",
+    "racket": "(define/contract (is-escape-possible blocked source target)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) (listof exact-integer?) boolean?)\n  )"
+  }
 }

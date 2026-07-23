@@ -2770,5 +2770,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1], [2], [3], [4], [5]]}",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestIncreasingPath(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestIncreasingPath(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestIncreasingPath(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number}\n */\nvar longestIncreasingPath = function(matrix) {\n    \n};",
+    "typescript": "function longestIncreasingPath(matrix: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestIncreasingPath(int[][] matrix) {\n        \n    }\n}",
+    "c": "int longestIncreasingPath(int** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func longestIncreasingPath(matrix [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestIncreasingPath(matrix: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestIncreasingPath(_ matrix: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_increasing_path(matrix: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer}\ndef longest_increasing_path(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer\n     */\n    function longestIncreasingPath($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestIncreasingPath(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestIncreasingPath(matrix: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_increasing_path(matrix :: [[integer]]) :: integer\n  def longest_increasing_path(matrix) do\n    \n  end\nend",
+    "erlang": "-spec longest_increasing_path(Matrix :: [[integer()]]) -> integer().\nlongest_increasing_path(Matrix) ->\n  .",
+    "racket": "(define/contract (longest-increasing-path matrix)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

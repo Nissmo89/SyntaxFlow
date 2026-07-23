@@ -946,5 +946,26 @@
       "input": "nums = [10, 1, 10, 1, 10, 1, 10, 1, 10]\nk = 1",
       "output": "[0, 2, 4]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maxSumOfThreeSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def maxSumOfThreeSubarrays(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number[]}\n */\nvar maxSumOfThreeSubarrays = function(nums, k) {\n    \n};",
+    "typescript": "function maxSumOfThreeSubarrays(nums: number[], k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaxSumOfThreeSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maxSumOfThreeSubarrays(int* nums, int numsSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func maxSumOfThreeSubarrays(nums []int, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSumOfThreeSubarrays(nums: IntArray, k: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSumOfThreeSubarrays(_ nums: [Int], _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum_of_three_subarrays(nums: Vec<i32>, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer[]}\ndef max_sum_of_three_subarrays(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function maxSumOfThreeSubarrays($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maxSumOfThreeSubarrays(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSumOfThreeSubarrays(nums: Array[Int], k: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum_of_three_subarrays(nums :: [integer], k :: integer) :: [integer]\n  def max_sum_of_three_subarrays(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec max_sum_of_three_subarrays(Nums :: [integer()], K :: integer()) -> [integer()].\nmax_sum_of_three_subarrays(Nums, K) ->\n  .",
+    "racket": "(define/contract (max-sum-of-three-subarrays nums k)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

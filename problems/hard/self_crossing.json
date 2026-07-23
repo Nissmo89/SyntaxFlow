@@ -581,5 +581,26 @@
       "input": "distance = [1, 2, 3, 4]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isSelfCrossing(vector<int>& distance) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isSelfCrossing(int[] distance) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isSelfCrossing(self, distance: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isSelfCrossing(self, distance):\n        \"\"\"\n        :type distance: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} distance\n * @return {boolean}\n */\nvar isSelfCrossing = function(distance) {\n    \n};",
+    "typescript": "function isSelfCrossing(distance: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsSelfCrossing(int[] distance) {\n        \n    }\n}",
+    "c": "bool isSelfCrossing(int* distance, int distanceSize) {\n    \n}",
+    "golang": "func isSelfCrossing(distance []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isSelfCrossing(distance: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isSelfCrossing(_ distance: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_self_crossing(distance: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} distance\n# @return {Boolean}\ndef is_self_crossing(distance)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $distance\n     * @return Boolean\n     */\n    function isSelfCrossing($distance) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isSelfCrossing(List<int> distance) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isSelfCrossing(distance: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_self_crossing(distance :: [integer]) :: boolean\n  def is_self_crossing(distance) do\n    \n  end\nend",
+    "erlang": "-spec is_self_crossing(Distance :: [integer()]) -> boolean().\nis_self_crossing(Distance) ->\n  .",
+    "racket": "(define/contract (is-self-crossing distance)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

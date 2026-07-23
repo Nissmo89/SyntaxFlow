@@ -762,5 +762,26 @@
       "input": "board = [[1, 2, 3], [0, 4, 5]]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int slidingPuzzle(vector<vector<int>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int slidingPuzzle(int[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def slidingPuzzle(self, board: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def slidingPuzzle(self, board):\n        \"\"\"\n        :type board: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} board\n * @return {number}\n */\nvar slidingPuzzle = function(board) {\n    \n};",
+    "typescript": "function slidingPuzzle(board: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SlidingPuzzle(int[][] board) {\n        \n    }\n}",
+    "c": "int slidingPuzzle(int** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func slidingPuzzle(board [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun slidingPuzzle(board: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func slidingPuzzle(_ board: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sliding_puzzle(board: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} board\n# @return {Integer}\ndef sliding_puzzle(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $board\n     * @return Integer\n     */\n    function slidingPuzzle($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int slidingPuzzle(List<List<int>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def slidingPuzzle(board: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sliding_puzzle(board :: [[integer]]) :: integer\n  def sliding_puzzle(board) do\n    \n  end\nend",
+    "erlang": "-spec sliding_puzzle(Board :: [[integer()]]) -> integer().\nsliding_puzzle(Board) ->\n  .",
+    "racket": "(define/contract (sliding-puzzle board)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

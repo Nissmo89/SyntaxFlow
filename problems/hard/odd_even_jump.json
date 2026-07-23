@@ -590,5 +590,26 @@
       "input": "arr = [0, 2, 10, 18, 8, 3, 18, 6, 6, 1, 13, 20]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int oddEvenJumps(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int oddEvenJumps(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def oddEvenJumps(self, arr: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def oddEvenJumps(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar oddEvenJumps = function(arr) {\n    \n};",
+    "typescript": "function oddEvenJumps(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int OddEvenJumps(int[] arr) {\n        \n    }\n}",
+    "c": "int oddEvenJumps(int* arr, int arrSize) {\n    \n}",
+    "golang": "func oddEvenJumps(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun oddEvenJumps(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func oddEvenJumps(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn odd_even_jumps(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef odd_even_jumps(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function oddEvenJumps($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int oddEvenJumps(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def oddEvenJumps(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec odd_even_jumps(arr :: [integer]) :: integer\n  def odd_even_jumps(arr) do\n    \n  end\nend",
+    "erlang": "-spec odd_even_jumps(Arr :: [integer()]) -> integer().\nodd_even_jumps(Arr) ->\n  .",
+    "racket": "(define/contract (odd-even-jumps arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

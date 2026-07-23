@@ -561,5 +561,26 @@
       "input": "heights = [2, 1, 2]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int largestRectangleArea(vector<int>& heights) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestRectangleArea(int[] heights) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestRectangleArea(self, heights):\n        \"\"\"\n        :type heights: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} heights\n * @return {number}\n */\nvar largestRectangleArea = function(heights) {\n    \n};",
+    "typescript": "function largestRectangleArea(heights: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestRectangleArea(int[] heights) {\n        \n    }\n}",
+    "c": "int largestRectangleArea(int* heights, int heightsSize) {\n    \n}",
+    "golang": "func largestRectangleArea(heights []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestRectangleArea(heights: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestRectangleArea(_ heights: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_rectangle_area(heights: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} heights\n# @return {Integer}\ndef largest_rectangle_area(heights)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $heights\n     * @return Integer\n     */\n    function largestRectangleArea($heights) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestRectangleArea(List<int> heights) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestRectangleArea(heights: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_rectangle_area(heights :: [integer]) :: integer\n  def largest_rectangle_area(heights) do\n    \n  end\nend",
+    "erlang": "-spec largest_rectangle_area(Heights :: [integer()]) -> integer().\nlargest_rectangle_area(Heights) ->\n  .",
+    "racket": "(define/contract (largest-rectangle-area heights)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

@@ -1237,5 +1237,26 @@
       "input": "height = [0, 0, 0, 0]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int trap(vector<int>& height) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int trap(int[] height) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def trap(self, height: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def trap(self, height):\n        \"\"\"\n        :type height: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} height\n * @return {number}\n */\nvar trap = function(height) {\n    \n};",
+    "typescript": "function trap(height: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Trap(int[] height) {\n        \n    }\n}",
+    "c": "int trap(int* height, int heightSize) {\n    \n}",
+    "golang": "func trap(height []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun trap(height: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func trap(_ height: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn trap(height: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} height\n# @return {Integer}\ndef trap(height)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $height\n     * @return Integer\n     */\n    function trap($height) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int trap(List<int> height) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def trap(height: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec trap(height :: [integer]) :: integer\n  def trap(height) do\n    \n  end\nend",
+    "erlang": "-spec trap(Height :: [integer()]) -> integer().\ntrap(Height) ->\n  .",
+    "racket": "(define/contract (trap height)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

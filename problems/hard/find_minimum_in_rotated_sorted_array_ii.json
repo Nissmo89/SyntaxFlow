@@ -25607,5 +25607,26 @@
       "input": "nums = [1, 1, 1, 1, 1]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMin(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMin(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMin(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMin(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findMin = function(nums) {\n    \n};",
+    "typescript": "function findMin(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMin(int[] nums) {\n        \n    }\n}",
+    "c": "int findMin(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findMin(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMin(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMin(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_min(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findMin($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMin(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMin(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min(nums :: [integer]) :: integer\n  def find_min(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_min(Nums :: [integer()]) -> integer().\nfind_min(Nums) ->\n  .",
+    "racket": "(define/contract (find-min nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

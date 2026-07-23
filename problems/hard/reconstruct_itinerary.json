@@ -3957,5 +3957,26 @@
       "input": "tickets = [[\"JFK\", \"AAA\"], [\"JFK\", \"AAA\"], [\"AAA\", \"JFK\"]]",
       "output": "[\"JFK\", \"AAA\", \"JFK\", \"AAA\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findItinerary(vector<vector<string>>& tickets) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> findItinerary(List<List<String>> tickets) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findItinerary(self, tickets: List[List[str]]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findItinerary(self, tickets):\n        \"\"\"\n        :type tickets: List[List[str]]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[][]} tickets\n * @return {string[]}\n */\nvar findItinerary = function(tickets) {\n    \n};",
+    "typescript": "function findItinerary(tickets: string[][]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FindItinerary(IList<IList<string>> tickets) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findItinerary(char*** tickets, int ticketsSize, int* ticketsColSize, int* returnSize) {\n    \n}",
+    "golang": "func findItinerary(tickets [][]string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findItinerary(tickets: List<List<String>>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findItinerary(_ tickets: [[String]]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[][]} tickets\n# @return {String[]}\ndef find_itinerary(tickets)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $tickets\n     * @return String[]\n     */\n    function findItinerary($tickets) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findItinerary(List<List<String>> tickets) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findItinerary(tickets: List[List[String]]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_itinerary(tickets :: [[String.t]]) :: [String.t]\n  def find_itinerary(tickets) do\n    \n  end\nend",
+    "erlang": "-spec find_itinerary(Tickets :: [[unicode:unicode_binary()]]) -> [unicode:unicode_binary()].\nfind_itinerary(Tickets) ->\n  .",
+    "racket": "(define/contract (find-itinerary tickets)\n  (-> (listof (listof string?)) (listof string?))\n  )"
+  }
 }

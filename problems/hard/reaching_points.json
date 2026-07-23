@@ -499,5 +499,26 @@
       "input": "sx = 2\nsy = 3\ntx = 11\nty = 3",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool reachingPoints(int sx, int sy, int tx, int ty) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean reachingPoints(int sx, int sy, int tx, int ty) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reachingPoints(self, sx: int, sy: int, tx: int, ty: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def reachingPoints(self, sx, sy, tx, ty):\n        \"\"\"\n        :type sx: int\n        :type sy: int\n        :type tx: int\n        :type ty: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} sx\n * @param {number} sy\n * @param {number} tx\n * @param {number} ty\n * @return {boolean}\n */\nvar reachingPoints = function(sx, sy, tx, ty) {\n    \n};",
+    "typescript": "function reachingPoints(sx: number, sy: number, tx: number, ty: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ReachingPoints(int sx, int sy, int tx, int ty) {\n        \n    }\n}",
+    "c": "bool reachingPoints(int sx, int sy, int tx, int ty) {\n    \n}",
+    "golang": "func reachingPoints(sx int, sy int, tx int, ty int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun reachingPoints(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reachingPoints(_ sx: Int, _ sy: Int, _ tx: Int, _ ty: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reaching_points(sx: i32, sy: i32, tx: i32, ty: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} sx\n# @param {Integer} sy\n# @param {Integer} tx\n# @param {Integer} ty\n# @return {Boolean}\ndef reaching_points(sx, sy, tx, ty)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $sx\n     * @param Integer $sy\n     * @param Integer $tx\n     * @param Integer $ty\n     * @return Boolean\n     */\n    function reachingPoints($sx, $sy, $tx, $ty) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool reachingPoints(int sx, int sy, int tx, int ty) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reachingPoints(sx: Int, sy: Int, tx: Int, ty: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reaching_points(sx :: integer, sy :: integer, tx :: integer, ty :: integer) :: boolean\n  def reaching_points(sx, sy, tx, ty) do\n    \n  end\nend",
+    "erlang": "-spec reaching_points(Sx :: integer(), Sy :: integer(), Tx :: integer(), Ty :: integer()) -> boolean().\nreaching_points(Sx, Sy, Tx, Ty) ->\n  .",
+    "racket": "(define/contract (reaching-points sx sy tx ty)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer? boolean?)\n  )"
+  }
 }

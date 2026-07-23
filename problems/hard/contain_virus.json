@@ -10949,5 +10949,26 @@
       "input": "isInfected = [[0], [1], [1], [0], [0]]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int containVirus(vector<vector<int>>& isInfected) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int containVirus(int[][] isInfected) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def containVirus(self, isInfected: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def containVirus(self, isInfected):\n        \"\"\"\n        :type isInfected: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} isInfected\n * @return {number}\n */\nvar containVirus = function(isInfected) {\n    \n};",
+    "typescript": "function containVirus(isInfected: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ContainVirus(int[][] isInfected) {\n        \n    }\n}",
+    "c": "int containVirus(int** isInfected, int isInfectedSize, int* isInfectedColSize) {\n    \n}",
+    "golang": "func containVirus(isInfected [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun containVirus(isInfected: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func containVirus(_ isInfected: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn contain_virus(is_infected: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} is_infected\n# @return {Integer}\ndef contain_virus(is_infected)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $isInfected\n     * @return Integer\n     */\n    function containVirus($isInfected) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int containVirus(List<List<int>> isInfected) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def containVirus(isInfected: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec contain_virus(is_infected :: [[integer]]) :: integer\n  def contain_virus(is_infected) do\n    \n  end\nend",
+    "erlang": "-spec contain_virus(IsInfected :: [[integer()]]) -> integer().\ncontain_virus(IsInfected) ->\n  .",
+    "racket": "(define/contract (contain-virus isInfected)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

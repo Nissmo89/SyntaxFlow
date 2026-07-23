@@ -473,5 +473,26 @@
       "input": "s1 = \"abc\"\nn1 = 10\ns2 = \"abc\"\nn2 = 1",
       "output": "10"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int getMaxRepetitions(string s1, int n1, string s2, int n2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int getMaxRepetitions(String s1, int n1, String s2, int n2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getMaxRepetitions(self, s1: str, n1: int, s2: str, n2: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def getMaxRepetitions(self, s1, n1, s2, n2):\n        \"\"\"\n        :type s1: str\n        :type n1: int\n        :type s2: str\n        :type n2: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {number} n1\n * @param {string} s2\n * @param {number} n2\n * @return {number}\n */\nvar getMaxRepetitions = function(s1, n1, s2, n2) {\n    \n};",
+    "typescript": "function getMaxRepetitions(s1: string, n1: number, s2: string, n2: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int GetMaxRepetitions(string s1, int n1, string s2, int n2) {\n        \n    }\n}",
+    "c": "int getMaxRepetitions(char* s1, int n1, char* s2, int n2) {\n    \n}",
+    "golang": "func getMaxRepetitions(s1 string, n1 int, s2 string, n2 int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun getMaxRepetitions(s1: String, n1: Int, s2: String, n2: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getMaxRepetitions(_ s1: String, _ n1: Int, _ s2: String, _ n2: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_max_repetitions(s1: String, n1: i32, s2: String, n2: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {Integer} n1\n# @param {String} s2\n# @param {Integer} n2\n# @return {Integer}\ndef get_max_repetitions(s1, n1, s2, n2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param Integer $n1\n     * @param String $s2\n     * @param Integer $n2\n     * @return Integer\n     */\n    function getMaxRepetitions($s1, $n1, $s2, $n2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int getMaxRepetitions(String s1, int n1, String s2, int n2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getMaxRepetitions(s1: String, n1: Int, s2: String, n2: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_max_repetitions(s1 :: String.t, n1 :: integer, s2 :: String.t, n2 :: integer) :: integer\n  def get_max_repetitions(s1, n1, s2, n2) do\n    \n  end\nend",
+    "erlang": "-spec get_max_repetitions(S1 :: unicode:unicode_binary(), N1 :: integer(), S2 :: unicode:unicode_binary(), N2 :: integer()) -> integer().\nget_max_repetitions(S1, N1, S2, N2) ->\n  .",
+    "racket": "(define/contract (get-max-repetitions s1 n1 s2 n2)\n  (-> string? exact-integer? string? exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -373,5 +373,26 @@
       "input": "s = \"abab\"",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int strangePrinter(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int strangePrinter(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def strangePrinter(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def strangePrinter(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar strangePrinter = function(s) {\n    \n};",
+    "typescript": "function strangePrinter(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int StrangePrinter(string s) {\n        \n    }\n}",
+    "c": "int strangePrinter(char* s) {\n    \n}",
+    "golang": "func strangePrinter(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun strangePrinter(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func strangePrinter(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn strange_printer(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef strange_printer(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function strangePrinter($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int strangePrinter(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def strangePrinter(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec strange_printer(s :: String.t) :: integer\n  def strange_printer(s) do\n    \n  end\nend",
+    "erlang": "-spec strange_printer(S :: unicode:unicode_binary()) -> integer().\nstrange_printer(S) ->\n  .",
+    "racket": "(define/contract (strange-printer s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

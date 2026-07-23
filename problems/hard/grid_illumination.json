@@ -1959,5 +1959,26 @@
       "input": "n = 7\nlamps = [[3, 5]]\nqueries = [[3, 6], [3, 1], [2, 0]]",
       "output": "[1, 0, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> gridIllumination(int n, vector<vector<int>>& lamps, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] gridIllumination(int n, int[][] lamps, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def gridIllumination(self, n: int, lamps: List[List[int]], queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def gridIllumination(self, n, lamps, queries):\n        \"\"\"\n        :type n: int\n        :type lamps: List[List[int]]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} lamps\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar gridIllumination = function(n, lamps, queries) {\n    \n};",
+    "typescript": "function gridIllumination(n: number, lamps: number[][], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] GridIllumination(int n, int[][] lamps, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* gridIllumination(int n, int** lamps, int lampsSize, int* lampsColSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func gridIllumination(n int, lamps [][]int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun gridIllumination(n: Int, lamps: Array<IntArray>, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func gridIllumination(_ n: Int, _ lamps: [[Int]], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn grid_illumination(n: i32, lamps: Vec<Vec<i32>>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} lamps\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef grid_illumination(n, lamps, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $lamps\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function gridIllumination($n, $lamps, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> gridIllumination(int n, List<List<int>> lamps, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def gridIllumination(n: Int, lamps: Array[Array[Int]], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec grid_illumination(n :: integer, lamps :: [[integer]], queries :: [[integer]]) :: [integer]\n  def grid_illumination(n, lamps, queries) do\n    \n  end\nend",
+    "erlang": "-spec grid_illumination(N :: integer(), Lamps :: [[integer()]], Queries :: [[integer()]]) -> [integer()].\ngrid_illumination(N, Lamps, Queries) ->\n  .",
+    "racket": "(define/contract (grid-illumination n lamps queries)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

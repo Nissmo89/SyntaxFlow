@@ -1091,5 +1091,26 @@
       "input": "grid = [[1, 1, 0], [1, 1, 1], [0, 1, 0]]\nhits = [[1, 1]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> hitBricks(vector<vector<int>>& grid, vector<vector<int>>& hits) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] hitBricks(int[][] grid, int[][] hits) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hitBricks(self, grid: List[List[int]], hits: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def hitBricks(self, grid, hits):\n        \"\"\"\n        :type grid: List[List[int]]\n        :type hits: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @param {number[][]} hits\n * @return {number[]}\n */\nvar hitBricks = function(grid, hits) {\n    \n};",
+    "typescript": "function hitBricks(grid: number[][], hits: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] HitBricks(int[][] grid, int[][] hits) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* hitBricks(int** grid, int gridSize, int* gridColSize, int** hits, int hitsSize, int* hitsColSize, int* returnSize) {\n    \n}",
+    "golang": "func hitBricks(grid [][]int, hits [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun hitBricks(grid: Array<IntArray>, hits: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hitBricks(_ grid: [[Int]], _ hits: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn hit_bricks(grid: Vec<Vec<i32>>, hits: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @param {Integer[][]} hits\n# @return {Integer[]}\ndef hit_bricks(grid, hits)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @param Integer[][] $hits\n     * @return Integer[]\n     */\n    function hitBricks($grid, $hits) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> hitBricks(List<List<int>> grid, List<List<int>> hits) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hitBricks(grid: Array[Array[Int]], hits: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec hit_bricks(grid :: [[integer]], hits :: [[integer]]) :: [integer]\n  def hit_bricks(grid, hits) do\n    \n  end\nend",
+    "erlang": "-spec hit_bricks(Grid :: [[integer()]], Hits :: [[integer()]]) -> [integer()].\nhit_bricks(Grid, Hits) ->\n  .",
+    "racket": "(define/contract (hit-bricks grid hits)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }
