@@ -7,9 +7,9 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
-#include <QPainter>
-#include <QStyleOption>
 #include <QUrl>
+#include <QCoreApplication>
+#include <QWebEngineSettings>
 #include <QDebug>
 
 ProblemPanel::ProblemPanel(QWidget *parent)
@@ -19,23 +19,70 @@ ProblemPanel::ProblemPanel(QWidget *parent)
     buildUI();
 }
 
+ProblemPanel::~ProblemPanel() = default;
+
 void ProblemPanel::buildUI()
 {
     auto *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(10, 10, 10, 10);
-    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
-    markdownViewer = new NetworkBrowser(this);
-    markdownViewer->setFrameShape(QFrame::NoFrame);
-    markdownViewer->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    markdownViewer->setOpenExternalLinks(true);
+    m_view = new QWebEngineView(this);
+    m_view->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    m_view->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+    m_view->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
 
-    layout->addWidget(markdownViewer);
+    m_channel = new QWebChannel(m_view->page());
+    m_bridge = new ProblemPanelBridge(this);
+
+    m_channel->registerObject("panelBridge", m_bridge);
+    m_view->page()->setWebChannel(m_channel);
+
+    layout->addWidget(m_view);
+
+    const QString appDir = QCoreApplication::applicationDirPath();
+    QString htmlPath = QDir(appDir).filePath("web_editor/panel.html");
+    if (!QFile::exists(htmlPath)) {
+        htmlPath = QDir(appDir + "/../web_editor").filePath("panel.html");
+    }
+
+    connect(m_view, &QWebEngineView::loadFinished, this, [this](bool ok) {
+        if (ok) {
+            m_isWebReady = true;
+            syncToWeb();
+        }
+    });
+
+    m_view->setUrl(QUrl::fromLocalFile(htmlPath));
+}
+
+void ProblemPanel::onWebReady()
+{
+    m_isWebReady = true;
+    syncToWeb();
+}
+
+void ProblemPanel::syncToWeb()
+{
+    if (!m_isWebReady) return;
+
+    QJsonObject obj;
+    obj["title"] = problemTitle;
+    obj["difficulty"] = difficulty;
+    obj["category"] = category;
+    
+    QJsonArray tagsArr;
+    for (const QString &t : tags) {
+        tagsArr.append(t);
+    }
+    obj["tags"] = tagsArr;
+    obj["markdown"] = rawMarkdown;
+
+    QString jsonStr = QJsonDocument(obj).toJson(QJsonDocument::Compact);
+    m_view->page()->runJavaScript(QString("window.setProblemData(%1);").arg(jsonStr));
 }
 
 void ProblemPanel::loadFromJson(const QJsonObject &obj)
 {
-    // Store Problem Data
     problemId = obj["id"].toString();
     problemTitle = obj["title"].toString();
     difficulty = obj["difficulty"].toString().toLower();
@@ -49,9 +96,6 @@ void ProblemPanel::loadFromJson(const QJsonObject &obj)
 
     cachedTestCases = obj["testCases"].toArray();
 
-    // Check if the current problem is Two Sum to render custom Markdown and diagram
-    QString rawMarkdown;
-    QString htmlBody;
     if (problemId == "two_sum") {
         QString imagePath = QFileInfo(currentFilePath).dir().absoluteFilePath("../two_sum_diagram.png");
         if (!QFile::exists(imagePath)) {
@@ -103,34 +147,11 @@ Output: [0,1]
 
 **Follow-up:** Can you come up with an algorithm that is less than `O(n2)` time complexity?
 )").arg(imageUrl);
-        htmlBody = MarkdownRenderer::toHtml(rawMarkdown);
     } else {
-        QString badgeClass = "difficulty-easy";
-        if (difficulty == "medium") badgeClass = "difficulty-medium";
-        else if (difficulty == "hard") badgeClass = "difficulty-hard";
-
-        QString difficultyText = obj["difficulty"].toString();
-
-        QString tagsHtml;
-        for (const QString &tag : tags) {
-            tagsHtml += QString("<code class=\"code-tag\">%1</code> ").arg(tag.toHtmlEscaped());
-        }
-
-        htmlBody = QString(
-            "<h1>%1</h1>"
-            "<p><b>Difficulty:</b> <span class=\"%2\">%3</span> | <b>Category:</b> %4</p>"
-            "<p><b>Tags:</b> %5</p>"
-            "<hr>"
-            "%6"
-        )
-        .arg(problemTitle.toHtmlEscaped())
-        .arg(badgeClass)
-        .arg(difficultyText.toHtmlEscaped())
-        .arg(category.isEmpty() ? "General" : category.toHtmlEscaped())
-        .arg(tagsHtml)
-        .arg(obj["description"].toString());
+        rawMarkdown = obj["description"].toString();
     }
-    markdownViewer->setProblemHtml(htmlBody);
+
+    syncToWeb();
 
     emit problemLoaded(problemId);
     emit testCasesAvailable(cachedTestCases);
@@ -151,25 +172,11 @@ bool ProblemPanel::loadFromFile(const QString &filePath)
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
 
-    if (error.error != QJsonParseError::NoError) {
-        qWarning() << "JSON parse error:" << error.errorString();
-        return false;
-    }
-
-    if (!doc.isObject()) {
-        qWarning() << "JSON root is not an object";
+    if (error.error != QJsonParseError::NoError || !doc.isObject()) {
+        qWarning() << "JSON parse error or invalid root object";
         return false;
     }
 
     loadFromJson(doc.object());
     return true;
-}
-
-void ProblemPanel::paintEvent(QPaintEvent *event)
-{
-    QStyleOption opt;
-    opt.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-    QWidget::paintEvent(event);
 }

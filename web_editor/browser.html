@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SyntaxFlow Problem Set</title>
+  <script src="qwebchannel.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0f0f11;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(18, 18, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Controls Bar */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-input {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px 14px 8px 36px;
+      color: #f1f5f9;
+      font-size: 13px;
+      outline: none;
+      width: 220px;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: #60a5fa;
+      background: rgba(30, 41, 59, 0.9);
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+      width: 260px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .filter-pills {
+      display: flex;
+      background: rgba(30, 41, 59, 0.5);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: #f8fafc;
+    }
+
+    .filter-btn.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* Stats Pill */
+    .stats-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .stats-text {
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .progress-bar-bg {
+      width: 80px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Problem Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 32px 64px 32px;
+    }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Problem Card */
+    .card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(20, 20, 26, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px 20px 14px 24px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+      transition: all 0.2s;
+    }
+
+    .card.easy::before { background: #10b981; }
+    .card.medium::before { background: #f59e0b; }
+    .card.hard::before { background: #ef4444; }
+
+    .card:hover {
+      background: rgba(30, 30, 40, 0.85);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .diff-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .diff-badge.easy {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .diff-badge.medium {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .diff-badge.hard {
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .tag-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(30, 41, 59, 0.6);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .solved-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .unsolved-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.2s;
+    }
+
+    .card:hover .unsolved-circle {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0f11;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">
+    <span class="logo">SyntaxFlow</span>
+    <span class="subtitle">Problem Set</span>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search problems or tags...">
+    </div>
+
+    <div class="filter-pills">
+      <button class="filter-btn active" onclick="setFilter('all')">All</button>
+      <button class="filter-btn" onclick="setFilter('easy')">Easy</button>
+      <button class="filter-btn" onclick="setFilter('medium')">Medium</button>
+      <button class="filter-btn" onclick="setFilter('hard')">Hard</button>
+    </div>
+
+    <div class="stats-card">
+      <div class="progress-bar-bg">
+        <div id="progressFill" class="progress-bar-fill"></div>
+      </div>
+      <span id="statsText" class="stats-text">0 / 0 Solved</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="problemList" class="problem-list"></div>
+</div>
+
+<script>
+  var browserBridge = null;
+  var allProblems = [];
+  var solvedMap = {};
+  var currentFilter = 'all';
+  var searchQuery = '';
+
+  new QWebChannel(qt.webchannelTransport, function(channel) {
+    browserBridge = channel.objects.browserBridge;
+    if (browserBridge && browserBridge.onBrowserReady) {
+      browserBridge.onBrowserReady();
+    }
+  });
+
+  window.loadProblems = function(problemsJson, solvedData) {
+    if (typeof problemsJson === 'string') {
+      try { allProblems = JSON.parse(problemsJson); } catch(e){}
+    } else {
+      allProblems = problemsJson || [];
+    }
+
+    if (solvedData) {
+      solvedMap = solvedData;
+    }
+
+    render();
+  };
+
+  window.updateProgress = function(solvedData) {
+    solvedMap = solvedData || {};
+    render();
+  };
+
+  function setFilter(filter) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === filter);
+    });
+    render();
+  }
+
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+    searchQuery = e.target.value.toLowerCase().trim();
+    render();
+  });
+
+  function render() {
+    var container = document.getElementById('problemList');
+    container.innerHTML = '';
+
+    var total = allProblems.length;
+    var solvedCount = 0;
+
+    var filtered = allProblems.filter(function(p) {
+      var isSolved = !!solvedMap[p.id];
+      if (isSolved) solvedCount++;
+
+      var diffMatch = (currentFilter === 'all' || (p.difficulty || '').toLowerCase() === currentFilter);
+      var searchMatch = !searchQuery || 
+        (p.title || '').toLowerCase().includes(searchQuery) ||
+        (p.id || '').toLowerCase().includes(searchQuery) ||
+        (p.topics || []).some(t => t.toLowerCase().includes(searchQuery));
+
+      return diffMatch && searchMatch;
+    });
+
+    // Update Header Stats
+    document.getElementById('statsText').textContent = solvedCount + ' / ' + total + ' Solved';
+    var pct = total > 0 ? (solvedCount / total * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    filtered.forEach(function(p) {
+      var card = document.createElement('div');
+      var diffClass = (p.difficulty || 'easy').toLowerCase();
+      var isSolved = !!solvedMap[p.id];
+
+      card.className = 'card ' + diffClass;
+      card.onclick = function() {
+        if (browserBridge && browserBridge.openProblem) {
+          browserBridge.openProblem(p.path);
+        }
+      };
+
+      var topicsHtml = (p.topics || []).map(function(t) {
+        return '<span class="tag-chip">' + escapeHtml(t) + '</span>';
+      }).join(' ');
+
+      var statusHtml = isSolved 
+        ? '<div class="solved-badge">✓ Solved</div>'
+        : '<div class="unsolved-circle"></div>';
+
+      card.innerHTML = `
+        <div class="card-info">
+          <div class="card-title">${escapeHtml(p.title)}</div>
+          <div class="card-meta">
+            <span class="diff-badge ${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</span>
+            ${topicsHtml}
+          </div>
+        </div>
+        ${statusHtml}
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+</script>
+
+</body>
+</html>

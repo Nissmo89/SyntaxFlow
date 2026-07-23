@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Problem Description Panel</title>
+  
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="highlight-tokyo-night.min.css">
+  
+  <!-- Marked.js & Highlight.js -->
+  <script src="marked.min.js"></script>
+  <script src="highlight.min.js"></script>
+  <script src="qwebchannel.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #121215;
+      color: #cbd5e1;
+      font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 24px 28px 48px 28px;
+      max-width: 900px;
+    }
+
+    /* Problem Title */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-top: 0;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    h2, h3, h4 {
+      color: #e2e8f0;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    /* Meta bar */
+    .meta-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .diff-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .diff-pill.easy {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .diff-pill.medium {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .diff-pill.hard {
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .category-chip {
+      font-size: 12px;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .tag-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #60a5fa;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Content styling */
+    p {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      background: rgba(30, 41, 59, 0.6);
+      color: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    pre {
+      background: #18181f !important;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    pre code {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 16px 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin: 24px 0;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #121215;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 id="problemTitle">Problem Title</h1>
+  
+  <div id="metaBar" class="meta-bar">
+    <span id="diffPill" class="diff-pill easy">Easy</span>
+    <span id="categoryChip" class="category-chip">Category: General</span>
+    <div id="tagsContainer" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<script>
+  var panelBridge = null;
+
+  new QWebChannel(qt.webchannelTransport, function(channel) {
+    panelBridge = channel.objects.panelBridge;
+  });
+
+  window.setProblemData = function(data) {
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch(e){}
+    }
+    data = data || {};
+
+    document.getElementById('problemTitle').textContent = data.title || 'Untitled Problem';
+    
+    var diff = (data.difficulty || 'easy').toLowerCase();
+    var diffPill = document.getElementById('diffPill');
+    diffPill.textContent = (data.difficulty || 'Easy').toUpperCase();
+    diffPill.className = 'diff-pill ' + diff;
+
+    document.getElementById('categoryChip').textContent = 'Category: ' + (data.category || 'General');
+
+    var tagsContainer = document.getElementById('tagsContainer');
+    tagsContainer.innerHTML = '';
+    (data.tags || []).forEach(function(tag) {
+      var chip = document.createElement('span');
+      chip.className = 'tag-chip';
+      chip.textContent = tag;
+      tagsContainer.appendChild(chip);
+    });
+
+    var markdownText = data.markdown || data.description || '';
+    
+    // Configure marked to use highlight.js
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      }
+    });
+
+    document.getElementById('content').innerHTML = marked.parse(markdownText);
+  };
+</script>
+
+</body>
+</html>
