@@ -442,9 +442,12 @@
       var isSolved = !!solvedMap[p.id];
 
       card.className = 'card ' + diffClass;
-      card.onclick = function() {
-        if (browserBridge && browserBridge.openProblem) {
+      card.onclick = function(e) {
+        console.log("Card clicked:", p.id, p.path);
+        if (browserBridge && typeof browserBridge.openProblem === 'function') {
           browserBridge.openProblem(p.path);
+        } else {
+          console.error("browserBridge or openProblem method not available:", browserBridge);
         }
       };
 

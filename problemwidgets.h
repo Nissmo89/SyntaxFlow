@@ -20,11 +20,13 @@ signals:
     void browserReady();
 
 public slots:
-    void openProblem(const QString &path) {
+    Q_INVOKABLE void openProblem(const QString &path) {
+        qDebug() << ">>> ProblemBrowserBridge::openProblem CALLED WITH PATH:" << path;
         emit openProblemRequested(path);
     }
 
-    void onBrowserReady() {
+    Q_INVOKABLE void onBrowserReady() {
+        qDebug() << ">>> ProblemBrowserBridge::onBrowserReady CALLED";
         emit browserReady();
     }
 };
