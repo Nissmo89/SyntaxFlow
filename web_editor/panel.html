@@ -242,9 +242,9 @@
     var connected = false;
     function tryConnect() {
       if (connected) return true;
-      if (typeof qt !== "undefined" && qt.webchannelTransport) {
+      if (typeof qt !== "undefined" && qt.webChannelTransport) {
         connected = true;
-        new QWebChannel(qt.webchannelTransport, function(channel) {
+        new QWebChannel(qt.webChannelTransport, function(channel) {
           callback(channel);
         });
         return true;

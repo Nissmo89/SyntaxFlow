@@ -347,14 +347,26 @@
   var solvedMap = {};
   var currentFilter = 'all';
   var searchQuery = '';
-  var pendingPath = null;
+  var pendingPaths = [];
+
+  function flushPendingPaths() {
+    if (!browserBridge || typeof browserBridge.openProblem !== 'function') {
+      return;
+    }
+
+    while (pendingPaths.length > 0) {
+      var path = pendingPaths.shift();
+      console.log("Executing queued openProblem:", path);
+      browserBridge.openProblem(path);
+    }
+  }
 
   window.openProblemPath = function(path) {
     if (browserBridge && typeof browserBridge.openProblem === 'function') {
       browserBridge.openProblem(path);
     } else {
       console.warn("browserBridge not ready yet, queuing:", path);
-      pendingPath = path;
+      pendingPaths.push(path);
     }
   };
 
@@ -381,9 +393,9 @@
     var connected = false;
     function tryConnect() {
       if (connected) return true;
-      if (typeof qt !== "undefined" && qt.webchannelTransport) {
+      if (typeof qt !== "undefined" && qt.webChannelTransport) {
         connected = true;
-        new QWebChannel(qt.webchannelTransport, function(channel) {
+        new QWebChannel(qt.webChannelTransport, function(channel) {
           callback(channel);
         });
         return true;
@@ -412,11 +424,7 @@
       browserBridge.onBrowserReady();
     }
 
-    if (pendingPath && browserBridge && typeof browserBridge.openProblem === 'function') {
-      console.log("Executing pending openProblem:", pendingPath);
-      browserBridge.openProblem(pendingPath);
-      pendingPath = null;
-    }
+    flushPendingPaths();
   });
 
   function setFilter(filter) {
