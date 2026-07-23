@@ -650,7 +650,7 @@ void MainWindow::updateStatusBar(int line, int column)
 
 void MainWindow::onNavigateToEditor(const QString &path)
 {
-    const QString filePath = ProblemsBasePath + path;
+    const QString filePath = QDir(ProblemsBasePath).filePath(path);
     m_currentProblemId = extractProblemId(path);
     m_currentProblemPath = filePath;
 
