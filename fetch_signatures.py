@@ -44,6 +44,8 @@ def main():
         print(f"Error: Directory '{problems_dir}' not found.")
         return
 
+    consecutive_failures = 0
+
     for root, _, files in os.walk(problems_dir):
         for file in files:
             if file.endswith(".json") and file != "problems.json":
@@ -74,11 +76,16 @@ def main():
                                 json.dump(data, f, indent=2)
                             
                             print(f" -> Successfully updated {title_slug}")
+                            consecutive_failures = 0
                         else:
                             print(f" -> Failed to fetch snippets for {title_slug} (might be premium or invalid)")
+                            consecutive_failures += 1
+                            if consecutive_failures >= 15:
+                                print("Too many consecutive failures. Aborting to prevent rate-limit penalties.")
+                                return
                         
                         # Be gentle to Leetcode API
-                        time.sleep(1)
+                        time.sleep(1.5)
 
 if __name__ == "__main__":
     main()
