@@ -46,27 +46,12 @@ if [ -z "$QMAKE_CMD" ]; then
 fi
 echo " qmake   : $QMAKE_CMD"
 
-# ---- Step 1: Build QScintilla (if not already present) ----
+# ---- Step 1: QScintilla (SKIPPED — Replaced by WebEngine & CodeMirror) ----
 echo ""
 echo "============================================================"
-echo " Step 1: QScintilla"
+echo " Step 1: QScintilla (SKIPPED — Removed)"
 echo "============================================================"
-
-QSCI_SRC="$SCRIPT_DIR/libs/qscintilla/src"
-QSCI_LIB="$QSCI_SRC/libqscintilla2.so"
-
-if [ -f "$QSCI_LIB" ]; then
-    echo "  [SKIP] Local QScintilla .so already exists."
-elif pkg-config --exists qscintilla2-qt6 2>/dev/null; then
-    echo "  [SKIP] System qscintilla2-qt6 found via pkg-config."
-else
-    echo "  Building QScintilla from source..."
-    pushd "$QSCI_SRC" > /dev/null
-    "$QMAKE_CMD" qscintilla.pro CONFIG+=release QT+=widgets
-    make -j"$(nproc)"
-    popd > /dev/null
-    echo "  [OK] QScintilla built."
-fi
+echo "  [SKIP] QScintilla replaced by QWebEngine & CodeMirror."
 
 # ---- Step 2: Skip TinyCC (Removed from CMake) ----
 echo ""

@@ -69,30 +69,9 @@ if exist "%TINYCC_WIN%\libtcc.a" (
 
 echo.
 echo ============================================================
-echo  Step 2: Build QScintilla (static, Qt6, MinGW)
+echo  Step 2: QScintilla (SKIPPED — Replaced by WebEngine & CodeMirror)
 echo ============================================================
-
-set QSCI_SRC=%~dp0libs\qscintilla\src
-set QSCI_LIB=%QSCI_SRC%\release\libqscintilla2_qt6.a
-
-if exist "%QSCI_LIB%" (
-    echo   [SKIP] QScintilla already built at libs\qscintilla\src\release\
-) else (
-    echo   Building QScintilla with qmake...
-    pushd "%QSCI_SRC%"
-    qmake qscintilla.pro ^
-        CONFIG+=staticlib ^
-        CONFIG+=release ^
-        CONFIG+=qt ^
-        QT+=widgets
-    if errorlevel 1 ( popd & goto :BUILD_FAILED )
-
-    mingw32-make -j%NUMBER_OF_PROCESSORS%
-    if errorlevel 1 ( popd & goto :BUILD_FAILED )
-
-    popd
-    echo   [OK] QScintilla built.
-)
+echo   [SKIP] QScintilla replaced by QWebEngine & CodeMirror.
 
 echo.
 echo ============================================================

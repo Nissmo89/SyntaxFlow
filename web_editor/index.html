@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SyntaxFlow CodeMirror Editor</title>
+  
+  <!-- Base CodeMirror CSS -->
+  <link rel="stylesheet" href="codemirror.min.css">
+  
+  <!-- Addon CSS -->
+  <link rel="stylesheet" href="addons/show-hint.min.css">
+  <link rel="stylesheet" href="addons/foldgutter.min.css">
+
+  <!-- Themes CSS -->
+  <link rel="stylesheet" href="themes/monokai.min.css">
+  <link rel="stylesheet" href="themes/dracula.min.css">
+  <link rel="stylesheet" href="themes/material-darker.min.css">
+  <link rel="stylesheet" href="themes/nord.min.css">
+  <link rel="stylesheet" href="themes/material.min.css">
+
+  <!-- Core CodeMirror JS -->
+  <script src="codemirror.min.js"></script>
+
+  <!-- Addons -->
+  <script src="addons/matchbrackets.min.js"></script>
+  <script src="addons/closebrackets.min.js"></script>
+  <script src="addons/active-line.min.js"></script>
+  <script src="addons/show-hint.min.js"></script>
+  <script src="addons/anyword-hint.min.js"></script>
+  <script src="addons/foldcode.min.js"></script>
+  <script src="addons/foldgutter.min.js"></script>
+  <script src="addons/brace-fold.min.js"></script>
+  <script src="addons/comment.min.js"></script>
+
+  <!-- Language Modes -->
+  <script src="modes/clike.min.js"></script>
+  <script src="modes/python.min.js"></script>
+  <script src="modes/javascript.min.js"></script>
+  <script src="modes/rust.min.js"></script>
+  <script src="modes/go.min.js"></script>
+  <script src="modes/xml.min.js"></script>
+  <script src="modes/css.min.js"></script>
+
+  <!-- Qt WebChannel -->
+  <script src="qwebchannel.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #1e1e1e;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    }
+
+    .CodeMirror {
+      height: 100% !important;
+      width: 100% !important;
+      font-size: 14px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      line-height: 1.5;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #181818;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333333;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555555;
+    }
+
+    /* Active line highlight styling */
+    .CodeMirror-activeline-background {
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* Fold gutter adjustment */
+    .CodeMirror-foldgutter {
+      width: 16px;
+    }
+    .CodeMirror-foldmarker {
+      color: #888;
+      background-color: #333;
+      border-radius: 3px;
+      padding: 0 4px;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<div id="editor-container" style="width: 100%; height: 100%;"></div>
+
+<script>
+  var editorBridge = null;
+  var editor = null;
+  var isInternalChange = false;
+
+  // Language mapping helper
+  function getModeForLanguage(langId) {
+    var lang = (langId || '').toLowerCase();
+    switch (lang) {
+      case 'cpp':
+      case 'c++':
+        return 'text/x-c++src';
+      case 'c':
+        return 'text/x-csrc';
+      case 'java':
+        return 'text/x-java';
+      case 'csharp':
+      case 'c#':
+        return 'text/x-csharp';
+      case 'python':
+      case 'py':
+        return 'python';
+      case 'javascript':
+      case 'js':
+        return 'javascript';
+      case 'rust':
+      case 'rs':
+        return 'rust';
+      case 'go':
+        return 'go';
+      case 'html':
+        return 'text/html';
+      case 'css':
+        return 'css';
+      default:
+        return 'text/x-c++src';
+    }
+  }
+
+  // Theme mapping helper
+  function getThemeName(themeId) {
+    var t = (themeId || '').toLowerCase();
+    if (t.includes('monokai')) return 'monokai';
+    if (t.includes('dracula')) return 'dracula';
+    if (t.includes('one dark') || t.includes('onedark')) return 'material-darker';
+    if (t.includes('github') || t.includes('nord')) return 'nord';
+    if (t.includes('tokyo') || t.includes('material')) return 'material';
+    return 'monokai';
+  }
+
+  // Initialize CodeMirror
+  editor = CodeMirror(document.getElementById('editor-container'), {
+    value: "",
+    mode: "text/x-c++src",
+    theme: "monokai",
+    lineNumbers: true,
+    tabSize: 4,
+    indentUnit: 4,
+    lineWrapping: false,
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    styleActiveLine: true,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    extraKeys: {
+      "Ctrl-Space": "autocomplete",
+      "Ctrl-/": function(cm) { window.toggleComment(); },
+      "Cmd-/": function(cm) { window.toggleComment(); }
+    }
+  });
+
+  // Attach WebChannel
+  new QWebChannel(qt.webchannelTransport, function(channel) {
+    editorBridge = channel.objects.editorBridge;
+    
+    // Listen to changes in CodeMirror
+    editor.on('change', function(cm, changeObj) {
+      if (isInternalChange) return;
+      if (editorBridge && editorBridge.onTextChanged) {
+        editorBridge.onTextChanged(cm.getValue());
+      }
+    });
+
+    // Listen to cursor movement
+    editor.on('cursorActivity', function(cm) {
+      var pos = cm.getCursor();
+      if (editorBridge && editorBridge.onCursorPositionChanged) {
+        editorBridge.onCursorPositionChanged(pos.line + 1, pos.ch + 1);
+      }
+    });
+
+    // Notify C++ bridge that editor is ready
+    if (editorBridge && editorBridge.onEditorReady) {
+      editorBridge.onEditorReady();
+    }
+  });
+
+  // Public API methods callable from C++
+  window.setCode = function(code) {
+    isInternalChange = true;
+    var cursor = editor.getCursor();
+    editor.setValue(code || "");
+    editor.setCursor(cursor);
+    isInternalChange = false;
+  };
+
+  window.getCode = function() {
+    return editor.getValue();
+  };
+
+  window.setLanguage = function(langId) {
+    var mode = getModeForLanguage(langId);
+    editor.setOption('mode', mode);
+  };
+
+  window.setTheme = function(themeName) {
+    var theme = getThemeName(themeName);
+    editor.setOption('theme', theme);
+  };
+
+  window.setFontSize = function(size) {
+    document.querySelector('.CodeMirror').style.fontSize = size + 'px';
+    editor.refresh();
+  };
+
+  window.setTabSize = function(size) {
+    editor.setOption('tabSize', size);
+    editor.setOption('indentUnit', size);
+  };
+
+  window.setWordWrap = function(enabled) {
+    editor.setOption('lineWrapping', !!enabled);
+  };
+
+  window.setReadOnly = function(readOnly) {
+    editor.setOption('readOnly', !!readOnly);
+  };
+
+  window.setShowWhitespace = function(enabled) {
+    // CodeMirror toggle invisibles if needed
+  };
+
+  window.setShowIndentGuides = function(enabled) {
+    // Indent guides option
+  };
+
+  window.goToLine = function(line) {
+    var l = Math.max(0, line - 1);
+    editor.setCursor({line: l, ch: 0});
+    editor.scrollIntoView({line: l, ch: 0}, 100);
+    editor.focus();
+  };
+
+  window.toggleComment = function() {
+    var from = editor.getCursor("from");
+    var to = editor.getCursor("to");
+    editor.toggleComment(from, to);
+  };
+
+  window.duplicateLine = function() {
+    var pos = editor.getCursor();
+    var line = editor.getLine(pos.line);
+    editor.replaceRange(line + "\n", {line: pos.line, ch: 0});
+  };
+
+  window.deleteLine = function() {
+    var pos = editor.getCursor();
+    editor.replaceRange("", {line: pos.line, ch: 0}, {line: pos.line + 1, ch: 0});
+  };
+
+  window.moveLineUp = function() {
+    var pos = editor.getCursor();
+    if (pos.line === 0) return;
+    var currentLine = editor.getLine(pos.line);
+    var prevLine = editor.getLine(pos.line - 1);
+    editor.replaceRange(currentLine + "\n" + prevLine, {line: pos.line - 1, ch: 0}, {line: pos.line, ch: currentLine.length});
+    editor.setCursor({line: pos.line - 1, ch: pos.ch});
+  };
+
+  window.moveLineDown = function() {
+    var pos = editor.getCursor();
+    if (pos.line >= editor.lineCount() - 1) return;
+    var currentLine = editor.getLine(pos.line);
+    var nextLine = editor.getLine(pos.line + 1);
+    editor.replaceRange(nextLine + "\n" + currentLine, {line: pos.line, ch: 0}, {line: pos.line + 1, ch: nextLine.length});
+    editor.setCursor({line: pos.line + 1, ch: pos.ch});
+  };
+
+  window.focusEditor = function() {
+    editor.focus();
+  };
+
+</script>
+
+</body>
+</html>

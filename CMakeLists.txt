@@ -10,7 +10,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 # ---- Find Qt ----
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network WebEngineWidgets WebChannel)
 
 # ============================================================
 # QText Browser Custom Renderer Module
@@ -101,6 +101,8 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::Gui
     Qt6::Widgets
     Qt6::Network
+    Qt6::WebEngineWidgets
+    Qt6::WebChannel
     tree-sitter-highlighter
     qtext_browser
     ${Python3_LIBRARIES}
@@ -109,56 +111,6 @@ target_link_libraries(SyntaxFlow PRIVATE
 if(WIN32)
     # MinGW needs these for Python on Windows
     target_link_libraries(SyntaxFlow PRIVATE ws2_32 winmm)
-endif()
-
-# ============================================================
-# QScintilla (Manual first, fallback system)
-# ============================================================
-target_include_directories(SyntaxFlow PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/qscintilla/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/qscintilla/scintilla/include
-)
-
-set(QSCI_LOCAL_WIN
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/qscintilla/src/release/libqscintilla2_qt6.a
-)
-set(QSCI_LOCAL_LINUX
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/qscintilla/src/libqscintilla2.so
-)
-
-if(WIN32 AND EXISTS ${QSCI_LOCAL_WIN})
-    message(STATUS "Using local QScintilla (Windows): ${QSCI_LOCAL_WIN}")
-    target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LOCAL_WIN})
-elseif(UNIX AND NOT APPLE AND EXISTS ${QSCI_LOCAL_LINUX})
-    message(STATUS "Using local QScintilla (Linux): ${QSCI_LOCAL_LINUX}")
-    target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LOCAL_LINUX})
-else()
-    # BUILD-03: Try pkg-config first (most reliable across distros)
-    find_package(PkgConfig QUIET)
-    if(PKG_CONFIG_FOUND)
-        pkg_check_modules(QSCI QUIET qscintilla2-qt6)
-    endif()
-
-    if(QSCI_FOUND)
-        message(STATUS "QScintilla found via pkg-config: ${QSCI_LIBRARIES}")
-        target_link_libraries(SyntaxFlow PRIVATE ${QSCI_LIBRARIES})
-        target_include_directories(SyntaxFlow PRIVATE ${QSCI_INCLUDE_DIRS})
-    else()
-        find_library(QSCI_SYSTEM_LIB
-            NAMES qscintilla2_qt6 qscintilla2-qt6 qscintilla2 libqscintilla2
-        )
-        if(QSCI_SYSTEM_LIB)
-            message(STATUS "Using system QScintilla: ${QSCI_SYSTEM_LIB}")
-            target_link_libraries(SyntaxFlow PRIVATE ${QSCI_SYSTEM_LIB})
-        else()
-            message(FATAL_ERROR
-                "QScintilla not found locally or system-wide. Install it:\n"
-                "  Ubuntu/Debian: sudo apt install libqscintilla2-qt6-dev\n"
-                "  Fedora:        sudo dnf install qscintilla-qt6-devel\n"
-                "  Arch:          sudo pacman -S qscintilla-qt6\n"
-                "  Windows:       Run build-windows.bat (builds from source in libs/)")
-        endif()
-    endif()
 endif()
 
 # ============================================================
@@ -178,6 +130,9 @@ add_custom_command(TARGET SyntaxFlow POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/libs/qtext_browser/fonts"
         "$<TARGET_FILE_DIR:SyntaxFlow>/fonts"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/web_editor"
+        "$<TARGET_FILE_DIR:SyntaxFlow>/web_editor"
 )
 
 
