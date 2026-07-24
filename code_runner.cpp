@@ -485,6 +485,8 @@ def compare_ignore_order(a, b):
 def deserialize_val(val, val_type):
     if val is None:
         return None
+    if isinstance(val, dict) and 'elemType' in val and 'value' in val:
+        val = val['value']
     if val_type == 'list_node':
         return to_list_node(val)
     elif val_type == 'tree_node':

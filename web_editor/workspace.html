@@ -306,6 +306,12 @@
   };
 
   window.setTestCases = function(tcList) {
+    tcList.forEach(tc => {
+      if (tc.input) {
+        // Clean up {"elemType": "int", "value": [...]} to just [...]
+        tc.input = tc.input.replace(/\{"elemType"\s*:\s*"[^"]*"\s*,\s*"value"\s*:\s*(\[[^\]]*\])\}/g, "$1");
+      }
+    });
     testCases = tcList.map(tc => ({ ...tc, status: 'pending', actualOutput: '' }));
     currentCaseIndex = 0;
     currentView = 'testcase';
