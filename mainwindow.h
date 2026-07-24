@@ -10,6 +10,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSaveFile>
+#include <QWebEngineView>
+#include <QWebChannel>
 
 // #include "ProgressManager.h"
 #include "progressmanager.h"
@@ -18,8 +20,25 @@
 class QStackedLayout;
 class WebWorkspace;
 class ProblemBrowser;
-class HoverSidebar;
+class SidebarBridge;
 class Backend;
+
+class SidebarBridge : public QObject
+{
+    Q_OBJECT
+public:
+    explicit SidebarBridge(QObject *parent = nullptr) : QObject(parent) {}
+
+public slots:
+    void navigationChanged(int index) { emit navChanged(index); }
+    void bottomItemClicked(int index) { emit bottomClicked(index); }
+    void hovered(bool isHovered) { emit hoverChanged(isHovered); }
+
+signals:
+    void navChanged(int index);
+    void bottomClicked(int index);
+    void hoverChanged(bool isHovered);
+};
 
 class MainWindow : public QMainWindow
 {
@@ -110,7 +129,9 @@ private:
     // I will remove them and handle it cleanly.
 
     // ─── Sidebar ───
-    HoverSidebar *sidebar = nullptr;
+    QWebEngineView *sidebarView = nullptr;
+    QWebChannel *sidebarChannel = nullptr;
+    SidebarBridge *sidebarBridge = nullptr;
 
 
     // 1. Move variables here

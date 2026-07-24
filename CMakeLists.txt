@@ -75,7 +75,6 @@ message(STATUS "Python3 found: ${Python3_VERSION} — ${Python3_EXECUTABLE}")
 add_executable(SyntaxFlow
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
-    hoversidebar.cpp hoversidebar.h
     problemwidgets.cpp problemwidgets.h
     web_workspace.cpp web_workspace.h
     language_config.cpp language_config.h

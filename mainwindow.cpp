@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "web_workspace.h"
 #include "problemwidgets.h"
-#include "hoversidebar.h"
+#include <QWebEngineView>
+#include <QWebChannel>
+#include <QNetworkInterface>
 #include "backend.h"
 
 #include <QStackedLayout>
@@ -106,23 +108,51 @@ void MainWindow::setupEditorPage()
 
 void MainWindow::setupSidebar()
 {
-    sidebar = new HoverSidebar(this);
-    sidebar->setGeometry(0, 0, 50, height());
+    sidebarView = new QWebEngineView(this);
+    sidebarView->setGeometry(0, 0, 50, height()); // Width matching sidebar.html collapsed state
+    sidebarView->setContextMenuPolicy(Qt::NoContextMenu);
 
-    sidebar->addNavItem("[P]", "Problems", QColor(80, 140, 220));
-    sidebar->addBottomItem("⚙", "Settings", QColor(160, 140, 200));
+    sidebarBridge = new SidebarBridge(this);
+    sidebarChannel = new QWebChannel(this);
+    sidebarChannel->registerObject(QStringLiteral("sidebarBridge"), sidebarBridge);
+    sidebarView->page()->setWebChannel(sidebarChannel);
 
-    connect(sidebar, &HoverSidebar::navigationChanged, this, [this](int index) {
+    connect(sidebarBridge, &SidebarBridge::navChanged, this, [this](int index) {
         switch (index) {
-        case 0: onNavigateToBrowser();    break;
+        case 0: /* editor */ break;
+        case 1: onNavigateToBrowser(); break;
         }
     });
 
-    connect(sidebar, &HoverSidebar::bottomItemClicked, this, [this](int index) {
+    connect(sidebarBridge, &SidebarBridge::bottomClicked, this, [this](int index) {
         switch (index) {
-        case 0: /* open settings */ break;
+        case 0: /* settings */ break;
         }
     });
+
+    connect(sidebarBridge, &SidebarBridge::hoverChanged, this, [this](bool isHovered) {
+        sidebarView->setFixedWidth(isHovered ? 220 : 50);
+        if (isHovered) sidebarView->raise();
+    });
+
+    // Get MAC address for Avatar
+    QString macAddress = "default-mac";
+    for(const QNetworkInterface& interface : QNetworkInterface::allInterfaces()) {
+        if(!(interface.flags() & QNetworkInterface::IsLoopBack) && interface.hardwareAddress().length() > 0) {
+            macAddress = interface.hardwareAddress();
+            break;
+        }
+    }
+
+    const QString appDir = QCoreApplication::applicationDirPath();
+    QString htmlPath = QDir(appDir).filePath("web_editor/sidebar.html");
+    if (!QFile::exists(htmlPath)) {
+        htmlPath = QDir(appDir + "/../web_editor").filePath("sidebar.html");
+    }
+
+    QUrl url = QUrl::fromLocalFile(htmlPath);
+    url.setQuery("mac=" + QUrl::toPercentEncoding(macAddress));
+    sidebarView->setUrl(url);
 }
 
 void MainWindow::setupConnections()
@@ -308,7 +338,7 @@ void MainWindow::setExecutionState(bool running)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
-    if (sidebar) sidebar->setFixedHeight(height());
+    if (sidebarView) sidebarView->setFixedHeight(height());
 }
 
 void MainWindow::applyStyle(const QString &path)
