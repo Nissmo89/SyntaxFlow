@@ -1332,5 +1332,26 @@
       "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 2, 1], [0, 1, 1, 2]]}",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isRectangleCover(vector<vector<int>>& rectangles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isRectangleCover(int[][] rectangles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isRectangleCover(self, rectangles: List[List[int]]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isRectangleCover(self, rectangles):\n        \"\"\"\n        :type rectangles: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} rectangles\n * @return {boolean}\n */\nvar isRectangleCover = function(rectangles) {\n    \n};",
+    "typescript": "function isRectangleCover(rectangles: number[][]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsRectangleCover(int[][] rectangles) {\n        \n    }\n}",
+    "c": "bool isRectangleCover(int** rectangles, int rectanglesSize, int* rectanglesColSize) {\n    \n}",
+    "golang": "func isRectangleCover(rectangles [][]int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isRectangleCover(rectangles: Array<IntArray>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isRectangleCover(_ rectangles: [[Int]]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_rectangle_cover(rectangles: Vec<Vec<i32>>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} rectangles\n# @return {Boolean}\ndef is_rectangle_cover(rectangles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $rectangles\n     * @return Boolean\n     */\n    function isRectangleCover($rectangles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isRectangleCover(List<List<int>> rectangles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isRectangleCover(rectangles: Array[Array[Int]]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_rectangle_cover(rectangles :: [[integer]]) :: boolean\n  def is_rectangle_cover(rectangles) do\n    \n  end\nend",
+    "erlang": "-spec is_rectangle_cover(Rectangles :: [[integer()]]) -> boolean().\nis_rectangle_cover(Rectangles) ->\n  .",
+    "racket": "(define/contract (is-rectangle-cover rectangles)\n  (-> (listof (listof exact-integer?)) boolean?)\n  )"
+  }
 }

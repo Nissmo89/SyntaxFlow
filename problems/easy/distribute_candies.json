@@ -677,5 +677,26 @@
       "input": "candyType = [1, 1, 1, 2, 2, 3]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int distributeCandies(vector<int>& candyType) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int distributeCandies(int[] candyType) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distributeCandies(self, candyType: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def distributeCandies(self, candyType):\n        \"\"\"\n        :type candyType: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} candyType\n * @return {number}\n */\nvar distributeCandies = function(candyType) {\n    \n};",
+    "typescript": "function distributeCandies(candyType: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DistributeCandies(int[] candyType) {\n        \n    }\n}",
+    "c": "int distributeCandies(int* candyType, int candyTypeSize) {\n    \n}",
+    "golang": "func distributeCandies(candyType []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distributeCandies(candyType: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distributeCandies(_ candyType: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distribute_candies(candy_type: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} candy_type\n# @return {Integer}\ndef distribute_candies(candy_type)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $candyType\n     * @return Integer\n     */\n    function distributeCandies($candyType) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distributeCandies(List<int> candyType) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distributeCandies(candyType: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distribute_candies(candy_type :: [integer]) :: integer\n  def distribute_candies(candy_type) do\n    \n  end\nend",
+    "erlang": "-spec distribute_candies(CandyType :: [integer()]) -> integer().\ndistribute_candies(CandyType) ->\n  .",
+    "racket": "(define/contract (distribute-candies candyType)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

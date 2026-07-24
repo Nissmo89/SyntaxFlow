@@ -585,5 +585,26 @@
       "input": "source = [\"abc/*def\", \"ghi*/jkl\"]",
       "output": "[\"abcjkl\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> removeComments(vector<string>& source) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> removeComments(String[] source) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeComments(self, source: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def removeComments(self, source):\n        \"\"\"\n        :type source: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} source\n * @return {string[]}\n */\nvar removeComments = function(source) {\n    \n};",
+    "typescript": "function removeComments(source: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> RemoveComments(string[] source) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** removeComments(char** source, int sourceSize, int* returnSize) {\n    \n}",
+    "golang": "func removeComments(source []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeComments(source: Array<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeComments(_ source: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_comments(source: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} source\n# @return {String[]}\ndef remove_comments(source)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $source\n     * @return String[]\n     */\n    function removeComments($source) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> removeComments(List<String> source) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeComments(source: Array[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_comments(source :: [String.t]) :: [String.t]\n  def remove_comments(source) do\n    \n  end\nend",
+    "erlang": "-spec remove_comments(Source :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nremove_comments(Source) ->\n  .",
+    "racket": "(define/contract (remove-comments source)\n  (-> (listof string?) (listof string?))\n  )"
+  }
 }

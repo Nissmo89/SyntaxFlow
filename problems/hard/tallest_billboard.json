@@ -552,5 +552,26 @@
       "input": "rods = [12, 4, 9]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int tallestBillboard(vector<int>& rods) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int tallestBillboard(int[] rods) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def tallestBillboard(self, rods: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def tallestBillboard(self, rods):\n        \"\"\"\n        :type rods: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} rods\n * @return {number}\n */\nvar tallestBillboard = function(rods) {\n    \n};",
+    "typescript": "function tallestBillboard(rods: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TallestBillboard(int[] rods) {\n        \n    }\n}",
+    "c": "int tallestBillboard(int* rods, int rodsSize) {\n    \n}",
+    "golang": "func tallestBillboard(rods []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun tallestBillboard(rods: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func tallestBillboard(_ rods: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn tallest_billboard(rods: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} rods\n# @return {Integer}\ndef tallest_billboard(rods)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $rods\n     * @return Integer\n     */\n    function tallestBillboard($rods) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int tallestBillboard(List<int> rods) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def tallestBillboard(rods: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec tallest_billboard(rods :: [integer]) :: integer\n  def tallest_billboard(rods) do\n    \n  end\nend",
+    "erlang": "-spec tallest_billboard(Rods :: [integer()]) -> integer().\ntallest_billboard(Rods) ->\n  .",
+    "racket": "(define/contract (tallest-billboard rods)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

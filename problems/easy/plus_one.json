@@ -711,5 +711,26 @@
       "input": "digits = [0, 9]",
       "output": "[1, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> plusOne(vector<int>& digits) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] plusOne(int[] digits) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def plusOne(self, digits: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def plusOne(self, digits):\n        \"\"\"\n        :type digits: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} digits\n * @return {number[]}\n */\nvar plusOne = function(digits) {\n    \n};",
+    "typescript": "function plusOne(digits: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] PlusOne(int[] digits) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* plusOne(int* digits, int digitsSize, int* returnSize) {\n    \n}",
+    "golang": "func plusOne(digits []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun plusOne(digits: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func plusOne(_ digits: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn plus_one(digits: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} digits\n# @return {Integer[]}\ndef plus_one(digits)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $digits\n     * @return Integer[]\n     */\n    function plusOne($digits) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> plusOne(List<int> digits) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def plusOne(digits: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec plus_one(digits :: [integer]) :: [integer]\n  def plus_one(digits) do\n    \n  end\nend",
+    "erlang": "-spec plus_one(Digits :: [integer()]) -> [integer()].\nplus_one(Digits) ->\n  .",
+    "racket": "(define/contract (plus-one digits)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

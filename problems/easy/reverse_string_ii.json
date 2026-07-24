@@ -420,5 +420,26 @@
       "input": "s = \"abcdefghij\"\nk = 3",
       "output": "\"cbadefihgj\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string reverseStr(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reverseStr(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseStr(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def reverseStr(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar reverseStr = function(s, k) {\n    \n};",
+    "typescript": "function reverseStr(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReverseStr(string s, int k) {\n        \n    }\n}",
+    "c": "char* reverseStr(char* s, int k) {\n    \n}",
+    "golang": "func reverseStr(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseStr(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseStr(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_str(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef reverse_str(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function reverseStr($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reverseStr(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseStr(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_str(s :: String.t, k :: integer) :: String.t\n  def reverse_str(s, k) do\n    \n  end\nend",
+    "erlang": "-spec reverse_str(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nreverse_str(S, K) ->\n  .",
+    "racket": "(define/contract (reverse-str s k)\n  (-> string? exact-integer? string?)\n  )"
+  }
 }

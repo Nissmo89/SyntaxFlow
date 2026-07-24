@@ -787,5 +787,26 @@
       "input": "nums = [5, 1, 5, 1, 5, 1, 5]\nfirstLen = 2\nsecondLen = 1",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSumTwoNoOverlap(self, nums, firstLen, secondLen):\n        \"\"\"\n        :type nums: List[int]\n        :type firstLen: int\n        :type secondLen: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} firstLen\n * @param {number} secondLen\n * @return {number}\n */\nvar maxSumTwoNoOverlap = function(nums, firstLen, secondLen) {\n    \n};",
+    "typescript": "function maxSumTwoNoOverlap(nums: number[], firstLen: number, secondLen: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {\n        \n    }\n}",
+    "c": "int maxSumTwoNoOverlap(int* nums, int numsSize, int firstLen, int secondLen) {\n    \n}",
+    "golang": "func maxSumTwoNoOverlap(nums []int, firstLen int, secondLen int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSumTwoNoOverlap(nums: IntArray, firstLen: Int, secondLen: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSumTwoNoOverlap(_ nums: [Int], _ firstLen: Int, _ secondLen: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum_two_no_overlap(nums: Vec<i32>, first_len: i32, second_len: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} first_len\n# @param {Integer} second_len\n# @return {Integer}\ndef max_sum_two_no_overlap(nums, first_len, second_len)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $firstLen\n     * @param Integer $secondLen\n     * @return Integer\n     */\n    function maxSumTwoNoOverlap($nums, $firstLen, $secondLen) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSumTwoNoOverlap(List<int> nums, int firstLen, int secondLen) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSumTwoNoOverlap(nums: Array[Int], firstLen: Int, secondLen: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum_two_no_overlap(nums :: [integer], first_len :: integer, second_len :: integer) :: integer\n  def max_sum_two_no_overlap(nums, first_len, second_len) do\n    \n  end\nend",
+    "erlang": "-spec max_sum_two_no_overlap(Nums :: [integer()], FirstLen :: integer(), SecondLen :: integer()) -> integer().\nmax_sum_two_no_overlap(Nums, FirstLen, SecondLen) ->\n  .",
+    "racket": "(define/contract (max-sum-two-no-overlap nums firstLen secondLen)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

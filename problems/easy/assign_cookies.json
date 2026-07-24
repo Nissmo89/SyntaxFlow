@@ -807,5 +807,26 @@
       "input": "g = [1, 2]\ns = [2, 3, 4]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findContentChildren(vector<int>& g, vector<int>& s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findContentChildren(int[] g, int[] s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findContentChildren(self, g: List[int], s: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findContentChildren(self, g, s):\n        \"\"\"\n        :type g: List[int]\n        :type s: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} g\n * @param {number[]} s\n * @return {number}\n */\nvar findContentChildren = function(g, s) {\n    \n};",
+    "typescript": "function findContentChildren(g: number[], s: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindContentChildren(int[] g, int[] s) {\n        \n    }\n}",
+    "c": "int findContentChildren(int* g, int gSize, int* s, int sSize) {\n    \n}",
+    "golang": "func findContentChildren(g []int, s []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findContentChildren(g: IntArray, s: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findContentChildren(_ g: [Int], _ s: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_content_children(g: Vec<i32>, s: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} g\n# @param {Integer[]} s\n# @return {Integer}\ndef find_content_children(g, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $g\n     * @param Integer[] $s\n     * @return Integer\n     */\n    function findContentChildren($g, $s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findContentChildren(List<int> g, List<int> s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findContentChildren(g: Array[Int], s: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_content_children(g :: [integer], s :: [integer]) :: integer\n  def find_content_children(g, s) do\n    \n  end\nend",
+    "erlang": "-spec find_content_children(G :: [integer()], S :: [integer()]) -> integer().\nfind_content_children(G, S) ->\n  .",
+    "racket": "(define/contract (find-content-children g s)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

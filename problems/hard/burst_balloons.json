@@ -654,5 +654,26 @@
       "input": "nums = [1, 2, 3]",
       "output": "12"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxCoins(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxCoins(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxCoins(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxCoins(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxCoins = function(nums) {\n    \n};",
+    "typescript": "function maxCoins(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxCoins(int[] nums) {\n        \n    }\n}",
+    "c": "int maxCoins(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxCoins(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxCoins(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxCoins(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_coins(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_coins(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxCoins($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxCoins(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxCoins(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_coins(nums :: [integer]) :: integer\n  def max_coins(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_coins(Nums :: [integer()]) -> integer().\nmax_coins(Nums) ->\n  .",
+    "racket": "(define/contract (max-coins nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

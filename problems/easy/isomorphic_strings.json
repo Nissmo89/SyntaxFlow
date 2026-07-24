@@ -428,5 +428,26 @@
       "input": "s = \"ab\"\nt = \"cd\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isIsomorphic(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isIsomorphic(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isIsomorphic(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isIsomorphic = function(s, t) {\n    \n};",
+    "typescript": "function isIsomorphic(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsIsomorphic(string s, string t) {\n        \n    }\n}",
+    "c": "bool isIsomorphic(char* s, char* t) {\n    \n}",
+    "golang": "func isIsomorphic(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isIsomorphic(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isIsomorphic(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_isomorphic(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef is_isomorphic(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function isIsomorphic($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isIsomorphic(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isIsomorphic(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_isomorphic(s :: String.t, t :: String.t) :: boolean\n  def is_isomorphic(s, t) do\n    \n  end\nend",
+    "erlang": "-spec is_isomorphic(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nis_isomorphic(S, T) ->\n  .",
+    "racket": "(define/contract (is-isomorphic s t)\n  (-> string? string? boolean?)\n  )"
+  }
 }

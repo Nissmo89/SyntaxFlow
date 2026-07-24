@@ -623,5 +623,26 @@
       "input": "nums = [1, 2, 3, 4, 5, 6]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestArithSeqLength(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestArithSeqLength(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestArithSeqLength(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestArithSeqLength(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestArithSeqLength = function(nums) {\n    \n};",
+    "typescript": "function longestArithSeqLength(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestArithSeqLength(int[] nums) {\n        \n    }\n}",
+    "c": "int longestArithSeqLength(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestArithSeqLength(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestArithSeqLength(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestArithSeqLength(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_arith_seq_length(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_arith_seq_length(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestArithSeqLength($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestArithSeqLength(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestArithSeqLength(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_arith_seq_length(nums :: [integer]) :: integer\n  def longest_arith_seq_length(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_arith_seq_length(Nums :: [integer()]) -> integer().\nlongest_arith_seq_length(Nums) ->\n  .",
+    "racket": "(define/contract (longest-arith-seq-length nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

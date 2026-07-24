@@ -355,5 +355,26 @@
       "input": "s = \"C\"",
       "output": "100"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int romanToInt(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int romanToInt(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def romanToInt(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def romanToInt(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar romanToInt = function(s) {\n    \n};",
+    "typescript": "function romanToInt(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RomanToInt(string s) {\n        \n    }\n}",
+    "c": "int romanToInt(char* s) {\n    \n}",
+    "golang": "func romanToInt(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun romanToInt(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func romanToInt(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn roman_to_int(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef roman_to_int(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function romanToInt($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int romanToInt(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def romanToInt(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec roman_to_int(s :: String.t) :: integer\n  def roman_to_int(s) do\n    \n  end\nend",
+    "erlang": "-spec roman_to_int(S :: unicode:unicode_binary()) -> integer().\nroman_to_int(S) ->\n  .",
+    "racket": "(define/contract (roman-to-int s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

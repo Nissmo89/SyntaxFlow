@@ -354,5 +354,26 @@
       "input": "a = \"1111\"\nb = \"1\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string addBinary(string a, string b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String addBinary(String a, String b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addBinary(self, a: str, b: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def addBinary(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} a\n * @param {string} b\n * @return {string}\n */\nvar addBinary = function(a, b) {\n    \n};",
+    "typescript": "function addBinary(a: string, b: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string AddBinary(string a, string b) {\n        \n    }\n}",
+    "c": "char* addBinary(char* a, char* b) {\n    \n}",
+    "golang": "func addBinary(a string, b string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun addBinary(a: String, b: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addBinary(_ a: String, _ b: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_binary(a: String, b: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} a\n# @param {String} b\n# @return {String}\ndef add_binary(a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $a\n     * @param String $b\n     * @return String\n     */\n    function addBinary($a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String addBinary(String a, String b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addBinary(a: String, b: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_binary(a :: String.t, b :: String.t) :: String.t\n  def add_binary(a, b) do\n    \n  end\nend",
+    "erlang": "-spec add_binary(A :: unicode:unicode_binary(), B :: unicode:unicode_binary()) -> unicode:unicode_binary().\nadd_binary(A, B) ->\n  .",
+    "racket": "(define/contract (add-binary a b)\n  (-> string? string? string?)\n  )"
+  }
 }

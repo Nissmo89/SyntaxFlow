@@ -662,5 +662,26 @@
       "input": "deck = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool hasGroupsSizeX(vector<int>& deck) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean hasGroupsSizeX(int[] deck) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hasGroupsSizeX(self, deck: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def hasGroupsSizeX(self, deck):\n        \"\"\"\n        :type deck: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} deck\n * @return {boolean}\n */\nvar hasGroupsSizeX = function(deck) {\n    \n};",
+    "typescript": "function hasGroupsSizeX(deck: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool HasGroupsSizeX(int[] deck) {\n        \n    }\n}",
+    "c": "bool hasGroupsSizeX(int* deck, int deckSize) {\n    \n}",
+    "golang": "func hasGroupsSizeX(deck []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun hasGroupsSizeX(deck: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hasGroupsSizeX(_ deck: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn has_groups_size_x(deck: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} deck\n# @return {Boolean}\ndef has_groups_size_x(deck)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $deck\n     * @return Boolean\n     */\n    function hasGroupsSizeX($deck) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool hasGroupsSizeX(List<int> deck) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hasGroupsSizeX(deck: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec has_groups_size_x(deck :: [integer]) :: boolean\n  def has_groups_size_x(deck) do\n    \n  end\nend",
+    "erlang": "-spec has_groups_size_x(Deck :: [integer()]) -> boolean().\nhas_groups_size_x(Deck) ->\n  .",
+    "racket": "(define/contract (has-groups-size-x deck)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

@@ -1147,5 +1147,26 @@
       "input": "n = 2\nk = 3",
       "output": "[69, 74, 14, 85, 25, 30, 96, 36, 41, 47, 52, 58, 63]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> numsSameConsecDiff(int n, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] numsSameConsecDiff(int n, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numsSameConsecDiff(self, n: int, k: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def numsSameConsecDiff(self, n, k):\n        \"\"\"\n        :type n: int\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} k\n * @return {number[]}\n */\nvar numsSameConsecDiff = function(n, k) {\n    \n};",
+    "typescript": "function numsSameConsecDiff(n: number, k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] NumsSameConsecDiff(int n, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* numsSameConsecDiff(int n, int k, int* returnSize) {\n    \n}",
+    "golang": "func numsSameConsecDiff(n int, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numsSameConsecDiff(n: Int, k: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numsSameConsecDiff(_ n: Int, _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn nums_same_consec_diff(n: i32, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} k\n# @return {Integer[]}\ndef nums_same_consec_diff(n, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function numsSameConsecDiff($n, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> numsSameConsecDiff(int n, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numsSameConsecDiff(n: Int, k: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec nums_same_consec_diff(n :: integer, k :: integer) :: [integer]\n  def nums_same_consec_diff(n, k) do\n    \n  end\nend",
+    "erlang": "-spec nums_same_consec_diff(N :: integer(), K :: integer()) -> [integer()].\nnums_same_consec_diff(N, K) ->\n  .",
+    "racket": "(define/contract (nums-same-consec-diff n k)\n  (-> exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  }
 }

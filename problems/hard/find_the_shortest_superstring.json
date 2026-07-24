@@ -475,5 +475,26 @@
       "input": "words = [\"abcd\", \"bc\", \"cd\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string shortestSuperstring(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String shortestSuperstring(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestSuperstring(self, words: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def shortestSuperstring(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar shortestSuperstring = function(words) {\n    \n};",
+    "typescript": "function shortestSuperstring(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ShortestSuperstring(string[] words) {\n        \n    }\n}",
+    "c": "char* shortestSuperstring(char** words, int wordsSize) {\n    \n}",
+    "golang": "func shortestSuperstring(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestSuperstring(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestSuperstring(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_superstring(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef shortest_superstring(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function shortestSuperstring($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String shortestSuperstring(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestSuperstring(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_superstring(words :: [String.t]) :: String.t\n  def shortest_superstring(words) do\n    \n  end\nend",
+    "erlang": "-spec shortest_superstring(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nshortest_superstring(Words) ->\n  .",
+    "racket": "(define/contract (shortest-superstring words)\n  (-> (listof string?) string?)\n  )"
+  }
 }

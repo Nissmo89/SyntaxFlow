@@ -1112,5 +1112,26 @@
       "input": "intervals = [[0, 5], [1, 5], [2, 5], [4, 5]]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int intersectionSizeTwo(vector<vector<int>>& intervals) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int intersectionSizeTwo(int[][] intervals) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def intersectionSizeTwo(self, intervals):\n        \"\"\"\n        :type intervals: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} intervals\n * @return {number}\n */\nvar intersectionSizeTwo = function(intervals) {\n    \n};",
+    "typescript": "function intersectionSizeTwo(intervals: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int IntersectionSizeTwo(int[][] intervals) {\n        \n    }\n}",
+    "c": "int intersectionSizeTwo(int** intervals, int intervalsSize, int* intervalsColSize) {\n    \n}",
+    "golang": "func intersectionSizeTwo(intervals [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun intersectionSizeTwo(intervals: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func intersectionSizeTwo(_ intervals: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn intersection_size_two(intervals: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} intervals\n# @return {Integer}\ndef intersection_size_two(intervals)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $intervals\n     * @return Integer\n     */\n    function intersectionSizeTwo($intervals) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int intersectionSizeTwo(List<List<int>> intervals) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def intersectionSizeTwo(intervals: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec intersection_size_two(intervals :: [[integer]]) :: integer\n  def intersection_size_two(intervals) do\n    \n  end\nend",
+    "erlang": "-spec intersection_size_two(Intervals :: [[integer()]]) -> integer().\nintersection_size_two(Intervals) ->\n  .",
+    "racket": "(define/contract (intersection-size-two intervals)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

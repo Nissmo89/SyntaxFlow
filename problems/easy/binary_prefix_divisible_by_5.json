@@ -568,5 +568,26 @@
       "input": "nums = [0, 1, 0, 1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> prefixesDivBy5(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> prefixesDivBy5(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def prefixesDivBy5(self, nums: List[int]) -> List[bool]:\n        ",
+    "python": "class Solution(object):\n    def prefixesDivBy5(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean[]}\n */\nvar prefixesDivBy5 = function(nums) {\n    \n};",
+    "typescript": "function prefixesDivBy5(nums: number[]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> PrefixesDivBy5(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* prefixesDivBy5(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func prefixesDivBy5(nums []int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun prefixesDivBy5(nums: IntArray): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func prefixesDivBy5(_ nums: [Int]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn prefixes_div_by5(nums: Vec<i32>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean[]}\ndef prefixes_div_by5(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean[]\n     */\n    function prefixesDivBy5($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> prefixesDivBy5(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def prefixesDivBy5(nums: Array[Int]): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec prefixes_div_by5(nums :: [integer]) :: [boolean]\n  def prefixes_div_by5(nums) do\n    \n  end\nend",
+    "erlang": "-spec prefixes_div_by5(Nums :: [integer()]) -> [boolean()].\nprefixes_div_by5(Nums) ->\n  .",
+    "racket": "(define/contract (prefixes-div-by5 nums)\n  (-> (listof exact-integer?) (listof boolean?))\n  )"
+  }
 }

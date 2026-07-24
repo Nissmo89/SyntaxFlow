@@ -681,5 +681,26 @@
       "input": "nums = [1, 2, 1, 3, 1]",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findShortestSubArray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findShortestSubArray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findShortestSubArray(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findShortestSubArray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findShortestSubArray = function(nums) {\n    \n};",
+    "typescript": "function findShortestSubArray(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindShortestSubArray(int[] nums) {\n        \n    }\n}",
+    "c": "int findShortestSubArray(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findShortestSubArray(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findShortestSubArray(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findShortestSubArray(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_shortest_sub_array(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_shortest_sub_array(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findShortestSubArray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findShortestSubArray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findShortestSubArray(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_shortest_sub_array(nums :: [integer]) :: integer\n  def find_shortest_sub_array(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_shortest_sub_array(Nums :: [integer()]) -> integer().\nfind_shortest_sub_array(Nums) ->\n  .",
+    "racket": "(define/contract (find-shortest-sub-array nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

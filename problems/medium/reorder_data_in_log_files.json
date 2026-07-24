@@ -821,5 +821,26 @@
       "input": "logs = [\"id1 54\", \"id3 39 9 89\", \"id2 bat\"]",
       "output": "[\"id2 bat\", \"id1 54\", \"id3 39 9 89\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> reorderLogFiles(vector<string>& logs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] reorderLogFiles(String[] logs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reorderLogFiles(self, logs: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def reorderLogFiles(self, logs):\n        \"\"\"\n        :type logs: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} logs\n * @return {string[]}\n */\nvar reorderLogFiles = function(logs) {\n    \n};",
+    "typescript": "function reorderLogFiles(logs: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] ReorderLogFiles(string[] logs) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** reorderLogFiles(char** logs, int logsSize, int* returnSize) {\n    \n}",
+    "golang": "func reorderLogFiles(logs []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reorderLogFiles(logs: Array<String>): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reorderLogFiles(_ logs: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reorder_log_files(logs: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} logs\n# @return {String[]}\ndef reorder_log_files(logs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $logs\n     * @return String[]\n     */\n    function reorderLogFiles($logs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> reorderLogFiles(List<String> logs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reorderLogFiles(logs: Array[String]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reorder_log_files(logs :: [String.t]) :: [String.t]\n  def reorder_log_files(logs) do\n    \n  end\nend",
+    "erlang": "-spec reorder_log_files(Logs :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nreorder_log_files(Logs) ->\n  .",
+    "racket": "(define/contract (reorder-log-files logs)\n  (-> (listof string?) (listof string?))\n  )"
+  }
 }

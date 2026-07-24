@@ -535,5 +535,26 @@
       "input": "expression = \"{a,b,c}\"",
       "output": "[\"a\", \"b\", \"c\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> braceExpansionII(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> braceExpansionII(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def braceExpansionII(self, expression: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def braceExpansionII(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {string[]}\n */\nvar braceExpansionII = function(expression) {\n    \n};",
+    "typescript": "function braceExpansionII(expression: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> BraceExpansionII(string expression) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** braceExpansionII(char* expression, int* returnSize) {\n    \n}",
+    "golang": "func braceExpansionII(expression string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun braceExpansionII(expression: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func braceExpansionII(_ expression: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn brace_expansion_ii(expression: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {String[]}\ndef brace_expansion_ii(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return String[]\n     */\n    function braceExpansionII($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> braceExpansionII(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def braceExpansionII(expression: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec brace_expansion_ii(expression :: String.t) :: [String.t]\n  def brace_expansion_ii(expression) do\n    \n  end\nend",
+    "erlang": "-spec brace_expansion_ii(Expression :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nbrace_expansion_ii(Expression) ->\n  .",
+    "racket": "(define/contract (brace-expansion-ii expression)\n  (-> string? (listof string?))\n  )"
+  }
 }

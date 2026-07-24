@@ -746,5 +746,26 @@
       "input": "nums = [4, 16, 4, 17, 4, 14, 15, 4, 8, 10, 1, 4, 4, 4, 12, 4]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int repeatedNTimes(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int repeatedNTimes(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def repeatedNTimes(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def repeatedNTimes(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar repeatedNTimes = function(nums) {\n    \n};",
+    "typescript": "function repeatedNTimes(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RepeatedNTimes(int[] nums) {\n        \n    }\n}",
+    "c": "int repeatedNTimes(int* nums, int numsSize) {\n    \n}",
+    "golang": "func repeatedNTimes(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun repeatedNTimes(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func repeatedNTimes(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn repeated_n_times(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef repeated_n_times(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function repeatedNTimes($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int repeatedNTimes(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def repeatedNTimes(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec repeated_n_times(nums :: [integer]) :: integer\n  def repeated_n_times(nums) do\n    \n  end\nend",
+    "erlang": "-spec repeated_n_times(Nums :: [integer()]) -> integer().\nrepeated_n_times(Nums) ->\n  .",
+    "racket": "(define/contract (repeated-n-times nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

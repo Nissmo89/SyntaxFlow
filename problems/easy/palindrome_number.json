@@ -346,5 +346,26 @@
       "input": "x = 12",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isPalindrome(int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPalindrome(int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPalindrome(self, x: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPalindrome(self, x):\n        \"\"\"\n        :type x: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @return {boolean}\n */\nvar isPalindrome = function(x) {\n    \n};",
+    "typescript": "function isPalindrome(x: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPalindrome(int x) {\n        \n    }\n}",
+    "c": "bool isPalindrome(int x) {\n    \n}",
+    "golang": "func isPalindrome(x int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPalindrome(x: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPalindrome(_ x: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_palindrome(x: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @return {Boolean}\ndef is_palindrome(x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @return Boolean\n     */\n    function isPalindrome($x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPalindrome(int x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPalindrome(x: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_palindrome(x :: integer) :: boolean\n  def is_palindrome(x) do\n    \n  end\nend",
+    "erlang": "-spec is_palindrome(X :: integer()) -> boolean().\nis_palindrome(X) ->\n  .",
+    "racket": "(define/contract (is-palindrome x)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

@@ -390,5 +390,26 @@
       "input": "n = 8",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canWinNim(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canWinNim(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canWinNim(self, n: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canWinNim(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {boolean}\n */\nvar canWinNim = function(n) {\n    \n};",
+    "typescript": "function canWinNim(n: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanWinNim(int n) {\n        \n    }\n}",
+    "c": "bool canWinNim(int n) {\n    \n}",
+    "golang": "func canWinNim(n int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canWinNim(n: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canWinNim(_ n: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_win_nim(n: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Boolean}\ndef can_win_nim(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Boolean\n     */\n    function canWinNim($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canWinNim(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canWinNim(n: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_win_nim(n :: integer) :: boolean\n  def can_win_nim(n) do\n    \n  end\nend",
+    "erlang": "-spec can_win_nim(N :: integer()) -> boolean().\ncan_win_nim(N) ->\n  .",
+    "racket": "(define/contract (can-win-nim n)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

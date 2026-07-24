@@ -416,5 +416,26 @@
       "input": "board = \"G\"\nhand = \"GG\"",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMinStep(string board, string hand) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMinStep(String board, String hand) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinStep(self, board: str, hand: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMinStep(self, board, hand):\n        \"\"\"\n        :type board: str\n        :type hand: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} board\n * @param {string} hand\n * @return {number}\n */\nvar findMinStep = function(board, hand) {\n    \n};",
+    "typescript": "function findMinStep(board: string, hand: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMinStep(string board, string hand) {\n        \n    }\n}",
+    "c": "int findMinStep(char* board, char* hand) {\n    \n}",
+    "golang": "func findMinStep(board string, hand string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinStep(board: String, hand: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinStep(_ board: String, _ hand: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_step(board: String, hand: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} board\n# @param {String} hand\n# @return {Integer}\ndef find_min_step(board, hand)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $board\n     * @param String $hand\n     * @return Integer\n     */\n    function findMinStep($board, $hand) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMinStep(String board, String hand) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinStep(board: String, hand: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_step(board :: String.t, hand :: String.t) :: integer\n  def find_min_step(board, hand) do\n    \n  end\nend",
+    "erlang": "-spec find_min_step(Board :: unicode:unicode_binary(), Hand :: unicode:unicode_binary()) -> integer().\nfind_min_step(Board, Hand) ->\n  .",
+    "racket": "(define/contract (find-min-step board hand)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

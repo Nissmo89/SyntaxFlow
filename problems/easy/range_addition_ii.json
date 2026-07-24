@@ -1013,5 +1013,26 @@
       "input": "m = 5\nn = 6\nops = [[5, 6]]",
       "output": "30"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxCount(int m, int n, vector<vector<int>>& ops) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxCount(int m, int n, int[][] ops) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxCount(self, m, n, ops):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type ops: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number[][]} ops\n * @return {number}\n */\nvar maxCount = function(m, n, ops) {\n    \n};",
+    "typescript": "function maxCount(m: number, n: number, ops: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxCount(int m, int n, int[][] ops) {\n        \n    }\n}",
+    "c": "int maxCount(int m, int n, int** ops, int opsSize, int* opsColSize) {\n    \n}",
+    "golang": "func maxCount(m int, n int, ops [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxCount(m: Int, n: Int, ops: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxCount(_ m: Int, _ n: Int, _ ops: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_count(m: i32, n: i32, ops: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer[][]} ops\n# @return {Integer}\ndef max_count(m, n, ops)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer[][] $ops\n     * @return Integer\n     */\n    function maxCount($m, $n, $ops) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxCount(int m, int n, List<List<int>> ops) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxCount(m: Int, n: Int, ops: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_count(m :: integer, n :: integer, ops :: [[integer]]) :: integer\n  def max_count(m, n, ops) do\n    \n  end\nend",
+    "erlang": "-spec max_count(M :: integer(), N :: integer(), Ops :: [[integer()]]) -> integer().\nmax_count(M, N, Ops) ->\n  .",
+    "racket": "(define/contract (max-count m n ops)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

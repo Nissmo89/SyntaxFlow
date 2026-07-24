@@ -457,5 +457,26 @@
       "input": "s = \"abcde####fgh#i\"\nt = \"abfghi###\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool backspaceCompare(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean backspaceCompare(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def backspaceCompare(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def backspaceCompare(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar backspaceCompare = function(s, t) {\n    \n};",
+    "typescript": "function backspaceCompare(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool BackspaceCompare(string s, string t) {\n        \n    }\n}",
+    "c": "bool backspaceCompare(char* s, char* t) {\n    \n}",
+    "golang": "func backspaceCompare(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun backspaceCompare(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func backspaceCompare(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn backspace_compare(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef backspace_compare(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function backspaceCompare($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool backspaceCompare(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def backspaceCompare(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec backspace_compare(s :: String.t, t :: String.t) :: boolean\n  def backspace_compare(s, t) do\n    \n  end\nend",
+    "erlang": "-spec backspace_compare(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nbackspace_compare(S, T) ->\n  .",
+    "racket": "(define/contract (backspace-compare s t)\n  (-> string? string? boolean?)\n  )"
+  }
 }

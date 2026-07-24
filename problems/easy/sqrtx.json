@@ -348,5 +348,26 @@
       "input": "x = 8",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int mySqrt(int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int mySqrt(int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mySqrt(self, x: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def mySqrt(self, x):\n        \"\"\"\n        :type x: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @return {number}\n */\nvar mySqrt = function(x) {\n    \n};",
+    "typescript": "function mySqrt(x: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MySqrt(int x) {\n        \n    }\n}",
+    "c": "int mySqrt(int x) {\n    \n}",
+    "golang": "func mySqrt(x int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun mySqrt(x: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mySqrt(_ x: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn my_sqrt(x: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @return {Integer}\ndef my_sqrt(x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @return Integer\n     */\n    function mySqrt($x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int mySqrt(int x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mySqrt(x: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec my_sqrt(x :: integer) :: integer\n  def my_sqrt(x) do\n    \n  end\nend",
+    "erlang": "-spec my_sqrt(X :: integer()) -> integer().\nmy_sqrt(X) ->\n  .",
+    "racket": "(define/contract (my-sqrt x)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

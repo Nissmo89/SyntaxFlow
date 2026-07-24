@@ -389,5 +389,26 @@
       "input": "n = 6",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isHappy(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isHappy(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isHappy(self, n: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isHappy(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {boolean}\n */\nvar isHappy = function(n) {\n    \n};",
+    "typescript": "function isHappy(n: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsHappy(int n) {\n        \n    }\n}",
+    "c": "bool isHappy(int n) {\n    \n}",
+    "golang": "func isHappy(n int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isHappy(n: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isHappy(_ n: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_happy(n: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Boolean}\ndef is_happy(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Boolean\n     */\n    function isHappy($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isHappy(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isHappy(n: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_happy(n :: integer) :: boolean\n  def is_happy(n) do\n    \n  end\nend",
+    "erlang": "-spec is_happy(N :: integer()) -> boolean().\nis_happy(N) ->\n  .",
+    "racket": "(define/contract (is-happy n)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

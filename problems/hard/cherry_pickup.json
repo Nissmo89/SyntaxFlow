@@ -6952,5 +6952,26 @@
       "input": "grid = [[1, 1], [-1, 1]]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int cherryPickup(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int cherryPickup(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def cherryPickup(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def cherryPickup(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar cherryPickup = function(grid) {\n    \n};",
+    "typescript": "function cherryPickup(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CherryPickup(int[][] grid) {\n        \n    }\n}",
+    "c": "int cherryPickup(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func cherryPickup(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun cherryPickup(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func cherryPickup(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn cherry_pickup(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef cherry_pickup(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function cherryPickup($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int cherryPickup(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def cherryPickup(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec cherry_pickup(grid :: [[integer]]) :: integer\n  def cherry_pickup(grid) do\n    \n  end\nend",
+    "erlang": "-spec cherry_pickup(Grid :: [[integer()]]) -> integer().\ncherry_pickup(Grid) ->\n  .",
+    "racket": "(define/contract (cherry-pickup grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

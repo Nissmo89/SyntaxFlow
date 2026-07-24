@@ -798,5 +798,26 @@
       "input": "nums = [4, 4, 4]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int thirdMax(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int thirdMax(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def thirdMax(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def thirdMax(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar thirdMax = function(nums) {\n    \n};",
+    "typescript": "function thirdMax(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ThirdMax(int[] nums) {\n        \n    }\n}",
+    "c": "int thirdMax(int* nums, int numsSize) {\n    \n}",
+    "golang": "func thirdMax(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun thirdMax(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func thirdMax(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn third_max(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef third_max(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function thirdMax($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int thirdMax(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def thirdMax(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec third_max(nums :: [integer]) :: integer\n  def third_max(nums) do\n    \n  end\nend",
+    "erlang": "-spec third_max(Nums :: [integer()]) -> integer().\nthird_max(Nums) ->\n  .",
+    "racket": "(define/contract (third-max nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

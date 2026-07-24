@@ -964,5 +964,26 @@
       "input": "wordlist = [\"cb\", \"bad\", \"cac\", \"d\"]\nqueries = [\"dDa\", \"DAAD\", \"cdB\", \"CC\", \"ccCa\", \"Dd\"]",
       "output": "[\"\", \"\", \"\", \"\", \"\", \"\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] spellchecker(String[] wordlist, String[] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def spellchecker(self, wordlist, queries):\n        \"\"\"\n        :type wordlist: List[str]\n        :type queries: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} wordlist\n * @param {string[]} queries\n * @return {string[]}\n */\nvar spellchecker = function(wordlist, queries) {\n    \n};",
+    "typescript": "function spellchecker(wordlist: string[], queries: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] Spellchecker(string[] wordlist, string[] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** spellchecker(char** wordlist, int wordlistSize, char** queries, int queriesSize, int* returnSize) {\n    \n}",
+    "golang": "func spellchecker(wordlist []string, queries []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun spellchecker(wordlist: Array<String>, queries: Array<String>): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func spellchecker(_ wordlist: [String], _ queries: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} wordlist\n# @param {String[]} queries\n# @return {String[]}\ndef spellchecker(wordlist, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $wordlist\n     * @param String[] $queries\n     * @return String[]\n     */\n    function spellchecker($wordlist, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> spellchecker(List<String> wordlist, List<String> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def spellchecker(wordlist: Array[String], queries: Array[String]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec spellchecker(wordlist :: [String.t], queries :: [String.t]) :: [String.t]\n  def spellchecker(wordlist, queries) do\n    \n  end\nend",
+    "erlang": "-spec spellchecker(Wordlist :: [unicode:unicode_binary()], Queries :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nspellchecker(Wordlist, Queries) ->\n  .",
+    "racket": "(define/contract (spellchecker wordlist queries)\n  (-> (listof string?) (listof string?) (listof string?))\n  )"
+  }
 }

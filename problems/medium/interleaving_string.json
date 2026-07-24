@@ -448,5 +448,26 @@
       "input": "s1 = \"a\"\ns2 = \"b\"\ns3 = \"ab\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isInterleave(string s1, string s2, string s3) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isInterleave(String s1, String s2, String s3) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isInterleave(self, s1, s2, s3):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :type s3: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @param {string} s3\n * @return {boolean}\n */\nvar isInterleave = function(s1, s2, s3) {\n    \n};",
+    "typescript": "function isInterleave(s1: string, s2: string, s3: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsInterleave(string s1, string s2, string s3) {\n        \n    }\n}",
+    "c": "bool isInterleave(char* s1, char* s2, char* s3) {\n    \n}",
+    "golang": "func isInterleave(s1 string, s2 string, s3 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isInterleave(s1: String, s2: String, s3: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isInterleave(_ s1: String, _ s2: String, _ s3: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_interleave(s1: String, s2: String, s3: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @param {String} s3\n# @return {Boolean}\ndef is_interleave(s1, s2, s3)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @param String $s3\n     * @return Boolean\n     */\n    function isInterleave($s1, $s2, $s3) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isInterleave(String s1, String s2, String s3) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isInterleave(s1: String, s2: String, s3: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_interleave(s1 :: String.t, s2 :: String.t, s3 :: String.t) :: boolean\n  def is_interleave(s1, s2, s3) do\n    \n  end\nend",
+    "erlang": "-spec is_interleave(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary(), S3 :: unicode:unicode_binary()) -> boolean().\nis_interleave(S1, S2, S3) ->\n  .",
+    "racket": "(define/contract (is-interleave s1 s2 s3)\n  (-> string? string? string? boolean?)\n  )"
+  }
 }

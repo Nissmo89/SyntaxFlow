@@ -772,5 +772,26 @@
       "input": "nums = [1000000000, -1000000000]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool containsDuplicate(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean containsDuplicate(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def containsDuplicate(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar containsDuplicate = function(nums) {\n    \n};",
+    "typescript": "function containsDuplicate(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ContainsDuplicate(int[] nums) {\n        \n    }\n}",
+    "c": "bool containsDuplicate(int* nums, int numsSize) {\n    \n}",
+    "golang": "func containsDuplicate(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun containsDuplicate(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func containsDuplicate(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn contains_duplicate(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef contains_duplicate(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function containsDuplicate($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool containsDuplicate(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def containsDuplicate(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec contains_duplicate(nums :: [integer]) :: boolean\n  def contains_duplicate(nums) do\n    \n  end\nend",
+    "erlang": "-spec contains_duplicate(Nums :: [integer()]) -> boolean().\ncontains_duplicate(Nums) ->\n  .",
+    "racket": "(define/contract (contains-duplicate nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

@@ -3285,5 +3285,26 @@
       "input": "board = {\"elemType\": \"char\", \"value\": [[\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \"R\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]}",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numRookCaptures(vector<vector<char>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numRookCaptures(char[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numRookCaptures(self, board: List[List[str]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numRookCaptures(self, board):\n        \"\"\"\n        :type board: List[List[str]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @return {number}\n */\nvar numRookCaptures = function(board) {\n    \n};",
+    "typescript": "function numRookCaptures(board: string[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumRookCaptures(char[][] board) {\n        \n    }\n}",
+    "c": "int numRookCaptures(char** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func numRookCaptures(board [][]byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numRookCaptures(board: Array<CharArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numRookCaptures(_ board: [[Character]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_rook_captures(board: Vec<Vec<char>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @return {Integer}\ndef num_rook_captures(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @return Integer\n     */\n    function numRookCaptures($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numRookCaptures(List<List<String>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numRookCaptures(board: Array[Array[Char]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_rook_captures(board :: [[char]]) :: integer\n  def num_rook_captures(board) do\n    \n  end\nend",
+    "erlang": "-spec num_rook_captures(Board :: [[char()]]) -> integer().\nnum_rook_captures(Board) ->\n  .",
+    "racket": "(define/contract (num-rook-captures board)\n  (-> (listof (listof char?)) exact-integer?)\n  )"
+  }
 }

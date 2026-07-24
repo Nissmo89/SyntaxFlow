@@ -2140,5 +2140,26 @@
       "input": "n = 4\nmines = {\"elemType\": \"int\", \"value\": [[0, 0]]}",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int orderOfLargestPlusSign(int n, vector<vector<int>>& mines) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int orderOfLargestPlusSign(int n, int[][] mines) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def orderOfLargestPlusSign(self, n: int, mines: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def orderOfLargestPlusSign(self, n, mines):\n        \"\"\"\n        :type n: int\n        :type mines: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} mines\n * @return {number}\n */\nvar orderOfLargestPlusSign = function(n, mines) {\n    \n};",
+    "typescript": "function orderOfLargestPlusSign(n: number, mines: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int OrderOfLargestPlusSign(int n, int[][] mines) {\n        \n    }\n}",
+    "c": "int orderOfLargestPlusSign(int n, int** mines, int minesSize, int* minesColSize) {\n    \n}",
+    "golang": "func orderOfLargestPlusSign(n int, mines [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun orderOfLargestPlusSign(n: Int, mines: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func orderOfLargestPlusSign(_ n: Int, _ mines: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn order_of_largest_plus_sign(n: i32, mines: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} mines\n# @return {Integer}\ndef order_of_largest_plus_sign(n, mines)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $mines\n     * @return Integer\n     */\n    function orderOfLargestPlusSign($n, $mines) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int orderOfLargestPlusSign(int n, List<List<int>> mines) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def orderOfLargestPlusSign(n: Int, mines: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec order_of_largest_plus_sign(n :: integer, mines :: [[integer]]) :: integer\n  def order_of_largest_plus_sign(n, mines) do\n    \n  end\nend",
+    "erlang": "-spec order_of_largest_plus_sign(N :: integer(), Mines :: [[integer()]]) -> integer().\norder_of_largest_plus_sign(N, Mines) ->\n  .",
+    "racket": "(define/contract (order-of-largest-plus-sign n mines)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

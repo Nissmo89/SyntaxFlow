@@ -661,5 +661,26 @@
       "input": "nums = [1, 4]\ntarget = 2",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int searchInsert(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int searchInsert(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def searchInsert(self, nums: List[int], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def searchInsert(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar searchInsert = function(nums, target) {\n    \n};",
+    "typescript": "function searchInsert(nums: number[], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SearchInsert(int[] nums, int target) {\n        \n    }\n}",
+    "c": "int searchInsert(int* nums, int numsSize, int target) {\n    \n}",
+    "golang": "func searchInsert(nums []int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun searchInsert(nums: IntArray, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func searchInsert(_ nums: [Int], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Integer}\ndef search_insert(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Integer\n     */\n    function searchInsert($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int searchInsert(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def searchInsert(nums: Array[Int], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec search_insert(nums :: [integer], target :: integer) :: integer\n  def search_insert(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec search_insert(Nums :: [integer()], Target :: integer()) -> integer().\nsearch_insert(Nums, Target) ->\n  .",
+    "racket": "(define/contract (search-insert nums target)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

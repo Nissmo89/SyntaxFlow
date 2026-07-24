@@ -358,5 +358,26 @@
       "input": "num = 8",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool checkPerfectNumber(int num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkPerfectNumber(int num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkPerfectNumber(self, num: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkPerfectNumber(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {boolean}\n */\nvar checkPerfectNumber = function(num) {\n    \n};",
+    "typescript": "function checkPerfectNumber(num: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckPerfectNumber(int num) {\n        \n    }\n}",
+    "c": "bool checkPerfectNumber(int num) {\n    \n}",
+    "golang": "func checkPerfectNumber(num int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkPerfectNumber(num: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkPerfectNumber(_ num: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_perfect_number(num: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {Boolean}\ndef check_perfect_number(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return Boolean\n     */\n    function checkPerfectNumber($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkPerfectNumber(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkPerfectNumber(num: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_perfect_number(num :: integer) :: boolean\n  def check_perfect_number(num) do\n    \n  end\nend",
+    "erlang": "-spec check_perfect_number(Num :: integer()) -> boolean().\ncheck_perfect_number(Num) ->\n  .",
+    "racket": "(define/contract (check-perfect-number num)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

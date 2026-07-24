@@ -345,5 +345,26 @@
       "input": "s = \"aaaa\"\ngoal = \"aaaa\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool rotateString(string s, string goal) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean rotateString(String s, String goal) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def rotateString(self, s: str, goal: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def rotateString(self, s, goal):\n        \"\"\"\n        :type s: str\n        :type goal: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} goal\n * @return {boolean}\n */\nvar rotateString = function(s, goal) {\n    \n};",
+    "typescript": "function rotateString(s: string, goal: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool RotateString(string s, string goal) {\n        \n    }\n}",
+    "c": "bool rotateString(char* s, char* goal) {\n    \n}",
+    "golang": "func rotateString(s string, goal string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun rotateString(s: String, goal: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func rotateString(_ s: String, _ goal: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn rotate_string(s: String, goal: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} goal\n# @return {Boolean}\ndef rotate_string(s, goal)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $goal\n     * @return Boolean\n     */\n    function rotateString($s, $goal) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool rotateString(String s, String goal) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def rotateString(s: String, goal: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec rotate_string(s :: String.t, goal :: String.t) :: boolean\n  def rotate_string(s, goal) do\n    \n  end\nend",
+    "erlang": "-spec rotate_string(S :: unicode:unicode_binary(), Goal :: unicode:unicode_binary()) -> boolean().\nrotate_string(S, Goal) ->\n  .",
+    "racket": "(define/contract (rotate-string s goal)\n  (-> string? string? boolean?)\n  )"
+  }
 }

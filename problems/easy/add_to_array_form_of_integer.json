@@ -848,5 +848,26 @@
       "input": "num = [1, 9, 3, 5, 0, 3]\nk = 1898",
       "output": "[1, 9, 5, 4, 0, 1]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> addToArrayForm(vector<int>& num, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> addToArrayForm(int[] num, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addToArrayForm(self, num: List[int], k: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def addToArrayForm(self, num, k):\n        \"\"\"\n        :type num: List[int]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} num\n * @param {number} k\n * @return {number[]}\n */\nvar addToArrayForm = function(num, k) {\n    \n};",
+    "typescript": "function addToArrayForm(num: number[], k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> AddToArrayForm(int[] num, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* addToArrayForm(int* num, int numSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func addToArrayForm(num []int, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun addToArrayForm(num: IntArray, k: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addToArrayForm(_ num: [Int], _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_to_array_form(num: Vec<i32>, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} num\n# @param {Integer} k\n# @return {Integer[]}\ndef add_to_array_form(num, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $num\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function addToArrayForm($num, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> addToArrayForm(List<int> num, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addToArrayForm(num: Array[Int], k: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_to_array_form(num :: [integer], k :: integer) :: [integer]\n  def add_to_array_form(num, k) do\n    \n  end\nend",
+    "erlang": "-spec add_to_array_form(Num :: [integer()], K :: integer()) -> [integer()].\nadd_to_array_form(Num, K) ->\n  .",
+    "racket": "(define/contract (add-to-array-form num k)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

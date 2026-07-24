@@ -1689,5 +1689,26 @@
       "input": "req_skills = [\"a\", \"b\"]\npeople = {\"elemType\": \"string\", \"value\": [[\"a\"], [\"b\"], [\"a\"], [\"b\"]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> smallestSufficientTeam(vector<string>& req_skills, vector<vector<string>>& people) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] smallestSufficientTeam(String[] req_skills, List<List<String>> people) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestSufficientTeam(self, req_skills: List[str], people: List[List[str]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def smallestSufficientTeam(self, req_skills, people):\n        \"\"\"\n        :type req_skills: List[str]\n        :type people: List[List[str]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} req_skills\n * @param {string[][]} people\n * @return {number[]}\n */\nvar smallestSufficientTeam = function(req_skills, people) {\n    \n};",
+    "typescript": "function smallestSufficientTeam(req_skills: string[], people: string[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SmallestSufficientTeam(string[] req_skills, IList<IList<string>> people) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* smallestSufficientTeam(char** req_skills, int req_skillsSize, char*** people, int peopleSize, int* peopleColSize, int* returnSize) {\n    \n}",
+    "golang": "func smallestSufficientTeam(req_skills []string, people [][]string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestSufficientTeam(req_skills: Array<String>, people: List<List<String>>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestSufficientTeam(_ req_skills: [String], _ people: [[String]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_sufficient_team(req_skills: Vec<String>, people: Vec<Vec<String>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} req_skills\n# @param {String[][]} people\n# @return {Integer[]}\ndef smallest_sufficient_team(req_skills, people)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $req_skills\n     * @param String[][] $people\n     * @return Integer[]\n     */\n    function smallestSufficientTeam($req_skills, $people) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> smallestSufficientTeam(List<String> req_skills, List<List<String>> people) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestSufficientTeam(req_skills: Array[String], people: List[List[String]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_sufficient_team(req_skills :: [String.t], people :: [[String.t]]) :: [integer]\n  def smallest_sufficient_team(req_skills, people) do\n    \n  end\nend",
+    "erlang": "-spec smallest_sufficient_team(Req_skills :: [unicode:unicode_binary()], People :: [[unicode:unicode_binary()]]) -> [integer()].\nsmallest_sufficient_team(Req_skills, People) ->\n  .",
+    "racket": "(define/contract (smallest-sufficient-team req_skills people)\n  (-> (listof string?) (listof (listof string?)) (listof exact-integer?))\n  )"
+  }
 }

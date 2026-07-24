@@ -356,5 +356,26 @@
       "input": "moves = \"UDUD\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool judgeCircle(string moves) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean judgeCircle(String moves) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def judgeCircle(self, moves: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def judgeCircle(self, moves):\n        \"\"\"\n        :type moves: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} moves\n * @return {boolean}\n */\nvar judgeCircle = function(moves) {\n    \n};",
+    "typescript": "function judgeCircle(moves: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool JudgeCircle(string moves) {\n        \n    }\n}",
+    "c": "bool judgeCircle(char* moves) {\n    \n}",
+    "golang": "func judgeCircle(moves string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun judgeCircle(moves: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func judgeCircle(_ moves: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn judge_circle(moves: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} moves\n# @return {Boolean}\ndef judge_circle(moves)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $moves\n     * @return Boolean\n     */\n    function judgeCircle($moves) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool judgeCircle(String moves) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def judgeCircle(moves: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec judge_circle(moves :: String.t) :: boolean\n  def judge_circle(moves) do\n    \n  end\nend",
+    "erlang": "-spec judge_circle(Moves :: unicode:unicode_binary()) -> boolean().\njudge_circle(Moves) ->\n  .",
+    "racket": "(define/contract (judge-circle moves)\n  (-> string? boolean?)\n  )"
+  }
 }

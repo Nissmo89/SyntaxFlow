@@ -309,5 +309,26 @@
       "input": "n = 8",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> solveNQueens(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> solveNQueens(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def solveNQueens(self, n: int) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def solveNQueens(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {string[][]}\n */\nvar solveNQueens = function(n) {\n    \n};",
+    "typescript": "function solveNQueens(n: number): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> SolveNQueens(int n) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** solveNQueens(int n, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func solveNQueens(n int) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun solveNQueens(n: Int): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func solveNQueens(_ n: Int) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {String[][]}\ndef solve_n_queens(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return String[][]\n     */\n    function solveNQueens($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> solveNQueens(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def solveNQueens(n: Int): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec solve_n_queens(n :: integer) :: [[String.t]]\n  def solve_n_queens(n) do\n    \n  end\nend",
+    "erlang": "-spec solve_n_queens(N :: integer()) -> [[unicode:unicode_binary()]].\nsolve_n_queens(N) ->\n  .",
+    "racket": "(define/contract (solve-n-queens n)\n  (-> exact-integer? (listof (listof string?)))\n  )"
+  }
 }

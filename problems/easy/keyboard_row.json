@@ -824,5 +824,26 @@
       "input": "words = [\"Dad\", \"Peace\"]",
       "output": "[\"Dad\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findWords(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] findWords(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findWords(self, words: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findWords(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string[]}\n */\nvar findWords = function(words) {\n    \n};",
+    "typescript": "function findWords(words: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] FindWords(string[] words) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findWords(char** words, int wordsSize, int* returnSize) {\n    \n}",
+    "golang": "func findWords(words []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findWords(words: Array<String>): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findWords(_ words: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_words(words: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String[]}\ndef find_words(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String[]\n     */\n    function findWords($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findWords(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findWords(words: Array[String]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_words(words :: [String.t]) :: [String.t]\n  def find_words(words) do\n    \n  end\nend",
+    "erlang": "-spec find_words(Words :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nfind_words(Words) ->\n  .",
+    "racket": "(define/contract (find-words words)\n  (-> (listof string?) (listof string?))\n  )"
+  }
 }

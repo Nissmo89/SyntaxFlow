@@ -375,5 +375,26 @@
       "input": "preorder = \"1,#,2,#,#\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isValidSerialization(string preorder) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isValidSerialization(String preorder) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isValidSerialization(self, preorder: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isValidSerialization(self, preorder):\n        \"\"\"\n        :type preorder: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} preorder\n * @return {boolean}\n */\nvar isValidSerialization = function(preorder) {\n    \n};",
+    "typescript": "function isValidSerialization(preorder: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsValidSerialization(string preorder) {\n        \n    }\n}",
+    "c": "bool isValidSerialization(char* preorder) {\n    \n}",
+    "golang": "func isValidSerialization(preorder string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isValidSerialization(preorder: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isValidSerialization(_ preorder: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_valid_serialization(preorder: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} preorder\n# @return {Boolean}\ndef is_valid_serialization(preorder)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $preorder\n     * @return Boolean\n     */\n    function isValidSerialization($preorder) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isValidSerialization(String preorder) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isValidSerialization(preorder: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_valid_serialization(preorder :: String.t) :: boolean\n  def is_valid_serialization(preorder) do\n    \n  end\nend",
+    "erlang": "-spec is_valid_serialization(Preorder :: unicode:unicode_binary()) -> boolean().\nis_valid_serialization(Preorder) ->\n  .",
+    "racket": "(define/contract (is-valid-serialization preorder)\n  (-> string? boolean?)\n  )"
+  }
 }

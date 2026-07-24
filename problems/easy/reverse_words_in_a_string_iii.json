@@ -393,5 +393,26 @@
       "input": "s = \"AbC dEfG\"",
       "output": "\"CbA GfEd\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string reverseWords(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reverseWords(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseWords(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def reverseWords(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reverseWords = function(s) {\n    \n};",
+    "typescript": "function reverseWords(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReverseWords(string s) {\n        \n    }\n}",
+    "c": "char* reverseWords(char* s) {\n    \n}",
+    "golang": "func reverseWords(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseWords(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseWords(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_words(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef reverse_words(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function reverseWords($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reverseWords(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseWords(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_words(s :: String.t) :: String.t\n  def reverse_words(s) do\n    \n  end\nend",
+    "erlang": "-spec reverse_words(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreverse_words(S) ->\n  .",
+    "racket": "(define/contract (reverse-words s)\n  (-> string? string?)\n  )"
+  }
 }

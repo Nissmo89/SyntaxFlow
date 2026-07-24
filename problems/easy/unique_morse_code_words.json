@@ -653,5 +653,26 @@
       "input": "words = {\"elemType\": \"string\", \"value\": [\"q\", \"w\", \"e\", \"r\", \"t\", \"y\"]}",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int uniqueMorseRepresentations(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int uniqueMorseRepresentations(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uniqueMorseRepresentations(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def uniqueMorseRepresentations(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar uniqueMorseRepresentations = function(words) {\n    \n};",
+    "typescript": "function uniqueMorseRepresentations(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int UniqueMorseRepresentations(string[] words) {\n        \n    }\n}",
+    "c": "int uniqueMorseRepresentations(char** words, int wordsSize) {\n    \n}",
+    "golang": "func uniqueMorseRepresentations(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun uniqueMorseRepresentations(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uniqueMorseRepresentations(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn unique_morse_representations(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef unique_morse_representations(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function uniqueMorseRepresentations($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int uniqueMorseRepresentations(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uniqueMorseRepresentations(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec unique_morse_representations(words :: [String.t]) :: integer\n  def unique_morse_representations(words) do\n    \n  end\nend",
+    "erlang": "-spec unique_morse_representations(Words :: [unicode:unicode_binary()]) -> integer().\nunique_morse_representations(Words) ->\n  .",
+    "racket": "(define/contract (unique-morse-representations words)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

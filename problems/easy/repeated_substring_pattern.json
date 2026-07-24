@@ -352,5 +352,26 @@
       "input": "s = \"abcabcabca\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool repeatedSubstringPattern(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean repeatedSubstringPattern(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def repeatedSubstringPattern(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def repeatedSubstringPattern(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar repeatedSubstringPattern = function(s) {\n    \n};",
+    "typescript": "function repeatedSubstringPattern(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool RepeatedSubstringPattern(string s) {\n        \n    }\n}",
+    "c": "bool repeatedSubstringPattern(char* s) {\n    \n}",
+    "golang": "func repeatedSubstringPattern(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun repeatedSubstringPattern(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func repeatedSubstringPattern(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn repeated_substring_pattern(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef repeated_substring_pattern(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function repeatedSubstringPattern($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool repeatedSubstringPattern(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def repeatedSubstringPattern(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec repeated_substring_pattern(s :: String.t) :: boolean\n  def repeated_substring_pattern(s) do\n    \n  end\nend",
+    "erlang": "-spec repeated_substring_pattern(S :: unicode:unicode_binary()) -> boolean().\nrepeated_substring_pattern(S) ->\n  .",
+    "racket": "(define/contract (repeated-substring-pattern s)\n  (-> string? boolean?)\n  )"
+  }
 }

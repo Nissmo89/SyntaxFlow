@@ -600,5 +600,26 @@
       "input": "strs = [\"interstellar\", \"internet\", \"internal\"]",
       "output": "\"inter\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string longestCommonPrefix(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestCommonPrefix(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestCommonPrefix(self, strs: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestCommonPrefix(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {string}\n */\nvar longestCommonPrefix = function(strs) {\n    \n};",
+    "typescript": "function longestCommonPrefix(strs: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestCommonPrefix(string[] strs) {\n        \n    }\n}",
+    "c": "char* longestCommonPrefix(char** strs, int strsSize) {\n    \n}",
+    "golang": "func longestCommonPrefix(strs []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestCommonPrefix(strs: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestCommonPrefix(_ strs: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_common_prefix(strs: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {String}\ndef longest_common_prefix(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return String\n     */\n    function longestCommonPrefix($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestCommonPrefix(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestCommonPrefix(strs: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_common_prefix(strs :: [String.t]) :: String.t\n  def longest_common_prefix(strs) do\n    \n  end\nend",
+    "erlang": "-spec longest_common_prefix(Strs :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nlongest_common_prefix(Strs) ->\n  .",
+    "racket": "(define/contract (longest-common-prefix strs)\n  (-> (listof string?) string?)\n  )"
+  }
 }

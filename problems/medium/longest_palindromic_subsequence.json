@@ -345,5 +345,26 @@
       "input": "s = \"abcde\"",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestPalindromeSubseq(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestPalindromeSubseq(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestPalindromeSubseq(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar longestPalindromeSubseq = function(s) {\n    \n};",
+    "typescript": "function longestPalindromeSubseq(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestPalindromeSubseq(string s) {\n        \n    }\n}",
+    "c": "int longestPalindromeSubseq(char* s) {\n    \n}",
+    "golang": "func longestPalindromeSubseq(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPalindromeSubseq(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPalindromeSubseq(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_palindrome_subseq(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef longest_palindrome_subseq(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function longestPalindromeSubseq($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestPalindromeSubseq(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPalindromeSubseq(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_palindrome_subseq(s :: String.t) :: integer\n  def longest_palindrome_subseq(s) do\n    \n  end\nend",
+    "erlang": "-spec longest_palindrome_subseq(S :: unicode:unicode_binary()) -> integer().\nlongest_palindrome_subseq(S) ->\n  .",
+    "racket": "(define/contract (longest-palindrome-subseq s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

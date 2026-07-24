@@ -2438,5 +2438,26 @@
       "input": "asteroids = [1, -2]",
       "output": "[-2]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> asteroidCollision(vector<int>& asteroids) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] asteroidCollision(int[] asteroids) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def asteroidCollision(self, asteroids: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def asteroidCollision(self, asteroids):\n        \"\"\"\n        :type asteroids: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} asteroids\n * @return {number[]}\n */\nvar asteroidCollision = function(asteroids) {\n    \n};",
+    "typescript": "function asteroidCollision(asteroids: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] AsteroidCollision(int[] asteroids) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* asteroidCollision(int* asteroids, int asteroidsSize, int* returnSize) {\n    \n}",
+    "golang": "func asteroidCollision(asteroids []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun asteroidCollision(asteroids: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func asteroidCollision(_ asteroids: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} asteroids\n# @return {Integer[]}\ndef asteroid_collision(asteroids)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $asteroids\n     * @return Integer[]\n     */\n    function asteroidCollision($asteroids) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> asteroidCollision(List<int> asteroids) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def asteroidCollision(asteroids: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec asteroid_collision(asteroids :: [integer]) :: [integer]\n  def asteroid_collision(asteroids) do\n    \n  end\nend",
+    "erlang": "-spec asteroid_collision(Asteroids :: [integer()]) -> [integer()].\nasteroid_collision(Asteroids) ->\n  .",
+    "racket": "(define/contract (asteroid-collision asteroids)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

@@ -385,5 +385,26 @@
       "input": "num = 21",
       "output": "\"Twenty One\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string numberToWords(int num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String numberToWords(int num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberToWords(self, num: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def numberToWords(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {string}\n */\nvar numberToWords = function(num) {\n    \n};",
+    "typescript": "function numberToWords(num: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string NumberToWords(int num) {\n        \n    }\n}",
+    "c": "char* numberToWords(int num) {\n    \n}",
+    "golang": "func numberToWords(num int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberToWords(num: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberToWords(_ num: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_to_words(num: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {String}\ndef number_to_words(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return String\n     */\n    function numberToWords($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String numberToWords(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberToWords(num: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_to_words(num :: integer) :: String.t\n  def number_to_words(num) do\n    \n  end\nend",
+    "erlang": "-spec number_to_words(Num :: integer()) -> unicode:unicode_binary().\nnumber_to_words(Num) ->\n  .",
+    "racket": "(define/contract (number-to-words num)\n  (-> exact-integer? string?)\n  )"
+  }
 }

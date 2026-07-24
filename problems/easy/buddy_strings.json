@@ -380,5 +380,26 @@
       "input": "s = \"abcd\"\ngoal = \"bacd\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool buddyStrings(string s, string goal) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean buddyStrings(String s, String goal) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def buddyStrings(self, s: str, goal: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def buddyStrings(self, s, goal):\n        \"\"\"\n        :type s: str\n        :type goal: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} goal\n * @return {boolean}\n */\nvar buddyStrings = function(s, goal) {\n    \n};",
+    "typescript": "function buddyStrings(s: string, goal: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool BuddyStrings(string s, string goal) {\n        \n    }\n}",
+    "c": "bool buddyStrings(char* s, char* goal) {\n    \n}",
+    "golang": "func buddyStrings(s string, goal string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun buddyStrings(s: String, goal: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func buddyStrings(_ s: String, _ goal: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn buddy_strings(s: String, goal: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} goal\n# @return {Boolean}\ndef buddy_strings(s, goal)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $goal\n     * @return Boolean\n     */\n    function buddyStrings($s, $goal) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool buddyStrings(String s, String goal) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def buddyStrings(s: String, goal: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec buddy_strings(s :: String.t, goal :: String.t) :: boolean\n  def buddy_strings(s, goal) do\n    \n  end\nend",
+    "erlang": "-spec buddy_strings(S :: unicode:unicode_binary(), Goal :: unicode:unicode_binary()) -> boolean().\nbuddy_strings(S, Goal) ->\n  .",
+    "racket": "(define/contract (buddy-strings s goal)\n  (-> string? string? boolean?)\n  )"
+  }
 }

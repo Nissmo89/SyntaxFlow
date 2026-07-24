@@ -1023,5 +1023,26 @@
       "input": "dominoes = [[7, 8], [8, 7], [7, 8], [8, 7]]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numEquivDominoPairs(vector<vector<int>>& dominoes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numEquivDominoPairs(int[][] dominoes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numEquivDominoPairs(self, dominoes: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numEquivDominoPairs(self, dominoes):\n        \"\"\"\n        :type dominoes: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} dominoes\n * @return {number}\n */\nvar numEquivDominoPairs = function(dominoes) {\n    \n};",
+    "typescript": "function numEquivDominoPairs(dominoes: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumEquivDominoPairs(int[][] dominoes) {\n        \n    }\n}",
+    "c": "int numEquivDominoPairs(int** dominoes, int dominoesSize, int* dominoesColSize) {\n    \n}",
+    "golang": "func numEquivDominoPairs(dominoes [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numEquivDominoPairs(dominoes: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numEquivDominoPairs(_ dominoes: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_equiv_domino_pairs(dominoes: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} dominoes\n# @return {Integer}\ndef num_equiv_domino_pairs(dominoes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $dominoes\n     * @return Integer\n     */\n    function numEquivDominoPairs($dominoes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numEquivDominoPairs(List<List<int>> dominoes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numEquivDominoPairs(dominoes: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_equiv_domino_pairs(dominoes :: [[integer]]) :: integer\n  def num_equiv_domino_pairs(dominoes) do\n    \n  end\nend",
+    "erlang": "-spec num_equiv_domino_pairs(Dominoes :: [[integer()]]) -> integer().\nnum_equiv_domino_pairs(Dominoes) ->\n  .",
+    "racket": "(define/contract (num-equiv-domino-pairs dominoes)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

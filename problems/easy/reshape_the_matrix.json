@@ -2801,5 +2801,26 @@
       "input": "mat = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [4, 5, 6]]}\nr = 3\nc = 2",
       "output": "[[1, 2], [3, 4], [5, 6]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] matrixReshape(int[][] mat, int r, int c) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def matrixReshape(self, mat, r, c):\n        \"\"\"\n        :type mat: List[List[int]]\n        :type r: int\n        :type c: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} mat\n * @param {number} r\n * @param {number} c\n * @return {number[][]}\n */\nvar matrixReshape = function(mat, r, c) {\n    \n};",
+    "typescript": "function matrixReshape(mat: number[][], r: number, c: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] MatrixReshape(int[][] mat, int r, int c) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** matrixReshape(int** mat, int matSize, int* matColSize, int r, int c, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func matrixReshape(mat [][]int, r int, c int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun matrixReshape(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func matrixReshape(_ mat: [[Int]], _ r: Int, _ c: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn matrix_reshape(mat: Vec<Vec<i32>>, r: i32, c: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} mat\n# @param {Integer} r\n# @param {Integer} c\n# @return {Integer[][]}\ndef matrix_reshape(mat, r, c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $mat\n     * @param Integer $r\n     * @param Integer $c\n     * @return Integer[][]\n     */\n    function matrixReshape($mat, $r, $c) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> matrixReshape(List<List<int>> mat, int r, int c) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def matrixReshape(mat: Array[Array[Int]], r: Int, c: Int): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec matrix_reshape(mat :: [[integer]], r :: integer, c :: integer) :: [[integer]]\n  def matrix_reshape(mat, r, c) do\n    \n  end\nend",
+    "erlang": "-spec matrix_reshape(Mat :: [[integer()]], R :: integer(), C :: integer()) -> [[integer()]].\nmatrix_reshape(Mat, R, C) ->\n  .",
+    "racket": "(define/contract (matrix-reshape mat r c)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

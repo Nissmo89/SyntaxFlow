@@ -429,5 +429,26 @@
       "input": "n = 25\na = 14\nb = 21",
       "output": "266"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int nthMagicalNumber(int n, int a, int b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int nthMagicalNumber(int n, int a, int b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def nthMagicalNumber(self, n: int, a: int, b: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def nthMagicalNumber(self, n, a, b):\n        \"\"\"\n        :type n: int\n        :type a: int\n        :type b: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} a\n * @param {number} b\n * @return {number}\n */\nvar nthMagicalNumber = function(n, a, b) {\n    \n};",
+    "typescript": "function nthMagicalNumber(n: number, a: number, b: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NthMagicalNumber(int n, int a, int b) {\n        \n    }\n}",
+    "c": "int nthMagicalNumber(int n, int a, int b) {\n    \n}",
+    "golang": "func nthMagicalNumber(n int, a int, b int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun nthMagicalNumber(n: Int, a: Int, b: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func nthMagicalNumber(_ n: Int, _ a: Int, _ b: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn nth_magical_number(n: i32, a: i32, b: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} a\n# @param {Integer} b\n# @return {Integer}\ndef nth_magical_number(n, a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $a\n     * @param Integer $b\n     * @return Integer\n     */\n    function nthMagicalNumber($n, $a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int nthMagicalNumber(int n, int a, int b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def nthMagicalNumber(n: Int, a: Int, b: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec nth_magical_number(n :: integer, a :: integer, b :: integer) :: integer\n  def nth_magical_number(n, a, b) do\n    \n  end\nend",
+    "erlang": "-spec nth_magical_number(N :: integer(), A :: integer(), B :: integer()) -> integer().\nnth_magical_number(N, A, B) ->\n  .",
+    "racket": "(define/contract (nth-magical-number n a b)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -786,5 +786,26 @@
       "input": "k = 2\nw = 0\nprofits = [1, 2, 3, 4]\ncapital = [0, 0, 1, 1]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMaximizedCapital(self, k, w, profits, capital):\n        \"\"\"\n        :type k: int\n        :type w: int\n        :type profits: List[int]\n        :type capital: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} k\n * @param {number} w\n * @param {number[]} profits\n * @param {number[]} capital\n * @return {number}\n */\nvar findMaximizedCapital = function(k, w, profits, capital) {\n    \n};",
+    "typescript": "function findMaximizedCapital(k: number, w: number, profits: number[], capital: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMaximizedCapital(int k, int w, int[] profits, int[] capital) {\n        \n    }\n}",
+    "c": "int findMaximizedCapital(int k, int w, int* profits, int profitsSize, int* capital, int capitalSize) {\n    \n}",
+    "golang": "func findMaximizedCapital(k int, w int, profits []int, capital []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMaximizedCapital(k: Int, w: Int, profits: IntArray, capital: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMaximizedCapital(_ k: Int, _ w: Int, _ profits: [Int], _ capital: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_maximized_capital(k: i32, w: i32, profits: Vec<i32>, capital: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} k\n# @param {Integer} w\n# @param {Integer[]} profits\n# @param {Integer[]} capital\n# @return {Integer}\ndef find_maximized_capital(k, w, profits, capital)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $k\n     * @param Integer $w\n     * @param Integer[] $profits\n     * @param Integer[] $capital\n     * @return Integer\n     */\n    function findMaximizedCapital($k, $w, $profits, $capital) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMaximizedCapital(int k, int w, List<int> profits, List<int> capital) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMaximizedCapital(k: Int, w: Int, profits: Array[Int], capital: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_maximized_capital(k :: integer, w :: integer, profits :: [integer], capital :: [integer]) :: integer\n  def find_maximized_capital(k, w, profits, capital) do\n    \n  end\nend",
+    "erlang": "-spec find_maximized_capital(K :: integer(), W :: integer(), Profits :: [integer()], Capital :: [integer()]) -> integer().\nfind_maximized_capital(K, W, Profits, Capital) ->\n  .",
+    "racket": "(define/contract (find-maximized-capital k w profits capital)\n  (-> exact-integer? exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

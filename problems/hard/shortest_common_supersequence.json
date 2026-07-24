@@ -550,5 +550,26 @@
       "input": "str1 = \"abc\"\nstr2 = \"bcd\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string shortestCommonSupersequence(string str1, string str2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String shortestCommonSupersequence(String str1, String str2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestCommonSupersequence(self, str1: str, str2: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def shortestCommonSupersequence(self, str1, str2):\n        \"\"\"\n        :type str1: str\n        :type str2: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} str1\n * @param {string} str2\n * @return {string}\n */\nvar shortestCommonSupersequence = function(str1, str2) {\n    \n};",
+    "typescript": "function shortestCommonSupersequence(str1: string, str2: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ShortestCommonSupersequence(string str1, string str2) {\n        \n    }\n}",
+    "c": "char* shortestCommonSupersequence(char* str1, char* str2) {\n    \n}",
+    "golang": "func shortestCommonSupersequence(str1 string, str2 string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestCommonSupersequence(str1: String, str2: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestCommonSupersequence(_ str1: String, _ str2: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_common_supersequence(str1: String, str2: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} str1\n# @param {String} str2\n# @return {String}\ndef shortest_common_supersequence(str1, str2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $str1\n     * @param String $str2\n     * @return String\n     */\n    function shortestCommonSupersequence($str1, $str2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String shortestCommonSupersequence(String str1, String str2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestCommonSupersequence(str1: String, str2: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_common_supersequence(str1 :: String.t, str2 :: String.t) :: String.t\n  def shortest_common_supersequence(str1, str2) do\n    \n  end\nend",
+    "erlang": "-spec shortest_common_supersequence(Str1 :: unicode:unicode_binary(), Str2 :: unicode:unicode_binary()) -> unicode:unicode_binary().\nshortest_common_supersequence(Str1, Str2) ->\n  .",
+    "racket": "(define/contract (shortest-common-supersequence str1 str2)\n  (-> string? string? string?)\n  )"
+  }
 }

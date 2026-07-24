@@ -1433,5 +1433,22 @@
       "input": "widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]\ns = \"aaaaaaaa\"",
       "output": "[1, 80]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> numberOfLines(vector<int>& widths, string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] numberOfLines(int[] widths, String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfLines(self, widths: List[int], s: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def numberOfLines(self, widths, s):\n        \"\"\"\n        :type widths: List[int]\n        :type s: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} widths\n * @param {string} s\n * @return {number[]}\n */\nvar numberOfLines = function(widths, s) {\n    \n};",
+    "typescript": "function numberOfLines(widths: number[], s: string): number[] {\n\n};",
+    "csharp": "public class Solution {\n    public int[] NumberOfLines(int[] widths, string s) {\n        \n    }\n}",
+    "c": "\n\n/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* numberOfLines(int* widths, int widthsSize, char * s, int* returnSize){\n\n}",
+    "golang": "func numberOfLines(widths []int, s string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfLines(widths: IntArray, s: String): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfLines(_ widths: [Int], _ s: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_lines(widths: Vec<i32>, s: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} widths\n# @param {String} s\n# @return {Integer[]}\ndef number_of_lines(widths, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $widths\n     * @param String $s\n     * @return Integer[]\n     */\n    function numberOfLines($widths, $s) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def numberOfLines(widths: Array[Int], s: String): Array[Int] = {\n        \n    }\n}"
+  }
 }

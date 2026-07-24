@@ -486,5 +486,26 @@
       "input": "left = 10\nright = 19",
       "output": "[11, 12, 15]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> selfDividingNumbers(int left, int right) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> selfDividingNumbers(int left, int right) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def selfDividingNumbers(self, left: int, right: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def selfDividingNumbers(self, left, right):\n        \"\"\"\n        :type left: int\n        :type right: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} left\n * @param {number} right\n * @return {number[]}\n */\nvar selfDividingNumbers = function(left, right) {\n    \n};",
+    "typescript": "function selfDividingNumbers(left: number, right: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> SelfDividingNumbers(int left, int right) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* selfDividingNumbers(int left, int right, int* returnSize) {\n    \n}",
+    "golang": "func selfDividingNumbers(left int, right int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun selfDividingNumbers(left: Int, right: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func selfDividingNumbers(_ left: Int, _ right: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} left\n# @param {Integer} right\n# @return {Integer[]}\ndef self_dividing_numbers(left, right)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $left\n     * @param Integer $right\n     * @return Integer[]\n     */\n    function selfDividingNumbers($left, $right) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> selfDividingNumbers(int left, int right) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def selfDividingNumbers(left: Int, right: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec self_dividing_numbers(left :: integer, right :: integer) :: [integer]\n  def self_dividing_numbers(left, right) do\n    \n  end\nend",
+    "erlang": "-spec self_dividing_numbers(Left :: integer(), Right :: integer()) -> [integer()].\nself_dividing_numbers(Left, Right) ->\n  .",
+    "racket": "(define/contract (self-dividing-numbers left right)\n  (-> exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  }
 }

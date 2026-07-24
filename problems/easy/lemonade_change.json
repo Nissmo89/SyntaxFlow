@@ -525,5 +525,26 @@
       "input": "bills = [5, 5, 10]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool lemonadeChange(vector<int>& bills) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean lemonadeChange(int[] bills) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lemonadeChange(self, bills: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def lemonadeChange(self, bills):\n        \"\"\"\n        :type bills: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} bills\n * @return {boolean}\n */\nvar lemonadeChange = function(bills) {\n    \n};",
+    "typescript": "function lemonadeChange(bills: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool LemonadeChange(int[] bills) {\n        \n    }\n}",
+    "c": "bool lemonadeChange(int* bills, int billsSize) {\n    \n}",
+    "golang": "func lemonadeChange(bills []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun lemonadeChange(bills: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lemonadeChange(_ bills: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn lemonade_change(bills: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} bills\n# @return {Boolean}\ndef lemonade_change(bills)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $bills\n     * @return Boolean\n     */\n    function lemonadeChange($bills) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool lemonadeChange(List<int> bills) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lemonadeChange(bills: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec lemonade_change(bills :: [integer]) :: boolean\n  def lemonade_change(bills) do\n    \n  end\nend",
+    "erlang": "-spec lemonade_change(Bills :: [integer()]) -> boolean().\nlemonade_change(Bills) ->\n  .",
+    "racket": "(define/contract (lemonade-change bills)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

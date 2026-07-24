@@ -351,5 +351,26 @@
       "input": "s = \"   openleetcode   \"",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int countSegments(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countSegments(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSegments(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def countSegments(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar countSegments = function(s) {\n    \n};",
+    "typescript": "function countSegments(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountSegments(string s) {\n        \n    }\n}",
+    "c": "int countSegments(char* s) {\n    \n}",
+    "golang": "func countSegments(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSegments(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSegments(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_segments(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef count_segments(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function countSegments($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countSegments(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countSegments(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_segments(s :: String.t) :: integer\n  def count_segments(s) do\n    \n  end\nend",
+    "erlang": "-spec count_segments(S :: unicode:unicode_binary()) -> integer().\ncount_segments(S) ->\n  .",
+    "racket": "(define/contract (count-segments s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

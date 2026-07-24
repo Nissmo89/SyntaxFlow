@@ -375,5 +375,26 @@
       "input": "s = \"(()(()))\"",
       "output": "\"()(())\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string removeOuterParentheses(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String removeOuterParentheses(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeOuterParentheses(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def removeOuterParentheses(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar removeOuterParentheses = function(s) {\n    \n};",
+    "typescript": "function removeOuterParentheses(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RemoveOuterParentheses(string s) {\n        \n    }\n}",
+    "c": "char* removeOuterParentheses(char* s) {\n    \n}",
+    "golang": "func removeOuterParentheses(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeOuterParentheses(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeOuterParentheses(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_outer_parentheses(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef remove_outer_parentheses(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function removeOuterParentheses($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String removeOuterParentheses(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeOuterParentheses(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_outer_parentheses(s :: String.t) :: String.t\n  def remove_outer_parentheses(s) do\n    \n  end\nend",
+    "erlang": "-spec remove_outer_parentheses(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nremove_outer_parentheses(S) ->\n  .",
+    "racket": "(define/contract (remove-outer-parentheses s)\n  (-> string? string?)\n  )"
+  }
 }

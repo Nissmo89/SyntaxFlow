@@ -560,5 +560,26 @@
       "input": "strs = [\"a\", \"aa\", \"aaa\", \"b\", \"bb\", \"bbb\", \"ab\", \"ba\", \"aab\", \"aba\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> groupAnagrams(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> groupAnagrams(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def groupAnagrams(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function(strs) {\n    \n};",
+    "typescript": "function groupAnagrams(strs: string[]): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> GroupAnagrams(string[] strs) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** groupAnagrams(char** strs, int strsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func groupAnagrams(strs []string) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun groupAnagrams(strs: Array<String>): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func groupAnagrams(_ strs: [String]) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {String[][]}\ndef group_anagrams(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return String[][]\n     */\n    function groupAnagrams($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> groupAnagrams(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def groupAnagrams(strs: Array[String]): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec group_anagrams(strs :: [String.t]) :: [[String.t]]\n  def group_anagrams(strs) do\n    \n  end\nend",
+    "erlang": "-spec group_anagrams(Strs :: [unicode:unicode_binary()]) -> [[unicode:unicode_binary()]].\ngroup_anagrams(Strs) ->\n  .",
+    "racket": "(define/contract (group-anagrams strs)\n  (-> (listof string?) (listof (listof string?)))\n  )"
+  }
 }

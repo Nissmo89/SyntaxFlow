@@ -1227,5 +1227,26 @@
       "input": "target = 100\nstartFuel = 25\nstations = {\"elemType\": \"int\", \"value\": [[25, 75], [50, 1], [75, 1]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minRefuelStops(int target, int startFuel, int[][] stations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minRefuelStops(self, target, startFuel, stations):\n        \"\"\"\n        :type target: int\n        :type startFuel: int\n        :type stations: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} target\n * @param {number} startFuel\n * @param {number[][]} stations\n * @return {number}\n */\nvar minRefuelStops = function(target, startFuel, stations) {\n    \n};",
+    "typescript": "function minRefuelStops(target: number, startFuel: number, stations: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinRefuelStops(int target, int startFuel, int[][] stations) {\n        \n    }\n}",
+    "c": "int minRefuelStops(int target, int startFuel, int** stations, int stationsSize, int* stationsColSize) {\n    \n}",
+    "golang": "func minRefuelStops(target int, startFuel int, stations [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minRefuelStops(target: Int, startFuel: Int, stations: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minRefuelStops(_ target: Int, _ startFuel: Int, _ stations: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_refuel_stops(target: i32, start_fuel: i32, stations: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} target\n# @param {Integer} start_fuel\n# @param {Integer[][]} stations\n# @return {Integer}\ndef min_refuel_stops(target, start_fuel, stations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $target\n     * @param Integer $startFuel\n     * @param Integer[][] $stations\n     * @return Integer\n     */\n    function minRefuelStops($target, $startFuel, $stations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minRefuelStops(int target, int startFuel, List<List<int>> stations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minRefuelStops(target: Int, startFuel: Int, stations: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_refuel_stops(target :: integer, start_fuel :: integer, stations :: [[integer]]) :: integer\n  def min_refuel_stops(target, start_fuel, stations) do\n    \n  end\nend",
+    "erlang": "-spec min_refuel_stops(Target :: integer(), StartFuel :: integer(), Stations :: [[integer()]]) -> integer().\nmin_refuel_stops(Target, StartFuel, Stations) ->\n  .",
+    "racket": "(define/contract (min-refuel-stops target startFuel stations)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -672,5 +672,26 @@
       "input": "fruits = [1, 2, 1, 2, 1, 2]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int totalFruit(vector<int>& fruits) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int totalFruit(int[] fruits) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def totalFruit(self, fruits: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def totalFruit(self, fruits):\n        \"\"\"\n        :type fruits: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} fruits\n * @return {number}\n */\nvar totalFruit = function(fruits) {\n    \n};",
+    "typescript": "function totalFruit(fruits: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TotalFruit(int[] fruits) {\n        \n    }\n}",
+    "c": "int totalFruit(int* fruits, int fruitsSize) {\n    \n}",
+    "golang": "func totalFruit(fruits []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun totalFruit(fruits: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func totalFruit(_ fruits: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn total_fruit(fruits: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} fruits\n# @return {Integer}\ndef total_fruit(fruits)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $fruits\n     * @return Integer\n     */\n    function totalFruit($fruits) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int totalFruit(List<int> fruits) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def totalFruit(fruits: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec total_fruit(fruits :: [integer]) :: integer\n  def total_fruit(fruits) do\n    \n  end\nend",
+    "erlang": "-spec total_fruit(Fruits :: [integer()]) -> integer().\ntotal_fruit(Fruits) ->\n  .",
+    "racket": "(define/contract (total-fruit fruits)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

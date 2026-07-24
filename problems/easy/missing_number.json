@@ -652,5 +652,26 @@
       "input": "nums = [4, 2, 3, 1]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int missingNumber(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int missingNumber(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def missingNumber(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def missingNumber(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar missingNumber = function(nums) {\n    \n};",
+    "typescript": "function missingNumber(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MissingNumber(int[] nums) {\n        \n    }\n}",
+    "c": "int missingNumber(int* nums, int numsSize) {\n    \n}",
+    "golang": "func missingNumber(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun missingNumber(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func missingNumber(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn missing_number(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef missing_number(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function missingNumber($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int missingNumber(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def missingNumber(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec missing_number(nums :: [integer]) :: integer\n  def missing_number(nums) do\n    \n  end\nend",
+    "erlang": "-spec missing_number(Nums :: [integer()]) -> integer().\nmissing_number(Nums) ->\n  .",
+    "racket": "(define/contract (missing-number nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

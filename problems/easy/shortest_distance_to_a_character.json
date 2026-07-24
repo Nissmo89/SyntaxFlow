@@ -654,5 +654,26 @@
       "input": "s = \"abca\"\nc = \"a\"",
       "output": "[0, 1, 1, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> shortestToChar(string s, char c) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] shortestToChar(String s, char c) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestToChar(self, s: str, c: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def shortestToChar(self, s, c):\n        \"\"\"\n        :type s: str\n        :type c: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {character} c\n * @return {number[]}\n */\nvar shortestToChar = function(s, c) {\n    \n};",
+    "typescript": "function shortestToChar(s: string, c: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ShortestToChar(string s, char c) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* shortestToChar(char* s, char c, int* returnSize) {\n    \n}",
+    "golang": "func shortestToChar(s string, c byte) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestToChar(s: String, c: Char): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestToChar(_ s: String, _ c: Character) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_to_char(s: String, c: char) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Character} c\n# @return {Integer[]}\ndef shortest_to_char(s, c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $c\n     * @return Integer[]\n     */\n    function shortestToChar($s, $c) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> shortestToChar(String s, String c) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestToChar(s: String, c: Char): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_to_char(s :: String.t, c :: char) :: [integer]\n  def shortest_to_char(s, c) do\n    \n  end\nend",
+    "erlang": "-spec shortest_to_char(S :: unicode:unicode_binary(), C :: char()) -> [integer()].\nshortest_to_char(S, C) ->\n  .",
+    "racket": "(define/contract (shortest-to-char s c)\n  (-> string? char? (listof exact-integer?))\n  )"
+  }
 }

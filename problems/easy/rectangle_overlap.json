@@ -736,5 +736,26 @@
       "input": "rec1 = [-5, -5, -1, -1]\nrec2 = [-3, -3, 2, 2]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isRectangleOverlap(int[] rec1, int[] rec2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isRectangleOverlap(self, rec1, rec2):\n        \"\"\"\n        :type rec1: List[int]\n        :type rec2: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} rec1\n * @param {number[]} rec2\n * @return {boolean}\n */\nvar isRectangleOverlap = function(rec1, rec2) {\n    \n};",
+    "typescript": "function isRectangleOverlap(rec1: number[], rec2: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsRectangleOverlap(int[] rec1, int[] rec2) {\n        \n    }\n}",
+    "c": "bool isRectangleOverlap(int* rec1, int rec1Size, int* rec2, int rec2Size) {\n    \n}",
+    "golang": "func isRectangleOverlap(rec1 []int, rec2 []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isRectangleOverlap(rec1: IntArray, rec2: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isRectangleOverlap(_ rec1: [Int], _ rec2: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_rectangle_overlap(rec1: Vec<i32>, rec2: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} rec1\n# @param {Integer[]} rec2\n# @return {Boolean}\ndef is_rectangle_overlap(rec1, rec2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $rec1\n     * @param Integer[] $rec2\n     * @return Boolean\n     */\n    function isRectangleOverlap($rec1, $rec2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isRectangleOverlap(List<int> rec1, List<int> rec2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isRectangleOverlap(rec1: Array[Int], rec2: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_rectangle_overlap(rec1 :: [integer], rec2 :: [integer]) :: boolean\n  def is_rectangle_overlap(rec1, rec2) do\n    \n  end\nend",
+    "erlang": "-spec is_rectangle_overlap(Rec1 :: [integer()], Rec2 :: [integer()]) -> boolean().\nis_rectangle_overlap(Rec1, Rec2) ->\n  .",
+    "racket": "(define/contract (is-rectangle-overlap rec1 rec2)\n  (-> (listof exact-integer?) (listof exact-integer?) boolean?)\n  )"
+  }
 }

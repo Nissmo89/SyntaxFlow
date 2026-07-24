@@ -4545,5 +4545,26 @@
       "input": "bits = [1, 0, 0]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isOneBitCharacter(vector<int>& bits) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isOneBitCharacter(int[] bits) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isOneBitCharacter(self, bits):\n        \"\"\"\n        :type bits: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} bits\n * @return {boolean}\n */\nvar isOneBitCharacter = function(bits) {\n    \n};",
+    "typescript": "function isOneBitCharacter(bits: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsOneBitCharacter(int[] bits) {\n        \n    }\n}",
+    "c": "bool isOneBitCharacter(int* bits, int bitsSize) {\n    \n}",
+    "golang": "func isOneBitCharacter(bits []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isOneBitCharacter(bits: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isOneBitCharacter(_ bits: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_one_bit_character(bits: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} bits\n# @return {Boolean}\ndef is_one_bit_character(bits)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $bits\n     * @return Boolean\n     */\n    function isOneBitCharacter($bits) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isOneBitCharacter(List<int> bits) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isOneBitCharacter(bits: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_one_bit_character(bits :: [integer]) :: boolean\n  def is_one_bit_character(bits) do\n    \n  end\nend",
+    "erlang": "-spec is_one_bit_character(Bits :: [integer()]) -> boolean().\nis_one_bit_character(Bits) ->\n  .",
+    "racket": "(define/contract (is-one-bit-character bits)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

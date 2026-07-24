@@ -312,5 +312,26 @@
       "input": "n = 8",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string countAndSay(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String countAndSay(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countAndSay(self, n: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def countAndSay(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {string}\n */\nvar countAndSay = function(n) {\n    \n};",
+    "typescript": "function countAndSay(n: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string CountAndSay(int n) {\n        \n    }\n}",
+    "c": "char* countAndSay(int n) {\n    \n}",
+    "golang": "func countAndSay(n int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun countAndSay(n: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countAndSay(_ n: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_and_say(n: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {String}\ndef count_and_say(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return String\n     */\n    function countAndSay($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String countAndSay(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countAndSay(n: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_and_say(n :: integer) :: String.t\n  def count_and_say(n) do\n    \n  end\nend",
+    "erlang": "-spec count_and_say(N :: integer()) -> unicode:unicode_binary().\ncount_and_say(N) ->\n  .",
+    "racket": "(define/contract (count-and-say n)\n  (-> exact-integer? string?)\n  )"
+  }
 }

@@ -351,5 +351,26 @@
       "input": "s = \"+3.14\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isNumber(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isNumber(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isNumber(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isNumber(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isNumber = function(s) {\n    \n};",
+    "typescript": "function isNumber(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsNumber(string s) {\n        \n    }\n}",
+    "c": "bool isNumber(char* s) {\n    \n}",
+    "golang": "func isNumber(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isNumber(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isNumber(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_number(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_number(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isNumber($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isNumber(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isNumber(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_number(s :: String.t) :: boolean\n  def is_number(s) do\n    \n  end\nend",
+    "erlang": "-spec is_number(S :: unicode:unicode_binary()) -> boolean().\nis_number(S) ->\n  .",
+    "racket": "(define/contract (is-number s)\n  (-> string? boolean?)\n  )"
+  }
 }

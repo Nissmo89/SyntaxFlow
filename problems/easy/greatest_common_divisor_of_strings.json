@@ -7,7 +7,7 @@
     "Math",
     "String"
   ],
-  "description": "<p>For two strings <code>s</code> and <code>t</code>, we say \"<code>t</code> divides <code>s</code>\" if and only if <code>s = t + t + t + ... + t + t</code> (i.e., <code>t</code> is concatenated with itself one or more times).</p> <p>Given two strings <code>str1</code> and <code>str2</code>, return <em>the largest string </em><code>x</code><em> such that </em><code>x</code><em> divides both </em><code>str1</code><em> and </em><code>str2</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"ABCABC\", str2 = \"ABC\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"ABC\"</span></p> </div> <p><strong class=\"example\">Example 2:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"ABABAB\", str2 = \"ABAB\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"AB\"</span></p> </div> <p><strong class=\"example\">Example 3:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"LEET\", str2 = \"CODE\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"\"</span></p> </div> <p><strong class=\"example\">Example 4:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"AAAAAB\", str2 = \"AAA\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"\"</span>​​​​​​​</p> </div> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= str1.length, str2.length &lt;= 1000</code></li> <li><code>str1</code> and <code>str2</code> consist of English uppercase letters.</li> </ul>",
+  "description": "<p>For two strings <code>s</code> and <code>t</code>, we say \"<code>t</code> divides <code>s</code>\" if and only if <code>s = t + t + t + ... + t + t</code> (i.e., <code>t</code> is concatenated with itself one or more times).</p> <p>Given two strings <code>str1</code> and <code>str2</code>, return <em>the largest string </em><code>x</code><em> such that </em><code>x</code><em> divides both </em><code>str1</code><em> and </em><code>str2</code>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"ABCABC\", str2 = \"ABC\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"ABC\"</span></p> </div> <p><strong class=\"example\">Example 2:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"ABABAB\", str2 = \"ABAB\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"AB\"</span></p> </div> <p><strong class=\"example\">Example 3:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"LEET\", str2 = \"CODE\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"\"</span></p> </div> <p><strong class=\"example\">Example 4:</strong></p> <div class=\"example-block\"> <p><strong>Input:</strong> <span class=\"example-io\">str1 = \"AAAAAB\", str2 = \"AAA\"</span></p> <p><strong>Output:</strong> <span class=\"example-io\">\"\"</span>\u200b\u200b\u200b\u200b\u200b\u200b\u200b</p> </div> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= str1.length, str2.length &lt;= 1000</code></li> <li><code>str1</code> and <code>str2</code> consist of English uppercase letters.</li> </ul>",
   "hints": [
     "The greatest common divisor must be a prefix of each string, so we can try all prefixes."
   ],
@@ -382,5 +382,26 @@
       "input": "str1 = \"BBBBBBBB\"\nstr2 = \"BBBB\"",
       "output": "\"BBBB\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string gcdOfStrings(string str1, string str2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String gcdOfStrings(String str1, String str2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def gcdOfStrings(self, str1: str, str2: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def gcdOfStrings(self, str1, str2):\n        \"\"\"\n        :type str1: str\n        :type str2: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} str1\n * @param {string} str2\n * @return {string}\n */\nvar gcdOfStrings = function(str1, str2) {\n    \n};",
+    "typescript": "function gcdOfStrings(str1: string, str2: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GcdOfStrings(string str1, string str2) {\n        \n    }\n}",
+    "c": "char* gcdOfStrings(char* str1, char* str2) {\n    \n}",
+    "golang": "func gcdOfStrings(str1 string, str2 string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun gcdOfStrings(str1: String, str2: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func gcdOfStrings(_ str1: String, _ str2: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn gcd_of_strings(str1: String, str2: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} str1\n# @param {String} str2\n# @return {String}\ndef gcd_of_strings(str1, str2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $str1\n     * @param String $str2\n     * @return String\n     */\n    function gcdOfStrings($str1, $str2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String gcdOfStrings(String str1, String str2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def gcdOfStrings(str1: String, str2: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec gcd_of_strings(str1 :: String.t, str2 :: String.t) :: String.t\n  def gcd_of_strings(str1, str2) do\n    \n  end\nend",
+    "erlang": "-spec gcd_of_strings(Str1 :: unicode:unicode_binary(), Str2 :: unicode:unicode_binary()) -> unicode:unicode_binary().\ngcd_of_strings(Str1, Str2) ->\n  .",
+    "racket": "(define/contract (gcd-of-strings str1 str2)\n  (-> string? string? string?)\n  )"
+  }
 }

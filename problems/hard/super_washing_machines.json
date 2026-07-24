@@ -572,5 +572,26 @@
       "input": "machines = [2, 2, 2, 2]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMinMoves(vector<int>& machines) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMinMoves(int[] machines) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinMoves(self, machines: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMinMoves(self, machines):\n        \"\"\"\n        :type machines: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} machines\n * @return {number}\n */\nvar findMinMoves = function(machines) {\n    \n};",
+    "typescript": "function findMinMoves(machines: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMinMoves(int[] machines) {\n        \n    }\n}",
+    "c": "int findMinMoves(int* machines, int machinesSize) {\n    \n}",
+    "golang": "func findMinMoves(machines []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinMoves(machines: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinMoves(_ machines: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_moves(machines: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} machines\n# @return {Integer}\ndef find_min_moves(machines)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $machines\n     * @return Integer\n     */\n    function findMinMoves($machines) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMinMoves(List<int> machines) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinMoves(machines: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_moves(machines :: [integer]) :: integer\n  def find_min_moves(machines) do\n    \n  end\nend",
+    "erlang": "-spec find_min_moves(Machines :: [integer()]) -> integer().\nfind_min_moves(Machines) ->\n  .",
+    "racket": "(define/contract (find-min-moves machines)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

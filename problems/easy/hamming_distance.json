@@ -6,7 +6,7 @@
   "tags": [
     "Bit Manipulation"
   ],
-  "description": "<p>The <a href=\"https://en.wikipedia.org/wiki/Hamming_distance\" target=\"_blank\">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p> <p>Given two integers <code>x</code> and <code>y</code>, return <em>the <strong>Hamming distance</strong> between them</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> x = 1, y = 4\n<strong>Output:</strong> 2\n<strong>Explanation:</strong>\n1   (0 0 0 1)\n4   (0 1 0 0)\n       ↑   ↑\nThe above arrows point to positions where the corresponding bits are different.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> x = 3, y = 1\n<strong>Output:</strong> 1\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>0 &lt;= x, y &lt;= 2<sup>31</sup> - 1</code></li> </ul> <p> </p> <p><strong>Note:</strong> This question is the same as <a href=\"https://leetcode.com/problems/minimum-bit-flips-to-convert-number/description/\" target=\"_blank\"> 2220: Minimum Bit Flips to Convert Number.</a></p>",
+  "description": "<p>The <a href=\"https://en.wikipedia.org/wiki/Hamming_distance\" target=\"_blank\">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p> <p>Given two integers <code>x</code> and <code>y</code>, return <em>the <strong>Hamming distance</strong> between them</em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> x = 1, y = 4\n<strong>Output:</strong> 2\n<strong>Explanation:</strong>\n1   (0 0 0 1)\n4   (0 1 0 0)\n       \u2191   \u2191\nThe above arrows point to positions where the corresponding bits are different.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> x = 3, y = 1\n<strong>Output:</strong> 1\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>0 &lt;= x, y &lt;= 2<sup>31</sup> - 1</code></li> </ul> <p> </p> <p><strong>Note:</strong> This question is the same as <a href=\"https://leetcode.com/problems/minimum-bit-flips-to-convert-number/description/\" target=\"_blank\"> 2220: Minimum Bit Flips to Convert Number.</a></p>",
   "hints": [],
   "method": {
     "name": "hammingDistance",
@@ -403,5 +403,26 @@
       "input": "x = 2\ny = 4",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int hammingDistance(int x, int y) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int hammingDistance(int x, int y) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hammingDistance(self, x: int, y: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def hammingDistance(self, x, y):\n        \"\"\"\n        :type x: int\n        :type y: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} y\n * @return {number}\n */\nvar hammingDistance = function(x, y) {\n    \n};",
+    "typescript": "function hammingDistance(x: number, y: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int HammingDistance(int x, int y) {\n        \n    }\n}",
+    "c": "int hammingDistance(int x, int y) {\n    \n}",
+    "golang": "func hammingDistance(x int, y int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun hammingDistance(x: Int, y: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hammingDistance(_ x: Int, _ y: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn hamming_distance(x: i32, y: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @param {Integer} y\n# @return {Integer}\ndef hamming_distance(x, y)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @param Integer $y\n     * @return Integer\n     */\n    function hammingDistance($x, $y) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int hammingDistance(int x, int y) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hammingDistance(x: Int, y: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec hamming_distance(x :: integer, y :: integer) :: integer\n  def hamming_distance(x, y) do\n    \n  end\nend",
+    "erlang": "-spec hamming_distance(X :: integer(), Y :: integer()) -> integer().\nhamming_distance(X, Y) ->\n  .",
+    "racket": "(define/contract (hamming-distance x y)\n  (-> exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -1735,5 +1735,26 @@
       "input": "turnedOn = 7",
       "output": "[211, 227, 235, 239, 331, 347, 355, 359, 391, 407, 415, 419, 435, 443, 447, 449, 450, 459, 463, 465, 466, 471, 473, 474, 477, 478, 571, 587, 595, 599, 631, 647, 655, 659, 675, 683, 687, 689, 690, 699, 703, 705, 706, 711, 713, 714, 717, 718]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> readBinaryWatch(int turnedOn) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> readBinaryWatch(int turnedOn) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def readBinaryWatch(self, turnedOn: int) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def readBinaryWatch(self, turnedOn):\n        \"\"\"\n        :type turnedOn: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} turnedOn\n * @return {string[]}\n */\nvar readBinaryWatch = function(turnedOn) {\n    \n};",
+    "typescript": "function readBinaryWatch(turnedOn: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> ReadBinaryWatch(int turnedOn) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** readBinaryWatch(int turnedOn, int* returnSize) {\n    \n}",
+    "golang": "func readBinaryWatch(turnedOn int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun readBinaryWatch(turnedOn: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func readBinaryWatch(_ turnedOn: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn read_binary_watch(turned_on: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} turned_on\n# @return {String[]}\ndef read_binary_watch(turned_on)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $turnedOn\n     * @return String[]\n     */\n    function readBinaryWatch($turnedOn) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> readBinaryWatch(int turnedOn) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def readBinaryWatch(turnedOn: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec read_binary_watch(turned_on :: integer) :: [String.t]\n  def read_binary_watch(turned_on) do\n    \n  end\nend",
+    "erlang": "-spec read_binary_watch(TurnedOn :: integer()) -> [unicode:unicode_binary()].\nread_binary_watch(TurnedOn) ->\n  .",
+    "racket": "(define/contract (read-binary-watch turnedOn)\n  (-> exact-integer? (listof string?))\n  )"
+  }
 }

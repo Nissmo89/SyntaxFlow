@@ -397,5 +397,26 @@
       "input": "num = \"12\"\ntarget = -1",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> addOperators(string num, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> addOperators(String num, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addOperators(self, num: str, target: int) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def addOperators(self, num, target):\n        \"\"\"\n        :type num: str\n        :type target: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @param {number} target\n * @return {string[]}\n */\nvar addOperators = function(num, target) {\n    \n};",
+    "typescript": "function addOperators(num: string, target: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> AddOperators(string num, int target) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** addOperators(char* num, int target, int* returnSize) {\n    \n}",
+    "golang": "func addOperators(num string, target int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun addOperators(num: String, target: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addOperators(_ num: String, _ target: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_operators(num: String, target: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @param {Integer} target\n# @return {String[]}\ndef add_operators(num, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @param Integer $target\n     * @return String[]\n     */\n    function addOperators($num, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> addOperators(String num, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addOperators(num: String, target: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_operators(num :: String.t, target :: integer) :: [String.t]\n  def add_operators(num, target) do\n    \n  end\nend",
+    "erlang": "-spec add_operators(Num :: unicode:unicode_binary(), Target :: integer()) -> [unicode:unicode_binary()].\nadd_operators(Num, Target) ->\n  .",
+    "racket": "(define/contract (add-operators num target)\n  (-> string? exact-integer? (listof string?))\n  )"
+  }
 }

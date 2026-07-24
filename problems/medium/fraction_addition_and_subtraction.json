@@ -356,5 +356,26 @@
       "input": "expression = \"1/2-1/2-1/2\"",
       "output": "\"-1/2\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string fractionAddition(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String fractionAddition(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def fractionAddition(self, expression: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def fractionAddition(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {string}\n */\nvar fractionAddition = function(expression) {\n    \n};",
+    "typescript": "function fractionAddition(expression: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FractionAddition(string expression) {\n        \n    }\n}",
+    "c": "char* fractionAddition(char* expression) {\n    \n}",
+    "golang": "func fractionAddition(expression string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun fractionAddition(expression: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func fractionAddition(_ expression: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn fraction_addition(expression: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {String}\ndef fraction_addition(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return String\n     */\n    function fractionAddition($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String fractionAddition(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def fractionAddition(expression: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec fraction_addition(expression :: String.t) :: String.t\n  def fraction_addition(expression) do\n    \n  end\nend",
+    "erlang": "-spec fraction_addition(Expression :: unicode:unicode_binary()) -> unicode:unicode_binary().\nfraction_addition(Expression) ->\n  .",
+    "racket": "(define/contract (fraction-addition expression)\n  (-> string? string?)\n  )"
+  }
 }

@@ -472,5 +472,26 @@
       "input": "grid = [\"@..b\", \"###.\", \"a.B.\"]",
       "output": "8"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int shortestPathAllKeys(vector<string>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int shortestPathAllKeys(String[] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestPathAllKeys(self, grid: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def shortestPathAllKeys(self, grid):\n        \"\"\"\n        :type grid: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} grid\n * @return {number}\n */\nvar shortestPathAllKeys = function(grid) {\n    \n};",
+    "typescript": "function shortestPathAllKeys(grid: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ShortestPathAllKeys(string[] grid) {\n        \n    }\n}",
+    "c": "int shortestPathAllKeys(char** grid, int gridSize) {\n    \n}",
+    "golang": "func shortestPathAllKeys(grid []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestPathAllKeys(grid: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestPathAllKeys(_ grid: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_path_all_keys(grid: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} grid\n# @return {Integer}\ndef shortest_path_all_keys(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $grid\n     * @return Integer\n     */\n    function shortestPathAllKeys($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int shortestPathAllKeys(List<String> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestPathAllKeys(grid: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_path_all_keys(grid :: [String.t]) :: integer\n  def shortest_path_all_keys(grid) do\n    \n  end\nend",
+    "erlang": "-spec shortest_path_all_keys(Grid :: [unicode:unicode_binary()]) -> integer().\nshortest_path_all_keys(Grid) ->\n  .",
+    "racket": "(define/contract (shortest-path-all-keys grid)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

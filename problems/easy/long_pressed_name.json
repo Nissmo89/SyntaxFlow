@@ -418,5 +418,26 @@
       "input": "name = \"abc\"\ntyped = \"abdc\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isLongPressedName(string name, string typed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isLongPressedName(String name, String typed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isLongPressedName(self, name: str, typed: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isLongPressedName(self, name, typed):\n        \"\"\"\n        :type name: str\n        :type typed: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} name\n * @param {string} typed\n * @return {boolean}\n */\nvar isLongPressedName = function(name, typed) {\n    \n};",
+    "typescript": "function isLongPressedName(name: string, typed: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsLongPressedName(string name, string typed) {\n        \n    }\n}",
+    "c": "bool isLongPressedName(char* name, char* typed) {\n    \n}",
+    "golang": "func isLongPressedName(name string, typed string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isLongPressedName(name: String, typed: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isLongPressedName(_ name: String, _ typed: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_long_pressed_name(name: String, typed: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} name\n# @param {String} typed\n# @return {Boolean}\ndef is_long_pressed_name(name, typed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $name\n     * @param String $typed\n     * @return Boolean\n     */\n    function isLongPressedName($name, $typed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isLongPressedName(String name, String typed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isLongPressedName(name: String, typed: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_long_pressed_name(name :: String.t, typed :: String.t) :: boolean\n  def is_long_pressed_name(name, typed) do\n    \n  end\nend",
+    "erlang": "-spec is_long_pressed_name(Name :: unicode:unicode_binary(), Typed :: unicode:unicode_binary()) -> boolean().\nis_long_pressed_name(Name, Typed) ->\n  .",
+    "racket": "(define/contract (is-long-pressed-name name typed)\n  (-> string? string? boolean?)\n  )"
+  }
 }

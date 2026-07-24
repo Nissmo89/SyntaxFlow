@@ -991,5 +991,26 @@
       "input": "n = 4\ntrust = [[1, 2], [3, 2], [3, 4]]",
       "output": "-1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findJudge(int n, vector<vector<int>>& trust) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findJudge(int n, int[][] trust) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findJudge(self, n: int, trust: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findJudge(self, n, trust):\n        \"\"\"\n        :type n: int\n        :type trust: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} trust\n * @return {number}\n */\nvar findJudge = function(n, trust) {\n    \n};",
+    "typescript": "function findJudge(n: number, trust: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindJudge(int n, int[][] trust) {\n        \n    }\n}",
+    "c": "int findJudge(int n, int** trust, int trustSize, int* trustColSize) {\n    \n}",
+    "golang": "func findJudge(n int, trust [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findJudge(n: Int, trust: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findJudge(_ n: Int, _ trust: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_judge(n: i32, trust: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} trust\n# @return {Integer}\ndef find_judge(n, trust)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $trust\n     * @return Integer\n     */\n    function findJudge($n, $trust) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findJudge(int n, List<List<int>> trust) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findJudge(n: Int, trust: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_judge(n :: integer, trust :: [[integer]]) :: integer\n  def find_judge(n, trust) do\n    \n  end\nend",
+    "erlang": "-spec find_judge(N :: integer(), Trust :: [[integer()]]) -> integer().\nfind_judge(N, Trust) ->\n  .",
+    "racket": "(define/contract (find-judge n trust)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

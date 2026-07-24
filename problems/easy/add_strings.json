@@ -367,5 +367,26 @@
       "input": "num1 = \"999\"\nnum2 = \"1\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string addStrings(string num1, string num2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String addStrings(String num1, String num2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addStrings(self, num1: str, num2: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def addStrings(self, num1, num2):\n        \"\"\"\n        :type num1: str\n        :type num2: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num1\n * @param {string} num2\n * @return {string}\n */\nvar addStrings = function(num1, num2) {\n    \n};",
+    "typescript": "function addStrings(num1: string, num2: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string AddStrings(string num1, string num2) {\n        \n    }\n}",
+    "c": "char* addStrings(char* num1, char* num2) {\n    \n}",
+    "golang": "func addStrings(num1 string, num2 string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun addStrings(num1: String, num2: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addStrings(_ num1: String, _ num2: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_strings(num1: String, num2: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num1\n# @param {String} num2\n# @return {String}\ndef add_strings(num1, num2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num1\n     * @param String $num2\n     * @return String\n     */\n    function addStrings($num1, $num2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String addStrings(String num1, String num2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addStrings(num1: String, num2: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_strings(num1 :: String.t, num2 :: String.t) :: String.t\n  def add_strings(num1, num2) do\n    \n  end\nend",
+    "erlang": "-spec add_strings(Num1 :: unicode:unicode_binary(), Num2 :: unicode:unicode_binary()) -> unicode:unicode_binary().\nadd_strings(Num1, Num2) ->\n  .",
+    "racket": "(define/contract (add-strings num1 num2)\n  (-> string? string? string?)\n  )"
+  }
 }

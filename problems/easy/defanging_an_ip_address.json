@@ -372,5 +372,22 @@
       "input": "address = \"1.23.45.67\"",
       "output": "\"1[.]23[.]45[.]67\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string defangIPaddr(string address) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String defangIPaddr(String address) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def defangIPaddr(self, address: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def defangIPaddr(self, address):\n        \"\"\"\n        :type address: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} address\n * @return {string}\n */\nvar defangIPaddr = function(address) {\n    \n};",
+    "typescript": "function defangIPaddr(address: string): string {\n\n};",
+    "csharp": "public class Solution {\n    public string DefangIPaddr(string address) {\n        \n    }\n}",
+    "c": "\n\nchar * defangIPaddr(char * address){\n\n}",
+    "golang": "func defangIPaddr(address string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun defangIPaddr(address: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func defangIPaddr(_ address: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn defang_i_paddr(address: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} address\n# @return {String}\ndef defang_i_paddr(address)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $address\n     * @return String\n     */\n    function defangIPaddr($address) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def defangIPaddr(address: String): String = {\n        \n    }\n}"
+  }
 }

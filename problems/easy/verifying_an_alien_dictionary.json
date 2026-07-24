@@ -8,7 +8,7 @@
     "Hash Table",
     "String"
   ],
-  "description": "<p>In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different <code>order</code>. The <code>order</code> of the alphabet is some permutation of lowercase letters.</p> <p>Given a sequence of <code>words</code> written in the alien language, and the <code>order</code> of the alphabet, return <code>true</code> if and only if the given <code>words</code> are sorted lexicographically in this alien language.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"\n<strong>Output:</strong> true\n<strong>Explanation: </strong>As 'h' comes before 'l' in this language, then the sequence is sorted.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>As 'd' comes after 'l' in this language, then words[0] &gt; words[1], hence the sequence is unsorted.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>The first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" &gt; \"app\", because 'l' &gt; '∅', where '∅' is defined as the blank character which is less than any other character (<a href=\"https://en.wikipedia.org/wiki/Lexicographical_order\" target=\"_blank\">More info</a>).\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= words.length &lt;= 100</code></li> <li><code>1 &lt;= words[i].length &lt;= 20</code></li> <li><code>order.length == 26</code></li> <li>All characters in <code>words[i]</code> and <code>order</code> are English lowercase letters.</li> </ul>",
+  "description": "<p>In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different <code>order</code>. The <code>order</code> of the alphabet is some permutation of lowercase letters.</p> <p>Given a sequence of <code>words</code> written in the alien language, and the <code>order</code> of the alphabet, return <code>true</code> if and only if the given <code>words</code> are sorted lexicographically in this alien language.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"\n<strong>Output:</strong> true\n<strong>Explanation: </strong>As 'h' comes before 'l' in this language, then the sequence is sorted.\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>As 'd' comes after 'l' in this language, then words[0] &gt; words[1], hence the sequence is unsorted.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"\n<strong>Output:</strong> false\n<strong>Explanation: </strong>The first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" &gt; \"app\", because 'l' &gt; '\u2205', where '\u2205' is defined as the blank character which is less than any other character (<a href=\"https://en.wikipedia.org/wiki/Lexicographical_order\" target=\"_blank\">More info</a>).\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>1 &lt;= words.length &lt;= 100</code></li> <li><code>1 &lt;= words[i].length &lt;= 20</code></li> <li><code>order.length == 26</code></li> <li>All characters in <code>words[i]</code> and <code>order</code> are English lowercase letters.</li> </ul>",
   "hints": [],
   "method": {
     "name": "isAlienSorted",
@@ -568,5 +568,26 @@
       "input": "words = [\"a\", \"a\", \"c\", \"b\", \"d\", \"a\", \"a\"]\norder = \"ynfkhvwtaxmqlgbzuierjcodps\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isAlienSorted(vector<string>& words, string order) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isAlienSorted(String[] words, String order) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isAlienSorted(self, words: List[str], order: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isAlienSorted(self, words, order):\n        \"\"\"\n        :type words: List[str]\n        :type order: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {string} order\n * @return {boolean}\n */\nvar isAlienSorted = function(words, order) {\n    \n};",
+    "typescript": "function isAlienSorted(words: string[], order: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsAlienSorted(string[] words, string order) {\n        \n    }\n}",
+    "c": "bool isAlienSorted(char** words, int wordsSize, char* order) {\n    \n}",
+    "golang": "func isAlienSorted(words []string, order string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isAlienSorted(words: Array<String>, order: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isAlienSorted(_ words: [String], _ order: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_alien_sorted(words: Vec<String>, order: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {String} order\n# @return {Boolean}\ndef is_alien_sorted(words, order)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param String $order\n     * @return Boolean\n     */\n    function isAlienSorted($words, $order) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isAlienSorted(List<String> words, String order) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isAlienSorted(words: Array[String], order: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_alien_sorted(words :: [String.t], order :: String.t) :: boolean\n  def is_alien_sorted(words, order) do\n    \n  end\nend",
+    "erlang": "-spec is_alien_sorted(Words :: [unicode:unicode_binary()], Order :: unicode:unicode_binary()) -> boolean().\nis_alien_sorted(Words, Order) ->\n  .",
+    "racket": "(define/contract (is-alien-sorted words order)\n  (-> (listof string?) string? boolean?)\n  )"
+  }
 }

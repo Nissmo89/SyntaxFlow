@@ -996,5 +996,26 @@
       "input": "rectangles = [[0, 0, 2, 2], [2, 2, 4, 4]]",
       "output": "8"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int rectangleArea(vector<vector<int>>& rectangles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int rectangleArea(int[][] rectangles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def rectangleArea(self, rectangles: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def rectangleArea(self, rectangles):\n        \"\"\"\n        :type rectangles: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} rectangles\n * @return {number}\n */\nvar rectangleArea = function(rectangles) {\n    \n};",
+    "typescript": "function rectangleArea(rectangles: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RectangleArea(int[][] rectangles) {\n        \n    }\n}",
+    "c": "int rectangleArea(int** rectangles, int rectanglesSize, int* rectanglesColSize) {\n    \n}",
+    "golang": "func rectangleArea(rectangles [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun rectangleArea(rectangles: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func rectangleArea(_ rectangles: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn rectangle_area(rectangles: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} rectangles\n# @return {Integer}\ndef rectangle_area(rectangles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $rectangles\n     * @return Integer\n     */\n    function rectangleArea($rectangles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int rectangleArea(List<List<int>> rectangles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def rectangleArea(rectangles: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec rectangle_area(rectangles :: [[integer]]) :: integer\n  def rectangle_area(rectangles) do\n    \n  end\nend",
+    "erlang": "-spec rectangle_area(Rectangles :: [[integer()]]) -> integer().\nrectangle_area(Rectangles) ->\n  .",
+    "racket": "(define/contract (rectangle-area rectangles)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -413,5 +413,26 @@
       "input": "s = \"aaaa\"\nt = \"baaaac\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isSubsequence(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isSubsequence(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isSubsequence(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isSubsequence = function(s, t) {\n    \n};",
+    "typescript": "function isSubsequence(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsSubsequence(string s, string t) {\n        \n    }\n}",
+    "c": "bool isSubsequence(char* s, char* t) {\n    \n}",
+    "golang": "func isSubsequence(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isSubsequence(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isSubsequence(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_subsequence(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef is_subsequence(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function isSubsequence($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isSubsequence(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isSubsequence(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_subsequence(s :: String.t, t :: String.t) :: boolean\n  def is_subsequence(s, t) do\n    \n  end\nend",
+    "erlang": "-spec is_subsequence(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nis_subsequence(S, T) ->\n  .",
+    "racket": "(define/contract (is-subsequence s t)\n  (-> string? string? boolean?)\n  )"
+  }
 }
