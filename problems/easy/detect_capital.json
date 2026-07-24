@@ -351,5 +351,26 @@
       "input": "word = \"LeetCode\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool detectCapitalUse(string word) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean detectCapitalUse(String word) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def detectCapitalUse(self, word: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def detectCapitalUse(self, word):\n        \"\"\"\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @return {boolean}\n */\nvar detectCapitalUse = function(word) {\n    \n};",
+    "typescript": "function detectCapitalUse(word: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool DetectCapitalUse(string word) {\n        \n    }\n}",
+    "c": "bool detectCapitalUse(char* word) {\n    \n}",
+    "golang": "func detectCapitalUse(word string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun detectCapitalUse(word: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func detectCapitalUse(_ word: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn detect_capital_use(word: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @return {Boolean}\ndef detect_capital_use(word)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @return Boolean\n     */\n    function detectCapitalUse($word) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool detectCapitalUse(String word) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def detectCapitalUse(word: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec detect_capital_use(word :: String.t) :: boolean\n  def detect_capital_use(word) do\n    \n  end\nend",
+    "erlang": "-spec detect_capital_use(Word :: unicode:unicode_binary()) -> boolean().\ndetect_capital_use(Word) ->\n  .",
+    "racket": "(define/contract (detect-capital-use word)\n  (-> string? boolean?)\n  )"
+  }
 }

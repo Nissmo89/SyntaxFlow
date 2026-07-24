@@ -611,5 +611,26 @@
       "input": "tokens = [141, 272]\npower = 75",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int bagOfTokensScore(vector<int>& tokens, int power) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int bagOfTokensScore(int[] tokens, int power) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def bagOfTokensScore(self, tokens, power):\n        \"\"\"\n        :type tokens: List[int]\n        :type power: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} tokens\n * @param {number} power\n * @return {number}\n */\nvar bagOfTokensScore = function(tokens, power) {\n    \n};",
+    "typescript": "function bagOfTokensScore(tokens: number[], power: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int BagOfTokensScore(int[] tokens, int power) {\n        \n    }\n}",
+    "c": "int bagOfTokensScore(int* tokens, int tokensSize, int power) {\n    \n}",
+    "golang": "func bagOfTokensScore(tokens []int, power int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun bagOfTokensScore(tokens: IntArray, power: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func bagOfTokensScore(_ tokens: [Int], _ power: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn bag_of_tokens_score(tokens: Vec<i32>, power: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} tokens\n# @param {Integer} power\n# @return {Integer}\ndef bag_of_tokens_score(tokens, power)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $tokens\n     * @param Integer $power\n     * @return Integer\n     */\n    function bagOfTokensScore($tokens, $power) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int bagOfTokensScore(List<int> tokens, int power) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def bagOfTokensScore(tokens: Array[Int], power: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec bag_of_tokens_score(tokens :: [integer], power :: integer) :: integer\n  def bag_of_tokens_score(tokens, power) do\n    \n  end\nend",
+    "erlang": "-spec bag_of_tokens_score(Tokens :: [integer()], Power :: integer()) -> integer().\nbag_of_tokens_score(Tokens, Power) ->\n  .",
+    "racket": "(define/contract (bag-of-tokens-score tokens power)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

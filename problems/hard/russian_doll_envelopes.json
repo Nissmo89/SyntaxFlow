@@ -1099,5 +1099,26 @@
       "input": "envelopes = [[5, 4], [6, 4], [6, 7], [2, 3], [6, 7], [2, 3]]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxEnvelopes(vector<vector<int>>& envelopes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxEnvelopes(int[][] envelopes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEnvelopes(self, envelopes):\n        \"\"\"\n        :type envelopes: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} envelopes\n * @return {number}\n */\nvar maxEnvelopes = function(envelopes) {\n    \n};",
+    "typescript": "function maxEnvelopes(envelopes: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxEnvelopes(int[][] envelopes) {\n        \n    }\n}",
+    "c": "int maxEnvelopes(int** envelopes, int envelopesSize, int* envelopesColSize) {\n    \n}",
+    "golang": "func maxEnvelopes(envelopes [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEnvelopes(envelopes: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEnvelopes(_ envelopes: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_envelopes(envelopes: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} envelopes\n# @return {Integer}\ndef max_envelopes(envelopes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $envelopes\n     * @return Integer\n     */\n    function maxEnvelopes($envelopes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEnvelopes(List<List<int>> envelopes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEnvelopes(envelopes: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_envelopes(envelopes :: [[integer]]) :: integer\n  def max_envelopes(envelopes) do\n    \n  end\nend",
+    "erlang": "-spec max_envelopes(Envelopes :: [[integer()]]) -> integer().\nmax_envelopes(Envelopes) ->\n  .",
+    "racket": "(define/contract (max-envelopes envelopes)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

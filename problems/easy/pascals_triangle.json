@@ -6424,5 +6424,26 @@
       "input": "numRows = 8",
       "output": "[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1], [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> generate(int numRows) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> generate(int numRows) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def generate(self, numRows: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def generate(self, numRows):\n        \"\"\"\n        :type numRows: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} numRows\n * @return {number[][]}\n */\nvar generate = function(numRows) {\n    \n};",
+    "typescript": "function generate(numRows: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> Generate(int numRows) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** generate(int numRows, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func generate(numRows int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun generate(numRows: Int): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func generate(_ numRows: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num_rows\n# @return {Integer[][]}\ndef generate(num_rows)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $numRows\n     * @return Integer[][]\n     */\n    function generate($numRows) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> generate(int numRows) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def generate(numRows: Int): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec generate(num_rows :: integer) :: [[integer]]\n  def generate(num_rows) do\n    \n  end\nend",
+    "erlang": "-spec generate(NumRows :: integer()) -> [[integer()]].\ngenerate(NumRows) ->\n  .",
+    "racket": "(define/contract (generate numRows)\n  (-> exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

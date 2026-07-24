@@ -612,5 +612,26 @@
       "input": "candies = 5\nnum_people = 2",
       "output": "[3, 2]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> distributeCandies(int candies, int num_people) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] distributeCandies(int candies, int num_people) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distributeCandies(self, candies: int, num_people: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def distributeCandies(self, candies, num_people):\n        \"\"\"\n        :type candies: int\n        :type num_people: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} candies\n * @param {number} num_people\n * @return {number[]}\n */\nvar distributeCandies = function(candies, num_people) {\n    \n};",
+    "typescript": "function distributeCandies(candies: number, num_people: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] DistributeCandies(int candies, int num_people) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* distributeCandies(int candies, int num_people, int* returnSize) {\n    \n}",
+    "golang": "func distributeCandies(candies int, num_people int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distributeCandies(candies: Int, num_people: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distributeCandies(_ candies: Int, _ num_people: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distribute_candies(candies: i32, num_people: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} candies\n# @param {Integer} num_people\n# @return {Integer[]}\ndef distribute_candies(candies, num_people)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $candies\n     * @param Integer $num_people\n     * @return Integer[]\n     */\n    function distributeCandies($candies, $num_people) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> distributeCandies(int candies, int num_people) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distributeCandies(candies: Int, num_people: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distribute_candies(candies :: integer, num_people :: integer) :: [integer]\n  def distribute_candies(candies, num_people) do\n    \n  end\nend",
+    "erlang": "-spec distribute_candies(Candies :: integer(), Num_people :: integer()) -> [integer()].\ndistribute_candies(Candies, Num_people) ->\n  .",
+    "racket": "(define/contract (distribute-candies candies num_people)\n  (-> exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  }
 }

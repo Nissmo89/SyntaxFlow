@@ -380,5 +380,26 @@
       "input": "num = 7",
       "output": "7"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int addDigits(int num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int addDigits(int num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addDigits(self, num: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def addDigits(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {number}\n */\nvar addDigits = function(num) {\n    \n};",
+    "typescript": "function addDigits(num: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int AddDigits(int num) {\n        \n    }\n}",
+    "c": "int addDigits(int num) {\n    \n}",
+    "golang": "func addDigits(num int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun addDigits(num: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addDigits(_ num: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_digits(num: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {Integer}\ndef add_digits(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return Integer\n     */\n    function addDigits($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int addDigits(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addDigits(num: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_digits(num :: integer) :: integer\n  def add_digits(num) do\n    \n  end\nend",
+    "erlang": "-spec add_digits(Num :: integer()) -> integer().\nadd_digits(Num) ->\n  .",
+    "racket": "(define/contract (add-digits num)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -336,5 +336,26 @@
       "input": "s = \"!\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string toLowerCase(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String toLowerCase(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def toLowerCase(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def toLowerCase(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar toLowerCase = function(s) {\n    \n};",
+    "typescript": "function toLowerCase(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ToLowerCase(string s) {\n        \n    }\n}",
+    "c": "char* toLowerCase(char* s) {\n    \n}",
+    "golang": "func toLowerCase(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun toLowerCase(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func toLowerCase(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn to_lower_case(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef to_lower_case(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function toLowerCase($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String toLowerCase(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def toLowerCase(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec to_lower_case(s :: String.t) :: String.t\n  def to_lower_case(s) do\n    \n  end\nend",
+    "erlang": "-spec to_lower_case(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nto_lower_case(S) ->\n  .",
+    "racket": "(define/contract (to-lower-case s)\n  (-> string? string?)\n  )"
+  }
 }

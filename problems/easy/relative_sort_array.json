@@ -1031,5 +1031,26 @@
       "input": "arr1 = [0, 1, 0, 1, 2, 3]\narr2 = [1, 0]",
       "output": "[1, 1, 0, 0, 2, 3]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] relativeSortArray(int[] arr1, int[] arr2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def relativeSortArray(self, arr1, arr2):\n        \"\"\"\n        :type arr1: List[int]\n        :type arr2: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr1\n * @param {number[]} arr2\n * @return {number[]}\n */\nvar relativeSortArray = function(arr1, arr2) {\n    \n};",
+    "typescript": "function relativeSortArray(arr1: number[], arr2: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] RelativeSortArray(int[] arr1, int[] arr2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* relativeSortArray(int* arr1, int arr1Size, int* arr2, int arr2Size, int* returnSize) {\n    \n}",
+    "golang": "func relativeSortArray(arr1 []int, arr2 []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun relativeSortArray(arr1: IntArray, arr2: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func relativeSortArray(_ arr1: [Int], _ arr2: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn relative_sort_array(arr1: Vec<i32>, arr2: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr1\n# @param {Integer[]} arr2\n# @return {Integer[]}\ndef relative_sort_array(arr1, arr2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr1\n     * @param Integer[] $arr2\n     * @return Integer[]\n     */\n    function relativeSortArray($arr1, $arr2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> relativeSortArray(List<int> arr1, List<int> arr2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def relativeSortArray(arr1: Array[Int], arr2: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec relative_sort_array(arr1 :: [integer], arr2 :: [integer]) :: [integer]\n  def relative_sort_array(arr1, arr2) do\n    \n  end\nend",
+    "erlang": "-spec relative_sort_array(Arr1 :: [integer()], Arr2 :: [integer()]) -> [integer()].\nrelative_sort_array(Arr1, Arr2) ->\n  .",
+    "racket": "(define/contract (relative-sort-array arr1 arr2)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

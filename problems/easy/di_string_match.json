@@ -305,5 +305,26 @@
       "input": "s = \"III\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> diStringMatch(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] diStringMatch(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def diStringMatch(self, s: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def diStringMatch(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number[]}\n */\nvar diStringMatch = function(s) {\n    \n};",
+    "typescript": "function diStringMatch(s: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] DiStringMatch(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* diStringMatch(char* s, int* returnSize) {\n    \n}",
+    "golang": "func diStringMatch(s string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun diStringMatch(s: String): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func diStringMatch(_ s: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn di_string_match(s: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer[]}\ndef di_string_match(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer[]\n     */\n    function diStringMatch($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> diStringMatch(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def diStringMatch(s: String): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec di_string_match(s :: String.t) :: [integer]\n  def di_string_match(s) do\n    \n  end\nend",
+    "erlang": "-spec di_string_match(S :: unicode:unicode_binary()) -> [integer()].\ndi_string_match(S) ->\n  .",
+    "racket": "(define/contract (di-string-match s)\n  (-> string? (listof exact-integer?))\n  )"
+  }
 }

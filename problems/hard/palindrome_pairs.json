@@ -522,5 +522,26 @@
       "input": "words = [\"abc\", \"def\", \"ghi\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> palindromePairs(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> palindromePairs(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def palindromePairs(self, words: List[str]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def palindromePairs(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number[][]}\n */\nvar palindromePairs = function(words) {\n    \n};",
+    "typescript": "function palindromePairs(words: string[]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> PalindromePairs(string[] words) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** palindromePairs(char** words, int wordsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func palindromePairs(words []string) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun palindromePairs(words: Array<String>): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func palindromePairs(_ words: [String]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn palindrome_pairs(words: Vec<String>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer[][]}\ndef palindrome_pairs(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer[][]\n     */\n    function palindromePairs($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> palindromePairs(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def palindromePairs(words: Array[String]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec palindrome_pairs(words :: [String.t]) :: [[integer]]\n  def palindrome_pairs(words) do\n    \n  end\nend",
+    "erlang": "-spec palindrome_pairs(Words :: [unicode:unicode_binary()]) -> [[integer()]].\npalindrome_pairs(Words) ->\n  .",
+    "racket": "(define/contract (palindrome-pairs words)\n  (-> (listof string?) (listof (listof exact-integer?)))\n  )"
+  }
 }

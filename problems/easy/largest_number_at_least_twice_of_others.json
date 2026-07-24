@@ -712,5 +712,26 @@
       "input": "nums = [8, 1, 2, 3]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int dominantIndex(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int dominantIndex(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def dominantIndex(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def dominantIndex(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar dominantIndex = function(nums) {\n    \n};",
+    "typescript": "function dominantIndex(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DominantIndex(int[] nums) {\n        \n    }\n}",
+    "c": "int dominantIndex(int* nums, int numsSize) {\n    \n}",
+    "golang": "func dominantIndex(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun dominantIndex(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func dominantIndex(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn dominant_index(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef dominant_index(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function dominantIndex($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int dominantIndex(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def dominantIndex(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec dominant_index(nums :: [integer]) :: integer\n  def dominant_index(nums) do\n    \n  end\nend",
+    "erlang": "-spec dominant_index(Nums :: [integer()]) -> integer().\ndominant_index(Nums) ->\n  .",
+    "racket": "(define/contract (dominant-index nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

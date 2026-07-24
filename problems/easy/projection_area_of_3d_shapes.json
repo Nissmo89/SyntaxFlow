@@ -930,5 +930,26 @@
       "input": "grid = [[0, 7], [5, 0]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int projectionArea(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int projectionArea(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def projectionArea(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def projectionArea(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar projectionArea = function(grid) {\n    \n};",
+    "typescript": "function projectionArea(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ProjectionArea(int[][] grid) {\n        \n    }\n}",
+    "c": "int projectionArea(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func projectionArea(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun projectionArea(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func projectionArea(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn projection_area(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef projection_area(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function projectionArea($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int projectionArea(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def projectionArea(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec projection_area(grid :: [[integer]]) :: integer\n  def projection_area(grid) do\n    \n  end\nend",
+    "erlang": "-spec projection_area(Grid :: [[integer()]]) -> integer().\nprojection_area(Grid) ->\n  .",
+    "racket": "(define/contract (projection-area grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

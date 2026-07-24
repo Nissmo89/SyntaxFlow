@@ -1190,5 +1190,26 @@
       "input": "positions = [[1, 10], [2, 8], [3, 6], [4, 4]]",
       "output": "[10, 18, 24, 28]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> fallingSquares(vector<vector<int>>& positions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> fallingSquares(int[][] positions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def fallingSquares(self, positions: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def fallingSquares(self, positions):\n        \"\"\"\n        :type positions: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} positions\n * @return {number[]}\n */\nvar fallingSquares = function(positions) {\n    \n};",
+    "typescript": "function fallingSquares(positions: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FallingSquares(int[][] positions) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* fallingSquares(int** positions, int positionsSize, int* positionsColSize, int* returnSize) {\n    \n}",
+    "golang": "func fallingSquares(positions [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun fallingSquares(positions: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func fallingSquares(_ positions: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn falling_squares(positions: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} positions\n# @return {Integer[]}\ndef falling_squares(positions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $positions\n     * @return Integer[]\n     */\n    function fallingSquares($positions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> fallingSquares(List<List<int>> positions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def fallingSquares(positions: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec falling_squares(positions :: [[integer]]) :: [integer]\n  def falling_squares(positions) do\n    \n  end\nend",
+    "erlang": "-spec falling_squares(Positions :: [[integer()]]) -> [integer()].\nfalling_squares(Positions) ->\n  .",
+    "racket": "(define/contract (falling-squares positions)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

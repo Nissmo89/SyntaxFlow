@@ -337,5 +337,26 @@
       "input": "sentence = \"eagle one\"",
       "output": "\"eaglemaa onemaaa\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string toGoatLatin(string sentence) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String toGoatLatin(String sentence) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def toGoatLatin(self, sentence: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def toGoatLatin(self, sentence):\n        \"\"\"\n        :type sentence: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} sentence\n * @return {string}\n */\nvar toGoatLatin = function(sentence) {\n    \n};",
+    "typescript": "function toGoatLatin(sentence: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ToGoatLatin(string sentence) {\n        \n    }\n}",
+    "c": "char* toGoatLatin(char* sentence) {\n    \n}",
+    "golang": "func toGoatLatin(sentence string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun toGoatLatin(sentence: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func toGoatLatin(_ sentence: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn to_goat_latin(sentence: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} sentence\n# @return {String}\ndef to_goat_latin(sentence)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $sentence\n     * @return String\n     */\n    function toGoatLatin($sentence) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String toGoatLatin(String sentence) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def toGoatLatin(sentence: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec to_goat_latin(sentence :: String.t) :: String.t\n  def to_goat_latin(sentence) do\n    \n  end\nend",
+    "erlang": "-spec to_goat_latin(Sentence :: unicode:unicode_binary()) -> unicode:unicode_binary().\nto_goat_latin(Sentence) ->\n  .",
+    "racket": "(define/contract (to-goat-latin sentence)\n  (-> string? string?)\n  )"
+  }
 }

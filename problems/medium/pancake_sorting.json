@@ -522,5 +522,26 @@
       "input": "arr = [1, 3, 7, 4, 6, 5, 2, 8]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> pancakeSort(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> pancakeSort(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pancakeSort(self, arr: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def pancakeSort(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number[]}\n */\nvar pancakeSort = function(arr) {\n    \n};",
+    "typescript": "function pancakeSort(arr: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> PancakeSort(int[] arr) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* pancakeSort(int* arr, int arrSize, int* returnSize) {\n    \n}",
+    "golang": "func pancakeSort(arr []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun pancakeSort(arr: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pancakeSort(_ arr: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn pancake_sort(arr: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer[]}\ndef pancake_sort(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer[]\n     */\n    function pancakeSort($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> pancakeSort(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pancakeSort(arr: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec pancake_sort(arr :: [integer]) :: [integer]\n  def pancake_sort(arr) do\n    \n  end\nend",
+    "erlang": "-spec pancake_sort(Arr :: [integer()]) -> [integer()].\npancake_sort(Arr) ->\n  .",
+    "racket": "(define/contract (pancake-sort arr)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

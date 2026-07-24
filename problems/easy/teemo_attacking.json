@@ -747,5 +747,26 @@
       "input": "timeSeries = [1, 2, 3]\nduration = 5",
       "output": "7"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findPoisonedDuration(vector<int>& timeSeries, int duration) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findPoisonedDuration(int[] timeSeries, int duration) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findPoisonedDuration(self, timeSeries, duration):\n        \"\"\"\n        :type timeSeries: List[int]\n        :type duration: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} timeSeries\n * @param {number} duration\n * @return {number}\n */\nvar findPoisonedDuration = function(timeSeries, duration) {\n    \n};",
+    "typescript": "function findPoisonedDuration(timeSeries: number[], duration: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindPoisonedDuration(int[] timeSeries, int duration) {\n        \n    }\n}",
+    "c": "int findPoisonedDuration(int* timeSeries, int timeSeriesSize, int duration) {\n    \n}",
+    "golang": "func findPoisonedDuration(timeSeries []int, duration int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findPoisonedDuration(timeSeries: IntArray, duration: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findPoisonedDuration(_ timeSeries: [Int], _ duration: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_poisoned_duration(time_series: Vec<i32>, duration: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} time_series\n# @param {Integer} duration\n# @return {Integer}\ndef find_poisoned_duration(time_series, duration)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $timeSeries\n     * @param Integer $duration\n     * @return Integer\n     */\n    function findPoisonedDuration($timeSeries, $duration) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findPoisonedDuration(List<int> timeSeries, int duration) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findPoisonedDuration(timeSeries: Array[Int], duration: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_poisoned_duration(time_series :: [integer], duration :: integer) :: integer\n  def find_poisoned_duration(time_series, duration) do\n    \n  end\nend",
+    "erlang": "-spec find_poisoned_duration(TimeSeries :: [integer()], Duration :: integer()) -> integer().\nfind_poisoned_duration(TimeSeries, Duration) ->\n  .",
+    "racket": "(define/contract (find-poisoned-duration timeSeries duration)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

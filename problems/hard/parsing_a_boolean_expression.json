@@ -383,5 +383,26 @@
       "input": "expression = \"&(t,t)\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool parseBoolExpr(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean parseBoolExpr(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def parseBoolExpr(self, expression: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def parseBoolExpr(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {boolean}\n */\nvar parseBoolExpr = function(expression) {\n    \n};",
+    "typescript": "function parseBoolExpr(expression: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ParseBoolExpr(string expression) {\n        \n    }\n}",
+    "c": "bool parseBoolExpr(char* expression) {\n    \n}",
+    "golang": "func parseBoolExpr(expression string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun parseBoolExpr(expression: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func parseBoolExpr(_ expression: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn parse_bool_expr(expression: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Boolean}\ndef parse_bool_expr(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Boolean\n     */\n    function parseBoolExpr($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool parseBoolExpr(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def parseBoolExpr(expression: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec parse_bool_expr(expression :: String.t) :: boolean\n  def parse_bool_expr(expression) do\n    \n  end\nend",
+    "erlang": "-spec parse_bool_expr(Expression :: unicode:unicode_binary()) -> boolean().\nparse_bool_expr(Expression) ->\n  .",
+    "racket": "(define/contract (parse-bool-expr expression)\n  (-> string? boolean?)\n  )"
+  }
 }

@@ -856,5 +856,26 @@
       "input": "licensePlate = \"Ab1 cD2\"\nwords = [\"abcd\", \"cabd\", \"abcdd\", \"bdca\"]",
       "output": "\"abcd\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string shortestCompletingWord(string licensePlate, vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String shortestCompletingWord(String licensePlate, String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def shortestCompletingWord(self, licensePlate, words):\n        \"\"\"\n        :type licensePlate: str\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} licensePlate\n * @param {string[]} words\n * @return {string}\n */\nvar shortestCompletingWord = function(licensePlate, words) {\n    \n};",
+    "typescript": "function shortestCompletingWord(licensePlate: string, words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ShortestCompletingWord(string licensePlate, string[] words) {\n        \n    }\n}",
+    "c": "char* shortestCompletingWord(char* licensePlate, char** words, int wordsSize) {\n    \n}",
+    "golang": "func shortestCompletingWord(licensePlate string, words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestCompletingWord(licensePlate: String, words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_completing_word(license_plate: String, words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} license_plate\n# @param {String[]} words\n# @return {String}\ndef shortest_completing_word(license_plate, words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $licensePlate\n     * @param String[] $words\n     * @return String\n     */\n    function shortestCompletingWord($licensePlate, $words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String shortestCompletingWord(String licensePlate, List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestCompletingWord(licensePlate: String, words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_completing_word(license_plate :: String.t, words :: [String.t]) :: String.t\n  def shortest_completing_word(license_plate, words) do\n    \n  end\nend",
+    "erlang": "-spec shortest_completing_word(LicensePlate :: unicode:unicode_binary(), Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nshortest_completing_word(LicensePlate, Words) ->\n  .",
+    "racket": "(define/contract (shortest-completing-word licensePlate words)\n  (-> string? (listof string?) string?)\n  )"
+  }
 }

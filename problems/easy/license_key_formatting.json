@@ -358,5 +358,26 @@
       "input": "s = \"-a-b-c-\"\nk = 2",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string licenseKeyFormatting(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String licenseKeyFormatting(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def licenseKeyFormatting(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def licenseKeyFormatting(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar licenseKeyFormatting = function(s, k) {\n    \n};",
+    "typescript": "function licenseKeyFormatting(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LicenseKeyFormatting(string s, int k) {\n        \n    }\n}",
+    "c": "char* licenseKeyFormatting(char* s, int k) {\n    \n}",
+    "golang": "func licenseKeyFormatting(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun licenseKeyFormatting(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func licenseKeyFormatting(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn license_key_formatting(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef license_key_formatting(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function licenseKeyFormatting($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String licenseKeyFormatting(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def licenseKeyFormatting(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec license_key_formatting(s :: String.t, k :: integer) :: String.t\n  def license_key_formatting(s, k) do\n    \n  end\nend",
+    "erlang": "-spec license_key_formatting(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nlicense_key_formatting(S, K) ->\n  .",
+    "racket": "(define/contract (license-key-formatting s k)\n  (-> string? exact-integer? string?)\n  )"
+  }
 }

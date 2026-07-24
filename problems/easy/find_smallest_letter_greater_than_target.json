@@ -1283,5 +1283,26 @@
       "input": "letters = [\"c\", \"f\", \"f\", \"j\"]\ntarget = \"f\"",
       "output": "\"j\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    char nextGreatestLetter(vector<char>& letters, char target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public char nextGreatestLetter(char[] letters, char target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def nextGreatestLetter(self, letters: List[str], target: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def nextGreatestLetter(self, letters, target):\n        \"\"\"\n        :type letters: List[str]\n        :type target: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[]} letters\n * @param {character} target\n * @return {character}\n */\nvar nextGreatestLetter = function(letters, target) {\n    \n};",
+    "typescript": "function nextGreatestLetter(letters: string[], target: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public char NextGreatestLetter(char[] letters, char target) {\n        \n    }\n}",
+    "c": "char nextGreatestLetter(char* letters, int lettersSize, char target) {\n    \n}",
+    "golang": "func nextGreatestLetter(letters []byte, target byte) byte {\n    \n}",
+    "kotlin": "class Solution {\n    fun nextGreatestLetter(letters: CharArray, target: Char): Char {\n        \n    }\n}",
+    "swift": "class Solution {\n    func nextGreatestLetter(_ letters: [Character], _ target: Character) -> Character {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn next_greatest_letter(letters: Vec<char>, target: char) -> char {\n        \n    }\n}",
+    "ruby": "# @param {Character[]} letters\n# @param {Character} target\n# @return {Character}\ndef next_greatest_letter(letters, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $letters\n     * @param String $target\n     * @return String\n     */\n    function nextGreatestLetter($letters, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String nextGreatestLetter(List<String> letters, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def nextGreatestLetter(letters: Array[Char], target: Char): Char = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec next_greatest_letter(letters :: [char], target :: char) :: char\n  def next_greatest_letter(letters, target) do\n    \n  end\nend",
+    "erlang": "-spec next_greatest_letter(Letters :: [char()], Target :: char()) -> char().\nnext_greatest_letter(Letters, Target) ->\n  .",
+    "racket": "(define/contract (next-greatest-letter letters target)\n  (-> (listof char?) char? char?)\n  )"
+  }
 }

@@ -1376,5 +1376,26 @@
       "input": "img = [[1, 2], [3, 4]]",
       "output": "[[2, 2], [2, 2]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] imageSmoother(int[][] img) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def imageSmoother(self, img):\n        \"\"\"\n        :type img: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} img\n * @return {number[][]}\n */\nvar imageSmoother = function(img) {\n    \n};",
+    "typescript": "function imageSmoother(img: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] ImageSmoother(int[][] img) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** imageSmoother(int** img, int imgSize, int* imgColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func imageSmoother(img [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun imageSmoother(img: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func imageSmoother(_ img: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn image_smoother(img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} img\n# @return {Integer[][]}\ndef image_smoother(img)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $img\n     * @return Integer[][]\n     */\n    function imageSmoother($img) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> imageSmoother(List<List<int>> img) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def imageSmoother(img: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec image_smoother(img :: [[integer]]) :: [[integer]]\n  def image_smoother(img) do\n    \n  end\nend",
+    "erlang": "-spec image_smoother(Img :: [[integer()]]) -> [[integer()]].\nimage_smoother(Img) ->\n  .",
+    "racket": "(define/contract (image-smoother img)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

@@ -379,5 +379,26 @@
       "input": "s = \"hello   \"",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int lengthOfLastWord(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lengthOfLastWord(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lengthOfLastWord(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def lengthOfLastWord(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLastWord = function(s) {\n    \n};",
+    "typescript": "function lengthOfLastWord(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LengthOfLastWord(string s) {\n        \n    }\n}",
+    "c": "int lengthOfLastWord(char* s) {\n    \n}",
+    "golang": "func lengthOfLastWord(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lengthOfLastWord(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lengthOfLastWord(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn length_of_last_word(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef length_of_last_word(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function lengthOfLastWord($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lengthOfLastWord(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lengthOfLastWord(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec length_of_last_word(s :: String.t) :: integer\n  def length_of_last_word(s) do\n    \n  end\nend",
+    "erlang": "-spec length_of_last_word(S :: unicode:unicode_binary()) -> integer().\nlength_of_last_word(S) ->\n  .",
+    "racket": "(define/contract (length-of-last-word s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

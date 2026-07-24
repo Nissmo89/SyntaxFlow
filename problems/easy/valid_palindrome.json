@@ -509,5 +509,26 @@
       "input": "s = \"ab\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isPalindrome(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPalindrome(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPalindrome(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindrome = function(s) {\n    \n};",
+    "typescript": "function isPalindrome(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPalindrome(string s) {\n        \n    }\n}",
+    "c": "bool isPalindrome(char* s) {\n    \n}",
+    "golang": "func isPalindrome(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPalindrome(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPalindrome(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_palindrome(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_palindrome(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isPalindrome($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPalindrome(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPalindrome(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_palindrome(s :: String.t) :: boolean\n  def is_palindrome(s) do\n    \n  end\nend",
+    "erlang": "-spec is_palindrome(S :: unicode:unicode_binary()) -> boolean().\nis_palindrome(S) ->\n  .",
+    "racket": "(define/contract (is-palindrome s)\n  (-> string? boolean?)\n  )"
+  }
 }

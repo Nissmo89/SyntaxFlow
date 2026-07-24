@@ -434,5 +434,26 @@
       "input": "s1 = \"abc\"\ns2 = \"bcd\"\nbaseStr = \"ddddcccbbaaa\"",
       "output": "\"aaaaaaaaaaaa\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string smallestEquivalentString(string s1, string s2, string baseStr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestEquivalentString(String s1, String s2, String baseStr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestEquivalentString(self, s1, s2, baseStr):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :type baseStr: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @param {string} baseStr\n * @return {string}\n */\nvar smallestEquivalentString = function(s1, s2, baseStr) {\n    \n};",
+    "typescript": "function smallestEquivalentString(s1: string, s2: string, baseStr: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestEquivalentString(string s1, string s2, string baseStr) {\n        \n    }\n}",
+    "c": "char* smallestEquivalentString(char* s1, char* s2, char* baseStr) {\n    \n}",
+    "golang": "func smallestEquivalentString(s1 string, s2 string, baseStr string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestEquivalentString(s1: String, s2: String, baseStr: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestEquivalentString(_ s1: String, _ s2: String, _ baseStr: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_equivalent_string(s1: String, s2: String, base_str: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @param {String} base_str\n# @return {String}\ndef smallest_equivalent_string(s1, s2, base_str)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @param String $baseStr\n     * @return String\n     */\n    function smallestEquivalentString($s1, $s2, $baseStr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestEquivalentString(String s1, String s2, String baseStr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestEquivalentString(s1: String, s2: String, baseStr: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_equivalent_string(s1 :: String.t, s2 :: String.t, base_str :: String.t) :: String.t\n  def smallest_equivalent_string(s1, s2, base_str) do\n    \n  end\nend",
+    "erlang": "-spec smallest_equivalent_string(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary(), BaseStr :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsmallest_equivalent_string(S1, S2, BaseStr) ->\n  .",
+    "racket": "(define/contract (smallest-equivalent-string s1 s2 baseStr)\n  (-> string? string? string? string?)\n  )"
+  }
 }

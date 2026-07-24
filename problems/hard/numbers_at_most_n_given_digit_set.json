@@ -593,5 +593,26 @@
       "input": "digits = [\"1\", \"2\"]\nn = 11",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int atMostNGivenDigitSet(vector<string>& digits, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int atMostNGivenDigitSet(String[] digits, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def atMostNGivenDigitSet(self, digits, n):\n        \"\"\"\n        :type digits: List[str]\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} digits\n * @param {number} n\n * @return {number}\n */\nvar atMostNGivenDigitSet = function(digits, n) {\n    \n};",
+    "typescript": "function atMostNGivenDigitSet(digits: string[], n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int AtMostNGivenDigitSet(string[] digits, int n) {\n        \n    }\n}",
+    "c": "int atMostNGivenDigitSet(char** digits, int digitsSize, int n) {\n    \n}",
+    "golang": "func atMostNGivenDigitSet(digits []string, n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun atMostNGivenDigitSet(digits: Array<String>, n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func atMostNGivenDigitSet(_ digits: [String], _ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn at_most_n_given_digit_set(digits: Vec<String>, n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} digits\n# @param {Integer} n\n# @return {Integer}\ndef at_most_n_given_digit_set(digits, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $digits\n     * @param Integer $n\n     * @return Integer\n     */\n    function atMostNGivenDigitSet($digits, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int atMostNGivenDigitSet(List<String> digits, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def atMostNGivenDigitSet(digits: Array[String], n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec at_most_n_given_digit_set(digits :: [String.t], n :: integer) :: integer\n  def at_most_n_given_digit_set(digits, n) do\n    \n  end\nend",
+    "erlang": "-spec at_most_n_given_digit_set(Digits :: [unicode:unicode_binary()], N :: integer()) -> integer().\nat_most_n_given_digit_set(Digits, N) ->\n  .",
+    "racket": "(define/contract (at-most-n-given-digit-set digits n)\n  (-> (listof string?) exact-integer? exact-integer?)\n  )"
+  }
 }

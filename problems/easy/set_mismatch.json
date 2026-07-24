@@ -1034,5 +1034,26 @@
       "input": "nums = [1, 2, 3, 4, 5, 5]",
       "output": "[5, 6]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findErrorNums(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] findErrorNums(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findErrorNums(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findErrorNums(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar findErrorNums = function(nums) {\n    \n};",
+    "typescript": "function findErrorNums(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FindErrorNums(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findErrorNums(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func findErrorNums(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findErrorNums(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findErrorNums(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_error_nums(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef find_error_nums(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function findErrorNums($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findErrorNums(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findErrorNums(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_error_nums(nums :: [integer]) :: [integer]\n  def find_error_nums(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_error_nums(Nums :: [integer()]) -> [integer()].\nfind_error_nums(Nums) ->\n  .",
+    "racket": "(define/contract (find-error-nums nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

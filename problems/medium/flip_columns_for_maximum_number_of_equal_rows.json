@@ -1228,5 +1228,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0]]}",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxEqualRowsAfterFlips(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEqualRowsAfterFlips(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number}\n */\nvar maxEqualRowsAfterFlips = function(matrix) {\n    \n};",
+    "typescript": "function maxEqualRowsAfterFlips(matrix: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxEqualRowsAfterFlips(int[][] matrix) {\n        \n    }\n}",
+    "c": "int maxEqualRowsAfterFlips(int** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func maxEqualRowsAfterFlips(matrix [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEqualRowsAfterFlips(matrix: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEqualRowsAfterFlips(_ matrix: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_equal_rows_after_flips(matrix: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer}\ndef max_equal_rows_after_flips(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer\n     */\n    function maxEqualRowsAfterFlips($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEqualRowsAfterFlips(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEqualRowsAfterFlips(matrix: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_equal_rows_after_flips(matrix :: [[integer]]) :: integer\n  def max_equal_rows_after_flips(matrix) do\n    \n  end\nend",
+    "erlang": "-spec max_equal_rows_after_flips(Matrix :: [[integer()]]) -> integer().\nmax_equal_rows_after_flips(Matrix) ->\n  .",
+    "racket": "(define/contract (max-equal-rows-after-flips matrix)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

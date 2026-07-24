@@ -881,5 +881,26 @@
       "input": "nums1 = [10, 20, 30, 40]\nnums2 = [30, 50, 10, 70]",
       "output": "[10, 30]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] intersection(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def intersection(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function(nums1, nums2) {\n    \n};",
+    "typescript": "function intersection(nums1: number[], nums2: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] Intersection(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {\n    \n}",
+    "golang": "func intersection(nums1 []int, nums2 []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun intersection(nums1: IntArray, nums2: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func intersection(_ nums1: [Int], _ nums2: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer[]}\ndef intersection(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer[]\n     */\n    function intersection($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> intersection(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def intersection(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec intersection(nums1 :: [integer], nums2 :: [integer]) :: [integer]\n  def intersection(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec intersection(Nums1 :: [integer()], Nums2 :: [integer()]) -> [integer()].\nintersection(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (intersection nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

@@ -818,5 +818,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 1]]}\ntarget = 2",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSubmatrixSumTarget(int[][] matrix, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSubmatrixSumTarget(self, matrix: List[List[int]], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSubmatrixSumTarget(self, matrix, target):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {number}\n */\nvar numSubmatrixSumTarget = function(matrix, target) {\n    \n};",
+    "typescript": "function numSubmatrixSumTarget(matrix: number[][], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSubmatrixSumTarget(int[][] matrix, int target) {\n        \n    }\n}",
+    "c": "int numSubmatrixSumTarget(int** matrix, int matrixSize, int* matrixColSize, int target) {\n    \n}",
+    "golang": "func numSubmatrixSumTarget(matrix [][]int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSubmatrixSumTarget(matrix: Array<IntArray>, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSubmatrixSumTarget(_ matrix: [[Int]], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_submatrix_sum_target(matrix: Vec<Vec<i32>>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @param {Integer} target\n# @return {Integer}\ndef num_submatrix_sum_target(matrix, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @param Integer $target\n     * @return Integer\n     */\n    function numSubmatrixSumTarget($matrix, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSubmatrixSumTarget(List<List<int>> matrix, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSubmatrixSumTarget(matrix: Array[Array[Int]], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_submatrix_sum_target(matrix :: [[integer]], target :: integer) :: integer\n  def num_submatrix_sum_target(matrix, target) do\n    \n  end\nend",
+    "erlang": "-spec num_submatrix_sum_target(Matrix :: [[integer()]], Target :: integer()) -> integer().\nnum_submatrix_sum_target(Matrix, Target) ->\n  .",
+    "racket": "(define/contract (num-submatrix-sum-target matrix target)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -580,5 +580,26 @@
       "input": "stones = [31, 26, 33, 21, 40]",
       "output": "9"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int lastStoneWeight(vector<int>& stones) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lastStoneWeight(int[] stones) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lastStoneWeight(self, stones: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lastStoneWeight(self, stones):\n        \"\"\"\n        :type stones: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stones\n * @return {number}\n */\nvar lastStoneWeight = function(stones) {\n    \n};",
+    "typescript": "function lastStoneWeight(stones: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LastStoneWeight(int[] stones) {\n        \n    }\n}",
+    "c": "int lastStoneWeight(int* stones, int stonesSize) {\n    \n}",
+    "golang": "func lastStoneWeight(stones []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lastStoneWeight(stones: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lastStoneWeight(_ stones: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn last_stone_weight(stones: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stones\n# @return {Integer}\ndef last_stone_weight(stones)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stones\n     * @return Integer\n     */\n    function lastStoneWeight($stones) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lastStoneWeight(List<int> stones) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lastStoneWeight(stones: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec last_stone_weight(stones :: [integer]) :: integer\n  def last_stone_weight(stones) do\n    \n  end\nend",
+    "erlang": "-spec last_stone_weight(Stones :: [integer()]) -> integer().\nlast_stone_weight(Stones) ->\n  .",
+    "racket": "(define/contract (last-stone-weight stones)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

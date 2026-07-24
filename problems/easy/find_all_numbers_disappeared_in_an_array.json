@@ -1040,5 +1040,26 @@
       "input": "nums = [2, 3, 4, 5, 5]",
       "output": "[1]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findDisappearedNumbers(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findDisappearedNumbers(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findDisappearedNumbers(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar findDisappearedNumbers = function(nums) {\n    \n};",
+    "typescript": "function findDisappearedNumbers(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindDisappearedNumbers(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func findDisappearedNumbers(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findDisappearedNumbers(nums: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findDisappearedNumbers(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_disappeared_numbers(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef find_disappeared_numbers(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function findDisappearedNumbers($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findDisappearedNumbers(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findDisappearedNumbers(nums: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_disappeared_numbers(nums :: [integer]) :: [integer]\n  def find_disappeared_numbers(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_disappeared_numbers(Nums :: [integer()]) -> [integer()].\nfind_disappeared_numbers(Nums) ->\n  .",
+    "racket": "(define/contract (find-disappeared-numbers nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

@@ -1976,5 +1976,26 @@
       "input": "image = [[6], [6], [5], [5], [5], [6]]\nsr = 3\nsc = 0\ncolor = 2",
       "output": "[[6], [6], [2], [2], [2], [6]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] floodFill(int[][] image, int sr, int sc, int color) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def floodFill(self, image, sr, sc, color):\n        \"\"\"\n        :type image: List[List[int]]\n        :type sr: int\n        :type sc: int\n        :type color: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} image\n * @param {number} sr\n * @param {number} sc\n * @param {number} color\n * @return {number[][]}\n */\nvar floodFill = function(image, sr, sc, color) {\n    \n};",
+    "typescript": "function floodFill(image: number[][], sr: number, sc: number, color: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] FloodFill(int[][] image, int sr, int sc, int color) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** floodFill(int** image, int imageSize, int* imageColSize, int sr, int sc, int color, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func floodFill(image [][]int, sr int, sc int, color int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun floodFill(image: Array<IntArray>, sr: Int, sc: Int, color: Int): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ color: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, color: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} image\n# @param {Integer} sr\n# @param {Integer} sc\n# @param {Integer} color\n# @return {Integer[][]}\ndef flood_fill(image, sr, sc, color)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $image\n     * @param Integer $sr\n     * @param Integer $sc\n     * @param Integer $color\n     * @return Integer[][]\n     */\n    function floodFill($image, $sr, $sc, $color) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> floodFill(List<List<int>> image, int sr, int sc, int color) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def floodFill(image: Array[Array[Int]], sr: Int, sc: Int, color: Int): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec flood_fill(image :: [[integer]], sr :: integer, sc :: integer, color :: integer) :: [[integer]]\n  def flood_fill(image, sr, sc, color) do\n    \n  end\nend",
+    "erlang": "-spec flood_fill(Image :: [[integer()]], Sr :: integer(), Sc :: integer(), Color :: integer()) -> [[integer()]].\nflood_fill(Image, Sr, Sc, Color) ->\n  .",
+    "racket": "(define/contract (flood-fill image sr sc color)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer? exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

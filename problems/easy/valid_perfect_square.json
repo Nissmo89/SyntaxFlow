@@ -382,5 +382,26 @@
       "input": "num = 8",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isPerfectSquare(int num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPerfectSquare(int num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPerfectSquare(self, num: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPerfectSquare(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {boolean}\n */\nvar isPerfectSquare = function(num) {\n    \n};",
+    "typescript": "function isPerfectSquare(num: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPerfectSquare(int num) {\n        \n    }\n}",
+    "c": "bool isPerfectSquare(int num) {\n    \n}",
+    "golang": "func isPerfectSquare(num int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPerfectSquare(num: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPerfectSquare(_ num: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_perfect_square(num: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {Boolean}\ndef is_perfect_square(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return Boolean\n     */\n    function isPerfectSquare($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPerfectSquare(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPerfectSquare(num: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_perfect_square(num :: integer) :: boolean\n  def is_perfect_square(num) do\n    \n  end\nend",
+    "erlang": "-spec is_perfect_square(Num :: integer()) -> boolean().\nis_perfect_square(Num) ->\n  .",
+    "racket": "(define/contract (is-perfect-square num)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

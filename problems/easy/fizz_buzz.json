@@ -370,5 +370,26 @@
       "input": "n = 7",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> fizzBuzz(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> fizzBuzz(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def fizzBuzz(self, n: int) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def fizzBuzz(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {string[]}\n */\nvar fizzBuzz = function(n) {\n    \n};",
+    "typescript": "function fizzBuzz(n: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FizzBuzz(int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** fizzBuzz(int n, int* returnSize) {\n    \n}",
+    "golang": "func fizzBuzz(n int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun fizzBuzz(n: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func fizzBuzz(_ n: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn fizz_buzz(n: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {String[]}\ndef fizz_buzz(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return String[]\n     */\n    function fizzBuzz($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> fizzBuzz(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def fizzBuzz(n: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec fizz_buzz(n :: integer) :: [String.t]\n  def fizz_buzz(n) do\n    \n  end\nend",
+    "erlang": "-spec fizz_buzz(N :: integer()) -> [unicode:unicode_binary()].\nfizz_buzz(N) ->\n  .",
+    "racket": "(define/contract (fizz-buzz n)\n  (-> exact-integer? (listof string?))\n  )"
+  }
 }

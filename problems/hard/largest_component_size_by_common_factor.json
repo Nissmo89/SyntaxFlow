@@ -576,5 +576,26 @@
       "input": "nums = [18, 60, 39, 57, 13, 39]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int largestComponentSize(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestComponentSize(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestComponentSize(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestComponentSize(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar largestComponentSize = function(nums) {\n    \n};",
+    "typescript": "function largestComponentSize(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestComponentSize(int[] nums) {\n        \n    }\n}",
+    "c": "int largestComponentSize(int* nums, int numsSize) {\n    \n}",
+    "golang": "func largestComponentSize(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestComponentSize(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestComponentSize(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_component_size(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef largest_component_size(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function largestComponentSize($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestComponentSize(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestComponentSize(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_component_size(nums :: [integer]) :: integer\n  def largest_component_size(nums) do\n    \n  end\nend",
+    "erlang": "-spec largest_component_size(Nums :: [integer()]) -> integer().\nlargest_component_size(Nums) ->\n  .",
+    "racket": "(define/contract (largest-component-size nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

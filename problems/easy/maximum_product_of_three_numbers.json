@@ -698,5 +698,26 @@
       "input": "nums = [-1000, -999, 1, 2, 3]",
       "output": "2997000"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maximumProduct(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumProduct(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumProduct(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumProduct(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumProduct = function(nums) {\n    \n};",
+    "typescript": "function maximumProduct(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumProduct(int[] nums) {\n        \n    }\n}",
+    "c": "int maximumProduct(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumProduct(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumProduct(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumProduct(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_product(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_product(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumProduct($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumProduct(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumProduct(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_product(nums :: [integer]) :: integer\n  def maximum_product(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_product(Nums :: [integer()]) -> integer().\nmaximum_product(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-product nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

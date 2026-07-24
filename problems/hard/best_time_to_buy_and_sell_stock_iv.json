@@ -789,5 +789,26 @@
       "input": "k = 2\nprices = [1, 2, 3, 4, 5]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxProfit(int k, vector<int>& prices) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int k, int[] prices) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfit(self, k: int, prices: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfit(self, k, prices):\n        \"\"\"\n        :type k: int\n        :type prices: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} k\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function(k, prices) {\n    \n};",
+    "typescript": "function maxProfit(k: number, prices: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfit(int k, int[] prices) {\n        \n    }\n}",
+    "c": "int maxProfit(int k, int* prices, int pricesSize) {\n    \n}",
+    "golang": "func maxProfit(k int, prices []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfit(k: Int, prices: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfit(_ k: Int, _ prices: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit(k: i32, prices: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} k\n# @param {Integer[]} prices\n# @return {Integer}\ndef max_profit(k, prices)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $k\n     * @param Integer[] $prices\n     * @return Integer\n     */\n    function maxProfit($k, $prices) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfit(int k, List<int> prices) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfit(k: Int, prices: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit(k :: integer, prices :: [integer]) :: integer\n  def max_profit(k, prices) do\n    \n  end\nend",
+    "erlang": "-spec max_profit(K :: integer(), Prices :: [integer()]) -> integer().\nmax_profit(K, Prices) ->\n  .",
+    "racket": "(define/contract (max-profit k prices)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

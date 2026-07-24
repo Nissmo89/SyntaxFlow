@@ -474,5 +474,26 @@
       "input": "m = 5\nn = 1\nk = 4",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findKthNumber(int m, int n, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findKthNumber(int m, int n, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findKthNumber(self, m: int, n: int, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findKthNumber(self, m, n, k):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number} k\n * @return {number}\n */\nvar findKthNumber = function(m, n, k) {\n    \n};",
+    "typescript": "function findKthNumber(m: number, n: number, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindKthNumber(int m, int n, int k) {\n        \n    }\n}",
+    "c": "int findKthNumber(int m, int n, int k) {\n    \n}",
+    "golang": "func findKthNumber(m int, n int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findKthNumber(m: Int, n: Int, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findKthNumber(_ m: Int, _ n: Int, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_kth_number(m: i32, n: i32, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer} k\n# @return {Integer}\ndef find_kth_number(m, n, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer $k\n     * @return Integer\n     */\n    function findKthNumber($m, $n, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findKthNumber(int m, int n, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findKthNumber(m: Int, n: Int, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_kth_number(m :: integer, n :: integer, k :: integer) :: integer\n  def find_kth_number(m, n, k) do\n    \n  end\nend",
+    "erlang": "-spec find_kth_number(M :: integer(), N :: integer(), K :: integer()) -> integer().\nfind_kth_number(M, N, K) ->\n  .",
+    "racket": "(define/contract (find-kth-number m n k)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

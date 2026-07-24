@@ -590,5 +590,26 @@
       "input": "heights = [1, 2, 4, 3]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int heightChecker(vector<int>& heights) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int heightChecker(int[] heights) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def heightChecker(self, heights: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def heightChecker(self, heights):\n        \"\"\"\n        :type heights: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} heights\n * @return {number}\n */\nvar heightChecker = function(heights) {\n    \n};",
+    "typescript": "function heightChecker(heights: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int HeightChecker(int[] heights) {\n        \n    }\n}",
+    "c": "int heightChecker(int* heights, int heightsSize) {\n    \n}",
+    "golang": "func heightChecker(heights []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun heightChecker(heights: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func heightChecker(_ heights: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn height_checker(heights: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} heights\n# @return {Integer}\ndef height_checker(heights)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $heights\n     * @return Integer\n     */\n    function heightChecker($heights) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int heightChecker(List<int> heights) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def heightChecker(heights: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec height_checker(heights :: [integer]) :: integer\n  def height_checker(heights) do\n    \n  end\nend",
+    "erlang": "-spec height_checker(Heights :: [integer()]) -> integer().\nheight_checker(Heights) ->\n  .",
+    "racket": "(define/contract (height-checker heights)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

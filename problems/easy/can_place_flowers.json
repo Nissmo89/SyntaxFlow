@@ -953,5 +953,26 @@
       "input": "flowerbed = [0, 0]\nn = 2",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canPlaceFlowers(vector<int>& flowerbed, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canPlaceFlowers(int[] flowerbed, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canPlaceFlowers(self, flowerbed, n):\n        \"\"\"\n        :type flowerbed: List[int]\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} flowerbed\n * @param {number} n\n * @return {boolean}\n */\nvar canPlaceFlowers = function(flowerbed, n) {\n    \n};",
+    "typescript": "function canPlaceFlowers(flowerbed: number[], n: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanPlaceFlowers(int[] flowerbed, int n) {\n        \n    }\n}",
+    "c": "bool canPlaceFlowers(int* flowerbed, int flowerbedSize, int n) {\n    \n}",
+    "golang": "func canPlaceFlowers(flowerbed []int, n int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canPlaceFlowers(flowerbed: IntArray, n: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canPlaceFlowers(_ flowerbed: [Int], _ n: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_place_flowers(flowerbed: Vec<i32>, n: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} flowerbed\n# @param {Integer} n\n# @return {Boolean}\ndef can_place_flowers(flowerbed, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $flowerbed\n     * @param Integer $n\n     * @return Boolean\n     */\n    function canPlaceFlowers($flowerbed, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canPlaceFlowers(List<int> flowerbed, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canPlaceFlowers(flowerbed: Array[Int], n: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_place_flowers(flowerbed :: [integer], n :: integer) :: boolean\n  def can_place_flowers(flowerbed, n) do\n    \n  end\nend",
+    "erlang": "-spec can_place_flowers(Flowerbed :: [integer()], N :: integer()) -> boolean().\ncan_place_flowers(Flowerbed, N) ->\n  .",
+    "racket": "(define/contract (can-place-flowers flowerbed n)\n  (-> (listof exact-integer?) exact-integer? boolean?)\n  )"
+  }
 }

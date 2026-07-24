@@ -391,5 +391,26 @@
       "input": "formula = \"((H))\"",
       "output": "\"H\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string countOfAtoms(string formula) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String countOfAtoms(String formula) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countOfAtoms(self, formula: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def countOfAtoms(self, formula):\n        \"\"\"\n        :type formula: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} formula\n * @return {string}\n */\nvar countOfAtoms = function(formula) {\n    \n};",
+    "typescript": "function countOfAtoms(formula: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string CountOfAtoms(string formula) {\n        \n    }\n}",
+    "c": "char* countOfAtoms(char* formula) {\n    \n}",
+    "golang": "func countOfAtoms(formula string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun countOfAtoms(formula: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countOfAtoms(_ formula: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_of_atoms(formula: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} formula\n# @return {String}\ndef count_of_atoms(formula)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $formula\n     * @return String\n     */\n    function countOfAtoms($formula) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String countOfAtoms(String formula) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countOfAtoms(formula: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_of_atoms(formula :: String.t) :: String.t\n  def count_of_atoms(formula) do\n    \n  end\nend",
+    "erlang": "-spec count_of_atoms(Formula :: unicode:unicode_binary()) -> unicode:unicode_binary().\ncount_of_atoms(Formula) ->\n  .",
+    "racket": "(define/contract (count-of-atoms formula)\n  (-> string? string?)\n  )"
+  }
 }

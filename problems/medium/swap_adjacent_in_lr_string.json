@@ -430,5 +430,26 @@
       "input": "s = \"RX\"\nt = \"XR\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canTransform(string start, string result) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canTransform(String start, String result) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canTransform(self, start: str, result: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canTransform(self, start, result):\n        \"\"\"\n        :type start: str\n        :type result: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} start\n * @param {string} result\n * @return {boolean}\n */\nvar canTransform = function(start, result) {\n    \n};",
+    "typescript": "function canTransform(start: string, result: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanTransform(string start, string result) {\n        \n    }\n}",
+    "c": "bool canTransform(char* start, char* result) {\n    \n}",
+    "golang": "func canTransform(start string, result string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canTransform(start: String, result: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canTransform(_ start: String, _ result: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_transform(start: String, result: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} start\n# @param {String} result\n# @return {Boolean}\ndef can_transform(start, result)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $start\n     * @param String $result\n     * @return Boolean\n     */\n    function canTransform($start, $result) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canTransform(String start, String result) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canTransform(start: String, result: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_transform(start :: String.t, result :: String.t) :: boolean\n  def can_transform(start, result) do\n    \n  end\nend",
+    "erlang": "-spec can_transform(Start :: unicode:unicode_binary(), Result :: unicode:unicode_binary()) -> boolean().\ncan_transform(Start, Result) ->\n  .",
+    "racket": "(define/contract (can-transform start result)\n  (-> string? string? boolean?)\n  )"
+  }
 }

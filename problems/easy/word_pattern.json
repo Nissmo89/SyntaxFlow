@@ -388,5 +388,26 @@
       "input": "pattern = \"aa\"\ns = \"one two\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool wordPattern(string pattern, string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean wordPattern(String pattern, String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def wordPattern(self, pattern: str, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def wordPattern(self, pattern, s):\n        \"\"\"\n        :type pattern: str\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} pattern\n * @param {string} s\n * @return {boolean}\n */\nvar wordPattern = function(pattern, s) {\n    \n};",
+    "typescript": "function wordPattern(pattern: string, s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool WordPattern(string pattern, string s) {\n        \n    }\n}",
+    "c": "bool wordPattern(char* pattern, char* s) {\n    \n}",
+    "golang": "func wordPattern(pattern string, s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun wordPattern(pattern: String, s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func wordPattern(_ pattern: String, _ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn word_pattern(pattern: String, s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} pattern\n# @param {String} s\n# @return {Boolean}\ndef word_pattern(pattern, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $pattern\n     * @param String $s\n     * @return Boolean\n     */\n    function wordPattern($pattern, $s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool wordPattern(String pattern, String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def wordPattern(pattern: String, s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec word_pattern(pattern :: String.t, s :: String.t) :: boolean\n  def word_pattern(pattern, s) do\n    \n  end\nend",
+    "erlang": "-spec word_pattern(Pattern :: unicode:unicode_binary(), S :: unicode:unicode_binary()) -> boolean().\nword_pattern(Pattern, S) ->\n  .",
+    "racket": "(define/contract (word-pattern pattern s)\n  (-> string? string? boolean?)\n  )"
+  }
 }

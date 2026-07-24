@@ -396,5 +396,26 @@
       "input": "columnTitle = \"BA\"",
       "output": "53"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int titleToNumber(string columnTitle) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int titleToNumber(String columnTitle) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def titleToNumber(self, columnTitle: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def titleToNumber(self, columnTitle):\n        \"\"\"\n        :type columnTitle: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} columnTitle\n * @return {number}\n */\nvar titleToNumber = function(columnTitle) {\n    \n};",
+    "typescript": "function titleToNumber(columnTitle: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TitleToNumber(string columnTitle) {\n        \n    }\n}",
+    "c": "int titleToNumber(char* columnTitle) {\n    \n}",
+    "golang": "func titleToNumber(columnTitle string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun titleToNumber(columnTitle: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func titleToNumber(_ columnTitle: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn title_to_number(column_title: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} column_title\n# @return {Integer}\ndef title_to_number(column_title)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $columnTitle\n     * @return Integer\n     */\n    function titleToNumber($columnTitle) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int titleToNumber(String columnTitle) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def titleToNumber(columnTitle: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec title_to_number(column_title :: String.t) :: integer\n  def title_to_number(column_title) do\n    \n  end\nend",
+    "erlang": "-spec title_to_number(ColumnTitle :: unicode:unicode_binary()) -> integer().\ntitle_to_number(ColumnTitle) ->\n  .",
+    "racket": "(define/contract (title-to-number columnTitle)\n  (-> string? exact-integer?)\n  )"
+  }
 }

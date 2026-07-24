@@ -345,5 +345,26 @@
       "input": "n = 18",
       "output": "1207959552"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int reverseBits(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int reverseBits(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseBits(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def reverseBits(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar reverseBits = function(n) {\n    \n};",
+    "typescript": "function reverseBits(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ReverseBits(int n) {\n        \n    }\n}",
+    "c": "int reverseBits(int n) {\n    \n}",
+    "golang": "func reverseBits(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseBits(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseBits(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_bits(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef reverse_bits(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function reverseBits($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int reverseBits(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseBits(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_bits(n :: integer) :: integer\n  def reverse_bits(n) do\n    \n  end\nend",
+    "erlang": "-spec reverse_bits(N :: integer()) -> integer().\nreverse_bits(N) ->\n  .",
+    "racket": "(define/contract (reverse-bits n)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

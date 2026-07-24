@@ -381,5 +381,26 @@
       "input": "s1 = \"aa bb cc\"\ns2 = \"dd ee ff\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> uncommonFromSentences(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] uncommonFromSentences(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def uncommonFromSentences(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {string[]}\n */\nvar uncommonFromSentences = function(s1, s2) {\n    \n};",
+    "typescript": "function uncommonFromSentences(s1: string, s2: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] UncommonFromSentences(string s1, string s2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** uncommonFromSentences(char* s1, char* s2, int* returnSize) {\n    \n}",
+    "golang": "func uncommonFromSentences(s1 string, s2 string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun uncommonFromSentences(s1: String, s2: String): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uncommonFromSentences(_ s1: String, _ s2: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn uncommon_from_sentences(s1: String, s2: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {String[]}\ndef uncommon_from_sentences(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return String[]\n     */\n    function uncommonFromSentences($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> uncommonFromSentences(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uncommonFromSentences(s1: String, s2: String): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec uncommon_from_sentences(s1 :: String.t, s2 :: String.t) :: [String.t]\n  def uncommon_from_sentences(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec uncommon_from_sentences(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nuncommon_from_sentences(S1, S2) ->\n  .",
+    "racket": "(define/contract (uncommon-from-sentences s1 s2)\n  (-> string? string? (listof string?))\n  )"
+  }
 }

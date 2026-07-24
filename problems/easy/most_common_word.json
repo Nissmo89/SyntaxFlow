@@ -447,5 +447,26 @@
       "input": "paragraph = \"Wow! Wow? wow.\"\nbanned = []",
       "output": "\"wow\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string mostCommonWord(string paragraph, vector<string>& banned) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String mostCommonWord(String paragraph, String[] banned) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def mostCommonWord(self, paragraph, banned):\n        \"\"\"\n        :type paragraph: str\n        :type banned: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} paragraph\n * @param {string[]} banned\n * @return {string}\n */\nvar mostCommonWord = function(paragraph, banned) {\n    \n};",
+    "typescript": "function mostCommonWord(paragraph: string, banned: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MostCommonWord(string paragraph, string[] banned) {\n        \n    }\n}",
+    "c": "char* mostCommonWord(char* paragraph, char** banned, int bannedSize) {\n    \n}",
+    "golang": "func mostCommonWord(paragraph string, banned []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun mostCommonWord(paragraph: String, banned: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mostCommonWord(_ paragraph: String, _ banned: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn most_common_word(paragraph: String, banned: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} paragraph\n# @param {String[]} banned\n# @return {String}\ndef most_common_word(paragraph, banned)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $paragraph\n     * @param String[] $banned\n     * @return String\n     */\n    function mostCommonWord($paragraph, $banned) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String mostCommonWord(String paragraph, List<String> banned) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mostCommonWord(paragraph: String, banned: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec most_common_word(paragraph :: String.t, banned :: [String.t]) :: String.t\n  def most_common_word(paragraph, banned) do\n    \n  end\nend",
+    "erlang": "-spec most_common_word(Paragraph :: unicode:unicode_binary(), Banned :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nmost_common_word(Paragraph, Banned) ->\n  .",
+    "racket": "(define/contract (most-common-word paragraph banned)\n  (-> string? (listof string?) string?)\n  )"
+  }
 }

@@ -390,5 +390,26 @@
       "input": "s = \"0.0(9)\"\nt = \"0.1\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isRationalEqual(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isRationalEqual(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isRationalEqual(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isRationalEqual(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isRationalEqual = function(s, t) {\n    \n};",
+    "typescript": "function isRationalEqual(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsRationalEqual(string s, string t) {\n        \n    }\n}",
+    "c": "bool isRationalEqual(char* s, char* t) {\n    \n}",
+    "golang": "func isRationalEqual(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isRationalEqual(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isRationalEqual(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_rational_equal(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef is_rational_equal(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function isRationalEqual($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isRationalEqual(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isRationalEqual(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_rational_equal(s :: String.t, t :: String.t) :: boolean\n  def is_rational_equal(s, t) do\n    \n  end\nend",
+    "erlang": "-spec is_rational_equal(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nis_rational_equal(S, T) ->\n  .",
+    "racket": "(define/contract (is-rational-equal s t)\n  (-> string? string? boolean?)\n  )"
+  }
 }

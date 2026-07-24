@@ -814,5 +814,26 @@
       "input": "score = [11, 2, 9, 7]",
       "output": "[\"Gold Medal\", \"4\", \"Silver Medal\", \"Bronze Medal\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findRelativeRanks(vector<int>& score) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] findRelativeRanks(int[] score) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRelativeRanks(self, score: List[int]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findRelativeRanks(self, score):\n        \"\"\"\n        :type score: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} score\n * @return {string[]}\n */\nvar findRelativeRanks = function(score) {\n    \n};",
+    "typescript": "function findRelativeRanks(score: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] FindRelativeRanks(int[] score) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findRelativeRanks(int* score, int scoreSize, int* returnSize) {\n    \n}",
+    "golang": "func findRelativeRanks(score []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRelativeRanks(score: IntArray): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRelativeRanks(_ score: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_relative_ranks(score: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} score\n# @return {String[]}\ndef find_relative_ranks(score)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $score\n     * @return String[]\n     */\n    function findRelativeRanks($score) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findRelativeRanks(List<int> score) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRelativeRanks(score: Array[Int]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_relative_ranks(score :: [integer]) :: [String.t]\n  def find_relative_ranks(score) do\n    \n  end\nend",
+    "erlang": "-spec find_relative_ranks(Score :: [integer()]) -> [unicode:unicode_binary()].\nfind_relative_ranks(Score) ->\n  .",
+    "racket": "(define/contract (find-relative-ranks score)\n  (-> (listof exact-integer?) (listof string?))\n  )"
+  }
 }

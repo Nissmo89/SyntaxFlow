@@ -443,5 +443,26 @@
       "input": "buckets = 6\nminutesToDie = 15\nminutesToTest = 15",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int poorPigs(int buckets, int minutesToDie, int minutesToTest) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def poorPigs(self, buckets, minutesToDie, minutesToTest):\n        \"\"\"\n        :type buckets: int\n        :type minutesToDie: int\n        :type minutesToTest: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} buckets\n * @param {number} minutesToDie\n * @param {number} minutesToTest\n * @return {number}\n */\nvar poorPigs = function(buckets, minutesToDie, minutesToTest) {\n    \n};",
+    "typescript": "function poorPigs(buckets: number, minutesToDie: number, minutesToTest: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int PoorPigs(int buckets, int minutesToDie, int minutesToTest) {\n        \n    }\n}",
+    "c": "int poorPigs(int buckets, int minutesToDie, int minutesToTest) {\n    \n}",
+    "golang": "func poorPigs(buckets int, minutesToDie int, minutesToTest int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun poorPigs(buckets: Int, minutesToDie: Int, minutesToTest: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func poorPigs(_ buckets: Int, _ minutesToDie: Int, _ minutesToTest: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn poor_pigs(buckets: i32, minutes_to_die: i32, minutes_to_test: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} buckets\n# @param {Integer} minutes_to_die\n# @param {Integer} minutes_to_test\n# @return {Integer}\ndef poor_pigs(buckets, minutes_to_die, minutes_to_test)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $buckets\n     * @param Integer $minutesToDie\n     * @param Integer $minutesToTest\n     * @return Integer\n     */\n    function poorPigs($buckets, $minutesToDie, $minutesToTest) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int poorPigs(int buckets, int minutesToDie, int minutesToTest) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def poorPigs(buckets: Int, minutesToDie: Int, minutesToTest: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec poor_pigs(buckets :: integer, minutes_to_die :: integer, minutes_to_test :: integer) :: integer\n  def poor_pigs(buckets, minutes_to_die, minutes_to_test) do\n    \n  end\nend",
+    "erlang": "-spec poor_pigs(Buckets :: integer(), MinutesToDie :: integer(), MinutesToTest :: integer()) -> integer().\npoor_pigs(Buckets, MinutesToDie, MinutesToTest) ->\n  .",
+    "racket": "(define/contract (poor-pigs buckets minutesToDie minutesToTest)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

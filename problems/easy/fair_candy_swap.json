@@ -654,5 +654,26 @@
       "input": "aliceSizes = [25, 10]\nbobSizes = [15]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def fairCandySwap(self, aliceSizes: List[int], bobSizes: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def fairCandySwap(self, aliceSizes, bobSizes):\n        \"\"\"\n        :type aliceSizes: List[int]\n        :type bobSizes: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} aliceSizes\n * @param {number[]} bobSizes\n * @return {number[]}\n */\nvar fairCandySwap = function(aliceSizes, bobSizes) {\n    \n};",
+    "typescript": "function fairCandySwap(aliceSizes: number[], bobSizes: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FairCandySwap(int[] aliceSizes, int[] bobSizes) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* fairCandySwap(int* aliceSizes, int aliceSizesSize, int* bobSizes, int bobSizesSize, int* returnSize) {\n    \n}",
+    "golang": "func fairCandySwap(aliceSizes []int, bobSizes []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun fairCandySwap(aliceSizes: IntArray, bobSizes: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func fairCandySwap(_ aliceSizes: [Int], _ bobSizes: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn fair_candy_swap(alice_sizes: Vec<i32>, bob_sizes: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} alice_sizes\n# @param {Integer[]} bob_sizes\n# @return {Integer[]}\ndef fair_candy_swap(alice_sizes, bob_sizes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $aliceSizes\n     * @param Integer[] $bobSizes\n     * @return Integer[]\n     */\n    function fairCandySwap($aliceSizes, $bobSizes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> fairCandySwap(List<int> aliceSizes, List<int> bobSizes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def fairCandySwap(aliceSizes: Array[Int], bobSizes: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec fair_candy_swap(alice_sizes :: [integer], bob_sizes :: [integer]) :: [integer]\n  def fair_candy_swap(alice_sizes, bob_sizes) do\n    \n  end\nend",
+    "erlang": "-spec fair_candy_swap(AliceSizes :: [integer()], BobSizes :: [integer()]) -> [integer()].\nfair_candy_swap(AliceSizes, BobSizes) ->\n  .",
+    "racket": "(define/contract (fair-candy-swap aliceSizes bobSizes)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

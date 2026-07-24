@@ -884,5 +884,26 @@
       "input": "list1 = [\"a\", \"b\", \"c\"]\nlist2 = [\"b\", \"a\", \"x\"]",
       "output": "[\"a\", \"b\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] findRestaurant(String[] list1, String[] list2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findRestaurant(self, list1, list2):\n        \"\"\"\n        :type list1: List[str]\n        :type list2: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} list1\n * @param {string[]} list2\n * @return {string[]}\n */\nvar findRestaurant = function(list1, list2) {\n    \n};",
+    "typescript": "function findRestaurant(list1: string[], list2: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] FindRestaurant(string[] list1, string[] list2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findRestaurant(char** list1, int list1Size, char** list2, int list2Size, int* returnSize) {\n    \n}",
+    "golang": "func findRestaurant(list1 []string, list2 []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRestaurant(list1: Array<String>, list2: Array<String>): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRestaurant(_ list1: [String], _ list2: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_restaurant(list1: Vec<String>, list2: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} list1\n# @param {String[]} list2\n# @return {String[]}\ndef find_restaurant(list1, list2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $list1\n     * @param String[] $list2\n     * @return String[]\n     */\n    function findRestaurant($list1, $list2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findRestaurant(List<String> list1, List<String> list2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRestaurant(list1: Array[String], list2: Array[String]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_restaurant(list1 :: [String.t], list2 :: [String.t]) :: [String.t]\n  def find_restaurant(list1, list2) do\n    \n  end\nend",
+    "erlang": "-spec find_restaurant(List1 :: [unicode:unicode_binary()], List2 :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nfind_restaurant(List1, List2) ->\n  .",
+    "racket": "(define/contract (find-restaurant list1 list2)\n  (-> (listof string?) (listof string?) (listof string?))\n  )"
+  }
 }

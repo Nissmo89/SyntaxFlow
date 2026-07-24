@@ -513,5 +513,26 @@
       "input": "nums = [1, 1, 2, 2, 3, 3]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isMonotonic(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isMonotonic(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isMonotonic(self, nums: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isMonotonic(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar isMonotonic = function(nums) {\n    \n};",
+    "typescript": "function isMonotonic(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsMonotonic(int[] nums) {\n        \n    }\n}",
+    "c": "bool isMonotonic(int* nums, int numsSize) {\n    \n}",
+    "golang": "func isMonotonic(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isMonotonic(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isMonotonic(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_monotonic(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef is_monotonic(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function isMonotonic($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isMonotonic(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isMonotonic(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_monotonic(nums :: [integer]) :: boolean\n  def is_monotonic(nums) do\n    \n  end\nend",
+    "erlang": "-spec is_monotonic(Nums :: [integer()]) -> boolean().\nis_monotonic(Nums) ->\n  .",
+    "racket": "(define/contract (is-monotonic nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

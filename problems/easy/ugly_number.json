@@ -6,7 +6,7 @@
   "tags": [
     "Math"
   ],
-  "description": "<p>An <strong>ugly number</strong> is a <em>positive</em> integer which does not have a prime factor other than 2, 3, and 5.</p> <p>Given an integer <code>n</code>, return <code>true</code> <em>if</em> <code>n</code> <em>is an <strong>ugly number</strong></em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> n = 6\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 6 = 2 × 3\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> n = 1\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 1 has no prime factors.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> n = 14\n<strong>Output:</strong> false\n<strong>Explanation:</strong> 14 is not ugly since it includes the prime factor 7.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup> - 1</code></li> </ul>",
+  "description": "<p>An <strong>ugly number</strong> is a <em>positive</em> integer which does not have a prime factor other than 2, 3, and 5.</p> <p>Given an integer <code>n</code>, return <code>true</code> <em>if</em> <code>n</code> <em>is an <strong>ugly number</strong></em>.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> n = 6\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 6 = 2 \u00d7 3\n</pre> <p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> n = 1\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 1 has no prime factors.\n</pre> <p><strong class=\"example\">Example 3:</strong></p> <pre><strong>Input:</strong> n = 14\n<strong>Output:</strong> false\n<strong>Explanation:</strong> 14 is not ugly since it includes the prime factor 7.\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup> - 1</code></li> </ul>",
   "hints": [],
   "method": {
     "name": "isUgly",
@@ -407,5 +407,26 @@
       "input": "n = 5",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isUgly(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isUgly(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isUgly(self, n: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isUgly(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {boolean}\n */\nvar isUgly = function(n) {\n    \n};",
+    "typescript": "function isUgly(n: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsUgly(int n) {\n        \n    }\n}",
+    "c": "bool isUgly(int n) {\n    \n}",
+    "golang": "func isUgly(n int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isUgly(n: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isUgly(_ n: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_ugly(n: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Boolean}\ndef is_ugly(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Boolean\n     */\n    function isUgly($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isUgly(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isUgly(n: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_ugly(n :: integer) :: boolean\n  def is_ugly(n) do\n    \n  end\nend",
+    "erlang": "-spec is_ugly(N :: integer()) -> boolean().\nis_ugly(N) ->\n  .",
+    "racket": "(define/contract (is-ugly n)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

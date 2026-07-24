@@ -454,5 +454,26 @@
       "input": "s = \"ACACACACACACACACACAC\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findRepeatedDnaSequences(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> findRepeatedDnaSequences(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRepeatedDnaSequences(self, s: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findRepeatedDnaSequences(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar findRepeatedDnaSequences = function(s) {\n    \n};",
+    "typescript": "function findRepeatedDnaSequences(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FindRepeatedDnaSequences(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findRepeatedDnaSequences(char* s, int* returnSize) {\n    \n}",
+    "golang": "func findRepeatedDnaSequences(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRepeatedDnaSequences(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRepeatedDnaSequences(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_repeated_dna_sequences(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef find_repeated_dna_sequences(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function findRepeatedDnaSequences($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findRepeatedDnaSequences(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRepeatedDnaSequences(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_repeated_dna_sequences(s :: String.t) :: [String.t]\n  def find_repeated_dna_sequences(s) do\n    \n  end\nend",
+    "erlang": "-spec find_repeated_dna_sequences(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nfind_repeated_dna_sequences(S) ->\n  .",
+    "racket": "(define/contract (find-repeated-dna-sequences s)\n  (-> string? (listof string?))\n  )"
+  }
 }

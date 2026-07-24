@@ -574,5 +574,26 @@
       "input": "words = \"rat|ratcat|ratcatdog|ratcatdogcat|cat|dog\"",
       "output": "[\"ratcat\", \"ratcatdog\", \"ratcatdogcat\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> findAllConcatenatedWordsInADict(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def findAllConcatenatedWordsInADict(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string[]}\n */\nvar findAllConcatenatedWordsInADict = function(words) {\n    \n};",
+    "typescript": "function findAllConcatenatedWordsInADict(words: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FindAllConcatenatedWordsInADict(string[] words) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findAllConcatenatedWordsInADict(char** words, int wordsSize, int* returnSize) {\n    \n}",
+    "golang": "func findAllConcatenatedWordsInADict(words []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findAllConcatenatedWordsInADict(words: Array<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findAllConcatenatedWordsInADict(_ words: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_all_concatenated_words_in_a_dict(words: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String[]}\ndef find_all_concatenated_words_in_a_dict(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String[]\n     */\n    function findAllConcatenatedWordsInADict($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findAllConcatenatedWordsInADict(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findAllConcatenatedWordsInADict(words: Array[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_all_concatenated_words_in_a_dict(words :: [String.t]) :: [String.t]\n  def find_all_concatenated_words_in_a_dict(words) do\n    \n  end\nend",
+    "erlang": "-spec find_all_concatenated_words_in_a_dict(Words :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nfind_all_concatenated_words_in_a_dict(Words) ->\n  .",
+    "racket": "(define/contract (find-all-concatenated-words-in-a-dict words)\n  (-> (listof string?) (listof string?))\n  )"
+  }
 }

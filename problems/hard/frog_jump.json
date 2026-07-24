@@ -818,5 +818,26 @@
       "input": "stones = [0, 1, 4]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canCross(vector<int>& stones) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canCross(int[] stones) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canCross(self, stones: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canCross(self, stones):\n        \"\"\"\n        :type stones: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stones\n * @return {boolean}\n */\nvar canCross = function(stones) {\n    \n};",
+    "typescript": "function canCross(stones: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanCross(int[] stones) {\n        \n    }\n}",
+    "c": "bool canCross(int* stones, int stonesSize) {\n    \n}",
+    "golang": "func canCross(stones []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canCross(stones: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canCross(_ stones: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_cross(stones: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stones\n# @return {Boolean}\ndef can_cross(stones)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stones\n     * @return Boolean\n     */\n    function canCross($stones) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canCross(List<int> stones) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canCross(stones: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_cross(stones :: [integer]) :: boolean\n  def can_cross(stones) do\n    \n  end\nend",
+    "erlang": "-spec can_cross(Stones :: [integer()]) -> boolean().\ncan_cross(Stones) ->\n  .",
+    "racket": "(define/contract (can-cross stones)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

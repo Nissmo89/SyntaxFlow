@@ -637,5 +637,26 @@
       "input": "arr = [0, 0, 1, 1, 2, 2]\ntarget = 3",
       "output": "8"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int threeSumMulti(vector<int>& arr, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int threeSumMulti(int[] arr, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def threeSumMulti(self, arr: List[int], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def threeSumMulti(self, arr, target):\n        \"\"\"\n        :type arr: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} target\n * @return {number}\n */\nvar threeSumMulti = function(arr, target) {\n    \n};",
+    "typescript": "function threeSumMulti(arr: number[], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ThreeSumMulti(int[] arr, int target) {\n        \n    }\n}",
+    "c": "int threeSumMulti(int* arr, int arrSize, int target) {\n    \n}",
+    "golang": "func threeSumMulti(arr []int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun threeSumMulti(arr: IntArray, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func threeSumMulti(_ arr: [Int], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn three_sum_multi(arr: Vec<i32>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} target\n# @return {Integer}\ndef three_sum_multi(arr, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $target\n     * @return Integer\n     */\n    function threeSumMulti($arr, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int threeSumMulti(List<int> arr, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def threeSumMulti(arr: Array[Int], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec three_sum_multi(arr :: [integer], target :: integer) :: integer\n  def three_sum_multi(arr, target) do\n    \n  end\nend",
+    "erlang": "-spec three_sum_multi(Arr :: [integer()], Target :: integer()) -> integer().\nthree_sum_multi(Arr, Target) ->\n  .",
+    "racket": "(define/contract (three-sum-multi arr target)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

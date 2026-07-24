@@ -340,5 +340,26 @@
       "input": "s = \"abc\"",
       "output": "\"abc\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string removeDuplicates(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String removeDuplicates(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeDuplicates(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def removeDuplicates(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar removeDuplicates = function(s) {\n    \n};",
+    "typescript": "function removeDuplicates(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RemoveDuplicates(string s) {\n        \n    }\n}",
+    "c": "char* removeDuplicates(char* s) {\n    \n}",
+    "golang": "func removeDuplicates(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeDuplicates(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeDuplicates(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_duplicates(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef remove_duplicates(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function removeDuplicates($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String removeDuplicates(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeDuplicates(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_duplicates(s :: String.t) :: String.t\n  def remove_duplicates(s) do\n    \n  end\nend",
+    "erlang": "-spec remove_duplicates(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nremove_duplicates(S) ->\n  .",
+    "racket": "(define/contract (remove-duplicates s)\n  (-> string? string?)\n  )"
+  }
 }

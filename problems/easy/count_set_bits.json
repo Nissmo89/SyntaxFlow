@@ -377,5 +377,26 @@
       "input": "n = 5",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int hammingWeight(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int hammingWeight(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hammingWeight(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def hammingWeight(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar hammingWeight = function(n) {\n    \n};",
+    "typescript": "function hammingWeight(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int HammingWeight(int n) {\n        \n    }\n}",
+    "c": "int hammingWeight(int n) {\n    \n}",
+    "golang": "func hammingWeight(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun hammingWeight(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hammingWeight(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn hamming_weight(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef hamming_weight(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function hammingWeight($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int hammingWeight(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hammingWeight(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec hamming_weight(n :: integer) :: integer\n  def hamming_weight(n) do\n    \n  end\nend",
+    "erlang": "-spec hamming_weight(N :: integer()) -> integer().\nhamming_weight(N) ->\n  .",
+    "racket": "(define/contract (hamming-weight n)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

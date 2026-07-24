@@ -582,5 +582,26 @@
       "input": "nums = [1, 1, 1, 1]",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numberOfArithmeticSlices(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfArithmeticSlices(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfArithmeticSlices(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfArithmeticSlices(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar numberOfArithmeticSlices = function(nums) {\n    \n};",
+    "typescript": "function numberOfArithmeticSlices(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfArithmeticSlices(int[] nums) {\n        \n    }\n}",
+    "c": "int numberOfArithmeticSlices(int* nums, int numsSize) {\n    \n}",
+    "golang": "func numberOfArithmeticSlices(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfArithmeticSlices(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfArithmeticSlices(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_arithmetic_slices(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef number_of_arithmetic_slices(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function numberOfArithmeticSlices($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfArithmeticSlices(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfArithmeticSlices(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_arithmetic_slices(nums :: [integer]) :: integer\n  def number_of_arithmetic_slices(nums) do\n    \n  end\nend",
+    "erlang": "-spec number_of_arithmetic_slices(Nums :: [integer()]) -> integer().\nnumber_of_arithmetic_slices(Nums) ->\n  .",
+    "racket": "(define/contract (number-of-arithmetic-slices nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

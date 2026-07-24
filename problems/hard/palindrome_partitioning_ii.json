@@ -403,5 +403,26 @@
       "input": "s = \"abccbc\"",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minCut(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCut(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCut(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCut(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minCut = function(s) {\n    \n};",
+    "typescript": "function minCut(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCut(string s) {\n        \n    }\n}",
+    "c": "int minCut(char* s) {\n    \n}",
+    "golang": "func minCut(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCut(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCut(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cut(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_cut(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minCut($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCut(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCut(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cut(s :: String.t) :: integer\n  def min_cut(s) do\n    \n  end\nend",
+    "erlang": "-spec min_cut(S :: unicode:unicode_binary()) -> integer().\nmin_cut(S) ->\n  .",
+    "racket": "(define/contract (min-cut s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

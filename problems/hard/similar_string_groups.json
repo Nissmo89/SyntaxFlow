@@ -554,5 +554,26 @@
       "input": "strs = [\"abc\", \"acb\", \"xyz\", \"xzy\"]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numSimilarGroups(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSimilarGroups(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSimilarGroups(self, strs: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSimilarGroups(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {number}\n */\nvar numSimilarGroups = function(strs) {\n    \n};",
+    "typescript": "function numSimilarGroups(strs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSimilarGroups(string[] strs) {\n        \n    }\n}",
+    "c": "int numSimilarGroups(char** strs, int strsSize) {\n    \n}",
+    "golang": "func numSimilarGroups(strs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSimilarGroups(strs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSimilarGroups(_ strs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_similar_groups(strs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {Integer}\ndef num_similar_groups(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return Integer\n     */\n    function numSimilarGroups($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSimilarGroups(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSimilarGroups(strs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_similar_groups(strs :: [String.t]) :: integer\n  def num_similar_groups(strs) do\n    \n  end\nend",
+    "erlang": "-spec num_similar_groups(Strs :: [unicode:unicode_binary()]) -> integer().\nnum_similar_groups(Strs) ->\n  .",
+    "racket": "(define/contract (num-similar-groups strs)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

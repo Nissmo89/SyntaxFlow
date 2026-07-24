@@ -486,5 +486,26 @@
       "input": "grid = [\"//\", \" /\"]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int regionsBySlashes(vector<string>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int regionsBySlashes(String[] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def regionsBySlashes(self, grid: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def regionsBySlashes(self, grid):\n        \"\"\"\n        :type grid: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} grid\n * @return {number}\n */\nvar regionsBySlashes = function(grid) {\n    \n};",
+    "typescript": "function regionsBySlashes(grid: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RegionsBySlashes(string[] grid) {\n        \n    }\n}",
+    "c": "int regionsBySlashes(char** grid, int gridSize) {\n    \n}",
+    "golang": "func regionsBySlashes(grid []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun regionsBySlashes(grid: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func regionsBySlashes(_ grid: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn regions_by_slashes(grid: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} grid\n# @return {Integer}\ndef regions_by_slashes(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $grid\n     * @return Integer\n     */\n    function regionsBySlashes($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int regionsBySlashes(List<String> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def regionsBySlashes(grid: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec regions_by_slashes(grid :: [String.t]) :: integer\n  def regions_by_slashes(grid) do\n    \n  end\nend",
+    "erlang": "-spec regions_by_slashes(Grid :: [unicode:unicode_binary()]) -> integer().\nregions_by_slashes(Grid) ->\n  .",
+    "racket": "(define/contract (regions-by-slashes grid)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

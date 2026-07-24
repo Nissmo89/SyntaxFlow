@@ -510,5 +510,26 @@
       "input": "nums = [117, 234, 143, 131, 205, 180]",
       "output": "18"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int countTriplets(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countTriplets(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countTriplets(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countTriplets(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar countTriplets = function(nums) {\n    \n};",
+    "typescript": "function countTriplets(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountTriplets(int[] nums) {\n        \n    }\n}",
+    "c": "int countTriplets(int* nums, int numsSize) {\n    \n}",
+    "golang": "func countTriplets(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countTriplets(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countTriplets(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_triplets(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef count_triplets(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function countTriplets($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countTriplets(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countTriplets(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_triplets(nums :: [integer]) :: integer\n  def count_triplets(nums) do\n    \n  end\nend",
+    "erlang": "-spec count_triplets(Nums :: [integer()]) -> integer().\ncount_triplets(Nums) ->\n  .",
+    "racket": "(define/contract (count-triplets nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

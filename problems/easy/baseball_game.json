@@ -717,5 +717,26 @@
       "input": "operations = [\"9\", \"C\", \"5\", \"6\", \"+\"]",
       "output": "22"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int calPoints(vector<string>& operations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int calPoints(String[] operations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calPoints(self, operations: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def calPoints(self, operations):\n        \"\"\"\n        :type operations: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} operations\n * @return {number}\n */\nvar calPoints = function(operations) {\n    \n};",
+    "typescript": "function calPoints(operations: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CalPoints(string[] operations) {\n        \n    }\n}",
+    "c": "int calPoints(char** operations, int operationsSize) {\n    \n}",
+    "golang": "func calPoints(operations []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun calPoints(operations: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calPoints(_ operations: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn cal_points(operations: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} operations\n# @return {Integer}\ndef cal_points(operations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $operations\n     * @return Integer\n     */\n    function calPoints($operations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int calPoints(List<String> operations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calPoints(operations: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec cal_points(operations :: [String.t]) :: integer\n  def cal_points(operations) do\n    \n  end\nend",
+    "erlang": "-spec cal_points(Operations :: [unicode:unicode_binary()]) -> integer().\ncal_points(Operations) ->\n  .",
+    "racket": "(define/contract (cal-points operations)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

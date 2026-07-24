@@ -631,5 +631,26 @@
       "input": "cost = [7, 7, 7, 7]",
       "output": "14"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minCostClimbingStairs(vector<int>& cost) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCostClimbingStairs(int[] cost) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCostClimbingStairs(self, cost: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCostClimbingStairs(self, cost):\n        \"\"\"\n        :type cost: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} cost\n * @return {number}\n */\nvar minCostClimbingStairs = function(cost) {\n    \n};",
+    "typescript": "function minCostClimbingStairs(cost: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCostClimbingStairs(int[] cost) {\n        \n    }\n}",
+    "c": "int minCostClimbingStairs(int* cost, int costSize) {\n    \n}",
+    "golang": "func minCostClimbingStairs(cost []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCostClimbingStairs(cost: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCostClimbingStairs(_ cost: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} cost\n# @return {Integer}\ndef min_cost_climbing_stairs(cost)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $cost\n     * @return Integer\n     */\n    function minCostClimbingStairs($cost) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCostClimbingStairs(List<int> cost) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCostClimbingStairs(cost: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost_climbing_stairs(cost :: [integer]) :: integer\n  def min_cost_climbing_stairs(cost) do\n    \n  end\nend",
+    "erlang": "-spec min_cost_climbing_stairs(Cost :: [integer()]) -> integer().\nmin_cost_climbing_stairs(Cost) ->\n  .",
+    "racket": "(define/contract (min-cost-climbing-stairs cost)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

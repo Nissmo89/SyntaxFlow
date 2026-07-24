@@ -1403,5 +1403,26 @@
       "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 0], [0, 1, 0], [0, 0, 0]]}",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numEnclaves(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numEnclaves(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numEnclaves(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numEnclaves(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar numEnclaves = function(grid) {\n    \n};",
+    "typescript": "function numEnclaves(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumEnclaves(int[][] grid) {\n        \n    }\n}",
+    "c": "int numEnclaves(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func numEnclaves(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numEnclaves(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numEnclaves(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_enclaves(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef num_enclaves(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function numEnclaves($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numEnclaves(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numEnclaves(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_enclaves(grid :: [[integer]]) :: integer\n  def num_enclaves(grid) do\n    \n  end\nend",
+    "erlang": "-spec num_enclaves(Grid :: [[integer()]]) -> integer().\nnum_enclaves(Grid) ->\n  .",
+    "racket": "(define/contract (num-enclaves grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

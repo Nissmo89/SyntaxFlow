@@ -878,5 +878,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[12, 11, 10], [9, 8, 7], [6, 5, 4], [3, 2, 1]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> transpose(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] transpose(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def transpose(self, matrix: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def transpose(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number[][]}\n */\nvar transpose = function(matrix) {\n    \n};",
+    "typescript": "function transpose(matrix: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] Transpose(int[][] matrix) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** transpose(int** matrix, int matrixSize, int* matrixColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func transpose(matrix [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun transpose(matrix: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func transpose(_ matrix: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn transpose(matrix: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer[][]}\ndef transpose(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer[][]\n     */\n    function transpose($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> transpose(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def transpose(matrix: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec transpose(matrix :: [[integer]]) :: [[integer]]\n  def transpose(matrix) do\n    \n  end\nend",
+    "erlang": "-spec transpose(Matrix :: [[integer()]]) -> [[integer()]].\ntranspose(Matrix) ->\n  .",
+    "racket": "(define/contract (transpose matrix)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

@@ -420,5 +420,26 @@
       "input": "jewels = \"xyz\"\nstones = \"ABCDEF\"",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numJewelsInStones(string jewels, string stones) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numJewelsInStones(String jewels, String stones) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numJewelsInStones(self, jewels: str, stones: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numJewelsInStones(self, jewels, stones):\n        \"\"\"\n        :type jewels: str\n        :type stones: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} jewels\n * @param {string} stones\n * @return {number}\n */\nvar numJewelsInStones = function(jewels, stones) {\n    \n};",
+    "typescript": "function numJewelsInStones(jewels: string, stones: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumJewelsInStones(string jewels, string stones) {\n        \n    }\n}",
+    "c": "int numJewelsInStones(char* jewels, char* stones) {\n    \n}",
+    "golang": "func numJewelsInStones(jewels string, stones string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numJewelsInStones(jewels: String, stones: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numJewelsInStones(_ jewels: String, _ stones: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_jewels_in_stones(jewels: String, stones: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} jewels\n# @param {String} stones\n# @return {Integer}\ndef num_jewels_in_stones(jewels, stones)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $jewels\n     * @param String $stones\n     * @return Integer\n     */\n    function numJewelsInStones($jewels, $stones) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numJewelsInStones(String jewels, String stones) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numJewelsInStones(jewels: String, stones: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_jewels_in_stones(jewels :: String.t, stones :: String.t) :: integer\n  def num_jewels_in_stones(jewels, stones) do\n    \n  end\nend",
+    "erlang": "-spec num_jewels_in_stones(Jewels :: unicode:unicode_binary(), Stones :: unicode:unicode_binary()) -> integer().\nnum_jewels_in_stones(Jewels, Stones) ->\n  .",
+    "racket": "(define/contract (num-jewels-in-stones jewels stones)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

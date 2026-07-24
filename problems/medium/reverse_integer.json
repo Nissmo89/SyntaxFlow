@@ -350,5 +350,26 @@
       "input": "x = -1000",
       "output": "-1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int reverse(int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int reverse(int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverse(self, x: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def reverse(self, x):\n        \"\"\"\n        :type x: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @return {number}\n */\nvar reverse = function(x) {\n    \n};",
+    "typescript": "function reverse(x: number): number {\n\n};",
+    "csharp": "public class Solution {\n    public int Reverse(int x) {\n        \n    }\n}",
+    "c": "int reverse(int x){\n\n}",
+    "golang": "func reverse(x int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverse(x: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverse(_ x: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse(x: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @return {Integer}\ndef reverse(x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @return Integer\n     */\n    function reverse($x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int reverse(int x) {\n\n  }\n}",
+    "scala": "object Solution {\n    def reverse(x: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse(x :: integer) :: integer\n  def reverse(x) do\n\n  end\nend",
+    "erlang": "-spec reverse(X :: integer()) -> integer().\nreverse(X) ->\n  .",
+    "racket": "(define/contract (reverse x)\n  (-> exact-integer? exact-integer?)\n\n  )"
+  }
 }

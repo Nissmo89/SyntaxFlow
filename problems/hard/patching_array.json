@@ -1812,5 +1812,26 @@
       "input": "nums = [2]\nn = 3",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minPatches(vector<int>& nums, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minPatches(int[] nums, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minPatches(self, nums, n):\n        \"\"\"\n        :type nums: List[int]\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} n\n * @return {number}\n */\nvar minPatches = function(nums, n) {\n    \n};",
+    "typescript": "function minPatches(nums: number[], n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinPatches(int[] nums, int n) {\n        \n    }\n}",
+    "c": "int minPatches(int* nums, int numsSize, int n) {\n    \n}",
+    "golang": "func minPatches(nums []int, n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minPatches(nums: IntArray, n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minPatches(_ nums: [Int], _ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_patches(nums: Vec<i32>, n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} n\n# @return {Integer}\ndef min_patches(nums, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $n\n     * @return Integer\n     */\n    function minPatches($nums, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minPatches(List<int> nums, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minPatches(nums: Array[Int], n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_patches(nums :: [integer], n :: integer) :: integer\n  def min_patches(nums, n) do\n    \n  end\nend",
+    "erlang": "-spec min_patches(Nums :: [integer()], N :: integer()) -> integer().\nmin_patches(Nums, N) ->\n  .",
+    "racket": "(define/contract (min-patches nums n)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

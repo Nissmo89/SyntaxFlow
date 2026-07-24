@@ -835,5 +835,26 @@
       "input": "nums = [0, 0, 3, 4]",
       "output": "[0, 0, 0, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> productExceptSelf(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] productExceptSelf(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def productExceptSelf(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def productExceptSelf(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar productExceptSelf = function(nums) {\n    \n};",
+    "typescript": "function productExceptSelf(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ProductExceptSelf(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* productExceptSelf(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func productExceptSelf(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun productExceptSelf(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func productExceptSelf(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef product_except_self(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function productExceptSelf($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> productExceptSelf(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def productExceptSelf(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec product_except_self(nums :: [integer]) :: [integer]\n  def product_except_self(nums) do\n    \n  end\nend",
+    "erlang": "-spec product_except_self(Nums :: [integer()]) -> [integer()].\nproduct_except_self(Nums) ->\n  .",
+    "racket": "(define/contract (product-except-self nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

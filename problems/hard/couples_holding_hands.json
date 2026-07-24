@@ -1032,5 +1032,26 @@
       "input": "row = [0, 3, 2, 1]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minSwapsCouples(vector<int>& row) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSwapsCouples(int[] row) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSwapsCouples(self, row: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSwapsCouples(self, row):\n        \"\"\"\n        :type row: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} row\n * @return {number}\n */\nvar minSwapsCouples = function(row) {\n    \n};",
+    "typescript": "function minSwapsCouples(row: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSwapsCouples(int[] row) {\n        \n    }\n}",
+    "c": "int minSwapsCouples(int* row, int rowSize) {\n    \n}",
+    "golang": "func minSwapsCouples(row []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSwapsCouples(row: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSwapsCouples(_ row: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_swaps_couples(row: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} row\n# @return {Integer}\ndef min_swaps_couples(row)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $row\n     * @return Integer\n     */\n    function minSwapsCouples($row) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSwapsCouples(List<int> row) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSwapsCouples(row: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_swaps_couples(row :: [integer]) :: integer\n  def min_swaps_couples(row) do\n    \n  end\nend",
+    "erlang": "-spec min_swaps_couples(Row :: [integer()]) -> integer().\nmin_swaps_couples(Row) ->\n  .",
+    "racket": "(define/contract (min-swaps-couples row)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

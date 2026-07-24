@@ -10,7 +10,7 @@
     "Sorting",
     "Counting"
   ],
-  "description": "<p>Given an array <code>nums</code> of size <code>n</code>, return <em>the majority element</em>.</p> <p>The majority element is the element that appears more than <code>⌊n / 2⌋</code> times. You may assume that the majority element always exists in the array.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> 3\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums = [2,2,1,1,1,2,2]\n<strong>Output:</strong> 2\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>n == nums.length</code></li> <li><code>1 &lt;= n &lt;= 5 * 10<sup>4</sup></code></li> <li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li> <li>The input is generated such that a majority element will exist in the array.</li> </ul> <p> </p> <strong>Follow-up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?",
+  "description": "<p>Given an array <code>nums</code> of size <code>n</code>, return <em>the majority element</em>.</p> <p>The majority element is the element that appears more than <code>\u230an / 2\u230b</code> times. You may assume that the majority element always exists in the array.</p> <p> </p> <p><strong class=\"example\">Example 1:</strong></p> <pre><strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> 3\n</pre><p><strong class=\"example\">Example 2:</strong></p> <pre><strong>Input:</strong> nums = [2,2,1,1,1,2,2]\n<strong>Output:</strong> 2\n</pre> <p> </p> <p><strong>Constraints:</strong></p> <ul> <li><code>n == nums.length</code></li> <li><code>1 &lt;= n &lt;= 5 * 10<sup>4</sup></code></li> <li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li> <li>The input is generated such that a majority element will exist in the array.</li> </ul> <p> </p> <strong>Follow-up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?",
   "hints": [],
   "method": {
     "name": "majorityElement",
@@ -905,5 +905,26 @@
       "input": "nums = [1, 2, 3, 4, 6, 6, 6, 6, 6]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int majorityElement(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int majorityElement(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def majorityElement(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def majorityElement(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar majorityElement = function(nums) {\n    \n};",
+    "typescript": "function majorityElement(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MajorityElement(int[] nums) {\n        \n    }\n}",
+    "c": "int majorityElement(int* nums, int numsSize) {\n    \n}",
+    "golang": "func majorityElement(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun majorityElement(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func majorityElement(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn majority_element(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef majority_element(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function majorityElement($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int majorityElement(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def majorityElement(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec majority_element(nums :: [integer]) :: integer\n  def majority_element(nums) do\n    \n  end\nend",
+    "erlang": "-spec majority_element(Nums :: [integer()]) -> integer().\nmajority_element(Nums) ->\n  .",
+    "racket": "(define/contract (majority-element nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

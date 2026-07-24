@@ -387,5 +387,26 @@
       "input": "word1 = \"a\"\nword2 = \"ab\"",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minDistance(string word1, string word2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDistance(String word1, String word2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDistance(self, word1: str, word2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDistance(self, word1, word2):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {number}\n */\nvar minDistance = function(word1, word2) {\n    \n};",
+    "typescript": "function minDistance(word1: string, word2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDistance(string word1, string word2) {\n        \n    }\n}",
+    "c": "int minDistance(char* word1, char* word2) {\n    \n}",
+    "golang": "func minDistance(word1 string, word2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDistance(word1: String, word2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDistance(_ word1: String, _ word2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_distance(word1: String, word2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @return {Integer}\ndef min_distance(word1, word2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @return Integer\n     */\n    function minDistance($word1, $word2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDistance(String word1, String word2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDistance(word1: String, word2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_distance(word1 :: String.t, word2 :: String.t) :: integer\n  def min_distance(word1, word2) do\n    \n  end\nend",
+    "erlang": "-spec min_distance(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary()) -> integer().\nmin_distance(Word1, Word2) ->\n  .",
+    "racket": "(define/contract (min-distance word1 word2)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

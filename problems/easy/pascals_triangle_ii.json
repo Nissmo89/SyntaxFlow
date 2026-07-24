@@ -899,5 +899,26 @@
       "input": "rowIndex = 7",
       "output": "[1, 7, 21, 35, 35, 21, 7, 1]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> getRow(int rowIndex) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> getRow(int rowIndex) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getRow(self, rowIndex: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def getRow(self, rowIndex):\n        \"\"\"\n        :type rowIndex: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} rowIndex\n * @return {number[]}\n */\nvar getRow = function(rowIndex) {\n    \n};",
+    "typescript": "function getRow(rowIndex: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> GetRow(int rowIndex) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* getRow(int rowIndex, int* returnSize) {\n    \n}",
+    "golang": "func getRow(rowIndex int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun getRow(rowIndex: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getRow(_ rowIndex: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_row(row_index: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} row_index\n# @return {Integer[]}\ndef get_row(row_index)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $rowIndex\n     * @return Integer[]\n     */\n    function getRow($rowIndex) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> getRow(int rowIndex) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getRow(rowIndex: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_row(row_index :: integer) :: [integer]\n  def get_row(row_index) do\n    \n  end\nend",
+    "erlang": "-spec get_row(RowIndex :: integer()) -> [integer()].\nget_row(RowIndex) ->\n  .",
+    "racket": "(define/contract (get-row rowIndex)\n  (-> exact-integer? (listof exact-integer?))\n  )"
+  }
 }
