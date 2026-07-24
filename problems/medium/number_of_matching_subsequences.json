@@ -650,5 +650,26 @@
       "input": "s = \"abcabc\"\nwords = [\"abc\", \"abc\", \"abc\", \"ac\", \"ac\", \"ca\"]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numMatchingSubseq(string s, vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numMatchingSubseq(String s, String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numMatchingSubseq(self, s: str, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numMatchingSubseq(self, s, words):\n        \"\"\"\n        :type s: str\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} words\n * @return {number}\n */\nvar numMatchingSubseq = function(s, words) {\n    \n};",
+    "typescript": "function numMatchingSubseq(s: string, words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumMatchingSubseq(string s, string[] words) {\n        \n    }\n}",
+    "c": "int numMatchingSubseq(char* s, char** words, int wordsSize) {\n    \n}",
+    "golang": "func numMatchingSubseq(s string, words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numMatchingSubseq(s: String, words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numMatchingSubseq(_ s: String, _ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_matching_subseq(s: String, words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} words\n# @return {Integer}\ndef num_matching_subseq(s, words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $words\n     * @return Integer\n     */\n    function numMatchingSubseq($s, $words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numMatchingSubseq(String s, List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numMatchingSubseq(s: String, words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_matching_subseq(s :: String.t, words :: [String.t]) :: integer\n  def num_matching_subseq(s, words) do\n    \n  end\nend",
+    "erlang": "-spec num_matching_subseq(S :: unicode:unicode_binary(), Words :: [unicode:unicode_binary()]) -> integer().\nnum_matching_subseq(S, Words) ->\n  .",
+    "racket": "(define/contract (num-matching-subseq s words)\n  (-> string? (listof string?) exact-integer?)\n  )"
+  }
 }

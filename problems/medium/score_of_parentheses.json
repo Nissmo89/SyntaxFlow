@@ -353,5 +353,26 @@
       "input": "s = \"(()(()))\"",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int scoreOfParentheses(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int scoreOfParentheses(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def scoreOfParentheses(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def scoreOfParentheses(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar scoreOfParentheses = function(s) {\n    \n};",
+    "typescript": "function scoreOfParentheses(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ScoreOfParentheses(string s) {\n        \n    }\n}",
+    "c": "int scoreOfParentheses(char* s) {\n    \n}",
+    "golang": "func scoreOfParentheses(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun scoreOfParentheses(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func scoreOfParentheses(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn score_of_parentheses(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef score_of_parentheses(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function scoreOfParentheses($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int scoreOfParentheses(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def scoreOfParentheses(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec score_of_parentheses(s :: String.t) :: integer\n  def score_of_parentheses(s) do\n    \n  end\nend",
+    "erlang": "-spec score_of_parentheses(S :: unicode:unicode_binary()) -> integer().\nscore_of_parentheses(S) ->\n  .",
+    "racket": "(define/contract (score-of-parentheses s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

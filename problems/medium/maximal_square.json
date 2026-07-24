@@ -4168,5 +4168,26 @@
       "input": "matrix = {\"elemType\": \"string\", \"value\": [[\"1\", \"1\", \"0\"], [\"1\", \"1\", \"0\"], [\"0\", \"0\", \"0\"]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maximalSquare(vector<vector<char>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximalSquare(char[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximalSquare(self, matrix: List[List[str]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximalSquare(self, matrix):\n        \"\"\"\n        :type matrix: List[List[str]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} matrix\n * @return {number}\n */\nvar maximalSquare = function(matrix) {\n    \n};",
+    "typescript": "function maximalSquare(matrix: string[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximalSquare(char[][] matrix) {\n        \n    }\n}",
+    "c": "int maximalSquare(char** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func maximalSquare(matrix [][]byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximalSquare(matrix: Array<CharArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximalSquare(_ matrix: [[Character]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximal_square(matrix: Vec<Vec<char>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} matrix\n# @return {Integer}\ndef maximal_square(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $matrix\n     * @return Integer\n     */\n    function maximalSquare($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximalSquare(List<List<String>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximalSquare(matrix: Array[Array[Char]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximal_square(matrix :: [[char]]) :: integer\n  def maximal_square(matrix) do\n    \n  end\nend",
+    "erlang": "-spec maximal_square(Matrix :: [[char()]]) -> integer().\nmaximal_square(Matrix) ->\n  .",
+    "racket": "(define/contract (maximal-square matrix)\n  (-> (listof (listof char?)) exact-integer?)\n  )"
+  }
 }

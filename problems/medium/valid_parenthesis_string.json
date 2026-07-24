@@ -366,5 +366,26 @@
       "input": "s = \"*)\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool checkValidString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkValidString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkValidString(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkValidString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar checkValidString = function(s) {\n    \n};",
+    "typescript": "function checkValidString(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckValidString(string s) {\n        \n    }\n}",
+    "c": "bool checkValidString(char* s) {\n    \n}",
+    "golang": "func checkValidString(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkValidString(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkValidString(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_valid_string(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef check_valid_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function checkValidString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkValidString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkValidString(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_valid_string(s :: String.t) :: boolean\n  def check_valid_string(s) do\n    \n  end\nend",
+    "erlang": "-spec check_valid_string(S :: unicode:unicode_binary()) -> boolean().\ncheck_valid_string(S) ->\n  .",
+    "racket": "(define/contract (check-valid-string s)\n  (-> string? boolean?)\n  )"
+  }
 }

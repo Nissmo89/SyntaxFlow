@@ -722,5 +722,26 @@
       "input": "nums = [10, -3, 1, -1, 2, -1, 2, -10, 20, -5, 1]",
       "output": "20"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxSubArray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSubArray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSubArray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSubArray = function(nums) {\n    \n};",
+    "typescript": "function maxSubArray(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSubArray(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSubArray(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSubArray(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSubArray(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSubArray(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sub_array(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_sub_array(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSubArray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSubArray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSubArray(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sub_array(nums :: [integer]) :: integer\n  def max_sub_array(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_sub_array(Nums :: [integer()]) -> integer().\nmax_sub_array(Nums) ->\n  .",
+    "racket": "(define/contract (max-sub-array nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

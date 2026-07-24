@@ -1037,5 +1037,26 @@
       "input": "s = \"bbbbbbbb\"\nwordDict = [\"b\", \"bb\", \"bbb\", \"bbbb\", \"bc\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> wordBreak(string s, vector<string>& wordDict) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> wordBreak(String s, List<String> wordDict) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def wordBreak(self, s, wordDict):\n        \"\"\"\n        :type s: str\n        :type wordDict: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} wordDict\n * @return {string[]}\n */\nvar wordBreak = function(s, wordDict) {\n    \n};",
+    "typescript": "function wordBreak(s: string, wordDict: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> WordBreak(string s, IList<string> wordDict) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** wordBreak(char* s, char** wordDict, int wordDictSize, int* returnSize) {\n    \n}",
+    "golang": "func wordBreak(s string, wordDict []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun wordBreak(s: String, wordDict: List<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func wordBreak(_ s: String, _ wordDict: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn word_break(s: String, word_dict: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} word_dict\n# @return {String[]}\ndef word_break(s, word_dict)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $wordDict\n     * @return String[]\n     */\n    function wordBreak($s, $wordDict) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> wordBreak(String s, List<String> wordDict) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def wordBreak(s: String, wordDict: List[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec word_break(s :: String.t, word_dict :: [String.t]) :: [String.t]\n  def word_break(s, word_dict) do\n    \n  end\nend",
+    "erlang": "-spec word_break(S :: unicode:unicode_binary(), WordDict :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nword_break(S, WordDict) ->\n  .",
+    "racket": "(define/contract (word-break s wordDict)\n  (-> string? (listof string?) (listof string?))\n  )"
+  }
 }

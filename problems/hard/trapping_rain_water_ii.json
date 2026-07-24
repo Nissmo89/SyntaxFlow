@@ -1361,5 +1361,26 @@
       "input": "heightMap = [[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int trapRainWater(vector<vector<int>>& heightMap) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int trapRainWater(int[][] heightMap) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def trapRainWater(self, heightMap: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def trapRainWater(self, heightMap):\n        \"\"\"\n        :type heightMap: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} heightMap\n * @return {number}\n */\nvar trapRainWater = function(heightMap) {\n    \n};",
+    "typescript": "function trapRainWater(heightMap: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TrapRainWater(int[][] heightMap) {\n        \n    }\n}",
+    "c": "int trapRainWater(int** heightMap, int heightMapSize, int* heightMapColSize) {\n    \n}",
+    "golang": "func trapRainWater(heightMap [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun trapRainWater(heightMap: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func trapRainWater(_ heightMap: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn trap_rain_water(height_map: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} height_map\n# @return {Integer}\ndef trap_rain_water(height_map)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $heightMap\n     * @return Integer\n     */\n    function trapRainWater($heightMap) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int trapRainWater(List<List<int>> heightMap) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def trapRainWater(heightMap: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec trap_rain_water(height_map :: [[integer]]) :: integer\n  def trap_rain_water(height_map) do\n    \n  end\nend",
+    "erlang": "-spec trap_rain_water(HeightMap :: [[integer()]]) -> integer().\ntrap_rain_water(HeightMap) ->\n  .",
+    "racket": "(define/contract (trap-rain-water heightMap)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -528,5 +528,26 @@
       "input": "nums = [0, 10000]\nk = 0",
       "output": "10000"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int smallestRangeII(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int smallestRangeII(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestRangeII(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def smallestRangeII(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar smallestRangeII = function(nums, k) {\n    \n};",
+    "typescript": "function smallestRangeII(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SmallestRangeII(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int smallestRangeII(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func smallestRangeII(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestRangeII(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestRangeII(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_range_ii(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef smallest_range_ii(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function smallestRangeII($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int smallestRangeII(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestRangeII(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_range_ii(nums :: [integer], k :: integer) :: integer\n  def smallest_range_ii(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec smallest_range_ii(Nums :: [integer()], K :: integer()) -> integer().\nsmallest_range_ii(Nums, K) ->\n  .",
+    "racket": "(define/contract (smallest-range-ii nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

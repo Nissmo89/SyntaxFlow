@@ -680,5 +680,26 @@
       "input": "barcodes = [3, 3, 2, 2, 1, 1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> rearrangeBarcodes(vector<int>& barcodes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] rearrangeBarcodes(int[] barcodes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def rearrangeBarcodes(self, barcodes: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def rearrangeBarcodes(self, barcodes):\n        \"\"\"\n        :type barcodes: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} barcodes\n * @return {number[]}\n */\nvar rearrangeBarcodes = function(barcodes) {\n    \n};",
+    "typescript": "function rearrangeBarcodes(barcodes: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] RearrangeBarcodes(int[] barcodes) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* rearrangeBarcodes(int* barcodes, int barcodesSize, int* returnSize) {\n    \n}",
+    "golang": "func rearrangeBarcodes(barcodes []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun rearrangeBarcodes(barcodes: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func rearrangeBarcodes(_ barcodes: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn rearrange_barcodes(barcodes: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} barcodes\n# @return {Integer[]}\ndef rearrange_barcodes(barcodes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $barcodes\n     * @return Integer[]\n     */\n    function rearrangeBarcodes($barcodes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> rearrangeBarcodes(List<int> barcodes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def rearrangeBarcodes(barcodes: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec rearrange_barcodes(barcodes :: [integer]) :: [integer]\n  def rearrange_barcodes(barcodes) do\n    \n  end\nend",
+    "erlang": "-spec rearrange_barcodes(Barcodes :: [integer()]) -> [integer()].\nrearrange_barcodes(Barcodes) ->\n  .",
+    "racket": "(define/contract (rearrange-barcodes barcodes)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

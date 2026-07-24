@@ -852,5 +852,26 @@
       "input": "arr = [1, 2, 2, 2, 3]\nk = 3\nx = 2",
       "output": "[2, 2, 2]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findClosestElements(vector<int>& arr, int k, int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findClosestElements(int[] arr, int k, int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findClosestElements(self, arr, k, x):\n        \"\"\"\n        :type arr: List[int]\n        :type k: int\n        :type x: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} k\n * @param {number} x\n * @return {number[]}\n */\nvar findClosestElements = function(arr, k, x) {\n    \n};",
+    "typescript": "function findClosestElements(arr: number[], k: number, x: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindClosestElements(int[] arr, int k, int x) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findClosestElements(int* arr, int arrSize, int k, int x, int* returnSize) {\n    \n}",
+    "golang": "func findClosestElements(arr []int, k int, x int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findClosestElements(arr: IntArray, k: Int, x: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findClosestElements(_ arr: [Int], _ k: Int, _ x: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_closest_elements(arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} k\n# @param {Integer} x\n# @return {Integer[]}\ndef find_closest_elements(arr, k, x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $k\n     * @param Integer $x\n     * @return Integer[]\n     */\n    function findClosestElements($arr, $k, $x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findClosestElements(List<int> arr, int k, int x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findClosestElements(arr: Array[Int], k: Int, x: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_closest_elements(arr :: [integer], k :: integer, x :: integer) :: [integer]\n  def find_closest_elements(arr, k, x) do\n    \n  end\nend",
+    "erlang": "-spec find_closest_elements(Arr :: [integer()], K :: integer(), X :: integer()) -> [integer()].\nfind_closest_elements(Arr, K, X) ->\n  .",
+    "racket": "(define/contract (find-closest-elements arr k x)\n  (-> (listof exact-integer?) exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  }
 }

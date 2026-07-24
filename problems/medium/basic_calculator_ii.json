@@ -349,5 +349,26 @@
       "input": "s = \"  14  /  3  \"",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int calculate(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calculate(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def calculate(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar calculate = function(s) {\n    \n};",
+    "typescript": "function calculate(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Calculate(string s) {\n        \n    }\n}",
+    "c": "int calculate(char* s) {\n    \n}",
+    "golang": "func calculate(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun calculate(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calculate(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn calculate(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef calculate(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function calculate($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int calculate(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calculate(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec calculate(s :: String.t) :: integer\n  def calculate(s) do\n    \n  end\nend",
+    "erlang": "-spec calculate(S :: unicode:unicode_binary()) -> integer().\ncalculate(S) ->\n  .",
+    "racket": "(define/contract (calculate s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

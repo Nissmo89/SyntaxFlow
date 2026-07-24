@@ -620,5 +620,26 @@
       "input": "data = [128]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool validUtf8(vector<int>& data) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean validUtf8(int[] data) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validUtf8(self, data: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def validUtf8(self, data):\n        \"\"\"\n        :type data: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} data\n * @return {boolean}\n */\nvar validUtf8 = function(data) {\n    \n};",
+    "typescript": "function validUtf8(data: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ValidUtf8(int[] data) {\n        \n    }\n}",
+    "c": "bool validUtf8(int* data, int dataSize) {\n    \n}",
+    "golang": "func validUtf8(data []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun validUtf8(data: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validUtf8(_ data: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_utf8(data: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} data\n# @return {Boolean}\ndef valid_utf8(data)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $data\n     * @return Boolean\n     */\n    function validUtf8($data) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool validUtf8(List<int> data) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validUtf8(data: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_utf8(data :: [integer]) :: boolean\n  def valid_utf8(data) do\n    \n  end\nend",
+    "erlang": "-spec valid_utf8(Data :: [integer()]) -> boolean().\nvalid_utf8(Data) ->\n  .",
+    "racket": "(define/contract (valid-utf8 data)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

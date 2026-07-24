@@ -1872,5 +1872,26 @@
       "input": "nums = [-1000, -1000, 1000, 1000, 1]\ntarget = -999",
       "output": "-1000"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int threeSumClosest(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def threeSumClosest(self, nums: List[int], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def threeSumClosest(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar threeSumClosest = function(nums, target) {\n    \n};",
+    "typescript": "function threeSumClosest(nums: number[], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ThreeSumClosest(int[] nums, int target) {\n        \n    }\n}",
+    "c": "int threeSumClosest(int* nums, int numsSize, int target) {\n    \n}",
+    "golang": "func threeSumClosest(nums []int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun threeSumClosest(nums: IntArray, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Integer}\ndef three_sum_closest(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Integer\n     */\n    function threeSumClosest($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int threeSumClosest(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def threeSumClosest(nums: Array[Int], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec three_sum_closest(nums :: [integer], target :: integer) :: integer\n  def three_sum_closest(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec three_sum_closest(Nums :: [integer()], Target :: integer()) -> integer().\nthree_sum_closest(Nums, Target) ->\n  .",
+    "racket": "(define/contract (three-sum-closest nums target)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

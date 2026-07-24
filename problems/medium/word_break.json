@@ -670,5 +670,26 @@
       "input": "s = \"catscats\"\nwordDict = [\"cat\", \"cats\"]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool wordBreak(string s, vector<string>& wordDict) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean wordBreak(String s, List<String> wordDict) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def wordBreak(self, s, wordDict):\n        \"\"\"\n        :type s: str\n        :type wordDict: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} wordDict\n * @return {boolean}\n */\nvar wordBreak = function(s, wordDict) {\n    \n};",
+    "typescript": "function wordBreak(s: string, wordDict: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool WordBreak(string s, IList<string> wordDict) {\n        \n    }\n}",
+    "c": "bool wordBreak(char* s, char** wordDict, int wordDictSize) {\n    \n}",
+    "golang": "func wordBreak(s string, wordDict []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun wordBreak(s: String, wordDict: List<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn word_break(s: String, word_dict: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} word_dict\n# @return {Boolean}\ndef word_break(s, word_dict)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $wordDict\n     * @return Boolean\n     */\n    function wordBreak($s, $wordDict) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool wordBreak(String s, List<String> wordDict) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def wordBreak(s: String, wordDict: List[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec word_break(s :: String.t, word_dict :: [String.t]) :: boolean\n  def word_break(s, word_dict) do\n    \n  end\nend",
+    "erlang": "-spec word_break(S :: unicode:unicode_binary(), WordDict :: [unicode:unicode_binary()]) -> boolean().\nword_break(S, WordDict) ->\n  .",
+    "racket": "(define/contract (word-break s wordDict)\n  (-> string? (listof string?) boolean?)\n  )"
+  }
 }

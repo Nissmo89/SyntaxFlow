@@ -722,5 +722,26 @@
       "input": "words = [\"a\", \"a\", \"ab\", \"abc\", \"abc\"]",
       "output": "\"abc\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string longestWord(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestWord(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestWord(self, words: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestWord(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar longestWord = function(words) {\n    \n};",
+    "typescript": "function longestWord(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestWord(string[] words) {\n        \n    }\n}",
+    "c": "char* longestWord(char** words, int wordsSize) {\n    \n}",
+    "golang": "func longestWord(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestWord(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestWord(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_word(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef longest_word(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function longestWord($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestWord(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestWord(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_word(words :: [String.t]) :: String.t\n  def longest_word(words) do\n    \n  end\nend",
+    "erlang": "-spec longest_word(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nlongest_word(Words) ->\n  .",
+    "racket": "(define/contract (longest-word words)\n  (-> (listof string?) string?)\n  )"
+  }
 }

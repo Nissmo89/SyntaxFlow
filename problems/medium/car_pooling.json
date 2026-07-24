@@ -11535,5 +11535,26 @@
       "input": "trips = [[3, 2, 8], [2, 3, 7], [2, 5, 6]]\ncapacity = 6",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool carPooling(vector<vector<int>>& trips, int capacity) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean carPooling(int[][] trips, int capacity) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def carPooling(self, trips, capacity):\n        \"\"\"\n        :type trips: List[List[int]]\n        :type capacity: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} trips\n * @param {number} capacity\n * @return {boolean}\n */\nvar carPooling = function(trips, capacity) {\n    \n};",
+    "typescript": "function carPooling(trips: number[][], capacity: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CarPooling(int[][] trips, int capacity) {\n        \n    }\n}",
+    "c": "bool carPooling(int** trips, int tripsSize, int* tripsColSize, int capacity) {\n    \n}",
+    "golang": "func carPooling(trips [][]int, capacity int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun carPooling(trips: Array<IntArray>, capacity: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func carPooling(_ trips: [[Int]], _ capacity: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn car_pooling(trips: Vec<Vec<i32>>, capacity: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} trips\n# @param {Integer} capacity\n# @return {Boolean}\ndef car_pooling(trips, capacity)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $trips\n     * @param Integer $capacity\n     * @return Boolean\n     */\n    function carPooling($trips, $capacity) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool carPooling(List<List<int>> trips, int capacity) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def carPooling(trips: Array[Array[Int]], capacity: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec car_pooling(trips :: [[integer]], capacity :: integer) :: boolean\n  def car_pooling(trips, capacity) do\n    \n  end\nend",
+    "erlang": "-spec car_pooling(Trips :: [[integer()]], Capacity :: integer()) -> boolean().\ncar_pooling(Trips, Capacity) ->\n  .",
+    "racket": "(define/contract (car-pooling trips capacity)\n  (-> (listof (listof exact-integer?)) exact-integer? boolean?)\n  )"
+  }
 }

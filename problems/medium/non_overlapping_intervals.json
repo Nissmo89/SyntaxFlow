@@ -1097,5 +1097,26 @@
       "input": "intervals = [[1, 5], [2, 3], [3, 4], [4, 6]]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int eraseOverlapIntervals(vector<vector<int>>& intervals) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int eraseOverlapIntervals(int[][] intervals) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def eraseOverlapIntervals(self, intervals):\n        \"\"\"\n        :type intervals: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} intervals\n * @return {number}\n */\nvar eraseOverlapIntervals = function(intervals) {\n    \n};",
+    "typescript": "function eraseOverlapIntervals(intervals: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int EraseOverlapIntervals(int[][] intervals) {\n        \n    }\n}",
+    "c": "int eraseOverlapIntervals(int** intervals, int intervalsSize, int* intervalsColSize) {\n    \n}",
+    "golang": "func eraseOverlapIntervals(intervals [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun eraseOverlapIntervals(intervals: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func eraseOverlapIntervals(_ intervals: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn erase_overlap_intervals(intervals: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} intervals\n# @return {Integer}\ndef erase_overlap_intervals(intervals)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $intervals\n     * @return Integer\n     */\n    function eraseOverlapIntervals($intervals) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int eraseOverlapIntervals(List<List<int>> intervals) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def eraseOverlapIntervals(intervals: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec erase_overlap_intervals(intervals :: [[integer]]) :: integer\n  def erase_overlap_intervals(intervals) do\n    \n  end\nend",
+    "erlang": "-spec erase_overlap_intervals(Intervals :: [[integer()]]) -> integer().\nerase_overlap_intervals(Intervals) ->\n  .",
+    "racket": "(define/contract (erase-overlap-intervals intervals)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

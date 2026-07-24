@@ -943,5 +943,26 @@
       "input": "piles = [10, 20]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool stoneGame(vector<int>& piles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean stoneGame(int[] piles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def stoneGame(self, piles: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def stoneGame(self, piles):\n        \"\"\"\n        :type piles: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} piles\n * @return {boolean}\n */\nvar stoneGame = function(piles) {\n    \n};",
+    "typescript": "function stoneGame(piles: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool StoneGame(int[] piles) {\n        \n    }\n}",
+    "c": "bool stoneGame(int* piles, int pilesSize) {\n    \n}",
+    "golang": "func stoneGame(piles []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun stoneGame(piles: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func stoneGame(_ piles: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn stone_game(piles: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} piles\n# @return {Boolean}\ndef stone_game(piles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $piles\n     * @return Boolean\n     */\n    function stoneGame($piles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool stoneGame(List<int> piles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def stoneGame(piles: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec stone_game(piles :: [integer]) :: boolean\n  def stone_game(piles) do\n    \n  end\nend",
+    "erlang": "-spec stone_game(Piles :: [integer()]) -> boolean().\nstone_game(Piles) ->\n  .",
+    "racket": "(define/contract (stone-game piles)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

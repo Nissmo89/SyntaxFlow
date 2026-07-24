@@ -395,5 +395,26 @@
       "input": "a = \"abcd\"\nb = \"dabcdab\"",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int repeatedStringMatch(string a, string b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int repeatedStringMatch(String a, String b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def repeatedStringMatch(self, a: str, b: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def repeatedStringMatch(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} a\n * @param {string} b\n * @return {number}\n */\nvar repeatedStringMatch = function(a, b) {\n    \n};",
+    "typescript": "function repeatedStringMatch(a: string, b: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RepeatedStringMatch(string a, string b) {\n        \n    }\n}",
+    "c": "int repeatedStringMatch(char* a, char* b) {\n    \n}",
+    "golang": "func repeatedStringMatch(a string, b string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun repeatedStringMatch(a: String, b: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func repeatedStringMatch(_ a: String, _ b: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn repeated_string_match(a: String, b: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} a\n# @param {String} b\n# @return {Integer}\ndef repeated_string_match(a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $a\n     * @param String $b\n     * @return Integer\n     */\n    function repeatedStringMatch($a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int repeatedStringMatch(String a, String b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def repeatedStringMatch(a: String, b: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec repeated_string_match(a :: String.t, b :: String.t) :: integer\n  def repeated_string_match(a, b) do\n    \n  end\nend",
+    "erlang": "-spec repeated_string_match(A :: unicode:unicode_binary(), B :: unicode:unicode_binary()) -> integer().\nrepeated_string_match(A, B) ->\n  .",
+    "racket": "(define/contract (repeated-string-match a b)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

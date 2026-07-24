@@ -346,5 +346,26 @@
       "input": "path = \"/a/b/c/../../\"",
       "output": "\"/a\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string simplifyPath(string path) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String simplifyPath(String path) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def simplifyPath(self, path: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def simplifyPath(self, path):\n        \"\"\"\n        :type path: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} path\n * @return {string}\n */\nvar simplifyPath = function(path) {\n    \n};",
+    "typescript": "function simplifyPath(path: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SimplifyPath(string path) {\n        \n    }\n}",
+    "c": "char* simplifyPath(char* path) {\n    \n}",
+    "golang": "func simplifyPath(path string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun simplifyPath(path: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func simplifyPath(_ path: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn simplify_path(path: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} path\n# @return {String}\ndef simplify_path(path)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $path\n     * @return String\n     */\n    function simplifyPath($path) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String simplifyPath(String path) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def simplifyPath(path: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec simplify_path(path :: String.t) :: String.t\n  def simplify_path(path) do\n    \n  end\nend",
+    "erlang": "-spec simplify_path(Path :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsimplify_path(Path) ->\n  .",
+    "racket": "(define/contract (simplify-path path)\n  (-> string? string?)\n  )"
+  }
 }

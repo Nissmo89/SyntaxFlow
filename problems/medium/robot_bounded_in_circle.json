@@ -384,5 +384,26 @@
       "input": "instructions = \"GLGLGLG\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isRobotBounded(string instructions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isRobotBounded(String instructions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isRobotBounded(self, instructions: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isRobotBounded(self, instructions):\n        \"\"\"\n        :type instructions: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} instructions\n * @return {boolean}\n */\nvar isRobotBounded = function(instructions) {\n    \n};",
+    "typescript": "function isRobotBounded(instructions: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsRobotBounded(string instructions) {\n        \n    }\n}",
+    "c": "bool isRobotBounded(char* instructions) {\n    \n}",
+    "golang": "func isRobotBounded(instructions string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isRobotBounded(instructions: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isRobotBounded(_ instructions: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_robot_bounded(instructions: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} instructions\n# @return {Boolean}\ndef is_robot_bounded(instructions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $instructions\n     * @return Boolean\n     */\n    function isRobotBounded($instructions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isRobotBounded(String instructions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isRobotBounded(instructions: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_robot_bounded(instructions :: String.t) :: boolean\n  def is_robot_bounded(instructions) do\n    \n  end\nend",
+    "erlang": "-spec is_robot_bounded(Instructions :: unicode:unicode_binary()) -> boolean().\nis_robot_bounded(Instructions) ->\n  .",
+    "racket": "(define/contract (is-robot-bounded instructions)\n  (-> string? boolean?)\n  )"
+  }
 }

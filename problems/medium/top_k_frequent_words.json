@@ -397,5 +397,26 @@
       "input": "words = [\"a\", \"b\", \"c\", \"d\", \"a\", \"a\", \"b\"]\nk = 2",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> topKFrequent(vector<string>& words, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> topKFrequent(String[] words, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def topKFrequent(self, words: List[str], k: int) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def topKFrequent(self, words, k):\n        \"\"\"\n        :type words: List[str]\n        :type k: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {number} k\n * @return {string[]}\n */\nvar topKFrequent = function(words, k) {\n    \n};",
+    "typescript": "function topKFrequent(words: string[], k: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> TopKFrequent(string[] words, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** topKFrequent(char** words, int wordsSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func topKFrequent(words []string, k int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun topKFrequent(words: Array<String>, k: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func topKFrequent(_ words: [String], _ k: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn top_k_frequent(words: Vec<String>, k: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {Integer} k\n# @return {String[]}\ndef top_k_frequent(words, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param Integer $k\n     * @return String[]\n     */\n    function topKFrequent($words, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> topKFrequent(List<String> words, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def topKFrequent(words: Array[String], k: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec top_k_frequent(words :: [String.t], k :: integer) :: [String.t]\n  def top_k_frequent(words, k) do\n    \n  end\nend",
+    "erlang": "-spec top_k_frequent(Words :: [unicode:unicode_binary()], K :: integer()) -> [unicode:unicode_binary()].\ntop_k_frequent(Words, K) ->\n  .",
+    "racket": "(define/contract (top-k-frequent words k)\n  (-> (listof string?) exact-integer? (listof string?))\n  )"
+  }
 }

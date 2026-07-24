@@ -767,5 +767,26 @@
       "input": "nums = [2, 2, 2]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool predictTheWinner(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean predictTheWinner(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def predictTheWinner(self, nums: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def predictTheWinner(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar predictTheWinner = function(nums) {\n    \n};",
+    "typescript": "function predictTheWinner(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool PredictTheWinner(int[] nums) {\n        \n    }\n}",
+    "c": "bool predictTheWinner(int* nums, int numsSize) {\n    \n}",
+    "golang": "func predictTheWinner(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun predictTheWinner(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func predictTheWinner(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn predict_the_winner(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef predict_the_winner(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function predictTheWinner($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool predictTheWinner(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def predictTheWinner(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec predict_the_winner(nums :: [integer]) :: boolean\n  def predict_the_winner(nums) do\n    \n  end\nend",
+    "erlang": "-spec predict_the_winner(Nums :: [integer()]) -> boolean().\npredict_the_winner(Nums) ->\n  .",
+    "racket": "(define/contract (predict-the-winner nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

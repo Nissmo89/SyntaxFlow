@@ -535,5 +535,26 @@
       "input": "coins = [2, 4]\namount = 7",
       "output": "-1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int coinChange(int[] coins, int amount) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def coinChange(self, coins, amount):\n        \"\"\"\n        :type coins: List[int]\n        :type amount: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} coins\n * @param {number} amount\n * @return {number}\n */\nvar coinChange = function(coins, amount) {\n    \n};",
+    "typescript": "function coinChange(coins: number[], amount: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CoinChange(int[] coins, int amount) {\n        \n    }\n}",
+    "c": "int coinChange(int* coins, int coinsSize, int amount) {\n    \n}",
+    "golang": "func coinChange(coins []int, amount int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun coinChange(coins: IntArray, amount: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func coinChange(_ coins: [Int], _ amount: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn coin_change(coins: Vec<i32>, amount: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} coins\n# @param {Integer} amount\n# @return {Integer}\ndef coin_change(coins, amount)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $coins\n     * @param Integer $amount\n     * @return Integer\n     */\n    function coinChange($coins, $amount) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int coinChange(List<int> coins, int amount) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def coinChange(coins: Array[Int], amount: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec coin_change(coins :: [integer], amount :: integer) :: integer\n  def coin_change(coins, amount) do\n    \n  end\nend",
+    "erlang": "-spec coin_change(Coins :: [integer()], Amount :: integer()) -> integer().\ncoin_change(Coins, Amount) ->\n  .",
+    "racket": "(define/contract (coin-change coins amount)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

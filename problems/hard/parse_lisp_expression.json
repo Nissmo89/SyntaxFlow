@@ -352,5 +352,26 @@
       "input": "expression = \"(add (mult 2 3) (add 4 5))\"",
       "output": "15"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int evaluate(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int evaluate(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def evaluate(self, expression: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def evaluate(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {number}\n */\nvar evaluate = function(expression) {\n    \n};",
+    "typescript": "function evaluate(expression: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Evaluate(string expression) {\n        \n    }\n}",
+    "c": "int evaluate(char* expression) {\n    \n}",
+    "golang": "func evaluate(expression string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun evaluate(expression: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func evaluate(_ expression: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn evaluate(expression: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Integer}\ndef evaluate(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Integer\n     */\n    function evaluate($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int evaluate(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def evaluate(expression: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec evaluate(expression :: String.t) :: integer\n  def evaluate(expression) do\n    \n  end\nend",
+    "erlang": "-spec evaluate(Expression :: unicode:unicode_binary()) -> integer().\nevaluate(Expression) ->\n  .",
+    "racket": "(define/contract (evaluate expression)\n  (-> string? exact-integer?)\n  )"
+  }
 }

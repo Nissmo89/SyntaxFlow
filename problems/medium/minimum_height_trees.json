@@ -3036,5 +3036,26 @@
       "input": "n = 6\nedges = {\"elemType\": \"int\", \"value\": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findMinHeightTrees(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findMinHeightTrees(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar findMinHeightTrees = function(n, edges) {\n    \n};",
+    "typescript": "function findMinHeightTrees(n: number, edges: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindMinHeightTrees(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findMinHeightTrees(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize) {\n    \n}",
+    "golang": "func findMinHeightTrees(n int, edges [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinHeightTrees(n: Int, edges: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinHeightTrees(_ n: Int, _ edges: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_height_trees(n: i32, edges: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer[]}\ndef find_min_height_trees(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer[]\n     */\n    function findMinHeightTrees($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findMinHeightTrees(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinHeightTrees(n: Int, edges: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_height_trees(n :: integer, edges :: [[integer]]) :: [integer]\n  def find_min_height_trees(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec find_min_height_trees(N :: integer(), Edges :: [[integer()]]) -> [integer()].\nfind_min_height_trees(N, Edges) ->\n  .",
+    "racket": "(define/contract (find-min-height-trees n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

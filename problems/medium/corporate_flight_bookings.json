@@ -1395,5 +1395,26 @@
       "input": "bookings = {\"elemType\": \"int\", \"value\": [[2, 4, 1], [2, 4, 2], [2, 4, 3]]}\nn = 5",
       "output": "[0, 6, 6, 6, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] corpFlightBookings(int[][] bookings, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def corpFlightBookings(self, bookings, n):\n        \"\"\"\n        :type bookings: List[List[int]]\n        :type n: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} bookings\n * @param {number} n\n * @return {number[]}\n */\nvar corpFlightBookings = function(bookings, n) {\n    \n};",
+    "typescript": "function corpFlightBookings(bookings: number[][], n: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] CorpFlightBookings(int[][] bookings, int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* corpFlightBookings(int** bookings, int bookingsSize, int* bookingsColSize, int n, int* returnSize) {\n    \n}",
+    "golang": "func corpFlightBookings(bookings [][]int, n int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun corpFlightBookings(bookings: Array<IntArray>, n: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func corpFlightBookings(_ bookings: [[Int]], _ n: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn corp_flight_bookings(bookings: Vec<Vec<i32>>, n: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} bookings\n# @param {Integer} n\n# @return {Integer[]}\ndef corp_flight_bookings(bookings, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $bookings\n     * @param Integer $n\n     * @return Integer[]\n     */\n    function corpFlightBookings($bookings, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> corpFlightBookings(List<List<int>> bookings, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def corpFlightBookings(bookings: Array[Array[Int]], n: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec corp_flight_bookings(bookings :: [[integer]], n :: integer) :: [integer]\n  def corp_flight_bookings(bookings, n) do\n    \n  end\nend",
+    "erlang": "-spec corp_flight_bookings(Bookings :: [[integer()]], N :: integer()) -> [integer()].\ncorp_flight_bookings(Bookings, N) ->\n  .",
+    "racket": "(define/contract (corp-flight-bookings bookings n)\n  (-> (listof (listof exact-integer?)) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

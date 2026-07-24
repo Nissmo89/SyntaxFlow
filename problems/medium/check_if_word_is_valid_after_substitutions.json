@@ -345,5 +345,26 @@
       "input": "s = \"aabb\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isValid(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isValid(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isValid(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isValid(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function(s) {\n    \n};",
+    "typescript": "function isValid(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsValid(string s) {\n        \n    }\n}",
+    "c": "bool isValid(char* s) {\n    \n}",
+    "golang": "func isValid(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isValid(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isValid(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_valid(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_valid(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isValid($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isValid(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isValid(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_valid(s :: String.t) :: boolean\n  def is_valid(s) do\n    \n  end\nend",
+    "erlang": "-spec is_valid(S :: unicode:unicode_binary()) -> boolean().\nis_valid(S) ->\n  .",
+    "racket": "(define/contract (is-valid s)\n  (-> string? boolean?)\n  )"
+  }
 }

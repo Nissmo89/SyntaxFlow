@@ -408,5 +408,26 @@
       "input": "version1 = \"1.0\"\nversion2 = \"1.0.0.0.0\"",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int compareVersion(string version1, string version2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int compareVersion(String version1, String version2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def compareVersion(self, version1: str, version2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def compareVersion(self, version1, version2):\n        \"\"\"\n        :type version1: str\n        :type version2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} version1\n * @param {string} version2\n * @return {number}\n */\nvar compareVersion = function(version1, version2) {\n    \n};",
+    "typescript": "function compareVersion(version1: string, version2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CompareVersion(string version1, string version2) {\n        \n    }\n}",
+    "c": "int compareVersion(char* version1, char* version2) {\n    \n}",
+    "golang": "func compareVersion(version1 string, version2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun compareVersion(version1: String, version2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func compareVersion(_ version1: String, _ version2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn compare_version(version1: String, version2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} version1\n# @param {String} version2\n# @return {Integer}\ndef compare_version(version1, version2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $version1\n     * @param String $version2\n     * @return Integer\n     */\n    function compareVersion($version1, $version2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int compareVersion(String version1, String version2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def compareVersion(version1: String, version2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec compare_version(version1 :: String.t, version2 :: String.t) :: integer\n  def compare_version(version1, version2) do\n    \n  end\nend",
+    "erlang": "-spec compare_version(Version1 :: unicode:unicode_binary(), Version2 :: unicode:unicode_binary()) -> integer().\ncompare_version(Version1, Version2) ->\n  .",
+    "racket": "(define/contract (compare-version version1 version2)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

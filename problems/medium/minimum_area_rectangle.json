@@ -847,5 +847,26 @@
       "input": "points = [[3, 0]]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minAreaRect(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minAreaRect(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minAreaRect(self, points: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minAreaRect(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar minAreaRect = function(points) {\n    \n};",
+    "typescript": "function minAreaRect(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinAreaRect(int[][] points) {\n        \n    }\n}",
+    "c": "int minAreaRect(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func minAreaRect(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minAreaRect(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minAreaRect(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_area_rect(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef min_area_rect(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function minAreaRect($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minAreaRect(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minAreaRect(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_area_rect(points :: [[integer]]) :: integer\n  def min_area_rect(points) do\n    \n  end\nend",
+    "erlang": "-spec min_area_rect(Points :: [[integer()]]) -> integer().\nmin_area_rect(Points) ->\n  .",
+    "racket": "(define/contract (min-area-rect points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

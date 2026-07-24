@@ -609,5 +609,26 @@
       "input": "nums = [0, 2]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxProduct(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProduct(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProduct(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxProduct = function(nums) {\n    \n};",
+    "typescript": "function maxProduct(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProduct(int[] nums) {\n        \n    }\n}",
+    "c": "int maxProduct(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxProduct(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProduct(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProduct(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_product(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_product(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxProduct($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProduct(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProduct(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_product(nums :: [integer]) :: integer\n  def max_product(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_product(Nums :: [integer()]) -> integer().\nmax_product(Nums) ->\n  .",
+    "racket": "(define/contract (max-product nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

@@ -915,5 +915,26 @@
       "input": "difficulty = [1, 2, 3, 4]\nprofit = [2, 4, 6, 8]\nworker = [1, 2, 3, 4]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfitAssignment(self, difficulty: List[int], profit: List[int], worker: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfitAssignment(self, difficulty, profit, worker):\n        \"\"\"\n        :type difficulty: List[int]\n        :type profit: List[int]\n        :type worker: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} difficulty\n * @param {number[]} profit\n * @param {number[]} worker\n * @return {number}\n */\nvar maxProfitAssignment = function(difficulty, profit, worker) {\n    \n};",
+    "typescript": "function maxProfitAssignment(difficulty: number[], profit: number[], worker: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {\n        \n    }\n}",
+    "c": "int maxProfitAssignment(int* difficulty, int difficultySize, int* profit, int profitSize, int* worker, int workerSize) {\n    \n}",
+    "golang": "func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfitAssignment(difficulty: IntArray, profit: IntArray, worker: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfitAssignment(_ difficulty: [Int], _ profit: [Int], _ worker: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit_assignment(difficulty: Vec<i32>, profit: Vec<i32>, worker: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} difficulty\n# @param {Integer[]} profit\n# @param {Integer[]} worker\n# @return {Integer}\ndef max_profit_assignment(difficulty, profit, worker)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $difficulty\n     * @param Integer[] $profit\n     * @param Integer[] $worker\n     * @return Integer\n     */\n    function maxProfitAssignment($difficulty, $profit, $worker) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfitAssignment(List<int> difficulty, List<int> profit, List<int> worker) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfitAssignment(difficulty: Array[Int], profit: Array[Int], worker: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit_assignment(difficulty :: [integer], profit :: [integer], worker :: [integer]) :: integer\n  def max_profit_assignment(difficulty, profit, worker) do\n    \n  end\nend",
+    "erlang": "-spec max_profit_assignment(Difficulty :: [integer()], Profit :: [integer()], Worker :: [integer()]) -> integer().\nmax_profit_assignment(Difficulty, Profit, Worker) ->\n  .",
+    "racket": "(define/contract (max-profit-assignment difficulty profit worker)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

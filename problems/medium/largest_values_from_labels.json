@@ -894,5 +894,26 @@
       "input": "values = [10, 9]\nlabels = [0, 1]\nnumWanted = 1\nuseLimit = 1",
       "output": "10"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int useLimit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestValsFromLabels(int[] values, int[] labels, int numWanted, int useLimit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestValsFromLabels(self, values: List[int], labels: List[int], numWanted: int, useLimit: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestValsFromLabels(self, values, labels, numWanted, useLimit):\n        \"\"\"\n        :type values: List[int]\n        :type labels: List[int]\n        :type numWanted: int\n        :type useLimit: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} values\n * @param {number[]} labels\n * @param {number} numWanted\n * @param {number} useLimit\n * @return {number}\n */\nvar largestValsFromLabels = function(values, labels, numWanted, useLimit) {\n    \n};",
+    "typescript": "function largestValsFromLabels(values: number[], labels: number[], numWanted: number, useLimit: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestValsFromLabels(int[] values, int[] labels, int numWanted, int useLimit) {\n        \n    }\n}",
+    "c": "int largestValsFromLabels(int* values, int valuesSize, int* labels, int labelsSize, int numWanted, int useLimit) {\n    \n}",
+    "golang": "func largestValsFromLabels(values []int, labels []int, numWanted int, useLimit int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestValsFromLabels(values: IntArray, labels: IntArray, numWanted: Int, useLimit: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestValsFromLabels(_ values: [Int], _ labels: [Int], _ numWanted: Int, _ useLimit: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_vals_from_labels(values: Vec<i32>, labels: Vec<i32>, num_wanted: i32, use_limit: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} values\n# @param {Integer[]} labels\n# @param {Integer} num_wanted\n# @param {Integer} use_limit\n# @return {Integer}\ndef largest_vals_from_labels(values, labels, num_wanted, use_limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $values\n     * @param Integer[] $labels\n     * @param Integer $numWanted\n     * @param Integer $useLimit\n     * @return Integer\n     */\n    function largestValsFromLabels($values, $labels, $numWanted, $useLimit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestValsFromLabels(List<int> values, List<int> labels, int numWanted, int useLimit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestValsFromLabels(values: Array[Int], labels: Array[Int], numWanted: Int, useLimit: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_vals_from_labels(values :: [integer], labels :: [integer], num_wanted :: integer, use_limit :: integer) :: integer\n  def largest_vals_from_labels(values, labels, num_wanted, use_limit) do\n    \n  end\nend",
+    "erlang": "-spec largest_vals_from_labels(Values :: [integer()], Labels :: [integer()], NumWanted :: integer(), UseLimit :: integer()) -> integer().\nlargest_vals_from_labels(Values, Labels, NumWanted, UseLimit) ->\n  .",
+    "racket": "(define/contract (largest-vals-from-labels values labels numWanted useLimit)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

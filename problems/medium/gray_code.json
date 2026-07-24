@@ -347,5 +347,26 @@
       "input": "n = 8",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> grayCode(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> grayCode(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def grayCode(self, n: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def grayCode(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number[]}\n */\nvar grayCode = function(n) {\n    \n};",
+    "typescript": "function grayCode(n: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> GrayCode(int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* grayCode(int n, int* returnSize) {\n    \n}",
+    "golang": "func grayCode(n int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun grayCode(n: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func grayCode(_ n: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn gray_code(n: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer[]}\ndef gray_code(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer[]\n     */\n    function grayCode($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> grayCode(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def grayCode(n: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec gray_code(n :: integer) :: [integer]\n  def gray_code(n) do\n    \n  end\nend",
+    "erlang": "-spec gray_code(N :: integer()) -> [integer()].\ngray_code(N) ->\n  .",
+    "racket": "(define/contract (gray-code n)\n  (-> exact-integer? (listof exact-integer?))\n  )"
+  }
 }

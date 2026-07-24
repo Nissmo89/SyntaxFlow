@@ -4508,5 +4508,26 @@
       "input": "board = {\"elemType\": \"char\", \"value\": [[\"1\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\"1\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]}",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isValidSudoku(vector<vector<char>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isValidSudoku(char[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isValidSudoku(self, board: List[List[str]]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isValidSudoku(self, board):\n        \"\"\"\n        :type board: List[List[str]]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @return {boolean}\n */\nvar isValidSudoku = function(board) {\n    \n};",
+    "typescript": "function isValidSudoku(board: string[][]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsValidSudoku(char[][] board) {\n        \n    }\n}",
+    "c": "bool isValidSudoku(char** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func isValidSudoku(board [][]byte) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isValidSudoku(board: Array<CharArray>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isValidSudoku(_ board: [[Character]]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @return {Boolean}\ndef is_valid_sudoku(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @return Boolean\n     */\n    function isValidSudoku($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isValidSudoku(List<List<String>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isValidSudoku(board: Array[Array[Char]]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_valid_sudoku(board :: [[char]]) :: boolean\n  def is_valid_sudoku(board) do\n    \n  end\nend",
+    "erlang": "-spec is_valid_sudoku(Board :: [[char()]]) -> boolean().\nis_valid_sudoku(Board) ->\n  .",
+    "racket": "(define/contract (is-valid-sudoku board)\n  (-> (listof (listof char?)) boolean?)\n  )"
+  }
 }

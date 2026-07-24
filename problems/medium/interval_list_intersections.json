@@ -1693,5 +1693,26 @@
       "input": "firstList = [[2, 3], [4, 6], [8, 11]]\nsecondList = [[1, 6], [7, 9], [13, 15], [17, 18]]",
       "output": "[[2, 3], [4, 6], [8, 9]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList, vector<vector<int>>& secondList) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def intervalIntersection(self, firstList, secondList):\n        \"\"\"\n        :type firstList: List[List[int]]\n        :type secondList: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} firstList\n * @param {number[][]} secondList\n * @return {number[][]}\n */\nvar intervalIntersection = function(firstList, secondList) {\n    \n};",
+    "typescript": "function intervalIntersection(firstList: number[][], secondList: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] IntervalIntersection(int[][] firstList, int[][] secondList) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** intervalIntersection(int** firstList, int firstListSize, int* firstListColSize, int** secondList, int secondListSize, int* secondListColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func intervalIntersection(firstList [][]int, secondList [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun intervalIntersection(firstList: Array<IntArray>, secondList: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func intervalIntersection(_ firstList: [[Int]], _ secondList: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn interval_intersection(first_list: Vec<Vec<i32>>, second_list: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} first_list\n# @param {Integer[][]} second_list\n# @return {Integer[][]}\ndef interval_intersection(first_list, second_list)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $firstList\n     * @param Integer[][] $secondList\n     * @return Integer[][]\n     */\n    function intervalIntersection($firstList, $secondList) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> intervalIntersection(List<List<int>> firstList, List<List<int>> secondList) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def intervalIntersection(firstList: Array[Array[Int]], secondList: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec interval_intersection(first_list :: [[integer]], second_list :: [[integer]]) :: [[integer]]\n  def interval_intersection(first_list, second_list) do\n    \n  end\nend",
+    "erlang": "-spec interval_intersection(FirstList :: [[integer()]], SecondList :: [[integer()]]) -> [[integer()]].\ninterval_intersection(FirstList, SecondList) ->\n  .",
+    "racket": "(define/contract (interval-intersection firstList secondList)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

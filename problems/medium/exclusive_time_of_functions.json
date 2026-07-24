@@ -1604,5 +1604,26 @@
       "input": "n = 1\nlogs = [\"0:start:0\", \"0:start:1\", \"0:end:1\", \"0:end:2\"]",
       "output": "[3]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> exclusiveTime(int n, vector<string>& logs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] exclusiveTime(int n, List<String> logs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def exclusiveTime(self, n, logs):\n        \"\"\"\n        :type n: int\n        :type logs: List[str]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {string[]} logs\n * @return {number[]}\n */\nvar exclusiveTime = function(n, logs) {\n    \n};",
+    "typescript": "function exclusiveTime(n: number, logs: string[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ExclusiveTime(int n, IList<string> logs) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* exclusiveTime(int n, char** logs, int logsSize, int* returnSize) {\n    \n}",
+    "golang": "func exclusiveTime(n int, logs []string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun exclusiveTime(n: Int, logs: List<String>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func exclusiveTime(_ n: Int, _ logs: [String]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn exclusive_time(n: i32, logs: Vec<String>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {String[]} logs\n# @return {Integer[]}\ndef exclusive_time(n, logs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param String[] $logs\n     * @return Integer[]\n     */\n    function exclusiveTime($n, $logs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> exclusiveTime(int n, List<String> logs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def exclusiveTime(n: Int, logs: List[String]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec exclusive_time(n :: integer, logs :: [String.t]) :: [integer]\n  def exclusive_time(n, logs) do\n    \n  end\nend",
+    "erlang": "-spec exclusive_time(N :: integer(), Logs :: [unicode:unicode_binary()]) -> [integer()].\nexclusive_time(N, Logs) ->\n  .",
+    "racket": "(define/contract (exclusive-time n logs)\n  (-> exact-integer? (listof string?) (listof exact-integer?))\n  )"
+  }
 }

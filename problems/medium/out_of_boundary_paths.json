@@ -529,5 +529,26 @@
       "input": "m = 3\nn = 4\nmaxMove = 1\nstartRow = 0\nstartColumn = 2",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findPaths(self, m, n, maxMove, startRow, startColumn):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type maxMove: int\n        :type startRow: int\n        :type startColumn: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number} maxMove\n * @param {number} startRow\n * @param {number} startColumn\n * @return {number}\n */\nvar findPaths = function(m, n, maxMove, startRow, startColumn) {\n    \n};",
+    "typescript": "function findPaths(m: number, n: number, maxMove: number, startRow: number, startColumn: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindPaths(int m, int n, int maxMove, int startRow, int startColumn) {\n        \n    }\n}",
+    "c": "int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {\n    \n}",
+    "golang": "func findPaths(m int, n int, maxMove int, startRow int, startColumn int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findPaths(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findPaths(_ m: Int, _ n: Int, _ maxMove: Int, _ startRow: Int, _ startColumn: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_paths(m: i32, n: i32, max_move: i32, start_row: i32, start_column: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer} max_move\n# @param {Integer} start_row\n# @param {Integer} start_column\n# @return {Integer}\ndef find_paths(m, n, max_move, start_row, start_column)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer $maxMove\n     * @param Integer $startRow\n     * @param Integer $startColumn\n     * @return Integer\n     */\n    function findPaths($m, $n, $maxMove, $startRow, $startColumn) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findPaths(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_paths(m :: integer, n :: integer, max_move :: integer, start_row :: integer, start_column :: integer) :: integer\n  def find_paths(m, n, max_move, start_row, start_column) do\n    \n  end\nend",
+    "erlang": "-spec find_paths(M :: integer(), N :: integer(), MaxMove :: integer(), StartRow :: integer(), StartColumn :: integer()) -> integer().\nfind_paths(M, N, MaxMove, StartRow, StartColumn) ->\n  .",
+    "racket": "(define/contract (find-paths m n maxMove startRow startColumn)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

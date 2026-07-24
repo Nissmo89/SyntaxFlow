@@ -403,5 +403,26 @@
       "input": "s = \"thisisateststring\"\nt = \"tist\"",
       "output": "\"tstri\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String minWindow(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def minWindow(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {string}\n */\nvar minWindow = function(s, t) {\n    \n};",
+    "typescript": "function minWindow(s: string, t: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MinWindow(string s, string t) {\n        \n    }\n}",
+    "c": "char* minWindow(char* s, char* t) {\n    \n}",
+    "golang": "func minWindow(s string, t string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun minWindow(s: String, t: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minWindow(_ s: String, _ t: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_window(s: String, t: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {String}\ndef min_window(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return String\n     */\n    function minWindow($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String minWindow(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minWindow(s: String, t: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_window(s :: String.t, t :: String.t) :: String.t\n  def min_window(s, t) do\n    \n  end\nend",
+    "erlang": "-spec min_window(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmin_window(S, T) ->\n  .",
+    "racket": "(define/contract (min-window s t)\n  (-> string? string? string?)\n  )"
+  }
 }

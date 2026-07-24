@@ -786,5 +786,26 @@
       "input": "deadends = [\"8888\"]\ntarget = \"2000\"",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int openLock(vector<string>& deadends, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int openLock(String[] deadends, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def openLock(self, deadends: List[str], target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def openLock(self, deadends, target):\n        \"\"\"\n        :type deadends: List[str]\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} deadends\n * @param {string} target\n * @return {number}\n */\nvar openLock = function(deadends, target) {\n    \n};",
+    "typescript": "function openLock(deadends: string[], target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int OpenLock(string[] deadends, string target) {\n        \n    }\n}",
+    "c": "int openLock(char** deadends, int deadendsSize, char* target) {\n    \n}",
+    "golang": "func openLock(deadends []string, target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun openLock(deadends: Array<String>, target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func openLock(_ deadends: [String], _ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn open_lock(deadends: Vec<String>, target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} deadends\n# @param {String} target\n# @return {Integer}\ndef open_lock(deadends, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $deadends\n     * @param String $target\n     * @return Integer\n     */\n    function openLock($deadends, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int openLock(List<String> deadends, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def openLock(deadends: Array[String], target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec open_lock(deadends :: [String.t], target :: String.t) :: integer\n  def open_lock(deadends, target) do\n    \n  end\nend",
+    "erlang": "-spec open_lock(Deadends :: [unicode:unicode_binary()], Target :: unicode:unicode_binary()) -> integer().\nopen_lock(Deadends, Target) ->\n  .",
+    "racket": "(define/contract (open-lock deadends target)\n  (-> (listof string?) string? exact-integer?)\n  )"
+  }
 }

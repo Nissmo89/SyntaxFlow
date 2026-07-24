@@ -1011,5 +1011,26 @@
       "input": "courses = [[1, 2], [2, 2], [2, 3]]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int scheduleCourse(vector<vector<int>>& courses) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int scheduleCourse(int[][] courses) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def scheduleCourse(self, courses: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def scheduleCourse(self, courses):\n        \"\"\"\n        :type courses: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} courses\n * @return {number}\n */\nvar scheduleCourse = function(courses) {\n    \n};",
+    "typescript": "function scheduleCourse(courses: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ScheduleCourse(int[][] courses) {\n        \n    }\n}",
+    "c": "int scheduleCourse(int** courses, int coursesSize, int* coursesColSize) {\n    \n}",
+    "golang": "func scheduleCourse(courses [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun scheduleCourse(courses: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func scheduleCourse(_ courses: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn schedule_course(courses: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} courses\n# @return {Integer}\ndef schedule_course(courses)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $courses\n     * @return Integer\n     */\n    function scheduleCourse($courses) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int scheduleCourse(List<List<int>> courses) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def scheduleCourse(courses: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec schedule_course(courses :: [[integer]]) :: integer\n  def schedule_course(courses) do\n    \n  end\nend",
+    "erlang": "-spec schedule_course(Courses :: [[integer()]]) -> integer().\nschedule_course(Courses) ->\n  .",
+    "racket": "(define/contract (schedule-course courses)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

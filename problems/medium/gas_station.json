@@ -843,5 +843,26 @@
       "input": "gas = [0, 0, 0, 0]\ncost = [0, 0, 0, 0]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int canCompleteCircuit(int[] gas, int[] cost) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def canCompleteCircuit(self, gas, cost):\n        \"\"\"\n        :type gas: List[int]\n        :type cost: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} gas\n * @param {number[]} cost\n * @return {number}\n */\nvar canCompleteCircuit = function(gas, cost) {\n    \n};",
+    "typescript": "function canCompleteCircuit(gas: number[], cost: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CanCompleteCircuit(int[] gas, int[] cost) {\n        \n    }\n}",
+    "c": "int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize) {\n    \n}",
+    "golang": "func canCompleteCircuit(gas []int, cost []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun canCompleteCircuit(gas: IntArray, cost: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_complete_circuit(gas: Vec<i32>, cost: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} gas\n# @param {Integer[]} cost\n# @return {Integer}\ndef can_complete_circuit(gas, cost)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $gas\n     * @param Integer[] $cost\n     * @return Integer\n     */\n    function canCompleteCircuit($gas, $cost) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int canCompleteCircuit(List<int> gas, List<int> cost) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canCompleteCircuit(gas: Array[Int], cost: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_complete_circuit(gas :: [integer], cost :: [integer]) :: integer\n  def can_complete_circuit(gas, cost) do\n    \n  end\nend",
+    "erlang": "-spec can_complete_circuit(Gas :: [integer()], Cost :: [integer()]) -> integer().\ncan_complete_circuit(Gas, Cost) ->\n  .",
+    "racket": "(define/contract (can-complete-circuit gas cost)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

@@ -625,5 +625,26 @@
       "input": "time = [20, 351, 256, 310, 360, 237]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numPairsDivisibleBy60(vector<int>& time) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numPairsDivisibleBy60(int[] time) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numPairsDivisibleBy60(self, time: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numPairsDivisibleBy60(self, time):\n        \"\"\"\n        :type time: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} time\n * @return {number}\n */\nvar numPairsDivisibleBy60 = function(time) {\n    \n};",
+    "typescript": "function numPairsDivisibleBy60(time: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumPairsDivisibleBy60(int[] time) {\n        \n    }\n}",
+    "c": "int numPairsDivisibleBy60(int* time, int timeSize) {\n    \n}",
+    "golang": "func numPairsDivisibleBy60(time []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numPairsDivisibleBy60(time: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numPairsDivisibleBy60(_ time: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_pairs_divisible_by60(time: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} time\n# @return {Integer}\ndef num_pairs_divisible_by60(time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $time\n     * @return Integer\n     */\n    function numPairsDivisibleBy60($time) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numPairsDivisibleBy60(List<int> time) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numPairsDivisibleBy60(time: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_pairs_divisible_by60(time :: [integer]) :: integer\n  def num_pairs_divisible_by60(time) do\n    \n  end\nend",
+    "erlang": "-spec num_pairs_divisible_by60(Time :: [integer()]) -> integer().\nnum_pairs_divisible_by60(Time) ->\n  .",
+    "racket": "(define/contract (num-pairs-divisible-by60 time)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

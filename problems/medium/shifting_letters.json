@@ -103613,5 +103613,26 @@
       "input": "s = \"leet\"\nshifts = [2, 3, 4, 5]",
       "output": "\"zqny\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string shiftingLetters(string s, vector<int>& shifts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String shiftingLetters(String s, int[] shifts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shiftingLetters(self, s: str, shifts: List[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def shiftingLetters(self, s, shifts):\n        \"\"\"\n        :type s: str\n        :type shifts: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[]} shifts\n * @return {string}\n */\nvar shiftingLetters = function(s, shifts) {\n    \n};",
+    "typescript": "function shiftingLetters(s: string, shifts: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ShiftingLetters(string s, int[] shifts) {\n        \n    }\n}",
+    "c": "char* shiftingLetters(char* s, int* shifts, int shiftsSize) {\n    \n}",
+    "golang": "func shiftingLetters(s string, shifts []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun shiftingLetters(s: String, shifts: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shiftingLetters(_ s: String, _ shifts: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shifting_letters(s: String, shifts: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[]} shifts\n# @return {String}\ndef shifting_letters(s, shifts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[] $shifts\n     * @return String\n     */\n    function shiftingLetters($s, $shifts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String shiftingLetters(String s, List<int> shifts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shiftingLetters(s: String, shifts: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shifting_letters(s :: String.t, shifts :: [integer]) :: String.t\n  def shifting_letters(s, shifts) do\n    \n  end\nend",
+    "erlang": "-spec shifting_letters(S :: unicode:unicode_binary(), Shifts :: [integer()]) -> unicode:unicode_binary().\nshifting_letters(S, Shifts) ->\n  .",
+    "racket": "(define/contract (shifting-letters s shifts)\n  (-> string? (listof exact-integer?) string?)\n  )"
+  }
 }

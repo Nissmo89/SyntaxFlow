@@ -702,5 +702,26 @@
       "input": "nums = [1]\nk = 1",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestOnes(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestOnes(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestOnes(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestOnes(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar longestOnes = function(nums, k) {\n    \n};",
+    "typescript": "function longestOnes(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestOnes(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int longestOnes(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func longestOnes(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestOnes(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestOnes(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_ones(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef longest_ones(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function longestOnes($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestOnes(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestOnes(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_ones(nums :: [integer], k :: integer) :: integer\n  def longest_ones(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec longest_ones(Nums :: [integer()], K :: integer()) -> integer().\nlongest_ones(Nums, K) ->\n  .",
+    "racket": "(define/contract (longest-ones nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

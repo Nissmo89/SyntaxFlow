@@ -4954,5 +4954,26 @@
       "input": "board = {\"elemType\": \"char\", \"value\": [[\"E\"], [\"E\"], [\"E\"], [\"E\"]]}\nclick = [1, 0]",
       "output": "[[\"B\"], [\"B\"], [\"B\"], [\"B\"]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {\n        \n    }\n};",
+    "java": "class Solution {\n    public char[][] updateBoard(char[][] board, int[] click) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def updateBoard(self, board, click):\n        \"\"\"\n        :type board: List[List[str]]\n        :type click: List[int]\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @param {number[]} click\n * @return {character[][]}\n */\nvar updateBoard = function(board, click) {\n    \n};",
+    "typescript": "function updateBoard(board: string[][], click: number[]): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public char[][] UpdateBoard(char[][] board, int[] click) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar** updateBoard(char** board, int boardSize, int* boardColSize, int* click, int clickSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func updateBoard(board [][]byte, click []int) [][]byte {\n    \n}",
+    "kotlin": "class Solution {\n    fun updateBoard(board: Array<CharArray>, click: IntArray): Array<CharArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func updateBoard(_ board: [[Character]], _ click: [Int]) -> [[Character]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn update_board(board: Vec<Vec<char>>, click: Vec<i32>) -> Vec<Vec<char>> {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @param {Integer[]} click\n# @return {Character[][]}\ndef update_board(board, click)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @param Integer[] $click\n     * @return String[][]\n     */\n    function updateBoard($board, $click) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> updateBoard(List<List<String>> board, List<int> click) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def updateBoard(board: Array[Array[Char]], click: Array[Int]): Array[Array[Char]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec update_board(board :: [[char]], click :: [integer]) :: [[char]]\n  def update_board(board, click) do\n    \n  end\nend",
+    "erlang": "-spec update_board(Board :: [[char()]], Click :: [integer()]) -> [[char()]].\nupdate_board(Board, Click) ->\n  .",
+    "racket": "(define/contract (update-board board click)\n  (-> (listof (listof char?)) (listof exact-integer?) (listof (listof char?)))\n  )"
+  }
 }

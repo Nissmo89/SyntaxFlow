@@ -594,5 +594,26 @@
       "input": "s = \"aab\"\ndictionary = [\"aaab\", \"aabb\", \"ab\"]",
       "output": "\"ab\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string findLongestWord(string s, vector<string>& dictionary) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String findLongestWord(String s, List<String> dictionary) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLongestWord(self, s: str, dictionary: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def findLongestWord(self, s, dictionary):\n        \"\"\"\n        :type s: str\n        :type dictionary: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} dictionary\n * @return {string}\n */\nvar findLongestWord = function(s, dictionary) {\n    \n};",
+    "typescript": "function findLongestWord(s: string, dictionary: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FindLongestWord(string s, IList<string> dictionary) {\n        \n    }\n}",
+    "c": "char* findLongestWord(char* s, char** dictionary, int dictionarySize) {\n    \n}",
+    "golang": "func findLongestWord(s string, dictionary []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLongestWord(s: String, dictionary: List<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLongestWord(_ s: String, _ dictionary: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_longest_word(s: String, dictionary: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} dictionary\n# @return {String}\ndef find_longest_word(s, dictionary)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $dictionary\n     * @return String\n     */\n    function findLongestWord($s, $dictionary) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String findLongestWord(String s, List<String> dictionary) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLongestWord(s: String, dictionary: List[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_longest_word(s :: String.t, dictionary :: [String.t]) :: String.t\n  def find_longest_word(s, dictionary) do\n    \n  end\nend",
+    "erlang": "-spec find_longest_word(S :: unicode:unicode_binary(), Dictionary :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nfind_longest_word(S, Dictionary) ->\n  .",
+    "racket": "(define/contract (find-longest-word s dictionary)\n  (-> string? (listof string?) string?)\n  )"
+  }
 }

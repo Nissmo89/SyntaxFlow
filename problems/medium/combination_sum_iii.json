@@ -384,5 +384,26 @@
       "input": "k = 2\nn = 18",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> combinationSum3(int k, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> combinationSum3(int k, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def combinationSum3(self, k: int, n: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def combinationSum3(self, k, n):\n        \"\"\"\n        :type k: int\n        :type n: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} k\n * @param {number} n\n * @return {number[][]}\n */\nvar combinationSum3 = function(k, n) {\n    \n};",
+    "typescript": "function combinationSum3(k: number, n: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> CombinationSum3(int k, int n) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** combinationSum3(int k, int n, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func combinationSum3(k int, n int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun combinationSum3(k: Int, n: Int): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func combinationSum3(_ k: Int, _ n: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn combination_sum3(k: i32, n: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} k\n# @param {Integer} n\n# @return {Integer[][]}\ndef combination_sum3(k, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $k\n     * @param Integer $n\n     * @return Integer[][]\n     */\n    function combinationSum3($k, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> combinationSum3(int k, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def combinationSum3(k: Int, n: Int): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec combination_sum3(k :: integer, n :: integer) :: [[integer]]\n  def combination_sum3(k, n) do\n    \n  end\nend",
+    "erlang": "-spec combination_sum3(K :: integer(), N :: integer()) -> [[integer()]].\ncombination_sum3(K, N) ->\n  .",
+    "racket": "(define/contract (combination-sum3 k n)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

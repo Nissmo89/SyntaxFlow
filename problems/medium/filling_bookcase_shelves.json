@@ -1272,5 +1272,26 @@
       "input": "books = {\"elemType\": \"int\", \"value\": [[1, 1], [2, 3], [2, 3], [1, 1]]}\nshelfWidth = 3",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minHeightShelves(int[][] books, int shelfWidth) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minHeightShelves(self, books: List[List[int]], shelfWidth: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minHeightShelves(self, books, shelfWidth):\n        \"\"\"\n        :type books: List[List[int]]\n        :type shelfWidth: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} books\n * @param {number} shelfWidth\n * @return {number}\n */\nvar minHeightShelves = function(books, shelfWidth) {\n    \n};",
+    "typescript": "function minHeightShelves(books: number[][], shelfWidth: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinHeightShelves(int[][] books, int shelfWidth) {\n        \n    }\n}",
+    "c": "int minHeightShelves(int** books, int booksSize, int* booksColSize, int shelfWidth) {\n    \n}",
+    "golang": "func minHeightShelves(books [][]int, shelfWidth int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minHeightShelves(books: Array<IntArray>, shelfWidth: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minHeightShelves(_ books: [[Int]], _ shelfWidth: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_height_shelves(books: Vec<Vec<i32>>, shelf_width: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} books\n# @param {Integer} shelf_width\n# @return {Integer}\ndef min_height_shelves(books, shelf_width)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $books\n     * @param Integer $shelfWidth\n     * @return Integer\n     */\n    function minHeightShelves($books, $shelfWidth) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minHeightShelves(List<List<int>> books, int shelfWidth) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minHeightShelves(books: Array[Array[Int]], shelfWidth: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_height_shelves(books :: [[integer]], shelf_width :: integer) :: integer\n  def min_height_shelves(books, shelf_width) do\n    \n  end\nend",
+    "erlang": "-spec min_height_shelves(Books :: [[integer()]], ShelfWidth :: integer()) -> integer().\nmin_height_shelves(Books, ShelfWidth) ->\n  .",
+    "racket": "(define/contract (min-height-shelves books shelfWidth)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  }
 }

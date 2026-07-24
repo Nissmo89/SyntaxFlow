@@ -1556,5 +1556,26 @@
       "input": "grid = {\"elemType\": \"int\", \"value\": [[4, 9, 2], [3, 5, 7], [8, 1, 6]]}",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numMagicSquaresInside(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numMagicSquaresInside(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numMagicSquaresInside(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numMagicSquaresInside(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar numMagicSquaresInside = function(grid) {\n    \n};",
+    "typescript": "function numMagicSquaresInside(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumMagicSquaresInside(int[][] grid) {\n        \n    }\n}",
+    "c": "int numMagicSquaresInside(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func numMagicSquaresInside(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numMagicSquaresInside(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numMagicSquaresInside(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_magic_squares_inside(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef num_magic_squares_inside(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function numMagicSquaresInside($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numMagicSquaresInside(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numMagicSquaresInside(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_magic_squares_inside(grid :: [[integer]]) :: integer\n  def num_magic_squares_inside(grid) do\n    \n  end\nend",
+    "erlang": "-spec num_magic_squares_inside(Grid :: [[integer()]]) -> integer().\nnum_magic_squares_inside(Grid) ->\n  .",
+    "racket": "(define/contract (num-magic-squares-inside grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

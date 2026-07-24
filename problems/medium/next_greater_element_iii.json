@@ -400,5 +400,26 @@
       "input": "n = 123",
       "output": "132"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int nextGreaterElement(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int nextGreaterElement(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def nextGreaterElement(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def nextGreaterElement(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar nextGreaterElement = function(n) {\n    \n};",
+    "typescript": "function nextGreaterElement(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NextGreaterElement(int n) {\n        \n    }\n}",
+    "c": "int nextGreaterElement(int n) {\n    \n}",
+    "golang": "func nextGreaterElement(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun nextGreaterElement(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func nextGreaterElement(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn next_greater_element(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef next_greater_element(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function nextGreaterElement($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int nextGreaterElement(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def nextGreaterElement(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec next_greater_element(n :: integer) :: integer\n  def next_greater_element(n) do\n    \n  end\nend",
+    "erlang": "-spec next_greater_element(N :: integer()) -> integer().\nnext_greater_element(N) ->\n  .",
+    "racket": "(define/contract (next-greater-element n)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -699,5 +699,26 @@
       "input": "arr = [1, 2, 0]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxChunksToSorted(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxChunksToSorted(self, arr: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxChunksToSorted(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar maxChunksToSorted = function(arr) {\n    \n};",
+    "typescript": "function maxChunksToSorted(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "c": "int maxChunksToSorted(int* arr, int arrSize) {\n    \n}",
+    "golang": "func maxChunksToSorted(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxChunksToSorted(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxChunksToSorted(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_chunks_to_sorted(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef max_chunks_to_sorted(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function maxChunksToSorted($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxChunksToSorted(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxChunksToSorted(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_chunks_to_sorted(arr :: [integer]) :: integer\n  def max_chunks_to_sorted(arr) do\n    \n  end\nend",
+    "erlang": "-spec max_chunks_to_sorted(Arr :: [integer()]) -> integer().\nmax_chunks_to_sorted(Arr) ->\n  .",
+    "racket": "(define/contract (max-chunks-to-sorted arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

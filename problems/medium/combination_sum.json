@@ -600,5 +600,26 @@
       "input": "candidates = [8, 2, 3]\ntarget = 8",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> combinationSum(int[] candidates, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def combinationSum(self, candidates, target):\n        \"\"\"\n        :type candidates: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum = function(candidates, target) {\n    \n};",
+    "typescript": "function combinationSum(candidates: number[], target: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> CombinationSum(int[] candidates, int target) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func combinationSum(candidates []int, target int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} candidates\n# @param {Integer} target\n# @return {Integer[][]}\ndef combination_sum(candidates, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $candidates\n     * @param Integer $target\n     * @return Integer[][]\n     */\n    function combinationSum($candidates, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> combinationSum(List<int> candidates, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def combinationSum(candidates: Array[Int], target: Int): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec combination_sum(candidates :: [integer], target :: integer) :: [[integer]]\n  def combination_sum(candidates, target) do\n    \n  end\nend",
+    "erlang": "-spec combination_sum(Candidates :: [integer()], Target :: integer()) -> [[integer()]].\ncombination_sum(Candidates, Target) ->\n  .",
+    "racket": "(define/contract (combination-sum candidates target)\n  (-> (listof exact-integer?) exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

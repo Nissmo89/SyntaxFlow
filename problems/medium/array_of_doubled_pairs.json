@@ -648,5 +648,26 @@
       "input": "arr = [-3, -4, -1, -2, 0, 3, -4, -6, 4, 8, -2, 0, 3]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canReorderDoubled(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canReorderDoubled(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canReorderDoubled(self, arr: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canReorderDoubled(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {boolean}\n */\nvar canReorderDoubled = function(arr) {\n    \n};",
+    "typescript": "function canReorderDoubled(arr: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanReorderDoubled(int[] arr) {\n        \n    }\n}",
+    "c": "bool canReorderDoubled(int* arr, int arrSize) {\n    \n}",
+    "golang": "func canReorderDoubled(arr []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canReorderDoubled(arr: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canReorderDoubled(_ arr: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_reorder_doubled(arr: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Boolean}\ndef can_reorder_doubled(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Boolean\n     */\n    function canReorderDoubled($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canReorderDoubled(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canReorderDoubled(arr: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_reorder_doubled(arr :: [integer]) :: boolean\n  def can_reorder_doubled(arr) do\n    \n  end\nend",
+    "erlang": "-spec can_reorder_doubled(Arr :: [integer()]) -> boolean().\ncan_reorder_doubled(Arr) ->\n  .",
+    "racket": "(define/contract (can-reorder-doubled arr)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

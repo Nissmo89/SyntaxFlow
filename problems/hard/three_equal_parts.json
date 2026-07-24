@@ -650,5 +650,26 @@
       "input": "arr = [1, 0, 0, 1, 0, 0, 1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> threeEqualParts(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] threeEqualParts(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def threeEqualParts(self, arr: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def threeEqualParts(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number[]}\n */\nvar threeEqualParts = function(arr) {\n    \n};",
+    "typescript": "function threeEqualParts(arr: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ThreeEqualParts(int[] arr) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* threeEqualParts(int* arr, int arrSize, int* returnSize) {\n    \n}",
+    "golang": "func threeEqualParts(arr []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun threeEqualParts(arr: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func threeEqualParts(_ arr: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn three_equal_parts(arr: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer[]}\ndef three_equal_parts(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer[]\n     */\n    function threeEqualParts($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> threeEqualParts(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def threeEqualParts(arr: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec three_equal_parts(arr :: [integer]) :: [integer]\n  def three_equal_parts(arr) do\n    \n  end\nend",
+    "erlang": "-spec three_equal_parts(Arr :: [integer()]) -> [integer()].\nthree_equal_parts(Arr) ->\n  .",
+    "racket": "(define/contract (three-equal-parts arr)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

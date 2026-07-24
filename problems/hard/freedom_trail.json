@@ -398,5 +398,26 @@
       "input": "ring = \"pqrst\"\nkey = \"tsp\"",
       "output": "7"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findRotateSteps(string ring, string key) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findRotateSteps(String ring, String key) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRotateSteps(self, ring: str, key: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def findRotateSteps(self, ring, key):\n        \"\"\"\n        :type ring: str\n        :type key: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} ring\n * @param {string} key\n * @return {number}\n */\nvar findRotateSteps = function(ring, key) {\n    \n};",
+    "typescript": "function findRotateSteps(ring: string, key: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindRotateSteps(string ring, string key) {\n        \n    }\n}",
+    "c": "int findRotateSteps(char* ring, char* key) {\n    \n}",
+    "golang": "func findRotateSteps(ring string, key string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRotateSteps(ring: String, key: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRotateSteps(_ ring: String, _ key: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_rotate_steps(ring: String, key: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} ring\n# @param {String} key\n# @return {Integer}\ndef find_rotate_steps(ring, key)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $ring\n     * @param String $key\n     * @return Integer\n     */\n    function findRotateSteps($ring, $key) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findRotateSteps(String ring, String key) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRotateSteps(ring: String, key: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_rotate_steps(ring :: String.t, key :: String.t) :: integer\n  def find_rotate_steps(ring, key) do\n    \n  end\nend",
+    "erlang": "-spec find_rotate_steps(Ring :: unicode:unicode_binary(), Key :: unicode:unicode_binary()) -> integer().\nfind_rotate_steps(Ring, Key) ->\n  .",
+    "racket": "(define/contract (find-rotate-steps ring key)\n  (-> string? string? exact-integer?)\n  )"
+  }
 }

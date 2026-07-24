@@ -521,5 +521,26 @@
       "input": "ages = [20, 20]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numFriendRequests(vector<int>& ages) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numFriendRequests(int[] ages) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numFriendRequests(self, ages: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numFriendRequests(self, ages):\n        \"\"\"\n        :type ages: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} ages\n * @return {number}\n */\nvar numFriendRequests = function(ages) {\n    \n};",
+    "typescript": "function numFriendRequests(ages: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumFriendRequests(int[] ages) {\n        \n    }\n}",
+    "c": "int numFriendRequests(int* ages, int agesSize) {\n    \n}",
+    "golang": "func numFriendRequests(ages []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numFriendRequests(ages: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numFriendRequests(_ ages: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_friend_requests(ages: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} ages\n# @return {Integer}\ndef num_friend_requests(ages)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $ages\n     * @return Integer\n     */\n    function numFriendRequests($ages) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numFriendRequests(List<int> ages) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numFriendRequests(ages: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_friend_requests(ages :: [integer]) :: integer\n  def num_friend_requests(ages) do\n    \n  end\nend",
+    "erlang": "-spec num_friend_requests(Ages :: [integer()]) -> integer().\nnum_friend_requests(Ages) ->\n  .",
+    "racket": "(define/contract (num-friend-requests ages)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

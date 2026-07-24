@@ -386,5 +386,26 @@
       "input": "s = \"1a2B3\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> letterCasePermutation(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> letterCasePermutation(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def letterCasePermutation(self, s: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def letterCasePermutation(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar letterCasePermutation = function(s) {\n    \n};",
+    "typescript": "function letterCasePermutation(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> LetterCasePermutation(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** letterCasePermutation(char* s, int* returnSize) {\n    \n}",
+    "golang": "func letterCasePermutation(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun letterCasePermutation(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func letterCasePermutation(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn letter_case_permutation(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef letter_case_permutation(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function letterCasePermutation($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> letterCasePermutation(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def letterCasePermutation(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec letter_case_permutation(s :: String.t) :: [String.t]\n  def letter_case_permutation(s) do\n    \n  end\nend",
+    "erlang": "-spec letter_case_permutation(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nletter_case_permutation(S) ->\n  .",
+    "racket": "(define/contract (letter-case-permutation s)\n  (-> string? (listof string?))\n  )"
+  }
 }

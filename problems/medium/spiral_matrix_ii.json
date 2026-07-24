@@ -2205,5 +2205,26 @@
       "input": "n = 8",
       "output": "[[1, 2, 3, 4, 5, 6, 7, 8], [28, 29, 30, 31, 32, 33, 34, 9], [27, 48, 49, 50, 51, 52, 35, 10], [26, 47, 60, 61, 62, 53, 36, 11], [25, 46, 59, 64, 63, 54, 37, 12], [24, 45, 58, 57, 56, 55, 38, 13], [23, 44, 43, 42, 41, 40, 39, 14], [22, 21, 20, 19, 18, 17, 16, 15]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> generateMatrix(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] generateMatrix(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def generateMatrix(self, n: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def generateMatrix(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number[][]}\n */\nvar generateMatrix = function(n) {\n    \n};",
+    "typescript": "function generateMatrix(n: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] GenerateMatrix(int n) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** generateMatrix(int n, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func generateMatrix(n int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun generateMatrix(n: Int): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func generateMatrix(_ n: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn generate_matrix(n: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer[][]}\ndef generate_matrix(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer[][]\n     */\n    function generateMatrix($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> generateMatrix(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def generateMatrix(n: Int): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec generate_matrix(n :: integer) :: [[integer]]\n  def generate_matrix(n) do\n    \n  end\nend",
+    "erlang": "-spec generate_matrix(N :: integer()) -> [[integer()]].\ngenerate_matrix(N) ->\n  .",
+    "racket": "(define/contract (generate-matrix n)\n  (-> exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

@@ -647,5 +647,26 @@
       "input": "prices = [1, 2, 3, 4, 5]\nfee = 1",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, int fee) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int[] prices, int fee) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfit(self, prices, fee):\n        \"\"\"\n        :type prices: List[int]\n        :type fee: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} prices\n * @param {number} fee\n * @return {number}\n */\nvar maxProfit = function(prices, fee) {\n    \n};",
+    "typescript": "function maxProfit(prices: number[], fee: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfit(int[] prices, int fee) {\n        \n    }\n}",
+    "c": "int maxProfit(int* prices, int pricesSize, int fee) {\n    \n}",
+    "golang": "func maxProfit(prices []int, fee int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfit(prices: IntArray, fee: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfit(_ prices: [Int], _ fee: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit(prices: Vec<i32>, fee: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} prices\n# @param {Integer} fee\n# @return {Integer}\ndef max_profit(prices, fee)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $prices\n     * @param Integer $fee\n     * @return Integer\n     */\n    function maxProfit($prices, $fee) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfit(List<int> prices, int fee) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfit(prices: Array[Int], fee: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit(prices :: [integer], fee :: integer) :: integer\n  def max_profit(prices, fee) do\n    \n  end\nend",
+    "erlang": "-spec max_profit(Prices :: [integer()], Fee :: integer()) -> integer().\nmax_profit(Prices, Fee) ->\n  .",
+    "racket": "(define/contract (max-profit prices fee)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

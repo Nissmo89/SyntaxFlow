@@ -799,5 +799,26 @@
       "input": "deck = [9, 11, 120, 128, 195]",
       "output": "[9, 195, 11, 128, 120]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> deckRevealedIncreasing(vector<int>& deck) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] deckRevealedIncreasing(int[] deck) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def deckRevealedIncreasing(self, deck):\n        \"\"\"\n        :type deck: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} deck\n * @return {number[]}\n */\nvar deckRevealedIncreasing = function(deck) {\n    \n};",
+    "typescript": "function deckRevealedIncreasing(deck: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] DeckRevealedIncreasing(int[] deck) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* deckRevealedIncreasing(int* deck, int deckSize, int* returnSize) {\n    \n}",
+    "golang": "func deckRevealedIncreasing(deck []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun deckRevealedIncreasing(deck: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func deckRevealedIncreasing(_ deck: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn deck_revealed_increasing(deck: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} deck\n# @return {Integer[]}\ndef deck_revealed_increasing(deck)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $deck\n     * @return Integer[]\n     */\n    function deckRevealedIncreasing($deck) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> deckRevealedIncreasing(List<int> deck) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def deckRevealedIncreasing(deck: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec deck_revealed_increasing(deck :: [integer]) :: [integer]\n  def deck_revealed_increasing(deck) do\n    \n  end\nend",
+    "erlang": "-spec deck_revealed_increasing(Deck :: [integer()]) -> [integer()].\ndeck_revealed_increasing(Deck) ->\n  .",
+    "racket": "(define/contract (deck-revealed-increasing deck)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

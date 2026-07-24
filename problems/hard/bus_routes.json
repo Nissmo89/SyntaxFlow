@@ -953,5 +953,26 @@
       "input": "routes = [[11, 12, 13], [1, 2, 11], [13, 14, 15]]\nsource = 1\ntarget = 15",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numBusesToDestination(int[][] routes, int source, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numBusesToDestination(self, routes, source, target):\n        \"\"\"\n        :type routes: List[List[int]]\n        :type source: int\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} routes\n * @param {number} source\n * @param {number} target\n * @return {number}\n */\nvar numBusesToDestination = function(routes, source, target) {\n    \n};",
+    "typescript": "function numBusesToDestination(routes: number[][], source: number, target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumBusesToDestination(int[][] routes, int source, int target) {\n        \n    }\n}",
+    "c": "int numBusesToDestination(int** routes, int routesSize, int* routesColSize, int source, int target) {\n    \n}",
+    "golang": "func numBusesToDestination(routes [][]int, source int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numBusesToDestination(_ routes: [[Int]], _ source: Int, _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_buses_to_destination(routes: Vec<Vec<i32>>, source: i32, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} routes\n# @param {Integer} source\n# @param {Integer} target\n# @return {Integer}\ndef num_buses_to_destination(routes, source, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $routes\n     * @param Integer $source\n     * @param Integer $target\n     * @return Integer\n     */\n    function numBusesToDestination($routes, $source, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numBusesToDestination(List<List<int>> routes, int source, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numBusesToDestination(routes: Array[Array[Int]], source: Int, target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_buses_to_destination(routes :: [[integer]], source :: integer, target :: integer) :: integer\n  def num_buses_to_destination(routes, source, target) do\n    \n  end\nend",
+    "erlang": "-spec num_buses_to_destination(Routes :: [[integer()]], Source :: integer(), Target :: integer()) -> integer().\nnum_buses_to_destination(Routes, Source, Target) ->\n  .",
+    "racket": "(define/contract (num-buses-to-destination routes source target)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

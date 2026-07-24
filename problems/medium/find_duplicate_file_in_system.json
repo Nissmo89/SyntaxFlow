@@ -496,5 +496,26 @@
       "input": "paths = [\"root/a 1.txt(a) 2.txt(b) 3.txt(c)\", \"root/b 4.txt(d) 5.txt(e)\", \"root/c 6.txt(f)\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> findDuplicate(vector<string>& paths) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> findDuplicate(String[] paths) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findDuplicate(self, paths: List[str]) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def findDuplicate(self, paths):\n        \"\"\"\n        :type paths: List[str]\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} paths\n * @return {string[][]}\n */\nvar findDuplicate = function(paths) {\n    \n};",
+    "typescript": "function findDuplicate(paths: string[]): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> FindDuplicate(string[] paths) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** findDuplicate(char** paths, int pathsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func findDuplicate(paths []string) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findDuplicate(paths: Array<String>): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findDuplicate(_ paths: [String]) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_duplicate(paths: Vec<String>) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} paths\n# @return {String[][]}\ndef find_duplicate(paths)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $paths\n     * @return String[][]\n     */\n    function findDuplicate($paths) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> findDuplicate(List<String> paths) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findDuplicate(paths: Array[String]): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_duplicate(paths :: [String.t]) :: [[String.t]]\n  def find_duplicate(paths) do\n    \n  end\nend",
+    "erlang": "-spec find_duplicate(Paths :: [unicode:unicode_binary()]) -> [[unicode:unicode_binary()]].\nfind_duplicate(Paths) ->\n  .",
+    "racket": "(define/contract (find-duplicate paths)\n  (-> (listof string?) (listof (listof string?)))\n  )"
+  }
 }

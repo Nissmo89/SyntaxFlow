@@ -433,5 +433,26 @@
       "input": "s = \"123\"",
       "output": "[]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> restoreIpAddresses(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> restoreIpAddresses(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def restoreIpAddresses(self, s: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def restoreIpAddresses(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar restoreIpAddresses = function(s) {\n    \n};",
+    "typescript": "function restoreIpAddresses(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> RestoreIpAddresses(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** restoreIpAddresses(char* s, int* returnSize) {\n    \n}",
+    "golang": "func restoreIpAddresses(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun restoreIpAddresses(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func restoreIpAddresses(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn restore_ip_addresses(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef restore_ip_addresses(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function restoreIpAddresses($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> restoreIpAddresses(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def restoreIpAddresses(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec restore_ip_addresses(s :: String.t) :: [String.t]\n  def restore_ip_addresses(s) do\n    \n  end\nend",
+    "erlang": "-spec restore_ip_addresses(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nrestore_ip_addresses(S) ->\n  .",
+    "racket": "(define/contract (restore-ip-addresses s)\n  (-> string? (listof string?))\n  )"
+  }
 }

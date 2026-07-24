@@ -405,5 +405,26 @@
       "input": "n = 2\npresses = 2",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int flipLights(int n, int presses) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int flipLights(int n, int presses) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def flipLights(self, n: int, presses: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def flipLights(self, n, presses):\n        \"\"\"\n        :type n: int\n        :type presses: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} presses\n * @return {number}\n */\nvar flipLights = function(n, presses) {\n    \n};",
+    "typescript": "function flipLights(n: number, presses: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FlipLights(int n, int presses) {\n        \n    }\n}",
+    "c": "int flipLights(int n, int presses) {\n    \n}",
+    "golang": "func flipLights(n int, presses int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun flipLights(n: Int, presses: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func flipLights(_ n: Int, _ presses: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn flip_lights(n: i32, presses: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} presses\n# @return {Integer}\ndef flip_lights(n, presses)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $presses\n     * @return Integer\n     */\n    function flipLights($n, $presses) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int flipLights(int n, int presses) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def flipLights(n: Int, presses: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec flip_lights(n :: integer, presses :: integer) :: integer\n  def flip_lights(n, presses) do\n    \n  end\nend",
+    "erlang": "-spec flip_lights(N :: integer(), Presses :: integer()) -> integer().\nflip_lights(N, Presses) ->\n  .",
+    "racket": "(define/contract (flip-lights n presses)\n  (-> exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

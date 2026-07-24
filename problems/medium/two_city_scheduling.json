@@ -1165,5 +1165,26 @@
       "input": "costs = [[90, 10], [80, 20], [70, 30], [60, 40]]",
       "output": "160"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int twoCitySchedCost(vector<vector<int>>& costs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int twoCitySchedCost(int[][] costs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def twoCitySchedCost(self, costs: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def twoCitySchedCost(self, costs):\n        \"\"\"\n        :type costs: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} costs\n * @return {number}\n */\nvar twoCitySchedCost = function(costs) {\n    \n};",
+    "typescript": "function twoCitySchedCost(costs: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TwoCitySchedCost(int[][] costs) {\n        \n    }\n}",
+    "c": "int twoCitySchedCost(int** costs, int costsSize, int* costsColSize) {\n    \n}",
+    "golang": "func twoCitySchedCost(costs [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun twoCitySchedCost(costs: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func twoCitySchedCost(_ costs: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn two_city_sched_cost(costs: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} costs\n# @return {Integer}\ndef two_city_sched_cost(costs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $costs\n     * @return Integer\n     */\n    function twoCitySchedCost($costs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int twoCitySchedCost(List<List<int>> costs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def twoCitySchedCost(costs: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec two_city_sched_cost(costs :: [[integer]]) :: integer\n  def two_city_sched_cost(costs) do\n    \n  end\nend",
+    "erlang": "-spec two_city_sched_cost(Costs :: [[integer()]]) -> integer().\ntwo_city_sched_cost(Costs) ->\n  .",
+    "racket": "(define/contract (two-city-sched-cost costs)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

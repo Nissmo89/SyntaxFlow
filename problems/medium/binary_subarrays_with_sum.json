@@ -680,5 +680,26 @@
       "input": "nums = [1, 0, 1, 1, 0, 1]\ngoal = 3",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numSubarraysWithSum(vector<int>& nums, int goal) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSubarraysWithSum(int[] nums, int goal) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSubarraysWithSum(self, nums, goal):\n        \"\"\"\n        :type nums: List[int]\n        :type goal: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} goal\n * @return {number}\n */\nvar numSubarraysWithSum = function(nums, goal) {\n    \n};",
+    "typescript": "function numSubarraysWithSum(nums: number[], goal: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSubarraysWithSum(int[] nums, int goal) {\n        \n    }\n}",
+    "c": "int numSubarraysWithSum(int* nums, int numsSize, int goal) {\n    \n}",
+    "golang": "func numSubarraysWithSum(nums []int, goal int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSubarraysWithSum(nums: IntArray, goal: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSubarraysWithSum(_ nums: [Int], _ goal: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_subarrays_with_sum(nums: Vec<i32>, goal: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} goal\n# @return {Integer}\ndef num_subarrays_with_sum(nums, goal)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $goal\n     * @return Integer\n     */\n    function numSubarraysWithSum($nums, $goal) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSubarraysWithSum(List<int> nums, int goal) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSubarraysWithSum(nums: Array[Int], goal: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_subarrays_with_sum(nums :: [integer], goal :: integer) :: integer\n  def num_subarrays_with_sum(nums, goal) do\n    \n  end\nend",
+    "erlang": "-spec num_subarrays_with_sum(Nums :: [integer()], Goal :: integer()) -> integer().\nnum_subarrays_with_sum(Nums, Goal) ->\n  .",
+    "racket": "(define/contract (num-subarrays-with-sum nums goal)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

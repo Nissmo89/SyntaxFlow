@@ -541,5 +541,26 @@
       "input": "s = \"abca\"",
       "output": "[4]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> partitionLabels(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> partitionLabels(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def partitionLabels(self, s: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def partitionLabels(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number[]}\n */\nvar partitionLabels = function(s) {\n    \n};",
+    "typescript": "function partitionLabels(s: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> PartitionLabels(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* partitionLabels(char* s, int* returnSize) {\n    \n}",
+    "golang": "func partitionLabels(s string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun partitionLabels(s: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func partitionLabels(_ s: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn partition_labels(s: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer[]}\ndef partition_labels(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer[]\n     */\n    function partitionLabels($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> partitionLabels(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def partitionLabels(s: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec partition_labels(s :: String.t) :: [integer]\n  def partition_labels(s) do\n    \n  end\nend",
+    "erlang": "-spec partition_labels(S :: unicode:unicode_binary()) -> [integer()].\npartition_labels(S) ->\n  .",
+    "racket": "(define/contract (partition-labels s)\n  (-> string? (listof exact-integer?))\n  )"
+  }
 }

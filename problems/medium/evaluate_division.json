@@ -1532,5 +1532,26 @@
       "input": "equations = [[\"a\", \"b\"], [\"b\", \"c\"], [\"c\", \"d\"]]\nvalues = [2, 3, 4]\nqueries = [[\"a\", \"d\"], [\"d\", \"a\"], [\"b\", \"d\"], [\"a\", \"c\"]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:\n        ",
+    "python": "class Solution(object):\n    def calcEquation(self, equations, values, queries):\n        \"\"\"\n        :type equations: List[List[str]]\n        :type values: List[float]\n        :type queries: List[List[str]]\n        :rtype: List[float]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[][]} equations\n * @param {number[]} values\n * @param {string[][]} queries\n * @return {number[]}\n */\nvar calcEquation = function(equations, values, queries) {\n    \n};",
+    "typescript": "function calcEquation(equations: string[][], values: number[], queries: string[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public double[] CalcEquation(IList<IList<string>> equations, double[] values, IList<IList<string>> queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\ndouble* calcEquation(char*** equations, int equationsSize, int* equationsColSize, double* values, int valuesSize, char*** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func calcEquation(equations [][]string, values []float64, queries [][]string) []float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun calcEquation(equations: List<List<String>>, values: DoubleArray, queries: List<List<String>>): DoubleArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calcEquation(_ equations: [[String]], _ values: [Double], _ queries: [[String]]) -> [Double] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn calc_equation(equations: Vec<Vec<String>>, values: Vec<f64>, queries: Vec<Vec<String>>) -> Vec<f64> {\n        \n    }\n}",
+    "ruby": "# @param {String[][]} equations\n# @param {Float[]} values\n# @param {String[][]} queries\n# @return {Float[]}\ndef calc_equation(equations, values, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $equations\n     * @param Float[] $values\n     * @param String[][] $queries\n     * @return Float[]\n     */\n    function calcEquation($equations, $values, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<double> calcEquation(List<List<String>> equations, List<double> values, List<List<String>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calcEquation(equations: List[List[String]], values: Array[Double], queries: List[List[String]]): Array[Double] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec calc_equation(equations :: [[String.t]], values :: [float], queries :: [[String.t]]) :: [float]\n  def calc_equation(equations, values, queries) do\n    \n  end\nend",
+    "erlang": "-spec calc_equation(Equations :: [[unicode:unicode_binary()]], Values :: [float()], Queries :: [[unicode:unicode_binary()]]) -> [float()].\ncalc_equation(Equations, Values, Queries) ->\n  .",
+    "racket": "(define/contract (calc-equation equations values queries)\n  (-> (listof (listof string?)) (listof flonum?) (listof (listof string?)) (listof flonum?))\n  )"
+  }
 }

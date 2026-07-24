@@ -458,5 +458,26 @@
       "input": "cpdomains = [\"100 alpha.com\", \"200 beta.com\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> subdomainVisits(vector<string>& cpdomains) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> subdomainVisits(String[] cpdomains) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def subdomainVisits(self, cpdomains):\n        \"\"\"\n        :type cpdomains: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} cpdomains\n * @return {string[]}\n */\nvar subdomainVisits = function(cpdomains) {\n    \n};",
+    "typescript": "function subdomainVisits(cpdomains: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> SubdomainVisits(string[] cpdomains) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** subdomainVisits(char** cpdomains, int cpdomainsSize, int* returnSize) {\n    \n}",
+    "golang": "func subdomainVisits(cpdomains []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun subdomainVisits(cpdomains: Array<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func subdomainVisits(_ cpdomains: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn subdomain_visits(cpdomains: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} cpdomains\n# @return {String[]}\ndef subdomain_visits(cpdomains)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $cpdomains\n     * @return String[]\n     */\n    function subdomainVisits($cpdomains) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> subdomainVisits(List<String> cpdomains) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def subdomainVisits(cpdomains: Array[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec subdomain_visits(cpdomains :: [String.t]) :: [String.t]\n  def subdomain_visits(cpdomains) do\n    \n  end\nend",
+    "erlang": "-spec subdomain_visits(Cpdomains :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nsubdomain_visits(Cpdomains) ->\n  .",
+    "racket": "(define/contract (subdomain-visits cpdomains)\n  (-> (listof string?) (listof string?))\n  )"
+  }
 }

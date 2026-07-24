@@ -560,5 +560,26 @@
       "input": "words = [\"a\", \"b\", \"c\", \"d\"]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numSpecialEquivGroups(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSpecialEquivGroups(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSpecialEquivGroups(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSpecialEquivGroups(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar numSpecialEquivGroups = function(words) {\n    \n};",
+    "typescript": "function numSpecialEquivGroups(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSpecialEquivGroups(string[] words) {\n        \n    }\n}",
+    "c": "int numSpecialEquivGroups(char** words, int wordsSize) {\n    \n}",
+    "golang": "func numSpecialEquivGroups(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSpecialEquivGroups(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSpecialEquivGroups(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_special_equiv_groups(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef num_special_equiv_groups(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function numSpecialEquivGroups($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSpecialEquivGroups(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSpecialEquivGroups(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_special_equiv_groups(words :: [String.t]) :: integer\n  def num_special_equiv_groups(words) do\n    \n  end\nend",
+    "erlang": "-spec num_special_equiv_groups(Words :: [unicode:unicode_binary()]) -> integer().\nnum_special_equiv_groups(Words) ->\n  .",
+    "racket": "(define/contract (num-special-equiv-groups words)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

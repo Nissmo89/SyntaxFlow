@@ -736,5 +736,26 @@
       "input": "nums1 = [5, 5, 5]\nnums2 = [5, 5]\nk = 5",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def kSmallestPairs(self, nums1, nums2, k):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :type k: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @param {number} k\n * @return {number[][]}\n */\nvar kSmallestPairs = function(nums1, nums2, k) {\n    \n};",
+    "typescript": "function kSmallestPairs(nums1: number[], nums2: number[], k: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> KSmallestPairs(int[] nums1, int[] nums2, int k) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** kSmallestPairs(int* nums1, int nums1Size, int* nums2, int nums2Size, int k, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun kSmallestPairs(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func kSmallestPairs(_ nums1: [Int], _ nums2: [Int], _ k: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @param {Integer} k\n# @return {Integer[][]}\ndef k_smallest_pairs(nums1, nums2, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @param Integer $k\n     * @return Integer[][]\n     */\n    function kSmallestPairs($nums1, $nums2, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> kSmallestPairs(List<int> nums1, List<int> nums2, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def kSmallestPairs(nums1: Array[Int], nums2: Array[Int], k: Int): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec k_smallest_pairs(nums1 :: [integer], nums2 :: [integer], k :: integer) :: [[integer]]\n  def k_smallest_pairs(nums1, nums2, k) do\n    \n  end\nend",
+    "erlang": "-spec k_smallest_pairs(Nums1 :: [integer()], Nums2 :: [integer()], K :: integer()) -> [[integer()]].\nk_smallest_pairs(Nums1, Nums2, K) ->\n  .",
+    "racket": "(define/contract (k-smallest-pairs nums1 nums2 k)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

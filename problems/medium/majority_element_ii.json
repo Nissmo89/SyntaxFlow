@@ -778,5 +778,26 @@
       "input": "nums = [-10, -10, -10, 7, 7, 7, 8, 9, 10]",
       "output": "[]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> majorityElement(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> majorityElement(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def majorityElement(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def majorityElement(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar majorityElement = function(nums) {\n    \n};",
+    "typescript": "function majorityElement(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> MajorityElement(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* majorityElement(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func majorityElement(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun majorityElement(nums: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func majorityElement(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn majority_element(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef majority_element(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function majorityElement($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> majorityElement(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def majorityElement(nums: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec majority_element(nums :: [integer]) :: [integer]\n  def majority_element(nums) do\n    \n  end\nend",
+    "erlang": "-spec majority_element(Nums :: [integer()]) -> [integer()].\nmajority_element(Nums) ->\n  .",
+    "racket": "(define/contract (majority-element nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

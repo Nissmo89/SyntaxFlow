@@ -1277,5 +1277,26 @@
       "input": "obstacleGrid = {\"value\": [[0], [1], [0], [0]]}",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int uniquePathsWithObstacles(int[][] obstacleGrid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def uniquePathsWithObstacles(self, obstacleGrid):\n        \"\"\"\n        :type obstacleGrid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} obstacleGrid\n * @return {number}\n */\nvar uniquePathsWithObstacles = function(obstacleGrid) {\n    \n};",
+    "typescript": "function uniquePathsWithObstacles(obstacleGrid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int UniquePathsWithObstacles(int[][] obstacleGrid) {\n        \n    }\n}",
+    "c": "int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize, int* obstacleGridColSize) {\n    \n}",
+    "golang": "func uniquePathsWithObstacles(obstacleGrid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun uniquePathsWithObstacles(obstacleGrid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} obstacle_grid\n# @return {Integer}\ndef unique_paths_with_obstacles(obstacle_grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $obstacleGrid\n     * @return Integer\n     */\n    function uniquePathsWithObstacles($obstacleGrid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int uniquePathsWithObstacles(List<List<int>> obstacleGrid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uniquePathsWithObstacles(obstacleGrid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec unique_paths_with_obstacles(obstacle_grid :: [[integer]]) :: integer\n  def unique_paths_with_obstacles(obstacle_grid) do\n    \n  end\nend",
+    "erlang": "-spec unique_paths_with_obstacles(ObstacleGrid :: [[integer()]]) -> integer().\nunique_paths_with_obstacles(ObstacleGrid) ->\n  .",
+    "racket": "(define/contract (unique-paths-with-obstacles obstacleGrid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

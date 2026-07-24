@@ -684,5 +684,26 @@
       "input": "nums = [5, 5, 5, 5, 5, 5]\ntarget = 20",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> fourSum(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> fourSum(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def fourSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[][]}\n */\nvar fourSum = function(nums, target) {\n    \n};",
+    "typescript": "function fourSum(nums: number[], target: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> FourSum(int[] nums, int target) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** fourSum(int* nums, int numsSize, int target, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func fourSum(nums []int, target int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun fourSum(nums: IntArray, target: Int): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Integer[][]}\ndef four_sum(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Integer[][]\n     */\n    function fourSum($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> fourSum(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def fourSum(nums: Array[Int], target: Int): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec four_sum(nums :: [integer], target :: integer) :: [[integer]]\n  def four_sum(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec four_sum(Nums :: [integer()], Target :: integer()) -> [[integer()]].\nfour_sum(Nums, Target) ->\n  .",
+    "racket": "(define/contract (four-sum nums target)\n  (-> (listof exact-integer?) exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

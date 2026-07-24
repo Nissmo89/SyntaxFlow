@@ -873,5 +873,26 @@
       "input": "commands = [2]\nobstacles = {\"elemType\": \"int\", \"value\": [[0, 2]]}",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int robotSim(int[] commands, int[][] obstacles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def robotSim(self, commands, obstacles):\n        \"\"\"\n        :type commands: List[int]\n        :type obstacles: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} commands\n * @param {number[][]} obstacles\n * @return {number}\n */\nvar robotSim = function(commands, obstacles) {\n    \n};",
+    "typescript": "function robotSim(commands: number[], obstacles: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RobotSim(int[] commands, int[][] obstacles) {\n        \n    }\n}",
+    "c": "int robotSim(int* commands, int commandsSize, int** obstacles, int obstaclesSize, int* obstaclesColSize) {\n    \n}",
+    "golang": "func robotSim(commands []int, obstacles [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun robotSim(commands: IntArray, obstacles: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func robotSim(_ commands: [Int], _ obstacles: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn robot_sim(commands: Vec<i32>, obstacles: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} commands\n# @param {Integer[][]} obstacles\n# @return {Integer}\ndef robot_sim(commands, obstacles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $commands\n     * @param Integer[][] $obstacles\n     * @return Integer\n     */\n    function robotSim($commands, $obstacles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int robotSim(List<int> commands, List<List<int>> obstacles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def robotSim(commands: Array[Int], obstacles: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec robot_sim(commands :: [integer], obstacles :: [[integer]]) :: integer\n  def robot_sim(commands, obstacles) do\n    \n  end\nend",
+    "erlang": "-spec robot_sim(Commands :: [integer()], Obstacles :: [[integer()]]) -> integer().\nrobot_sim(Commands, Obstacles) ->\n  .",
+    "racket": "(define/contract (robot-sim commands obstacles)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

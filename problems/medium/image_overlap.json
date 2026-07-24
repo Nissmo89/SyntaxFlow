@@ -6892,5 +6892,26 @@
       "input": "img1 = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 1, 1], [0, 1, 0]]}\nimg2 = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 1, 1], [0, 1, 0]]}",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestOverlap(int[][] img1, int[][] img2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestOverlap(self, img1: List[List[int]], img2: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestOverlap(self, img1, img2):\n        \"\"\"\n        :type img1: List[List[int]]\n        :type img2: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} img1\n * @param {number[][]} img2\n * @return {number}\n */\nvar largestOverlap = function(img1, img2) {\n    \n};",
+    "typescript": "function largestOverlap(img1: number[][], img2: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestOverlap(int[][] img1, int[][] img2) {\n        \n    }\n}",
+    "c": "int largestOverlap(int** img1, int img1Size, int* img1ColSize, int** img2, int img2Size, int* img2ColSize) {\n    \n}",
+    "golang": "func largestOverlap(img1 [][]int, img2 [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestOverlap(img1: Array<IntArray>, img2: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestOverlap(_ img1: [[Int]], _ img2: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_overlap(img1: Vec<Vec<i32>>, img2: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} img1\n# @param {Integer[][]} img2\n# @return {Integer}\ndef largest_overlap(img1, img2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $img1\n     * @param Integer[][] $img2\n     * @return Integer\n     */\n    function largestOverlap($img1, $img2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestOverlap(List<List<int>> img1, List<List<int>> img2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestOverlap(img1: Array[Array[Int]], img2: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_overlap(img1 :: [[integer]], img2 :: [[integer]]) :: integer\n  def largest_overlap(img1, img2) do\n    \n  end\nend",
+    "erlang": "-spec largest_overlap(Img1 :: [[integer()]], Img2 :: [[integer()]]) -> integer().\nlargest_overlap(Img1, Img2) ->\n  .",
+    "racket": "(define/contract (largest-overlap img1 img2)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

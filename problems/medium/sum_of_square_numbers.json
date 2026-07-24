@@ -388,5 +388,26 @@
       "input": "c = 7",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool judgeSquareSum(int c) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean judgeSquareSum(int c) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def judgeSquareSum(self, c: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def judgeSquareSum(self, c):\n        \"\"\"\n        :type c: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} c\n * @return {boolean}\n */\nvar judgeSquareSum = function(c) {\n    \n};",
+    "typescript": "function judgeSquareSum(c: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool JudgeSquareSum(int c) {\n        \n    }\n}",
+    "c": "bool judgeSquareSum(int c) {\n    \n}",
+    "golang": "func judgeSquareSum(c int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun judgeSquareSum(c: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func judgeSquareSum(_ c: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn judge_square_sum(c: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} c\n# @return {Boolean}\ndef judge_square_sum(c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $c\n     * @return Boolean\n     */\n    function judgeSquareSum($c) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool judgeSquareSum(int c) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def judgeSquareSum(c: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec judge_square_sum(c :: integer) :: boolean\n  def judge_square_sum(c) do\n    \n  end\nend",
+    "erlang": "-spec judge_square_sum(C :: integer()) -> boolean().\njudge_square_sum(C) ->\n  .",
+    "racket": "(define/contract (judge-square-sum c)\n  (-> exact-integer? boolean?)\n  )"
+  }
 }

@@ -1311,5 +1311,26 @@
       "input": "wall = {\"elemType\": \"int\", \"value\": [[5], [5], [5], [5]]}",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int leastBricks(vector<vector<int>>& wall) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int leastBricks(List<List<Integer>> wall) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def leastBricks(self, wall: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def leastBricks(self, wall):\n        \"\"\"\n        :type wall: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} wall\n * @return {number}\n */\nvar leastBricks = function(wall) {\n    \n};",
+    "typescript": "function leastBricks(wall: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LeastBricks(IList<IList<int>> wall) {\n        \n    }\n}",
+    "c": "int leastBricks(int** wall, int wallSize, int* wallColSize) {\n    \n}",
+    "golang": "func leastBricks(wall [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun leastBricks(wall: List<List<Int>>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func leastBricks(_ wall: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn least_bricks(wall: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} wall\n# @return {Integer}\ndef least_bricks(wall)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $wall\n     * @return Integer\n     */\n    function leastBricks($wall) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int leastBricks(List<List<int>> wall) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def leastBricks(wall: List[List[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec least_bricks(wall :: [[integer]]) :: integer\n  def least_bricks(wall) do\n    \n  end\nend",
+    "erlang": "-spec least_bricks(Wall :: [[integer()]]) -> integer().\nleast_bricks(Wall) ->\n  .",
+    "racket": "(define/contract (least-bricks wall)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

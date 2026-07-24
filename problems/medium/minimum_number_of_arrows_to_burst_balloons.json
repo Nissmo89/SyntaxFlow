@@ -920,5 +920,26 @@
       "input": "points = [[1, 4], [2, 5], [3, 6]]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMinArrowShots(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMinArrowShots(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinArrowShots(self, points: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMinArrowShots(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar findMinArrowShots = function(points) {\n    \n};",
+    "typescript": "function findMinArrowShots(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMinArrowShots(int[][] points) {\n        \n    }\n}",
+    "c": "int findMinArrowShots(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func findMinArrowShots(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinArrowShots(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinArrowShots(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_arrow_shots(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef find_min_arrow_shots(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function findMinArrowShots($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMinArrowShots(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinArrowShots(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_arrow_shots(points :: [[integer]]) :: integer\n  def find_min_arrow_shots(points) do\n    \n  end\nend",
+    "erlang": "-spec find_min_arrow_shots(Points :: [[integer()]]) -> integer().\nfind_min_arrow_shots(Points) ->\n  .",
+    "racket": "(define/contract (find-min-arrow-shots points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

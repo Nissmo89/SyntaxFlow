@@ -1226,5 +1226,26 @@
       "input": "buildings = [[2, 6, 4], [2, 5, 7], [2, 4, 6]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> getSkyline(int[][] buildings) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def getSkyline(self, buildings):\n        \"\"\"\n        :type buildings: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} buildings\n * @return {number[][]}\n */\nvar getSkyline = function(buildings) {\n    \n};",
+    "typescript": "function getSkyline(buildings: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> GetSkyline(int[][] buildings) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** getSkyline(int** buildings, int buildingsSize, int* buildingsColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func getSkyline(buildings [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun getSkyline(buildings: Array<IntArray>): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getSkyline(_ buildings: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_skyline(buildings: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} buildings\n# @return {Integer[][]}\ndef get_skyline(buildings)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $buildings\n     * @return Integer[][]\n     */\n    function getSkyline($buildings) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> getSkyline(List<List<int>> buildings) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getSkyline(buildings: Array[Array[Int]]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_skyline(buildings :: [[integer]]) :: [[integer]]\n  def get_skyline(buildings) do\n    \n  end\nend",
+    "erlang": "-spec get_skyline(Buildings :: [[integer()]]) -> [[integer()]].\nget_skyline(Buildings) ->\n  .",
+    "racket": "(define/contract (get-skyline buildings)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

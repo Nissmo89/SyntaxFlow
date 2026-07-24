@@ -868,5 +868,26 @@
       "input": "customers = [1, 2, 3, 4]\ngrumpy = [1, 1, 1, 1]\nminutes = 4",
       "output": "10"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSatisfied(self, customers, grumpy, minutes):\n        \"\"\"\n        :type customers: List[int]\n        :type grumpy: List[int]\n        :type minutes: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} customers\n * @param {number[]} grumpy\n * @param {number} minutes\n * @return {number}\n */\nvar maxSatisfied = function(customers, grumpy, minutes) {\n    \n};",
+    "typescript": "function maxSatisfied(customers: number[], grumpy: number[], minutes: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        \n    }\n}",
+    "c": "int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int minutes) {\n    \n}",
+    "golang": "func maxSatisfied(customers []int, grumpy []int, minutes int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSatisfied(customers: IntArray, grumpy: IntArray, minutes: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSatisfied(_ customers: [Int], _ grumpy: [Int], _ minutes: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_satisfied(customers: Vec<i32>, grumpy: Vec<i32>, minutes: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} customers\n# @param {Integer[]} grumpy\n# @param {Integer} minutes\n# @return {Integer}\ndef max_satisfied(customers, grumpy, minutes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $customers\n     * @param Integer[] $grumpy\n     * @param Integer $minutes\n     * @return Integer\n     */\n    function maxSatisfied($customers, $grumpy, $minutes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSatisfied(List<int> customers, List<int> grumpy, int minutes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSatisfied(customers: Array[Int], grumpy: Array[Int], minutes: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_satisfied(customers :: [integer], grumpy :: [integer], minutes :: integer) :: integer\n  def max_satisfied(customers, grumpy, minutes) do\n    \n  end\nend",
+    "erlang": "-spec max_satisfied(Customers :: [integer()], Grumpy :: [integer()], Minutes :: integer()) -> integer().\nmax_satisfied(Customers, Grumpy, Minutes) ->\n  .",
+    "racket": "(define/contract (max-satisfied customers grumpy minutes)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

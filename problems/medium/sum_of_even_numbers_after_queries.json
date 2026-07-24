@@ -1437,5 +1437,26 @@
       "input": "nums = [2, -3, -4, -6]\nqueries = [[-5, 3], [7, 2], [4, 1], [10, 3], [-8, 0], [-5, 2]]",
       "output": "[-2, 2, 2, 2, -6, -8]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] sumEvenAfterQueries(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def sumEvenAfterQueries(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar sumEvenAfterQueries = function(nums, queries) {\n    \n};",
+    "typescript": "function sumEvenAfterQueries(nums: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SumEvenAfterQueries(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* sumEvenAfterQueries(int* nums, int numsSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func sumEvenAfterQueries(nums []int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumEvenAfterQueries(nums: IntArray, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumEvenAfterQueries(_ nums: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_even_after_queries(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef sum_even_after_queries(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function sumEvenAfterQueries($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> sumEvenAfterQueries(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumEvenAfterQueries(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_even_after_queries(nums :: [integer], queries :: [[integer]]) :: [integer]\n  def sum_even_after_queries(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec sum_even_after_queries(Nums :: [integer()], Queries :: [[integer()]]) -> [integer()].\nsum_even_after_queries(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (sum-even-after-queries nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

@@ -687,5 +687,26 @@
       "input": "answers = [1, 1, 1]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numRabbits(vector<int>& answers) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numRabbits(int[] answers) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numRabbits(self, answers: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numRabbits(self, answers):\n        \"\"\"\n        :type answers: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} answers\n * @return {number}\n */\nvar numRabbits = function(answers) {\n    \n};",
+    "typescript": "function numRabbits(answers: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumRabbits(int[] answers) {\n        \n    }\n}",
+    "c": "int numRabbits(int* answers, int answersSize) {\n    \n}",
+    "golang": "func numRabbits(answers []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numRabbits(answers: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numRabbits(_ answers: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_rabbits(answers: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} answers\n# @return {Integer}\ndef num_rabbits(answers)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $answers\n     * @return Integer\n     */\n    function numRabbits($answers) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numRabbits(List<int> answers) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numRabbits(answers: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_rabbits(answers :: [integer]) :: integer\n  def num_rabbits(answers) do\n    \n  end\nend",
+    "erlang": "-spec num_rabbits(Answers :: [integer()]) -> integer().\nnum_rabbits(Answers) ->\n  .",
+    "racket": "(define/contract (num-rabbits answers)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

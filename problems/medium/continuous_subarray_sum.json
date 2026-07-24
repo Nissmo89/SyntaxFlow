@@ -622,5 +622,26 @@
       "input": "nums = [5, 5]\nk = 5",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool checkSubarraySum(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkSubarraySum(self, nums: List[int], k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkSubarraySum(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {boolean}\n */\nvar checkSubarraySum = function(nums, k) {\n    \n};",
+    "typescript": "function checkSubarraySum(nums: number[], k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "c": "bool checkSubarraySum(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func checkSubarraySum(nums []int, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkSubarraySum(nums: IntArray, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkSubarraySum(_ nums: [Int], _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_subarray_sum(nums: Vec<i32>, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Boolean}\ndef check_subarray_sum(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Boolean\n     */\n    function checkSubarraySum($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkSubarraySum(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkSubarraySum(nums: Array[Int], k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_subarray_sum(nums :: [integer], k :: integer) :: boolean\n  def check_subarray_sum(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec check_subarray_sum(Nums :: [integer()], K :: integer()) -> boolean().\ncheck_subarray_sum(Nums, K) ->\n  .",
+    "racket": "(define/contract (check-subarray-sum nums k)\n  (-> (listof exact-integer?) exact-integer? boolean?)\n  )"
+  }
 }

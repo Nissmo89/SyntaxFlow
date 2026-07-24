@@ -748,5 +748,26 @@
       "input": "matchsticks = [1, 1, 1, 2]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool makesquare(vector<int>& matchsticks) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean makesquare(int[] matchsticks) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def makesquare(self, matchsticks: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def makesquare(self, matchsticks):\n        \"\"\"\n        :type matchsticks: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} matchsticks\n * @return {boolean}\n */\nvar makesquare = function(matchsticks) {\n    \n};",
+    "typescript": "function makesquare(matchsticks: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool Makesquare(int[] matchsticks) {\n        \n    }\n}",
+    "c": "bool makesquare(int* matchsticks, int matchsticksSize) {\n    \n}",
+    "golang": "func makesquare(matchsticks []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun makesquare(matchsticks: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func makesquare(_ matchsticks: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn makesquare(matchsticks: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} matchsticks\n# @return {Boolean}\ndef makesquare(matchsticks)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $matchsticks\n     * @return Boolean\n     */\n    function makesquare($matchsticks) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool makesquare(List<int> matchsticks) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def makesquare(matchsticks: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec makesquare(matchsticks :: [integer]) :: boolean\n  def makesquare(matchsticks) do\n    \n  end\nend",
+    "erlang": "-spec makesquare(Matchsticks :: [integer()]) -> boolean().\nmakesquare(Matchsticks) ->\n  .",
+    "racket": "(define/contract (makesquare matchsticks)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

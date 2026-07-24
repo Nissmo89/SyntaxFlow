@@ -406,5 +406,26 @@
       "input": "s = \"aaabbb\"\nk = 4",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestSubstring(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestSubstring(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestSubstring(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestSubstring(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar longestSubstring = function(s, k) {\n    \n};",
+    "typescript": "function longestSubstring(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestSubstring(string s, int k) {\n        \n    }\n}",
+    "c": "int longestSubstring(char* s, int k) {\n    \n}",
+    "golang": "func longestSubstring(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestSubstring(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestSubstring(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_substring(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef longest_substring(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function longestSubstring($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestSubstring(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestSubstring(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_substring(s :: String.t, k :: integer) :: integer\n  def longest_substring(s, k) do\n    \n  end\nend",
+    "erlang": "-spec longest_substring(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nlongest_substring(S, K) ->\n  .",
+    "racket": "(define/contract (longest-substring s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  }
 }

@@ -387,5 +387,26 @@
       "input": "num1 = \"0+2i\"\nnum2 = \"0+3i\"",
       "output": "\"-6+0i\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string complexNumberMultiply(string num1, string num2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String complexNumberMultiply(String num1, String num2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def complexNumberMultiply(self, num1: str, num2: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def complexNumberMultiply(self, num1, num2):\n        \"\"\"\n        :type num1: str\n        :type num2: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num1\n * @param {string} num2\n * @return {string}\n */\nvar complexNumberMultiply = function(num1, num2) {\n    \n};",
+    "typescript": "function complexNumberMultiply(num1: string, num2: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ComplexNumberMultiply(string num1, string num2) {\n        \n    }\n}",
+    "c": "char* complexNumberMultiply(char* num1, char* num2) {\n    \n}",
+    "golang": "func complexNumberMultiply(num1 string, num2 string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun complexNumberMultiply(num1: String, num2: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func complexNumberMultiply(_ num1: String, _ num2: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn complex_number_multiply(num1: String, num2: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num1\n# @param {String} num2\n# @return {String}\ndef complex_number_multiply(num1, num2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num1\n     * @param String $num2\n     * @return String\n     */\n    function complexNumberMultiply($num1, $num2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String complexNumberMultiply(String num1, String num2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def complexNumberMultiply(num1: String, num2: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec complex_number_multiply(num1 :: String.t, num2 :: String.t) :: String.t\n  def complex_number_multiply(num1, num2) do\n    \n  end\nend",
+    "erlang": "-spec complex_number_multiply(Num1 :: unicode:unicode_binary(), Num2 :: unicode:unicode_binary()) -> unicode:unicode_binary().\ncomplex_number_multiply(Num1, Num2) ->\n  .",
+    "racket": "(define/contract (complex-number-multiply num1 num2)\n  (-> string? string? string?)\n  )"
+  }
 }

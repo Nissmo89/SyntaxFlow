@@ -663,5 +663,26 @@
       "input": "nums = [0, 0, 0]\nlower = 0\nupper = 0",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int countRangeSum(vector<int>& nums, int lower, int upper) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countRangeSum(int[] nums, int lower, int upper) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countRangeSum(self, nums, lower, upper):\n        \"\"\"\n        :type nums: List[int]\n        :type lower: int\n        :type upper: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} lower\n * @param {number} upper\n * @return {number}\n */\nvar countRangeSum = function(nums, lower, upper) {\n    \n};",
+    "typescript": "function countRangeSum(nums: number[], lower: number, upper: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountRangeSum(int[] nums, int lower, int upper) {\n        \n    }\n}",
+    "c": "int countRangeSum(int* nums, int numsSize, int lower, int upper) {\n    \n}",
+    "golang": "func countRangeSum(nums []int, lower int, upper int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countRangeSum(nums: IntArray, lower: Int, upper: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countRangeSum(_ nums: [Int], _ lower: Int, _ upper: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_range_sum(nums: Vec<i32>, lower: i32, upper: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} lower\n# @param {Integer} upper\n# @return {Integer}\ndef count_range_sum(nums, lower, upper)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $lower\n     * @param Integer $upper\n     * @return Integer\n     */\n    function countRangeSum($nums, $lower, $upper) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countRangeSum(List<int> nums, int lower, int upper) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countRangeSum(nums: Array[Int], lower: Int, upper: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_range_sum(nums :: [integer], lower :: integer, upper :: integer) :: integer\n  def count_range_sum(nums, lower, upper) do\n    \n  end\nend",
+    "erlang": "-spec count_range_sum(Nums :: [integer()], Lower :: integer(), Upper :: integer()) -> integer().\ncount_range_sum(Nums, Lower, Upper) ->\n  .",
+    "racket": "(define/contract (count-range-sum nums lower upper)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

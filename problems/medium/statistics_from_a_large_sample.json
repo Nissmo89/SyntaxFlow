@@ -9985,5 +9985,26 @@
       "input": "count = [0, 0, 5, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<double> sampleStats(vector<int>& count) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double[] sampleStats(int[] count) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sampleStats(self, count: List[int]) -> List[float]:\n        ",
+    "python": "class Solution(object):\n    def sampleStats(self, count):\n        \"\"\"\n        :type count: List[int]\n        :rtype: List[float]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} count\n * @return {number[]}\n */\nvar sampleStats = function(count) {\n    \n};",
+    "typescript": "function sampleStats(count: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public double[] SampleStats(int[] count) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\ndouble* sampleStats(int* count, int countSize, int* returnSize) {\n    \n}",
+    "golang": "func sampleStats(count []int) []float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun sampleStats(count: IntArray): DoubleArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sampleStats(_ count: [Int]) -> [Double] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sample_stats(count: Vec<i32>) -> Vec<f64> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} count\n# @return {Float[]}\ndef sample_stats(count)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $count\n     * @return Float[]\n     */\n    function sampleStats($count) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<double> sampleStats(List<int> count) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sampleStats(count: Array[Int]): Array[Double] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sample_stats(count :: [integer]) :: [float]\n  def sample_stats(count) do\n    \n  end\nend",
+    "erlang": "-spec sample_stats(Count :: [integer()]) -> [float()].\nsample_stats(Count) ->\n  .",
+    "racket": "(define/contract (sample-stats count)\n  (-> (listof exact-integer?) (listof flonum?))\n  )"
+  }
 }

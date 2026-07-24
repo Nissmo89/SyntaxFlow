@@ -640,5 +640,26 @@
       "input": "values = [1, 2, 3, 4, 5]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minScoreTriangulation(vector<int>& values) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minScoreTriangulation(int[] values) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minScoreTriangulation(self, values: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minScoreTriangulation(self, values):\n        \"\"\"\n        :type values: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} values\n * @return {number}\n */\nvar minScoreTriangulation = function(values) {\n    \n};",
+    "typescript": "function minScoreTriangulation(values: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinScoreTriangulation(int[] values) {\n        \n    }\n}",
+    "c": "int minScoreTriangulation(int* values, int valuesSize) {\n    \n}",
+    "golang": "func minScoreTriangulation(values []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minScoreTriangulation(values: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minScoreTriangulation(_ values: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_score_triangulation(values: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} values\n# @return {Integer}\ndef min_score_triangulation(values)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $values\n     * @return Integer\n     */\n    function minScoreTriangulation($values) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minScoreTriangulation(List<int> values) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minScoreTriangulation(values: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_score_triangulation(values :: [integer]) :: integer\n  def min_score_triangulation(values) do\n    \n  end\nend",
+    "erlang": "-spec min_score_triangulation(Values :: [integer()]) -> integer().\nmin_score_triangulation(Values) ->\n  .",
+    "racket": "(define/contract (min-score-triangulation values)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

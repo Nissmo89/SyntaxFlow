@@ -756,5 +756,26 @@
       "input": "houses = [1, 2, 3, 4]\nheaters = [1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findRadius(vector<int>& houses, vector<int>& heaters) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findRadius(int[] houses, int[] heaters) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRadius(self, houses: List[int], heaters: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findRadius(self, houses, heaters):\n        \"\"\"\n        :type houses: List[int]\n        :type heaters: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} houses\n * @param {number[]} heaters\n * @return {number}\n */\nvar findRadius = function(houses, heaters) {\n    \n};",
+    "typescript": "function findRadius(houses: number[], heaters: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindRadius(int[] houses, int[] heaters) {\n        \n    }\n}",
+    "c": "int findRadius(int* houses, int housesSize, int* heaters, int heatersSize) {\n    \n}",
+    "golang": "func findRadius(houses []int, heaters []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRadius(houses: IntArray, heaters: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRadius(_ houses: [Int], _ heaters: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_radius(houses: Vec<i32>, heaters: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} houses\n# @param {Integer[]} heaters\n# @return {Integer}\ndef find_radius(houses, heaters)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $houses\n     * @param Integer[] $heaters\n     * @return Integer\n     */\n    function findRadius($houses, $heaters) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findRadius(List<int> houses, List<int> heaters) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRadius(houses: Array[Int], heaters: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_radius(houses :: [integer], heaters :: [integer]) :: integer\n  def find_radius(houses, heaters) do\n    \n  end\nend",
+    "erlang": "-spec find_radius(Houses :: [integer()], Heaters :: [integer()]) -> integer().\nfind_radius(Houses, Heaters) ->\n  .",
+    "racket": "(define/contract (find-radius houses heaters)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

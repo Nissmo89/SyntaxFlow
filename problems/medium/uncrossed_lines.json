@@ -928,5 +928,26 @@
       "input": "nums1 = [1, 1, 1]\nnums2 = [1, 1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxUncrossedLines(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxUncrossedLines(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxUncrossedLines(self, nums1: List[int], nums2: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxUncrossedLines(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar maxUncrossedLines = function(nums1, nums2) {\n    \n};",
+    "typescript": "function maxUncrossedLines(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxUncrossedLines(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int maxUncrossedLines(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func maxUncrossedLines(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxUncrossedLines(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_uncrossed_lines(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef max_uncrossed_lines(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function maxUncrossedLines($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxUncrossedLines(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxUncrossedLines(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_uncrossed_lines(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def max_uncrossed_lines(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec max_uncrossed_lines(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nmax_uncrossed_lines(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (max-uncrossed-lines nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

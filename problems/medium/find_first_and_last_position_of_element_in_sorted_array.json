@@ -766,5 +766,26 @@
       "input": "nums = [4, 4, 4, 4, 4]\ntarget = 4",
       "output": "[0, 4]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> searchRange(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] searchRange(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def searchRange(self, nums: List[int], target: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def searchRange(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nvar searchRange = function(nums, target) {\n    \n};",
+    "typescript": "function searchRange(nums: number[], target: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SearchRange(int[] nums, int target) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* searchRange(int* nums, int numsSize, int target, int* returnSize) {\n    \n}",
+    "golang": "func searchRange(nums []int, target int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun searchRange(nums: IntArray, target: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Integer[]}\ndef search_range(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Integer[]\n     */\n    function searchRange($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> searchRange(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def searchRange(nums: Array[Int], target: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec search_range(nums :: [integer], target :: integer) :: [integer]\n  def search_range(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec search_range(Nums :: [integer()], Target :: integer()) -> [integer()].\nsearch_range(Nums, Target) ->\n  .",
+    "racket": "(define/contract (search-range nums target)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

@@ -856,5 +856,26 @@
       "input": "nums = [10, -1, 2, -1, 10]",
       "output": "[-1, 2, 10, 10, -1]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> nextGreaterElements(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] nextGreaterElements(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def nextGreaterElements(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def nextGreaterElements(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar nextGreaterElements = function(nums) {\n    \n};",
+    "typescript": "function nextGreaterElements(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] NextGreaterElements(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* nextGreaterElements(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func nextGreaterElements(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun nextGreaterElements(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func nextGreaterElements(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn next_greater_elements(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef next_greater_elements(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function nextGreaterElements($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> nextGreaterElements(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def nextGreaterElements(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec next_greater_elements(nums :: [integer]) :: [integer]\n  def next_greater_elements(nums) do\n    \n  end\nend",
+    "erlang": "-spec next_greater_elements(Nums :: [integer()]) -> [integer()].\nnext_greater_elements(Nums) ->\n  .",
+    "racket": "(define/contract (next-greater-elements nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

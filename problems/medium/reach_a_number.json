@@ -388,5 +388,26 @@
       "input": "target = -5",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int reachNumber(int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int reachNumber(int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reachNumber(self, target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def reachNumber(self, target):\n        \"\"\"\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} target\n * @return {number}\n */\nvar reachNumber = function(target) {\n    \n};",
+    "typescript": "function reachNumber(target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ReachNumber(int target) {\n        \n    }\n}",
+    "c": "int reachNumber(int target) {\n    \n}",
+    "golang": "func reachNumber(target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun reachNumber(target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reachNumber(_ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reach_number(target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} target\n# @return {Integer}\ndef reach_number(target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $target\n     * @return Integer\n     */\n    function reachNumber($target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int reachNumber(int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reachNumber(target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reach_number(target :: integer) :: integer\n  def reach_number(target) do\n    \n  end\nend",
+    "erlang": "-spec reach_number(Target :: integer()) -> integer().\nreach_number(Target) ->\n  .",
+    "racket": "(define/contract (reach-number target)\n  (-> exact-integer? exact-integer?)\n  )"
+  }
 }

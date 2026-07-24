@@ -498,5 +498,26 @@
       "input": "x = 6\ny = 10\ntarget = 7",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool canMeasureWater(int x, int y, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canMeasureWater(int x, int y, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canMeasureWater(self, x: int, y: int, target: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canMeasureWater(self, x, y, target):\n        \"\"\"\n        :type x: int\n        :type y: int\n        :type target: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} y\n * @param {number} target\n * @return {boolean}\n */\nvar canMeasureWater = function(x, y, target) {\n    \n};",
+    "typescript": "function canMeasureWater(x: number, y: number, target: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanMeasureWater(int x, int y, int target) {\n        \n    }\n}",
+    "c": "bool canMeasureWater(int x, int y, int target) {\n    \n}",
+    "golang": "func canMeasureWater(x int, y int, target int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canMeasureWater(x: Int, y: Int, target: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canMeasureWater(_ x: Int, _ y: Int, _ target: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_measure_water(x: i32, y: i32, target: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @param {Integer} y\n# @param {Integer} target\n# @return {Boolean}\ndef can_measure_water(x, y, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @param Integer $y\n     * @param Integer $target\n     * @return Boolean\n     */\n    function canMeasureWater($x, $y, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canMeasureWater(int x, int y, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canMeasureWater(x: Int, y: Int, target: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_measure_water(x :: integer, y :: integer, target :: integer) :: boolean\n  def can_measure_water(x, y, target) do\n    \n  end\nend",
+    "erlang": "-spec can_measure_water(X :: integer(), Y :: integer(), Target :: integer()) -> boolean().\ncan_measure_water(X, Y, Target) ->\n  .",
+    "racket": "(define/contract (can-measure-water x y target)\n  (-> exact-integer? exact-integer? exact-integer? boolean?)\n  )"
+  }
 }

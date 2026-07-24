@@ -641,5 +641,26 @@
       "input": "nums = [1, 2, 3, 4]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> permute(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> permute(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def permute(self, nums: List[int]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def permute(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permute = function(nums) {\n    \n};",
+    "typescript": "function permute(nums: number[]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> Permute(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func permute(nums []int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun permute(nums: IntArray): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func permute(_ nums: [Int]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[][]}\ndef permute(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[][]\n     */\n    function permute($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> permute(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def permute(nums: Array[Int]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec permute(nums :: [integer]) :: [[integer]]\n  def permute(nums) do\n    \n  end\nend",
+    "erlang": "-spec permute(Nums :: [integer()]) -> [[integer()]].\npermute(Nums) ->\n  .",
+    "racket": "(define/contract (permute nums)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)))\n  )"
+  }
 }

@@ -720,5 +720,26 @@
       "input": "expression = \"1*2*3\"",
       "output": "[6, 6]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> diffWaysToCompute(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> diffWaysToCompute(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def diffWaysToCompute(self, expression: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def diffWaysToCompute(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {number[]}\n */\nvar diffWaysToCompute = function(expression) {\n    \n};",
+    "typescript": "function diffWaysToCompute(expression: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> DiffWaysToCompute(string expression) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* diffWaysToCompute(char* expression, int* returnSize) {\n    \n}",
+    "golang": "func diffWaysToCompute(expression string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun diffWaysToCompute(expression: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func diffWaysToCompute(_ expression: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn diff_ways_to_compute(expression: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Integer[]}\ndef diff_ways_to_compute(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Integer[]\n     */\n    function diffWaysToCompute($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> diffWaysToCompute(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def diffWaysToCompute(expression: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec diff_ways_to_compute(expression :: String.t) :: [integer]\n  def diff_ways_to_compute(expression) do\n    \n  end\nend",
+    "erlang": "-spec diff_ways_to_compute(Expression :: unicode:unicode_binary()) -> [integer()].\ndiff_ways_to_compute(Expression) ->\n  .",
+    "racket": "(define/contract (diff-ways-to-compute expression)\n  (-> string? (listof exact-integer?))\n  )"
+  }
 }

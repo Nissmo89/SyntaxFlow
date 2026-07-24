@@ -727,5 +727,26 @@
       "input": "points = [[0, 0], [4, 2]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    double minAreaFreeRect(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double minAreaFreeRect(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minAreaFreeRect(self, points: List[List[int]]) -> float:\n        ",
+    "python": "class Solution(object):\n    def minAreaFreeRect(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar minAreaFreeRect = function(points) {\n    \n};",
+    "typescript": "function minAreaFreeRect(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MinAreaFreeRect(int[][] points) {\n        \n    }\n}",
+    "c": "double minAreaFreeRect(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func minAreaFreeRect(points [][]int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minAreaFreeRect(points: Array<IntArray>): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minAreaFreeRect(_ points: [[Int]]) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_area_free_rect(points: Vec<Vec<i32>>) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Float}\ndef min_area_free_rect(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Float\n     */\n    function minAreaFreeRect($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double minAreaFreeRect(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minAreaFreeRect(points: Array[Array[Int]]): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_area_free_rect(points :: [[integer]]) :: float\n  def min_area_free_rect(points) do\n    \n  end\nend",
+    "erlang": "-spec min_area_free_rect(Points :: [[integer()]]) -> float().\nmin_area_free_rect(Points) ->\n  .",
+    "racket": "(define/contract (min-area-free-rect points)\n  (-> (listof (listof exact-integer?)) flonum?)\n  )"
+  }
 }

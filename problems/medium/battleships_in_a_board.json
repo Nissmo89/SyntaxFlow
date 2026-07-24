@@ -2652,5 +2652,26 @@
       "input": "board = {\"elemType\": \"string\", \"value\": [[\"X\", \".\", \"X\", \".\", \"X\"]]}",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int countBattleships(vector<vector<char>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countBattleships(char[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countBattleships(self, board: List[List[str]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countBattleships(self, board):\n        \"\"\"\n        :type board: List[List[str]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @return {number}\n */\nvar countBattleships = function(board) {\n    \n};",
+    "typescript": "function countBattleships(board: string[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountBattleships(char[][] board) {\n        \n    }\n}",
+    "c": "int countBattleships(char** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func countBattleships(board [][]byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countBattleships(board: Array<CharArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countBattleships(_ board: [[Character]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_battleships(board: Vec<Vec<char>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @return {Integer}\ndef count_battleships(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @return Integer\n     */\n    function countBattleships($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countBattleships(List<List<String>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countBattleships(board: Array[Array[Char]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_battleships(board :: [[char]]) :: integer\n  def count_battleships(board) do\n    \n  end\nend",
+    "erlang": "-spec count_battleships(Board :: [[char()]]) -> integer().\ncount_battleships(Board) ->\n  .",
+    "racket": "(define/contract (count-battleships board)\n  (-> (listof (listof char?)) exact-integer?)\n  )"
+  }
 }

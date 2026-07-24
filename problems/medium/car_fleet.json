@@ -864,5 +864,26 @@
       "input": "target = 30\nposition = [0, 5, 10, 15]\nspeed = [1, 2, 3, 4]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int carFleet(int target, vector<int>& position, vector<int>& speed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int carFleet(int target, int[] position, int[] speed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def carFleet(self, target, position, speed):\n        \"\"\"\n        :type target: int\n        :type position: List[int]\n        :type speed: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} target\n * @param {number[]} position\n * @param {number[]} speed\n * @return {number}\n */\nvar carFleet = function(target, position, speed) {\n    \n};",
+    "typescript": "function carFleet(target: number, position: number[], speed: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CarFleet(int target, int[] position, int[] speed) {\n        \n    }\n}",
+    "c": "int carFleet(int target, int* position, int positionSize, int* speed, int speedSize) {\n    \n}",
+    "golang": "func carFleet(target int, position []int, speed []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun carFleet(target: Int, position: IntArray, speed: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func carFleet(_ target: Int, _ position: [Int], _ speed: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn car_fleet(target: i32, position: Vec<i32>, speed: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} target\n# @param {Integer[]} position\n# @param {Integer[]} speed\n# @return {Integer}\ndef car_fleet(target, position, speed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $target\n     * @param Integer[] $position\n     * @param Integer[] $speed\n     * @return Integer\n     */\n    function carFleet($target, $position, $speed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int carFleet(int target, List<int> position, List<int> speed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def carFleet(target: Int, position: Array[Int], speed: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec car_fleet(target :: integer, position :: [integer], speed :: [integer]) :: integer\n  def car_fleet(target, position, speed) do\n    \n  end\nend",
+    "erlang": "-spec car_fleet(Target :: integer(), Position :: [integer()], Speed :: [integer()]) -> integer().\ncar_fleet(Target, Position, Speed) ->\n  .",
+    "racket": "(define/contract (car-fleet target position speed)\n  (-> exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

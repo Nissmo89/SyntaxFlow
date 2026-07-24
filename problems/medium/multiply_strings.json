@@ -389,5 +389,26 @@
       "input": "num1 = \"1\"\nnum2 = \"12345\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string multiply(string num1, string num2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String multiply(String num1, String num2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def multiply(self, num1: str, num2: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def multiply(self, num1, num2):\n        \"\"\"\n        :type num1: str\n        :type num2: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num1\n * @param {string} num2\n * @return {string}\n */\nvar multiply = function(num1, num2) {\n    \n};",
+    "typescript": "function multiply(num1: string, num2: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string Multiply(string num1, string num2) {\n        \n    }\n}",
+    "c": "char* multiply(char* num1, char* num2) {\n    \n}",
+    "golang": "func multiply(num1 string, num2 string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun multiply(num1: String, num2: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func multiply(_ num1: String, _ num2: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn multiply(num1: String, num2: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num1\n# @param {String} num2\n# @return {String}\ndef multiply(num1, num2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num1\n     * @param String $num2\n     * @return String\n     */\n    function multiply($num1, $num2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String multiply(String num1, String num2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def multiply(num1: String, num2: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec multiply(num1 :: String.t, num2 :: String.t) :: String.t\n  def multiply(num1, num2) do\n    \n  end\nend",
+    "erlang": "-spec multiply(Num1 :: unicode:unicode_binary(), Num2 :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmultiply(Num1, Num2) ->\n  .",
+    "racket": "(define/contract (multiply num1 num2)\n  (-> string? string? string?)\n  )"
+  }
 }

@@ -976,5 +976,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 3, 5], [7, 9, 11]]}\ntarget = 7",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool searchMatrix(vector<vector<int>>& matrix, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean searchMatrix(int[][] matrix, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def searchMatrix(self, matrix, target):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :type target: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function(matrix, target) {\n    \n};",
+    "typescript": "function searchMatrix(matrix: number[][], target: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool SearchMatrix(int[][] matrix, int target) {\n        \n    }\n}",
+    "c": "bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target) {\n    \n}",
+    "golang": "func searchMatrix(matrix [][]int, target int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @param {Integer} target\n# @return {Boolean}\ndef search_matrix(matrix, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @param Integer $target\n     * @return Boolean\n     */\n    function searchMatrix($matrix, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool searchMatrix(List<List<int>> matrix, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def searchMatrix(matrix: Array[Array[Int]], target: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec search_matrix(matrix :: [[integer]], target :: integer) :: boolean\n  def search_matrix(matrix, target) do\n    \n  end\nend",
+    "erlang": "-spec search_matrix(Matrix :: [[integer()]], Target :: integer()) -> boolean().\nsearch_matrix(Matrix, Target) ->\n  .",
+    "racket": "(define/contract (search-matrix matrix target)\n  (-> (listof (listof exact-integer?)) exact-integer? boolean?)\n  )"
+  }
 }

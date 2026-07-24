@@ -581,5 +581,26 @@
       "input": "prices = [2, 2]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int[] prices) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfit(self, prices: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfit(self, prices):\n        \"\"\"\n        :type prices: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function(prices) {\n    \n};",
+    "typescript": "function maxProfit(prices: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfit(int[] prices) {\n        \n    }\n}",
+    "c": "int maxProfit(int* prices, int pricesSize) {\n    \n}",
+    "golang": "func maxProfit(prices []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfit(prices: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfit(_ prices: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit(prices: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} prices\n# @return {Integer}\ndef max_profit(prices)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $prices\n     * @return Integer\n     */\n    function maxProfit($prices) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfit(List<int> prices) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfit(prices: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit(prices :: [integer]) :: integer\n  def max_profit(prices) do\n    \n  end\nend",
+    "erlang": "-spec max_profit(Prices :: [integer()]) -> integer().\nmax_profit(Prices) ->\n  .",
+    "racket": "(define/contract (max-profit prices)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

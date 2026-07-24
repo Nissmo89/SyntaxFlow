@@ -764,5 +764,26 @@
       "input": "numbers = [-15, -9, -4, 2, 7, 13, 21]\ntarget = 3",
       "output": "[3, 5]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& numbers, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] twoSum(int[] numbers, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def twoSum(self, numbers, target):\n        \"\"\"\n        :type numbers: List[int]\n        :type target: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(numbers, target) {\n    \n};",
+    "typescript": "function twoSum(numbers: number[], target: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] TwoSum(int[] numbers, int target) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {\n    \n}",
+    "golang": "func twoSum(numbers []int, target int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun twoSum(numbers: IntArray, target: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} numbers\n# @param {Integer} target\n# @return {Integer[]}\ndef two_sum(numbers, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $numbers\n     * @param Integer $target\n     * @return Integer[]\n     */\n    function twoSum($numbers, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> twoSum(List<int> numbers, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def twoSum(numbers: Array[Int], target: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec two_sum(numbers :: [integer], target :: integer) :: [integer]\n  def two_sum(numbers, target) do\n    \n  end\nend",
+    "erlang": "-spec two_sum(Numbers :: [integer()], Target :: integer()) -> [integer()].\ntwo_sum(Numbers, Target) ->\n  .",
+    "racket": "(define/contract (two-sum numbers target)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

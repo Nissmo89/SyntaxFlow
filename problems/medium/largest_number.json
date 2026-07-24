@@ -726,5 +726,26 @@
       "input": "nums = [343, 34, 3]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string largestNumber(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String largestNumber(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestNumber(self, nums: List[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def largestNumber(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {string}\n */\nvar largestNumber = function(nums) {\n    \n};",
+    "typescript": "function largestNumber(nums: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LargestNumber(int[] nums) {\n        \n    }\n}",
+    "c": "char* largestNumber(int* nums, int numsSize) {\n    \n}",
+    "golang": "func largestNumber(nums []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestNumber(nums: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestNumber(_ nums: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_number(nums: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {String}\ndef largest_number(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return String\n     */\n    function largestNumber($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String largestNumber(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestNumber(nums: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_number(nums :: [integer]) :: String.t\n  def largest_number(nums) do\n    \n  end\nend",
+    "erlang": "-spec largest_number(Nums :: [integer()]) -> unicode:unicode_binary().\nlargest_number(Nums) ->\n  .",
+    "racket": "(define/contract (largest-number nums)\n  (-> (listof exact-integer?) string?)\n  )"
+  }
 }

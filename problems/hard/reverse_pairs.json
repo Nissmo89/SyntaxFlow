@@ -592,5 +592,26 @@
       "input": "nums = [1, 2, 3, 4, 5]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int reversePairs(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int reversePairs(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reversePairs(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def reversePairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar reversePairs = function(nums) {\n    \n};",
+    "typescript": "function reversePairs(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ReversePairs(int[] nums) {\n        \n    }\n}",
+    "c": "int reversePairs(int* nums, int numsSize) {\n    \n}",
+    "golang": "func reversePairs(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun reversePairs(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reversePairs(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_pairs(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef reverse_pairs(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function reversePairs($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int reversePairs(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reversePairs(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_pairs(nums :: [integer]) :: integer\n  def reverse_pairs(nums) do\n    \n  end\nend",
+    "erlang": "-spec reverse_pairs(Nums :: [integer()]) -> integer().\nreverse_pairs(Nums) ->\n  .",
+    "racket": "(define/contract (reverse-pairs nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

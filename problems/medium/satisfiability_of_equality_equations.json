@@ -608,5 +608,26 @@
       "input": "equations = [\"b!=c\", \"c!=d\", \"f==f\"]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool equationsPossible(vector<string>& equations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean equationsPossible(String[] equations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def equationsPossible(self, equations: List[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def equationsPossible(self, equations):\n        \"\"\"\n        :type equations: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} equations\n * @return {boolean}\n */\nvar equationsPossible = function(equations) {\n    \n};",
+    "typescript": "function equationsPossible(equations: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool EquationsPossible(string[] equations) {\n        \n    }\n}",
+    "c": "bool equationsPossible(char** equations, int equationsSize) {\n    \n}",
+    "golang": "func equationsPossible(equations []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun equationsPossible(equations: Array<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func equationsPossible(_ equations: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn equations_possible(equations: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String[]} equations\n# @return {Boolean}\ndef equations_possible(equations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $equations\n     * @return Boolean\n     */\n    function equationsPossible($equations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool equationsPossible(List<String> equations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def equationsPossible(equations: Array[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec equations_possible(equations :: [String.t]) :: boolean\n  def equations_possible(equations) do\n    \n  end\nend",
+    "erlang": "-spec equations_possible(Equations :: [unicode:unicode_binary()]) -> boolean().\nequations_possible(Equations) ->\n  .",
+    "racket": "(define/contract (equations-possible equations)\n  (-> (listof string?) boolean?)\n  )"
+  }
 }

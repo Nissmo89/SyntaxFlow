@@ -834,5 +834,26 @@
       "input": "queries = [\"B\", \"AB\", \"aB\"]\npattern = \"A\"",
       "output": "[false, false, false]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> camelMatch(vector<string>& queries, string pattern) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> camelMatch(String[] queries, String pattern) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def camelMatch(self, queries: List[str], pattern: str) -> List[bool]:\n        ",
+    "python": "class Solution(object):\n    def camelMatch(self, queries, pattern):\n        \"\"\"\n        :type queries: List[str]\n        :type pattern: str\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} queries\n * @param {string} pattern\n * @return {boolean[]}\n */\nvar camelMatch = function(queries, pattern) {\n    \n};",
+    "typescript": "function camelMatch(queries: string[], pattern: string): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> CamelMatch(string[] queries, string pattern) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* camelMatch(char** queries, int queriesSize, char* pattern, int* returnSize) {\n    \n}",
+    "golang": "func camelMatch(queries []string, pattern string) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun camelMatch(queries: Array<String>, pattern: String): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func camelMatch(_ queries: [String], _ pattern: String) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn camel_match(queries: Vec<String>, pattern: String) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} queries\n# @param {String} pattern\n# @return {Boolean[]}\ndef camel_match(queries, pattern)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $queries\n     * @param String $pattern\n     * @return Boolean[]\n     */\n    function camelMatch($queries, $pattern) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> camelMatch(List<String> queries, String pattern) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def camelMatch(queries: Array[String], pattern: String): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec camel_match(queries :: [String.t], pattern :: String.t) :: [boolean]\n  def camel_match(queries, pattern) do\n    \n  end\nend",
+    "erlang": "-spec camel_match(Queries :: [unicode:unicode_binary()], Pattern :: unicode:unicode_binary()) -> [boolean()].\ncamel_match(Queries, Pattern) ->\n  .",
+    "racket": "(define/contract (camel-match queries pattern)\n  (-> (listof string?) string? (listof boolean?))\n  )"
+  }
 }

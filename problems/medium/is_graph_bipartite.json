@@ -1189,5 +1189,26 @@
       "input": "graph = [[1], [0], [3], [2]]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isBipartite(vector<vector<int>>& graph) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isBipartite(int[][] graph) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isBipartite(self, graph):\n        \"\"\"\n        :type graph: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} graph\n * @return {boolean}\n */\nvar isBipartite = function(graph) {\n    \n};",
+    "typescript": "function isBipartite(graph: number[][]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsBipartite(int[][] graph) {\n        \n    }\n}",
+    "c": "bool isBipartite(int** graph, int graphSize, int* graphColSize) {\n    \n}",
+    "golang": "func isBipartite(graph [][]int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isBipartite(graph: Array<IntArray>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isBipartite(_ graph: [[Int]]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_bipartite(graph: Vec<Vec<i32>>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} graph\n# @return {Boolean}\ndef is_bipartite(graph)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $graph\n     * @return Boolean\n     */\n    function isBipartite($graph) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isBipartite(List<List<int>> graph) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isBipartite(graph: Array[Array[Int]]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_bipartite(graph :: [[integer]]) :: boolean\n  def is_bipartite(graph) do\n    \n  end\nend",
+    "erlang": "-spec is_bipartite(Graph :: [[integer()]]) -> boolean().\nis_bipartite(Graph) ->\n  .",
+    "racket": "(define/contract (is-bipartite graph)\n  (-> (listof (listof exact-integer?)) boolean?)\n  )"
+  }
 }

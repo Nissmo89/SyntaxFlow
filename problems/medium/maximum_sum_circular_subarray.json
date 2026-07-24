@@ -687,5 +687,26 @@
       "input": "nums = [3, -1, 2, -1]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxSubarraySumCircular(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSubarraySumCircular(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSubarraySumCircular(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSubarraySumCircular(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSubarraySumCircular = function(nums) {\n    \n};",
+    "typescript": "function maxSubarraySumCircular(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSubarraySumCircular(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSubarraySumCircular(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSubarraySumCircular(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSubarraySumCircular(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSubarraySumCircular(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_subarray_sum_circular(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_subarray_sum_circular(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSubarraySumCircular($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSubarraySumCircular(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSubarraySumCircular(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_subarray_sum_circular(nums :: [integer]) :: integer\n  def max_subarray_sum_circular(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_subarray_sum_circular(Nums :: [integer()]) -> integer().\nmax_subarray_sum_circular(Nums) ->\n  .",
+    "racket": "(define/contract (max-subarray-sum-circular nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

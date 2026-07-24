@@ -580,5 +580,26 @@
       "input": "stones = [11, 9, 8]\nk = 4",
       "output": "-1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int mergeStones(vector<int>& stones, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int mergeStones(int[] stones, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mergeStones(self, stones: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def mergeStones(self, stones, k):\n        \"\"\"\n        :type stones: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stones\n * @param {number} k\n * @return {number}\n */\nvar mergeStones = function(stones, k) {\n    \n};",
+    "typescript": "function mergeStones(stones: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MergeStones(int[] stones, int k) {\n        \n    }\n}",
+    "c": "int mergeStones(int* stones, int stonesSize, int k) {\n    \n}",
+    "golang": "func mergeStones(stones []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun mergeStones(stones: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mergeStones(_ stones: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn merge_stones(stones: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stones\n# @param {Integer} k\n# @return {Integer}\ndef merge_stones(stones, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stones\n     * @param Integer $k\n     * @return Integer\n     */\n    function mergeStones($stones, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int mergeStones(List<int> stones, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mergeStones(stones: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec merge_stones(stones :: [integer], k :: integer) :: integer\n  def merge_stones(stones, k) do\n    \n  end\nend",
+    "erlang": "-spec merge_stones(Stones :: [integer()], K :: integer()) -> integer().\nmerge_stones(Stones, K) ->\n  .",
+    "racket": "(define/contract (merge-stones stones k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

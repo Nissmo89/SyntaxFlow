@@ -962,5 +962,26 @@
       "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 0, 1]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int matrixScore(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int matrixScore(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def matrixScore(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def matrixScore(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar matrixScore = function(grid) {\n    \n};",
+    "typescript": "function matrixScore(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MatrixScore(int[][] grid) {\n        \n    }\n}",
+    "c": "int matrixScore(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func matrixScore(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun matrixScore(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func matrixScore(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn matrix_score(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef matrix_score(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function matrixScore($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int matrixScore(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def matrixScore(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec matrix_score(grid :: [[integer]]) :: integer\n  def matrix_score(grid) do\n    \n  end\nend",
+    "erlang": "-spec matrix_score(Grid :: [[integer()]]) -> integer().\nmatrix_score(Grid) ->\n  .",
+    "racket": "(define/contract (matrix-score grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

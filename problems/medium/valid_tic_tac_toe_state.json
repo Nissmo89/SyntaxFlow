@@ -533,5 +533,26 @@
       "input": "board = [\"XXX\", \"   \", \"   \"]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool validTicTacToe(vector<string>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean validTicTacToe(String[] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validTicTacToe(self, board: List[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def validTicTacToe(self, board):\n        \"\"\"\n        :type board: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} board\n * @return {boolean}\n */\nvar validTicTacToe = function(board) {\n    \n};",
+    "typescript": "function validTicTacToe(board: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ValidTicTacToe(string[] board) {\n        \n    }\n}",
+    "c": "bool validTicTacToe(char** board, int boardSize) {\n    \n}",
+    "golang": "func validTicTacToe(board []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun validTicTacToe(board: Array<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validTicTacToe(_ board: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_tic_tac_toe(board: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String[]} board\n# @return {Boolean}\ndef valid_tic_tac_toe(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $board\n     * @return Boolean\n     */\n    function validTicTacToe($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool validTicTacToe(List<String> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validTicTacToe(board: Array[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_tic_tac_toe(board :: [String.t]) :: boolean\n  def valid_tic_tac_toe(board) do\n    \n  end\nend",
+    "erlang": "-spec valid_tic_tac_toe(Board :: [unicode:unicode_binary()]) -> boolean().\nvalid_tic_tac_toe(Board) ->\n  .",
+    "racket": "(define/contract (valid-tic-tac-toe board)\n  (-> (listof string?) boolean?)\n  )"
+  }
 }

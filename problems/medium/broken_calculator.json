@@ -386,5 +386,26 @@
       "input": "startValue = 15\ntarget = 172",
       "output": "9"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int brokenCalc(int startValue, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int brokenCalc(int startValue, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def brokenCalc(self, startValue: int, target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def brokenCalc(self, startValue, target):\n        \"\"\"\n        :type startValue: int\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} startValue\n * @param {number} target\n * @return {number}\n */\nvar brokenCalc = function(startValue, target) {\n    \n};",
+    "typescript": "function brokenCalc(startValue: number, target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int BrokenCalc(int startValue, int target) {\n        \n    }\n}",
+    "c": "int brokenCalc(int startValue, int target) {\n    \n}",
+    "golang": "func brokenCalc(startValue int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun brokenCalc(startValue: Int, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func brokenCalc(_ startValue: Int, _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn broken_calc(start_value: i32, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} start_value\n# @param {Integer} target\n# @return {Integer}\ndef broken_calc(start_value, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $startValue\n     * @param Integer $target\n     * @return Integer\n     */\n    function brokenCalc($startValue, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int brokenCalc(int startValue, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def brokenCalc(startValue: Int, target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec broken_calc(start_value :: integer, target :: integer) :: integer\n  def broken_calc(start_value, target) do\n    \n  end\nend",
+    "erlang": "-spec broken_calc(StartValue :: integer(), Target :: integer()) -> integer().\nbroken_calc(StartValue, Target) ->\n  .",
+    "racket": "(define/contract (broken-calc startValue target)\n  (-> exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

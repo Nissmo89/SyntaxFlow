@@ -6718,5 +6718,26 @@
       "input": "rows = 2\ncols = 4\nrStart = 1\ncStart = 2",
       "output": "[[1, 2], [1, 3], [1, 1], [0, 1], [0, 2], [0, 3], [1, 0], [0, 0]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def spiralMatrixIII(self, rows, cols, rStart, cStart):\n        \"\"\"\n        :type rows: int\n        :type cols: int\n        :type rStart: int\n        :type cStart: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} rows\n * @param {number} cols\n * @param {number} rStart\n * @param {number} cStart\n * @return {number[][]}\n */\nvar spiralMatrixIII = function(rows, cols, rStart, cStart) {\n    \n};",
+    "typescript": "function spiralMatrixIII(rows: number, cols: number, rStart: number, cStart: number): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] SpiralMatrixIII(int rows, int cols, int rStart, int cStart) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** spiralMatrixIII(int rows, int cols, int rStart, int cStart, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func spiralMatrixIII(rows int, cols int, rStart int, cStart int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun spiralMatrixIII(rows: Int, cols: Int, rStart: Int, cStart: Int): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func spiralMatrixIII(_ rows: Int, _ cols: Int, _ rStart: Int, _ cStart: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn spiral_matrix_iii(rows: i32, cols: i32, r_start: i32, c_start: i32) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} rows\n# @param {Integer} cols\n# @param {Integer} r_start\n# @param {Integer} c_start\n# @return {Integer[][]}\ndef spiral_matrix_iii(rows, cols, r_start, c_start)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $rows\n     * @param Integer $cols\n     * @param Integer $rStart\n     * @param Integer $cStart\n     * @return Integer[][]\n     */\n    function spiralMatrixIII($rows, $cols, $rStart, $cStart) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def spiralMatrixIII(rows: Int, cols: Int, rStart: Int, cStart: Int): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec spiral_matrix_iii(rows :: integer, cols :: integer, r_start :: integer, c_start :: integer) :: [[integer]]\n  def spiral_matrix_iii(rows, cols, r_start, c_start) do\n    \n  end\nend",
+    "erlang": "-spec spiral_matrix_iii(Rows :: integer(), Cols :: integer(), RStart :: integer(), CStart :: integer()) -> [[integer()]].\nspiral_matrix_iii(Rows, Cols, RStart, CStart) ->\n  .",
+    "racket": "(define/contract (spiral-matrix-iii rows cols rStart cStart)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer? (listof (listof exact-integer?)))\n  )"
+  }
 }

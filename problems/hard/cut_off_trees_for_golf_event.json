@@ -1266,5 +1266,26 @@
       "input": "forest = [[2, 3]]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int cutOffTree(vector<vector<int>>& forest) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int cutOffTree(List<List<Integer>> forest) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def cutOffTree(self, forest: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def cutOffTree(self, forest):\n        \"\"\"\n        :type forest: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} forest\n * @return {number}\n */\nvar cutOffTree = function(forest) {\n    \n};",
+    "typescript": "function cutOffTree(forest: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CutOffTree(IList<IList<int>> forest) {\n        \n    }\n}",
+    "c": "int cutOffTree(int** forest, int forestSize, int* forestColSize) {\n    \n}",
+    "golang": "func cutOffTree(forest [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun cutOffTree(forest: List<List<Int>>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func cutOffTree(_ forest: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn cut_off_tree(forest: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} forest\n# @return {Integer}\ndef cut_off_tree(forest)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $forest\n     * @return Integer\n     */\n    function cutOffTree($forest) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int cutOffTree(List<List<int>> forest) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def cutOffTree(forest: List[List[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec cut_off_tree(forest :: [[integer]]) :: integer\n  def cut_off_tree(forest) do\n    \n  end\nend",
+    "erlang": "-spec cut_off_tree(Forest :: [[integer()]]) -> integer().\ncut_off_tree(Forest) ->\n  .",
+    "racket": "(define/contract (cut-off-tree forest)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -364,5 +364,26 @@
       "input": "queryIP = \"999.10.10.10\"",
       "output": "\"Neither\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string validIPAddress(string queryIP) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String validIPAddress(String queryIP) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validIPAddress(self, queryIP: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def validIPAddress(self, queryIP):\n        \"\"\"\n        :type queryIP: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} queryIP\n * @return {string}\n */\nvar validIPAddress = function(queryIP) {\n    \n};",
+    "typescript": "function validIPAddress(queryIP: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ValidIPAddress(string queryIP) {\n        \n    }\n}",
+    "c": "char* validIPAddress(char* queryIP) {\n    \n}",
+    "golang": "func validIPAddress(queryIP string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun validIPAddress(queryIP: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validIPAddress(_ queryIP: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_ip_address(query_ip: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} query_ip\n# @return {String}\ndef valid_ip_address(query_ip)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $queryIP\n     * @return String\n     */\n    function validIPAddress($queryIP) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String validIPAddress(String queryIP) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validIPAddress(queryIP: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_ip_address(query_ip :: String.t) :: String.t\n  def valid_ip_address(query_ip) do\n    \n  end\nend",
+    "erlang": "-spec valid_ip_address(QueryIP :: unicode:unicode_binary()) -> unicode:unicode_binary().\nvalid_ip_address(QueryIP) ->\n  .",
+    "racket": "(define/contract (valid-ip-address queryIP)\n  (-> string? string?)\n  )"
+  }
 }

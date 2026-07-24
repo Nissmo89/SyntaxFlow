@@ -576,5 +576,26 @@
       "input": "words = [\"a\", \"ba\", \"bca\", \"bda\", \"bdca\", \"bdcaa\"]",
       "output": "5"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestStrChain(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestStrChain(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestStrChain(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestStrChain(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar longestStrChain = function(words) {\n    \n};",
+    "typescript": "function longestStrChain(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestStrChain(string[] words) {\n        \n    }\n}",
+    "c": "int longestStrChain(char** words, int wordsSize) {\n    \n}",
+    "golang": "func longestStrChain(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestStrChain(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestStrChain(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_str_chain(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef longest_str_chain(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function longestStrChain($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestStrChain(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestStrChain(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_str_chain(words :: [String.t]) :: integer\n  def longest_str_chain(words) do\n    \n  end\nend",
+    "erlang": "-spec longest_str_chain(Words :: [unicode:unicode_binary()]) -> integer().\nlongest_str_chain(Words) ->\n  .",
+    "racket": "(define/contract (longest-str-chain words)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

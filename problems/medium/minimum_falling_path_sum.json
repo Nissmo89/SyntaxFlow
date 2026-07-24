@@ -1030,5 +1030,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}",
       "output": "12"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minFallingPathSum(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minFallingPathSum(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minFallingPathSum(self, matrix: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minFallingPathSum(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number}\n */\nvar minFallingPathSum = function(matrix) {\n    \n};",
+    "typescript": "function minFallingPathSum(matrix: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinFallingPathSum(int[][] matrix) {\n        \n    }\n}",
+    "c": "int minFallingPathSum(int** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func minFallingPathSum(matrix [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minFallingPathSum(matrix: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minFallingPathSum(_ matrix: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_falling_path_sum(matrix: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer}\ndef min_falling_path_sum(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer\n     */\n    function minFallingPathSum($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minFallingPathSum(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minFallingPathSum(matrix: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_falling_path_sum(matrix :: [[integer]]) :: integer\n  def min_falling_path_sum(matrix) do\n    \n  end\nend",
+    "erlang": "-spec min_falling_path_sum(Matrix :: [[integer()]]) -> integer().\nmin_falling_path_sum(Matrix) ->\n  .",
+    "racket": "(define/contract (min-falling-path-sum matrix)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -925,5 +925,26 @@
       "input": "p1 = [10000, 10000]\np2 = [9999, 10000]\np3 = [9999, 9999]\np4 = [10000, 9999]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validSquare(self, p1: List[int], p2: List[int], p3: List[int], p4: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def validSquare(self, p1, p2, p3, p4):\n        \"\"\"\n        :type p1: List[int]\n        :type p2: List[int]\n        :type p3: List[int]\n        :type p4: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} p1\n * @param {number[]} p2\n * @param {number[]} p3\n * @param {number[]} p4\n * @return {boolean}\n */\nvar validSquare = function(p1, p2, p3, p4) {\n    \n};",
+    "typescript": "function validSquare(p1: number[], p2: number[], p3: number[], p4: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ValidSquare(int[] p1, int[] p2, int[] p3, int[] p4) {\n        \n    }\n}",
+    "c": "bool validSquare(int* p1, int p1Size, int* p2, int p2Size, int* p3, int p3Size, int* p4, int p4Size) {\n    \n}",
+    "golang": "func validSquare(p1 []int, p2 []int, p3 []int, p4 []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun validSquare(p1: IntArray, p2: IntArray, p3: IntArray, p4: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validSquare(_ p1: [Int], _ p2: [Int], _ p3: [Int], _ p4: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_square(p1: Vec<i32>, p2: Vec<i32>, p3: Vec<i32>, p4: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} p1\n# @param {Integer[]} p2\n# @param {Integer[]} p3\n# @param {Integer[]} p4\n# @return {Boolean}\ndef valid_square(p1, p2, p3, p4)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $p1\n     * @param Integer[] $p2\n     * @param Integer[] $p3\n     * @param Integer[] $p4\n     * @return Boolean\n     */\n    function validSquare($p1, $p2, $p3, $p4) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool validSquare(List<int> p1, List<int> p2, List<int> p3, List<int> p4) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validSquare(p1: Array[Int], p2: Array[Int], p3: Array[Int], p4: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_square(p1 :: [integer], p2 :: [integer], p3 :: [integer], p4 :: [integer]) :: boolean\n  def valid_square(p1, p2, p3, p4) do\n    \n  end\nend",
+    "erlang": "-spec valid_square(P1 :: [integer()], P2 :: [integer()], P3 :: [integer()], P4 :: [integer()]) -> boolean().\nvalid_square(P1, P2, P3, P4) ->\n  .",
+    "racket": "(define/contract (valid-square p1 p2 p3 p4)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) boolean?)\n  )"
+  }
 }

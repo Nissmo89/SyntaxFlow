@@ -823,5 +823,26 @@
       "input": "nums = [3, 3, 3, 3]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int lengthOfLIS(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lengthOfLIS(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lengthOfLIS(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lengthOfLIS(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar lengthOfLIS = function(nums) {\n    \n};",
+    "typescript": "function lengthOfLIS(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LengthOfLIS(int[] nums) {\n        \n    }\n}",
+    "c": "int lengthOfLIS(int* nums, int numsSize) {\n    \n}",
+    "golang": "func lengthOfLIS(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lengthOfLIS(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lengthOfLIS(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn length_of_lis(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef length_of_lis(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function lengthOfLIS($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lengthOfLIS(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lengthOfLIS(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec length_of_lis(nums :: [integer]) :: integer\n  def length_of_lis(nums) do\n    \n  end\nend",
+    "erlang": "-spec length_of_lis(Nums :: [integer()]) -> integer().\nlength_of_lis(Nums) ->\n  .",
+    "racket": "(define/contract (length-of-lis nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

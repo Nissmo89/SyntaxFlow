@@ -573,5 +573,26 @@
       "input": "nums = [1, 2, 3, 4]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> subsets(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> subsets(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def subsets(self, nums: List[int]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def subsets(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsets = function(nums) {\n    \n};",
+    "typescript": "function subsets(nums: number[]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> Subsets(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** subsets(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func subsets(nums []int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun subsets(nums: IntArray): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func subsets(_ nums: [Int]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[][]}\ndef subsets(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[][]\n     */\n    function subsets($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> subsets(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def subsets(nums: Array[Int]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec subsets(nums :: [integer]) :: [[integer]]\n  def subsets(nums) do\n    \n  end\nend",
+    "erlang": "-spec subsets(Nums :: [integer()]) -> [[integer()]].\nsubsets(Nums) ->\n  .",
+    "racket": "(define/contract (subsets nums)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)))\n  )"
+  }
 }

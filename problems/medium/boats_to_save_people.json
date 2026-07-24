@@ -646,5 +646,26 @@
       "input": "people = [2, 3, 4, 5, 6]\nlimit = 7",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numRescueBoats(vector<int>& people, int limit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numRescueBoats(int[] people, int limit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numRescueBoats(self, people: List[int], limit: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numRescueBoats(self, people, limit):\n        \"\"\"\n        :type people: List[int]\n        :type limit: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} people\n * @param {number} limit\n * @return {number}\n */\nvar numRescueBoats = function(people, limit) {\n    \n};",
+    "typescript": "function numRescueBoats(people: number[], limit: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumRescueBoats(int[] people, int limit) {\n        \n    }\n}",
+    "c": "int numRescueBoats(int* people, int peopleSize, int limit) {\n    \n}",
+    "golang": "func numRescueBoats(people []int, limit int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numRescueBoats(people: IntArray, limit: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numRescueBoats(_ people: [Int], _ limit: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_rescue_boats(people: Vec<i32>, limit: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} people\n# @param {Integer} limit\n# @return {Integer}\ndef num_rescue_boats(people, limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $people\n     * @param Integer $limit\n     * @return Integer\n     */\n    function numRescueBoats($people, $limit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numRescueBoats(List<int> people, int limit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numRescueBoats(people: Array[Int], limit: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_rescue_boats(people :: [integer], limit :: integer) :: integer\n  def num_rescue_boats(people, limit) do\n    \n  end\nend",
+    "erlang": "-spec num_rescue_boats(People :: [integer()], Limit :: integer()) -> integer().\nnum_rescue_boats(People, Limit) ->\n  .",
+    "racket": "(define/contract (num-rescue-boats people limit)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

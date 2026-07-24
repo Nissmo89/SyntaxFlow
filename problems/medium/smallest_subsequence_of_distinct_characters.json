@@ -349,5 +349,26 @@
       "input": "s = \"aaaaaaaaaa\"",
       "output": "\"a\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string smallestSubsequence(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestSubsequence(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestSubsequence(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestSubsequence(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar smallestSubsequence = function(s) {\n    \n};",
+    "typescript": "function smallestSubsequence(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestSubsequence(string s) {\n        \n    }\n}",
+    "c": "char* smallestSubsequence(char* s) {\n    \n}",
+    "golang": "func smallestSubsequence(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestSubsequence(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestSubsequence(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_subsequence(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef smallest_subsequence(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function smallestSubsequence($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestSubsequence(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestSubsequence(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_subsequence(s :: String.t) :: String.t\n  def smallest_subsequence(s) do\n    \n  end\nend",
+    "erlang": "-spec smallest_subsequence(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsmallest_subsequence(S) ->\n  .",
+    "racket": "(define/contract (smallest-subsequence s)\n  (-> string? string?)\n  )"
+  }
 }

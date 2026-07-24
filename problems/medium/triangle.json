@@ -2213,5 +2213,26 @@
       "input": "triangle = {\"elemType\": \"int\", \"value\": [[0], [0, 0], [0, 0, 0], [0, 0, 0, 0]]}",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minimumTotal(vector<vector<int>>& triangle) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumTotal(List<List<Integer>> triangle) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumTotal(self, triangle: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumTotal(self, triangle):\n        \"\"\"\n        :type triangle: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} triangle\n * @return {number}\n */\nvar minimumTotal = function(triangle) {\n    \n};",
+    "typescript": "function minimumTotal(triangle: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumTotal(IList<IList<int>> triangle) {\n        \n    }\n}",
+    "c": "int minimumTotal(int** triangle, int triangleSize, int* triangleColSize) {\n    \n}",
+    "golang": "func minimumTotal(triangle [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumTotal(triangle: List<List<Int>>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumTotal(_ triangle: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_total(triangle: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} triangle\n# @return {Integer}\ndef minimum_total(triangle)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $triangle\n     * @return Integer\n     */\n    function minimumTotal($triangle) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumTotal(List<List<int>> triangle) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumTotal(triangle: List[List[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_total(triangle :: [[integer]]) :: integer\n  def minimum_total(triangle) do\n    \n  end\nend",
+    "erlang": "-spec minimum_total(Triangle :: [[integer()]]) -> integer().\nminimum_total(Triangle) ->\n  .",
+    "racket": "(define/contract (minimum-total triangle)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

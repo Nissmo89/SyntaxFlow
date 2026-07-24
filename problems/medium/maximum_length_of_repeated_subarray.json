@@ -1066,5 +1066,26 @@
       "input": "nums1 = [5, 6, 7, 8]\nnums2 = [0, 5, 6, 7, 8, 1]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findLength(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLength(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLength(self, nums1: List[int], nums2: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLength(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findLength = function(nums1, nums2) {\n    \n};",
+    "typescript": "function findLength(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLength(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int findLength(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func findLength(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLength(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLength(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_length(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef find_length(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function findLength($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLength(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLength(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_length(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def find_length(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec find_length(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nfind_length(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (find-length nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

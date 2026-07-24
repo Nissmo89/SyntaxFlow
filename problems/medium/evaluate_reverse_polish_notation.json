@@ -704,5 +704,26 @@
       "input": "tokens = [\"3\", \"-4\", \"*\"]",
       "output": "-12"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int evalRPN(vector<string>& tokens) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int evalRPN(String[] tokens) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def evalRPN(self, tokens: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def evalRPN(self, tokens):\n        \"\"\"\n        :type tokens: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} tokens\n * @return {number}\n */\nvar evalRPN = function(tokens) {\n    \n};",
+    "typescript": "function evalRPN(tokens: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int EvalRPN(string[] tokens) {\n        \n    }\n}",
+    "c": "int evalRPN(char** tokens, int tokensSize) {\n    \n}",
+    "golang": "func evalRPN(tokens []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun evalRPN(tokens: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func evalRPN(_ tokens: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn eval_rpn(tokens: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} tokens\n# @return {Integer}\ndef eval_rpn(tokens)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $tokens\n     * @return Integer\n     */\n    function evalRPN($tokens) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int evalRPN(List<String> tokens) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def evalRPN(tokens: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec eval_rpn(tokens :: [String.t]) :: integer\n  def eval_rpn(tokens) do\n    \n  end\nend",
+    "erlang": "-spec eval_rpn(Tokens :: [unicode:unicode_binary()]) -> integer().\neval_rpn(Tokens) ->\n  .",
+    "racket": "(define/contract (eval-rpn tokens)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

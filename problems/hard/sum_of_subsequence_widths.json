@@ -559,5 +559,26 @@
       "input": "nums = [9, 7, 5, 3, 1]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int sumSubseqWidths(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sumSubseqWidths(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumSubseqWidths(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumSubseqWidths(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sumSubseqWidths = function(nums) {\n    \n};",
+    "typescript": "function sumSubseqWidths(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SumSubseqWidths(int[] nums) {\n        \n    }\n}",
+    "c": "int sumSubseqWidths(int* nums, int numsSize) {\n    \n}",
+    "golang": "func sumSubseqWidths(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumSubseqWidths(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumSubseqWidths(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_subseq_widths(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sum_subseq_widths(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sumSubseqWidths($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumSubseqWidths(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumSubseqWidths(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_subseq_widths(nums :: [integer]) :: integer\n  def sum_subseq_widths(nums) do\n    \n  end\nend",
+    "erlang": "-spec sum_subseq_widths(Nums :: [integer()]) -> integer().\nsum_subseq_widths(Nums) ->\n  .",
+    "racket": "(define/contract (sum-subseq-widths nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

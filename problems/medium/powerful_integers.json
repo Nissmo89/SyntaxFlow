@@ -756,5 +756,26 @@
       "input": "x = 3\ny = 2\nbound = 1",
       "output": "[]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> powerfulIntegers(int x, int y, int bound) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> powerfulIntegers(int x, int y, int bound) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def powerfulIntegers(self, x: int, y: int, bound: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def powerfulIntegers(self, x, y, bound):\n        \"\"\"\n        :type x: int\n        :type y: int\n        :type bound: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} y\n * @param {number} bound\n * @return {number[]}\n */\nvar powerfulIntegers = function(x, y, bound) {\n    \n};",
+    "typescript": "function powerfulIntegers(x: number, y: number, bound: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> PowerfulIntegers(int x, int y, int bound) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* powerfulIntegers(int x, int y, int bound, int* returnSize) {\n    \n}",
+    "golang": "func powerfulIntegers(x int, y int, bound int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun powerfulIntegers(x: Int, y: Int, bound: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func powerfulIntegers(_ x: Int, _ y: Int, _ bound: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn powerful_integers(x: i32, y: i32, bound: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @param {Integer} y\n# @param {Integer} bound\n# @return {Integer[]}\ndef powerful_integers(x, y, bound)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @param Integer $y\n     * @param Integer $bound\n     * @return Integer[]\n     */\n    function powerfulIntegers($x, $y, $bound) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> powerfulIntegers(int x, int y, int bound) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def powerfulIntegers(x: Int, y: Int, bound: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec powerful_integers(x :: integer, y :: integer, bound :: integer) :: [integer]\n  def powerful_integers(x, y, bound) do\n    \n  end\nend",
+    "erlang": "-spec powerful_integers(X :: integer(), Y :: integer(), Bound :: integer()) -> [integer()].\npowerful_integers(X, Y, Bound) ->\n  .",
+    "racket": "(define/contract (powerful-integers x y bound)\n  (-> exact-integer? exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  }
 }

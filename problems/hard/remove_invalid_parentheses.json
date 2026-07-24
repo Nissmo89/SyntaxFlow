@@ -329,5 +329,26 @@
       "input": "s = \"a(\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> removeInvalidParentheses(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> removeInvalidParentheses(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeInvalidParentheses(self, s: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def removeInvalidParentheses(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar removeInvalidParentheses = function(s) {\n    \n};",
+    "typescript": "function removeInvalidParentheses(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> RemoveInvalidParentheses(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** removeInvalidParentheses(char* s, int* returnSize) {\n    \n}",
+    "golang": "func removeInvalidParentheses(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeInvalidParentheses(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeInvalidParentheses(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_invalid_parentheses(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef remove_invalid_parentheses(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function removeInvalidParentheses($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> removeInvalidParentheses(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeInvalidParentheses(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_invalid_parentheses(s :: String.t) :: [String.t]\n  def remove_invalid_parentheses(s) do\n    \n  end\nend",
+    "erlang": "-spec remove_invalid_parentheses(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nremove_invalid_parentheses(S) ->\n  .",
+    "racket": "(define/contract (remove-invalid-parentheses s)\n  (-> string? (listof string?))\n  )"
+  }
 }

@@ -563,5 +563,26 @@
       "input": "amount = 1\ncoins = [2, 3, 4]",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int change(int amount, vector<int>& coins) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int change(int amount, int[] coins) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def change(self, amount, coins):\n        \"\"\"\n        :type amount: int\n        :type coins: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} amount\n * @param {number[]} coins\n * @return {number}\n */\nvar change = function(amount, coins) {\n    \n};",
+    "typescript": "function change(amount: number, coins: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Change(int amount, int[] coins) {\n        \n    }\n}",
+    "c": "int change(int amount, int* coins, int coinsSize) {\n    \n}",
+    "golang": "func change(amount int, coins []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun change(amount: Int, coins: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func change(_ amount: Int, _ coins: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn change(amount: i32, coins: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} amount\n# @param {Integer[]} coins\n# @return {Integer}\ndef change(amount, coins)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $amount\n     * @param Integer[] $coins\n     * @return Integer\n     */\n    function change($amount, $coins) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int change(int amount, List<int> coins) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def change(amount: Int, coins: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec change(amount :: integer, coins :: [integer]) :: integer\n  def change(amount, coins) do\n    \n  end\nend",
+    "erlang": "-spec change(Amount :: integer(), Coins :: [integer()]) -> integer().\nchange(Amount, Coins) ->\n  .",
+    "racket": "(define/contract (change amount coins)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

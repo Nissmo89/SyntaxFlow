@@ -359,5 +359,26 @@
       "input": "num = 8",
       "output": "\"VIII\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string intToRoman(int num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String intToRoman(int num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def intToRoman(self, num: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def intToRoman(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {string}\n */\nvar intToRoman = function(num) {\n    \n};",
+    "typescript": "function intToRoman(num: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string IntToRoman(int num) {\n        \n    }\n}",
+    "c": "char* intToRoman(int num) {\n    \n}",
+    "golang": "func intToRoman(num int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun intToRoman(num: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func intToRoman(_ num: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn int_to_roman(num: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {String}\ndef int_to_roman(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return String\n     */\n    function intToRoman($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String intToRoman(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def intToRoman(num: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec int_to_roman(num :: integer) :: String.t\n  def int_to_roman(num) do\n    \n  end\nend",
+    "erlang": "-spec int_to_roman(Num :: integer()) -> unicode:unicode_binary().\nint_to_roman(Num) ->\n  .",
+    "racket": "(define/contract (int-to-roman num)\n  (-> exact-integer? string?)\n  )"
+  }
 }

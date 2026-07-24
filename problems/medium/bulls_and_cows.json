@@ -413,5 +413,26 @@
       "input": "secret = \"12\"\nguess = \"12\"",
       "output": "\"2A0B\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string getHint(string secret, string guess) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String getHint(String secret, String guess) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getHint(self, secret: str, guess: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def getHint(self, secret, guess):\n        \"\"\"\n        :type secret: str\n        :type guess: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} secret\n * @param {string} guess\n * @return {string}\n */\nvar getHint = function(secret, guess) {\n    \n};",
+    "typescript": "function getHint(secret: string, guess: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GetHint(string secret, string guess) {\n        \n    }\n}",
+    "c": "char* getHint(char* secret, char* guess) {\n    \n}",
+    "golang": "func getHint(secret string, guess string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun getHint(secret: String, guess: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getHint(_ secret: String, _ guess: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_hint(secret: String, guess: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} secret\n# @param {String} guess\n# @return {String}\ndef get_hint(secret, guess)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $secret\n     * @param String $guess\n     * @return String\n     */\n    function getHint($secret, $guess) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String getHint(String secret, String guess) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getHint(secret: String, guess: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_hint(secret :: String.t, guess :: String.t) :: String.t\n  def get_hint(secret, guess) do\n    \n  end\nend",
+    "erlang": "-spec get_hint(Secret :: unicode:unicode_binary(), Guess :: unicode:unicode_binary()) -> unicode:unicode_binary().\nget_hint(Secret, Guess) ->\n  .",
+    "racket": "(define/contract (get-hint secret guess)\n  (-> string? string? string?)\n  )"
+  }
 }

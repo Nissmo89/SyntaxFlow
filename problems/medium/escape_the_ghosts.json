@@ -924,5 +924,26 @@
       "input": "ghosts = [[2, 2]]\ntarget = [1, 1]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool escapeGhosts(vector<vector<int>>& ghosts, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean escapeGhosts(int[][] ghosts, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def escapeGhosts(self, ghosts: List[List[int]], target: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def escapeGhosts(self, ghosts, target):\n        \"\"\"\n        :type ghosts: List[List[int]]\n        :type target: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} ghosts\n * @param {number[]} target\n * @return {boolean}\n */\nvar escapeGhosts = function(ghosts, target) {\n    \n};",
+    "typescript": "function escapeGhosts(ghosts: number[][], target: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool EscapeGhosts(int[][] ghosts, int[] target) {\n        \n    }\n}",
+    "c": "bool escapeGhosts(int** ghosts, int ghostsSize, int* ghostsColSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func escapeGhosts(ghosts [][]int, target []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun escapeGhosts(ghosts: Array<IntArray>, target: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func escapeGhosts(_ ghosts: [[Int]], _ target: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn escape_ghosts(ghosts: Vec<Vec<i32>>, target: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} ghosts\n# @param {Integer[]} target\n# @return {Boolean}\ndef escape_ghosts(ghosts, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $ghosts\n     * @param Integer[] $target\n     * @return Boolean\n     */\n    function escapeGhosts($ghosts, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool escapeGhosts(List<List<int>> ghosts, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def escapeGhosts(ghosts: Array[Array[Int]], target: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec escape_ghosts(ghosts :: [[integer]], target :: [integer]) :: boolean\n  def escape_ghosts(ghosts, target) do\n    \n  end\nend",
+    "erlang": "-spec escape_ghosts(Ghosts :: [[integer()]], Target :: [integer()]) -> boolean().\nescape_ghosts(Ghosts, Target) ->\n  .",
+    "racket": "(define/contract (escape-ghosts ghosts target)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) boolean?)\n  )"
+  }
 }

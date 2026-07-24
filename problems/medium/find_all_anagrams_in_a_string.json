@@ -567,5 +567,26 @@
       "input": "s = \"bbbbb\"\np = \"bb\"",
       "output": "[0, 1, 2, 3]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findAnagrams(string s, string p) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findAnagrams(String s, String p) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findAnagrams(self, s, p):\n        \"\"\"\n        :type s: str\n        :type p: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} p\n * @return {number[]}\n */\nvar findAnagrams = function(s, p) {\n    \n};",
+    "typescript": "function findAnagrams(s: string, p: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindAnagrams(string s, string p) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findAnagrams(char* s, char* p, int* returnSize) {\n    \n}",
+    "golang": "func findAnagrams(s string, p string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findAnagrams(s: String, p: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findAnagrams(_ s: String, _ p: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_anagrams(s: String, p: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} p\n# @return {Integer[]}\ndef find_anagrams(s, p)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $p\n     * @return Integer[]\n     */\n    function findAnagrams($s, $p) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findAnagrams(String s, String p) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findAnagrams(s: String, p: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_anagrams(s :: String.t, p :: String.t) :: [integer]\n  def find_anagrams(s, p) do\n    \n  end\nend",
+    "erlang": "-spec find_anagrams(S :: unicode:unicode_binary(), P :: unicode:unicode_binary()) -> [integer()].\nfind_anagrams(S, P) ->\n  .",
+    "racket": "(define/contract (find-anagrams s p)\n  (-> string? string? (listof exact-integer?))\n  )"
+  }
 }

@@ -523,5 +523,26 @@
       "input": "num = \"011235\"",
       "output": "[0, 1, 1, 2, 3, 5]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> splitIntoFibonacci(string num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> splitIntoFibonacci(String num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def splitIntoFibonacci(self, num: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def splitIntoFibonacci(self, num):\n        \"\"\"\n        :type num: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @return {number[]}\n */\nvar splitIntoFibonacci = function(num) {\n    \n};",
+    "typescript": "function splitIntoFibonacci(num: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> SplitIntoFibonacci(string num) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* splitIntoFibonacci(char* num, int* returnSize) {\n    \n}",
+    "golang": "func splitIntoFibonacci(num string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun splitIntoFibonacci(num: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func splitIntoFibonacci(_ num: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn split_into_fibonacci(num: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @return {Integer[]}\ndef split_into_fibonacci(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @return Integer[]\n     */\n    function splitIntoFibonacci($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> splitIntoFibonacci(String num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def splitIntoFibonacci(num: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec split_into_fibonacci(num :: String.t) :: [integer]\n  def split_into_fibonacci(num) do\n    \n  end\nend",
+    "erlang": "-spec split_into_fibonacci(Num :: unicode:unicode_binary()) -> [integer()].\nsplit_into_fibonacci(Num) ->\n  .",
+    "racket": "(define/contract (split-into-fibonacci num)\n  (-> string? (listof exact-integer?))\n  )"
+  }
 }

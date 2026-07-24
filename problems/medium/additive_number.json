@@ -345,5 +345,26 @@
       "input": "num = \"1023\"",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool isAdditiveNumber(string num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isAdditiveNumber(String num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isAdditiveNumber(self, num: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isAdditiveNumber(self, num):\n        \"\"\"\n        :type num: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @return {boolean}\n */\nvar isAdditiveNumber = function(num) {\n    \n};",
+    "typescript": "function isAdditiveNumber(num: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsAdditiveNumber(string num) {\n        \n    }\n}",
+    "c": "bool isAdditiveNumber(char* num) {\n    \n}",
+    "golang": "func isAdditiveNumber(num string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isAdditiveNumber(num: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isAdditiveNumber(_ num: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_additive_number(num: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @return {Boolean}\ndef is_additive_number(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @return Boolean\n     */\n    function isAdditiveNumber($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isAdditiveNumber(String num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isAdditiveNumber(num: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_additive_number(num :: String.t) :: boolean\n  def is_additive_number(num) do\n    \n  end\nend",
+    "erlang": "-spec is_additive_number(Num :: unicode:unicode_binary()) -> boolean().\nis_additive_number(Num) ->\n  .",
+    "racket": "(define/contract (is-additive-number num)\n  (-> string? boolean?)\n  )"
+  }
 }

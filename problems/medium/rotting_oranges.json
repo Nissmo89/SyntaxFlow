@@ -762,5 +762,26 @@
       "input": "grid = [[0, 2, 1]]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int orangesRotting(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int orangesRotting(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def orangesRotting(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def orangesRotting(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar orangesRotting = function(grid) {\n    \n};",
+    "typescript": "function orangesRotting(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int OrangesRotting(int[][] grid) {\n        \n    }\n}",
+    "c": "int orangesRotting(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func orangesRotting(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun orangesRotting(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func orangesRotting(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn oranges_rotting(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef oranges_rotting(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function orangesRotting($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int orangesRotting(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def orangesRotting(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec oranges_rotting(grid :: [[integer]]) :: integer\n  def oranges_rotting(grid) do\n    \n  end\nend",
+    "erlang": "-spec oranges_rotting(Grid :: [[integer()]]) -> integer().\noranges_rotting(Grid) ->\n  .",
+    "racket": "(define/contract (oranges-rotting grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

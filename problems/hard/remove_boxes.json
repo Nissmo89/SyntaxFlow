@@ -1262,5 +1262,26 @@
       "input": "boxes = [1, 2, 1, 2]",
       "output": "6"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int removeBoxes(vector<int>& boxes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int removeBoxes(int[] boxes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeBoxes(self, boxes: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def removeBoxes(self, boxes):\n        \"\"\"\n        :type boxes: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} boxes\n * @return {number}\n */\nvar removeBoxes = function(boxes) {\n    \n};",
+    "typescript": "function removeBoxes(boxes: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RemoveBoxes(int[] boxes) {\n        \n    }\n}",
+    "c": "int removeBoxes(int* boxes, int boxesSize) {\n    \n}",
+    "golang": "func removeBoxes(boxes []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeBoxes(boxes: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeBoxes(_ boxes: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_boxes(boxes: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} boxes\n# @return {Integer}\ndef remove_boxes(boxes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $boxes\n     * @return Integer\n     */\n    function removeBoxes($boxes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int removeBoxes(List<int> boxes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeBoxes(boxes: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_boxes(boxes :: [integer]) :: integer\n  def remove_boxes(boxes) do\n    \n  end\nend",
+    "erlang": "-spec remove_boxes(Boxes :: [integer()]) -> integer().\nremove_boxes(Boxes) ->\n  .",
+    "racket": "(define/contract (remove-boxes boxes)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

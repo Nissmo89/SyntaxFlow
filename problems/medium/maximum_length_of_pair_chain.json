@@ -9009,5 +9009,26 @@
       "input": "pairs = [[5, 24], [15, 25], [27, 40], [50, 60]]",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findLongestChain(vector<vector<int>>& pairs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLongestChain(int[][] pairs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLongestChain(self, pairs: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLongestChain(self, pairs):\n        \"\"\"\n        :type pairs: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} pairs\n * @return {number}\n */\nvar findLongestChain = function(pairs) {\n    \n};",
+    "typescript": "function findLongestChain(pairs: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLongestChain(int[][] pairs) {\n        \n    }\n}",
+    "c": "int findLongestChain(int** pairs, int pairsSize, int* pairsColSize) {\n    \n}",
+    "golang": "func findLongestChain(pairs [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLongestChain(pairs: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLongestChain(_ pairs: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_longest_chain(pairs: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} pairs\n# @return {Integer}\ndef find_longest_chain(pairs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $pairs\n     * @return Integer\n     */\n    function findLongestChain($pairs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLongestChain(List<List<int>> pairs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLongestChain(pairs: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_longest_chain(pairs :: [[integer]]) :: integer\n  def find_longest_chain(pairs) do\n    \n  end\nend",
+    "erlang": "-spec find_longest_chain(Pairs :: [[integer()]]) -> integer().\nfind_longest_chain(Pairs) ->\n  .",
+    "racket": "(define/contract (find-longest-chain pairs)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

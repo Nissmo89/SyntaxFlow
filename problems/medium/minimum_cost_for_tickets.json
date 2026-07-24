@@ -819,5 +819,26 @@
       "input": "days = [35, 45, 75, 188, 229, 256, 266, 294, 330, 359]\ncosts = [19, 25, 48]",
       "output": "190"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int mincostTickets(vector<int>& days, vector<int>& costs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int mincostTickets(int[] days, int[] costs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mincostTickets(self, days: List[int], costs: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def mincostTickets(self, days, costs):\n        \"\"\"\n        :type days: List[int]\n        :type costs: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} days\n * @param {number[]} costs\n * @return {number}\n */\nvar mincostTickets = function(days, costs) {\n    \n};",
+    "typescript": "function mincostTickets(days: number[], costs: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MincostTickets(int[] days, int[] costs) {\n        \n    }\n}",
+    "c": "int mincostTickets(int* days, int daysSize, int* costs, int costsSize) {\n    \n}",
+    "golang": "func mincostTickets(days []int, costs []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun mincostTickets(days: IntArray, costs: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mincostTickets(_ days: [Int], _ costs: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn mincost_tickets(days: Vec<i32>, costs: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} days\n# @param {Integer[]} costs\n# @return {Integer}\ndef mincost_tickets(days, costs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $days\n     * @param Integer[] $costs\n     * @return Integer\n     */\n    function mincostTickets($days, $costs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int mincostTickets(List<int> days, List<int> costs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mincostTickets(days: Array[Int], costs: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec mincost_tickets(days :: [integer], costs :: [integer]) :: integer\n  def mincost_tickets(days, costs) do\n    \n  end\nend",
+    "erlang": "-spec mincost_tickets(Days :: [integer()], Costs :: [integer()]) -> integer().\nmincost_tickets(Days, Costs) ->\n  .",
+    "racket": "(define/contract (mincost-tickets days costs)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

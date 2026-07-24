@@ -345,5 +345,26 @@
       "input": "s = \"1111111111\"",
       "output": "89"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int numDecodings(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numDecodings(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numDecodings(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numDecodings(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar numDecodings = function(s) {\n    \n};",
+    "typescript": "function numDecodings(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumDecodings(string s) {\n        \n    }\n}",
+    "c": "int numDecodings(char* s) {\n    \n}",
+    "golang": "func numDecodings(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numDecodings(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numDecodings(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_decodings(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef num_decodings(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function numDecodings($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numDecodings(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numDecodings(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_decodings(s :: String.t) :: integer\n  def num_decodings(s) do\n    \n  end\nend",
+    "erlang": "-spec num_decodings(S :: unicode:unicode_binary()) -> integer().\nnum_decodings(S) ->\n  .",
+    "racket": "(define/contract (num-decodings s)\n  (-> string? exact-integer?)\n  )"
+  }
 }

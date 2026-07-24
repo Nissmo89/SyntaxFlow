@@ -1466,5 +1466,26 @@
       "input": "board = {\"elemType\": \"int\", \"value\": [[-1, -1, -1], [-1, -1, -1], [-1, 8, -1]]}",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int snakesAndLadders(vector<vector<int>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int snakesAndLadders(int[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def snakesAndLadders(self, board: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def snakesAndLadders(self, board):\n        \"\"\"\n        :type board: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} board\n * @return {number}\n */\nvar snakesAndLadders = function(board) {\n    \n};",
+    "typescript": "function snakesAndLadders(board: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SnakesAndLadders(int[][] board) {\n        \n    }\n}",
+    "c": "int snakesAndLadders(int** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func snakesAndLadders(board [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun snakesAndLadders(board: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func snakesAndLadders(_ board: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} board\n# @return {Integer}\ndef snakes_and_ladders(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $board\n     * @return Integer\n     */\n    function snakesAndLadders($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int snakesAndLadders(List<List<int>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def snakesAndLadders(board: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec snakes_and_ladders(board :: [[integer]]) :: integer\n  def snakes_and_ladders(board) do\n    \n  end\nend",
+    "erlang": "-spec snakes_and_ladders(Board :: [[integer()]]) -> integer().\nsnakes_and_ladders(Board) ->\n  .",
+    "racket": "(define/contract (snakes-and-ladders board)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

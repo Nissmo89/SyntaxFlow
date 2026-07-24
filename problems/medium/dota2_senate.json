@@ -406,5 +406,26 @@
       "input": "senate = \"RRD\"",
       "output": "\"Radiant\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string predictPartyVictory(string senate) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String predictPartyVictory(String senate) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def predictPartyVictory(self, senate: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def predictPartyVictory(self, senate):\n        \"\"\"\n        :type senate: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} senate\n * @return {string}\n */\nvar predictPartyVictory = function(senate) {\n    \n};",
+    "typescript": "function predictPartyVictory(senate: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string PredictPartyVictory(string senate) {\n        \n    }\n}",
+    "c": "char* predictPartyVictory(char* senate) {\n    \n}",
+    "golang": "func predictPartyVictory(senate string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun predictPartyVictory(senate: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func predictPartyVictory(_ senate: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn predict_party_victory(senate: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} senate\n# @return {String}\ndef predict_party_victory(senate)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $senate\n     * @return String\n     */\n    function predictPartyVictory($senate) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String predictPartyVictory(String senate) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def predictPartyVictory(senate: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec predict_party_victory(senate :: String.t) :: String.t\n  def predict_party_victory(senate) do\n    \n  end\nend",
+    "erlang": "-spec predict_party_victory(Senate :: unicode:unicode_binary()) -> unicode:unicode_binary().\npredict_party_victory(Senate) ->\n  .",
+    "racket": "(define/contract (predict-party-victory senate)\n  (-> string? string?)\n  )"
+  }
 }

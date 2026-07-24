@@ -817,5 +817,26 @@
       "input": "s = \"abcabcabc\"\nindices = [0, 3, 6]\nsources = [\"ab\", \"bc\", \"abc\"]\ntargets = [\"xx\", \"yy\", \"zz\"]",
       "output": "\"xxcabczz\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string findReplaceString(string s, vector<int>& indices, vector<string>& sources, vector<string>& targets) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String findReplaceString(String s, int[] indices, String[] sources, String[] targets) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findReplaceString(self, s: str, indices: List[int], sources: List[str], targets: List[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def findReplaceString(self, s, indices, sources, targets):\n        \"\"\"\n        :type s: str\n        :type indices: List[int]\n        :type sources: List[str]\n        :type targets: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[]} indices\n * @param {string[]} sources\n * @param {string[]} targets\n * @return {string}\n */\nvar findReplaceString = function(s, indices, sources, targets) {\n    \n};",
+    "typescript": "function findReplaceString(s: string, indices: number[], sources: string[], targets: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FindReplaceString(string s, int[] indices, string[] sources, string[] targets) {\n        \n    }\n}",
+    "c": "char* findReplaceString(char* s, int* indices, int indicesSize, char** sources, int sourcesSize, char** targets, int targetsSize) {\n    \n}",
+    "golang": "func findReplaceString(s string, indices []int, sources []string, targets []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findReplaceString(s: String, indices: IntArray, sources: Array<String>, targets: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findReplaceString(_ s: String, _ indices: [Int], _ sources: [String], _ targets: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_replace_string(s: String, indices: Vec<i32>, sources: Vec<String>, targets: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[]} indices\n# @param {String[]} sources\n# @param {String[]} targets\n# @return {String}\ndef find_replace_string(s, indices, sources, targets)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[] $indices\n     * @param String[] $sources\n     * @param String[] $targets\n     * @return String\n     */\n    function findReplaceString($s, $indices, $sources, $targets) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String findReplaceString(String s, List<int> indices, List<String> sources, List<String> targets) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findReplaceString(s: String, indices: Array[Int], sources: Array[String], targets: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_replace_string(s :: String.t, indices :: [integer], sources :: [String.t], targets :: [String.t]) :: String.t\n  def find_replace_string(s, indices, sources, targets) do\n    \n  end\nend",
+    "erlang": "-spec find_replace_string(S :: unicode:unicode_binary(), Indices :: [integer()], Sources :: [unicode:unicode_binary()], Targets :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nfind_replace_string(S, Indices, Sources, Targets) ->\n  .",
+    "racket": "(define/contract (find-replace-string s indices sources targets)\n  (-> string? (listof exact-integer?) (listof string?) (listof string?) string?)\n  )"
+  }
 }

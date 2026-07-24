@@ -484,5 +484,26 @@
       "input": "words = [\"a\", \"b\", \"c\"]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minimumLengthEncoding(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumLengthEncoding(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumLengthEncoding(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumLengthEncoding(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar minimumLengthEncoding = function(words) {\n    \n};",
+    "typescript": "function minimumLengthEncoding(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumLengthEncoding(string[] words) {\n        \n    }\n}",
+    "c": "int minimumLengthEncoding(char** words, int wordsSize) {\n    \n}",
+    "golang": "func minimumLengthEncoding(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumLengthEncoding(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumLengthEncoding(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_length_encoding(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef minimum_length_encoding(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function minimumLengthEncoding($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumLengthEncoding(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumLengthEncoding(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_length_encoding(words :: [String.t]) :: integer\n  def minimum_length_encoding(words) do\n    \n  end\nend",
+    "erlang": "-spec minimum_length_encoding(Words :: [unicode:unicode_binary()]) -> integer().\nminimum_length_encoding(Words) ->\n  .",
+    "racket": "(define/contract (minimum-length-encoding words)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

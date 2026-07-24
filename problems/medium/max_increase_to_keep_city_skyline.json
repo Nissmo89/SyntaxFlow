@@ -1256,5 +1256,26 @@
       "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 2, 1], [2, 3, 2], [1, 2, 1]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxIncreaseKeepingSkyline(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxIncreaseKeepingSkyline(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxIncreaseKeepingSkyline(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar maxIncreaseKeepingSkyline = function(grid) {\n    \n};",
+    "typescript": "function maxIncreaseKeepingSkyline(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxIncreaseKeepingSkyline(int[][] grid) {\n        \n    }\n}",
+    "c": "int maxIncreaseKeepingSkyline(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func maxIncreaseKeepingSkyline(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxIncreaseKeepingSkyline(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxIncreaseKeepingSkyline(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef max_increase_keeping_skyline(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function maxIncreaseKeepingSkyline($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxIncreaseKeepingSkyline(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxIncreaseKeepingSkyline(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_increase_keeping_skyline(grid :: [[integer]]) :: integer\n  def max_increase_keeping_skyline(grid) do\n    \n  end\nend",
+    "erlang": "-spec max_increase_keeping_skyline(Grid :: [[integer()]]) -> integer().\nmax_increase_keeping_skyline(Grid) ->\n  .",
+    "racket": "(define/contract (max-increase-keeping-skyline grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -16596,5 +16596,26 @@
       "input": "grid = [[0, 1], [1, 0]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int shortestPathBinaryMatrix(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def shortestPathBinaryMatrix(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar shortestPathBinaryMatrix = function(grid) {\n    \n};",
+    "typescript": "function shortestPathBinaryMatrix(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ShortestPathBinaryMatrix(int[][] grid) {\n        \n    }\n}",
+    "c": "int shortestPathBinaryMatrix(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func shortestPathBinaryMatrix(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestPathBinaryMatrix(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestPathBinaryMatrix(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_path_binary_matrix(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef shortest_path_binary_matrix(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function shortestPathBinaryMatrix($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int shortestPathBinaryMatrix(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestPathBinaryMatrix(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_path_binary_matrix(grid :: [[integer]]) :: integer\n  def shortest_path_binary_matrix(grid) do\n    \n  end\nend",
+    "erlang": "-spec shortest_path_binary_matrix(Grid :: [[integer()]]) -> integer().\nshortest_path_binary_matrix(Grid) ->\n  .",
+    "racket": "(define/contract (shortest-path-binary-matrix grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

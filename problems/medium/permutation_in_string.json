@@ -412,5 +412,26 @@
       "input": "s1 = \"xyz\"\ns2 = \"afdgzyx\"",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool checkInclusion(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkInclusion(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkInclusion(self, s1: str, s2: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkInclusion(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {boolean}\n */\nvar checkInclusion = function(s1, s2) {\n    \n};",
+    "typescript": "function checkInclusion(s1: string, s2: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckInclusion(string s1, string s2) {\n        \n    }\n}",
+    "c": "bool checkInclusion(char* s1, char* s2) {\n    \n}",
+    "golang": "func checkInclusion(s1 string, s2 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkInclusion(s1: String, s2: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkInclusion(_ s1: String, _ s2: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_inclusion(s1: String, s2: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {Boolean}\ndef check_inclusion(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return Boolean\n     */\n    function checkInclusion($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkInclusion(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkInclusion(s1: String, s2: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_inclusion(s1 :: String.t, s2 :: String.t) :: boolean\n  def check_inclusion(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec check_inclusion(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> boolean().\ncheck_inclusion(S1, S2) ->\n  .",
+    "racket": "(define/contract (check-inclusion s1 s2)\n  (-> string? string? boolean?)\n  )"
+  }
 }

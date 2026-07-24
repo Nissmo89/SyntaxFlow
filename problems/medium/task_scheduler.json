@@ -886,5 +886,26 @@
       "input": "tasks = [\"A\", \"A\"]\nn = 1",
       "output": "3"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int leastInterval(vector<char>& tasks, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int leastInterval(char[] tasks, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def leastInterval(self, tasks: List[str], n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def leastInterval(self, tasks, n):\n        \"\"\"\n        :type tasks: List[str]\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[]} tasks\n * @param {number} n\n * @return {number}\n */\nvar leastInterval = function(tasks, n) {\n    \n};",
+    "typescript": "function leastInterval(tasks: string[], n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LeastInterval(char[] tasks, int n) {\n        \n    }\n}",
+    "c": "int leastInterval(char* tasks, int tasksSize, int n) {\n    \n}",
+    "golang": "func leastInterval(tasks []byte, n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun leastInterval(tasks: CharArray, n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func leastInterval(_ tasks: [Character], _ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn least_interval(tasks: Vec<char>, n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[]} tasks\n# @param {Integer} n\n# @return {Integer}\ndef least_interval(tasks, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $tasks\n     * @param Integer $n\n     * @return Integer\n     */\n    function leastInterval($tasks, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int leastInterval(List<String> tasks, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def leastInterval(tasks: Array[Char], n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec least_interval(tasks :: [char], n :: integer) :: integer\n  def least_interval(tasks, n) do\n    \n  end\nend",
+    "erlang": "-spec least_interval(Tasks :: [char()], N :: integer()) -> integer().\nleast_interval(Tasks, N) ->\n  .",
+    "racket": "(define/contract (least-interval tasks n)\n  (-> (listof char?) exact-integer? exact-integer?)\n  )"
+  }
 }

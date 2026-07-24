@@ -588,5 +588,26 @@
       "input": "dictionary = [\"run\", \"walk\", \"talk\"]\nsentence = \"running walked talkative runner walk talk\"",
       "output": "\"run walk talk run walk talk\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string replaceWords(vector<string>& dictionary, string sentence) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String replaceWords(List<String> dictionary, String sentence) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def replaceWords(self, dictionary: List[str], sentence: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def replaceWords(self, dictionary, sentence):\n        \"\"\"\n        :type dictionary: List[str]\n        :type sentence: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} dictionary\n * @param {string} sentence\n * @return {string}\n */\nvar replaceWords = function(dictionary, sentence) {\n    \n};",
+    "typescript": "function replaceWords(dictionary: string[], sentence: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReplaceWords(IList<string> dictionary, string sentence) {\n        \n    }\n}",
+    "c": "char* replaceWords(char** dictionary, int dictionarySize, char* sentence) {\n    \n}",
+    "golang": "func replaceWords(dictionary []string, sentence string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun replaceWords(dictionary: List<String>, sentence: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func replaceWords(_ dictionary: [String], _ sentence: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn replace_words(dictionary: Vec<String>, sentence: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} dictionary\n# @param {String} sentence\n# @return {String}\ndef replace_words(dictionary, sentence)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $dictionary\n     * @param String $sentence\n     * @return String\n     */\n    function replaceWords($dictionary, $sentence) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String replaceWords(List<String> dictionary, String sentence) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def replaceWords(dictionary: List[String], sentence: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec replace_words(dictionary :: [String.t], sentence :: String.t) :: String.t\n  def replace_words(dictionary, sentence) do\n    \n  end\nend",
+    "erlang": "-spec replace_words(Dictionary :: [unicode:unicode_binary()], Sentence :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreplace_words(Dictionary, Sentence) ->\n  .",
+    "racket": "(define/contract (replace-words dictionary sentence)\n  (-> (listof string?) string? string?)\n  )"
+  }
 }

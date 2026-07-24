@@ -1507,5 +1507,26 @@
       "input": "intervals = {\"elemType\": \"int\", \"value\": [[1, 10], [2, 3], [4, 8], [9, 10]]}",
       "output": "[[1, 10]]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> merge(vector<vector<int>>& intervals) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] merge(int[][] intervals) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def merge(self, intervals):\n        \"\"\"\n        :type intervals: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} intervals\n * @return {number[][]}\n */\nvar merge = function(intervals) {\n    \n};",
+    "typescript": "function merge(intervals: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] Merge(int[][] intervals) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** merge(int** intervals, int intervalsSize, int* intervalsColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func merge(intervals [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun merge(intervals: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func merge(_ intervals: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn merge(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} intervals\n# @return {Integer[][]}\ndef merge(intervals)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $intervals\n     * @return Integer[][]\n     */\n    function merge($intervals) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> merge(List<List<int>> intervals) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def merge(intervals: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec merge(intervals :: [[integer]]) :: [[integer]]\n  def merge(intervals) do\n    \n  end\nend",
+    "erlang": "-spec merge(Intervals :: [[integer()]]) -> [[integer()]].\nmerge(Intervals) ->\n  .",
+    "racket": "(define/contract (merge intervals)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

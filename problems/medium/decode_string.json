@@ -499,5 +499,26 @@
       "input": "s = \"2[abc]3[cd]efg\"",
       "output": "\"abcabccdcdcdefg\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string decodeString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String decodeString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def decodeString(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def decodeString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar decodeString = function(s) {\n    \n};",
+    "typescript": "function decodeString(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string DecodeString(string s) {\n        \n    }\n}",
+    "c": "char* decodeString(char* s) {\n    \n}",
+    "golang": "func decodeString(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun decodeString(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func decodeString(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn decode_string(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef decode_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function decodeString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String decodeString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def decodeString(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec decode_string(s :: String.t) :: String.t\n  def decode_string(s) do\n    \n  end\nend",
+    "erlang": "-spec decode_string(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\ndecode_string(S) ->\n  .",
+    "racket": "(define/contract (decode-string s)\n  (-> string? string?)\n  )"
+  }
 }

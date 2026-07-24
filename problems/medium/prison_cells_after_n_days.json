@@ -1023,5 +1023,26 @@
       "input": "cells = [0, 0, 1, 1, 1, 0, 1, 1]\nn = 158",
       "output": "[0, 0, 0, 1, 1, 0, 1, 0]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> prisonAfterNDays(vector<int>& cells, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] prisonAfterNDays(int[] cells, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def prisonAfterNDays(self, cells: List[int], n: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def prisonAfterNDays(self, cells, n):\n        \"\"\"\n        :type cells: List[int]\n        :type n: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} cells\n * @param {number} n\n * @return {number[]}\n */\nvar prisonAfterNDays = function(cells, n) {\n    \n};",
+    "typescript": "function prisonAfterNDays(cells: number[], n: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] PrisonAfterNDays(int[] cells, int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* prisonAfterNDays(int* cells, int cellsSize, int n, int* returnSize) {\n    \n}",
+    "golang": "func prisonAfterNDays(cells []int, n int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun prisonAfterNDays(cells: IntArray, n: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func prisonAfterNDays(_ cells: [Int], _ n: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn prison_after_n_days(cells: Vec<i32>, n: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} cells\n# @param {Integer} n\n# @return {Integer[]}\ndef prison_after_n_days(cells, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $cells\n     * @param Integer $n\n     * @return Integer[]\n     */\n    function prisonAfterNDays($cells, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> prisonAfterNDays(List<int> cells, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def prisonAfterNDays(cells: Array[Int], n: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec prison_after_n_days(cells :: [integer], n :: integer) :: [integer]\n  def prison_after_n_days(cells, n) do\n    \n  end\nend",
+    "erlang": "-spec prison_after_n_days(Cells :: [integer()], N :: integer()) -> [integer()].\nprison_after_n_days(Cells, N) ->\n  .",
+    "racket": "(define/contract (prison-after-n-days cells n)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  }
 }

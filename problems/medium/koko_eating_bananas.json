@@ -633,5 +633,26 @@
       "input": "piles = [8, 8]\nh = 3",
       "output": "8"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minEatingSpeed(vector<int>& piles, int h) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minEatingSpeed(int[] piles, int h) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minEatingSpeed(self, piles: List[int], h: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minEatingSpeed(self, piles, h):\n        \"\"\"\n        :type piles: List[int]\n        :type h: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} piles\n * @param {number} h\n * @return {number}\n */\nvar minEatingSpeed = function(piles, h) {\n    \n};",
+    "typescript": "function minEatingSpeed(piles: number[], h: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinEatingSpeed(int[] piles, int h) {\n        \n    }\n}",
+    "c": "int minEatingSpeed(int* piles, int pilesSize, int h) {\n    \n}",
+    "golang": "func minEatingSpeed(piles []int, h int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minEatingSpeed(piles: IntArray, h: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minEatingSpeed(_ piles: [Int], _ h: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_eating_speed(piles: Vec<i32>, h: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} piles\n# @param {Integer} h\n# @return {Integer}\ndef min_eating_speed(piles, h)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $piles\n     * @param Integer $h\n     * @return Integer\n     */\n    function minEatingSpeed($piles, $h) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minEatingSpeed(List<int> piles, int h) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minEatingSpeed(piles: Array[Int], h: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_eating_speed(piles :: [integer], h :: integer) :: integer\n  def min_eating_speed(piles, h) do\n    \n  end\nend",
+    "erlang": "-spec min_eating_speed(Piles :: [integer()], H :: integer()) -> integer().\nmin_eating_speed(Piles, H) ->\n  .",
+    "racket": "(define/contract (min-eating-speed piles h)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  }
 }

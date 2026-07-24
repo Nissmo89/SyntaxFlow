@@ -4022,5 +4022,26 @@
       "input": "points = [[-3, 3], [-2, 2], [-1, 1], [0, 0], [1, -1]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxPoints(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxPoints(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxPoints(self, points: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxPoints(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar maxPoints = function(points) {\n    \n};",
+    "typescript": "function maxPoints(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxPoints(int[][] points) {\n        \n    }\n}",
+    "c": "int maxPoints(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func maxPoints(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxPoints(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxPoints(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_points(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef max_points(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function maxPoints($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxPoints(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxPoints(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_points(points :: [[integer]]) :: integer\n  def max_points(points) do\n    \n  end\nend",
+    "erlang": "-spec max_points(Points :: [[integer()]]) -> integer().\nmax_points(Points) ->\n  .",
+    "racket": "(define/contract (max-points points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

@@ -2307,5 +2307,26 @@
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}",
       "output": "[1, 2, 4, 3]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> spiralOrder(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> spiralOrder(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def spiralOrder(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number[]}\n */\nvar spiralOrder = function(matrix) {\n    \n};",
+    "typescript": "function spiralOrder(matrix: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> SpiralOrder(int[][] matrix) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize) {\n    \n}",
+    "golang": "func spiralOrder(matrix [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun spiralOrder(matrix: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func spiralOrder(_ matrix: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer[]}\ndef spiral_order(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer[]\n     */\n    function spiralOrder($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> spiralOrder(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def spiralOrder(matrix: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec spiral_order(matrix :: [[integer]]) :: [integer]\n  def spiral_order(matrix) do\n    \n  end\nend",
+    "erlang": "-spec spiral_order(Matrix :: [[integer()]]) -> [integer()].\nspiral_order(Matrix) ->\n  .",
+    "racket": "(define/contract (spiral-order matrix)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

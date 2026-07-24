@@ -755,5 +755,26 @@
       "input": "expression = \"a - a\"\nevalvars = []\nevalints = []",
       "output": "[]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> basicCalculatorIV(string expression, vector<string>& evalvars, vector<int>& evalints) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> basicCalculatorIV(String expression, String[] evalvars, int[] evalints) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def basicCalculatorIV(self, expression: str, evalvars: List[str], evalints: List[int]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def basicCalculatorIV(self, expression, evalvars, evalints):\n        \"\"\"\n        :type expression: str\n        :type evalvars: List[str]\n        :type evalints: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @param {string[]} evalvars\n * @param {number[]} evalints\n * @return {string[]}\n */\nvar basicCalculatorIV = function(expression, evalvars, evalints) {\n    \n};",
+    "typescript": "function basicCalculatorIV(expression: string, evalvars: string[], evalints: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> BasicCalculatorIV(string expression, string[] evalvars, int[] evalints) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** basicCalculatorIV(char* expression, char** evalvars, int evalvarsSize, int* evalints, int evalintsSize, int* returnSize) {\n    \n}",
+    "golang": "func basicCalculatorIV(expression string, evalvars []string, evalints []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun basicCalculatorIV(expression: String, evalvars: Array<String>, evalints: IntArray): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func basicCalculatorIV(_ expression: String, _ evalvars: [String], _ evalints: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn basic_calculator_iv(expression: String, evalvars: Vec<String>, evalints: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @param {String[]} evalvars\n# @param {Integer[]} evalints\n# @return {String[]}\ndef basic_calculator_iv(expression, evalvars, evalints)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @param String[] $evalvars\n     * @param Integer[] $evalints\n     * @return String[]\n     */\n    function basicCalculatorIV($expression, $evalvars, $evalints) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> basicCalculatorIV(String expression, List<String> evalvars, List<int> evalints) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def basicCalculatorIV(expression: String, evalvars: Array[String], evalints: Array[Int]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec basic_calculator_iv(expression :: String.t, evalvars :: [String.t], evalints :: [integer]) :: [String.t]\n  def basic_calculator_iv(expression, evalvars, evalints) do\n    \n  end\nend",
+    "erlang": "-spec basic_calculator_iv(Expression :: unicode:unicode_binary(), Evalvars :: [unicode:unicode_binary()], Evalints :: [integer()]) -> [unicode:unicode_binary()].\nbasic_calculator_iv(Expression, Evalvars, Evalints) ->\n  .",
+    "racket": "(define/contract (basic-calculator-iv expression evalvars evalints)\n  (-> string? (listof string?) (listof exact-integer?) (listof string?))\n  )"
+  }
 }

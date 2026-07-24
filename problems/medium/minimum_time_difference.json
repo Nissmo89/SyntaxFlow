@@ -649,5 +649,26 @@
       "input": "timePoints = [\"00:01\", \"00:02\", \"00:03\", \"00:04\"]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMinDifference(vector<string>& timePoints) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMinDifference(List<String> timePoints) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinDifference(self, timePoints: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMinDifference(self, timePoints):\n        \"\"\"\n        :type timePoints: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} timePoints\n * @return {number}\n */\nvar findMinDifference = function(timePoints) {\n    \n};",
+    "typescript": "function findMinDifference(timePoints: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMinDifference(IList<string> timePoints) {\n        \n    }\n}",
+    "c": "int findMinDifference(char** timePoints, int timePointsSize) {\n    \n}",
+    "golang": "func findMinDifference(timePoints []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinDifference(timePoints: List<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinDifference(_ timePoints: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_difference(time_points: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} time_points\n# @return {Integer}\ndef find_min_difference(time_points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $timePoints\n     * @return Integer\n     */\n    function findMinDifference($timePoints) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMinDifference(List<String> timePoints) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinDifference(timePoints: List[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_difference(time_points :: [String.t]) :: integer\n  def find_min_difference(time_points) do\n    \n  end\nend",
+    "erlang": "-spec find_min_difference(TimePoints :: [unicode:unicode_binary()]) -> integer().\nfind_min_difference(TimePoints) ->\n  .",
+    "racket": "(define/contract (find-min-difference timePoints)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }

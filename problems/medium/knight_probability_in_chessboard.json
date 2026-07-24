@@ -445,5 +445,26 @@
       "input": "n = 3\nk = 1\nrow = 1\ncolumn = 1",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    double knightProbability(int n, int k, int row, int column) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double knightProbability(int n, int k, int row, int column) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def knightProbability(self, n: int, k: int, row: int, column: int) -> float:\n        ",
+    "python": "class Solution(object):\n    def knightProbability(self, n, k, row, column):\n        \"\"\"\n        :type n: int\n        :type k: int\n        :type row: int\n        :type column: int\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} k\n * @param {number} row\n * @param {number} column\n * @return {number}\n */\nvar knightProbability = function(n, k, row, column) {\n    \n};",
+    "typescript": "function knightProbability(n: number, k: number, row: number, column: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double KnightProbability(int n, int k, int row, int column) {\n        \n    }\n}",
+    "c": "double knightProbability(int n, int k, int row, int column) {\n    \n}",
+    "golang": "func knightProbability(n int, k int, row int, column int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun knightProbability(n: Int, k: Int, row: Int, column: Int): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func knightProbability(_ n: Int, _ k: Int, _ row: Int, _ column: Int) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn knight_probability(n: i32, k: i32, row: i32, column: i32) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} k\n# @param {Integer} row\n# @param {Integer} column\n# @return {Float}\ndef knight_probability(n, k, row, column)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $k\n     * @param Integer $row\n     * @param Integer $column\n     * @return Float\n     */\n    function knightProbability($n, $k, $row, $column) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double knightProbability(int n, int k, int row, int column) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def knightProbability(n: Int, k: Int, row: Int, column: Int): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec knight_probability(n :: integer, k :: integer, row :: integer, column :: integer) :: float\n  def knight_probability(n, k, row, column) do\n    \n  end\nend",
+    "erlang": "-spec knight_probability(N :: integer(), K :: integer(), Row :: integer(), Column :: integer()) -> float().\nknight_probability(N, K, Row, Column) ->\n  .",
+    "racket": "(define/contract (knight-probability n k row column)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer? flonum?)\n  )"
+  }
 }

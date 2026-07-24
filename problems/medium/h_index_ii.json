@@ -646,5 +646,26 @@
       "input": "citations = [0, 1]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int hIndex(vector<int>& citations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int hIndex(int[] citations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def hIndex(self, citations):\n        \"\"\"\n        :type citations: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} citations\n * @return {number}\n */\nvar hIndex = function(citations) {\n    \n};",
+    "typescript": "function hIndex(citations: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int HIndex(int[] citations) {\n        \n    }\n}",
+    "c": "int hIndex(int* citations, int citationsSize) {\n    \n}",
+    "golang": "func hIndex(citations []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun hIndex(citations: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hIndex(_ citations: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn h_index(citations: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} citations\n# @return {Integer}\ndef h_index(citations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $citations\n     * @return Integer\n     */\n    function hIndex($citations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int hIndex(List<int> citations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hIndex(citations: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec h_index(citations :: [integer]) :: integer\n  def h_index(citations) do\n    \n  end\nend",
+    "erlang": "-spec h_index(Citations :: [integer()]) -> integer().\nh_index(Citations) ->\n  .",
+    "racket": "(define/contract (h-index citations)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

@@ -310,5 +310,26 @@
       "input": "n = 8",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> beautifulArray(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] beautifulArray(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def beautifulArray(self, n: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def beautifulArray(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number[]}\n */\nvar beautifulArray = function(n) {\n    \n};",
+    "typescript": "function beautifulArray(n: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] BeautifulArray(int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* beautifulArray(int n, int* returnSize) {\n    \n}",
+    "golang": "func beautifulArray(n int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun beautifulArray(n: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func beautifulArray(_ n: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn beautiful_array(n: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer[]}\ndef beautiful_array(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer[]\n     */\n    function beautifulArray($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> beautifulArray(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def beautifulArray(n: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec beautiful_array(n :: integer) :: [integer]\n  def beautiful_array(n) do\n    \n  end\nend",
+    "erlang": "-spec beautiful_array(N :: integer()) -> [integer()].\nbeautiful_array(N) ->\n  .",
+    "racket": "(define/contract (beautiful-array n)\n  (-> exact-integer? (listof exact-integer?))\n  )"
+  }
 }

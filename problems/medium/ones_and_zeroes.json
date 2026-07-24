@@ -639,5 +639,26 @@
       "input": "strs = [\"00\", \"11\"]\nm = 1\nn = 1",
       "output": "0"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findMaxForm(vector<string>& strs, int m, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMaxForm(String[] strs, int m, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMaxForm(self, strs, m, n):\n        \"\"\"\n        :type strs: List[str]\n        :type m: int\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar findMaxForm = function(strs, m, n) {\n    \n};",
+    "typescript": "function findMaxForm(strs: string[], m: number, n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMaxForm(string[] strs, int m, int n) {\n        \n    }\n}",
+    "c": "int findMaxForm(char** strs, int strsSize, int m, int n) {\n    \n}",
+    "golang": "func findMaxForm(strs []string, m int, n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMaxForm(strs: Array<String>, m: Int, n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMaxForm(_ strs: [String], _ m: Int, _ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_max_form(strs: Vec<String>, m: i32, n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @param {Integer} m\n# @param {Integer} n\n# @return {Integer}\ndef find_max_form(strs, m, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @param Integer $m\n     * @param Integer $n\n     * @return Integer\n     */\n    function findMaxForm($strs, $m, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMaxForm(List<String> strs, int m, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMaxForm(strs: Array[String], m: Int, n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_max_form(strs :: [String.t], m :: integer, n :: integer) :: integer\n  def find_max_form(strs, m, n) do\n    \n  end\nend",
+    "erlang": "-spec find_max_form(Strs :: [unicode:unicode_binary()], M :: integer(), N :: integer()) -> integer().\nfind_max_form(Strs, M, N) ->\n  .",
+    "racket": "(define/contract (find-max-form strs m n)\n  (-> (listof string?) exact-integer? exact-integer? exact-integer?)\n  )"
+  }
 }

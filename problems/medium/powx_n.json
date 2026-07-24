@@ -435,5 +435,26 @@
       "input": "x = 1.0\nn = -2147483648",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    double myPow(double x, int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double myPow(double x, int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def myPow(self, x: float, n: int) -> float:\n        ",
+    "python": "class Solution(object):\n    def myPow(self, x, n):\n        \"\"\"\n        :type x: float\n        :type n: int\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} n\n * @return {number}\n */\nvar myPow = function(x, n) {\n    \n};",
+    "typescript": "function myPow(x: number, n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MyPow(double x, int n) {\n        \n    }\n}",
+    "c": "double myPow(double x, int n) {\n    \n}",
+    "golang": "func myPow(x float64, n int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun myPow(x: Double, n: Int): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func myPow(_ x: Double, _ n: Int) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn my_pow(x: f64, n: i32) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Float} x\n# @param {Integer} n\n# @return {Float}\ndef my_pow(x, n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Float $x\n     * @param Integer $n\n     * @return Float\n     */\n    function myPow($x, $n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double myPow(double x, int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def myPow(x: Double, n: Int): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec my_pow(x :: float, n :: integer) :: float\n  def my_pow(x, n) do\n    \n  end\nend",
+    "erlang": "-spec my_pow(X :: float(), N :: integer()) -> float().\nmy_pow(X, N) ->\n  .",
+    "racket": "(define/contract (my-pow x n)\n  (-> flonum? exact-integer? flonum?)\n  )"
+  }
 }

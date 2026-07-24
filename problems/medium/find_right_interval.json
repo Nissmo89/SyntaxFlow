@@ -1054,5 +1054,26 @@
       "input": "intervals = [[-3, -1], [0, 2], [1, 1]]",
       "output": "[1, -1, 2]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findRightInterval(vector<vector<int>>& intervals) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] findRightInterval(int[][] intervals) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findRightInterval(self, intervals):\n        \"\"\"\n        :type intervals: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} intervals\n * @return {number[]}\n */\nvar findRightInterval = function(intervals) {\n    \n};",
+    "typescript": "function findRightInterval(intervals: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FindRightInterval(int[][] intervals) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findRightInterval(int** intervals, int intervalsSize, int* intervalsColSize, int* returnSize) {\n    \n}",
+    "golang": "func findRightInterval(intervals [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRightInterval(intervals: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRightInterval(_ intervals: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_right_interval(intervals: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} intervals\n# @return {Integer[]}\ndef find_right_interval(intervals)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $intervals\n     * @return Integer[]\n     */\n    function findRightInterval($intervals) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findRightInterval(List<List<int>> intervals) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRightInterval(intervals: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_right_interval(intervals :: [[integer]]) :: [integer]\n  def find_right_interval(intervals) do\n    \n  end\nend",
+    "erlang": "-spec find_right_interval(Intervals :: [[integer()]]) -> [integer()].\nfind_right_interval(Intervals) ->\n  .",
+    "racket": "(define/contract (find-right-interval intervals)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

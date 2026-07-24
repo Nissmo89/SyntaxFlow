@@ -664,5 +664,26 @@
       "input": "nums = [2, 2, 2, 2, 2]\ntarget = 3",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool search(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean search(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def search(self, nums: List[int], target: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def search(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {boolean}\n */\nvar search = function(nums, target) {\n    \n};",
+    "typescript": "function search(nums: number[], target: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool Search(int[] nums, int target) {\n        \n    }\n}",
+    "c": "bool search(int* nums, int numsSize, int target) {\n    \n}",
+    "golang": "func search(nums []int, target int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun search(nums: IntArray, target: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func search(_ nums: [Int], _ target: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn search(nums: Vec<i32>, target: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Boolean}\ndef search(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Boolean\n     */\n    function search($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool search(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def search(nums: Array[Int], target: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec search(nums :: [integer], target :: integer) :: boolean\n  def search(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec search(Nums :: [integer()], Target :: integer()) -> boolean().\nsearch(Nums, Target) ->\n  .",
+    "racket": "(define/contract (search nums target)\n  (-> (listof exact-integer?) exact-integer? boolean?)\n  )"
+  }
 }

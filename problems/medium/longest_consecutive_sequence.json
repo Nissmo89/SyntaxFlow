@@ -829,5 +829,26 @@
       "input": "nums = [7, 7, 7, 7, 7]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int longestConsecutive(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestConsecutive(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestConsecutive(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestConsecutive = function(nums) {\n    \n};",
+    "typescript": "function longestConsecutive(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestConsecutive(int[] nums) {\n        \n    }\n}",
+    "c": "int longestConsecutive(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestConsecutive(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestConsecutive(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestConsecutive(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_consecutive(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_consecutive(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestConsecutive($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestConsecutive(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestConsecutive(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_consecutive(nums :: [integer]) :: integer\n  def longest_consecutive(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_consecutive(Nums :: [integer()]) -> integer().\nlongest_consecutive(Nums) ->\n  .",
+    "racket": "(define/contract (longest-consecutive nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

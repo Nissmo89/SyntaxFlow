@@ -410,5 +410,26 @@
       "input": "s = \"ab\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string frequencySort(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String frequencySort(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def frequencySort(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def frequencySort(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar frequencySort = function(s) {\n    \n};",
+    "typescript": "function frequencySort(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FrequencySort(string s) {\n        \n    }\n}",
+    "c": "char* frequencySort(char* s) {\n    \n}",
+    "golang": "func frequencySort(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun frequencySort(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func frequencySort(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn frequency_sort(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef frequency_sort(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function frequencySort($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String frequencySort(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def frequencySort(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec frequency_sort(s :: String.t) :: String.t\n  def frequency_sort(s) do\n    \n  end\nend",
+    "erlang": "-spec frequency_sort(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nfrequency_sort(S) ->\n  .",
+    "racket": "(define/contract (frequency-sort s)\n  (-> string? string?)\n  )"
+  }
 }

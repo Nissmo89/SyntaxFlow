@@ -690,5 +690,26 @@
       "input": "nums = [-1, -1]",
       "output": "true"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool circularArrayLoop(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean circularArrayLoop(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def circularArrayLoop(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar circularArrayLoop = function(nums) {\n    \n};",
+    "typescript": "function circularArrayLoop(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CircularArrayLoop(int[] nums) {\n        \n    }\n}",
+    "c": "bool circularArrayLoop(int* nums, int numsSize) {\n    \n}",
+    "golang": "func circularArrayLoop(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun circularArrayLoop(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func circularArrayLoop(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn circular_array_loop(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef circular_array_loop(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function circularArrayLoop($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool circularArrayLoop(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def circularArrayLoop(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec circular_array_loop(nums :: [integer]) :: boolean\n  def circular_array_loop(nums) do\n    \n  end\nend",
+    "erlang": "-spec circular_array_loop(Nums :: [integer()]) -> boolean().\ncircular_array_loop(Nums) ->\n  .",
+    "racket": "(define/contract (circular-array-loop nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  }
 }

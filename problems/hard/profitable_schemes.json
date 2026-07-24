@@ -875,5 +875,26 @@
       "input": "n = 5\nminProfit = 0\ngroup = [1, 2, 3]\nprofit = [0, 0, 0]",
       "output": "7"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int profitableSchemes(int n, int minProfit, vector<int>& group, vector<int>& profit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def profitableSchemes(self, n: int, minProfit: int, group: List[int], profit: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def profitableSchemes(self, n, minProfit, group, profit):\n        \"\"\"\n        :type n: int\n        :type minProfit: int\n        :type group: List[int]\n        :type profit: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} minProfit\n * @param {number[]} group\n * @param {number[]} profit\n * @return {number}\n */\nvar profitableSchemes = function(n, minProfit, group, profit) {\n    \n};",
+    "typescript": "function profitableSchemes(n: number, minProfit: number, group: number[], profit: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ProfitableSchemes(int n, int minProfit, int[] group, int[] profit) {\n        \n    }\n}",
+    "c": "int profitableSchemes(int n, int minProfit, int* group, int groupSize, int* profit, int profitSize) {\n    \n}",
+    "golang": "func profitableSchemes(n int, minProfit int, group []int, profit []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun profitableSchemes(n: Int, minProfit: Int, group: IntArray, profit: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func profitableSchemes(_ n: Int, _ minProfit: Int, _ group: [Int], _ profit: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn profitable_schemes(n: i32, min_profit: i32, group: Vec<i32>, profit: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} min_profit\n# @param {Integer[]} group\n# @param {Integer[]} profit\n# @return {Integer}\ndef profitable_schemes(n, min_profit, group, profit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $minProfit\n     * @param Integer[] $group\n     * @param Integer[] $profit\n     * @return Integer\n     */\n    function profitableSchemes($n, $minProfit, $group, $profit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int profitableSchemes(int n, int minProfit, List<int> group, List<int> profit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def profitableSchemes(n: Int, minProfit: Int, group: Array[Int], profit: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec profitable_schemes(n :: integer, min_profit :: integer, group :: [integer], profit :: [integer]) :: integer\n  def profitable_schemes(n, min_profit, group, profit) do\n    \n  end\nend",
+    "erlang": "-spec profitable_schemes(N :: integer(), MinProfit :: integer(), Group :: [integer()], Profit :: [integer()]) -> integer().\nprofitable_schemes(N, MinProfit, Group, Profit) ->\n  .",
+    "racket": "(define/contract (profitable-schemes n minProfit group profit)\n  (-> exact-integer? exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

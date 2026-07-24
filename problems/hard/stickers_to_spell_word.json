@@ -671,5 +671,26 @@
       "input": "stickers = [\"abc\", \"ab\", \"bc\"]\ntarget = \"cba\"",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int minStickers(vector<string>& stickers, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minStickers(String[] stickers, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minStickers(self, stickers: List[str], target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minStickers(self, stickers, target):\n        \"\"\"\n        :type stickers: List[str]\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} stickers\n * @param {string} target\n * @return {number}\n */\nvar minStickers = function(stickers, target) {\n    \n};",
+    "typescript": "function minStickers(stickers: string[], target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinStickers(string[] stickers, string target) {\n        \n    }\n}",
+    "c": "int minStickers(char** stickers, int stickersSize, char* target) {\n    \n}",
+    "golang": "func minStickers(stickers []string, target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minStickers(stickers: Array<String>, target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minStickers(_ stickers: [String], _ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_stickers(stickers: Vec<String>, target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} stickers\n# @param {String} target\n# @return {Integer}\ndef min_stickers(stickers, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $stickers\n     * @param String $target\n     * @return Integer\n     */\n    function minStickers($stickers, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minStickers(List<String> stickers, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minStickers(stickers: Array[String], target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_stickers(stickers :: [String.t], target :: String.t) :: integer\n  def min_stickers(stickers, target) do\n    \n  end\nend",
+    "erlang": "-spec min_stickers(Stickers :: [unicode:unicode_binary()], Target :: unicode:unicode_binary()) -> integer().\nmin_stickers(Stickers, Target) ->\n  .",
+    "racket": "(define/contract (min-stickers stickers target)\n  (-> (listof string?) string? exact-integer?)\n  )"
+  }
 }

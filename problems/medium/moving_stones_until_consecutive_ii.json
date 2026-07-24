@@ -733,5 +733,26 @@
       "input": "stones = [1, 4, 5]",
       "output": "[2, 2]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> numMovesStonesII(vector<int>& stones) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] numMovesStonesII(int[] stones) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numMovesStonesII(self, stones: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def numMovesStonesII(self, stones):\n        \"\"\"\n        :type stones: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stones\n * @return {number[]}\n */\nvar numMovesStonesII = function(stones) {\n    \n};",
+    "typescript": "function numMovesStonesII(stones: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] NumMovesStonesII(int[] stones) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* numMovesStonesII(int* stones, int stonesSize, int* returnSize) {\n    \n}",
+    "golang": "func numMovesStonesII(stones []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numMovesStonesII(stones: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numMovesStonesII(_ stones: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_moves_stones_ii(stones: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stones\n# @return {Integer[]}\ndef num_moves_stones_ii(stones)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stones\n     * @return Integer[]\n     */\n    function numMovesStonesII($stones) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> numMovesStonesII(List<int> stones) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numMovesStonesII(stones: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_moves_stones_ii(stones :: [integer]) :: [integer]\n  def num_moves_stones_ii(stones) do\n    \n  end\nend",
+    "erlang": "-spec num_moves_stones_ii(Stones :: [integer()]) -> [integer()].\nnum_moves_stones_ii(Stones) ->\n  .",
+    "racket": "(define/contract (num-moves-stones-ii stones)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  }
 }

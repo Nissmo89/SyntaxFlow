@@ -720,5 +720,26 @@
       "input": "digits = \"799\"",
       "output": "[\"pww\", \"pwx\", \"pwy\", \"pwz\", \"pxw\", \"pxx\", \"pxy\", \"pxz\", \"pyw\", \"pyx\", \"pyy\", \"pyz\", \"pzw\", \"pzx\", \"pzy\", \"pzz\", \"qww\", \"qwx\", \"qwy\", \"qwz\", \"qxw\", \"qxx\", \"qxy\", \"qxz\", \"qyw\", \"qyx\", \"qyy\", \"qyz\", \"qzw\", \"qzx\", \"qzy\", \"qzz\", \"rww\", \"rwx\", \"rwy\", \"rwz\", \"rxw\", \"rxx\", \"rxy\", \"rxz\", \"ryw\", \"ryx\", \"ryy\", \"ryz\", \"rzw\", \"rzx\", \"rzy\", \"rzz\", \"sww\", \"swx\", \"swy\", \"swz\", \"sxw\", \"sxx\", \"sxy\", \"sxz\", \"syw\", \"syx\", \"syy\", \"syz\", \"szw\", \"szx\", \"szy\", \"szz\"]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<string> letterCombinations(string digits) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> letterCombinations(String digits) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def letterCombinations(self, digits: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def letterCombinations(self, digits):\n        \"\"\"\n        :type digits: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} digits\n * @return {string[]}\n */\nvar letterCombinations = function(digits) {\n    \n};",
+    "typescript": "function letterCombinations(digits: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> LetterCombinations(string digits) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** letterCombinations(char* digits, int* returnSize) {\n    \n}",
+    "golang": "func letterCombinations(digits string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun letterCombinations(digits: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func letterCombinations(_ digits: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn letter_combinations(digits: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} digits\n# @return {String[]}\ndef letter_combinations(digits)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $digits\n     * @return String[]\n     */\n    function letterCombinations($digits) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> letterCombinations(String digits) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def letterCombinations(digits: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec letter_combinations(digits :: String.t) :: [String.t]\n  def letter_combinations(digits) do\n    \n  end\nend",
+    "erlang": "-spec letter_combinations(Digits :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nletter_combinations(Digits) ->\n  .",
+    "racket": "(define/contract (letter-combinations digits)\n  (-> string? (listof string?))\n  )"
+  }
 }

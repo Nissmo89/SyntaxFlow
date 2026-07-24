@@ -455,5 +455,26 @@
       "input": "s = \"abba\"",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string longestPalindrome(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestPalindrome(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestPalindrome(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function(s) {\n    \n};",
+    "typescript": "function longestPalindrome(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestPalindrome(string s) {\n        \n    }\n}",
+    "c": "char* longestPalindrome(char* s) {\n    \n}",
+    "golang": "func longestPalindrome(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPalindrome(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPalindrome(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_palindrome(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef longest_palindrome(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function longestPalindrome($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestPalindrome(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPalindrome(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_palindrome(s :: String.t) :: String.t\n  def longest_palindrome(s) do\n    \n  end\nend",
+    "erlang": "-spec longest_palindrome(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlongest_palindrome(S) ->\n  .",
+    "racket": "(define/contract (longest-palindrome s)\n  (-> string? string?)\n  )"
+  }
 }

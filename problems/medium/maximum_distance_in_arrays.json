@@ -1076,5 +1076,26 @@
       "input": "arrays = [[10], [7], [4], [1]]",
       "output": "9"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxDistance(vector<vector<int>>& arrays) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDistance(List<List<Integer>> arrays) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDistance(self, arrays: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDistance(self, arrays):\n        \"\"\"\n        :type arrays: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} arrays\n * @return {number}\n */\nvar maxDistance = function(arrays) {\n    \n};",
+    "typescript": "function maxDistance(arrays: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDistance(IList<IList<int>> arrays) {\n        \n    }\n}",
+    "c": "int maxDistance(int** arrays, int arraysSize, int* arraysColSize) {\n    \n}",
+    "golang": "func maxDistance(arrays [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDistance(arrays: List<List<Int>>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDistance(_ arrays: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_distance(arrays: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} arrays\n# @return {Integer}\ndef max_distance(arrays)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $arrays\n     * @return Integer\n     */\n    function maxDistance($arrays) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDistance(List<List<int>> arrays) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDistance(arrays: List[List[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_distance(arrays :: [[integer]]) :: integer\n  def max_distance(arrays) do\n    \n  end\nend",
+    "erlang": "-spec max_distance(Arrays :: [[integer()]]) -> integer().\nmax_distance(Arrays) ->\n  .",
+    "racket": "(define/contract (max-distance arrays)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  }
 }

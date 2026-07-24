@@ -788,5 +788,26 @@
       "input": "nums = [2, 3, 3, 4]",
       "output": "4"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int triangleNumber(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int triangleNumber(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def triangleNumber(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def triangleNumber(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar triangleNumber = function(nums) {\n    \n};",
+    "typescript": "function triangleNumber(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TriangleNumber(int[] nums) {\n        \n    }\n}",
+    "c": "int triangleNumber(int* nums, int numsSize) {\n    \n}",
+    "golang": "func triangleNumber(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun triangleNumber(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func triangleNumber(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn triangle_number(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef triangle_number(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function triangleNumber($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int triangleNumber(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def triangleNumber(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec triangle_number(nums :: [integer]) :: integer\n  def triangle_number(nums) do\n    \n  end\nend",
+    "erlang": "-spec triangle_number(Nums :: [integer()]) -> integer().\ntriangle_number(Nums) ->\n  .",
+    "racket": "(define/contract (triangle-number nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

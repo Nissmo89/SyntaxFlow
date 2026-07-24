@@ -1186,5 +1186,26 @@
       "input": "seats = [1, 0, 0, 0, 1]",
       "output": "2"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int maxDistToClosest(vector<int>& seats) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDistToClosest(int[] seats) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDistToClosest(self, seats: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDistToClosest(self, seats):\n        \"\"\"\n        :type seats: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} seats\n * @return {number}\n */\nvar maxDistToClosest = function(seats) {\n    \n};",
+    "typescript": "function maxDistToClosest(seats: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDistToClosest(int[] seats) {\n        \n    }\n}",
+    "c": "int maxDistToClosest(int* seats, int seatsSize) {\n    \n}",
+    "golang": "func maxDistToClosest(seats []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDistToClosest(seats: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDistToClosest(_ seats: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_dist_to_closest(seats: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} seats\n# @return {Integer}\ndef max_dist_to_closest(seats)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $seats\n     * @return Integer\n     */\n    function maxDistToClosest($seats) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDistToClosest(List<int> seats) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDistToClosest(seats: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_dist_to_closest(seats :: [integer]) :: integer\n  def max_dist_to_closest(seats) do\n    \n  end\nend",
+    "erlang": "-spec max_dist_to_closest(Seats :: [integer()]) -> integer().\nmax_dist_to_closest(Seats) ->\n  .",
+    "racket": "(define/contract (max-dist-to-closest seats)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  }
 }

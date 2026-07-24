@@ -560,5 +560,26 @@
       "input": "bottom = \"BCD\"\nallowed = [\"CDE\", \"CEA\"]",
       "output": "false"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    bool pyramidTransition(string bottom, vector<string>& allowed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean pyramidTransition(String bottom, List<String> allowed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pyramidTransition(self, bottom: str, allowed: List[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def pyramidTransition(self, bottom, allowed):\n        \"\"\"\n        :type bottom: str\n        :type allowed: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} bottom\n * @param {string[]} allowed\n * @return {boolean}\n */\nvar pyramidTransition = function(bottom, allowed) {\n    \n};",
+    "typescript": "function pyramidTransition(bottom: string, allowed: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool PyramidTransition(string bottom, IList<string> allowed) {\n        \n    }\n}",
+    "c": "bool pyramidTransition(char* bottom, char** allowed, int allowedSize) {\n    \n}",
+    "golang": "func pyramidTransition(bottom string, allowed []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun pyramidTransition(bottom: String, allowed: List<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pyramidTransition(_ bottom: String, _ allowed: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn pyramid_transition(bottom: String, allowed: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} bottom\n# @param {String[]} allowed\n# @return {Boolean}\ndef pyramid_transition(bottom, allowed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $bottom\n     * @param String[] $allowed\n     * @return Boolean\n     */\n    function pyramidTransition($bottom, $allowed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool pyramidTransition(String bottom, List<String> allowed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pyramidTransition(bottom: String, allowed: List[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec pyramid_transition(bottom :: String.t, allowed :: [String.t]) :: boolean\n  def pyramid_transition(bottom, allowed) do\n    \n  end\nend",
+    "erlang": "-spec pyramid_transition(Bottom :: unicode:unicode_binary(), Allowed :: [unicode:unicode_binary()]) -> boolean().\npyramid_transition(Bottom, Allowed) ->\n  .",
+    "racket": "(define/contract (pyramid-transition bottom allowed)\n  (-> string? (listof string?) boolean?)\n  )"
+  }
 }

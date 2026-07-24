@@ -660,5 +660,26 @@
       "input": "label = 8",
       "output": "[1, 2, 7, 8]"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> pathInZigZagTree(int label) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> pathInZigZagTree(int label) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pathInZigZagTree(self, label: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def pathInZigZagTree(self, label):\n        \"\"\"\n        :type label: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} label\n * @return {number[]}\n */\nvar pathInZigZagTree = function(label) {\n    \n};",
+    "typescript": "function pathInZigZagTree(label: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> PathInZigZagTree(int label) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* pathInZigZagTree(int label, int* returnSize) {\n    \n}",
+    "golang": "func pathInZigZagTree(label int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun pathInZigZagTree(label: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pathInZigZagTree(_ label: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn path_in_zig_zag_tree(label: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} label\n# @return {Integer[]}\ndef path_in_zig_zag_tree(label)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $label\n     * @return Integer[]\n     */\n    function pathInZigZagTree($label) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> pathInZigZagTree(int label) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pathInZigZagTree(label: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec path_in_zig_zag_tree(label :: integer) :: [integer]\n  def path_in_zig_zag_tree(label) do\n    \n  end\nend",
+    "erlang": "-spec path_in_zig_zag_tree(Label :: integer()) -> [integer()].\npath_in_zig_zag_tree(Label) ->\n  .",
+    "racket": "(define/contract (path-in-zig-zag-tree label)\n  (-> exact-integer? (listof exact-integer?))\n  )"
+  }
 }

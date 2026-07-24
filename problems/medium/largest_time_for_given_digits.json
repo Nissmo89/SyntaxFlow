@@ -525,5 +525,26 @@
       "input": "arr = [5, 5, 5, 4]",
       "output": "\"\""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    string largestTimeFromDigits(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String largestTimeFromDigits(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestTimeFromDigits(self, arr: List[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def largestTimeFromDigits(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {string}\n */\nvar largestTimeFromDigits = function(arr) {\n    \n};",
+    "typescript": "function largestTimeFromDigits(arr: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LargestTimeFromDigits(int[] arr) {\n        \n    }\n}",
+    "c": "char* largestTimeFromDigits(int* arr, int arrSize) {\n    \n}",
+    "golang": "func largestTimeFromDigits(arr []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestTimeFromDigits(arr: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestTimeFromDigits(_ arr: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_time_from_digits(arr: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {String}\ndef largest_time_from_digits(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return String\n     */\n    function largestTimeFromDigits($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String largestTimeFromDigits(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestTimeFromDigits(arr: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_time_from_digits(arr :: [integer]) :: String.t\n  def largest_time_from_digits(arr) do\n    \n  end\nend",
+    "erlang": "-spec largest_time_from_digits(Arr :: [integer()]) -> unicode:unicode_binary().\nlargest_time_from_digits(Arr) ->\n  .",
+    "racket": "(define/contract (largest-time-from-digits arr)\n  (-> (listof exact-integer?) string?)\n  )"
+  }
 }

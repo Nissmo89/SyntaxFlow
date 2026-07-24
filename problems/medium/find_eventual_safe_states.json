@@ -802,5 +802,26 @@
       "input": "graph = [[1], [2], [3], [1]]",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> eventualSafeNodes(int[][] graph) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def eventualSafeNodes(self, graph):\n        \"\"\"\n        :type graph: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} graph\n * @return {number[]}\n */\nvar eventualSafeNodes = function(graph) {\n    \n};",
+    "typescript": "function eventualSafeNodes(graph: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> EventualSafeNodes(int[][] graph) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* eventualSafeNodes(int** graph, int graphSize, int* graphColSize, int* returnSize) {\n    \n}",
+    "golang": "func eventualSafeNodes(graph [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun eventualSafeNodes(graph: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func eventualSafeNodes(_ graph: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn eventual_safe_nodes(graph: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} graph\n# @return {Integer[]}\ndef eventual_safe_nodes(graph)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $graph\n     * @return Integer[]\n     */\n    function eventualSafeNodes($graph) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> eventualSafeNodes(List<List<int>> graph) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def eventualSafeNodes(graph: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec eventual_safe_nodes(graph :: [[integer]]) :: [integer]\n  def eventual_safe_nodes(graph) do\n    \n  end\nend",
+    "erlang": "-spec eventual_safe_nodes(Graph :: [[integer()]]) -> [integer()].\neventual_safe_nodes(Graph) ->\n  .",
+    "racket": "(define/contract (eventual-safe-nodes graph)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  }
 }

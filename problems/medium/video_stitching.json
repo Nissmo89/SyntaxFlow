@@ -1218,5 +1218,26 @@
       "input": "clips = {\"elemType\": \"int\", \"value\": [[0, 5]]}\ntime = 5",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int videoStitching(vector<vector<int>>& clips, int time) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int videoStitching(int[][] clips, int time) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def videoStitching(self, clips: List[List[int]], time: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def videoStitching(self, clips, time):\n        \"\"\"\n        :type clips: List[List[int]]\n        :type time: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} clips\n * @param {number} time\n * @return {number}\n */\nvar videoStitching = function(clips, time) {\n    \n};",
+    "typescript": "function videoStitching(clips: number[][], time: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int VideoStitching(int[][] clips, int time) {\n        \n    }\n}",
+    "c": "int videoStitching(int** clips, int clipsSize, int* clipsColSize, int time) {\n    \n}",
+    "golang": "func videoStitching(clips [][]int, time int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun videoStitching(clips: Array<IntArray>, time: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func videoStitching(_ clips: [[Int]], _ time: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn video_stitching(clips: Vec<Vec<i32>>, time: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} clips\n# @param {Integer} time\n# @return {Integer}\ndef video_stitching(clips, time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $clips\n     * @param Integer $time\n     * @return Integer\n     */\n    function videoStitching($clips, $time) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int videoStitching(List<List<int>> clips, int time) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def videoStitching(clips: Array[Array[Int]], time: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec video_stitching(clips :: [[integer]], time :: integer) :: integer\n  def video_stitching(clips, time) do\n    \n  end\nend",
+    "erlang": "-spec video_stitching(Clips :: [[integer()]], Time :: integer()) -> integer().\nvideo_stitching(Clips, Time) ->\n  .",
+    "racket": "(define/contract (video-stitching clips time)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  }
 }

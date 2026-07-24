@@ -1684,5 +1684,26 @@
       "input": "heights = {\"elemType\": \"int\", \"value\": [[1, 2], [4, 3]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> pacificAtlantic(int[][] heights) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def pacificAtlantic(self, heights):\n        \"\"\"\n        :type heights: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} heights\n * @return {number[][]}\n */\nvar pacificAtlantic = function(heights) {\n    \n};",
+    "typescript": "function pacificAtlantic(heights: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> PacificAtlantic(int[][] heights) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** pacificAtlantic(int** heights, int heightsSize, int* heightsColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func pacificAtlantic(heights [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun pacificAtlantic(heights: Array<IntArray>): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pacificAtlantic(_ heights: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn pacific_atlantic(heights: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} heights\n# @return {Integer[][]}\ndef pacific_atlantic(heights)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $heights\n     * @return Integer[][]\n     */\n    function pacificAtlantic($heights) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> pacificAtlantic(List<List<int>> heights) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pacificAtlantic(heights: Array[Array[Int]]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec pacific_atlantic(heights :: [[integer]]) :: [[integer]]\n  def pacific_atlantic(heights) do\n    \n  end\nend",
+    "erlang": "-spec pacific_atlantic(Heights :: [[integer()]]) -> [[integer()]].\npacific_atlantic(Heights) ->\n  .",
+    "racket": "(define/contract (pacific-atlantic heights)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  }
 }

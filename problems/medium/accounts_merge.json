@@ -10978,5 +10978,26 @@
       "input": "accounts = {\"elemType\": \"string\", \"value\": [[\"Erin\", \"e1@mail.com\", \"e2@mail.com\"], [\"Erin\", \"e3@mail.com\", \"e4@mail.com\"], [\"Erin\", \"e5@mail.com\", \"e6@mail.com\"], [\"Erin\", \"e2@mail.com\", \"e5@mail.com\"]]}",
       "output": ""
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> accountsMerge(List<List<String>> accounts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def accountsMerge(self, accounts):\n        \"\"\"\n        :type accounts: List[List[str]]\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[][]} accounts\n * @return {string[][]}\n */\nvar accountsMerge = function(accounts) {\n    \n};",
+    "typescript": "function accountsMerge(accounts: string[][]): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> AccountsMerge(IList<IList<string>> accounts) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** accountsMerge(char*** accounts, int accountsSize, int* accountsColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func accountsMerge(accounts [][]string) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun accountsMerge(accounts: List<List<String>>): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func accountsMerge(_ accounts: [[String]]) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn accounts_merge(accounts: Vec<Vec<String>>) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {String[][]} accounts\n# @return {String[][]}\ndef accounts_merge(accounts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $accounts\n     * @return String[][]\n     */\n    function accountsMerge($accounts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> accountsMerge(List<List<String>> accounts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def accountsMerge(accounts: List[List[String]]): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec accounts_merge(accounts :: [[String.t]]) :: [[String.t]]\n  def accounts_merge(accounts) do\n    \n  end\nend",
+    "erlang": "-spec accounts_merge(Accounts :: [[unicode:unicode_binary()]]) -> [[unicode:unicode_binary()]].\naccounts_merge(Accounts) ->\n  .",
+    "racket": "(define/contract (accounts-merge accounts)\n  (-> (listof (listof string?)) (listof (listof string?)))\n  )"
+  }
 }

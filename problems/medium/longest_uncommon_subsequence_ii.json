@@ -648,5 +648,26 @@
       "input": "strs = [\"x\", \"y\", \"z\", \"x\"]",
       "output": "1"
     }
-  ]
+  ],
+  "func_sign": {
+    "cpp": "class Solution {\npublic:\n    int findLUSlength(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLUSlength(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLUSlength(self, strs: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLUSlength(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {number}\n */\nvar findLUSlength = function(strs) {\n    \n};",
+    "typescript": "function findLUSlength(strs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLUSlength(string[] strs) {\n        \n    }\n}",
+    "c": "int findLUSlength(char** strs, int strsSize) {\n    \n}",
+    "golang": "func findLUSlength(strs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLUSlength(strs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLUSlength(_ strs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_lu_slength(strs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {Integer}\ndef find_lu_slength(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return Integer\n     */\n    function findLUSlength($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLUSlength(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLUSlength(strs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_lu_slength(strs :: [String.t]) :: integer\n  def find_lu_slength(strs) do\n    \n  end\nend",
+    "erlang": "-spec find_lu_slength(Strs :: [unicode:unicode_binary()]) -> integer().\nfind_lu_slength(Strs) ->\n  .",
+    "racket": "(define/contract (find-lu-slength strs)\n  (-> (listof string?) exact-integer?)\n  )"
+  }
 }
