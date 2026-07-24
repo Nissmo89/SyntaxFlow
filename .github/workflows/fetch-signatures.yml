@@ -33,8 +33,11 @@ jobs:
       - name: Run fetch script
         run: python fetch_signatures.py
         
+      - name: Pull remote changes
+        run: git pull origin ${{ github.head_ref || github.ref_name }} --rebase --autostash
+        
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(data): auto-update problem signatures from LeetCode"
           file_pattern: "problems/**/*.json"
