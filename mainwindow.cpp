@@ -2,6 +2,7 @@
 #include "web_workspace.h"
 #include "problemwidgets.h"
 #include <QWebEngineView>
+#include <QWebEngineSettings>
 #include <QWebChannel>
 #include <QNetworkInterface>
 #include "backend.h"
@@ -109,6 +110,9 @@ void MainWindow::setupEditorPage()
 void MainWindow::setupSidebar()
 {
     sidebarView = new QWebEngineView(this);
+    sidebarView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    sidebarView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+    sidebarView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     sidebarView->setGeometry(0, 0, 50, height()); // Width matching sidebar.html collapsed state
     sidebarView->setContextMenuPolicy(Qt::NoContextMenu);
 
