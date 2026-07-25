@@ -37,7 +37,7 @@ jobs:
         with:
           version: '6.6.0'
           arch: 'win64_msvc2019_64'
-          modules: 'qtwebengine qtwebchannel'
+          modules: 'qtwebengine qtwebchannel qtpositioning'
           cache: 'false'
 
       - name: Setup MSVC
