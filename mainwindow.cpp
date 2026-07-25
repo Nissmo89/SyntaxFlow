@@ -91,7 +91,7 @@ void MainWindow::setupBrowserPage()
     auto *layout = new QVBoxLayout(browserPage);
     layout->setContentsMargins(GlobalMargin, 0, 0, 0);
 
-    browser = new ProblemBrowser(progressManager, this);
+    browser = new ProblemBrowser(QUrl(m_server->getUrlFor("/browser.html")), progressManager, this);
     browser->loadFromJson(ProblemsJsonPath);
 
     layout->addWidget(browser);

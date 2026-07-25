@@ -34,7 +34,7 @@ public slots:
 class ProblemBrowser : public QWidget {
     Q_OBJECT
 public:
-    explicit ProblemBrowser(ProgressManager *pm, QWidget *parent = nullptr);
+    explicit ProblemBrowser(const QUrl &url, ProgressManager *pm, QWidget *parent = nullptr);
     ~ProblemBrowser() override;
 
     void loadFromJson(const QString &filePath);

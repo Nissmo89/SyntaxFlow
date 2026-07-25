@@ -6,7 +6,7 @@
 #include <QWebEngineSettings>
 #include <QDebug>
 
-ProblemBrowser::ProblemBrowser(ProgressManager *pm, QWidget *parent)
+ProblemBrowser::ProblemBrowser(const QUrl &url, ProgressManager *pm, QWidget *parent)
     : QWidget(parent)
     , progressManager(pm)
 {
@@ -47,13 +47,7 @@ ProblemBrowser::ProblemBrowser(ProgressManager *pm, QWidget *parent)
                 this, &ProblemBrowser::onProgressChanged);
     }
 
-    const QString appDir = QCoreApplication::applicationDirPath();
-    QString htmlPath = QDir(appDir).filePath("web_editor/browser.html");
-    if (!QFile::exists(htmlPath)) {
-        htmlPath = QDir(appDir + "/../web_editor").filePath("browser.html");
-    }
-
-    m_view->setUrl(QUrl::fromLocalFile(htmlPath));
+    m_view->setUrl(url);
 }
 
 ProblemBrowser::~ProblemBrowser() = default;
