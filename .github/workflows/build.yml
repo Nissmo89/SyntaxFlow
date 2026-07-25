@@ -38,6 +38,7 @@ jobs:
           version: '6.6.0'
           arch: 'win64_msvc2019_64'
           modules: 'qtwebengine qtwebchannel'
+          cache: 'false'
 
       - name: Build
         run: .\build-windows.bat
