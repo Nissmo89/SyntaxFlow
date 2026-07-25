@@ -20,10 +20,8 @@ add_subdirectory(libs/qtext_browser)
 
 
 # ============================================================
-# Python 3 (Required)
+# Python 3 (Not needed anymore - executed via QProcess)
 # ============================================================
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-message(STATUS "Python3 found: ${Python3_VERSION} — ${Python3_EXECUTABLE}")
 
 # ============================================================
 # Main Executable
@@ -45,7 +43,7 @@ add_executable(SyntaxFlow
     httpserver.h
 )
 
-target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
+# target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
 
 # ---- Link Libraries ----
 target_link_libraries(SyntaxFlow PRIVATE
@@ -56,7 +54,6 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::WebEngineWidgets
     Qt6::WebChannel
     qtext_browser
-    ${Python3_LIBRARIES}
 )
 
 if(WIN32)
