@@ -3,17 +3,20 @@ setlocal EnableDelayedExpansion
 
 :: ============================================================
 ::  SyntaxFlow — Windows Build Script
-::  Compiler : MinGW-w64 (x86_64) bundled with Qt 6.2.0
-::  Qt       : 6.2.0 MinGW 64-bit
-::
-::  Edit the two paths below to match your installation.
+::  Compiler : MSVC (Visual Studio)
+::  Qt       : 6.6.0 MSVC 64-bit
 :: ============================================================
 
-set QT_PATH=C:\Qt\6.2.0\mingw_64
-set MINGW_PATH=C:\Qt\Tools\mingw810_64
+:: Use CI Qt path if available, otherwise default to local path
+if "%Qt6_DIR%"=="" (
+    set "QT_PATH=C:\Qt\6.6.0\msvc2019_64"
+) else (
+    :: Extract the parent of the cmake dir or just use the bin dir
+    set "QT_PATH=%Qt6_DIR%\..\..\.."
+)
 
 :: ---- Inject tools into PATH ----
-set PATH=%QT_PATH%\bin;%MINGW_PATH%\bin;%PATH%
+set PATH=%QT_PATH%\bin;%PATH%
 
 echo.
 echo ============================================================
@@ -31,9 +34,13 @@ set BUILD_DIR=%~dp0build-windows
 if not exist "%BUILD_DIR%" mkdir "%BUILD_DIR%"
 pushd "%BUILD_DIR%"
 
-set CMAKE_ARGS=-G "MinGW Makefiles"
-set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release
-set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_PREFIX_PATH="%QT_PATH%"
+:: Visual Studio generator is default on Windows when -G is not specified
+set CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release
+if not "%Qt6_DIR%"=="" (
+    set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_PREFIX_PATH="%Qt6_DIR%"
+) else (
+    set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_PREFIX_PATH="%QT_PATH%"
+)
 
 cmake %CMAKE_ARGS% ..
 if errorlevel 1 ( popd & goto :BUILD_FAILED )
@@ -51,7 +58,13 @@ echo ============================================================
 echo  Step 4: Deploy Qt DLLs (windeployqt)
 echo ============================================================
 
-set EXE_PATH=%BUILD_DIR%\SyntaxFlow.exe
+:: CMake with Visual Studio generator places executables in a Release subfolder
+set EXE_PATH=%BUILD_DIR%\Release\SyntaxFlow.exe
+if not exist "%EXE_PATH%" (
+    :: Fallback in case a single-config generator was used
+    set EXE_PATH=%BUILD_DIR%\SyntaxFlow.exe
+)
+
 if exist "%EXE_PATH%" (
     windeployqt --release --no-translations "%EXE_PATH%"
     echo   [OK] Qt DLLs deployed.
@@ -64,7 +77,7 @@ popd
 echo.
 echo ============================================================
 echo  BUILD COMPLETE
-echo  Output: %BUILD_DIR%\SyntaxFlow.exe
+echo  Output: %BUILD_DIR%\Release\SyntaxFlow.exe
 echo ============================================================
 exit /b 0
 
