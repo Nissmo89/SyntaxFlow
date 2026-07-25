@@ -10,7 +10,7 @@
 #include <QFile>
 #include <QDebug>
 
-WebWorkspace::WebWorkspace(QWidget *parent)
+WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
@@ -36,14 +36,7 @@ WebWorkspace::WebWorkspace(QWidget *parent)
 
     layout->addWidget(m_view);
 
-    const QString appDir = QCoreApplication::applicationDirPath();
-    QString htmlPath = QDir(appDir).filePath("web_editor/workspace.html");
-    if (!QFile::exists(htmlPath)) {
-        htmlPath = QDir(appDir + "/../web_editor").filePath("workspace.html");
-    }
-
-    qDebug() << "Loading Web Workspace from:" << htmlPath;
-    m_view->setUrl(QUrl::fromLocalFile(htmlPath));
+    m_view->setUrl(url);
 }
 
 WebWorkspace::~WebWorkspace() = default;

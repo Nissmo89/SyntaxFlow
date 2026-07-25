@@ -22,6 +22,7 @@ class WebWorkspace;
 class ProblemBrowser;
 class SidebarBridge;
 class Backend;
+class HttpServer;
 
 class SidebarBridge : public QObject
 {
@@ -144,6 +145,8 @@ private:
     QStringList m_themes = {"one dark pro", "dracula", "monokai", "github dark", "tokyo night"};
     int m_themeIndex = 0;
 
+    // ─── Embedded Server ───
+    HttpServer *m_server = nullptr;
 };
 
 #endif // MAINWINDOW_H

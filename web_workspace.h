@@ -35,7 +35,7 @@ public slots:
 class WebWorkspace : public QWidget {
     Q_OBJECT
 public:
-    explicit WebWorkspace(QWidget *parent = nullptr);
+    explicit WebWorkspace(const QUrl &url, QWidget *parent = nullptr);
     ~WebWorkspace() override;
 
     void setProblemData(const QJsonObject &problemObj);

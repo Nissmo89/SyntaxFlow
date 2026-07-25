@@ -6,6 +6,7 @@
 #include <QWebChannel>
 #include <QNetworkInterface>
 #include "backend.h"
+#include "httpserver.h"
 
 #include <QStackedLayout>
 #include <QVBoxLayout>
@@ -35,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
     SolutionsBasePath = QStandardPaths::writableLocation(
                             QStandardPaths::AppDataLocation) + "/solutions/";
     QDir().mkpath(SolutionsBasePath);
+
+    m_server = new HttpServer(this);
 
     setupBackend();
     setupUI();
@@ -102,7 +105,7 @@ void MainWindow::setupEditorPage()
     layout->setContentsMargins(GlobalMargin, 0, 0, 0);
     layout->setSpacing(0);
 
-    m_workspace = new WebWorkspace(this);
+    m_workspace = new WebWorkspace(QUrl(m_server->getUrlFor("/workspace.html")), this);
     layout->addWidget(m_workspace);
 
     stack->addWidget(editorPage);
@@ -127,14 +130,7 @@ void MainWindow::setupProfilePage()
         }
     }
 
-    const QString appDir = QCoreApplication::applicationDirPath();
-    QString htmlPath = QDir(appDir).filePath("web_editor/profile.html");
-    if (!QFile::exists(htmlPath)) {
-        htmlPath = QDir(appDir + "/../web_editor").filePath("profile.html");
-    }
-
-    QUrl url = QUrl::fromLocalFile(htmlPath);
-    url.setQuery("mac=" + QUrl::toPercentEncoding(macAddress));
+    QUrl url(m_server->getUrlFor("/profile.html", "mac=" + QUrl::toPercentEncoding(macAddress)));
     profileView->setUrl(url);
 
     layout->addWidget(profileView);
@@ -183,14 +179,7 @@ void MainWindow::setupSidebar()
         }
     }
 
-    const QString appDir = QCoreApplication::applicationDirPath();
-    QString htmlPath = QDir(appDir).filePath("web_editor/sidebar.html");
-    if (!QFile::exists(htmlPath)) {
-        htmlPath = QDir(appDir + "/../web_editor").filePath("sidebar.html");
-    }
-
-    QUrl url = QUrl::fromLocalFile(htmlPath);
-    url.setQuery("mac=" + QUrl::toPercentEncoding(macAddress));
+    QUrl url(m_server->getUrlFor("/sidebar.html", "mac=" + QUrl::toPercentEncoding(macAddress)));
     sidebarView->setUrl(url);
 }
 
