@@ -42,6 +42,7 @@ add_executable(SyntaxFlow
     progressmanager.h progressmanager.cpp
     embedded_runner.h
     python_runner.h python_runner.cpp
+    httpserver.h
 )
 
 target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
