@@ -17,51 +17,7 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network WebEngineWidgets W
 # ============================================================
 add_subdirectory(libs/qtext_browser)
 
-# ============================================================
-# Tree-sitter Core
-# ============================================================
-add_library(tree-sitter STATIC
-    libs/tree-sitter/lib/src/lib.c
-)
-target_include_directories(tree-sitter PUBLIC
-    libs/tree-sitter/lib/include
-    libs/tree-sitter/lib/src
-)
-set_target_properties(tree-sitter PROPERTIES C_STANDARD 99)
 
-# ============================================================
-# Tree-sitter C++ Grammar
-# ============================================================
-add_library(tree-sitter-cpp STATIC
-    libs/tree-sitter-cpp/src/parser.c
-    libs/tree-sitter-cpp/src/scanner.c
-)
-target_include_directories(tree-sitter-cpp PUBLIC
-    libs/tree-sitter-cpp/src
-)
-target_link_libraries(tree-sitter-cpp PRIVATE tree-sitter)
-set_target_properties(tree-sitter-cpp PROPERTIES
-    C_STANDARD 11
-    C_STANDARD_REQUIRED ON
-)
-
-# ============================================================
-# Highlighter
-# ============================================================
-add_library(tree-sitter-highlighter STATIC
-    src/TreeSitterHighlighter.cpp
-    src/TreeSitterHighlighter.h
-)
-target_include_directories(tree-sitter-highlighter PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
-target_link_libraries(tree-sitter-highlighter PUBLIC
-    tree-sitter
-    tree-sitter-cpp
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Widgets
-)
 
 # ============================================================
 # Python 3 (Required)
@@ -98,7 +54,6 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::Network
     Qt6::WebEngineWidgets
     Qt6::WebChannel
-    tree-sitter-highlighter
     qtext_browser
     ${Python3_LIBRARIES}
 )
