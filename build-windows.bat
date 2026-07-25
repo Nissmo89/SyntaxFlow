@@ -34,8 +34,8 @@ set BUILD_DIR=%~dp0build-windows
 if not exist "%BUILD_DIR%" mkdir "%BUILD_DIR%"
 pushd "%BUILD_DIR%"
 
-:: Force Visual Studio generator to prevent picking up MinGW GCC from PATH
-set CMAKE_ARGS=-G "Visual Studio 17 2022" -A x64
+:: Use Ninja generator for faster CI builds and better integration with MSVC Dev Cmd
+set CMAKE_ARGS=-G Ninja
 set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release
 if not "%Qt6_DIR%"=="" (
     set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_PREFIX_PATH="%Qt6_DIR%"

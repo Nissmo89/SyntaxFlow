@@ -40,5 +40,8 @@ jobs:
           modules: 'qtwebengine qtwebchannel'
           cache: 'false'
 
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build
         run: .\build-windows.bat
