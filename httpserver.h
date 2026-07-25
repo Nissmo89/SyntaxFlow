@@ -27,7 +27,7 @@ public:
     }
 
     QString getBaseUrl() const {
-        return QString("http://127.0.0.1:%1/").arg(serverPort());
+        return QString("http://127.0.0.1:%1").arg(serverPort());
     }
 
     QString getUrlFor(const QString &file, const QString &queryParams = "") const {
@@ -57,7 +57,15 @@ protected:
                         if (socket->readLine() == "\r\n") break;
                     }
 
-                    QString fullPath = QDir(m_docRoot).filePath(path.mid(1));
+                    // Sanitize path to avoid double slashes making QDir::filePath absolute
+                    while(path.startsWith('/')) {
+                        path = path.mid(1);
+                    }
+                    if (path.isEmpty()) {
+                        path = "workspace.html";
+                    }
+
+                    QString fullPath = QDir(m_docRoot).filePath(path);
                     QFile file(fullPath);
                     if (file.exists() && file.open(QIODevice::ReadOnly)) {
                         QMimeDatabase db;
