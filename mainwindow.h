@@ -57,6 +57,7 @@ private slots:
     // Navigation
     void onNavigateToEditor(const QString &path);
     void onNavigateToBrowser();
+    void onNavigateToProfile();
 
     // Code Execution
     void onRunCurrentTest(int index);
@@ -82,6 +83,7 @@ private:
     void setupUI();
     void setupBrowserPage();
     void setupEditorPage();
+    void setupProfilePage();
     void setupSidebar();
     void setupConnections();
     void setupShortcuts();
@@ -117,6 +119,10 @@ private:
     // ─── Browser Page ───
     QWidget *browserPage = nullptr;
     ProblemBrowser *browser = nullptr;
+
+    // ─── Profile Page ───
+    QWidget *profilePage = nullptr;
+    QWebEngineView *profileView = nullptr;
 
     // ─── Editor Page ───
     QWidget *editorPage = nullptr;

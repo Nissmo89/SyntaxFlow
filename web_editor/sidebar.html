@@ -231,7 +231,7 @@
       <span>Settings</span>
     </button>
 
-    <div class="profile-card">
+    <div class="profile-card" id="nav-profile">
       <div class="avatar-wrapper">
         <img id="avatar-img" class="avatar" src="" alt="Avatar" />
       </div>
@@ -301,6 +301,12 @@
     document.getElementById("nav-settings").onclick = () => {
       if (sidebarBridge && sidebarBridge.bottomItemClicked) {
         sidebarBridge.bottomItemClicked(0);
+      }
+    };
+
+    document.getElementById("nav-profile").onclick = () => {
+      if (sidebarBridge && sidebarBridge.bottomItemClicked) {
+        sidebarBridge.bottomItemClicked(1);
       }
     };
   </script>

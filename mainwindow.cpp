@@ -76,6 +76,7 @@ void MainWindow::setupUI()
 
     setupBrowserPage();
     setupEditorPage();
+    setupProfilePage();
     setupSidebar();
 
     stack->setCurrentWidget(browserPage);
@@ -107,6 +108,39 @@ void MainWindow::setupEditorPage()
     stack->addWidget(editorPage);
 }
 
+void MainWindow::setupProfilePage()
+{
+    profilePage = new QWidget(this);
+    auto *layout = new QVBoxLayout(profilePage);
+    layout->setContentsMargins(GlobalMargin, 0, 0, 0);
+
+    profileView = new QWebEngineView(this);
+    profileView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    profileView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+    profileView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+
+    QString macAddress = "default-mac";
+    for(const QNetworkInterface& interface : QNetworkInterface::allInterfaces()) {
+        if(!(interface.flags() & QNetworkInterface::IsLoopBack) && interface.hardwareAddress().length() > 0) {
+            macAddress = interface.hardwareAddress();
+            break;
+        }
+    }
+
+    const QString appDir = QCoreApplication::applicationDirPath();
+    QString htmlPath = QDir(appDir).filePath("web_editor/profile.html");
+    if (!QFile::exists(htmlPath)) {
+        htmlPath = QDir(appDir + "/../web_editor").filePath("profile.html");
+    }
+
+    QUrl url = QUrl::fromLocalFile(htmlPath);
+    url.setQuery("mac=" + QUrl::toPercentEncoding(macAddress));
+    profileView->setUrl(url);
+
+    layout->addWidget(profileView);
+    stack->addWidget(profilePage);
+}
+
 void MainWindow::setupSidebar()
 {
     sidebarView = new QWebEngineView(this);
@@ -131,6 +165,7 @@ void MainWindow::setupSidebar()
     connect(sidebarBridge, &SidebarBridge::bottomClicked, this, [this](int index) {
         switch (index) {
         case 0: /* settings */ break;
+        case 1: onNavigateToProfile(); break;
         }
     });
 
@@ -261,6 +296,16 @@ void MainWindow::onNavigateToBrowser()
     m_currentProblemPath.clear();
     m_currentProblemId.clear();
     stack->setCurrentWidget(browserPage);
+}
+
+void MainWindow::onNavigateToProfile()
+{
+    if (m_backend->isRunning()) {
+        m_backend->stopExecution();
+    }
+    m_currentProblemPath.clear();
+    m_currentProblemId.clear();
+    stack->setCurrentWidget(profilePage);
 }
 
 void MainWindow::onRunCurrentTest(int index)
