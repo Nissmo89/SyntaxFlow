@@ -1010,6 +1010,7 @@ int main() {
     _JSON_ _RESULTS_ = _JSON_::array();
     
     for (auto& caseJson : _TEST_JSON_) {
+        cout << "DEBUG:" << caseJson.dump() << endl;
         auto inputs = caseJson["in"];
 )";
 
@@ -1021,15 +1022,17 @@ int main() {
         } else if (ptype == "list_node") {
             mainCpp += "        ListNode* _" + pname + " = toListNode(inputs[\"" + pname + "\"].get<vector<int>>());\n";
         } else if (ptype == "int") {
-            mainCpp += "        int _" + pname + " = inputs[\"" + pname + "\"].get<int>();\n";
+            mainCpp += "        int _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_number()) ? inputs[\"" + pname + "\"].get<int>() : 0;\n";
         } else if (ptype == "double") {
-            mainCpp += "        double _" + pname + " = inputs[\"" + pname + "\"].get<double>();\n";
+            mainCpp += "        double _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_number()) ? inputs[\"" + pname + "\"].get<double>() : 0.0;\n";
         } else if (ptype == "string") {
-            mainCpp += "        string _" + pname + " = inputs[\"" + pname + "\"].get<string>();\n";
+            mainCpp += "        string _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_string()) ? inputs[\"" + pname + "\"].get<string>() : \"\";\n";
+        } else if (ptype == "bool") {
+            mainCpp += "        bool _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_boolean()) ? inputs[\"" + pname + "\"].get<bool>() : false;\n";
         } else if (ptype == "vector<int>") {
-            mainCpp += "        vector<int> _" + pname + " = inputs[\"" + pname + "\"].get<vector<int>>();\n";
+            mainCpp += "        vector<int> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToIntArray(inputs[\"" + pname + "\"]) : vector<int>();\n";
         } else if (ptype == "vector<string>") {
-            mainCpp += "        vector<string> _" + pname + " = inputs[\"" + pname + "\"].get<vector<string>>();\n";
+            mainCpp += "        vector<string> _" + pname + " = inputs.contains(\"" + pname + "\") ? inputs[\"" + pname + "\"].get<vector<string>>() : vector<string>();\n";
         }
     }
     
