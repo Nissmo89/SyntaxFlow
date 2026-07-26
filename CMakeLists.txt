@@ -20,8 +20,36 @@ add_subdirectory(libs/qtext_browser)
 
 
 # ============================================================
-# Python 3 (Not needed anymore - executed via QProcess)
+# Wasmer Offline Pre-caching
 # ============================================================
+option(PRECACHE_WASM_ENGINES "Download and cache Wasmer engines (Python, Clang, QuickJS) during build for offline use" OFF)
+
+if(PRECACHE_WASM_ENGINES)
+    message(STATUS "Enabled pre-caching of Wasmer engines. This will occur during build.")
+    
+    if(WIN32)
+        set(WASMER_CMD "${CMAKE_CURRENT_SOURCE_DIR}/tools/wasmer/bin/wasmer.exe")
+    else()
+        set(WASMER_CMD "${CMAKE_CURRENT_SOURCE_DIR}/tools/wasmer/bin/wasmer")
+    endif()
+
+    # Create a custom target that runs before SyntaxFlow
+    add_custom_target(PrecacheWasmEngines ALL
+        COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Python WASM engine..."
+        COMMAND ${WASMER_CMD} run python/python --version
+        COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Clang WASM engine..."
+        COMMAND ${WASMER_CMD} run clang/clang --version
+        COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching QuickJS WASM engine..."
+        COMMAND ${WASMER_CMD} run syrusakbary/quickjs --command qjs -- -h
+        COMMENT "Pre-caching language engines via Wasmer..."
+    )
+else()
+    message(STATUS "=====================================================================================")
+    message(STATUS "NOTE: Wasmer language engines (Python, Clang, JS) will be downloaded on FIRST RUN.")
+    message(STATUS "      To pre-download them at build time (for offline use), configure CMake with:")
+    message(STATUS "      -DPRECACHE_WASM_ENGINES=ON")
+    message(STATUS "=====================================================================================")
+endif()
 
 # ============================================================
 # Main Executable
@@ -57,6 +85,10 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::WebChannel
     qtext_browser
 )
+
+if(PRECACHE_WASM_ENGINES)
+    add_dependencies(SyntaxFlow PrecacheWasmEngines)
+endif()
 
 if(WIN32)
     # MinGW needs these for Python on Windows
