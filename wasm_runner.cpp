@@ -88,14 +88,20 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
     
     compileProc.start(wasmerExe, compileArgs);
-    compileProc.waitForFinished(20000); // 20s compile timeout (WASM download might take longer on first run if not cached)
+    if (!compileProc.waitForFinished(20000)) { // 20s compile timeout
+        compileProc.kill();
+        compileProc.waitForFinished(500);
+        result.error    = QStringLiteral("Compilation timed out");
+        result.exitCode = -1;
+        return result;
+    }
 
-    if (compileProc.exitCode() != 0) {
+    if (compileProc.exitStatus() != QProcess::NormalExit || compileProc.exitCode() != 0) {
         result.error    = QString::fromUtf8(compileProc.readAllStandardError());
         if (result.error.isEmpty()) {
             result.error = QString::fromUtf8(compileProc.readAllStandardOutput());
         }
-        result.exitCode = compileProc.exitCode();
+        result.exitCode = compileProc.exitCode() != 0 ? compileProc.exitCode() : -1;
         return result;
     }
 
