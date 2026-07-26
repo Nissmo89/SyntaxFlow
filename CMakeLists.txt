@@ -36,9 +36,9 @@ if(PRECACHE_WASM_ENGINES)
     # Create a custom target that runs before SyntaxFlow
     add_custom_target(PrecacheWasmEngines ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Python WASM engine..."
-        COMMAND ${WASMER_CMD} run python/python --version
+        COMMAND ${WASMER_CMD} run python/python -- -V
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Clang WASM engine..."
-        COMMAND ${WASMER_CMD} run clang/clang --version
+        COMMAND ${WASMER_CMD} run clang/clang -- --version
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching QuickJS WASM engine..."
         COMMAND ${WASMER_CMD} run syrusakbary/quickjs --command qjs -- -h
         COMMENT "Pre-caching language engines via Wasmer..."
