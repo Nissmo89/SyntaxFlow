@@ -526,7 +526,8 @@ def run_all_tests():
     test_cases = manifest.get('tests', [])
     entry = manifest.get('entry', {})
     params_schema = entry.get('params', {})
-    call_template = entry.get('call', {}).get('python3', '')
+    call_dict = entry.get('call', {})
+    call_template = call_dict.get('python3', call_dict.get('python', call_dict.get('python2', '')))
     judge_type = manifest.get('judge', {}).get('type', 'exact')
     
     oracle = manifest.get('oracle', {}).get('python3', {})
@@ -1193,7 +1194,10 @@ function run_all_tests() {
     const test_cases = manifest.tests || [];
     const entry = manifest.entry || {};
     const params_schema = entry.params || {};
-    let call_template = (entry.call && entry.call.javascript) ? entry.call.javascript : '';
+    let call_template = '';
+    if (entry.call) {
+        call_template = entry.call.javascript || entry.call.js || entry.call.typescript || '';
+    }
     const judge_type = (manifest.judge && manifest.judge.type) ? manifest.judge.type : 'exact';
 
     let eval_expr = call_template;
