@@ -16,14 +16,20 @@ CodeRunner::CodeRunner(LanguageRegistry *registry, QObject *parent)
     : QObject(parent), m_registry(registry) {
 
     m_pythonRunner = new PythonRunner();
+    m_wasmRunnerC = new WasmRunner(false);
+    m_wasmRunnerCpp = new WasmRunner(true);
 }
 
 CodeRunner::~CodeRunner() {
     delete m_pythonRunner;
+    delete m_wasmRunnerC;
+    delete m_wasmRunnerCpp;
 }
 
 EmbeddedRunner* CodeRunner::getRunner(const QString &languageId) {
     if (languageId == "python") return m_pythonRunner;
+    if (languageId == "c") return m_wasmRunnerC;
+    if (languageId == "cpp" || languageId == "c++") return m_wasmRunnerCpp;
     return nullptr;
 }
 

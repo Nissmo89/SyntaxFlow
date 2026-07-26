@@ -1,12 +1,4 @@
-// clang_runner.cpp  —  macOS QProcess-based C/C++ runner (BUILD-05)
-// ─────────────────────────────────────────────────────────────────────────────
-// Compiles the given source via clang/clang++, runs the resulting binary,
-// and captures its stdout/stderr.  Used on Apple platforms where TCC is
-// unavailable (no macOS / Apple Silicon backend).
-// ─────────────────────────────────────────────────────────────────────────────
-#ifdef SF_USE_CLANG_RUNNER
-
-#include "clang_runner.h"
+#include "wasm_runner.h"
 
 #include <QMutexLocker>
 #include <QProcess>
@@ -15,19 +7,46 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QElapsedTimer>
+#include <QCoreApplication>
+#include <QStandardPaths>
 
-ClangRunner::ClangRunner(bool isCpp)
+WasmRunner::WasmRunner(bool isCpp)
     : m_isCpp(isCpp)
 {}
 
-EmbeddedRunner::Result ClangRunner::execute(const QString &code,
+QString WasmRunner::getWasmerExecutable() const {
+    // Try to find the downloaded Wasmer executable
+    QString basePath = QCoreApplication::applicationDirPath();
+    QStringList searchPaths = {
+        basePath + "/tools/wasmer/bin/wasmer",
+        basePath + "/../tools/wasmer/bin/wasmer",
+        basePath + "/../../tools/wasmer/bin/wasmer",
+        basePath + "/../../../tools/wasmer/bin/wasmer"
+    };
+
+#ifdef Q_OS_WIN
+    for (int i = 0; i < searchPaths.size(); ++i) {
+        searchPaths[i] += ".exe";
+    }
+#endif
+
+    for (const QString &path : searchPaths) {
+        if (QFile::exists(path)) {
+            return path;
+        }
+    }
+    
+    // Fallback to system PATH
+    return "wasmer";
+}
+
+EmbeddedRunner::Result WasmRunner::execute(const QString &code,
                                              const QString &stdinInput,
                                              volatile bool *stopRequested)
 {
     QMutexLocker lock(&m_mutex);
     Result result;
 
-    // ── 1. Write source to a temp file ───────────────────────────────────────
     QTemporaryDir tmpDir;
     if (!tmpDir.isValid()) {
         result.error    = QStringLiteral("Failed to create temp directory");
@@ -37,7 +56,7 @@ EmbeddedRunner::Result ClangRunner::execute(const QString &code,
 
     const QString ext     = m_isCpp ? QStringLiteral(".cpp") : QStringLiteral(".c");
     const QString srcPath = tmpDir.filePath(QStringLiteral("user_code") + ext);
-    const QString binPath = tmpDir.filePath(QStringLiteral("user_bin"));
+    const QString binPath = tmpDir.filePath(QStringLiteral("user_bin.wasm"));
 
     QFile srcFile(srcPath);
     if (!srcFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -48,25 +67,49 @@ EmbeddedRunner::Result ClangRunner::execute(const QString &code,
     srcFile.write(code.toUtf8());
     srcFile.close();
 
-    // ── 2. Compile ────────────────────────────────────────────────────────────
-    const QString compiler = m_isCpp ? QStringLiteral("clang++") : QStringLiteral("clang");
+    QString wasmerExe = getWasmerExecutable();
+
+    // ── 1. Compile to WASM using clang/clang package ────────────────────────
     QProcess compileProc;
-    compileProc.start(compiler, {srcPath, QStringLiteral("-o"), binPath,
-                                 QStringLiteral("-std="), m_isCpp ? QStringLiteral("c++17") : QStringLiteral("c11")});
-    compileProc.waitForFinished(15000); // 15 s compile timeout
+    compileProc.setWorkingDirectory(tmpDir.path());
+    
+    QStringList compileArgs;
+    compileArgs << "run" << "clang/clang" << "--";
+    
+    // Target wasm32-wasi
+    if (m_isCpp) {
+        compileArgs << "-xc++";
+        // C++ compiling might need additional flags for WASI libc++ if supported,
+        // but clang/clang generally defaults to C/C++ capable.
+    } else {
+        compileArgs << "-xc";
+    }
+    
+    compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
+    
+    compileProc.start(wasmerExe, compileArgs);
+    compileProc.waitForFinished(20000); // 20s compile timeout (WASM download might take longer on first run if not cached)
 
     if (compileProc.exitCode() != 0) {
         result.error    = QString::fromUtf8(compileProc.readAllStandardError());
+        if (result.error.isEmpty()) {
+            result.error = QString::fromUtf8(compileProc.readAllStandardOutput());
+        }
         result.exitCode = compileProc.exitCode();
         return result;
     }
 
-    // ── 3. Run binary ─────────────────────────────────────────────────────────
+    // ── 2. Run the generated WASM binary ────────────────────────────────────
     QProcess runProc;
     runProc.setWorkingDirectory(tmpDir.path());
-    runProc.start(binPath, {});
-    if (!stdinInput.isEmpty())
+    
+    QStringList runArgs;
+    runArgs << "run" << "user_bin.wasm";
+    
+    runProc.start(wasmerExe, runArgs);
+    if (!stdinInput.isEmpty()) {
         runProc.write(stdinInput.toUtf8());
+    }
     runProc.closeWriteChannel();
 
     const int TIMEOUT_MS = 5000;
@@ -95,5 +138,3 @@ EmbeddedRunner::Result ClangRunner::execute(const QString &code,
     result.exitCode = runProc.exitCode();
     return result;
 }
-
-#endif // SF_USE_CLANG_RUNNER

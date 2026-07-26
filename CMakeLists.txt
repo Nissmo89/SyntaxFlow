@@ -40,6 +40,7 @@ add_executable(SyntaxFlow
     progressmanager.h progressmanager.cpp
     embedded_runner.h
     python_runner.h python_runner.cpp
+    wasm_runner.h wasm_runner.cpp
     httpserver.h
 )
 

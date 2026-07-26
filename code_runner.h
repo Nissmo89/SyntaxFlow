@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include "language_config.h"
 #include "python_runner.h"
+#include "wasm_runner.h"
 #include "driver_generator.h"
 
 class LanguageRegistry;
@@ -56,6 +57,8 @@ private:
     EmbeddedRunner* getRunner(const QString &languageId);
 
     PythonRunner    *m_pythonRunner    = nullptr;
+    WasmRunner      *m_wasmRunnerC     = nullptr;
+    WasmRunner      *m_wasmRunnerCpp   = nullptr;
 };
 
 #endif // CODE_RUNNER_H

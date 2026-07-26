@@ -43,6 +43,8 @@ void LanguageRegistry::loadBuiltinDefaults() {
     };
 
     addBuiltin(builtinPython(), "python");
+    addBuiltin(builtinC(), "c");
+    addBuiltin(builtinCpp(), "cpp");
 }
 
 QJsonObject LanguageRegistry::builtinPython() {
@@ -54,6 +56,30 @@ QJsonObject LanguageRegistry::builtinPython() {
         {"isEmbedded", true},
         {"timeout", 5000},
         {"template", "# Your code here\n"}
+    };
+}
+
+QJsonObject LanguageRegistry::builtinC() {
+    return QJsonObject{
+        {"name", "C"},
+        {"extension", ".c"},
+        {"sourceFile", "solution.c"},
+        {"compiled", true},
+        {"isEmbedded", true},
+        {"timeout", 5000},
+        {"template", "#include <stdio.h>\n\n// Your code here\n"}
+    };
+}
+
+QJsonObject LanguageRegistry::builtinCpp() {
+    return QJsonObject{
+        {"name", "C++"},
+        {"extension", ".cpp"},
+        {"sourceFile", "solution.cpp"},
+        {"compiled", true},
+        {"isEmbedded", true},
+        {"timeout", 5000},
+        {"template", "#include <iostream>\n\n// Your code here\n"}
     };
 }
 
