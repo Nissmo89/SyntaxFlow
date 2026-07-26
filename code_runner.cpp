@@ -68,7 +68,7 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
     } else {
         QString fullCode = code;
         if (schema.isValid()) {
-            fullCode += DriverGenerator::generateDriver(schema, languageId);
+            fullCode = DriverGenerator::generateHeader(schema, languageId) + fullCode + DriverGenerator::generateDriver(schema, languageId);
         }
 
         for (int i = 0; i < tests.size() && !m_stopRequested; ++i) {
@@ -125,7 +125,7 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
     } else {
         QString fullCode = code;
         if (schema.isValid()) {
-            fullCode += DriverGenerator::generateDriver(schema, languageId);
+            fullCode = DriverGenerator::generateHeader(schema, languageId) + fullCode + DriverGenerator::generateDriver(schema, languageId);
         }
 
         executeTestRaw(runner, fullCode, tests[testIndex].toObject(), testIndex);

@@ -99,6 +99,36 @@ QString DriverGenerator::generateDriver(const MethodSchema& schema, const QStrin
     return "";
 }
 
+QString DriverGenerator::generateHeader(const MethodSchema& schema, const QString& languageId) {
+    if (!schema.isValid()) return "";
+    QString lang = languageId.toLower();
+    
+    if (lang == "c") {
+        QString header = "#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n#include <string.h>\n";
+        header += "\n// --- SYNTAXFLOW INJECTED DEFINITIONS ---\n";
+        header += "struct ListNode {\n    int val;\n    struct ListNode *next;\n};\n\n";
+        header += "struct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n";
+        header += "// ---------------------------------------\n\n";
+        return header;
+    } else if (lang == "cpp" || lang == "c++") {
+        QString header = "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\n";
+        header += "\nusing namespace std;\n";
+        header += "\n// --- SYNTAXFLOW INJECTED DEFINITIONS ---\n";
+        header += "struct ListNode {\n    int val;\n    ListNode *next;\n";
+        header += "    ListNode() : val(0), next(nullptr) {}\n";
+        header += "    ListNode(int x) : val(x), next(nullptr) {}\n";
+        header += "    ListNode(int x, ListNode *next) : val(x), next(next) {}\n};\n\n";
+        header += "struct TreeNode {\n    int val;\n    TreeNode *left;\n    TreeNode *right;\n";
+        header += "    TreeNode() : val(0), left(nullptr), right(nullptr) {}\n";
+        header += "    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n";
+        header += "    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n};\n\n";
+        header += "// ---------------------------------------\n\n";
+        return header;
+    }
+    
+    return "";
+}
+
 QString DriverGenerator::generateCppDriver(const MethodSchema& schema) {
     // Pure C99 driver — TCC is a C compiler only.
     // Entry point is _sf_main (not main) so TccRunner can use tcc_get_symbol
