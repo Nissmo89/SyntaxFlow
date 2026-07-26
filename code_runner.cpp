@@ -518,11 +518,11 @@ def deserialize_val(val, val_type):
         return val
 
 # --- USER SOLUTION ---
-%1
+_SF_USER_CODE_HERE_
 
 # --- RUNNER ---
 def run_all_tests():
-    manifest = json.loads(%2)
+    manifest = json.loads(_SF_MANIFEST_JSON_HERE_)
     test_cases = manifest.get('tests', [])
     entry = manifest.get('entry', {})
     params_schema = entry.get('params', {})
@@ -549,7 +549,7 @@ def run_all_tests():
         sys.stdout = captured_stdout
         sys.stderr = captured_stderr
         
-        status = "Accepted"
+        status = "Passed"
         actual_str = ""
         elapsed_ms = 0
         
@@ -568,29 +568,25 @@ def run_all_tests():
             actual_json = to_json(res_val)
             actual_str = actual_json
             
-            expected_val = tc.get('out')
-            if expected_val is not None:
-                expected_json = to_json(expected_val)
-                actual_obj = json.loads(actual_json)
-                expected_obj = json.loads(expected_json)
-                if judge_type == 'ignore_order':
-                    if not compare_ignore_order(actual_obj, expected_obj):
+            exp_val = tc.get('out')
+            if exp_val is not None:
+                exp_json = to_json(exp_val)
+                if judge_type == 'custom':
+                    try:
+                        is_correct = eval(oracle_call, globals(), {**local_vars, "res": res_val})
+                        if not is_correct:
+                            status = "Wrong Answer"
+                    except Exception as e:
+                        status = "System Error"
+                        actual_str = f"Checker error: {str(e)}"
+                elif judge_type == 'unordered':
+                    if not compare_ignore_order(res_val, exp_val):
                         status = "Wrong Answer"
                 else:
-                    if actual_obj != expected_obj:
+                    if actual_json != exp_json:
                         status = "Wrong Answer"
-            elif oracle_code and oracle_call:
-                oracle_expr = oracle_call.replace('{result}', 'res_val')
-                oracle_vars = {**local_vars, 'res_val': res_val}
-                passed = eval(oracle_expr, globals(), oracle_vars)
-                if not passed:
-                    status = "Wrong Answer"
-            else:
-                pass
-                
+                        
         except Exception as e:
-            sys.stdout = old_stdout
-            sys.stderr = old_stderr
             status = "Runtime Error"
             actual_str = traceback.format_exc()
             
@@ -616,10 +612,10 @@ run_all_tests()
     escapedManifest.replace(QLatin1String("\\"), QLatin1String("\\\\"));
     escapedManifest.replace(QLatin1String("\""), QLatin1String("\\\""));
     
-    int offset = harnessTemplate.left(harnessTemplate.indexOf("%1")).count('\n');
-    QString fullExecutionCode = harnessTemplate
-        .arg(code)
-        .arg(QLatin1String("\"") + escapedManifest + QLatin1String("\""));
+    int offset = harnessTemplate.left(harnessTemplate.indexOf("_SF_USER_CODE_HERE_")).count('\n');
+    QString fullExecutionCode = harnessTemplate;
+    fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", QLatin1String("\"") + escapedManifest + QLatin1String("\""));
+    fullExecutionCode.replace("_SF_USER_CODE_HERE_", code);
         
     EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested);
     
@@ -1189,11 +1185,11 @@ function deserialize_val(val, val_type) {
 }
 
 // --- USER SOLUTION ---
-%1
+_SF_USER_CODE_HERE_
 
 // --- RUNNER ---
 function run_all_tests() {
-    const manifest = JSON.parse('%2');
+    const manifest = _SF_MANIFEST_JSON_HERE_;
     const test_cases = manifest.tests || [];
     const entry = manifest.entry || {};
     const params_schema = entry.params || {};
@@ -1208,54 +1204,43 @@ function run_all_tests() {
     const results = [];
     
     // QuickJS override console.log to capture stdout
-    let stdout_cap = "";
     const original_log = console.log;
+    let stdout_cap = "";
     console.log = function(...args) {
-        stdout_cap += args.map(a => String(a)).join(" ") + "\n";
-        original_log.apply(console, args);
+        stdout_cap += args.join(" ") + "\n";
     };
 
     for (let i = 0; i < test_cases.length; i++) {
         const tc = test_cases[i];
         stdout_cap = "";
         
-        let status = "Accepted";
         let actual_str = "";
+        let status = "Passed";
         let elapsed_ms = 0;
         
         try {
-            let local_vars_js = "";
+            // Assign parameters securely
             for (const p_name in params_schema) {
-                const p_type = params_schema[p_name].type || 'int';
-                const raw_val = tc.in[p_name];
-                const deser = deserialize_val(raw_val, p_type);
-                local_vars_js += `let ${p_name} = ${JSON.stringify(deser)};\n`;
-                if (p_type === 'tree_node') {
-                   local_vars_js += `${p_name} = to_tree_node(${p_name});\n`;
-                } else if (p_type === 'list_node') {
-                   local_vars_js += `${p_name} = to_list_node(${p_name});\n`;
-                }
+                let p_val = tc.in[p_name];
+                p_val = deserialize_val(p_val, params_schema[p_name].type);
+                eval("var " + p_name + " = p_val;");
             }
             
-            let start_time = Date.now();
-            let res_val = eval(local_vars_js + eval_expr);
-            elapsed_ms = Date.now() - start_time;
+            const t0 = Date.now();
+            let res = eval(eval_expr);
+            elapsed_ms = Date.now() - t0;
             
-            actual_str = JSON.stringify(res_val);
-            if (actual_str === undefined) actual_str = "null";
+            actual_str = res !== undefined ? JSON.stringify(res) : "";
+            const exp_str = tc.out !== undefined ? JSON.stringify(tc.out) : "";
             
-            const expected_val = tc.out;
-            if (expected_val !== undefined) {
-                if (JSON.stringify(res_val) !== JSON.stringify(expected_val)) {
-                    status = "Wrong Answer";
-                }
+            if (actual_str !== exp_str) {
+                status = "Wrong Answer";
             }
         } catch (e) {
             status = "Runtime Error";
-            if (e && e.stack) {
-                actual_str = String(e) + "\n" + e.stack;
-            } else {
-                actual_str = String(e);
+            actual_str = e.toString();
+            if (e.stack) {
+                actual_str += "\n" + e.stack;
             }
         }
         
@@ -1279,14 +1264,10 @@ function run_all_tests() {
 run_all_tests();
 )javascript");
 
-    QString escapedManifest = manifestJson;
-    escapedManifest.replace(QLatin1String("\\\\"), QLatin1String("\\\\\\\\"));
-    escapedManifest.replace(QLatin1String("\\\""), QLatin1String("\\\\\\\""));
-    
-    int offset = harnessTemplate.left(harnessTemplate.indexOf("%1")).count('\n');
-    QString fullExecutionCode = harnessTemplate
-        .arg(code)
-        .arg(escapedManifest); // No quotes around it because we put them in the JS parse
+    int offset = harnessTemplate.left(harnessTemplate.indexOf("_SF_USER_CODE_HERE_")).count('\n');
+    QString fullExecutionCode = harnessTemplate;
+    fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", manifestJson);
+    fullExecutionCode.replace("_SF_USER_CODE_HERE_", code);
         
     EmbeddedRunner::Result r = m_javascriptRunner->execute(fullExecutionCode, "", &m_stopRequested);
     
