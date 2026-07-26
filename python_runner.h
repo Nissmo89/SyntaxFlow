@@ -39,7 +39,8 @@ public:
 
     Result execute(const QString &code,
                    const QString &stdinInput,
-                   volatile bool *abort = nullptr) override;
+                   volatile bool *abort = nullptr,
+                   const QMap<QString, QString> &additionalFiles = {}) override;
 
     QString languageId()   const override { return QStringLiteral("python"); }
     QString languageName() const override { return QStringLiteral("Python");  }

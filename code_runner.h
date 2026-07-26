@@ -28,6 +28,9 @@ public:
     void executeTestRaw(EmbeddedRunner* runner, const QString &code,
                         const QJsonObject &test,
                         int index);
+    
+    void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
+    void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
 
     void runFreeCode(const QString &code, const QString &languageId);
 

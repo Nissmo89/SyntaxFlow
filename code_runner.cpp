@@ -65,6 +65,8 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
     
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
         runPythonTestsBatch(code, m_currentManifest, -1);
+    } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
+        runCppTestsBatch(code, m_currentManifest, -1);
     } else {
         QString fullCode = code;
         if (schema.isValid()) {
@@ -122,6 +124,8 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
         runPythonTestsBatch(code, m_currentManifest, testIndex);
+    } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
+        runCppTestsBatch(code, m_currentManifest, testIndex);
     } else {
         QString fullCode = code;
         if (schema.isValid()) {
@@ -648,5 +652,449 @@ run_all_tests()
         
         emit progress(i + 1, results.size());
         emit testResult(targetIndex, status, actual, expected, elapsedMs);
+    }
+}
+
+void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex) {
+    QJsonObject runManifest = manifest;
+    if (singleTestIndex >= 0) {
+        QJsonArray allTests = manifest["tests"].toArray();
+        if (singleTestIndex < allTests.size()) {
+            QJsonArray singleTestArray;
+            singleTestArray.append(allTests[singleTestIndex]);
+            runManifest["tests"] = singleTestArray;
+        }
+    }
+    
+    QJsonObject entry = manifest["entry"].toObject();
+    QJsonObject params = entry["params"].toObject();
+    QString cppCall = entry["call"].toObject()["cpp"].toString();
+    QString judgeType = manifest["judge"].toObject()["type"].toString("exact");
+    
+    QString mainCpp = R"(
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <map>
+#include <queue>
+#include <optional>
+#include <cmath>
+#include <iomanip>
+#include <nlohmann/json.hpp>
+
+using namespace std;
+using _JSON_ = nlohmann::json;
+
+)";
+
+    mainCpp += R"_UTILITIES_(\nusing _JSON_ = nlohmann::json;
+
+template<typename T> T& lv(T&& x) { return x; }
+
+struct _TEST_ {
+    _JSON_ val;
+};
+
+inline void from_json(const _JSON_& j, _TEST_& t) {
+    j.at("val").get_to(t.val);
+}
+
+inline char jsonToChar(const _JSON_& j) { return j.get<string>()[0]; }
+inline int jsonToInt(const _JSON_& j) { return j.get<int>(); }
+inline long long jsonToLong(const _JSON_& j) { return j.get<long long>(); }
+inline double jsonToDouble(const _JSON_& j) { return j.get<double>(); }
+inline float jsonToFloat(const _JSON_& j) { return j.get<float>(); }
+inline bool jsonToBool(const _JSON_& j) { return j.get<bool>(); }
+inline string jsonToString(const _JSON_& j) {
+  return j.is_string() ? j.get<string>() : j.dump();
+}
+
+inline vector<int> jsonToIntArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<int> >();
+}
+
+inline vector<long long> jsonToLongArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<long long> >();
+}
+
+inline vector<double> jsonToDoubleArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<double> >();
+}
+
+inline vector<float> jsonToFloatArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<float> >();
+}
+
+inline vector<bool> jsonToBoolArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<bool> >();
+}
+
+inline vector<string> jsonToStringArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<string> >();
+}
+
+inline vector<optional<int>> jsonToOptionalIntArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  vector<optional<int>> out;
+  out.reserve(j.size());
+  for (const auto& x : j) {
+    if (x.is_null()) {
+      out.push_back(nullopt);
+    } else {
+      out.push_back(x.get<int>());
+    }
+  }
+  return out;
+}
+
+inline vector<char> jsonToCharArray(const _JSON_& j) {
+  if (j.is_null()) return {};
+  vector<char> out;
+  out.reserve(j.size());
+  for (const auto& x : j) out.push_back(jsonToChar(x));
+  return out;
+}
+
+inline vector<vector<int>> jsonToIntMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<int> > >();
+}
+
+inline vector<vector<long long>> jsonToLongMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<long long> > >();
+}
+
+inline vector<vector<double>> jsonToDoubleMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<double> > >();
+}
+
+inline vector<vector<float>> jsonToFloatMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<float> > >();
+}
+
+inline vector<vector<bool>> jsonToBoolMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<bool> > >();
+}
+
+inline vector<vector<string>> jsonToStringMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  return j.get<vector<vector<string> > >();
+}
+
+inline vector<vector<char>> jsonToCharMatrix(const _JSON_& j) {
+  if (j.is_null()) return {};
+  vector<vector<char>> out;
+  out.reserve(j.size());
+  for (const auto& row : j) out.push_back(jsonToCharArray(row));
+  return out;
+}
+
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode() : val(0), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right)
+      : val(x), left(left), right(right) {}
+};
+
+inline ListNode *toListNode(const vector<int> &arr) {
+  if (arr.empty())
+    return nullptr;
+  ListNode *head = new ListNode(arr[0]);
+  ListNode *cur = head;
+  for (int i = 1; i < (int)arr.size(); i++) {
+    cur->next = new ListNode(arr[i]);
+    cur = cur->next;
+  }
+  return head;
+}
+
+inline vector<int> listNodeToArray(ListNode *head) {
+  vector<int> res;
+  for (ListNode *cur = head; cur != nullptr; cur = cur->next)
+    res.push_back(cur->val);
+  return res;
+}
+
+inline vector<ListNode *> toLinkedLists(const vector<vector<int>> &arrs) {
+  vector<ListNode *> res;
+  res.reserve(arrs.size());
+  for (const auto &arr : arrs)
+    res.push_back(toListNode(arr));
+  return res;
+}
+
+inline TreeNode *toTreeNode(const vector<optional<int>> &arr) {
+  if (arr.empty() || !arr[0])
+    return nullptr;
+  TreeNode *root = new TreeNode(*arr[0]);
+  queue<TreeNode *> q;
+  q.push(root);
+  int i = 1;
+  while (!q.empty() && i < (int)arr.size()) {
+    TreeNode *node = q.front();
+    q.pop();
+    if (i < (int)arr.size() && arr[i]) {
+      node->left = new TreeNode(*arr[i]);
+      q.push(node->left);
+    }
+    i++;
+    if (i < (int)arr.size() && arr[i]) {
+      node->right = new TreeNode(*arr[i]);
+      q.push(node->right);
+    }
+    i++;
+  }
+  return root;
+}
+
+inline vector<optional<int>> treeNodeToArray(TreeNode *root) {
+  vector<optional<int>> res;
+  if (!root)
+    return res;
+  queue<TreeNode *> q;
+  q.push(root);
+  while (!q.empty()) {
+    TreeNode *node = q.front();
+    q.pop();
+    if (node) {
+      res.push_back(node->val);
+      q.push(node->left);
+      q.push(node->right);
+    } else {
+      res.push_back(nullopt);
+    }
+  }
+  while (!res.empty() && !res.back())
+    res.pop_back();
+  return res;
+}
+
+inline vector<vector<optional<int>>> treeNodesArrayToVector(const vector<TreeNode *> &roots) {
+  vector<vector<optional<int>>> res;
+  res.reserve(roots.size());
+  for (auto *root : roots) {
+    res.push_back(treeNodeToArray(root));
+  }
+  return res;
+}
+
+inline string _jsonQuote(const string &s) {
+  string r;
+  r.reserve(s.size() + 2);
+  r += '"';
+  for (unsigned char c : s) {
+    switch (c) {
+    case '"':
+      r += "\\\"";
+      break;
+    case '\\':
+      r += "\\\\";
+      break;
+    case '\b':
+      r += "\\b";
+      break;
+    case '\f':
+      r += "\\f";
+      break;
+    case '\n':
+      r += "\\n";
+      break;
+    case '\r':
+      r += "\\r";
+      break;
+    case '\t':
+      r += "\\t";
+      break;
+    default:
+      if (c < 0x20) {
+        char buf[8];
+        snprintf(buf, sizeof(buf), "\\u%04x", c);
+        r += buf;
+      } else {
+        r += (char)c;
+      }
+    }
+  }
+  r += '"';
+  return r;
+}
+
+inline string toJson(bool v) { return v ? "true" : "false"; }
+inline string toJson(int v) { return to_string(v); }
+inline string toJson(long v) { return to_string(v); }
+inline string toJson(long long v) { return to_string(v); }
+inline string toJson(unsigned v) { return to_string(v); }
+inline string toJson(unsigned long v) { return to_string(v); }
+inline string toJson(unsigned long long v) { return to_string(v); }
+inline string toJson(double v) {
+  if (isnan(v) || isinf(v)) return "null";
+  ostringstream oss;
+  oss << setprecision(15) << v;
+  string s = oss.str();
+  if (s.find_first_of(".eE") == string::npos) s += ".0";
+  return s;
+}
+inline string toJson(float v) { return toJson((double)v); }
+inline string toJson(char v) { return _jsonQuote(string(1, v)); }
+inline string toJson(const string &v) { return _jsonQuote(v); }
+inline string toJson(const char *v) { return _jsonQuote(string(v)); }
+inline string toJson(nullptr_t) { return "null"; }
+inline string toJson(const optional<int> &v) {
+  return v ? to_string(*v) : "null";
+}
+
+template <typename T> string toJson(const vector<T> &v) {
+  string r = "[";
+  for (int i = 0; i < (int)v.size(); i++) {
+    if (i)
+      r += ',';
+    r += toJson(v[i]);
+  }
+  r += ']';
+  return r;
+}
+
+inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
+inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
+\n)_UTILITIES_";
+    
+    mainCpp += code + "\n";
+    
+    mainCpp += R"(
+int main() {
+    ifstream _TEST_JSON_FILE_("test.json");
+    _JSON_ _TEST_JSON_;
+    _TEST_JSON_FILE_ >> _TEST_JSON_;
+    
+    _JSON_ _RESULTS_ = _JSON_::array();
+    
+    for (auto& caseJson : _TEST_JSON_) {
+        auto inputs = caseJson["in"];
+)";
+
+    for (auto it = params.begin(); it != params.end(); ++it) {
+        QString pname = it.key();
+        QString ptype = it.value().toObject()["type"].toString();
+        if (ptype == "tree_node") {
+            mainCpp += "        TreeNode* _" + pname + " = toTreeNode(inputs[\"" + pname + "\"].get<vector<optional<int>>>());\n";
+        } else if (ptype == "list_node") {
+            mainCpp += "        ListNode* _" + pname + " = toListNode(inputs[\"" + pname + "\"].get<vector<int>>());\n";
+        } else if (ptype == "int") {
+            mainCpp += "        int _" + pname + " = inputs[\"" + pname + "\"].get<int>();\n";
+        } else if (ptype == "double") {
+            mainCpp += "        double _" + pname + " = inputs[\"" + pname + "\"].get<double>();\n";
+        } else if (ptype == "string") {
+            mainCpp += "        string _" + pname + " = inputs[\"" + pname + "\"].get<string>();\n";
+        } else if (ptype == "vector<int>") {
+            mainCpp += "        vector<int> _" + pname + " = inputs[\"" + pname + "\"].get<vector<int>>();\n";
+        } else if (ptype == "vector<string>") {
+            mainCpp += "        vector<string> _" + pname + " = inputs[\"" + pname + "\"].get<vector<string>>();\n";
+        }
+    }
+    
+    QString evalExpr = cppCall;
+    for (const QString &pname : params.keys()) {
+        evalExpr.replace("{" + pname + "}", "_" + pname);
+    }
+    if (evalExpr.isEmpty()) {
+        evalExpr = "0"; // fallback if missing call
+    }
+    
+    mainCpp += "        auto res = " + evalExpr + ";\n";
+    mainCpp += "        _JSON_ resObj;\n";
+    mainCpp += "        try { resObj = _JSON_::parse(toJson(res)); } catch(...) { resObj = toJson(res); }\n";
+    
+    mainCpp += R"(
+        _JSON_ resultItem;
+        resultItem["actual"] = resObj;
+        
+        if (caseJson.contains("out")) {
+            resultItem["expected"] = caseJson["out"];
+        }
+        _RESULTS_.push_back(resultItem);
+    }
+    
+    cout << "SF_JSON_SUMMARY_START\n" << _RESULTS_.dump() << "\nSF_JSON_SUMMARY_END\n";
+    return 0;
+}
+)";
+
+    QString testJson = QString::fromUtf8(QJsonDocument(runManifest["tests"].toArray()).toJson(QJsonDocument::Compact));
+    
+    QElapsedTimer timer;
+    timer.start();
+    EmbeddedRunner::Result r = m_wasmRunnerCpp->execute(mainCpp, "", &m_stopRequested, {{"test.json", testJson}});
+    
+    if (r.exitCode != 0 && r.output.isEmpty()) {
+        emit compilationError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error);
+        return;
+    }
+    
+    QString output = r.output;
+    int startIdx = output.indexOf("SF_JSON_SUMMARY_START");
+    int endIdx = output.indexOf("SF_JSON_SUMMARY_END");
+    
+    if (startIdx == -1 || endIdx == -1) {
+        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + r.error);
+        return;
+    }
+    
+    startIdx += QString("SF_JSON_SUMMARY_START").length();
+    QString jsonStr = output.mid(startIdx, endIdx - startIdx).trimmed();
+    
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonStr.toUtf8(), &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        emit systemError("Failed to parse test results JSON: " + parseError.errorString() + "\nRaw text: " + jsonStr);
+        return;
+    }
+    
+    QJsonArray results = doc.array();
+    QJsonArray expectedResults = runManifest["tests"].toArray();
+    for (int i = 0; i < results.size(); ++i) {
+        QJsonObject resObj = results[i].toObject();
+        QString actualStr = QString::fromUtf8(QJsonDocument(resObj["actual"].toArray()).toJson(QJsonDocument::Compact));
+        if (resObj["actual"].isString()) actualStr = resObj["actual"].toString();
+        else if (resObj["actual"].isDouble()) actualStr = QString::number(resObj["actual"].toDouble());
+        else if (resObj["actual"].isBool()) actualStr = resObj["actual"].toBool() ? "true" : "false";
+        else if (resObj["actual"].isNull()) actualStr = "null";
+        else actualStr = QString::fromUtf8(QJsonDocument(resObj["actual"].toArray()).toJson(QJsonDocument::Compact));
+        
+        QString expectedStr = "";
+        if (resObj.contains("expected")) {
+            if (resObj["expected"].isString()) expectedStr = resObj["expected"].toString();
+            else if (resObj["expected"].isDouble()) expectedStr = QString::number(resObj["expected"].toDouble());
+            else if (resObj["expected"].isBool()) expectedStr = resObj["expected"].toBool() ? "true" : "false";
+            else if (resObj["expected"].isNull()) expectedStr = "null";
+            else expectedStr = QString::fromUtf8(QJsonDocument(resObj["expected"].toArray()).toJson(QJsonDocument::Compact));
+        }
+        
+        QString status = (actualStr == expectedStr) ? "Accepted" : "Wrong Answer";
+        
+        int targetIndex = (singleTestIndex >= 0) ? singleTestIndex : i;
+        emit progress(i + 1, results.size());
+        emit testResult(targetIndex, status, actualStr, expectedStr, r.exitCode == 0 ? timer.elapsed() / results.size() : 0);
     }
 }

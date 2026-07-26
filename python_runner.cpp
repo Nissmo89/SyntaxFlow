@@ -19,8 +19,9 @@ PythonRunner::~PythonRunner()
 }
 
 EmbeddedRunner::Result PythonRunner::execute(const QString &code,
-                                              const QString &stdinInput,
-                                              volatile bool *abort)
+                                             const QString &stdinInput,
+                                             volatile bool *abort,
+                                             const QMap<QString, QString> &additionalFiles)
 {
     QMutexLocker lock(&m_mutex);
     Result result;

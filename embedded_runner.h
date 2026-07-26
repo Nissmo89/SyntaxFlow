@@ -27,7 +27,8 @@ public:
     // Set *abort = true from another thread to request a stop (best-effort).
     virtual Result execute(const QString &code,
                            const QString &stdinInput,
-                           volatile bool *abort = nullptr) = 0;
+                           volatile bool *stopRequested = nullptr,
+                           const QMap<QString, QString> &additionalFiles = {}) = 0;
 
     virtual QString languageId()   const = 0;   // e.g. "c", "javascript", "python"
     virtual QString languageName() const = 0;   // e.g. "C",  "JavaScript",  "Python"

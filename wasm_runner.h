@@ -16,7 +16,8 @@ public:
 
     Result execute(const QString &code,
                    const QString &stdinInput,
-                   volatile bool *abort = nullptr) override;
+                   volatile bool *abort = nullptr,
+                   const QMap<QString, QString> &additionalFiles = {}) override;
 
     QString languageId()   const override { return m_isCpp ? "cpp" : "c"; }
     QString languageName() const override { return m_isCpp ? "C++" : "C"; }

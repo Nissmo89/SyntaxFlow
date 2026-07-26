@@ -42,7 +42,8 @@ QString WasmRunner::getWasmerExecutable() const {
 
 EmbeddedRunner::Result WasmRunner::execute(const QString &code,
                                              const QString &stdinInput,
-                                             volatile bool *stopRequested)
+                                             volatile bool *stopRequested,
+                                             const QMap<QString, QString> &additionalFiles)
 {
     QMutexLocker lock(&m_mutex);
     Result result;
@@ -67,14 +68,26 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     srcFile.write(code.toUtf8());
     srcFile.close();
 
+    for (auto it = additionalFiles.begin(); it != additionalFiles.end(); ++it) {
+        QFile file(tmpDir.filePath(it.key()));
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            file.write(it.value().toUtf8());
+            file.close();
+        }
+    }
+
     QString wasmerExe = getWasmerExecutable();
 
     // ── 1. Compile to WASM using clang/clang package ────────────────────────
     QProcess compileProc;
     compileProc.setWorkingDirectory(tmpDir.path());
     
+    QString basePath = QCoreApplication::applicationDirPath();
+    QString includeDir = QDir::cleanPath(basePath + "/../resources/include");
+    
     QStringList compileArgs;
-    compileArgs << "run" << "--dir=." << "clang/clang" << "--";
+    compileArgs << "run" << "--dir=." << ("--dir=" + includeDir) << "clang/clang" << "--";
+    compileArgs << "-I" + includeDir;
     
     // Target wasm32-wasi
     if (m_isCpp) {
