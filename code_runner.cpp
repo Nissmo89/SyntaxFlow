@@ -1273,8 +1273,8 @@ run_all_tests();
 )javascript");
 
     QString escapedManifest = manifestJson;
-    escapedManifest.replace(QLatin1String("\"), QLatin1String("\\"));
-    escapedManifest.replace(QLatin1String("""), QLatin1String("\""));
+    escapedManifest.replace(QLatin1String("\\\\"), QLatin1String("\\\\\\\\"));
+    escapedManifest.replace(QLatin1String("\\\""), QLatin1String("\\\\\\\""));
     
     int offset = harnessTemplate.left(harnessTemplate.indexOf("%1")).count('\n');
     QString fullExecutionCode = harnessTemplate
