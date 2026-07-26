@@ -1,5 +1,6 @@
 #pragma once
 #include <QString>
+#include <QMap>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // EmbeddedRunner  —  base class every in-process language runner implements.
