@@ -348,12 +348,24 @@ void MainWindow::onTestResult(int testIndex, const QString &status,
 
 void MainWindow::onCompilationError(const QString &error)
 {
-    QMessageBox::critical(this, "Compilation Error", "Failed to compile your code:\n\n" + error.left(500));
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setWindowTitle("Compilation Error");
+    msgBox.setText("Failed to compile your code:");
+    msgBox.setDetailedText(error);
+    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse);
+    msgBox.exec();
 }
 
 void MainWindow::onSystemError(const QString &error)
 {
-    QMessageBox::critical(this, "System Error", error);
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setWindowTitle("System Error");
+    msgBox.setText("A system error occurred.");
+    msgBox.setDetailedText(error);
+    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse);
+    msgBox.exec();
     m_workspace->clearAllResults();
 }
 
