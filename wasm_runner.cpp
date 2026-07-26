@@ -40,6 +40,36 @@ QString WasmRunner::getWasmerExecutable() const {
     return "wasmer";
 }
 
+QString WasmRunner::getWasiSdkCompiler() const {
+    QString basePath = QCoreApplication::applicationDirPath();
+    QString compilerName = m_isCpp ? "clang++" : "clang";
+    
+    QStringList searchPaths = {
+        basePath + "/wasi-sdk/bin/" + compilerName,
+        basePath + "/wasi-sdk/wasi-sdk-20.0/bin/" + compilerName,
+        basePath + "/../wasi-sdk/bin/" + compilerName,
+        basePath + "/../wasi-sdk/wasi-sdk-20.0/bin/" + compilerName,
+        basePath + "/../../wasi-sdk/bin/" + compilerName,
+        basePath + "/../../wasi-sdk/wasi-sdk-20.0/bin/" + compilerName,
+        basePath + "/../../../wasi-sdk/bin/" + compilerName,
+        basePath + "/../../../wasi-sdk/wasi-sdk-20.0/bin/" + compilerName
+    };
+
+#ifdef Q_OS_WIN
+    for (int i = 0; i < searchPaths.size(); ++i) {
+        searchPaths[i] += ".exe";
+    }
+#endif
+
+    for (const QString &path : searchPaths) {
+        if (QFile::exists(path)) {
+            return path;
+        }
+    }
+    
+    return compilerName;
+}
+
 EmbeddedRunner::Result WasmRunner::execute(const QString &code,
                                              const QString &stdinInput,
                                              volatile bool *stopRequested,
@@ -78,29 +108,25 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
 
     QString wasmerExe = getWasmerExecutable();
 
-    // ── 1. Compile to WASM using clang/clang package ────────────────────────
+    // ── 1. Compile to WASM natively using wasi-sdk ──────────────────────
     QProcess compileProc;
     compileProc.setWorkingDirectory(tmpDir.path());
     
     QString basePath = QCoreApplication::applicationDirPath();
     QString includeDir = QDir::cleanPath(basePath + "/../resources/include");
+    QString wasiSdkCompiler = getWasiSdkCompiler();
     
     QStringList compileArgs;
-    compileArgs << "run" << "--dir=." << ("--dir=" + includeDir) << "clang/clang" << "--";
     compileArgs << "-I" + includeDir;
     
-    // Target wasm32-wasi
+    // C++ compiling needs exception/rtti disabled for wasi-sdk out-of-the-box
     if (m_isCpp) {
-        compileArgs << "-xc++";
-        // C++ compiling might need additional flags for WASI libc++ if supported,
-        // but clang/clang generally defaults to C/C++ capable.
-    } else {
-        compileArgs << "-xc";
+        compileArgs << "-fno-exceptions" << "-fno-rtti";
     }
     
     compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
     
-    compileProc.start(wasmerExe, compileArgs);
+    compileProc.start(wasiSdkCompiler, compileArgs);
     QElapsedTimer compileTimer;
     compileTimer.start();
     while (!compileProc.waitForFinished(100)) {

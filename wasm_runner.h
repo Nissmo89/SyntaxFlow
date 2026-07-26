@@ -26,4 +26,5 @@ private:
     bool m_isCpp;
     QMutex m_mutex;
     QString getWasmerExecutable() const;
+    QString getWasiSdkCompiler() const;
 };

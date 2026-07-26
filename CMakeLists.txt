@@ -37,12 +37,29 @@ if(PRECACHE_WASM_ENGINES)
     add_custom_target(PrecacheWasmEngines ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Python WASM engine..."
         COMMAND ${WASMER_CMD} run python/python -- -V
-        COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Clang WASM engine..."
-        COMMAND ${WASMER_CMD} run clang/clang -- --version
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching QuickJS WASM engine..."
         COMMAND ${WASMER_CMD} run syrusakbary/quickjs --command qjs -- -q
         COMMENT "Pre-caching language engines via Wasmer..."
     )
+    
+    # ── Fetch WASI-SDK for instant C++ compilation ──
+    include(FetchContent)
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        set(WASI_SDK_URL "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-20/wasi-sdk-20.0-linux.tar.gz")
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        set(WASI_SDK_URL "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-20/wasi-sdk-20.0-macos.tar.gz")
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        set(WASI_SDK_URL "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-20/wasi-sdk-20.0.m-mingw.tar.gz")
+    endif()
+
+    if(WASI_SDK_URL)
+        message(STATUS "Fetching native wasi-sdk for instant C++ compilation...")
+        FetchContent_Declare(
+          wasi_sdk
+          URL ${WASI_SDK_URL}
+        )
+        FetchContent_MakeAvailable(wasi_sdk)
+    endif()
 else()
     message(STATUS "=====================================================================================")
     message(STATUS "NOTE: Wasmer language engines (Python, Clang, JS) will be downloaded on FIRST RUN.")
@@ -116,6 +133,15 @@ add_custom_command(TARGET SyntaxFlow POST_BUILD
         "${CMAKE_CURRENT_SOURCE_DIR}/web_editor"
         "$<TARGET_FILE_DIR:SyntaxFlow>/web_editor"
 )
+
+if(PRECACHE_WASM_ENGINES AND wasi_sdk_SOURCE_DIR)
+    add_custom_command(TARGET SyntaxFlow POST_BUILD
+        COMMENT "Copying wasi-sdk runtime..."
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${wasi_sdk_SOURCE_DIR}"
+            "$<TARGET_FILE_DIR:SyntaxFlow>/wasi-sdk"
+    )
+endif()
 
 
 # ---- Windows: hide console ----
