@@ -40,7 +40,7 @@ if(PRECACHE_WASM_ENGINES)
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching Clang WASM engine..."
         COMMAND ${WASMER_CMD} run clang/clang -- --version
         COMMAND ${CMAKE_COMMAND} -E echo "Downloading/Caching QuickJS WASM engine..."
-        COMMAND ${WASMER_CMD} run syrusakbary/quickjs --command qjs -- -h
+        COMMAND ${WASMER_CMD} run syrusakbary/quickjs --command qjs -- -q
         COMMENT "Pre-caching language engines via Wasmer..."
     )
 else()
