@@ -35,6 +35,22 @@ public:
                 diff += replacement.length() - match.capturedLength();
                 it = re.globalMatch(result, match.capturedStart() + diff);
             }
+        } else if (languageId == "javascript" || languageId == "js") {
+            // QuickJS error lines: (user_code.js:152) or SyntaxError: ... user_code.js:152
+            QRegularExpression re(QStringLiteral("(user_code\\.js:)(\\d+)"));
+            auto it = re.globalMatch(result);
+            int diff = 0;
+            while (it.hasNext()) {
+                QRegularExpressionMatch match = it.next();
+                int originalLine = match.captured(2).toInt();
+                int newLine = originalLine - offset;
+                if (newLine < 1) newLine = 1;
+                
+                QString replacement = match.captured(1) + QString::number(newLine);
+                result.replace(match.capturedStart() + diff, match.capturedLength(), replacement);
+                diff += replacement.length() - match.capturedLength();
+                it = re.globalMatch(result, match.capturedStart() + diff);
+            }
         } else if (languageId == "c" || languageId == "cpp" || languageId == "c++") {
             // Clang error lines: user_code.cpp:152:5: error: ...
             // Or user_code.c:152:

@@ -18,18 +18,21 @@ CodeRunner::CodeRunner(LanguageRegistry *registry, QObject *parent)
     m_pythonRunner = new PythonRunner();
     m_wasmRunnerC = new WasmRunner(false);
     m_wasmRunnerCpp = new WasmRunner(true);
+    m_javascriptRunner = new JavascriptRunner();
 }
 
 CodeRunner::~CodeRunner() {
     delete m_pythonRunner;
     delete m_wasmRunnerC;
     delete m_wasmRunnerCpp;
+    delete m_javascriptRunner;
 }
 
 EmbeddedRunner* CodeRunner::getRunner(const QString &languageId) {
     if (languageId == "python") return m_pythonRunner;
     if (languageId == "c") return m_wasmRunnerC;
     if (languageId == "cpp" || languageId == "c++") return m_wasmRunnerCpp;
+    if (languageId == "javascript" || languageId == "js") return m_javascriptRunner;
     return nullptr;
 }
 
@@ -67,6 +70,8 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
         runPythonTestsBatch(code, m_currentManifest, -1);
     } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
         runCppTestsBatch(code, m_currentManifest, -1);
+    } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
+        runJavascriptTestsBatch(code, m_currentManifest, -1);
     } else {
         QString fullCode = code;
         int offset = 0;
@@ -129,6 +134,8 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
         runPythonTestsBatch(code, m_currentManifest, testIndex);
     } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
         runCppTestsBatch(code, m_currentManifest, testIndex);
+    } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
+        runJavascriptTestsBatch(code, m_currentManifest, testIndex);
     } else {
         QString fullCode = code;
         int offset = 0;
@@ -1105,5 +1112,220 @@ int main() {
         int targetIndex = (singleTestIndex >= 0) ? singleTestIndex : i;
         emit progress(i + 1, results.size());
         emit testResult(targetIndex, status, actualStr, expectedStr, r.exitCode == 0 ? timer.elapsed() / results.size() : 0);
+    }
+}
+
+void CodeRunner::runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex) {
+    QJsonObject runManifest = manifest;
+    if (singleTestIndex >= 0) {
+        QJsonArray allTests = manifest["tests"].toArray();
+        if (singleTestIndex < allTests.size()) {
+            QJsonArray singleTestArray;
+            singleTestArray.append(allTests[singleTestIndex]);
+            runManifest["tests"] = singleTestArray;
+        }
+    }
+    
+    QJsonDocument manifestDoc(runManifest);
+    QString manifestJson = QString::fromUtf8(manifestDoc.toJson(QJsonDocument::Compact));
+    
+    QString harnessTemplate = QString::fromUtf8(R"javascript(
+// --- UTILITIES ---
+function TreeNode(val, left, right) {
+    this.val = (val===undefined ? 0 : val)
+    this.left = (left===undefined ? null : left)
+    this.right = (right===undefined ? null : right)
+}
+
+function to_tree_node(arr) {
+    if (!arr || arr.length === 0 || arr[0] === null) return null;
+    let root = new TreeNode(arr[0]);
+    let queue = [root];
+    let i = 1;
+    while (queue.length > 0 && i < arr.length) {
+        let node = queue.shift();
+        if (i < arr.length && arr[i] !== null) {
+            node.left = new TreeNode(arr[i]);
+            queue.push(node.left);
+        }
+        i++;
+        if (i < arr.length && arr[i] !== null) {
+            node.right = new TreeNode(arr[i]);
+            queue.push(node.right);
+        }
+        i++;
+    }
+    return root;
+}
+
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+}
+
+function to_list_node(arr) {
+    if (!arr || arr.length === 0) return null;
+    let head = new ListNode(arr[0]);
+    let cur = head;
+    for (let i = 1; i < arr.length; i++) {
+        cur.next = new ListNode(arr[i]);
+        cur = cur.next;
+    }
+    return head;
+}
+
+function deserialize_val(val, val_type) {
+    if (val === null) return null;
+    if (val_type === 'list_node') return to_list_node(val);
+    if (val_type === 'tree_node') return to_tree_node(val);
+    return val;
+}
+
+// --- USER SOLUTION ---
+%1
+
+// --- RUNNER ---
+function run_all_tests() {
+    const manifest = JSON.parse('%2');
+    const test_cases = manifest.tests || [];
+    const entry = manifest.entry || {};
+    const params_schema = entry.params || {};
+    let call_template = (entry.call && entry.call.javascript) ? entry.call.javascript : '';
+    const judge_type = (manifest.judge && manifest.judge.type) ? manifest.judge.type : 'exact';
+
+    let eval_expr = call_template;
+    for (const p_name in params_schema) {
+        eval_expr = eval_expr.split('{' + p_name + '}').join(p_name);
+    }
+
+    const results = [];
+    
+    // QuickJS override console.log to capture stdout
+    let stdout_cap = "";
+    const original_log = console.log;
+    console.log = function(...args) {
+        stdout_cap += args.map(a => String(a)).join(" ") + "\n";
+        original_log.apply(console, args);
+    };
+
+    for (let i = 0; i < test_cases.length; i++) {
+        const tc = test_cases[i];
+        stdout_cap = "";
+        
+        let status = "Accepted";
+        let actual_str = "";
+        let elapsed_ms = 0;
+        
+        try {
+            let local_vars_js = "";
+            for (const p_name in params_schema) {
+                const p_type = params_schema[p_name].type || 'int';
+                const raw_val = tc.in[p_name];
+                const deser = deserialize_val(raw_val, p_type);
+                local_vars_js += `let ${p_name} = ${JSON.stringify(deser)};\n`;
+                if (p_type === 'tree_node') {
+                   local_vars_js += `${p_name} = to_tree_node(${p_name});\n`;
+                } else if (p_type === 'list_node') {
+                   local_vars_js += `${p_name} = to_list_node(${p_name});\n`;
+                }
+            }
+            
+            let start_time = Date.now();
+            let res_val = eval(local_vars_js + eval_expr);
+            elapsed_ms = Date.now() - start_time;
+            
+            actual_str = JSON.stringify(res_val);
+            if (actual_str === undefined) actual_str = "null";
+            
+            const expected_val = tc.out;
+            if (expected_val !== undefined) {
+                if (JSON.stringify(res_val) !== JSON.stringify(expected_val)) {
+                    status = "Wrong Answer";
+                }
+            }
+        } catch (e) {
+            status = "Runtime Error";
+            if (e && e.stack) {
+                actual_str = String(e) + "\n" + e.stack;
+            } else {
+                actual_str = String(e);
+            }
+        }
+        
+        results.push({
+            status: status,
+            actual: actual_str,
+            expected: tc.out !== undefined ? JSON.stringify(tc.out) : "",
+            elapsedMs: elapsed_ms,
+            stdout: stdout_cap
+        });
+    }
+    
+    // Restore console.log just in case
+    console.log = original_log;
+    
+    console.log("SF_JSON_SUMMARY_START");
+    console.log(JSON.stringify(results));
+    console.log("SF_JSON_SUMMARY_END");
+}
+
+run_all_tests();
+)javascript");
+
+    QString escapedManifest = manifestJson;
+    escapedManifest.replace(QLatin1String("\"), QLatin1String("\\"));
+    escapedManifest.replace(QLatin1String("""), QLatin1String("\""));
+    
+    int offset = harnessTemplate.left(harnessTemplate.indexOf("%1")).count('\n');
+    QString fullExecutionCode = harnessTemplate
+        .arg(code)
+        .arg(escapedManifest); // No quotes around it because we put them in the JS parse
+        
+    EmbeddedRunner::Result r = m_javascriptRunner->execute(fullExecutionCode, "", &m_stopRequested);
+    
+    if (r.exitCode != 0 && r.output.isEmpty()) {
+        emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "javascript", offset));
+        return;
+    }
+    
+    QString output = r.output;
+    int startIdx = output.indexOf("SF_JSON_SUMMARY_START");
+    int endIdx = output.indexOf("SF_JSON_SUMMARY_END");
+    
+    if (startIdx == -1 || endIdx == -1) {
+        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + OutputNormalizer::normalizeError(r.error, "javascript", offset));
+        return;
+    }
+    
+    startIdx += QString("SF_JSON_SUMMARY_START").length();
+    QString jsonStr = output.mid(startIdx, endIdx - startIdx).trimmed();
+    
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonStr.toUtf8(), &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        emit systemError("Failed to parse test results JSON: " + parseError.errorString() + "\nRaw text: " + jsonStr);
+        return;
+    }
+    
+    QJsonArray results = doc.array();
+    for (int i = 0; i < results.size(); ++i) {
+        QJsonObject resObj = results[i].toObject();
+        QString status = resObj["status"].toString();
+        QString actual = resObj["actual"].toString();
+        if (status == "Runtime Error") {
+            actual = OutputNormalizer::normalizeError(actual, "javascript", offset);
+        }
+        QString expected = resObj["expected"].toString();
+        qint64 elapsedMs = resObj["elapsedMs"].toInt();
+        QString caseStdout = resObj["stdout"].toString();
+        
+        int targetIndex = (singleTestIndex >= 0) ? singleTestIndex : i;
+        
+        if (!caseStdout.isEmpty()) {
+            actual = "--- Stdout Output ---\n" + caseStdout + "\n--- Return Value ---\n" + actual;
+        }
+        
+        emit progress(i + 1, results.size());
+        emit testResult(targetIndex, status, actual, expected, elapsedMs);
     }
 }

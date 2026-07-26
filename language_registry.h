@@ -41,6 +41,7 @@ private:
     static QJsonObject builtinPython();
     static QJsonObject builtinC();
     static QJsonObject builtinCpp();
+    static QJsonObject builtinJavascript();
 };
 
 #endif // LANGUAGE_REGISTRY_H

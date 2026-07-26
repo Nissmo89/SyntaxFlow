@@ -45,6 +45,7 @@ void LanguageRegistry::loadBuiltinDefaults() {
     addBuiltin(builtinPython(), "python");
     addBuiltin(builtinC(), "c");
     addBuiltin(builtinCpp(), "cpp");
+    addBuiltin(builtinJavascript(), "javascript");
 }
 
 QJsonObject LanguageRegistry::builtinPython() {
@@ -80,6 +81,18 @@ QJsonObject LanguageRegistry::builtinCpp() {
         {"isEmbedded", true},
         {"timeout", 5000},
         {"template", "#include <iostream>\n\n// Your code here\n"}
+    };
+}
+
+QJsonObject LanguageRegistry::builtinJavascript() {
+    return QJsonObject{
+        {"name", "Javascript"},
+        {"extension", ".js"},
+        {"sourceFile", "solution.js"},
+        {"compiled", false},
+        {"isEmbedded", true},
+        {"timeout", 5000},
+        {"template", "// Your code here\n"}
     };
 }
 

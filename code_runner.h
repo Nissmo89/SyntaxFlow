@@ -6,6 +6,7 @@
 #include "language_config.h"
 #include "python_runner.h"
 #include "wasm_runner.h"
+#include "javascript_runner.h"
 #include "driver_generator.h"
 
 class LanguageRegistry;
@@ -31,6 +32,7 @@ public:
     
     void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
     void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
+    void runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
 
     void runFreeCode(const QString &code, const QString &languageId);
 
@@ -61,6 +63,7 @@ private:
     PythonRunner    *m_pythonRunner    = nullptr;
     WasmRunner      *m_wasmRunnerC     = nullptr;
     WasmRunner      *m_wasmRunnerCpp   = nullptr;
+    JavascriptRunner *m_javascriptRunner = nullptr;
 };
 
 #endif // CODE_RUNNER_H
