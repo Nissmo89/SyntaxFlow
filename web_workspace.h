@@ -40,7 +40,7 @@ public:
 
     void setProblemData(const QJsonObject &problemObj);
     void setTestCases(const QJsonArray &testCases);
-    void setTestResult(int caseIndex, const QString &actualOutput, bool passed);
+    void setTestResult(int caseIndex, const QString &status, const QString &actualOutput, const QString &expected, qint64 elapsedMs, bool passed);
     void setTestRunning(int caseIndex);
     void clearAllResults();
     

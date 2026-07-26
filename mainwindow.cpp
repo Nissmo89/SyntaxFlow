@@ -337,14 +337,13 @@ void MainWindow::onTestResult(int testIndex, const QString &status,
                               const QString &output, const QString &expected,
                               qint64 timeMs)
 {
-    Q_UNUSED(expected);
     bool passed = (status == "Accepted");
     QString displayOutput = output;
     if (status == "Time Limit Exceeded") displayOutput = "[TLE] Execution timed out";
     else if (status == "Runtime Error") displayOutput = "[RE] " + output;
     else if (status == "Compile Error") displayOutput = "[CE] " + output;
     
-    m_workspace->setTestResult(testIndex, displayOutput, passed);
+    m_workspace->setTestResult(testIndex, status, displayOutput, expected, timeMs, passed);
 }
 
 void MainWindow::onCompilationError(const QString &error)

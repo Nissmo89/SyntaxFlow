@@ -322,8 +322,17 @@
   window.setTestResult = function(res) {
     let tc = testCases[res.index];
     if (tc) {
+      if (res.status) {
+        if (res.status === 'Accepted') tc.status = 'passed';
+        else tc.status = 'failed';
+        tc.statusText = res.status;
+      } else {
+        tc.status = res.passed ? 'passed' : 'failed';
+        tc.statusText = res.passed ? 'Accepted' : 'Wrong Answer';
+      }
       tc.actualOutput = res.actualOutput;
-      tc.status = res.passed ? 'passed' : 'failed';
+      if (res.expected) tc.output = res.expected; // Update expected
+      tc.elapsedMs = res.elapsedMs || 0;
     }
     currentView = 'result';
     renderTabs();
@@ -416,17 +425,39 @@
       `;
     } else {
       let actClass = tc.status === 'passed' ? 'val-actual-pass' : (tc.status === 'failed' ? 'val-actual-fail' : '');
+      let runTimeStr = tc.elapsedMs !== undefined ? ` <span style="font-size: 11px; color: #8b949e; font-weight: normal; margin-left: 8px;">(${tc.elapsedMs} ms)</span>` : '';
+      let statusDisplay = tc.statusText ? tc.statusText.toUpperCase() : tc.status.toUpperCase();
+      
+      let actualHtml = tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—');
+      // If actual is raw json, format it nicely
+      try {
+         if (actualHtml.startsWith('{') || actualHtml.startsWith('[')) {
+             actualHtml = JSON.stringify(JSON.parse(actualHtml), null, 2);
+         }
+      } catch(e){}
+
+      let expectedHtml = tc.output || tc.expectedOutput || '';
+      try {
+         if (expectedHtml.startsWith('{') || expectedHtml.startsWith('[')) {
+             expectedHtml = JSON.stringify(JSON.parse(expectedHtml), null, 2);
+         }
+      } catch(e){}
+
       html = `
         <div class="case-field">
-          <div class="case-field-title">Status: ${tc.status.toUpperCase()}</div>
+          <div class="case-field-title" style="display: flex; align-items: center; color: ${tc.status==='passed'?'#3fb950':'#f85149'};">
+            ${statusDisplay} ${runTimeStr}
+          </div>
         </div>
-        <div class="case-field">
-          <div class="case-field-title">Your Output</div>
-          <div class="case-field-val ${actClass}">${tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—')}</div>
-        </div>
-        <div class="case-field">
-          <div class="case-field-title">Expected Output</div>
-          <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
+        <div style="display: flex; gap: 16px; margin-top: 12px;">
+          <div class="case-field" style="flex: 1;">
+            <div class="case-field-title">Expected Output</div>
+            <div class="case-field-val val-expected">${expectedHtml}</div>
+          </div>
+          <div class="case-field" style="flex: 1;">
+            <div class="case-field-title">Your Output</div>
+            <div class="case-field-val ${actClass}">${actualHtml}</div>
+          </div>
         </div>
       `;
     }

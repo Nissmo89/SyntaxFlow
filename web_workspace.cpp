@@ -91,11 +91,14 @@ void WebWorkspace::setTestCases(const QJsonArray &testCases) {
     runJs(QString("window.setTestCases(%1);").arg(jsonStr));
 }
 
-void WebWorkspace::setTestResult(int caseIndex, const QString &actualOutput, bool passed) {
+void WebWorkspace::setTestResult(int caseIndex, const QString &status, const QString &actualOutput, const QString &expected, qint64 elapsedMs, bool passed) {
     if (!m_isReady) return;
     QJsonObject obj;
     obj["index"] = caseIndex;
+    obj["status"] = status;
     obj["actualOutput"] = actualOutput;
+    obj["expected"] = expected;
+    obj["elapsedMs"] = elapsedMs;
     obj["passed"] = passed;
     QString jsonStr = QJsonDocument(obj).toJson(QJsonDocument::Compact);
     runJs(QString("window.setTestResult(%1);").arg(jsonStr));
