@@ -73,7 +73,7 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
     }
     runProc.closeWriteChannel();
 
-    const int TIMEOUT_MS = 15000;
+    const int TIMEOUT_MS = 60000;
     QElapsedTimer timer;
     timer.start();
 
@@ -88,7 +88,7 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
             runProc.kill();
-            result.error    = QStringLiteral("Time limit exceeded (15 s)");
+            result.error    = QStringLiteral("Time limit exceeded (60 s)");
             result.exitCode = -1;
             result.timedOut = true;
             return result;
