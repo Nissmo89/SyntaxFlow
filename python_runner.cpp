@@ -44,14 +44,28 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     srcFile.write(code.toUtf8());
     srcFile.close();
 
+    for (auto it = additionalFiles.begin(); it != additionalFiles.end(); ++it) {
+        QFile file(tmpDir.filePath(it.key()));
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            file.write(it.value().toUtf8());
+            file.close();
+        }
+    }
+
     QProcess runProc;
     runProc.setWorkingDirectory(tmpDir.path());
+
+    QString basePath = QCoreApplication::applicationDirPath();
 #ifdef Q_OS_WIN
-    QString pythonExe = QStringLiteral("python");
+    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer.exe");
 #else
-    QString pythonExe = QStringLiteral("python3");
+    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer");
 #endif
-    runProc.start(pythonExe, {srcPath});
+
+    QStringList args;
+    args << "run" << "--dir=." << "python/python" << "--" << "user_code.py";
+    
+    runProc.start(wasmerExe, args);
 
     if (!stdinInput.isEmpty()) {
         runProc.write(stdinInput.toUtf8());
