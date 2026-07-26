@@ -55,7 +55,6 @@ private:
     QJsonObject m_currentManifest;
 
     bool loadTestCases(const QString &problemId, QJsonArray &tests, MethodSchema &schema);
-    void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
 
     EmbeddedRunner* getRunner(const QString &languageId);
 
