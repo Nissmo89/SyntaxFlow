@@ -696,6 +696,7 @@ void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manife
 #include <optional>
 #include <cmath>
 #include <iomanip>
+#include <sstream>
 #include <nlohmann/json.hpp>
 
 using namespace std;
@@ -703,7 +704,7 @@ using _JSON_ = nlohmann::json;
 
 )";
 
-    mainCpp += R"_UTILITIES_(\nusing _JSON_ = nlohmann::json;
+    mainCpp += R"_UTILITIES_(
 
 template<typename T> T& lv(T&& x) { return x; }
 
