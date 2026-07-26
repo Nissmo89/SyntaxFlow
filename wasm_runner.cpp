@@ -162,7 +162,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
     
     QStringList runArgs;
-    runArgs << "run" << "--dir=." << "user_bin.wasm";
+    runArgs << "run" << "--volume" << ".:/" << "user_bin.wasm";
     
     runProc.start(wasmerExe, runArgs);
     if (!stdinInput.isEmpty()) {

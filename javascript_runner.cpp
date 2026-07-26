@@ -64,7 +64,7 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
 #endif
 
     QStringList args;
-    args << "run" << "--dir=." << "syrusakbary/quickjs" << "--command" << "qjs" << "--" << "user_code.js";
+    args << "run" << "--volume" << ".:/" << "syrusakbary/quickjs" << "--command" << "qjs" << "--" << "user_code.js";
     
     runProc.start(wasmerExe, args);
 

@@ -64,7 +64,7 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
 #endif
 
     QStringList args;
-    args << "run" << "--dir=." << "python/python" << "--" << "user_code.py";
+    args << "run" << "--volume" << ".:/" << "python/python" << "--" << "user_code.py";
     
     runProc.start(wasmerExe, args);
 
