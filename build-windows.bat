@@ -4,12 +4,12 @@ setlocal EnableDelayedExpansion
 :: ============================================================
 ::  SyntaxFlow — Windows Build Script
 ::  Compiler : MSVC (Visual Studio)
-::  Qt       : 6.6.0 MSVC 64-bit
+::  Qt       : 6.8.0 MSVC 2022 64-bit
 :: ============================================================
 
 :: Use CI Qt path if available, otherwise default to local path
 if "%Qt6_DIR%"=="" (
-    set "QT_PATH=C:\Qt\6.6.0\msvc2019_64"
+    set "QT_PATH=C:\Qt\6.8.0\msvc2022_64"
 ) else (
     :: Extract the parent of the cmake dir or just use the bin dir
     set "QT_PATH=%Qt6_DIR%\..\..\.."
