@@ -51,6 +51,12 @@ cmake -G "MinGW Makefiles" -DPRECACHE_WASM_ENGINES=ON ..
 mingw32-make -j4
 ```
 
+## ⚡ Performance & Known Issues
+
+- **Python & C**: Execution runs flawlessly and is blazingly fast (evaluating in fractions of a second).
+- **C++**: Works well, but there is a slight latency overhead during the initial JIT/sandbox compilation phase using `wasi-sdk`'s `clang++`. 
+- **JavaScript (QuickJS)**: There are currently some known errors being investigated regarding test evaluations.
+
 ## 📦 Important: Language Engines & Offline Use
 
 SyntaxFlow runs code via Wasmer language packages (`python/python`, `clang/clang`, `syrusakbary/quickjs`). 
