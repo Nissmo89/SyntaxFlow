@@ -550,7 +550,7 @@ def run_all_tests():
         sys.stdout = captured_stdout
         sys.stderr = captured_stderr
         
-        status = "Passed"
+        status = "Accepted"
         actual_str = ""
         elapsed_ms = 0
         
@@ -1219,7 +1219,7 @@ function run_all_tests() {
         stdout_cap = "";
         
         let actual_str = "";
-        let status = "Passed";
+        let status = "Accepted";
         let elapsed_ms = 0;
         
         try {
