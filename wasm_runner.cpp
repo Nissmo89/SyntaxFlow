@@ -112,10 +112,10 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
             result.exitCode = -1;
             return result;
         }
-        if (compileTimer.elapsed() >= 120000) {
+        if (compileTimer.elapsed() >= 300000) {
             compileProc.kill();
             compileProc.waitForFinished(500);
-            result.error    = QStringLiteral("Compilation timed out (120 s)");
+            result.error    = QStringLiteral("Compilation timed out (300 s)");
             result.exitCode = -1;
             return result;
         }
