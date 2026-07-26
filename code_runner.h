@@ -27,7 +27,7 @@ public:
 
     void executeTestRaw(EmbeddedRunner* runner, const QString &code,
                         const QJsonObject &test,
-                        int index);
+                        int index, int offset = 0);
     
     void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
     void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);

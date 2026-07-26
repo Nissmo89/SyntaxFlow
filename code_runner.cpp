@@ -69,13 +69,16 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
         runCppTestsBatch(code, m_currentManifest, -1);
     } else {
         QString fullCode = code;
+        int offset = 0;
         if (schema.isValid()) {
-            fullCode = DriverGenerator::generateHeader(schema, languageId) + fullCode + DriverGenerator::generateDriver(schema, languageId);
+            QString header = DriverGenerator::generateHeader(schema, languageId);
+            offset = header.count('\n');
+            fullCode = header + fullCode + DriverGenerator::generateDriver(schema, languageId);
         }
 
         for (int i = 0; i < tests.size() && !m_stopRequested; ++i) {
             emit progress(i + 1, tests.size());
-            executeTestRaw(runner, fullCode, tests[i].toObject(), i);
+            executeTestRaw(runner, fullCode, tests[i].toObject(), i, offset);
         }
     }
 
@@ -128,11 +131,14 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
         runCppTestsBatch(code, m_currentManifest, testIndex);
     } else {
         QString fullCode = code;
+        int offset = 0;
         if (schema.isValid()) {
-            fullCode = DriverGenerator::generateHeader(schema, languageId) + fullCode + DriverGenerator::generateDriver(schema, languageId);
+            QString header = DriverGenerator::generateHeader(schema, languageId);
+            offset = header.count('\n');
+            fullCode = header + fullCode + DriverGenerator::generateDriver(schema, languageId);
         }
 
-        executeTestRaw(runner, fullCode, tests[testIndex].toObject(), testIndex);
+        executeTestRaw(runner, fullCode, tests[testIndex].toObject(), testIndex, offset);
     }
 
     m_running = false;
@@ -260,7 +266,7 @@ QString CodeRunner::getProblemsPath(const QString &problemId) const {
 
 void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
                                 const QJsonObject &test,
-                                int index)
+                                int index, int offset)
 {
     QString input    = test["input"].toString();
     QString expected = test["expected"].toString().trimmed();
@@ -277,11 +283,11 @@ void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
 
     if (r.exitCode != 0 && actual.isEmpty()) {
         status = "Runtime Error";
-        actual = r.error.trimmed();
+        actual = OutputNormalizer::normalizeError(r.error, runner->languageId(), offset).trimmed();
         if (actual.isEmpty()) {
             actual = QString("Process exited with code %1").arg(r.exitCode);
             if (!r.error.isEmpty()) {
-                actual += "\nError: " + r.error;
+                actual += "\nError: " + OutputNormalizer::normalizeError(r.error, runner->languageId(), offset);
             } else if (r.exitCode == -1 && runner->languageId() == "c") {
                 actual += "\n(Check if 'main' function is defined, or if there was a relocation error)";
             }
@@ -289,10 +295,8 @@ void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
     } else if (r.timedOut) {
         status = "Time Limit Exceeded";
     } else {
-        // BUG-10: surface compile/parse errors for any language, not just C.
-        // Heuristic: non-zero exit with no stdout and non-empty stderr = compile error.
         if (r.exitCode != 0 && actual.isEmpty() && !r.error.isEmpty()) {
-            emit compilationError(r.error);
+            emit compilationError(OutputNormalizer::normalizeError(r.error, runner->languageId(), offset));
             return;
         }
 
@@ -605,6 +609,7 @@ run_all_tests()
     escapedManifest.replace(QLatin1String("\\"), QLatin1String("\\\\"));
     escapedManifest.replace(QLatin1String("\""), QLatin1String("\\\""));
     
+    int offset = harnessTemplate.left(harnessTemplate.indexOf("%1")).count('\n');
     QString fullExecutionCode = harnessTemplate
         .arg(code)
         .arg(QLatin1String("\"") + escapedManifest + QLatin1String("\""));
@@ -612,7 +617,7 @@ run_all_tests()
     EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested);
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
-        emit compilationError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error);
+        emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "python", offset));
         return;
     }
     
@@ -621,7 +626,7 @@ run_all_tests()
     int endIdx = output.indexOf("SF_JSON_SUMMARY_END");
     
     if (startIdx == -1 || endIdx == -1) {
-        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + r.error);
+        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + OutputNormalizer::normalizeError(r.error, "python", offset));
         return;
     }
     
@@ -640,6 +645,9 @@ run_all_tests()
         QJsonObject resObj = results[i].toObject();
         QString status = resObj["status"].toString();
         QString actual = resObj["actual"].toString();
+        if (status == "Runtime Error") {
+            actual = OutputNormalizer::normalizeError(actual, "python", offset);
+        }
         QString expected = resObj["expected"].toString();
         qint64 elapsedMs = resObj["elapsedMs"].toInt();
         QString caseStdout = resObj["stdout"].toString();
@@ -980,6 +988,7 @@ inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
 \n)_UTILITIES_";
     
+    int offset = mainCpp.count('\n');
     mainCpp += code + "\n";
     
     mainCpp += R"(
@@ -1048,7 +1057,7 @@ int main() {
     EmbeddedRunner::Result r = m_wasmRunnerCpp->execute(mainCpp, "", &m_stopRequested, {{"test.json", testJson}});
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
-        emit compilationError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error);
+        emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "cpp", offset));
         return;
     }
     
@@ -1057,7 +1066,7 @@ int main() {
     int endIdx = output.indexOf("SF_JSON_SUMMARY_END");
     
     if (startIdx == -1 || endIdx == -1) {
-        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + r.error);
+        emit compilationError("Harness output did not contain test summary. Output:\n" + output + "\nError:\n" + OutputNormalizer::normalizeError(r.error, "cpp", offset));
         return;
     }
     
