@@ -106,6 +106,14 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
         }
     }
 
+    for (auto it = additionalFiles.begin(); it != additionalFiles.end(); ++it) {
+        QFile file(tmpDir.filePath(it.key()));
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            file.write(it.value().toUtf8());
+            file.close();
+        }
+    }
+
     QString wasmerExe = getWasmerExecutable();
 
     // ── 1. Compile to WASM natively using wasi-sdk ──────────────────────

@@ -994,7 +994,7 @@ template <typename T> string toJson(const vector<T> &v) {
 
 inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
-\n)_UTILITIES_";
+)_UTILITIES_";
     
     int offset = mainCpp.count('\n');
     mainCpp += code + "\n";
@@ -1002,8 +1002,10 @@ inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
     mainCpp += R"(
 int main() {
     ifstream _TEST_JSON_FILE_("test.json");
-    _JSON_ _TEST_JSON_;
-    _TEST_JSON_FILE_ >> _TEST_JSON_;
+    if (!_TEST_JSON_FILE_.is_open()) { return 1; }
+    string _TEST_JSON_STR_((istreambuf_iterator<char>(_TEST_JSON_FILE_)), istreambuf_iterator<char>());
+    _JSON_ _TEST_JSON_ = _JSON_::parse(_TEST_JSON_STR_, nullptr, false);
+    if (_TEST_JSON_.is_discarded()) { return 1; }
     
     _JSON_ _RESULTS_ = _JSON_::array();
     
@@ -1041,7 +1043,8 @@ int main() {
     
     mainCpp += "        auto res = " + evalExpr + ";\n";
     mainCpp += "        _JSON_ resObj;\n";
-    mainCpp += "        try { resObj = _JSON_::parse(toJson(res)); } catch(...) { resObj = toJson(res); }\n";
+    mainCpp += "        resObj = _JSON_::parse(toJson(res), nullptr, false);\n";
+    mainCpp += "        if (resObj.is_discarded()) { resObj = toJson(res); }\n";
     
     mainCpp += R"(
         _JSON_ resultItem;
