@@ -684,17 +684,7 @@ void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manife
     QString judgeType = manifest["judge"].toObject()["type"].toString("exact");
     
     QString mainCpp = R"(
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <map>
-#include <queue>
-#include <optional>
-#include <cmath>
-#include <iomanip>
-#include <sstream>
-#include <nlohmann/json.hpp>
+#include "stdcpp.h"
 
 using namespace std;
 using _JSON_ = nlohmann::json;

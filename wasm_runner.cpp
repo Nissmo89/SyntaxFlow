@@ -119,10 +119,22 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     QStringList compileArgs;
     compileArgs << "-I" + includeDir;
     
-    // C++ compiling needs exception/rtti disabled for wasi-sdk out-of-the-box
-    // Also disable filesystem in nlohmann/json since WASI libc++ doesn't support it
     if (m_isCpp) {
+        QString pchPath = includeDir + "/stdcpp.h.pch";
+        if (!QFile::exists(pchPath)) {
+            QStringList pchArgs;
+            pchArgs << "-x" << "c++-header" << "-fno-exceptions" << "-fno-rtti" 
+                    << "-DJSON_HAS_FILESYSTEM=0" << "-DJSON_HAS_EXPERIMENTAL_FILESYSTEM=0"
+                    << "-I" + includeDir << includeDir + "/stdcpp.h" << "-o" << pchPath;
+            QProcess pchProc;
+            pchProc.start(wasiSdkCompiler, pchArgs);
+            pchProc.waitForFinished(-1);
+        }
+        
         compileArgs << "-fno-exceptions" << "-fno-rtti" << "-DJSON_HAS_FILESYSTEM=0" << "-DJSON_HAS_EXPERIMENTAL_FILESYSTEM=0";
+        if (QFile::exists(pchPath)) {
+            compileArgs << "-include-pch" << pchPath;
+        }
     }
     
     compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
