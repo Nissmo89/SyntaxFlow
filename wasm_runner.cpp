@@ -101,12 +101,24 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
     
     compileProc.start(wasmerExe, compileArgs);
-    if (!compileProc.waitForFinished(20000)) { // 20s compile timeout
-        compileProc.kill();
-        compileProc.waitForFinished(500);
-        result.error    = QStringLiteral("Compilation timed out");
-        result.exitCode = -1;
-        return result;
+    QElapsedTimer compileTimer;
+    compileTimer.start();
+    while (!compileProc.waitForFinished(100)) {
+        QCoreApplication::processEvents();
+        if (stopRequested && *stopRequested) {
+            compileProc.kill();
+            compileProc.waitForFinished(500);
+            result.error    = QStringLiteral("Compilation stopped by user");
+            result.exitCode = -1;
+            return result;
+        }
+        if (compileTimer.elapsed() >= 20000) {
+            compileProc.kill();
+            compileProc.waitForFinished(500);
+            result.error    = QStringLiteral("Compilation timed out");
+            result.exitCode = -1;
+            return result;
+        }
     }
 
     if (compileProc.exitStatus() != QProcess::NormalExit || compileProc.exitCode() != 0) {
@@ -131,11 +143,12 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     }
     runProc.closeWriteChannel();
 
-    const int TIMEOUT_MS = 5000;
+    const int TIMEOUT_MS = 15000;
     QElapsedTimer timer;
     timer.start();
 
     while (!runProc.waitForFinished(100)) {
+        QCoreApplication::processEvents();
         if (stopRequested && *stopRequested) {
             runProc.kill();
             runProc.waitForFinished(500);
@@ -147,7 +160,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
         if (timer.elapsed() >= TIMEOUT_MS) {
             runProc.kill();
             runProc.waitForFinished(500);
-            result.error    = QStringLiteral("Time limit exceeded (5 s)");
+            result.error    = QStringLiteral("Time limit exceeded (15 s)");
             result.exitCode = -1;
             result.timedOut = true;
             return result;

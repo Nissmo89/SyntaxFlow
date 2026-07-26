@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QElapsedTimer>
 #include <QDebug>
+#include <QCoreApplication>
 
 PythonRunner::PythonRunner()
 {
@@ -72,11 +73,12 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     }
     runProc.closeWriteChannel();
 
-    const int TIMEOUT_MS = 5000;
+    const int TIMEOUT_MS = 15000;
     QElapsedTimer timer;
     timer.start();
 
     while (!runProc.waitForFinished(100)) {
+        QCoreApplication::processEvents();
         if (abort && *abort) {
             runProc.kill();
             result.error    = QStringLiteral("Execution stopped by user");
@@ -86,7 +88,7 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
             runProc.kill();
-            result.error    = QStringLiteral("Time limit exceeded (5 s)");
+            result.error    = QStringLiteral("Time limit exceeded (15 s)");
             result.exitCode = -1;
             result.timedOut = true;
             return result;
