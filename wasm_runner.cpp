@@ -74,7 +74,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     compileProc.setWorkingDirectory(tmpDir.path());
     
     QStringList compileArgs;
-    compileArgs << "run" << "clang/clang" << "--";
+    compileArgs << "run" << "--dir=." << "clang/clang" << "--";
     
     // Target wasm32-wasi
     if (m_isCpp) {
@@ -104,7 +104,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
     
     QStringList runArgs;
-    runArgs << "run" << "user_bin.wasm";
+    runArgs << "run" << "--dir=." << "user_bin.wasm";
     
     runProc.start(wasmerExe, runArgs);
     if (!stdinInput.isEmpty()) {
@@ -119,6 +119,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     while (!runProc.waitForFinished(100)) {
         if (stopRequested && *stopRequested) {
             runProc.kill();
+            runProc.waitForFinished(500);
             result.error    = QStringLiteral("Execution stopped by user");
             result.exitCode = -1;
             result.timedOut = false;
@@ -126,6 +127,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
             runProc.kill();
+            runProc.waitForFinished(500);
             result.error    = QStringLiteral("Time limit exceeded (5 s)");
             result.exitCode = -1;
             result.timedOut = true;

@@ -104,7 +104,7 @@ QString DriverGenerator::generateCppDriver(const MethodSchema& schema) {
     // Entry point is _sf_main (not main) so TccRunner can use tcc_get_symbol
     // without triggering tcc_run()'s internal libtcc1.a loading crash.
     QString out = "\n/* --- SYNTAXFLOW DRIVER --- */\n";
-    out += "int _sf_main() {\n";
+    out += "int main() {\n";
     
     QString callArgs;
     for (int i = 0; i < schema.params.size(); ++i) {
