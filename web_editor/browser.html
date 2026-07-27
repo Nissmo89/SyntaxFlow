@@ -257,14 +257,45 @@
       border: 1px solid rgba(239, 68, 68, 0.25);
     }
 
-    .tag-chip {
+    .tags-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 32px;
+      background: rgba(15, 15, 17, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 65px;
+      z-index: 99;
+    }
+
+    .tags-bar::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .filter-tag-chip {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 5px 12px;
+      border-radius: 12px;
       background: rgba(30, 41, 59, 0.6);
       color: #94a3b8;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-tag-chip:hover {
+      background: rgba(45, 55, 72, 0.8);
+      color: #f1f5f9;
+    }
+
+    .filter-tag-chip.active {
+      background: rgba(96, 165, 250, 0.15);
+      color: #60a5fa;
+      border-color: rgba(96, 165, 250, 0.3);
     }
 
     .solved-badge {
@@ -338,6 +369,10 @@
   </div>
 </div>
 
+<div class="tags-bar" id="tagsBar" style="display: none;">
+  <!-- Tags populated dynamically -->
+</div>
+
 <div class="container">
   <div id="problemList" class="problem-list"></div>
 </div>
@@ -349,6 +384,7 @@
   var currentFilter = 'all';
   var searchQuery = '';
   var pendingPaths = [];
+  var selectedTags = new Set();
 
   function flushPendingPaths() {
     if (!browserBridge || typeof browserBridge.openProblem !== 'function') {
@@ -382,6 +418,7 @@
       solvedMap = solvedData;
     }
 
+    renderTags();
     render();
   };
 
@@ -436,6 +473,35 @@
     render();
   }
 
+  function renderTags() {
+    var tagSet = new Set();
+    allProblems.forEach(p => {
+      (p.topics || []).forEach(t => tagSet.add(t));
+    });
+    var sortedTags = Array.from(tagSet).sort();
+    
+    var container = document.getElementById('tagsBar');
+    container.innerHTML = '';
+    
+    sortedTags.forEach(tag => {
+      var btn = document.createElement('div');
+      btn.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
+      btn.textContent = tag;
+      btn.onclick = function() {
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+        } else {
+          selectedTags.add(tag);
+        }
+        btn.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
+        render();
+      };
+      container.appendChild(btn);
+    });
+    
+    container.style.display = sortedTags.length > 0 ? 'flex' : 'none';
+  }
+
   document.getElementById('searchInput').addEventListener('input', function(e) {
     searchQuery = e.target.value.toLowerCase().trim();
     render();
@@ -458,7 +524,19 @@
         (p.id || '').toLowerCase().includes(searchQuery) ||
         (p.topics || []).some(t => t.toLowerCase().includes(searchQuery));
 
-      return diffMatch && searchMatch;
+      var tagMatch = true;
+      if (selectedTags.size > 0) {
+        tagMatch = false;
+        var pTopics = p.topics || [];
+        for (let tag of selectedTags) {
+          if (pTopics.includes(tag)) {
+            tagMatch = true;
+            break;
+          }
+        }
+      }
+
+      return diffMatch && searchMatch && tagMatch;
     });
 
     // Update Header Stats
@@ -479,16 +557,6 @@
         window.openProblemPath(p.path);
       };
 
-      var topics = p.topics || [];
-      var displayTopics = topics.slice(0, 3);
-      var topicsHtml = displayTopics.map(function(t) {
-        return '<span class="tag-chip">' + escapeHtml(t) + '</span>';
-      }).join(' ');
-
-      if (topics.length > 3) {
-        topicsHtml += ' <span class="tag-chip">+' + (topics.length - 3) + '</span>';
-      }
-
       var statusHtml = isSolved 
         ? '<div class="solved-badge">✓ Solved</div>'
         : '<div class="unsolved-circle"></div>';
@@ -498,7 +566,6 @@
           <div class="card-title">${escapeHtml(p.title)}</div>
           <div class="card-meta">
             <span class="diff-badge ${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</span>
-            ${topicsHtml}
           </div>
         </div>
         ${statusHtml}
