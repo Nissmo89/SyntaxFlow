@@ -37,14 +37,16 @@ EmbeddedRunner* CodeRunner::getRunner(const QString &languageId) {
 }
 
 void CodeRunner::runCode(const QString &code, const QString &languageId, const QString &problemPath) {
-    if (m_running) {
+    bool expected = false;
+    if (!m_running.compare_exchange_strong(expected, true)) {
         emit systemError("Already running");
         return;
     }
 
-    m_running = true;
     m_stopRequested = false;
     emit started();
+
+    std::thread([this, code, languageId, problemPath]() {
 
     QJsonArray tests;
     MethodSchema schema;
@@ -89,18 +91,21 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
 
     m_running = false;
     emit finished();
+    }).detach();
 }
 
 void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
                                int testIndex, const QString &problemPath) {
-    if (m_running) {
+    bool expected = false;
+    if (!m_running.compare_exchange_strong(expected, true)) {
         emit systemError("Already running");
         return;
     }
 
-    m_running = true;
     m_stopRequested = false;
     emit started();
+
+    std::thread([this, code, languageId, testIndex, problemPath]() {
 
     QJsonArray tests;
     MethodSchema schema;
@@ -150,6 +155,7 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
     m_running = false;
     emit finished();
+    }).detach();
 }
 
 
@@ -160,12 +166,14 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
 void CodeRunner::runFreeCode(const QString &code, const QString &languageId) {
     // BUG-09: guard against concurrent execution (same guard as runCode/runSingleTest)
-    if (m_running) {
+    bool expected = false;
+    if (!m_running.compare_exchange_strong(expected, true)) {
         emit systemError("Already running");
         return;
     }
-    m_running = true;
     m_stopRequested = false;
+
+    std::thread([this, code, languageId]() {
 
     EmbeddedRunner *runner = getRunner(languageId);
     if (!runner) {
@@ -182,11 +190,15 @@ void CodeRunner::runFreeCode(const QString &code, const QString &languageId) {
     qint64 ms = timer.elapsed();
 
     if (!r.output.isEmpty()) emit freeCodeOutput(r.output);
-    if (!r.error.isEmpty())  emit freeCodeError(r.error);
-    emit freeCodeFinished(r.exitCode, ms);
+    if (r.exitCode == 0 && r.error.isEmpty()) {
+        emit freeCodeFinished(0, ms);
+    } else {
+        emit freeCodeFinished(r.exitCode != 0 ? r.exitCode : 1, ms);
+    }
 
     m_running = false;
     emit finished();
+    }).detach();
 }
 
 void CodeRunner::stop() {

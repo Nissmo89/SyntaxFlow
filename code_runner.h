@@ -3,10 +3,12 @@
 
 #include <QObject>
 #include <QJsonArray>
-#include "language_config.h"
-#include "python_runner.h"
-#include "wasm_runner.h"
-#include "javascript_runner.h"
+#include <atomic>
+#include <thread>
+#include "language_registry.h"
+#include "runners/python_runner.h"
+#include "runners/cpp_runner.h"
+#include "runners/javascript_runner.h"
 #include "driver_generator.h"
 
 class LanguageRegistry;
@@ -51,8 +53,8 @@ signals:
 
 private:
     LanguageRegistry *m_registry;
-    bool m_running = false;
-    bool m_stopRequested = false;
+    std::atomic<bool> m_running{false};
+    std::atomic<bool> m_stopRequested{false};
 
     QJsonObject m_currentManifest;
 
