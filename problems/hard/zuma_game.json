@@ -415,6 +415,126 @@
     {
       "input": "board = \"G\"\nhand = \"GG\"",
       "output": "2"
+    },
+    {
+      "input": "board = \"RBR\"\nhand = \"B\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RBR\"\nhand = \"RB\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RGBBR\"\nhand = \"B\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RRGGBB\"\nhand = \"RGB\"",
+      "output": "3"
+    },
+    {
+      "input": "board = \"RYYRRYY\"\nhand = \"RY\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"WWWYY\"\nhand = \"RRR\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RBYYBR\"\nhand = \"Y\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"BWWB\"\nhand = \"WW\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"YRBGBY\"\nhand = \"BRY\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RGBY\"\nhand = \"RGB\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RRG\"\nhand = \"R\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RRG\"\nhand = \"RR\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RGBRGB\"\nhand = \"RGB\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RGBRGB\"\nhand = \"RGBR\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"BBBB\"\nhand = \"B\"",
+      "output": "1"
+    },
+    {
+      "input": "board = \"BBBB\"\nhand = \"BB\"",
+      "output": "1"
+    },
+    {
+      "input": "board = \"BBBB\"\nhand = \"BBB\"",
+      "output": "1"
+    },
+    {
+      "input": "board = \"GGRRBBGG\"\nhand = \"RGB\"",
+      "output": "2"
+    },
+    {
+      "input": "board = \"YYBBYY\"\nhand = \"BY\"",
+      "output": "1"
+    },
+    {
+      "input": "board = \"YYB\"\nhand = \"Y\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"BYY\"\nhand = \"Y\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RYGBWRYGBWRYGBWR\"\nhand = \"RW\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RBRBRBRBRBRBRBRB\"\nhand = \"RRRRR\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RRYYBBGGRRYYBBGG\"\nhand = \"RYBG\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RYBYR\"\nhand = \"YB\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RGGBBR\"\nhand = \"YYY\"",
+      "output": "-1"
+    },
+    {
+      "input": "board = \"RBYYBBRRB\"\nhand = \"YRBGB\"",
+      "output": "3"
+    },
+    {
+      "input": "board = \"RRWWRRBBRR\"\nhand = \"WB\"",
+      "output": "2"
+    },
+    {
+      "input": "board = \"GGGG\"\nhand = \"G\"",
+      "output": "1"
+    },
+    {
+      "input": "board = \"GGGG\"\nhand = \"GG\"",
+      "output": "1"
     }
   ],
   "func_sign": {

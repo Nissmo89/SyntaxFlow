@@ -406,6 +406,122 @@
     {
       "input": "left = \"122\"\nright = \"483\"",
       "output": "0"
+    },
+    {
+      "input": "left = \"120\"\nright = \"121\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"483\"\nright = \"484\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"10200\"\nright = \"10201\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"12320\"\nright = \"12321\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"14640\"\nright = \"14641\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"40803\"\nright = \"40804\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"44943\"\nright = \"44944\"",
+      "output": "1"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1000000\"",
+      "output": "10"
+    },
+    {
+      "input": "left = \"1\"\nright = \"10000000\"",
+      "output": "13"
+    },
+    {
+      "input": "left = \"1\"\nright = \"100000000\"",
+      "output": "13"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1000000000\"",
+      "output": "21"
+    },
+    {
+      "input": "left = \"1\"\nright = \"10000000000\"",
+      "output": "21"
+    },
+    {
+      "input": "left = \"1\"\nright = \"100000000000\"",
+      "output": "26"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1000000000000\"",
+      "output": "26"
+    },
+    {
+      "input": "left = \"1\"\nright = \"10000000000000\"",
+      "output": "39"
+    },
+    {
+      "input": "left = \"1\"\nright = \"100000000000000\"",
+      "output": "39"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1000000000000000\"",
+      "output": "48"
+    },
+    {
+      "input": "left = \"1\"\nright = \"10000000000000000\"",
+      "output": "48"
+    },
+    {
+      "input": "left = \"1\"\nright = \"100000000000000000\"",
+      "output": "70"
+    },
+    {
+      "input": "left = \"1\"\nright = \"999999999999999999\"",
+      "output": "70"
+    },
+    {
+      "input": "left = \"100000000000000000\"\nright = \"999999999999999999\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"999999999000000000\"\nright = \"999999999999999999\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"1000000000\"\nright = \"1000000000000000000\"",
+      "output": "49"
+    },
+    {
+      "input": "left = \"400000000000000000\"\nright = \"500000000000000000\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"500\"\nright = \"1000\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"999999999999999990\"\nright = \"999999999999999999\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"485\"\nright = \"10200\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"1000\"\nright = \"10000\"",
+      "output": "0"
+    },
+    {
+      "input": "left = \"1\"\nright = \"1000000000000000000\"",
+      "output": "70"
     }
   ],
   "func_sign": {

@@ -118,6 +118,31 @@
     .case-pill.failed { color: #f85149; }
     .case-pill.running { color: #d29922; }
 
+    /* Left Pane Tabs */
+    .left-tabs {
+      display: flex; background: #161b22; border-bottom: 1px solid #30363d;
+    }
+    .left-tab {
+      padding: 12px 20px; cursor: pointer; font-size: 14px; font-weight: 500;
+      color: #8b949e; border-bottom: 2px solid transparent; transition: all 0.2s;
+    }
+    .left-tab.active { color: #c9d1d9; border-bottom-color: #58a6ff; }
+    .left-tab:hover:not(.active) { color: #c9d1d9; }
+
+    .submissions-summary {
+      padding: 16px; border-bottom: 1px solid #30363d; background: #161b22;
+      border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px;
+    }
+    .sub-status { font-size: 20px; font-weight: bold; }
+    .sub-status.passed { color: #3fb950; }
+    .sub-status.failed { color: #f85149; }
+    .sub-status.running { color: #d29922; }
+    .sub-metrics { font-size: 13px; color: #8b949e; }
+    
+    .sub-case-grid {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+    }
+
     .case-content { padding: 16px; overflow-y: auto; flex: 1; }
     .case-field { margin-bottom: 16px; }
     .case-field-title { font-size: 12px; color: #8b949e; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; }
@@ -170,13 +195,24 @@
 
   <div class="main-workspace">
     <div class="pane left-pane" id="leftPane">
-      <div class="problem-content">
+      <div class="left-tabs">
+        <div class="left-tab active" id="tabDesc">Description</div>
+        <div class="left-tab" id="tabSubmissions">Submissions</div>
+      </div>
+      <div class="problem-content" id="descPanel">
         <h1 id="probTitle">Loading...</h1>
         <div style="margin-bottom: 20px; display: flex; align-items: center; flex-wrap: wrap;">
           <span id="probDiff" class="diff-pill diff-easy">EASY</span>
           <div id="probTags"></div>
         </div>
         <div id="probDesc"></div>
+      </div>
+      <div class="problem-content" id="submissionsPanel" style="display: none;">
+        <div id="submissionSummary">
+          <div style="color:#8b949e; margin-top:20px;">Run your code to see submissions here.</div>
+        </div>
+        <div class="sub-case-grid" id="subCaseTabs"></div>
+        <div class="case-content" id="subCaseContent" style="padding:0;"></div>
       </div>
     </div>
     
@@ -191,8 +227,7 @@
       
       <div class="pane bottom-pane" id="bottomPane">
         <div class="testcase-header">
-          <div class="tc-tab active" id="tabTestcase">Testcases</div>
-          <div class="tc-tab" id="tabResult">Test Result</div>
+          <div class="tc-tab active">Testcases (Inputs)</div>
         </div>
         <div class="testcase-body">
           <div class="case-list-bar" id="caseTabs"></div>
@@ -212,7 +247,8 @@
   let isInternalChange = false;
   let testCases = [];
   let currentCaseIndex = 0;
-  let currentView = 'testcase'; // 'testcase' or 'result'
+  let currentSubCaseIndex = 0;
+  let leftView = 'desc'; // 'desc' or 'submissions'
 
   // ─── RESIZER LOGIC ───
   const resizerV = document.getElementById('resizerV');
@@ -282,8 +318,17 @@
     if(workspaceBridge) workspaceBridge.onLanguageChanged(lang);
   };
 
-  document.getElementById('tabTestcase').onclick = () => { currentView = 'testcase'; renderTabs(); renderCaseContent(); };
-  document.getElementById('tabResult').onclick = () => { currentView = 'result'; renderTabs(); renderCaseContent(); };
+  document.getElementById('tabDesc').onclick = () => { setLeftView('desc'); };
+  document.getElementById('tabSubmissions').onclick = () => { setLeftView('submissions'); };
+
+  function setLeftView(view) {
+    leftView = view;
+    document.getElementById('tabDesc').className = `left-tab ${view==='desc'?'active':''}`;
+    document.getElementById('tabSubmissions').className = `left-tab ${view==='submissions'?'active':''}`;
+    document.getElementById('descPanel').style.display = view==='desc' ? 'block' : 'none';
+    document.getElementById('submissionsPanel').style.display = view==='submissions' ? 'block' : 'none';
+    if(view === 'submissions') renderSubmissions();
+  }
 
   // ─── C++ API EXPOSED ───
   window.setProblemData = function(data) {
@@ -314,9 +359,9 @@
     });
     testCases = tcList.map(tc => ({ ...tc, status: 'pending', actualOutput: '' }));
     currentCaseIndex = 0;
-    currentView = 'testcase';
-    renderTabs();
-    renderCaseContent();
+    currentSubCaseIndex = 0;
+    renderInputTabs();
+    renderInputContent();
   };
 
   window.setTestResult = function(res) {
@@ -334,25 +379,23 @@
       if (res.expected) tc.output = res.expected; // Update expected
       tc.elapsedMs = res.elapsedMs || 0;
     }
-    currentView = 'result';
-    renderTabs();
-    renderCaseContent();
+    
+    // Switch to submissions tab if we aren't already there
+    setLeftView('submissions');
+    renderSubmissions();
   };
 
   window.setTestRunning = function(idx) {
     if (testCases[idx]) {
       testCases[idx].status = 'running';
     }
-    currentView = 'result';
-    renderTabs();
-    renderCaseContent();
+    setLeftView('submissions');
+    renderSubmissions();
   };
 
   window.clearAllResults = function() {
     testCases.forEach(tc => { tc.status = 'pending'; tc.actualOutput = ''; });
-    currentView = 'testcase';
-    renderTabs();
-    renderCaseContent();
+    renderSubmissions();
   };
 
   window.setCode = function(code) {
@@ -384,84 +427,157 @@
   };
 
   // ─── RENDERERS ───
-  function renderTabs() {
-    document.getElementById('tabTestcase').className = `tc-tab ${currentView==='testcase'?'active':''}`;
-    document.getElementById('tabResult').className = `tc-tab ${currentView==='result'?'active':''}`;
-    
+  function renderInputTabs() {
     let html = '';
-    testCases.forEach((tc, i) => {
+    // For input preview in bottom pane, we only show first 8 to avoid clutter
+    let previewCount = Math.min(testCases.length, 8);
+    for(let i = 0; i < previewCount; i++) {
       let active = i === currentCaseIndex ? 'active' : '';
+      html += `<div class="case-pill ${active}" onclick="selectInputCase(${i})">Case ${i+1}</div>`;
+    }
+    if (testCases.length > 8) {
+      html += `<div style="display:flex; align-items:center; font-size:12px; color:#8b949e; margin-left:8px;">+ ${testCases.length - 8} more</div>`;
+    }
+    document.getElementById('caseTabs').innerHTML = html;
+  }
+
+  window.selectInputCase = function(i) {
+    currentCaseIndex = i;
+    renderInputTabs();
+    renderInputContent();
+  };
+
+  function renderInputContent() {
+    let tc = testCases[currentCaseIndex];
+    if (!tc) { document.getElementById('caseContent').innerHTML = ''; return; }
+    
+    let html = `
+      <div class="case-field">
+        <div class="case-field-title">Input</div>
+        <div class="case-field-val">${tc.input}</div>
+      </div>
+      <div class="case-field">
+        <div class="case-field-title">Expected Output</div>
+        <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
+      </div>
+    `;
+    document.getElementById('caseContent').innerHTML = html;
+  }
+
+  // --- Submissions Renderers ---
+  function renderSubmissions() {
+    if(testCases.length === 0) return;
+    
+    // Compute summary
+    let passedCount = 0, failedCount = 0, runningCount = 0, pendingCount = 0;
+    let anyFailStatusText = '';
+    let totalTime = 0;
+    
+    testCases.forEach(tc => {
+      if(tc.status === 'passed') passedCount++;
+      else if(tc.status === 'failed') { failedCount++; if(!anyFailStatusText) anyFailStatusText = tc.statusText || 'Wrong Answer'; }
+      else if(tc.status === 'running') runningCount++;
+      else pendingCount++;
+      
+      if(tc.elapsedMs) totalTime += tc.elapsedMs;
+    });
+    
+    let overallStatus = 'Pending';
+    let statusClass = '';
+    
+    if (runningCount > 0) {
+      overallStatus = 'Running...';
+      statusClass = 'running';
+    } else if (failedCount > 0) {
+      overallStatus = anyFailStatusText.toUpperCase();
+      statusClass = 'failed';
+    } else if (passedCount > 0 && pendingCount === 0) {
+      overallStatus = 'Accepted';
+      statusClass = 'passed';
+    } else if (passedCount > 0) {
+      overallStatus = 'Partially Accepted';
+      statusClass = 'passed';
+    }
+    
+    let summaryHtml = `
+      <div class="submissions-summary">
+        <div class="sub-status ${statusClass}">${overallStatus}</div>
+        <div class="sub-metrics">
+          <div>${passedCount} / ${testCases.length} testcases passed</div>
+          ${totalTime > 0 ? `<div>Runtime: ${totalTime} ms</div>` : ''}
+        </div>
+      </div>
+    `;
+    document.getElementById('submissionSummary').innerHTML = summaryHtml;
+    
+    // Render Case Grid
+    let tabsHtml = '';
+    testCases.forEach((tc, i) => {
+      let active = i === currentSubCaseIndex ? 'active' : '';
       let status = tc.status; // pending, running, passed, failed
       let dot = '';
       if(status==='passed') dot = '✓ ';
       if(status==='failed') dot = '✗ ';
       if(status==='running') dot = '◌ ';
-      html += `<div class="case-pill ${active} ${status}" onclick="selectCase(${i})">${dot}Case ${i+1}</div>`;
+      tabsHtml += `<div class="case-pill ${active} ${status}" onclick="selectSubCase(${i})">${dot}Case ${i+1}</div>`;
     });
-    document.getElementById('caseTabs').innerHTML = html;
+    document.getElementById('subCaseTabs').innerHTML = tabsHtml;
+    
+    renderSubCaseContent();
   }
 
-  window.selectCase = function(i) {
-    currentCaseIndex = i;
-    renderTabs();
-    renderCaseContent();
+  window.selectSubCase = function(i) {
+    currentSubCaseIndex = i;
+    renderSubmissions();
   };
 
-  function renderCaseContent() {
-    let tc = testCases[currentCaseIndex];
-    if (!tc) { document.getElementById('caseContent').innerHTML = ''; return; }
-    
-    let html = '';
-    if (currentView === 'testcase') {
-      html = `
-        <div class="case-field">
-          <div class="case-field-title">Input</div>
-          <div class="case-field-val">${tc.input}</div>
-        </div>
-        <div class="case-field">
-          <div class="case-field-title">Expected Output</div>
-          <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
-        </div>
-      `;
-    } else {
-      let actClass = tc.status === 'passed' ? 'val-actual-pass' : (tc.status === 'failed' ? 'val-actual-fail' : '');
-      let runTimeStr = tc.elapsedMs !== undefined ? ` <span style="font-size: 11px; color: #8b949e; font-weight: normal; margin-left: 8px;">(${tc.elapsedMs} ms)</span>` : '';
-      let statusDisplay = tc.statusText ? tc.statusText.toUpperCase() : tc.status.toUpperCase();
-      
-      let actualHtml = tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—');
-      // If actual is raw json, format it nicely
-      try {
-         if (actualHtml.startsWith('{') || actualHtml.startsWith('[')) {
-             actualHtml = JSON.stringify(JSON.parse(actualHtml), null, 2);
-         }
-      } catch(e){}
-
-      let expectedHtml = tc.output || tc.expectedOutput || '';
-      try {
-         if (expectedHtml.startsWith('{') || expectedHtml.startsWith('[')) {
-             expectedHtml = JSON.stringify(JSON.parse(expectedHtml), null, 2);
-         }
-      } catch(e){}
-
-      html = `
-        <div class="case-field">
-          <div class="case-field-title" style="display: flex; align-items: center; color: ${tc.status==='passed'?'#3fb950':'#f85149'};">
-            ${statusDisplay} ${runTimeStr}
-          </div>
-        </div>
-        <div style="display: flex; gap: 16px; margin-top: 12px;">
-          <div class="case-field" style="flex: 1;">
-            <div class="case-field-title">Expected Output</div>
-            <div class="case-field-val val-expected">${expectedHtml}</div>
-          </div>
-          <div class="case-field" style="flex: 1;">
-            <div class="case-field-title">Your Output</div>
-            <div class="case-field-val ${actClass}">${actualHtml}</div>
-          </div>
-        </div>
-      `;
+  function renderSubCaseContent() {
+    let tc = testCases[currentSubCaseIndex];
+    if (!tc || tc.status === 'pending') { 
+      document.getElementById('subCaseContent').innerHTML = '<div style="color:#8b949e; padding:16px;">This test case has not been run yet.</div>';
+      return; 
     }
-    document.getElementById('caseContent').innerHTML = html;
+    
+    let actClass = tc.status === 'passed' ? 'val-actual-pass' : (tc.status === 'failed' ? 'val-actual-fail' : '');
+    let runTimeStr = tc.elapsedMs !== undefined ? ` <span style="font-size: 11px; color: #8b949e; font-weight: normal; margin-left: 8px;">(${tc.elapsedMs} ms)</span>` : '';
+    let statusDisplay = tc.statusText ? tc.statusText.toUpperCase() : tc.status.toUpperCase();
+    
+    let actualHtml = tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—');
+    try {
+       if (actualHtml.startsWith('{') || actualHtml.startsWith('[')) {
+           actualHtml = JSON.stringify(JSON.parse(actualHtml), null, 2);
+       }
+    } catch(e){}
+
+    let expectedHtml = tc.output || tc.expectedOutput || '';
+    try {
+       if (expectedHtml.startsWith('{') || expectedHtml.startsWith('[')) {
+           expectedHtml = JSON.stringify(JSON.parse(expectedHtml), null, 2);
+       }
+    } catch(e){}
+
+    let html = `
+      <div class="case-field">
+        <div class="case-field-title" style="display: flex; align-items: center; color: ${tc.status==='passed'?'#3fb950':(tc.status==='running'?'#d29922':'#f85149')};">
+          ${statusDisplay} ${runTimeStr}
+        </div>
+      </div>
+      <div class="case-field">
+        <div class="case-field-title">Input</div>
+        <div class="case-field-val">${tc.input}</div>
+      </div>
+      <div style="display: flex; gap: 16px; margin-top: 12px;">
+        <div class="case-field" style="flex: 1;">
+          <div class="case-field-title">Expected Output</div>
+          <div class="case-field-val val-expected">${expectedHtml}</div>
+        </div>
+        <div class="case-field" style="flex: 1;">
+          <div class="case-field-title">Your Output</div>
+          <div class="case-field-val ${actClass}">${actualHtml}</div>
+        </div>
+      </div>
+    `;
+    document.getElementById('subCaseContent').innerHTML = html;
   }
 
   // ─── WEBCHANNEL INIT ───

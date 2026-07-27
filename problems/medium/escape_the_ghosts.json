@@ -923,6 +923,134 @@
     {
       "input": "ghosts = [[2, 2]]\ntarget = [1, 1]",
       "output": "false"
+    },
+    {
+      "input": "ghosts = [[5, 0]]\ntarget = [3, 0]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[4, 0]]\ntarget = [1, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[-5, -5]]\ntarget = [-1, -2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[-1, -1]]\ntarget = [-2, -2]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[5, 5], [7, 0], [0, 8]]\ntarget = [3, 3]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[10, 10], [9, 12], [14, 1]]\ntarget = [2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[2, 3], [100, 100], [-100, -100]]\ntarget = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[4, 4], [4, 4], [10, 10]]\ntarget = [2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[9, 9], [9, 9], [20, 20]]\ntarget = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[0, 5], [5, 0]]\ntarget = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[0, 2], [2, 0]]\ntarget = [1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[3, 3]]\ntarget = [2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[5, 5]]\ntarget = [2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[-2, 3], [4, -1]]\ntarget = [1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[-10, 0], [0, -10]]\ntarget = [2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[10000, 10000], [-10000, 10000], [10000, -10000], [-10000, -10000]]\ntarget = [1, 0]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[1, 0], [10000, 10000], [-10000, 10000], [10000, -10000]]\ntarget = [0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[0, 0], [1, 1]]\ntarget = [10000, 10000]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[9999, 10000], [10000, 9999]]\ntarget = [10000, 10000]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[0, 0]]\ntarget = [3, 4]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[9990, 9990], [5000, -5000]]\ntarget = [10000, 10000]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[9999, 9998], [5000, 5000]]\ntarget = [10000, 10000]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[20, 20], [30, 40], [50, 60], [70, 80], [90, 100]]\ntarget = [1, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[2, 1], [30, 40], [50, 60], [70, 80], [90, 100]]\ntarget = [1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[-3, -3], [3, 3]]\ntarget = [0, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[-1, 1], [1, -1]]\ntarget = [0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[4, 1], [4, -1]]\ntarget = [3, 0]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[2, 0], [10, 10]]\ntarget = [1, 0]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[4, 0]]\ntarget = [2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[5, 0]]\ntarget = [2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "ghosts = [[2, 2], [8, 0], [0, 8]]\ntarget = [1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "ghosts = [[3, 2], [8, 0], [0, 8]]\ntarget = [1, 1]",
+      "output": "true"
     }
   ],
   "func_sign": {

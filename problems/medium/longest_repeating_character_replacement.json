@@ -412,6 +412,126 @@
     {
       "input": "s = \"AA\"\nk = 0",
       "output": "2"
+    },
+    {
+      "input": "s = \"AA\"\nk = 1",
+      "output": "2"
+    },
+    {
+      "input": "s = \"AAAA\"\nk = 2",
+      "output": "4"
+    },
+    {
+      "input": "s = \"ABAB\"\nk = 1",
+      "output": "3"
+    },
+    {
+      "input": "s = \"ABAB\"\nk = 2",
+      "output": "4"
+    },
+    {
+      "input": "s = \"ABAB\"\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "s = \"AABABBA\"\nk = 0",
+      "output": "2"
+    },
+    {
+      "input": "s = \"AABABBA\"\nk = 2",
+      "output": "5"
+    },
+    {
+      "input": "s = \"ABCDE\"\nk = 1",
+      "output": "2"
+    },
+    {
+      "input": "s = \"ABCDE\"\nk = 2",
+      "output": "3"
+    },
+    {
+      "input": "s = \"ABCDE\"\nk = 4",
+      "output": "5"
+    },
+    {
+      "input": "s = \"BAAAB\"\nk = 2",
+      "output": "5"
+    },
+    {
+      "input": "s = \"BAAAB\"\nk = 0",
+      "output": "3"
+    },
+    {
+      "input": "s = \"BAAAB\"\nk = 1",
+      "output": "4"
+    },
+    {
+      "input": "s = \"ZZZZY\"\nk = 1",
+      "output": "5"
+    },
+    {
+      "input": "s = \"XYZXYZ\"\nk = 2",
+      "output": "4"
+    },
+    {
+      "input": "s = \"XYZXYZ\"\nk = 3",
+      "output": "5"
+    },
+    {
+      "input": "s = \"QWERQWER\"\nk = 1",
+      "output": "2"
+    },
+    {
+      "input": "s = \"QWERQWER\"\nk = 3",
+      "output": "5"
+    },
+    {
+      "input": "s = \"AAAAABBBBB\"\nk = 1",
+      "output": "6"
+    },
+    {
+      "input": "s = \"AAAAABBBBB\"\nk = 4",
+      "output": "9"
+    },
+    {
+      "input": "s = \"ABAA\"\nk = 0",
+      "output": "2"
+    },
+    {
+      "input": "s = \"ABAA\"\nk = 1",
+      "output": "4"
+    },
+    {
+      "input": "s = \"ABAA\"\nk = 2",
+      "output": "4"
+    },
+    {
+      "input": "s = \"BBBBBBBBBB\"\nk = 0",
+      "output": "10"
+    },
+    {
+      "input": "s = \"BBBBBBBBBB\"\nk = 5",
+      "output": "10"
+    },
+    {
+      "input": "s = \"ABCABCABC\"\nk = 2",
+      "output": "4"
+    },
+    {
+      "input": "s = \"CBBEBB\"\nk = 2",
+      "output": "6"
+    },
+    {
+      "input": "s = \"MNOOPPQQQ\"\nk = 3",
+      "output": "6"
+    },
+    {
+      "input": "s = \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"\nk = 0",
+      "output": "100"
+    },
+    {
+      "input": "s = \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB\"\nk = 1",
+      "output": "100"
     }
   ],
   "func_sign": {

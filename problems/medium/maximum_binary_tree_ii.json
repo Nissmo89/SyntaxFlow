@@ -951,6 +951,114 @@
     {
       "input": "root = [42, 27]\nval = 42",
       "output": "[42, 42, null, 27]"
+    },
+    {
+      "input": "root = [40, 20]\nval = 2",
+      "output": "[40, 20, 2]"
+    },
+    {
+      "input": "root = [49, null, 34, 25, 1, 17, null, null, null, null, 11]\nval = 48",
+      "output": "[49, null, 48, 34, null, 25, 1, 17, null, null, null, null, 11]"
+    },
+    {
+      "input": "root = [10, null, 5, 3]\nval = 5",
+      "output": "[10, null, 5, 5, null, 3]"
+    },
+    {
+      "input": "root = [16, 8, 3]\nval = 4",
+      "output": "[16, 8, 4, null, null, 3]"
+    },
+    {
+      "input": "root = [44, null, 41, 31, 34, 7, null, 33, null, null, null, 16, null, 7]\nval = 19",
+      "output": "[44, null, 41, 31, 34, 7, null, 33, 19, null, null, 16, null, null, null, 7]"
+    },
+    {
+      "input": "root = [13, null, 3]\nval = 36",
+      "output": "[36, 13, null, null, 3]"
+    },
+    {
+      "input": "root = [26, null, 25, null, 22]\nval = 6",
+      "output": "[26, null, 25, null, 22, null, 6]"
+    },
+    {
+      "input": "root = [44, 40, null, 33]\nval = 13",
+      "output": "[44, 40, 13, 33]"
+    },
+    {
+      "input": "root = [50, 23, 42, null, null, 37, null, null, 37]\nval = 9",
+      "output": "[50, 23, 42, null, null, 37, 9, null, 37]"
+    },
+    {
+      "input": "root = [49, 48, 25, 45, 41, 15, null, 33, null, null, 16]\nval = 13",
+      "output": "[49, 48, 25, 45, 41, 15, 13, 33, null, null, 16]"
+    },
+    {
+      "input": "root = [31]\nval = 23",
+      "output": "[31, null, 23]"
+    },
+    {
+      "input": "root = [3]\nval = 22",
+      "output": "[22, 3]"
+    },
+    {
+      "input": "root = [48, 32, 47, null, 32, 29, 14, null, null, 4, null, null, null, 2]\nval = 20",
+      "output": "[48, 32, 47, null, 32, 29, 20, null, null, 4, null, 14, null, 2]"
+    },
+    {
+      "input": "root = [41, null, 34, 11]\nval = 20",
+      "output": "[41, null, 34, 11, 20]"
+    },
+    {
+      "input": "root = [49, 42, null, 39, 19, 34, null, null, null, 3, 16, null, null, 14]\nval = 34",
+      "output": "[49, 42, 34, 39, 19, null, null, 34, null, null, null, 3, 16, null, null, 14]"
+    },
+    {
+      "input": "root = [47, null, 42, 41, null, 17, null, null, 13, 2, null, 1]\nval = 49",
+      "output": "[49, 47, null, null, 42, 41, null, 17, null, null, 13, 2, null, 1]"
+    },
+    {
+      "input": "root = [15]\nval = 28",
+      "output": "[28, 15]"
+    },
+    {
+      "input": "root = [45, null, 10, 5]\nval = 31",
+      "output": "[45, null, 31, 10, null, 5]"
+    },
+    {
+      "input": "root = [46, 27, 46, null, 15, 39, null, null, null, null, 30]\nval = 26",
+      "output": "[46, 27, 46, null, 15, 39, 26, null, null, null, 30]"
+    },
+    {
+      "input": "root = [35, 29, null, null, 8]\nval = 35",
+      "output": "[35, 35, null, 29, null, null, 8]"
+    },
+    {
+      "input": "root = [47]\nval = 40",
+      "output": "[47, null, 40]"
+    },
+    {
+      "input": "root = [37, null, 13]\nval = 30",
+      "output": "[37, null, 30, 13]"
+    },
+    {
+      "input": "root = [41, 28, 26, null, 13, 16, 5, null, null, 15, 12]\nval = 42",
+      "output": "[42, 41, null, 28, 26, null, 13, 16, 5, null, null, 15, 12]"
+    },
+    {
+      "input": "root = [38, 33, 15, 17]\nval = 27",
+      "output": "[38, 33, 27, 17, null, 15]"
+    },
+    {
+      "input": "root = [38, 2]\nval = 39",
+      "output": "[39, 38, null, 2]"
+    },
+    {
+      "input": "root = [43, null, 36, 27, 35, 19, 22, 21, 11]\nval = 36",
+      "output": "[43, null, 36, 36, null, 27, 35, 19, 22, 21, 11]"
+    },
+    {
+      "input": "root = [44, 32, 35, null, null, 22, 3, null, 2]\nval = 30",
+      "output": "[44, 32, 35, null, null, 22, 30, null, 2, 3]"
     }
   ],
   "func_sign": {

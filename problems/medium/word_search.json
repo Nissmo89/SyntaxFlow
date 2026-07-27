@@ -967,6 +967,114 @@
     {
       "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\"], [\"c\", \"d\"]]}\nword = \"acd\"",
       "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\"], [\"c\", \"d\"]]}\nword = \"abdc\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"A\", \"A\"], [\"A\", \"A\", \"A\"]]}\nword = \"AAAA\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"A\", \"A\"], [\"A\", \"A\", \"A\"]]}\nword = \"AAAAAAA\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\"], [\"C\", \"D\"]]}\nword = \"E\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\", \"C\"], [\"D\", \"E\", \"F\"], [\"G\", \"H\", \"I\"]]}\nword = \"ABF\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\", \"C\", \"D\"], [\"L\", \"K\", \"J\", \"E\"], [\"M\", \"N\", \"I\", \"F\"], [\"P\", \"O\", \"H\", \"G\"]]}\nword = \"ABCDEFGHIJKLMNO\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\", \"C\", \"D\"], [\"L\", \"K\", \"J\", \"E\"], [\"M\", \"N\", \"I\", \"F\"], [\"P\", \"O\", \"H\", \"G\"]]}\nword = \"ABCDEFGHIJKLMNP\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"C\", \"A\", \"A\"], [\"A\", \"A\", \"A\"], [\"B\", \"C\", \"D\"]]}\nword = \"AAB\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"C\", \"A\", \"A\"], [\"A\", \"A\", \"A\"], [\"B\", \"C\", \"D\"]]}\nword = \"AAAAAAAAB\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"q\", \"w\", \"e\", \"r\"], [\"t\", \"y\", \"u\", \"i\"], [\"o\", \"p\", \"a\", \"s\"], [\"d\", \"f\", \"g\", \"h\"]]}\nword = \"qwertyuiopasdhg\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"q\", \"w\", \"e\", \"r\"], [\"t\", \"y\", \"u\", \"i\"], [\"o\", \"p\", \"a\", \"s\"], [\"d\", \"f\", \"g\", \"h\"]]}\nword = \"qwertyuiopasdfz\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"B\"], [\"C\", \"d\"]]}\nword = \"aBd\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"B\"], [\"C\", \"d\"]]}\nword = \"Abd\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\", \"A\"]]}\nword = \"ABAA\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"A\", \"B\", \"A\"]]}\nword = \"ABA\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\", \"c\", \"d\", \"e\"]]}\nword = \"cde\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\", \"c\", \"d\", \"e\"]]}\nword = \"ced\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\"], [\"b\"], [\"c\"], [\"d\"]]}\nword = \"abcd\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\"], [\"b\"], [\"c\"], [\"d\"]]}\nword = \"acd\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"a\", \"a\", \"a\"], [\"a\", \"b\", \"a\", \"a\"], [\"a\", \"a\", \"a\", \"a\"], [\"a\", \"a\", \"a\", \"a\"]]}\nword = \"baaaaab\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"a\", \"a\", \"a\"], [\"a\", \"b\", \"a\", \"a\"], [\"a\", \"a\", \"a\", \"a\"], [\"a\", \"a\", \"a\", \"a\"]]}\nword = \"baaa\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"s\", \"e\", \"e\"], [\"x\", \"x\", \"e\"], [\"s\", \"e\", \"e\"]]}\nword = \"seee\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"s\", \"e\", \"e\"], [\"x\", \"x\", \"e\"], [\"s\", \"e\", \"e\"]]}\nword = \"seeee\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"x\", \"x\"], [\"x\", \"b\", \"x\"], [\"x\", \"x\", \"c\"]]}\nword = \"abc\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\", \"c\", \"d\", \"e\", \"f\"]]}\nword = \"abcdef\"",
+      "output": "true"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"a\", \"b\", \"c\", \"d\", \"e\", \"f\"]]}\nword = \"abcdeg\"",
+      "output": "false"
+    },
+    {
+      "input": "board = {\"elemType\": \"char\", \"value\": [[\"p\", \"a\", \"t\", \"h\"], [\"x\", \"x\", \"x\", \"h\"], [\"h\", \"a\", \"t\", \"p\"]]}\nword = \"path\"",
+      "output": "true"
     }
   ],
   "func_sign": {

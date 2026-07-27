@@ -534,6 +534,122 @@
     {
       "input": "expression = \"{a,b,c}\"",
       "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "expression = \"a{b,c}d\"",
+      "output": "[\"abd\", \"acd\"]"
+    },
+    {
+      "input": "expression = \"{ab,cd}{e,f}\"",
+      "output": "[\"abe\", \"abf\", \"cde\", \"cdf\"]"
+    },
+    {
+      "input": "expression = \"{{a,b},{c,{d,e}}}\"",
+      "output": "[\"a\", \"b\", \"c\", \"d\", \"e\"]"
+    },
+    {
+      "input": "expression = \"{{a,b}c,{d,e}f}\"",
+      "output": "[\"ac\", \"bc\", \"df\", \"ef\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c,{d,e}}{f,g}\"",
+      "output": "[\"acf\", \"acg\", \"adf\", \"adg\", \"aef\", \"aeg\", \"bcf\", \"bcg\", \"bdf\", \"bdg\", \"bef\", \"beg\"]"
+    },
+    {
+      "input": "expression = \"{a}{b}{c}\"",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "expression = \"abcdef\"",
+      "output": "[\"abcdef\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c}\"",
+      "output": "[\"ac\", \"bc\"]"
+    },
+    {
+      "input": "expression = \"{a,{b,c},d}\"",
+      "output": "[\"a\", \"b\", \"c\", \"d\"]"
+    },
+    {
+      "input": "expression = \"{a,a}{b,b}\"",
+      "output": "[\"ab\"]"
+    },
+    {
+      "input": "expression = \"{{a,b}c,{a,b}d}\"",
+      "output": "[\"ac\", \"ad\", \"bc\", \"bd\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c,d}{e,f}\"",
+      "output": "[\"ace\", \"acf\", \"ade\", \"adf\", \"bce\", \"bcf\", \"bde\", \"bdf\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{a,b}\"",
+      "output": "[\"aa\", \"ab\", \"ba\", \"bb\"]"
+    },
+    {
+      "input": "expression = \"x{a,b,c}y\"",
+      "output": "[\"xay\", \"xby\", \"xcy\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c,d}{e}\"",
+      "output": "[\"ace\", \"ade\", \"bce\", \"bde\"]"
+    },
+    {
+      "input": "expression = \"{a,{b,c}}d\"",
+      "output": "[\"ad\", \"bd\", \"cd\"]"
+    },
+    {
+      "input": "expression = \"a{{b,c},d}\"",
+      "output": "[\"ab\", \"ac\", \"ad\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c,c}{d,e}\"",
+      "output": "[\"acd\", \"ace\", \"bcd\", \"bce\"]"
+    },
+    {
+      "input": "expression = \"{a,{b,c}}{d,{e,f}}\"",
+      "output": "[\"ad\", \"ae\", \"af\", \"bd\", \"be\", \"bf\", \"cd\", \"ce\", \"cf\"]"
+    },
+    {
+      "input": "expression = \"{a,b,c,d}\"",
+      "output": "[\"a\", \"b\", \"c\", \"d\"]"
+    },
+    {
+      "input": "expression = \"{a,b}xy\"",
+      "output": "[\"axy\", \"bxy\"]"
+    },
+    {
+      "input": "expression = \"xy{a,b}\"",
+      "output": "[\"xya\", \"xyb\"]"
+    },
+    {
+      "input": "expression = \"{{a,b}{c,d},e}\"",
+      "output": "[\"ac\", \"ad\", \"bc\", \"bd\", \"e\"]"
+    },
+    {
+      "input": "expression = \"{{a,b},{a,b}}\"",
+      "output": "[\"a\", \"b\"]"
+    },
+    {
+      "input": "expression = \"m{n,o}p{q,r}\"",
+      "output": "[\"mnpq\", \"mnpr\", \"mopq\", \"mopr\"]"
+    },
+    {
+      "input": "expression = \"{{a},{b},{c}}\"",
+      "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "expression = \"{ab,c}d\"",
+      "output": "[\"abd\", \"cd\"]"
+    },
+    {
+      "input": "expression = \"{a,a,a}{b,b,c}\"",
+      "output": "[\"ab\", \"ac\"]"
+    },
+    {
+      "input": "expression = \"{a,b}{c,{d,e}}f\"",
+      "output": "[\"acf\", \"adf\", \"aef\", \"bcf\", \"bdf\", \"bef\"]"
     }
   ],
   "func_sign": {

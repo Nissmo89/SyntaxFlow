@@ -438,6 +438,130 @@
     {
       "input": "a = -2\nb = -3",
       "output": "-5"
+    },
+    {
+      "input": "a = 5\nb = -5",
+      "output": "0"
+    },
+    {
+      "input": "a = 7\nb = -3",
+      "output": "4"
+    },
+    {
+      "input": "a = -7\nb = 3",
+      "output": "-4"
+    },
+    {
+      "input": "a = 15\nb = 1",
+      "output": "16"
+    },
+    {
+      "input": "a = 31\nb = 1",
+      "output": "32"
+    },
+    {
+      "input": "a = 63\nb = 1",
+      "output": "64"
+    },
+    {
+      "input": "a = 16\nb = -1",
+      "output": "15"
+    },
+    {
+      "input": "a = 32\nb = -1",
+      "output": "31"
+    },
+    {
+      "input": "a = 64\nb = -1",
+      "output": "63"
+    },
+    {
+      "input": "a = 1000\nb = 0",
+      "output": "1000"
+    },
+    {
+      "input": "a = -1000\nb = 0",
+      "output": "-1000"
+    },
+    {
+      "input": "a = 1000\nb = 1000",
+      "output": "2000"
+    },
+    {
+      "input": "a = -1000\nb = -1000",
+      "output": "-2000"
+    },
+    {
+      "input": "a = 1000\nb = -1000",
+      "output": "0"
+    },
+    {
+      "input": "a = 1000\nb = -1",
+      "output": "999"
+    },
+    {
+      "input": "a = -1000\nb = 1",
+      "output": "-999"
+    },
+    {
+      "input": "a = 999\nb = -1000",
+      "output": "-1"
+    },
+    {
+      "input": "a = -999\nb = 1000",
+      "output": "1"
+    },
+    {
+      "input": "a = 999\nb = 1",
+      "output": "1000"
+    },
+    {
+      "input": "a = -999\nb = -1",
+      "output": "-1000"
+    },
+    {
+      "input": "a = 123\nb = -45",
+      "output": "78"
+    },
+    {
+      "input": "a = -123\nb = 45",
+      "output": "-78"
+    },
+    {
+      "input": "a = 456\nb = 321",
+      "output": "777"
+    },
+    {
+      "input": "a = -456\nb = -321",
+      "output": "-777"
+    },
+    {
+      "input": "a = 250\nb = -250",
+      "output": "0"
+    },
+    {
+      "input": "a = 250\nb = -249",
+      "output": "1"
+    },
+    {
+      "input": "a = -250\nb = 249",
+      "output": "-1"
+    },
+    {
+      "input": "a = 808\nb = -808",
+      "output": "0"
+    },
+    {
+      "input": "a = {\"gen\": \"int\", \"min\": -50, \"max\": 50}\nb = {\"gen\": \"int\", \"min\": -50, \"max\": 50}",
+      "output": ""
+    },
+    {
+      "input": "a = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}\nb = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}",
+      "output": ""
+    },
+    {
+      "input": "a = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}\nb = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}",
+      "output": ""
     }
   ],
   "func_sign": {

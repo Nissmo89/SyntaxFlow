@@ -636,6 +636,114 @@
     {
       "input": "arr = [0, 0, 1, 1, 2, 2]\ntarget = 3",
       "output": "8"
+    },
+    {
+      "input": "arr = [0, 0, 0, 1, 1, 1]\ntarget = 2",
+      "output": "9"
+    },
+    {
+      "input": "arr = [0, 0, 0, 0, 1]\ntarget = 0",
+      "output": "4"
+    },
+    {
+      "input": "arr = [100, 100, 100]\ntarget = 300",
+      "output": "1"
+    },
+    {
+      "input": "arr = [1, 1, 1, 2, 2, 3, 3, 4]\ntarget = 6",
+      "output": "15"
+    },
+    {
+      "input": "arr = [4, 5, 6, 7, 8, 9]\ntarget = 18",
+      "output": "3"
+    },
+    {
+      "input": "arr = [2, 2, 2, 2, 4, 4]\ntarget = 8",
+      "output": "12"
+    },
+    {
+      "input": "arr = [3, 3, 4, 4, 5, 5]\ntarget = 12",
+      "output": "8"
+    },
+    {
+      "input": "arr = [0, 0, 0, 0]\ntarget = 0",
+      "output": "4"
+    },
+    {
+      "input": "arr = [1, 1, 1, 1, 1]\ntarget = 3",
+      "output": "10"
+    },
+    {
+      "input": "arr = [2, 2, 2, 2, 2, 2]\ntarget = 6",
+      "output": "20"
+    },
+    {
+      "input": "arr = [0, 1, 1, 2, 2, 2]\ntarget = 4",
+      "output": "6"
+    },
+    {
+      "input": "arr = [0, 0, 1, 1, 2, 2, 3, 3]\ntarget = 3",
+      "output": "10"
+    },
+    {
+      "input": "arr = [1, 2, 3, 4, 5, 6]\ntarget = 10",
+      "output": "3"
+    },
+    {
+      "input": "arr = [4, 4, 4, 5, 5, 6]\ntarget = 14",
+      "output": "6"
+    },
+    {
+      "input": "arr = [0, 0, 0, 1, 2, 3]\ntarget = 3",
+      "output": "6"
+    },
+    {
+      "input": "arr = [100, 100, 100]\ntarget = 300",
+      "output": "1"
+    },
+    {
+      "input": "arr = [0, 1, 2, 3, 4]\ntarget = 50",
+      "output": "0"
+    },
+    {
+      "input": "arr = [1, 1, 2, 2, 3, 3]\ntarget = 1",
+      "output": "0"
+    },
+    {
+      "input": "arr = [2, 2, 2, 3, 3, 3]\ntarget = 8",
+      "output": "9"
+    },
+    {
+      "input": "arr = [1, 1, 2, 2, 4, 4]\ntarget = 7",
+      "output": "8"
+    },
+    {
+      "input": "arr = [3, 3, 3, 3, 3, 3, 3, 3]\ntarget = 9",
+      "output": "56"
+    },
+    {
+      "input": "arr = [2, 3, 4]\ntarget = 9",
+      "output": "1"
+    },
+    {
+      "input": "arr = [1, 1, 2, 3, 4, 5]\ntarget = 8",
+      "output": "4"
+    },
+    {
+      "input": "arr = [0, 0, 0, 0, 1, 1, 2]\ntarget = 1",
+      "output": "12"
+    },
+    {
+      "input": "arr = [5, 6, 7, 8]\ntarget = 1",
+      "output": "0"
+    },
+    {
+      "input": "arr = {\"gen\": \"array\", \"len\": 500, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ntarget = {\"gen\": \"int\", \"min\": 0, \"max\": 300}",
+      "output": ""
+    },
+    {
+      "input": "arr = {\"gen\": \"array\", \"len\": 499, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ntarget = {\"gen\": \"int\", \"min\": 0, \"max\": 300}",
+      "output": ""
     }
   ],
   "func_sign": {

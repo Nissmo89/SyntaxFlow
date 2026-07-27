@@ -566,6 +566,142 @@
     {
       "input": "s = \"bbbbb\"\np = \"bb\"",
       "output": "[0, 1, 2, 3]"
+    },
+    {
+      "input": "s = \"abcabcabc\"\np = \"bca\"",
+      "output": "[0, 1, 2, 3, 4, 5, 6]"
+    },
+    {
+      "input": "s = \"a\"\np = \"aa\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"ba\"\np = \"ab\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"aaabbb\"\np = \"aab\"",
+      "output": "[1]"
+    },
+    {
+      "input": "s = \"qqqwq\"\np = \"qwq\"",
+      "output": "[1, 2]"
+    },
+    {
+      "input": "s = \"aaaaa\"\np = \"a\"",
+      "output": "[0, 1, 2, 3, 4]"
+    },
+    {
+      "input": "s = \"aaaaa\"\np = \"b\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"cabcba\"\np = \"abc\"",
+      "output": "[0, 1, 3]"
+    },
+    {
+      "input": "s = \"ccccabcc\"\np = \"ccb\"",
+      "output": "[5]"
+    },
+    {
+      "input": "s = \"xyzabcuvwabc\"\np = \"abc\"",
+      "output": "[3, 9]"
+    },
+    {
+      "input": "s = \"zzzzzabczz\"\np = \"cab\"",
+      "output": "[5]"
+    },
+    {
+      "input": "s = \"abczzzzzzz\"\np = \"bca\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"abxaba\"\np = \"ab\"",
+      "output": "[0, 3, 4]"
+    },
+    {
+      "input": "s = \"aaabaaa\"\np = \"aaa\"",
+      "output": "[0, 4]"
+    },
+    {
+      "input": "s = \"xabc\"\np = \"cba\"",
+      "output": "[1]"
+    },
+    {
+      "input": "s = \"cabx\"\np = \"abc\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"aab\"\np = \"aba\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"abcdedcba\"\np = \"bed\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"abcxabcxabc\"\np = \"cxa\"",
+      "output": "[2, 6]"
+    },
+    {
+      "input": "s = \"mmmmmmmm\"\np = \"m\"",
+      "output": "[0, 1, 2, 3, 4, 5, 6, 7]"
+    },
+    {
+      "input": "s = \"mmmmmmmm\"\np = \"n\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"aaaaaaaaaab\"\np = \"aaab\"",
+      "output": "[7]"
+    },
+    {
+      "input": "s = \"baaaaaaaaaa\"\np = \"aaab\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"abcda\"\np = \"aabc\"",
+      "output": "[]"
+    },
+    {
+      "input": "s = \"zzzaabczz\"\np = \"abca\"",
+      "output": "[3]"
+    },
+    {
+      "input": "s = \"aaxaaaxaaa\"\np = \"aaa\"",
+      "output": "[3, 7]"
+    },
+    {
+      "input": "s = \"abcacbabc\"\np = \"cab\"",
+      "output": "[0, 1, 3, 4, 6]"
+    },
+    {
+      "input": "s = \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzabc\"\np = \"abc\"",
+      "output": "[31]"
+    },
+    {
+      "input": "s = \"abczzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"\np = \"cba\"",
+      "output": "[0]"
+    },
+    {
+      "input": "s = \"abcabcabcabc\"\np = \"abcabc\"",
+      "output": "[0, 1, 2, 3, 4, 5, 6]"
+    },
+    {
+      "input": "s = \"aabbaabb\"\np = \"abba\"",
+      "output": "[0, 1, 2, 3, 4]"
+    },
+    {
+      "input": "s = \"babaabab\"\np = \"aab\"",
+      "output": "[1, 2, 3, 4]"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\np = \"zyx\"",
+      "output": "[23]"
+    },
+    {
+      "input": "s = \"qwertyqwerty\"\np = \"tre\"",
+      "output": "[2, 8]"
     }
   ],
   "func_sign": {

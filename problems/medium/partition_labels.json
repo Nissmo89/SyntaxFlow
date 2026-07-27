@@ -540,6 +540,130 @@
     {
       "input": "s = \"abca\"",
       "output": "[4]"
+    },
+    {
+      "input": "s = \"abbc\"",
+      "output": "[1, 2, 1]"
+    },
+    {
+      "input": "s = \"abccba\"",
+      "output": "[6]"
+    },
+    {
+      "input": "s = \"abaccb\"",
+      "output": "[6]"
+    },
+    {
+      "input": "s = \"eccbbaad\"",
+      "output": "[1, 2, 2, 2, 1]"
+    },
+    {
+      "input": "s = \"caedbdedda\"",
+      "output": "[1, 9]"
+    },
+    {
+      "input": "s = \"qiejxqfnqceocmy\"",
+      "output": "[13, 1, 1]"
+    },
+    {
+      "input": "s = \"abcddcbaefgfe\"",
+      "output": "[8, 5]"
+    },
+    {
+      "input": "s = \"vhaagbqkaq\"",
+      "output": "[1, 1, 8]"
+    },
+    {
+      "input": "s = \"abcdefghij\"",
+      "output": "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaa\"",
+      "output": "[12]"
+    },
+    {
+      "input": "s = \"abababab\"",
+      "output": "[8]"
+    },
+    {
+      "input": "s = \"aabbccddeeffgghhiijj\"",
+      "output": "[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]"
+    },
+    {
+      "input": "s = \"abcbad\"",
+      "output": "[5, 1]"
+    },
+    {
+      "input": "s = \"abacdefegdehijhklij\"",
+      "output": "[3, 1, 7, 8]"
+    },
+    {
+      "input": "s = \"abcadeafghibjklmnoip\"",
+      "output": "[19, 1]"
+    },
+    {
+      "input": "s = \"abcdaefgha\"",
+      "output": "[10]"
+    },
+    {
+      "input": "s = \"abaccbdeffed\"",
+      "output": "[6, 6]"
+    },
+    {
+      "input": "s = \"abccaddbeffe\"",
+      "output": "[8, 4]"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\"",
+      "output": "[52]"
+    },
+    {
+      "input": "s = \"aaaaabbbbbcccccdddddeeeee\"",
+      "output": "[5, 5, 5, 5, 5]"
+    },
+    {
+      "input": "s = \"aaaabbbbcccd\"",
+      "output": "[4, 4, 3, 1]"
+    },
+    {
+      "input": "s = \"zzxyxz\"",
+      "output": "[6]"
+    },
+    {
+      "input": "s = \"abcdd\"",
+      "output": "[1, 1, 1, 2]"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"",
+      "output": "[100, 100, 100, 100, 100]"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"",
+      "output": "[500]"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 2, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 499, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 500, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
     }
   ],
   "func_sign": {

@@ -593,6 +593,118 @@
     {
       "input": "s = \"aab\"\ndictionary = [\"aaab\", \"aabb\", \"ab\"]",
       "output": "\"ab\""
+    },
+    {
+      "input": "s = \"leetcode\"\ndictionary = [\"leet\", \"code\", \"leetcode\", \"leetcoded\"]",
+      "output": "\"leetcode\""
+    },
+    {
+      "input": "s = \"xyz\"\ndictionary = [\"xyzz\", \"yy\", \"zxz\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"axbxcxdx\"\ndictionary = [\"abcd\", \"axcd\", \"abcdx\"]",
+      "output": "\"abcdx\""
+    },
+    {
+      "input": "s = \"banana\"\ndictionary = [\"ban\", \"bana\", \"banan\", \"banana\", \"anan\"]",
+      "output": "\"banana\""
+    },
+    {
+      "input": "s = \"abdc\"\ndictionary = [\"abc\", \"adc\", \"abc\", \"adc\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"z\"\ndictionary = [\"a\", \"z\", \"zz\"]",
+      "output": "\"z\""
+    },
+    {
+      "input": "s = \"bbbbbb\"\ndictionary = [\"bbb\", \"bbbb\", \"bbbbb\", \"bbbbbbb\"]",
+      "output": "\"bbbbb\""
+    },
+    {
+      "input": "s = \"axbycz\"\ndictionary = [\"abc\", \"abz\", \"xyz\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"abcde\"\ndictionary = [\"aed\", \"edc\", \"ace\"]",
+      "output": "\"ace\""
+    },
+    {
+      "input": "s = \"pneumonoultramicroscopicsilicovolcanoconiosis\"\ndictionary = [\"volcano\", \"silicon\", \"piano\", \"music\"]",
+      "output": "\"silicon\""
+    },
+    {
+      "input": "s = \"abracadabra\"\ndictionary = [\"aaa\", \"abra\", \"cada\", \"abraca\", \"acad\"]",
+      "output": "\"abraca\""
+    },
+    {
+      "input": "s = \"mississippi\"\ndictionary = [\"mip\", \"misi\", \"missi\", \"mississippii\", \"mississippi\"]",
+      "output": "\"mississippi\""
+    },
+    {
+      "input": "s = \"helloworld\"\ndictionary = [\"helloworld\", \"hello\", \"world\", \"held\"]",
+      "output": "\"helloworld\""
+    },
+    {
+      "input": "s = \"abcabc\"\ndictionary = [\"aabbcc\", \"abccba\", \"abcabc\", \"cab\"]",
+      "output": "\"abcabc\""
+    },
+    {
+      "input": "s = \"axbxcxdxe\"\ndictionary = [\"abcde\", \"ace\", \"bd\"]",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"qwerty\"\ndictionary = [\"qwy\", \"qey\", \"qty\"]",
+      "output": "\"qey\""
+    },
+    {
+      "input": "s = \"lmn\"\ndictionary = [\"op\", \"op\", \"oo\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\ndictionary = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab\", \"aaaaaaaaaa\"]",
+      "output": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd\"\ndictionary = [\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\", \"zzzzzzzzzz\", \"abcdefghijklmnopqrstuvwxyza\", \"acegikmoqsuwy\"]",
+      "output": "\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\""
+    },
+    {
+      "input": "s = \"abcde\"\ndictionary = [\"a\", \"b\", \"c\", \"d\", \"e\", \"ab\", \"ac\", \"ad\", \"ae\", \"bc\", \"bd\", \"be\", \"cd\", \"ce\", \"de\", \"abc\", \"abd\", \"abe\", \"acd\", \"ace\", \"ade\", \"bcd\", \"bce\", \"bde\", \"cde\", \"abcd\", \"abce\", \"abde\", \"acde\", \"bcde\", \"abcde\"]",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"axxxbxxxcxxx\"\ndictionary = [\"abc\", \"abx\", \"axc\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"programming\"\ndictionary = [\"programmina\", \"programming\", \"progrmming\"]",
+      "output": "\"programming\""
+    },
+    {
+      "input": "s = \"cadb\"\ndictionary = [\"cab\", \"cdb\", \"adb\"]",
+      "output": "\"adb\""
+    },
+    {
+      "input": "s = \"zzxyyx\"\ndictionary = [\"zyx\", \"zxy\", \"zzx\", \"xyy\"]",
+      "output": "\"xyy\""
+    },
+    {
+      "input": "s = \"foobarbaz\"\ndictionary = [\"foo\", \"foo\", \"fob\", \"foob\", \"foob\", \"bar\", \"baz\"]",
+      "output": "\"foob\""
+    },
+    {
+      "input": "s = \"character\"\ndictionary = [\"cat\", \"char\", \"chart\", \"crate\", \"character\"]",
+      "output": "\"character\""
+    },
+    {
+      "input": "s = \"ab\"\ndictionary = [\"ba\", \"a\", \"b\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"thequickbrownfoxjumpsoverthelazydog\"\ndictionary = [\"quickfox\", \"brownjump\", \"overthe\", \"lazydog\", \"thequickbrown\"]",
+      "output": "\"thequickbrown\""
     }
   ],
   "func_sign": {

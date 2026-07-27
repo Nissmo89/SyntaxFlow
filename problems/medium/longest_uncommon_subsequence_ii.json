@@ -647,6 +647,122 @@
     {
       "input": "strs = [\"x\", \"y\", \"z\", \"x\"]",
       "output": "1"
+    },
+    {
+      "input": "strs = [\"aaa\", \"aaaa\", \"aaaaa\"]",
+      "output": "5"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"abcdefghij\", \"abcdefghij\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"abca\", \"bcab\", \"caba\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"aba\", \"aba\", \"cdc\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"abcde\"]",
+      "output": "5"
+    },
+    {
+      "input": "strs = [\"abcde\", \"bcdef\", \"cdefg\", \"abcde\"]",
+      "output": "5"
+    },
+    {
+      "input": "strs = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"bcdefghija\", \"cdefghijab\", \"defghijabc\", \"efghijabcd\"]",
+      "output": "10"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"abcdefghij\", \"bcdefghija\", \"cdefghijab\"]",
+      "output": "10"
+    },
+    {
+      "input": "strs = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", \"z\", \"aa\", \"bb\", \"cc\", \"dd\", \"ee\", \"ff\", \"gg\", \"hh\", \"ii\", \"jj\", \"kk\", \"ll\", \"mm\", \"nn\", \"oo\", \"pp\", \"qq\", \"rr\", \"ss\", \"tt\", \"uu\", \"vv\", \"ww\", \"xx\", \"yy\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\", \"abc\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"abcd\", \"abce\", \"abcf\", \"abc\", \"ab\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"xy\", \"yz\", \"zx\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"a\", \"a\", \"b\", \"b\", \"c\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"a\", \"ab\", \"abc\", \"abcd\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"a\", \"ab\", \"abc\", \"abcd\", \"abcd\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"bcdefghijk\", \"cdefghijkl\", \"defghijklm\"]",
+      "output": "10"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"abcdefghij\", \"bcdefghijk\", \"cdefghijkl\"]",
+      "output": "10"
+    },
+    {
+      "input": "strs = [\"aa\", \"aa\", \"aa\", \"aa\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"aa\", \"ab\", \"ab\", \"ab\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"a\", \"ab\", \"abc\", \"abd\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"abc\", \"bcd\", \"cde\", \"abc\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"aaaaaaaaaa\", \"baaaaaaaaa\", \"caaaaaaaaa\", \"daaaaaaaaa\", \"eaaaaaaaaa\"]",
+      "output": "10"
+    },
+    {
+      "input": "strs = [\"aaaaaaaaaa\", \"aaaaaaaaaa\", \"aaaaaaaaaa\", \"aaaaaaaaaa\", \"aaaaaaaaaa\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"mnop\", \"mno\", \"mn\", \"m\", \"xyz\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"mnop\", \"mnop\", \"mno\", \"mn\", \"m\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"zyx\", \"yx\", \"x\", \"zz\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"zyx\", \"zyx\", \"yx\", \"x\"]",
+      "output": "-1"
+    },
+    {
+      "input": "strs = [\"abcdef\", \"bcdefg\", \"cdefgh\", \"defghi\", \"efghij\", \"fghijk\"]",
+      "output": "6"
     }
   ],
   "func_sign": {

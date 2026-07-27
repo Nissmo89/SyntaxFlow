@@ -351,6 +351,118 @@
     {
       "input": "code = \"<A><![CDATA[xyz]]></A>\"",
       "output": "true"
+    },
+    {
+      "input": "code = \"<ABCDEFGHI>ok</ABCDEFGHI>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<ABCDEFGHIJ>bad</ABCDEFGHIJ>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A></B>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"text<A></A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A></A>text\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><</A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><!CDATA[abc]]></A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<![CDATA[abc]]>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><![CDATA[abc]</A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><B></B>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A></A><B></B>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><B></C></A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><B></B></A>>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A>123<Z></Z></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<LONGTAGNAME></LONGTAGNAME>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><B><![CDATA[</B>]]></B></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><![CDATA[<B></B>]]><C></C></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B><![CDATA[]]></B><C>ok</C></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B></B><!----></A>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><B></B><![CDATA[test]]></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B><![CDATA[<tag>]]></B></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><B></B></A\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A/>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A><AA></AA><B></B></A>\"",
+      "output": "true"
+    },
+    {
+      "input": "code = \"<A><AA></A></AA>\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<A>text</A><\"",
+      "output": "false"
+    },
+    {
+      "input": "code = \"<ROOT><CHILD>data</CHILD><INNER><![CDATA[<bad></bad>]]></INNER></ROOT>\"",
+      "output": "true"
     }
   ],
   "func_sign": {

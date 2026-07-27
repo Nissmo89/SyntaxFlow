@@ -693,6 +693,114 @@
     {
       "input": "root = [1, 2, 3, null, 4, 5, 6, 7, 8, 9, null, 10]\nx = 4\ny = 9",
       "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4]\nx = 2\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, null, 3]\nx = 2\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2]\nx = 2\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6, 7]\nx = 4\ny = 5",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6]\nx = 3\ny = 2",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2]\nx = 2\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6, 7]\nx = 7\ny = 6",
+      "output": "true"
+    },
+    {
+      "input": "root = [1]\nx = 1\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, null, null, 3, 4, 5, 6, 7, 8, 9, 10]\nx = 2\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2]\nx = 2\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3]\nx = 1\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6, 7, 8, 9]\nx = 7\ny = 9",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9]\nx = 4\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, 4, 5, 6]\nx = 1\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6, 7, 8, 9]\nx = 3\ny = 7",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nx = 3\ny = 9",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9]\nx = 7\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 6]\nx = 6\ny = 4",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6]\nx = 4\ny = 2",
+      "output": "false"
+    },
+    {
+      "input": "root = [1]\nx = 1\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, null, null, 10]\nx = 4\ny = 3",
+      "output": "false"
+    },
+    {
+      "input": "root = [1]\nx = 1\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, 3, 4, 5, 6, null, 7, null, 8, 9]\nx = 7\ny = 5",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, null, 3, 4, 5]\nx = 1\ny = 4",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, 3, 4, 5, 6, 7]\nx = 1\ny = 7",
+      "output": "false"
+    },
+    {
+      "input": "root = [1]\nx = 1\ny = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5, 6]\nx = 6\ny = 3",
+      "output": "false"
     }
   ],
   "func_sign": {

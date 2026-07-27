@@ -608,6 +608,126 @@
     {
       "input": "nums = [0, 2]",
       "output": "2"
+    },
+    {
+      "input": "nums = [2, 0]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "24"
+    },
+    {
+      "input": "nums = [-1, -2, -3, -4]",
+      "output": "24"
+    },
+    {
+      "input": "nums = [-1, -2, -3]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [1, 0, 1, 2, 3]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [-2, 3, -4]",
+      "output": "24"
+    },
+    {
+      "input": "nums = [-2, -3, 7]",
+      "output": "42"
+    },
+    {
+      "input": "nums = [-2, -3, 0, -2, -40]",
+      "output": "80"
+    },
+    {
+      "input": "nums = [2, 3, -2, 4]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [6, -3, -10, 0, 2]",
+      "output": "180"
+    },
+    {
+      "input": "nums = [2, -5, -2, -4, 3]",
+      "output": "24"
+    },
+    {
+      "input": "nums = [0, -2, -3, 0, -2, -40]",
+      "output": "80"
+    },
+    {
+      "input": "nums = [-10, 10, -10]",
+      "output": "1000"
+    },
+    {
+      "input": "nums = [2, 3, 0, 2, 4]",
+      "output": "8"
+    },
+    {
+      "input": "nums = [-1, 2, 3, 0, 4, -1, 2, 1]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [-1, 0, -2, 4, -1, 2, 1, -5, 4]",
+      "output": "160"
+    },
+    {
+      "input": "nums = [1, -2, -3, 4]",
+      "output": "24"
+    },
+    {
+      "input": "nums = [-2, -3, -4]",
+      "output": "12"
+    },
+    {
+      "input": "nums = [0, 1, -2, -3, -4, 0, 5, -1, -2]",
+      "output": "12"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [-1, -1, -1, -1, -1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 0, -2, 0, 2, 0, -2, 0, 2]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, -1, 2, 3, 4, -5]",
+      "output": "240"
+    },
+    {
+      "input": "nums = [-2, 0, 0, -3]",
+      "output": "0"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 4}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5, \"max\": 9}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 20}, \"of\": {\"gen\": \"int\", \"min\": -2, \"max\": 2}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 9}, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
     }
   ],
   "func_sign": {

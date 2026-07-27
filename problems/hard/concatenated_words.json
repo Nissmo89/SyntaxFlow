@@ -573,6 +573,110 @@
     {
       "input": "words = \"rat|ratcat|ratcatdog|ratcatdogcat|cat|dog\"",
       "output": "[\"ratcat\", \"ratcatdog\", \"ratcatdogcat\"]"
+    },
+    {
+      "input": "words = \"ab|abc|cd|abcd|abcabcd|cdab|abcdab\"",
+      "output": "[\"abcd\", \"abcabcd\", \"cdab\", \"abcdab\"]"
+    },
+    {
+      "input": "words = \"a|aa|aaa|aaaa|aaaaaa|aaaaaaaa|aaaaaaaaaaaa\"",
+      "output": "[\"aa\", \"aaa\", \"aaaa\", \"aaaaaa\", \"aaaaaaaa\", \"aaaaaaaaaaaa\"]"
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 20, \"max\": 35}, \"alphabet\": \"abc|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 25, \"max\": 40}, \"alphabet\": \"abcd|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 30, \"max\": 45}, \"alphabet\": \"abcde|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 35, \"max\": 50}, \"alphabet\": \"abcdef|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 40, \"max\": 55}, \"alphabet\": \"abcdefg|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 60, \"max\": 90}, \"alphabet\": \"abcd|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 70, \"max\": 100}, \"alphabet\": \"abcde|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 80, \"max\": 110}, \"alphabet\": \"abcdef|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 90, \"max\": 120}, \"alphabet\": \"abcdefg|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 100, \"max\": 130}, \"alphabet\": \"abcdefgh|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 110, \"max\": 140}, \"alphabet\": \"abcdefghi|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 120, \"max\": 150}, \"alphabet\": \"abcdefghij|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 130, \"max\": 160}, \"alphabet\": \"abcdefghijk|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 140, \"max\": 170}, \"alphabet\": \"abcdefghijkl|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 150, \"max\": 180}, \"alphabet\": \"abcdefghijklm|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 160, \"max\": 190}, \"alphabet\": \"abcdefghijklmn|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 170, \"max\": 200}, \"alphabet\": \"abcdefghijklmno|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 180, \"max\": 210}, \"alphabet\": \"abcdefghijklmnop|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 190, \"max\": 220}, \"alphabet\": \"abcdefghijklmnopq|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 800, \"max\": 1000}, \"alphabet\": \"abcde|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 900, \"max\": 1100}, \"alphabet\": \"abcdef|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 1200}, \"alphabet\": \"abcdefg|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1100, \"max\": 1300}, \"alphabet\": \"abcdefgh|\"}",
+      "output": ""
+    },
+    {
+      "input": "words = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1200, \"max\": 1400}, \"alphabet\": \"abcdefghi|\"}",
+      "output": ""
     }
   ],
   "func_sign": {

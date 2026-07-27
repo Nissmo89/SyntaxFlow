@@ -897,6 +897,138 @@
     {
       "input": "p = [1, 2, null, 3]\nq = [1, 2, null, 3]",
       "output": "true"
+    },
+    {
+      "input": "p = [1, 2, null, 3]\nq = [1, 2, null, 4]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, null, 2, null, 3]\nq = [1, null, 2, null, 3]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, null, 2]\nq = [1, null, 3]",
+      "output": "false"
+    },
+    {
+      "input": "p = [10000, 10000]\nq = [10000, 10000]",
+      "output": "true"
+    },
+    {
+      "input": "p = [-10000, -10000]\nq = [-10000, -10000]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, 2]\nq = [1, 2, 3]",
+      "output": "false"
+    },
+    {
+      "input": "p = [-1, -2, -3]\nq = [-1, -2, -3]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, -2, 3]\nq = [1, -2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, null, 2, 3]\nq = [1, null, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, 2]\nq = [1, 1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, null, 2, null, 3, null, 4]\nq = [1, null, 2, null, 3, null, 4]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, null, 2, null, 3, null, 4]\nq = [1, null, 2, null, 3, null, 5]",
+      "output": "false"
+    },
+    {
+      "input": "p = [4, 2, 6, 1, 3, 5, 7]\nq = [4, 2, 6, 1, 3, 5, 7]",
+      "output": "true"
+    },
+    {
+      "input": "p = [4, 2, 6, 1, 3, 5, 7]\nq = [5, 2, 6, 1, 3, 5, 7]",
+      "output": "false"
+    },
+    {
+      "input": "p = [4, 2, 6, 1, 3, 5, 7]\nq = [4, 2, 6, 1, 3, 5, 8]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2, null, 3, null, 4]\nq = [1, 2, null, 3, null, 4]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, 2, null, 3, null, 4]\nq = [1, 2, null, 3, null, 5]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, null, 2, null, 3, null, 4]\nq = [1, null, 2, null, 3, null, 4]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, null, 2]\nq = [1, null, 2, null, 3]",
+      "output": "false"
+    },
+    {
+      "input": "p = [10, 5]\nq = [10, 5]",
+      "output": "true"
+    },
+    {
+      "input": "p = [10, null, 5]\nq = [10, null, 5]",
+      "output": "true"
+    },
+    {
+      "input": "p = [10, 5]\nq = [10, 6]",
+      "output": "false"
+    },
+    {
+      "input": "p = [10, null, 5]\nq = [10, null, 6]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2, 3]\nq = [1, 2, 3, null, 4]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2, 3, 4]\nq = [1, 2, 3, null, null, null, 4]",
+      "output": "false"
+    },
+    {
+      "input": "p = [8, 4, 12, 2, 6, 10, 14, 1, null, 5, 7, 9, 11, 13, 15]\nq = [8, 4, 12, 2, 6, 10, 14, 1, null, 5, 7, 9, 11, 13, 15]",
+      "output": "true"
+    },
+    {
+      "input": "p = [8, 4, 12, 2, 6, 10, 14, 1, null, 5, 7, 9, 11, 13, 15]\nq = [8, 4, 12, 2, 6, 10, 14, 1, null, 5, 7, 9, 11, 13, 16]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2, 3, null, 4, null, 5, null, null, 6]\nq = [1, 2, 3, null, 4, null, 5, null, null, 6]",
+      "output": "true"
+    },
+    {
+      "input": "p = [1, 2, 3, null, 4, null, 5, null, null, 6]\nq = [1, 2, 3, null, 4, null, 5, null, null, 7]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2]\nq = [1, null, 2]",
+      "output": "false"
+    },
+    {
+      "input": "p = [1, 2, null, 3]\nq = [1, null, 2, null, 3]",
+      "output": "false"
+    },
+    {
+      "input": "p = [2, 1, 3, null, null, 4, 5]\nq = [2, 1, 3, null, null, 4, 6]",
+      "output": "false"
+    },
+    {
+      "input": "p = [0, -1, 1, -2, null, null, 2]\nq = [0, -1, 1, -2, null, null, 2]",
+      "output": "true"
     }
   ],
   "func_sign": {

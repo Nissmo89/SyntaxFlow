@@ -721,6 +721,114 @@
     {
       "input": "words = [\"a\", \"a\", \"ab\", \"abc\", \"abc\"]",
       "output": "\"abc\""
+    },
+    {
+      "input": "words = [\"a\", \"banana\", \"ban\", \"bana\", \"banan\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "words = [\"b\", \"ba\", \"ban\", \"bana\", \"banan\", \"banana\", \"a\", \"ap\", \"app\"]",
+      "output": "\"banana\""
+    },
+    {
+      "input": "words = [\"a\", \"ap\", \"app\", \"appl\", \"apple\", \"apply\", \"b\", \"ba\", \"ban\"]",
+      "output": "\"apple\""
+    },
+    {
+      "input": "words = [\"c\", \"ca\", \"cat\", \"cats\", \"cater\"]",
+      "output": "\"cats\""
+    },
+    {
+      "input": "words = [\"w\", \"wo\", \"wor\", \"worl\", \"world\", \"wx\", \"wxy\", \"wxyz\"]",
+      "output": "\"world\""
+    },
+    {
+      "input": "words = [\"ab\", \"abc\", \"abcd\", \"yz\", \"yza\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "words = [\"b\", \"a\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "words = [\"z\", \"m\", \"a\", \"q\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "words = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\", \"aaaaaaa\", \"aaaaaaaa\", \"aaaaaaaaa\", \"aaaaaaaaaa\", \"aaaaaaaaaaa\", \"aaaaaaaaaaaa\", \"aaaaaaaaaaaaa\", \"aaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]",
+      "output": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\""
+    },
+    {
+      "input": "words = [\"b\", \"ba\", \"ban\", \"bana\", \"banan\", \"banana\", \"c\", \"ca\", \"can\", \"cana\", \"canar\", \"canary\"]",
+      "output": "\"banana\""
+    },
+    {
+      "input": "words = [\"t\", \"te\", \"tes\", \"test\", \"tests\", \"tester\", \"testers\"]",
+      "output": "\"tests\""
+    },
+    {
+      "input": "words = [\"m\", \"ma\", \"man\", \"many\", \"mango\", \"mangos\"]",
+      "output": "\"many\""
+    },
+    {
+      "input": "words = [\"k\", \"k\", \"ki\", \"kin\", \"kind\", \"kinde\", \"kinder\", \"kind\"]",
+      "output": "\"kinder\""
+    },
+    {
+      "input": "words = [\"z\", \"zo\", \"zoo\", \"a\", \"ap\", \"app\", \"appl\", \"apple\"]",
+      "output": "\"apple\""
+    },
+    {
+      "input": "words = [\"d\", \"do\", \"dog\", \"c\", \"ca\", \"cat\"]",
+      "output": "\"cat\""
+    },
+    {
+      "input": "words = [\"r\", \"re\", \"rea\", \"read\", \"reade\", \"reader\", \"reading\"]",
+      "output": "\"reader\""
+    },
+    {
+      "input": "words = [\"h\", \"he\", \"hel\", \"hell\", \"hello\", \"helloo\"]",
+      "output": "\"helloo\""
+    },
+    {
+      "input": "words = [\"a\", \"at\", \"ate\", \"l\", \"la\", \"lat\", \"late\", \"later\"]",
+      "output": "\"later\""
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"dog\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "words = [\"ab\", \"abc\", \"abcd\", \"abcde\", \"f\"]",
+      "output": "\"f\""
+    },
+    {
+      "input": "words = [\"n\", \"na\", \"nat\", \"nate\", \"nates\", \"ne\", \"new\", \"news\"]",
+      "output": "\"nates\""
+    },
+    {
+      "input": "words = [\"t\", \"th\", \"the\", \"thei\", \"their\", \"ther\", \"there\"]",
+      "output": "\"their\""
+    },
+    {
+      "input": "words = [\"z\", \"y\", \"x\", \"w\", \"v\", \"u\", \"t\", \"s\", \"r\", \"q\", \"p\", \"o\", \"n\", \"m\", \"l\", \"k\", \"j\", \"i\", \"h\", \"g\", \"f\", \"e\", \"d\", \"c\", \"b\", \"a\", \"a\", \"b\", \"c\", \"d\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "words = [\"a\", \"ab\", \"abc\", \"abcd\", \"abcde\", \"abcdef\", \"abcdefg\", \"abcdefgh\", \"abcdefghi\", \"abcdefghij\", \"abcdefghijk\", \"abcdefghijkl\", \"abcdefghijklm\", \"abcdefghijklmn\", \"abcdefghijklmno\", \"abcdefghijklmnop\", \"abcdefghijklmnopq\", \"abcdefghijklmnopqr\", \"abcdefghijklmnopqrs\", \"abcdefghijklmnopqrst\", \"abcdefghijklmnopqrstu\", \"abcdefghijklmnopqrstuv\", \"abcdefghijklmnopqrstuvw\", \"abcdefghijklmnopqrstuvwx\", \"abcdefghijklmnopqrstuvwxy\", \"abcdefghijklmnopqrstuvwxyz\", \"banana\", \"apply\", \"world\"]",
+      "output": "\"abcdefghijklmnopqrstuvwxyz\""
+    },
+    {
+      "input": "words = [\"a\", \"ap\", \"app\", \"appl\", \"apple\", \"apply\", \"b\", \"ba\", \"ban\", \"bana\", \"banan\", \"banana\", \"c\", \"ca\", \"cat\", \"cats\", \"cater\"]",
+      "output": "\"banana\""
+    },
+    {
+      "input": "words = [\"a\", \"ab\", \"abc\", \"abcd\", \"abcde\", \"abcdef\", \"abcdefg\", \"abcdefgh\", \"abcdefghi\", \"abcdefghij\", \"abcdefghijk\", \"abcdefghijkl\", \"abcdefghijklm\", \"abcdefghijklmn\", \"abcdefghijklmno\", \"abcdefghijklmnop\", \"abcdefghijklmnopq\", \"abcdefghijklmnopqr\", \"abcdefghijklmnopqrs\", \"abcdefghijklmnopqrst\", \"abcdefghijklmnopqrstu\", \"abcdefghijklmnopqrstuv\", \"abcdefghijklmnopqrstuvw\", \"abcdefghijklmnopqrstuvwx\", \"abcdefghijklmnopqrstuvwxy\", \"abcdefghijklmnopqrstuvwxyz\", \"abcdefghijklmnopqrstuvwxyzq\"]",
+      "output": "\"abcdefghijklmnopqrstuvwxyzq\""
+    },
+    {
+      "input": "words = [\"z\", \"zz\", \"zzz\", \"zzzz\", \"zzzzz\", \"zzzzzz\", \"zzzzzzz\", \"zzzzzzzz\", \"zzzzzzzzz\", \"zzzzzzzzzz\", \"zzzzzzzzzzz\", \"zzzzzzzzzzzz\", \"zzzzzzzzzzzzz\", \"zzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\", \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\", \"a\", \"az\", \"aza\"]",
+      "output": "\"zzzzzzzzzzzzzzzzzzzzzzzzzz\""
     }
   ],
   "func_sign": {

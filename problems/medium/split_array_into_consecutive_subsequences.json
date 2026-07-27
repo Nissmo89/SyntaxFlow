@@ -636,6 +636,122 @@
     {
       "input": "nums = [2, 3, 4, 5, 6]",
       "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 4, 5, 6]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 3, 4, 5, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 4, 5, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 7, 8]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [5, 5, 5]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5, 5, 5]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [-3, -2, -1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-2, -1, 0, 1, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-4, -3, -2, 0]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 3, 4, 4, 5, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 5, 6, 7]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 7, 8, 9]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 4, 4, 5, 6]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 1, 2, 2, 3, 3]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 1, 2, 2, 3, 3, 4, 5, 6]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-1000, -999, -998]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [998, 999, 1000]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [-1000, -999, -998, 1000]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 8]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 5, 6, 7, 8]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 10, 11]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 7, 8, 9]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 6, 7, 8]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]",
+      "output": "true"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 9999, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
+      "output": ""
     }
   ],
   "func_sign": {

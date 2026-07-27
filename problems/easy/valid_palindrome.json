@@ -508,6 +508,118 @@
     {
       "input": "s = \"ab\"",
       "output": "false"
+    },
+    {
+      "input": "s = \"11\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"12\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"!!!\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"racecar\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"racecarx\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"No lemon, no melon\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"No lemon, no money\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \".,;:!?a!?::;.,\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \".,;:!?ab!?::;.,\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"12321\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"12341\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1a2 2A1\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"1a2 3A1\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ab@#ba\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab@#ca\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"Able was I, ere I saw Elba\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"Able was I, ere I saw Elvis\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"xYyX\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"xYzX\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"   Madam, I'm Adam   \"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"   Madam, I'm Eve   \"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"0P0\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0P1\"",
+      "output": "false"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 200000, \"max\": 200000}, \"alphabet\": \"!\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 199999, \"max\": 199999}, \"alphabet\": \"a\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 50000}, \"alphabet\": \"ab1!\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 150000, \"max\": 200000}, \"alphabet\": \"Ab3, \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 200000, \"max\": 200000}, \"alphabet\": \"Z\"}",
+      "output": ""
     }
   ],
   "func_sign": {

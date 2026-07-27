@@ -689,6 +689,126 @@
     {
       "input": "words = [\"abcd\", \"efgh\", \"ijkl\"]\npattern = \"aaaa\"",
       "output": "[]"
+    },
+    {
+      "input": "words = [\"qwert\", \"tyuio\", \"asdfg\", \"zxcvb\"]\npattern = \"abcde\"",
+      "output": "[\"qwert\", \"tyuio\", \"asdfg\", \"zxcvb\"]"
+    },
+    {
+      "input": "words = [\"hello\", \"jelly\", \"civic\", \"radar\"]\npattern = \"paper\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"abcabc\", \"deqdeq\", \"meemee\", \"aqqaqq\"]\npattern = \"abcabc\"",
+      "output": "[\"abcabc\", \"deqdeq\"]"
+    },
+    {
+      "input": "words = [\"abba\", \"baab\", \"cddc\", \"eeee\"]\npattern = \"noon\"",
+      "output": "[\"abba\", \"baab\", \"cddc\"]"
+    },
+    {
+      "input": "words = [\"xyxy\", \"zaza\", \"mnom\", \"abab\"]\npattern = \"abab\"",
+      "output": "[\"xyxy\", \"zaza\", \"abab\"]"
+    },
+    {
+      "input": "words = [\"pqrs\", \"qrst\", \"rstu\", \"stuv\"]\npattern = \"abcd\"",
+      "output": "[\"pqrs\", \"qrst\", \"rstu\", \"stuv\"]"
+    },
+    {
+      "input": "words = [\"zz\", \"xy\", \"yx\", \"zz\"]\npattern = \"ab\"",
+      "output": "[\"xy\", \"yx\"]"
+    },
+    {
+      "input": "words = [\"baba\", \"caca\", \"dada\"]\npattern = \"noon\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"a\", \"z\", \"m\", \"q\"]\npattern = \"b\"",
+      "output": "[\"a\", \"z\", \"m\", \"q\"]"
+    },
+    {
+      "input": "words = [\"abc\", \"bcd\", \"cde\", \"def\"]\npattern = \"xyz\"",
+      "output": "[\"abc\", \"bcd\", \"cde\", \"def\"]"
+    },
+    {
+      "input": "words = [\"mom\", \"dad\", \"pop\", \"aaa\"]\npattern = \"aba\"",
+      "output": "[\"mom\", \"dad\", \"pop\"]"
+    },
+    {
+      "input": "words = [\"kik\", \"foo\", \"bar\", \"paper\"]\npattern = \"abb\"",
+      "output": "[\"foo\"]"
+    },
+    {
+      "input": "words = [\"xyzxyz\", \"ababab\", \"aaaaaa\", \"qwerty\"]\npattern = \"aabbcc\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"abcdef\", \"bcdefg\", \"cdefgh\", \"zyxwvu\"]\npattern = \"abcdef\"",
+      "output": "[\"abcdef\", \"bcdefg\", \"cdefgh\", \"zyxwvu\"]"
+    },
+    {
+      "input": "words = [\"abcabca\", \"bcdbcde\", \"zzxzzxz\", \"mnopqrs\"]\npattern = \"abcadab\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"leetcode\", \"codeleet\", \"helloell\", \"worldwid\"]\npattern = \"abcaefgh\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"abcdefghij\", \"klmnopqrst\", \"uvwxyzabcd\", \"zyxwvutsrq\"]\npattern = \"abcdefghij\"",
+      "output": "[\"abcdefghij\", \"klmnopqrst\", \"uvwxyzabcd\", \"zyxwvutsrq\"]"
+    },
+    {
+      "input": "words = [\"abcdefghijkl\", \"mnopqrstuvwx\", \"yzabcdefghij\"]\npattern = \"klmnopqrstuv\"",
+      "output": "[\"abcdefghijkl\", \"mnopqrstuvwx\", \"yzabcdefghij\"]"
+    },
+    {
+      "input": "words = [\"aab\", \"bbc\", \"ccd\", \"dde\"]\npattern = \"abb\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"aba\", \"xyz\", \"xyx\"]\npattern = \"aba\"",
+      "output": "[\"aba\", \"xyx\"]"
+    },
+    {
+      "input": "words = [\"ab\", \"ba\", \"cd\", \"ef\"]\npattern = \"ab\"",
+      "output": "[\"ab\", \"ba\", \"cd\", \"ef\"]"
+    },
+    {
+      "input": "words = [\"abc\", \"aba\", \"aaa\"]\npattern = \"xyz\"",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "words = [\"ppp\", \"qqq\", \"rqr\"]\npattern = \"aaa\"",
+      "output": "[\"ppp\", \"qqq\"]"
+    },
+    {
+      "input": "words = [\"abcde\", \"fghij\", \"klmno\", \"pqrst\"]\npattern = \"abcde\"",
+      "output": "[\"abcde\", \"fghij\", \"klmno\", \"pqrst\"]"
+    },
+    {
+      "input": "words = [\"abca\", \"zbxz\", \"mnmm\", \"zzzz\"]\npattern = \"mama\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"xyxy\", \"yyyy\", \"xzxz\"]\npattern = \"abab\"",
+      "output": "[\"xyxy\", \"xzxz\"]"
+    },
+    {
+      "input": "words = [\"same\"]\npattern = \"abcd\"",
+      "output": "[\"same\"]"
+    },
+    {
+      "input": "words = [\"nooo\"]\npattern = \"abcd\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"abab\", \"baba\"]\npattern = \"abba\"",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"paper\", \"title\", \"abaca\", \"xyxxy\"]\npattern = \"aabcd\"",
+      "output": "[]"
     }
   ],
   "func_sign": {

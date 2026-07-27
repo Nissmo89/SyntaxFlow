@@ -151,9 +151,6 @@ def main():
         # Build testCases for UI
         test_cases = []
         for idx, tc in enumerate(manifest.get("tests", [])):
-            # Only show first 5-8 test cases in the UI to keep it clean, but keep them all in manifest!
-            if idx >= 8:
-                break
             in_val = tc.get("in", {})
             out_val = tc.get("out")
             

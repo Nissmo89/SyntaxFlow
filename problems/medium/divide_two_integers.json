@@ -410,6 +410,126 @@
     {
       "input": "dividend = -1\ndivisor = -1",
       "output": "1"
+    },
+    {
+      "input": "dividend = 8\ndivisor = 2",
+      "output": "4"
+    },
+    {
+      "input": "dividend = 9\ndivisor = -3",
+      "output": "-3"
+    },
+    {
+      "input": "dividend = 11\ndivisor = 3",
+      "output": "3"
+    },
+    {
+      "input": "dividend = -11\ndivisor = 3",
+      "output": "-3"
+    },
+    {
+      "input": "dividend = -11\ndivisor = -3",
+      "output": "3"
+    },
+    {
+      "input": "dividend = 3\ndivisor = 5",
+      "output": "0"
+    },
+    {
+      "input": "dividend = -3\ndivisor = 5",
+      "output": "0"
+    },
+    {
+      "input": "dividend = -2147483648\ndivisor = 1",
+      "output": "-2147483648"
+    },
+    {
+      "input": "dividend = -2147483648\ndivisor = -1",
+      "output": "2147483647"
+    },
+    {
+      "input": "dividend = 2147483647\ndivisor = 1",
+      "output": "2147483647"
+    },
+    {
+      "input": "dividend = 2147483647\ndivisor = -1",
+      "output": "-2147483647"
+    },
+    {
+      "input": "dividend = -2147483648\ndivisor = 2",
+      "output": "-1073741824"
+    },
+    {
+      "input": "dividend = -2147483648\ndivisor = 3",
+      "output": "-715827882"
+    },
+    {
+      "input": "dividend = 2147483647\ndivisor = 2",
+      "output": "1073741823"
+    },
+    {
+      "input": "dividend = 2147483647\ndivisor = 3",
+      "output": "715827882"
+    },
+    {
+      "input": "dividend = 1234567890\ndivisor = 12345",
+      "output": "100005"
+    },
+    {
+      "input": "dividend = -1234567890\ndivisor = 12345",
+      "output": "-100005"
+    },
+    {
+      "input": "dividend = -1234567890\ndivisor = -12345",
+      "output": "100005"
+    },
+    {
+      "input": "dividend = 1073741824\ndivisor = 512",
+      "output": "2097152"
+    },
+    {
+      "input": "dividend = 1073741823\ndivisor = 512",
+      "output": "2097151"
+    },
+    {
+      "input": "dividend = -101\ndivisor = 10",
+      "output": "-10"
+    },
+    {
+      "input": "dividend = 101\ndivisor = -10",
+      "output": "-10"
+    },
+    {
+      "input": "dividend = -101\ndivisor = -10",
+      "output": "10"
+    },
+    {
+      "input": "dividend = -1024\ndivisor = -32",
+      "output": "32"
+    },
+    {
+      "input": "dividend = 1024\ndivisor = 32",
+      "output": "32"
+    },
+    {
+      "input": "dividend = 100\ndivisor = 9",
+      "output": "11"
+    },
+    {
+      "input": "dividend = -100\ndivisor = 9",
+      "output": "-11"
+    },
+    {
+      "input": "dividend = -100\ndivisor = -9",
+      "output": "11"
+    },
+    {
+      "input": "dividend = 50\ndivisor = 7",
+      "output": "7"
+    },
+    {
+      "input": "dividend = -50\ndivisor = 7",
+      "output": "-7"
     }
   ],
   "func_sign": {

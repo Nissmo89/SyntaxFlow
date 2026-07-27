@@ -669,6 +669,142 @@
     {
       "input": "s = \"catscats\"\nwordDict = [\"cat\", \"cats\"]",
       "output": "true"
+    },
+    {
+      "input": "s = \"penpenpen\"\nwordDict = [\"pen\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"cars\"\nwordDict = [\"car\", \"ca\", \"rs\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"cars\"\nwordDict = [\"car\", \"ca\", \"r\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"leetcodes\"\nwordDict = [\"leet\", \"code\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrst\"\nwordDict = [\"abcdefghijklmnopqrst\", \"abc\", \"def\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrsu\"\nwordDict = [\"abcdefghijklmnopqrst\", \"abc\", \"def\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcabcabcabc\"\nwordDict = [\"a\", \"b\", \"c\", \"ab\", \"bc\", \"abc\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcabcabcaab\"\nwordDict = [\"a\", \"b\", \"c\", \"ab\", \"bc\", \"abc\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"pineapplepenapple\"\nwordDict = [\"pine\", \"apple\", \"pen\", \"pineapple\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"pineapplepenapplf\"\nwordDict = [\"pine\", \"apple\", \"pen\", \"pineapple\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"zzzzz\"\nwordDict = [\"a\", \"aa\", \"aaa\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaaab\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcdef\"\nwordDict = [\"ab\", \"abc\", \"cd\", \"def\", \"ef\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcdefg\"\nwordDict = [\"ab\", \"abc\", \"cd\", \"def\", \"ef\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaaaabaaaaa\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"b\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaaaacaaaaa\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"b\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcdefghijabcdefghij\"\nwordDict = [\"abcdefghij\", \"abcdefghijabcdefghij\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcdefghijabcdefghik\"\nwordDict = [\"abcdefghij\", \"abcdefghijabcdefghij\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abababababab\"\nwordDict = [\"ab\", \"aba\", \"bab\", \"abab\", \"babab\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abababababae\"\nwordDict = [\"ab\", \"aba\", \"bab\", \"abab\", \"babab\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\", \"aaaaaaa\", \"aaaaaaaa\", \"aaaaaaaaa\", \"aaaaaaaaaa\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab\"\nwordDict = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\", \"aaaaaaa\", \"aaaaaaaa\", \"aaaaaaaaa\", \"aaaaaaaaaa\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstabcdefghijklmnopqrst\"\nwordDict = [\"abcdefghijklmnopqrst\", \"abcdefghij\", \"klmnopqrst\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstabcdefghijklmnoprst\"\nwordDict = [\"abcdefghijklmnopqrst\", \"abcdefghij\", \"klmnopqrst\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"catsanddog\"\nwordDict = [\"cats\", \"cat\", \"and\", \"sand\", \"dog\", \"do\", \"g\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"catsanddoq\"\nwordDict = [\"cats\", \"cat\", \"and\", \"sand\", \"dog\", \"do\", \"g\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc\"\nwordDict = [\"abc\", \"abca\", \"bcab\", \"cab\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabx\"\nwordDict = [\"abc\", \"abca\", \"bcab\", \"cab\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aa\"\nwordDict = [\"a\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab\"\nwordDict = [\"a\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = \"xyxyxyxyxyxyxyxyxyxy\"\nwordDict = [\"x\", \"y\", \"xy\", \"yx\"]",
+      "output": "true"
+    },
+    {
+      "input": "s = \"xyxyxyxyxyxyxyxyxyxz\"\nwordDict = [\"x\", \"y\", \"xy\", \"yx\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 300, \"alphabet\": \"abcd\"}\nwordDict = [\"wx\", \"yz\", \"ww\", \"xx\"]",
+      "output": "false"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 280, \"max\": 300}, \"alphabet\": \"mnop\"}\nwordDict = [\"qr\", \"st\", \"qq\", \"rr\"]",
+      "output": "false"
     }
   ],
   "func_sign": {

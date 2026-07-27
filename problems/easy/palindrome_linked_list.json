@@ -571,6 +571,122 @@
     {
       "input": "head = [1, 2, 3, 2, 1]",
       "output": "true"
+    },
+    {
+      "input": "head = [1, 2, 3, 3, 2, 1]",
+      "output": "true"
+    },
+    {
+      "input": "head = [9, 8, 8, 9]",
+      "output": "true"
+    },
+    {
+      "input": "head = [1, 2, 3, 4, 1]",
+      "output": "false"
+    },
+    {
+      "input": "head = [1, 2, 2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "head = [1, 1, 2, 1]",
+      "output": "false"
+    },
+    {
+      "input": "head = [0, 1, 0]",
+      "output": "true"
+    },
+    {
+      "input": "head = [0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "head = [7, 7, 7, 7, 7]",
+      "output": "true"
+    },
+    {
+      "input": "head = [3, 3, 3, 3, 3, 3]",
+      "output": "true"
+    },
+    {
+      "input": "head = [1, 2, 3, 3, 2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "head = [6, 5, 4, 5, 6, 7]",
+      "output": "false"
+    },
+    {
+      "input": "head = [8, 1, 0, 1, 9]",
+      "output": "false"
+    },
+    {
+      "input": "head = [2, 4, 6, 4, 2]",
+      "output": "true"
+    },
+    {
+      "input": "head = [2, 4, 6, 6, 4, 2]",
+      "output": "true"
+    },
+    {
+      "input": "head = [2, 4, 6, 4, 3]",
+      "output": "false"
+    },
+    {
+      "input": "head = [2, 4, 6, 6, 4, 3]",
+      "output": "false"
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 11, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 31, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 100, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 99999, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 50001, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 75000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 75001, \"of\": {\"gen\": \"int\", \"min\": 9, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
+    },
+    {
+      "input": "head = {\"gen\": \"array\", \"len\": 60000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
+      "output": ""
     }
   ],
   "func_sign": {

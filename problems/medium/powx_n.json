@@ -434,6 +434,134 @@
     {
       "input": "x = 1.0\nn = -2147483648",
       "output": ""
+    },
+    {
+      "input": "x = -1.0\nn = 2147483646",
+      "output": ""
+    },
+    {
+      "input": "x = -1.0\nn = 2147483647",
+      "output": ""
+    },
+    {
+      "input": "x = -1.0\nn = -2147483648",
+      "output": ""
+    },
+    {
+      "input": "x = -1.0\nn = -2147483647",
+      "output": ""
+    },
+    {
+      "input": "x = 2.0\nn = 1",
+      "output": ""
+    },
+    {
+      "input": "x = -2.0\nn = 3",
+      "output": ""
+    },
+    {
+      "input": "x = -2.0\nn = 4",
+      "output": ""
+    },
+    {
+      "input": "x = -2.0\nn = -3",
+      "output": ""
+    },
+    {
+      "input": "x = -2.0\nn = -4",
+      "output": ""
+    },
+    {
+      "input": "x = 0.5\nn = 5",
+      "output": ""
+    },
+    {
+      "input": "x = 0.5\nn = -5",
+      "output": ""
+    },
+    {
+      "input": "x = 1.0001\nn = 1000",
+      "output": ""
+    },
+    {
+      "input": "x = 1.0001\nn = -1000",
+      "output": ""
+    },
+    {
+      "input": "x = 10.0\nn = 4",
+      "output": ""
+    },
+    {
+      "input": "x = 10.0\nn = -4",
+      "output": ""
+    },
+    {
+      "input": "x = 3.14159\nn = 2",
+      "output": ""
+    },
+    {
+      "input": "x = 3.14159\nn = -2",
+      "output": ""
+    },
+    {
+      "input": "x = 0.25\nn = 8",
+      "output": ""
+    },
+    {
+      "input": "x = 0.25\nn = -8",
+      "output": ""
+    },
+    {
+      "input": "x = -0.75\nn = 11",
+      "output": ""
+    },
+    {
+      "input": "x = -0.75\nn = -11",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"float\", \"min\": 0.1, \"max\": 9.9, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -50, \"max\": 50}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"float\", \"min\": -9.9, \"max\": -0.1, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -31, \"max\": 31}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"float\", \"min\": 0.01, \"max\": 1.99, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -100, \"max\": 100}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"float\", \"min\": 1.01, \"max\": 2.5, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -20, \"max\": 20}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"float\", \"min\": -2.5, \"max\": 2.5, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -15, \"max\": 15}",
+      "output": ""
+    },
+    {
+      "input": "x = 1.25\nn = 32",
+      "output": ""
+    },
+    {
+      "input": "x = 1.25\nn = -32",
+      "output": ""
+    },
+    {
+      "input": "x = -1.25\nn = 32",
+      "output": ""
+    },
+    {
+      "input": "x = -1.25\nn = 33",
+      "output": ""
+    },
+    {
+      "input": "x = -1.25\nn = -32",
+      "output": ""
+    },
+    {
+      "input": "x = -1.25\nn = -33",
+      "output": ""
     }
   ],
   "func_sign": {

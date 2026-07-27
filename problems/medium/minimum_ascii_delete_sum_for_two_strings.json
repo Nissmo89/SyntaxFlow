@@ -412,6 +412,126 @@
     {
       "input": "s1 = \"zz\"\ns2 = \"z\"",
       "output": "122"
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"ac\"",
+      "output": "98"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"bd\"",
+      "output": "196"
+    },
+    {
+      "input": "s1 = \"aaaa\"\ns2 = \"aaaa\"",
+      "output": "0"
+    },
+    {
+      "input": "s1 = \"aaaa\"\ns2 = \"aa\"",
+      "output": "194"
+    },
+    {
+      "input": "s1 = \"aaaa\"\ns2 = \"bbbb\"",
+      "output": "780"
+    },
+    {
+      "input": "s1 = \"aabcc\"\ns2 = \"adcaa\"",
+      "output": "588"
+    },
+    {
+      "input": "s1 = \"xsea\"\ns2 = \"seat\"",
+      "output": "236"
+    },
+    {
+      "input": "s1 = \"abcdef\"\ns2 = \"abcxyz\"",
+      "output": "666"
+    },
+    {
+      "input": "s1 = \"zzzabc\"\ns2 = \"yyyabc\"",
+      "output": "729"
+    },
+    {
+      "input": "s1 = \"abab\"\ns2 = \"baba\"",
+      "output": "194"
+    },
+    {
+      "input": "s1 = \"park\"\ns2 = \"spark\"",
+      "output": "115"
+    },
+    {
+      "input": "s1 = \"abcxyz\"\ns2 = \"xaybzc\"",
+      "output": "588"
+    },
+    {
+      "input": "s1 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\ns2 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "0"
+    },
+    {
+      "input": "s1 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\ns2 = \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+      "output": "19500"
+    },
+    {
+      "input": "s1 = \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"\ns2 = \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"",
+      "output": "0"
+    },
+    {
+      "input": "s1 = \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"\ns2 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "21900"
+    },
+    {
+      "input": "s1 = \"abcdefgh\"\ns2 = \"abcdef\"",
+      "output": "207"
+    },
+    {
+      "input": "s1 = \"mnopqr\"\ns2 = \"opqr\"",
+      "output": "219"
+    },
+    {
+      "input": "s1 = \"banana\"\ns2 = \"ananas\"",
+      "output": "213"
+    },
+    {
+      "input": "s1 = \"mississippi\"\ns2 = \"imiss\"",
+      "output": "874"
+    },
+    {
+      "input": "s1 = \"character\"\ns2 = \"charter\"",
+      "output": "196"
+    },
+    {
+      "input": "s1 = \"algorithm\"\ns2 = \"logarithm\"",
+      "output": "400"
+    },
+    {
+      "input": "s1 = \"azby\"\ns2 = \"byaz\"",
+      "output": "438"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"cadb\"",
+      "output": "390"
+    },
+    {
+      "input": "s1 = \"qwerty\"\ns2 = \"qwert\"",
+      "output": "121"
+    },
+    {
+      "input": "s1 = \"hello\"\ns2 = \"yellow\"",
+      "output": "344"
+    },
+    {
+      "input": "s1 = \"ccc\"\ns2 = \"cc\"",
+      "output": "99"
+    },
+    {
+      "input": "s1 = \"cccccccccc\"\ns2 = \"ccccc\"",
+      "output": "495"
+    },
+    {
+      "input": "s1 = \"kitten\"\ns2 = \"sitting\"",
+      "output": "531"
+    },
+    {
+      "input": "s1 = \"sunday\"\ns2 = \"saturday\"",
+      "output": "437"
     }
   ],
   "func_sign": {

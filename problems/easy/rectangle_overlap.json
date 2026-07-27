@@ -735,6 +735,114 @@
     {
       "input": "rec1 = [-5, -5, -1, -1]\nrec2 = [-3, -3, 2, 2]",
       "output": "true"
+    },
+    {
+      "input": "rec1 = [-10, -10, -5, -5]\nrec2 = [-4, -4, 0, 0]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [-5, 0, 0, 5]\nrec2 = [-1, -1, 1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [1, 1, 4, 4]\nrec2 = [2, 2, 3, 3]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [1, 1, 4, 4]\nrec2 = [4, 4, 5, 5]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [1, 1, 4, 4]\nrec2 = [0, 0, 1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [1, 1, 4, 4]\nrec2 = [4, 1, 6, 4]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [1, 1, 4, 4]\nrec2 = [0, 2, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 3, 3]\nrec2 = [3, 3, 6, 6]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 3, 3]\nrec2 = [2, 3, 4, 4]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 3, 3]\nrec2 = [3, 1, 4, 2]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 3, 3]\nrec2 = [1, 3, 2, 4]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 3, 3]\nrec2 = [-1, 1, 1, 2]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 1000000000, 1000000000]\nrec2 = [999999999, 999999999, 1000000001, 1000000001]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [-1000000000, -1000000000, 0, 0]\nrec2 = [-1, -1, 1, 1]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [-1000000000, -1, -1, 1]\nrec2 = [-2, -2, 0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [2, 2, 5, 5]\nrec2 = [3, 0, 4, 3]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [2, 2, 5, 5]\nrec2 = [5, 2, 7, 4]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [2, 2, 5, 5]\nrec2 = [0, 5, 3, 6]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [2, 2, 5, 5]\nrec2 = [2, 2, 5, 5]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 1, 10]\nrec2 = [0, 5, 1, 15]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 1]\nrec2 = [5, 0, 15, 1]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 10]\nrec2 = [10, 10, 20, 20]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 10]\nrec2 = [10, 0, 20, 10]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 10]\nrec2 = [0, 10, 10, 20]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 10]\nrec2 = [9, 9, 11, 11]",
+      "output": "true"
+    },
+    {
+      "input": "rec1 = [0, 0, 10, 10]\nrec2 = [-1, -1, 0, 0]",
+      "output": "false"
+    },
+    {
+      "input": "rec1 = [0, 0, 4, 8]\nrec2 = [2, -2, 6, 2]",
+      "output": "true"
     }
   ],
   "func_sign": {

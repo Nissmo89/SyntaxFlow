@@ -754,6 +754,130 @@
     {
       "input": "expression = \"a - a\"\nevalvars = []\nevalints = []",
       "output": "[]"
+    },
+    {
+      "input": "expression = \"a - b\"\nevalvars = [\"a\", \"b\"]\nevalints = [7, 7]",
+      "output": "[]"
+    },
+    {
+      "input": "expression = \"(a + b + c) * 0\"\nevalvars = []\nevalints = []",
+      "output": "[]"
+    },
+    {
+      "input": "expression = \"a * b + 3 * a - b\"\nevalvars = [\"a\", \"b\"]\nevalints = [2, 5]",
+      "output": "[\"11\"]"
+    },
+    {
+      "input": "expression = \"a * b + 3 * a - b\"\nevalvars = [\"a\"]\nevalints = [2]",
+      "output": "[\"1*b\", \"6\"]"
+    },
+    {
+      "input": "expression = \"a * a * b + b * a * a\"\nevalvars = []\nevalints = []",
+      "output": "[\"2*a*a*b\"]"
+    },
+    {
+      "input": "expression = \"b * a + a * c + b * b\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*b\", \"1*a*c\", \"1*b*b\"]"
+    },
+    {
+      "input": "expression = \"a * a + a * b + b * b + c\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*a\", \"1*a*b\", \"1*b*b\", \"1*c\"]"
+    },
+    {
+      "input": "expression = \"x * (y + z * 2)\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*x*y\", \"2*x*z\"]"
+    },
+    {
+      "input": "expression = \"((a - b) * (b - c)) + a * c\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*b\", \"-1*b*b\", \"1*b*c\"]"
+    },
+    {
+      "input": "expression = \"(a + 5 - 5) * (b + 2 - 2)\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*b\"]"
+    },
+    {
+      "input": "expression = \"a * b + b * a - 2 * a * b\"\nevalvars = []\nevalints = []",
+      "output": "[]"
+    },
+    {
+      "input": "expression = \"x * y + z\"\nevalvars = [\"x\"]\nevalints = [0]",
+      "output": "[\"1*z\"]"
+    },
+    {
+      "input": "expression = \"temperature * pressure - pressure * humidity + humidity\"\nevalvars = []\nevalints = []",
+      "output": "[\"-1*humidity*pressure\", \"1*pressure*temperature\", \"1*humidity\"]"
+    },
+    {
+      "input": "expression = \"temperature * pressure - pressure * humidity + humidity\"\nevalvars = [\"pressure\", \"humidity\"]\nevalints = [2, 3]",
+      "output": "[\"2*temperature\", \"-3\"]"
+    },
+    {
+      "input": "expression = \"a * b * c * d\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*b*c*d\"]"
+    },
+    {
+      "input": "expression = \"a * a * a * b - a * b * a * a\"\nevalvars = []\nevalints = []",
+      "output": "[]"
+    },
+    {
+      "input": "expression = \"(a + b) * (c + d)\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*c\", \"1*a*d\", \"1*b*c\", \"1*b*d\"]"
+    },
+    {
+      "input": "expression = \"(a + b) * (a + b)\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*a\", \"2*a*b\", \"1*b*b\"]"
+    },
+    {
+      "input": "expression = \"a * a + a * b + b * b\"\nevalvars = [\"a\"]\nevalints = [2]",
+      "output": "[\"1*b*b\", \"2*b\", \"4\"]"
+    },
+    {
+      "input": "expression = \"10 - x + 3 * y - 2 * y + x * x\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*x*x\", \"-1*x\", \"1*y\", \"10\"]"
+    },
+    {
+      "input": "expression = \"(x + 1) * (x + 1)\"\nevalvars = [\"x\"]\nevalints = [3]",
+      "output": "[\"16\"]"
+    },
+    {
+      "input": "expression = \"(x + 1) * (x + 1)\"\nevalvars = [\"x\"]\nevalints = [-2]",
+      "output": "[\"1\"]"
+    },
+    {
+      "input": "expression = \"(((a + b) - c) + (d - e)) * 1\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a\", \"1*b\", \"-1*c\", \"1*d\", \"-1*e\"]"
+    },
+    {
+      "input": "expression = \"a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a\", \"1*b\", \"1*c\", \"1*d\", \"1*e\", \"1*f\", \"1*g\", \"1*h\", \"1*i\", \"1*j\", \"1*k\", \"1*l\", \"1*m\", \"1*n\", \"1*o\", \"1*p\", \"1*q\", \"1*r\", \"1*s\", \"1*t\", \"1*u\", \"1*v\", \"1*w\", \"1*x\", \"1*y\", \"1*z\"]"
+    },
+    {
+      "input": "expression = \"a * b * c * d * e * f\"\nevalvars = [\"b\", \"d\", \"f\"]\nevalints = [2, 3, 4]",
+      "output": "[\"24*a*c*e\"]"
+    },
+    {
+      "input": "expression = \"a * b + a * b + a * b + a * b + a * b + a * b + a * b + a * b + a * b + a * b - a * b - a * b - a * b - a * b - a * b\"\nevalvars = []\nevalints = []",
+      "output": "[\"5*a*b\"]"
+    },
+    {
+      "input": "expression = \"(a + 1) * (b + 1) * (c + 1) * (d + 1)\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*a*b*c*d\", \"1*a*b*c\", \"1*a*b*d\", \"1*a*c*d\", \"1*b*c*d\", \"1*a*b\", \"1*a*c\", \"1*a*d\", \"1*b*c\", \"1*b*d\", \"1*c*d\", \"1*a\", \"1*b\", \"1*c\", \"1*d\", \"1\"]"
+    },
+    {
+      "input": "expression = \"alpha * beta + beta * gamma + gamma * delta + delta * epsilon + epsilon * zeta + zeta * eta + eta * theta\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*alpha*beta\", \"1*beta*gamma\", \"1*delta*epsilon\", \"1*delta*gamma\", \"1*epsilon*zeta\", \"1*eta*theta\", \"1*eta*zeta\"]"
+    },
+    {
+      "input": "expression = \"(x + 100) * (y + 90) - (x * y) - 9000\"\nevalvars = []\nevalints = []",
+      "output": "[\"90*x\", \"100*y\"]"
+    },
+    {
+      "input": "expression = \"aa + ab + ac + ad + ae + af + ag + ah + ai + aj + ak + al + am + an + ao + ap + aq + ar + as + at + au + av + aw + ax + ay + az + ba + bb + bc + bd + be + bf + bg + bh + bi + bj + bk + bl + bm + bn + bo + bp + bq + br + bs + bt + bu + bv + bw + bx\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*aa\", \"1*ab\", \"1*ac\", \"1*ad\", \"1*ae\", \"1*af\", \"1*ag\", \"1*ah\", \"1*ai\", \"1*aj\", \"1*ak\", \"1*al\", \"1*am\", \"1*an\", \"1*ao\", \"1*ap\", \"1*aq\", \"1*ar\", \"1*as\", \"1*at\", \"1*au\", \"1*av\", \"1*aw\", \"1*ax\", \"1*ay\", \"1*az\", \"1*ba\", \"1*bb\", \"1*bc\", \"1*bd\", \"1*be\", \"1*bf\", \"1*bg\", \"1*bh\", \"1*bi\", \"1*bj\", \"1*bk\", \"1*bl\", \"1*bm\", \"1*bn\", \"1*bo\", \"1*bp\", \"1*bq\", \"1*br\", \"1*bs\", \"1*bt\", \"1*bu\", \"1*bv\", \"1*bw\", \"1*bx\"]"
+    },
+    {
+      "input": "expression = \"aa * ma + ab * mb + ac * mc + ad * md + ae * me + af * mf + ag * mg + ah * mh + ai * mi + aj * mj + ak * mk + al * ml + ba * na + bb * nb + bc * nc + bd * nd + be * ne + bf * nf + bg * ng + bh * nh + bi * ni + bj * nj + bk * nk + bl * nl\"\nevalvars = []\nevalints = []",
+      "output": "[\"1*aa*ma\", \"1*ab*mb\", \"1*ac*mc\", \"1*ad*md\", \"1*ae*me\", \"1*af*mf\", \"1*ag*mg\", \"1*ah*mh\", \"1*ai*mi\", \"1*aj*mj\", \"1*ak*mk\", \"1*al*ml\", \"1*ba*na\", \"1*bb*nb\", \"1*bc*nc\", \"1*bd*nd\", \"1*be*ne\", \"1*bf*nf\", \"1*bg*ng\", \"1*bh*nh\", \"1*bi*ni\", \"1*bj*nj\", \"1*bk*nk\", \"1*bl*nl\"]"
     }
   ],
   "func_sign": {

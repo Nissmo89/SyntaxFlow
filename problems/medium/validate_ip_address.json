@@ -363,6 +363,126 @@
     {
       "input": "queryIP = \"999.10.10.10\"",
       "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.-1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1..1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1.1 \"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1.a\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"+1.1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1. 1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:7334\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"2001:db8:85a3:0:0:8a2e:370:7334\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"0:0:0:0:0:0:0:0\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"1:2:3:4:5:6:7:8\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"0001:0002:0003:0004:0005:0006:0007:0008\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"12345:0:0:0:0:0:0:0\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:733g\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:73/4\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:7334:1234\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:db8::1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:db8:85a3:0:0:8A2E:0370:7334:\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \":2001:db8:85a3:0:0:8A2E:0370:7334\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"2001:db8:85a3:0:0:8A2E:0370:1.1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"1.1.1:1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"ab.cd.ef.12\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \".1.1.1\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"::::::::\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"192.168.1.one\"",
+      "output": "\"Neither\""
+    },
+    {
+      "input": "queryIP = \"ABCD:EF01:2345:6789:ABCD:EF01:2345:6789\"",
+      "output": "\"IPv6\""
+    },
+    {
+      "input": "queryIP = \"0.0.0.00\"",
+      "output": "\"Neither\""
     }
   ],
   "func_sign": {

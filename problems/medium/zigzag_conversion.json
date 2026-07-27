@@ -394,6 +394,118 @@
     {
       "input": "s = \"ABCDE\"\nnumRows = 3",
       "output": "\"AEBDC\""
+    },
+    {
+      "input": "s = \"ABCDE\"\nnumRows = 4",
+      "output": "\"ABCED\""
+    },
+    {
+      "input": "s = \"ABCDE\"\nnumRows = 5",
+      "output": "\"ABCDE\""
+    },
+    {
+      "input": "s = \"ABCDEFGH\"\nnumRows = 3",
+      "output": "\"AEBDFHCG\""
+    },
+    {
+      "input": "s = \"ABCDEFGH\"\nnumRows = 4",
+      "output": "\"AGBFHCED\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJK\"\nnumRows = 3",
+      "output": "\"AEIBDFHJCGK\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJK\"\nnumRows = 5",
+      "output": "\"AIBHJCGKDFE\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\nnumRows = 2",
+      "output": "\"ACEGIKMOQSUWYBDFHJLNPRTVXZ\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\nnumRows = 3",
+      "output": "\"AEIMQUYBDFHJLNPRTVXZCGKOSW\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\nnumRows = 4",
+      "output": "\"AGMSYBFHLNRTXZCEIKOQUWDJPV\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\nnumRows = 5",
+      "output": "\"AIQYBHJPRXZCGKOSWDFLNTVEMU\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nnumRows = 6",
+      "output": "\"akubjltvcimswdhnrxegoqyfpz\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nnumRows = 7",
+      "output": "\"amyblnxzckowdjpveiqufhrtgs\""
+    },
+    {
+      "input": "s = \"AaBbCcDdEeFfGgHhIiJj\"\nnumRows = 4",
+      "output": "\"ADGJacdfgijBCEFHIbeh\""
+    },
+    {
+      "input": "s = \"leetcode\"\nnumRows = 2",
+      "output": "\"lecdetoe\""
+    },
+    {
+      "input": "s = \"leetcode\"\nnumRows = 3",
+      "output": "\"lcetoeed\""
+    },
+    {
+      "input": "s = \"leetcode\"\nnumRows = 4",
+      "output": "\"ldeoeect\""
+    },
+    {
+      "input": "s = \"hello,world.\"\nnumRows = 3",
+      "output": "\"horel,ol.lwd\""
+    },
+    {
+      "input": "s = \"OpenAI,ChatGPT.\"\nnumRows = 4",
+      "output": "\"O,PpICGTeAht.na\""
+    },
+    {
+      "input": "s = \"TheQuickBrownFoxJumpsOverTheLazyDog\"\nnumRows = 5",
+      "output": "\"TBJrDhkrxueTyoecoomvhzgQiwFpOeaunsL\""
+    },
+    {
+      "input": "s = \"zzzzzzzzzz\"\nnumRows = 3",
+      "output": "\"zzzzzzzzzz\""
+    },
+    {
+      "input": "s = \"AbaC,De.fG\"\nnumRows = 2",
+      "output": "\"Aa,efbCD.G\""
+    },
+    {
+      "input": "s = \"AbaC,De.fG\"\nnumRows = 9",
+      "output": "\"AbaC,De.Gf\""
+    },
+    {
+      "input": "s = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\nnumRows = 7",
+      "output": "\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH\"\nnumRows = 8",
+      "output": "\"AOCQEBNPBDPRDFCMQAEOSCGDLRZFNTBHEKSYGMUAFJTXHLVZGIUWIKWYHVJX\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab\"\nnumRows = 10",
+      "output": "\"askcubrtjlbdtvcquimaeswdpvhnzfrxeowgoygqyfnxfpxhpzgmyeqwioahlzdrvjnbikacsukmjbtl\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOP\"\nnumRows = 12",
+      "output": "\"AWSOKGBVXRTNPJLFHCUYQUMQIMEIDTZPVLRHNDJESAOWKSGOCKFRBNXJTFPBLGQCMYIUEQAMHPDLZHVDRZNIOEKAGWCSYOJNFJBFXBTXPKMGICEYAUWLHDZV\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl\"\nnumRows = 1000",
+      "output": "\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM\"\nnumRows = 1",
+      "output": "\"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM\""
     }
   ],
   "func_sign": {

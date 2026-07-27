@@ -1078,6 +1078,122 @@
     {
       "input": "grid = {\"elemType\": \"int\", \"value\": [[2], [1]]}",
       "output": "3"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0], [0, 0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}",
+      "output": "2"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[5, 4, 3, 2, 1]]}",
+      "output": "15"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1], [2], [3], [4], [5]]}",
+      "output": "15"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 100, 1], [1, 100, 1], [1, 1, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 2, 5], [3, 2, 1]]}",
+      "output": "6"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4], [4, 5, 6, 7], [7, 8, 9, 1], [1, 1, 1, 1]]}",
+      "output": "16"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[2, 2, 1], [1, 2, 2], [1, 1, 1]]}",
+      "output": "6"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 0, 1, 0], [0, 1, 0, 1]]}",
+      "output": "3"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[9, 1, 9], [1, 1, 1], [9, 1, 9]]}",
+      "output": "21"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]}",
+      "output": "9"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[3, 1, 2], [4, 3, 1], [5, 1, 1]]}",
+      "output": "8"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[8, 7, 6, 5], [1, 1, 1, 1]]}",
+      "output": "12"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 9, 1, 9, 1], [1, 1, 1, 1, 1], [9, 1, 9, 1, 9]]}",
+      "output": "15"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 2, 2, 2], [2, 0, 2, 2], [2, 2, 0, 2], [2, 2, 2, 0]]}",
+      "output": "6"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 100, 1], [100, 1, 100, 1], [100, 1, 1, 1]]}",
+      "output": "6"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[2, 3, 1, 1, 1], [1, 1, 1, 9, 1], [9, 9, 1, 1, 1]]}",
+      "output": "8"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1], [1, 100], [1, 1], [100, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[4, 1, 1, 4, 1], [1, 4, 1, 4, 1], [1, 1, 1, 1, 1]]}",
+      "output": "10"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[200, 200], [200, 200]]}",
+      "output": "600"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[200, 200, 200, 200, 200], [200, 200, 200, 200, 200], [200, 200, 200, 200, 200], [200, 200, 200, 200, 200], [200, 200, 200, 200, 200]]}",
+      "output": "1800"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]}",
+      "output": "0"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]}",
+      "output": "10"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1], [1], [1], [1], [1], [1], [1], [1], [1], [1]]}",
+      "output": "10"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1], [1, 2, 3, 4, 5]]}",
+      "output": "17"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[1, 1, 1, 1, 1], [9, 9, 9, 9, 1], [1, 1, 1, 1, 1], [1, 9, 9, 9, 9]]}",
+      "output": "16"
+    },
+    {
+      "input": "grid = {\"elemType\": \"int\", \"value\": [[2, 2, 2], [2, 2, 2]]}",
+      "output": "8"
     }
   ],
   "func_sign": {

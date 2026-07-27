@@ -553,6 +553,126 @@
     {
       "input": "strs = [\"abc\", \"acb\", \"xyz\", \"xzy\"]",
       "output": "2"
+    },
+    {
+      "input": "strs = [\"abc\", \"abc\", \"bac\", \"bca\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"aaaa\", \"aaaa\", \"aaaa\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"tars\", \"star\", \"rats\", \"arts\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"abcd\", \"abdc\", \"acbd\", \"bacd\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"aabb\", \"abab\", \"abba\", \"baab\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcd\", \"abdc\", \"wxyz\", \"wxzy\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"abcde\", \"abced\", \"edcba\", \"ecdba\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"abcdfeghij\", \"abcfdeghij\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"qwerty\", \"qwerty\", \"qewrty\", \"weqrty\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdef\", \"abcfed\", \"fedcba\", \"fedcab\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"aabc\", \"abac\", \"baac\", \"baca\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"nopqrs\", \"nopqsr\", \"npoqrs\", \"onpqrs\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdefghijkl\", \"abcdefghijlk\", \"abcdefghikjl\", \"abcdefghijkl\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abc\", \"acb\", \"bac\", \"bca\", \"cab\", \"cba\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcd\", \"badc\", \"cdab\", \"dcba\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"abcd\", \"abdc\", \"bacd\", \"badc\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdef\", \"abcfde\", \"abcdef\", \"abcfed\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"kites\", \"skite\", \"kites\", \"kiets\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"listen\", \"silent\", \"enlist\", \"inlets\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"aaabbb\", \"aababb\", \"abaabb\", \"baaabb\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdefg\", \"abcdgfe\", \"agbcdef\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"xyzabc\", \"xyazbc\", \"xyyabc\", \"zxyabc\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdefgh\", \"abcdefhg\", \"abcdegfh\", \"abcedfgh\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"aaaabbbb\", \"aaababbb\", \"abababab\", \"bbbbaaaa\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"zyxw\", \"zxyw\", \"yzxw\", \"yxzw\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"a\", \"a\", \"a\", \"a\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"ab\", \"ba\", \"ab\", \"ba\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcde\", \"acbde\", \"bacde\", \"bcade\", \"cabde\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcde\", \"abced\", \"abdce\", \"acbde\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"abcdefghij\", \"abcedfghij\", \"abcdefghji\", \"abcdefgihj\"]",
+      "output": "1"
     }
   ],
   "func_sign": {

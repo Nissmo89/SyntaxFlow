@@ -1331,6 +1331,130 @@
     {
       "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 2, 1], [0, 1, 1, 2]]}",
       "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 2], [1, 1, 3, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 1, 2, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 3, 1], [0, 1, 1, 2], [2, 1, 3, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 1], [0, 1, 1, 2], [1, 1, 2, 2], [0, 0, 1, 1]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[5, -2, 6, 3]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-3, 7, 4, 8]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-2, -2, 0, 0], [0, -2, 2, 0], [-2, 0, 0, 2], [0, 0, 2, 2]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-2, -2, 0, 0], [0, -2, 2, 0], [-2, 0, 0, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-2, -2, 1, 1], [0, 0, 2, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [0, 1, 1, 2], [1, 1, 2, 2], [2, 1, 3, 2], [0, 2, 1, 3], [1, 2, 2, 3], [2, 2, 3, 3]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [0, 1, 1, 2], [2, 1, 3, 2], [0, 2, 1, 3], [1, 2, 2, 3], [2, 2, 3, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [0, 1, 2, 2], [1, 1, 3, 2], [0, 2, 1, 3], [1, 2, 2, 3], [2, 2, 3, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 1], [0, 1, 2, 2], [0, 2, 2, 3], [0, 3, 2, 4], [0, 4, 2, 5]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 2], [1, 0, 2, 2], [2, 0, 3, 2], [3, 0, 4, 2], [4, 0, 5, 2]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 2], [1, 0, 2, 2], [3, 0, 4, 2], [4, 0, 5, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 2], [1, 0, 3, 2], [3, 0, 5, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 4, 4], [1, 1, 3, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 1], [0, 1, 1, 2], [1, 1, 2, 2], [2, 0, 3, 2]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 1], [0, 1, 1, 2], [1, 1, 2, 2], [1, 0, 3, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 2], [2, 0, 4, 1], [2, 1, 4, 2]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 2], [2, 0, 4, 1]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 2, 2], [1, 0, 3, 1], [1, 1, 3, 2]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 3], [1, 0, 3, 1], [1, 1, 2, 3], [2, 1, 3, 3]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 3], [1, 0, 3, 1], [1, 1, 2, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 3], [1, 0, 3, 2], [1, 1, 3, 3]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-100000, -100000, 0, 100000], [0, -100000, 100000, 100000]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-100000, -100000, 0, 100000], [1, -100000, 100000, 100000]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[-100000, -100000, 50000, 100000], [0, -100000, 100000, 100000]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 4, 1], [0, 1, 4, 2], [0, 2, 4, 3], [0, 3, 4, 4]]}",
+      "output": "true"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 4, 1], [0, 1, 4, 2], [0, 3, 4, 4]]}",
+      "output": "false"
+    },
+    {
+      "input": "rectangles = {\"elemType\": \"int\", \"value\": [[0, 0, 4, 2], [0, 1, 4, 3]]}",
+      "output": "false"
     }
   ],
   "func_sign": {

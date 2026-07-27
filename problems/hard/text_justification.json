@@ -714,6 +714,118 @@
     {
       "input": "words = [\"a\", \"b\", \"c\", \"d\"]\nmaxWidth = 6",
       "output": "[\"a  b c\", \"d     \"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\"]\nmaxWidth = 7",
+      "output": "[\"a b c d\"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nmaxWidth = 3",
+      "output": "[\"a b\", \"c d\", \"e  \"]"
+    },
+    {
+      "input": "words = [\"abc\", \"de\", \"f\", \"gh\"]\nmaxWidth = 6",
+      "output": "[\"abc de\", \"f gh  \"]"
+    },
+    {
+      "input": "words = [\"one\", \"two\", \"three\"]\nmaxWidth = 11",
+      "output": "[\"one     two\", \"three      \"]"
+    },
+    {
+      "input": "words = [\"supercalifragilistic\", \"is\", \"fun\"]\nmaxWidth = 20",
+      "output": "[\"supercalifragilistic\", \"is fun              \"]"
+    },
+    {
+      "input": "words = [\"hello,\", \"world!\", \"yes?\"]\nmaxWidth = 13",
+      "output": "[\"hello, world!\", \"yes?         \"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\"]\nmaxWidth = 4",
+      "output": "[\"a  b\", \"c  d\", \"e  f\", \"g   \"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\"]\nmaxWidth = 1",
+      "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\"]\nmaxWidth = 2",
+      "output": "[\"a \", \"b \", \"c \"]"
+    },
+    {
+      "input": "words = [\"ab\", \"c\", \"de\"]\nmaxWidth = 7",
+      "output": "[\"ab c de\"]"
+    },
+    {
+      "input": "words = [\"ab\", \"c\", \"de\"]\nmaxWidth = 8",
+      "output": "[\"ab c de \"]"
+    },
+    {
+      "input": "words = [\"a\", \"bb\", \"c\", \"ddd\", \"e\", \"ff\"]\nmaxWidth = 8",
+      "output": "[\"a  bb  c\", \"ddd e ff\"]"
+    },
+    {
+      "input": "words = [\"abc\", \"def\", \"gh\", \"ijk\", \"l\"]\nmaxWidth = 7",
+      "output": "[\"abc def\", \"gh  ijk\", \"l      \"]"
+    },
+    {
+      "input": "words = [\"a\", \"bb\", \"ccc\", \"d\"]\nmaxWidth = 12",
+      "output": "[\"a bb ccc d  \"]"
+    },
+    {
+      "input": "words = [\"abcdefghijklmnopqrst\"]\nmaxWidth = 20",
+      "output": "[\"abcdefghijklmnopqrst\"]"
+    },
+    {
+      "input": "words = [\"abcdefghij\", \"klmnopqrst\", \"uvwxyz\"]\nmaxWidth = 10",
+      "output": "[\"abcdefghij\", \"klmnopqrst\", \"uvwxyz    \"]"
+    },
+    {
+      "input": "words = [\"aa\", \"bb\", \"ccc\", \"d\", \"ee\", \"fff\"]\nmaxWidth = 9",
+      "output": "[\"aa bb ccc\", \"d ee fff \"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nmaxWidth = 9",
+      "output": "[\"a b c d e\"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\"]\nmaxWidth = 5",
+      "output": "[\"a b c\", \"d e f\", \"g h  \"]"
+    },
+    {
+      "input": "words = [\"what\", \"must\", \"be\"]\nmaxWidth = 12",
+      "output": "[\"what must be\"]"
+    },
+    {
+      "input": "words = [\"aa\", \"b\", \"c\"]\nmaxWidth = 4",
+      "output": "[\"aa b\", \"c   \"]"
+    },
+    {
+      "input": "words = [\"a\", \"bc\", \"d\", \"ef\", \"g\", \"hi\"]\nmaxWidth = 5",
+      "output": "[\"a  bc\", \"d  ef\", \"g hi \"]"
+    },
+    {
+      "input": "words = [\"abc\", \"d\", \"ef\", \"ghij\", \"k\"]\nmaxWidth = 8",
+      "output": "[\"abc d ef\", \"ghij k  \"]"
+    },
+    {
+      "input": "words = [\"lorem\", \"ipsum\", \"dolor\", \"sit\", \"amet\"]\nmaxWidth = 100",
+      "output": "[\"lorem ipsum dolor sit amet                                                                          \"]"
+    },
+    {
+      "input": "words = [\"a\", \"bb\", \"ccc\", \"dddd\", \"eeeee\", \"ffffff\"]\nmaxWidth = 100",
+      "output": "[\"a bb ccc dddd eeeee ffffff                                                                          \"]"
+    },
+    {
+      "input": "words = [\"abcdefghijklmnopqrst\", \"uvwxyzabcdefghijklmn\", \"opqrstuvwxyzabcdefgh\"]\nmaxWidth = 20",
+      "output": "[\"abcdefghijklmnopqrst\", \"uvwxyzabcdefghijklmn\", \"opqrstuvwxyzabcdefgh\"]"
+    },
+    {
+      "input": "words = [\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\"]\nmaxWidth = 10",
+      "output": "[\"a  b c d e\", \"f g h i j \"]"
+    },
+    {
+      "input": "words = [\"abc\", \"de\", \"f\", \"gh\", \"i\"]\nmaxWidth = 8",
+      "output": "[\"abc de f\", \"gh i    \"]"
     }
   ],
   "func_sign": {

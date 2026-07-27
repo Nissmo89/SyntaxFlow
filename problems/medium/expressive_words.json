@@ -537,6 +537,114 @@
     {
       "input": "s = \"heeellllooo\"\nwords = [\"hello\", \"helo\", \"heello\"]",
       "output": ""
+    },
+    {
+      "input": "s = \"qqqrrrsss\"\nwords = [\"qrs\", \"qqrrss\", \"qqqrrrsss\", \"qqrrrsss\", \"qrrs\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"mmnnn\"\nwords = [\"mn\", \"mmn\", \"mnn\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaabbb\"\nwords = [\"ab\", \"aabb\", \"aaabbb\", \"aaabb\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"zzzz\"\nwords = [\"z\", \"zz\", \"zzz\", \"zzzz\", \"zzzzz\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abc\"\nwords = [\"ab\", \"ac\", \"bc\", \"abcd\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"kelllloo\"\nwords = [\"kelo\", \"kelloo\", \"kello\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"ppqqqqrr\"\nwords = [\"pqr\", \"ppqqrr\", \"ppqqqqrr\", \"ppqrr\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdef\"\nwords = [\"abcdef\", \"abcdeg\", \"abcde\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"heeellooo\"\nwords = [\"hello\", \"hi\", \"helo\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a\"\nwords = [\"b\", \"c\", \"d\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"aaa\"\nwords = [\"a\", \"aa\", \"aaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abcd\"\nwords = [\"abcd\", \"abc\", \"abcdd\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abcccd\"\nwords = [\"abcd\", \"abccd\", \"abcccd\", \"abcccdx\"]",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abc\"\nwords = [\"ab\", \"ac\", \"bc\", \"abcd\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"heeellllooo\"\nwords = [\"hello\", \"helo\", \"heello\"]",
+      "output": "3"
+    },
+    {
+      "input": "s = \"qqqrrrsss\"\nwords = [\"qrs\", \"qqrrss\", \"qqqrrrsss\", \"qqrrrsss\", \"qrrs\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"mmnnn\"\nwords = [\"mn\", \"mmn\", \"mnn\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"aaabbb\"\nwords = [\"ab\", \"aabb\", \"aaabbb\", \"aaabb\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"zzzz\"\nwords = [\"z\", \"zz\", \"zzz\", \"zzzz\", \"zzzzz\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"kelllloo\"\nwords = [\"kelo\", \"kelloo\", \"kello\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"ppqqqqrr\"\nwords = [\"pqr\", \"ppqqrr\", \"ppqqqqrr\", \"ppqrr\"]",
+      "output": "3"
+    },
+    {
+      "input": "s = \"aaaaabbbbcccc\"\nwords = [\"abc\", \"aabbcc\", \"aaaabbbccc\", \"aaaaabbbbcccc\", \"aaaabbcccc\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"xxyzzzz\"\nwords = [\"xyz\", \"xxyz\", \"xyzz\", \"xxyzzzz\", \"xxz\"]",
+      "output": "2"
+    },
+    {
+      "input": "s = \"hhhhhiiiiij\"\nwords = [\"hij\", \"hhij\", \"hhiij\", \"hhhhhiiiiij\", \"hhhhhiij\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"mnnnnop\"\nwords = [\"mnop\", \"mnop\", \"mnnop\", \"mnnnnop\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"ababab\"\nwords = [\"ababab\", \"abab\", \"ababa\", \"aabbab\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abcdefg\"\nwords = [\"hijklmn\", \"opqrstu\", \"vwxyzab\"]",
+      "output": "0"
     }
   ],
   "func_sign": {

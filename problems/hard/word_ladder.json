@@ -1222,6 +1222,262 @@
     {
       "input": "beginWord = \"abdb\"\nendWord = \"ecdc\"\nwordList = [\"ebdc\", \"daae\", \"baed\", \"bbee\", \"adcd\", \"ebde\", \"bcee\", \"ebdb\", \"ecdc\", \"dbcc\"]",
       "output": "4"
+    },
+    {
+      "input": "beginWord = \"cbbc\"\nendWord = \"bbeb\"\nwordList = [\"accd\", \"bbbc\", \"bbeb\", \"bbec\", \"bacb\", \"abce\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"eace\"\nendWord = \"becd\"\nwordList = [\"bdeb\", \"becd\", \"bece\", \"bace\", \"beca\", \"baea\", \"bcde\", \"abac\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"eaaa\"\nendWord = \"aaba\"\nwordList = [\"bdaa\", \"aaba\", \"daaa\", \"aaaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"dca\"\nendWord = \"ade\"\nwordList = [\"adc\", \"bec\", \"ced\", \"ace\", \"aca\", \"cca\", \"eeb\", \"ade\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"dde\"\nendWord = \"ace\"\nwordList = [\"dce\", \"eda\", \"dba\", \"ade\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"dace\"\nendWord = \"bbbc\"\nwordList = [\"babc\", \"ebcc\", \"babe\", \"dabe\", \"bbbc\"]",
+      "output": "5"
+    },
+    {
+      "input": "beginWord = \"eeebd\"\nendWord = \"debdd\"\nwordList = [\"dedea\", \"eebbd\", \"bacdd\", \"abcae\", \"eebdd\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"eadea\"\nendWord = \"dabeb\"\nwordList = [\"dabeb\", \"eabeb\", \"beeae\", \"aabbc\", \"eadeb\", \"dadaa\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"cae\"\nendWord = \"dbe\"\nwordList = [\"bce\", \"dae\", \"dad\", \"aac\", \"dbe\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"bbe\"\nendWord = \"bdb\"\nwordList = [\"bbb\", \"cbc\", \"ceb\", \"ebb\", \"cdc\", \"bdb\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"bab\"\nendWord = \"ccb\"\nwordList = [\"daa\", \"bcb\", \"beb\", \"ccb\", \"aee\", \"ddc\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"aedae\"\nendWord = \"cadad\"\nwordList = [\"cceae\", \"eedae\", \"eedad\", \"cedad\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"bdda\"\nendWord = \"aada\"\nwordList = [\"bada\", \"aeca\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"aedc\"\nendWord = \"eadd\"\nwordList = [\"aedd\", \"aadd\", \"ccaa\", \"eadd\", \"bacd\", \"eebc\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"acdcd\"\nendWord = \"acdba\"\nwordList = [\"acdba\", \"eaadd\", \"acdbd\", \"aaeeb\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"aac\"\nendWord = \"eab\"\nwordList = [\"cab\", \"dae\", \"aab\", \"bdd\", \"ddb\", \"eda\", \"eab\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"cac\"\nendWord = \"ceb\"\nwordList = [\"ceb\", \"bbd\", \"cab\", \"dcb\", \"cbb\", \"dec\", \"aee\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"cbacd\"\nendWord = \"ebaac\"\nwordList = [\"ebaad\", \"cddde\", \"ebacd\", \"bbeed\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"caaa\"\nendWord = \"edad\"\nwordList = [\"edad\", \"cdcc\", \"eaad\", \"eaaa\", \"caab\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"cbcc\"\nendWord = \"dbec\"\nwordList = [\"ccbc\", \"dbec\", \"cbec\", \"cdad\", \"dbaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"dbc\"\nendWord = \"eac\"\nwordList = [\"cbc\", \"cac\", \"dcd\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"bdaac\"\nendWord = \"bdacd\"\nwordList = [\"acaea\", \"bdacc\", \"dcaeb\", \"acabc\", \"beada\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"bdb\"\nendWord = \"bcc\"\nwordList = [\"ede\", \"bca\", \"bcc\", \"bcb\", \"cda\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"baea\"\nendWord = \"daca\"\nwordList = [\"bbcd\", \"daee\", \"daea\", \"eccd\", \"daca\", \"eaea\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"aadc\"\nendWord = \"cedc\"\nwordList = [\"cada\", \"cadc\", \"ceca\", \"ceda\", \"cdde\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"ecad\"\nendWord = \"abed\"\nwordList = [\"abed\", \"ebed\", \"ebbe\", \"eced\", \"eeed\", \"eaad\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"bebdc\"\nendWord = \"ceaaa\"\nwordList = [\"dacce\", \"aacec\", \"ceaaa\", \"bebac\", \"beaaa\", \"dcbeb\", \"eaecb\", \"bebaa\"]",
+      "output": "5"
+    },
+    {
+      "input": "beginWord = \"bbdcc\"\nendWord = \"ebbca\"\nwordList = [\"ebdcc\", \"dedbd\", \"ebbca\", \"ddddb\", \"ebbcc\", \"cabdc\", \"eeacb\", \"babad\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"daddd\"\nendWord = \"bbead\"\nwordList = [\"daead\", \"bbead\", \"baead\", \"dadad\", \"cecbb\"]",
+      "output": "5"
+    },
+    {
+      "input": "beginWord = \"daab\"\nendWord = \"baaa\"\nwordList = [\"bead\", \"cdae\", \"baab\", \"beeb\", \"dadc\", \"baaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"bdccd\"\nendWord = \"bbcdb\"\nwordList = [\"ccaba\", \"bbbcc\", \"bebab\", \"bbccb\", \"bbcdb\", \"bdccb\", \"bdccc\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"ddca\"\nendWord = \"dddd\"\nwordList = [\"ccde\", \"ebec\", \"dddd\", \"cdbd\", \"cbde\", \"ddda\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"aac\"\nendWord = \"aab\"\nwordList = [\"daa\", \"aad\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"ebb\"\nendWord = \"adb\"\nwordList = [\"aba\", \"eea\", \"abb\", \"adb\", \"cbe\", \"bcd\", \"aca\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"cbec\"\nendWord = \"cbeb\"\nwordList = [\"cbeb\", \"ddbe\", \"ceab\"]",
+      "output": "2"
+    },
+    {
+      "input": "beginWord = \"bcb\"\nendWord = \"ade\"\nwordList = [\"bdb\", \"cbd\", \"bcb\", \"adb\", \"bde\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"dceb\"\nendWord = \"aced\"\nwordList = [\"ecad\", \"baad\", \"aceb\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"dbeca\"\nendWord = \"dcaca\"\nwordList = [\"dbbca\", \"dcbca\", \"acebc\", \"eadaa\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"cccad\"\nendWord = \"accca\"\nwordList = [\"ccccd\", \"accca\", \"acccd\", \"cddad\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"cae\"\nendWord = \"ace\"\nwordList = [\"bcc\", \"ace\", \"aed\", \"aae\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"aadad\"\nendWord = \"aeadd\"\nwordList = [\"bdeec\", \"daacd\", \"aaadd\", \"edacd\", \"aaaad\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"dadd\"\nendWord = \"bcdd\"\nwordList = [\"bcdd\", \"adbc\", \"acdd\", \"cada\", \"adab\", \"dcdd\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"dbc\"\nendWord = \"cdc\"\nwordList = [\"cdc\", \"cbc\", \"cce\", \"bed\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"dadbc\"\nendWord = \"adbbc\"\nwordList = [\"adbbc\", \"aeabc\", \"cbacb\", \"abcdd\", \"dabbc\", \"cbcec\", \"ddbbc\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"ceebd\"\nendWord = \"caebd\"\nwordList = [\"dbadd\", \"cdebd\", \"cbebd\", \"caedd\", \"abdde\", \"ccccb\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"eebc\"\nendWord = \"ebcc\"\nwordList = [\"ebed\", \"edbc\", \"eabc\", \"ecae\", \"ebbc\", \"ebcc\", \"caab\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"ccbbd\"\nendWord = \"ccecd\"\nwordList = [\"ccedd\", \"cccdd\", \"cccbd\", \"bdacc\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"aec\"\nendWord = \"ebc\"\nwordList = [\"bbc\", \"abe\", \"abc\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"edea\"\nendWord = \"edbd\"\nwordList = [\"ecbc\", \"edec\", \"edbc\", \"edbd\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"bbb\"\nendWord = \"bdb\"\nwordList = [\"beb\", \"cad\", \"eca\", \"aaa\", \"bdb\"]",
+      "output": "2"
+    },
+    {
+      "input": "beginWord = \"eaec\"\nendWord = \"cabc\"\nwordList = [\"dabc\", \"daec\", \"dabe\", \"cabc\", \"abbd\", \"babc\", \"cdde\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"eedad\"\nendWord = \"eeeaa\"\nwordList = [\"cabea\", \"eedaa\", \"caadc\", \"ddded\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"bdaa\"\nendWord = \"cddc\"\nwordList = [\"edda\", \"cddd\", \"cdaa\", \"cdda\", \"aada\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"eae\"\nendWord = \"aae\"\nwordList = [\"ccd\", \"aae\", \"eda\", \"abd\", \"bae\"]",
+      "output": "2"
+    },
+    {
+      "input": "beginWord = \"bcc\"\nendWord = \"dbb\"\nwordList = [\"dcb\", \"eba\", \"dad\", \"ecb\", \"eee\", \"eae\", \"bcb\", \"dbb\", \"eea\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"abcc\"\nendWord = \"aecb\"\nwordList = [\"eccd\", \"bade\", \"bced\", \"adde\", \"abcb\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"ebdbc\"\nendWord = \"bcebd\"\nwordList = [\"bbdbd\", \"bcebb\", \"cbcdd\", \"bcebd\", \"bcdbd\", \"bbdbc\"]",
+      "output": "5"
+    },
+    {
+      "input": "beginWord = \"dac\"\nendWord = \"ebc\"\nwordList = [\"cac\", \"aea\", \"ebc\", \"eac\", \"bcc\", \"aaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"daeda\"\nendWord = \"cddda\"\nwordList = [\"cddda\", \"cadda\", \"caecd\", \"dadda\", \"baaec\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"bbdbc\"\nendWord = \"badbd\"\nwordList = [\"bedbd\", \"badbd\", \"dadac\", \"bedbc\"]",
+      "output": "4"
+    },
+    {
+      "input": "beginWord = \"adaad\"\nendWord = \"beaaa\"\nwordList = [\"eadbd\", \"aeaad\", \"beaad\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"bdc\"\nendWord = \"eab\"\nwordList = [\"bab\", \"eae\", \"bda\", \"dae\", \"bac\", \"edb\"]",
+      "output": "0"
+    },
+    {
+      "input": "beginWord = \"aebac\"\nendWord = \"adbdc\"\nwordList = [\"bdeea\", \"adbac\", \"decad\", \"adbdc\", \"bcdcc\"]",
+      "output": "3"
+    },
+    {
+      "input": "beginWord = \"dceaa\"\nendWord = \"ecebc\"\nwordList = [\"eeaab\", \"ecebc\", \"dceac\", \"eceac\", \"bedde\", \"dceae\"]",
+      "output": "4"
     }
   ],
   "func_sign": {

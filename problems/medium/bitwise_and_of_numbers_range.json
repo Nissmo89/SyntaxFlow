@@ -400,6 +400,122 @@
     {
       "input": "left = 7\nright = 8",
       "output": "0"
+    },
+    {
+      "input": "left = 8\nright = 15",
+      "output": "8"
+    },
+    {
+      "input": "left = 10\nright = 15",
+      "output": "8"
+    },
+    {
+      "input": "left = 12\nright = 15",
+      "output": "12"
+    },
+    {
+      "input": "left = 16\nright = 16",
+      "output": "16"
+    },
+    {
+      "input": "left = 16\nright = 17",
+      "output": "16"
+    },
+    {
+      "input": "left = 17\nright = 31",
+      "output": "16"
+    },
+    {
+      "input": "left = 24\nright = 31",
+      "output": "24"
+    },
+    {
+      "input": "left = 32\nright = 63",
+      "output": "32"
+    },
+    {
+      "input": "left = 63\nright = 64",
+      "output": "0"
+    },
+    {
+      "input": "left = 64\nright = 127",
+      "output": "64"
+    },
+    {
+      "input": "left = 100\nright = 123",
+      "output": "96"
+    },
+    {
+      "input": "left = 128\nright = 255",
+      "output": "128"
+    },
+    {
+      "input": "left = 255\nright = 256",
+      "output": "0"
+    },
+    {
+      "input": "left = 256\nright = 511",
+      "output": "256"
+    },
+    {
+      "input": "left = 512\nright = 1023",
+      "output": "512"
+    },
+    {
+      "input": "left = 1023\nright = 1024",
+      "output": "0"
+    },
+    {
+      "input": "left = 1024\nright = 2047",
+      "output": "1024"
+    },
+    {
+      "input": "left = 12345\nright = 12345",
+      "output": "12345"
+    },
+    {
+      "input": "left = 12345\nright = 12346",
+      "output": "12344"
+    },
+    {
+      "input": "left = 12345\nright = 12399",
+      "output": "12288"
+    },
+    {
+      "input": "left = 65535\nright = 65535",
+      "output": "65535"
+    },
+    {
+      "input": "left = 65535\nright = 65536",
+      "output": "0"
+    },
+    {
+      "input": "left = 65536\nright = 131071",
+      "output": "65536"
+    },
+    {
+      "input": "left = 1048575\nright = 1048576",
+      "output": "0"
+    },
+    {
+      "input": "left = 1000000000\nright = 1000000000",
+      "output": "1000000000"
+    },
+    {
+      "input": "left = 1000000000\nright = 1000000123",
+      "output": "1000000000"
+    },
+    {
+      "input": "left = 1073741824\nright = 1073741824",
+      "output": "1073741824"
+    },
+    {
+      "input": "left = 2147483646\nright = 2147483647",
+      "output": "2147483646"
+    },
+    {
+      "input": "left = 1\nright = 2147483647",
+      "output": "0"
     }
   ],
   "func_sign": {

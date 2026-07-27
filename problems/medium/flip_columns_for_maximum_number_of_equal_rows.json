@@ -1227,6 +1227,114 @@
     {
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0]]}",
       "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 1], [1, 0, 0], [1, 1, 0]]}",
+      "output": "2"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 0, 1], [1, 1, 0], [0, 0, 1], [1, 1, 0]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0, 0], [1, 0, 1, 1], [0, 1, 0, 0], [1, 0, 1, 1]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 1, 0], [1, 0, 0, 1], [0, 1, 1, 0]]}",
+      "output": "3"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 0, 1, 1], [0, 1, 1, 0, 0], [1, 0, 0, 1, 1], [0, 1, 1, 0, 0], [1, 0, 0, 1, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 0, 0], [0, 0, 1, 1], [1, 1, 0, 0], [0, 0, 1, 1], [1, 1, 0, 0]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0], [1, 0], [0, 1], [0, 1], [1, 0]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 0], [1, 1], [1, 1], [0, 0]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1]]}",
+      "output": "3"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0, 1], [0, 1, 0, 1], [1, 0, 1, 0], [1, 0, 1, 0]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 1], [0, 0, 0], [1, 1, 1], [0, 0, 0]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [0, 1, 0], [1, 0, 1], [1, 0, 1]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 1, 1], [0, 1, 0, 0]]}",
+      "output": "2"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 0], [0, 1, 1], [1, 0, 0], [0, 1, 1], [1, 0, 0], [0, 1, 1]]}",
+      "output": "6"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1]]}",
+      "output": "6"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 1, 0, 0], [1, 0, 0, 1, 1], [0, 1, 1, 0, 0], [1, 0, 0, 1, 1]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 0], [0, 0, 1], [1, 1, 0], [0, 0, 1]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 0], [1, 0, 1], [0, 1, 0], [1, 0, 1], [0, 1, 0], [1, 0, 1], [0, 1, 0], [1, 0, 1]]}",
+      "output": "8"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 0, 1]]}",
+      "output": "3"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 0, 0, 1], [0, 0, 1, 1, 0], [1, 1, 0, 0, 1]]}",
+      "output": "3"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 0, 1, 1, 0], [1, 1, 0, 0, 1], [0, 0, 1, 1, 0], [1, 1, 0, 0, 1]]}",
+      "output": "4"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1], [1, 0], [0, 1], [1, 0], [0, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 1, 1, 0], [0, 0, 0, 1], [1, 1, 1, 0], [0, 0, 0, 1], [1, 1, 1, 0]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1], [0], [1], [0], [1], [0], [1]]}",
+      "output": "7"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 0, 0, 0], [1, 1, 1, 1]]}",
+      "output": "2"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[0, 1, 1], [1, 0, 0], [0, 1, 1], [1, 0, 0], [0, 1, 1]]}",
+      "output": "5"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 0, 1, 0, 1], [0, 1, 0, 1, 0]]}",
+      "output": "2"
     }
   ],
   "func_sign": {

@@ -747,6 +747,134 @@
     {
       "input": "words1 = [\"abca\", \"bcaa\", \"aabc\", \"zzzz\", \"caba\"]\nwords2 = [\"aa\", \"bc\"]",
       "output": ""
+    },
+    {
+      "input": "words1 = [\"x\", \"y\", \"z\", \"xy\", \"yz\"]\nwords2 = [\"x\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abc\", \"abca\", \"bcae\", \"deed\", \"face\", \"cafe\", \"feed\", \"bead\"]\nwords2 = [\"ab\", \"ce\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aaaa\", \"aaab\", \"aabb\", \"abbb\", \"bbbb\", \"abba\", \"baaa\"]\nwords2 = [\"aa\", \"bb\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"xyz\", \"xxyyzz\", \"xzz\", \"yyzz\", \"zzzz\", \"xyzz\"]\nwords2 = [\"xz\", \"yz\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"hello\", \"yellow\", \"mellow\", \"fellow\", \"bellow\", \"cello\"]\nwords2 = [\"el\", \"lo\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"ab\", \"abc\", \"abcd\", \"abcde\", \"abcdef\"]\nwords2 = [\"a\", \"bc\", \"de\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aaaaa\", \"aaaab\", \"aaabb\", \"aabbb\", \"abbbb\"]\nwords2 = [\"aaa\", \"bb\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"qwerty\", \"qwe\", \"wert\", \"erty\", \"tyui\", \"uiop\"]\nwords2 = [\"q\", \"w\", \"e\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"moon\", \"noon\", \"soon\", \"moons\", \"swoon\", \"on\"]\nwords2 = [\"oo\", \"n\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"cat\", \"tac\", \"act\", \"tact\", \"at\", \"aaat\"]\nwords2 = [\"a\", \"t\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"piano\", \"pianos\", \"pioneer\", \"phone\", \"phoneme\"]\nwords2 = [\"p\", \"o\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aa\", \"bb\", \"cc\"]\nwords2 = [\"a\", \"b\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"ab\", \"ba\", \"cab\"]\nwords2 = [\"a\", \"b\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aabb\", \"ab\", \"bbaa\", \"abba\"]\nwords2 = [\"aa\", \"bb\", \"ab\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"cccc\", \"cccd\", \"dccc\", \"abcd\"]\nwords2 = [\"ccc\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abc\", \"def\", \"ghi\", \"jkl\"]\nwords2 = [\"zz\", \"yyy\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"a\", \"ba\", \"ca\", \"da\"]\nwords2 = [\"a\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abcde\", \"bcdea\", \"cdeab\"]\nwords2 = [\"ab\", \"cd\", \"e\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"listen\", \"silent\", \"enlist\", \"google\"]\nwords2 = [\"eil\", \"nst\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aaabbb\", \"ab\", \"bbaaab\", \"bbbaaa\"]\nwords2 = [\"aaa\", \"bbb\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"az\", \"za\", \"zzaa\", \"azz\", \"zaz\"]\nwords2 = [\"a\", \"z\", \"z\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abcdef\", \"abcxyz\", \"azbycx\", \"aabbcc\", \"zzzzzz\"]\nwords2 = [\"ab\", \"ac\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"lorem\", \"ipsum\", \"dolor\", \"amet\", \"sit\", \"elit\"]\nwords2 = [\"e\", \"t\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"alpha\", \"beta\", \"gamma\"]\nwords2 = [\"a\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aabbcc\", \"abcabc\", \"abccba\", \"aabccc\"]\nwords2 = [\"abc\", \"abc\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"tool\", \"cool\", \"pool\", \"fool\", \"school\"]\nwords2 = [\"oo\", \"l\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\"]\nwords2 = [\"aa\", \"aaa\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abc\", \"abcc\", \"abccc\", \"abcccc\"]\nwords2 = [\"bc\", \"cc\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"cab\", \"cabb\", \"ccab\", \"bacc\", \"abcabc\"]\nwords2 = [\"c\", \"ab\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"abcde\", \"bcdef\", \"cdefg\", \"defgh\", \"efghi\", \"fghij\"]\nwords2 = [\"cd\", \"ef\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"aaaaab\", \"aaaabb\", \"aaabbb\", \"aabbbb\", \"abbbbb\"]\nwords2 = [\"aaa\", \"bb\"]",
+      "output": ""
+    },
+    {
+      "input": "words1 = [\"qwert\", \"werty\", \"ertyu\", \"rtyui\", \"tyuio\"]\nwords2 = [\"q\", \"w\", \"e\"]",
+      "output": ""
     }
   ],
   "func_sign": {

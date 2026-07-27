@@ -355,6 +355,114 @@
     {
       "input": "moves = \"UDUD\"",
       "output": "true"
+    },
+    {
+      "input": "moves = \"UUDDLLRR\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"ULDR\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"UUDDUD\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"LLRRU\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"LLLLRRR\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"UUUDDDU\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"UDLRUDLR\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"RDLU\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"RRLL\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"UUUDDD\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"UDL\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"RRU\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"LLLURRDD\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"RRRULLDD\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"UUUDLR\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"DDDLLRR\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"ULDR\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"URDL\"",
+      "output": "true"
+    },
+    {
+      "input": "moves = \"UDLRR\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"UDUDL\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = \"LRLRU\"",
+      "output": "false"
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
+      "output": ""
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 19999, \"alphabet\": \"UDLR\"}",
+      "output": ""
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 18000, \"alphabet\": \"UDLR\"}",
+      "output": ""
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 16000, \"alphabet\": \"UDLR\"}",
+      "output": ""
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
+      "output": ""
+    },
+    {
+      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
+      "output": ""
     }
   ],
   "func_sign": {

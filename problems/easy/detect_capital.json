@@ -350,6 +350,122 @@
     {
       "input": "word = \"LeetCode\"",
       "output": "false"
+    },
+    {
+      "input": "word = \"FlaG\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"Ab\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"AB\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"ab\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"aB\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWX\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"Abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvw\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"AbCdEfGhIjKlMnOpQrStUvWxYz\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"PythonIsFun\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"aAaAaA\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"USAA\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"lowercase\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"AaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaB\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"QWERTY\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"qwerty\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"Aa\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"Azzzzzzzzz\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"abC\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"XyZ\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"google\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"GOOGLE\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"mnopqrstuvwxyzabcdefghijklmno\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"Abcdefghijklmnopqrstuvwxyz\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"ABc\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"aBc\"",
+      "output": "false"
+    },
+    {
+      "input": "word = \"Aaaaa\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"ZZZZZ\"",
+      "output": "true"
     }
   ],
   "func_sign": {

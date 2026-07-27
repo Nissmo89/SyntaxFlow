@@ -403,6 +403,114 @@
     {
       "input": "s = \"abcdef\"",
       "output": "6"
+    },
+    {
+      "input": "s = \"abcdaf\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"     \"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a b c a b\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"01234567890123456789\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"!@#$%^&*()_+\"",
+      "output": "12"
+    },
+    {
+      "input": "s = \"ab!cd!ef\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"aA\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"AaAa\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"",
+      "output": "62"
+    },
+    {
+      "input": "s = \"tmmzuxt\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"dvdf\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abcdeafghijaklmn\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"a,b.c!d?e;f:g\"",
+      "output": "13"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 0, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"xyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 12, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 30, \"alphabet\": \"012345\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \" !@#$%\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \"abcdef\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \"0123456789 ,.! \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 32000, \"alphabet\": \"abcdefghijklmnop\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 45000, \"alphabet\": \"xyzXYZ123\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 49999, \"alphabet\": \" abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 2, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 17, \"alphabet\": \"abcdefghi\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 12345, \"alphabet\": \"0123456789\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \" !@#$%^&*\"}",
+      "output": ""
     }
   ],
   "func_sign": {

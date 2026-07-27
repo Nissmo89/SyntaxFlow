@@ -392,6 +392,134 @@
     {
       "input": "s = \"AbC dEfG\"",
       "output": "\"CbA GfEd\""
+    },
+    {
+      "input": "s = \"snake_case stays_put\"",
+      "output": "\"esac_ekans tup_syats\""
+    },
+    {
+      "input": "s = \"!! ??\"",
+      "output": "\"!! ??\""
+    },
+    {
+      "input": "s = \"level noon\"",
+      "output": "\"level noon\""
+    },
+    {
+      "input": "s = \"co-op re-enter\"",
+      "output": "\"po-oc retne-er\""
+    },
+    {
+      "input": "s = \"can't won't\"",
+      "output": "\"t'nac t'now\""
+    },
+    {
+      "input": "s = \"end. mid.\"",
+      "output": "\".dne .dim\""
+    },
+    {
+      "input": "s = \"one two three four five\"",
+      "output": "\"eno owt eerht ruof evif\""
+    },
+    {
+      "input": "s = \"aaa bbbb ccccc\"",
+      "output": "\"aaa bbbb ccccc\""
+    },
+    {
+      "input": "s = \"ab ba abba\"",
+      "output": "\"ba ab abba\""
+    },
+    {
+      "input": "s = \"A1! b2@ C3#\"",
+      "output": "\"!1A @2b #3C\""
+    },
+    {
+      "input": "s = \"path/to/file root/home\"",
+      "output": "\"elif/ot/htap emoh/toor\""
+    },
+    {
+      "input": "s = \"(abc) [de]\"",
+      "output": "\")cba( ]ed[\""
+    },
+    {
+      "input": "s = \"x;y z:w\"",
+      "output": "\"y;x w:z\""
+    },
+    {
+      "input": "s = \"algorithm\"",
+      "output": "\"mhtirogla\""
+    },
+    {
+      "input": "s = \"abcde fghij klmno\"",
+      "output": "\"edcba jihgf onmlk\""
+    },
+    {
+      "input": "s = \"12ab 34cd56\"",
+      "output": "\"ba21 65dc43\""
+    },
+    {
+      "input": "s = \"UP down LEFT right\"",
+      "output": "\"PU nwod TFEL thgir\""
+    },
+    {
+      "input": "s = \"`code` plain\"",
+      "output": "\"`edoc` nialp\""
+    },
+    {
+      "input": "s = \"mix-of_symbols! and_numbers123\"",
+      "output": "\"!slobmys_fo-xim 321srebmun_dna\""
+    },
+    {
+      "input": "s = \"edge case\"",
+      "output": "\"egde esac\""
+    },
+    {
+      "input": "s = \"zzz yyy xxx\"",
+      "output": "\"zzz yyy xxx\""
+    },
+    {
+      "input": "s = \"abcdef ghijkl mnopqr stuvwx yz\"",
+      "output": "\"fedcba lkjihg rqponm xwvuts zy\""
+    },
+    {
+      "input": "s = \"0 12 345 6789\"",
+      "output": "\"0 21 543 9876\""
+    },
+    {
+      "input": "s = \"AaAa BbBb\"",
+      "output": "\"aAaA bBbB\""
+    },
+    {
+      "input": "s = \"leadingsymbol# trail$\"",
+      "output": "\"#lobmysgnidael $liart\""
+    },
+    {
+      "input": "s = \"[] {}\"",
+      "output": "\"][ }{\""
+    },
+    {
+      "input": "s = \"pipe|bar foo~baz\"",
+      "output": "\"rab|epip zab~oof\""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcXYZ012!?-_\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 8, \"alphabet\": \"abcXYZ012!?-_\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 64, \"alphabet\": \"abcXYZ012!?-_\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 4096, \"alphabet\": \"abcXYZ012!?-_\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \"abcXYZ012!?-_\"}",
+      "output": ""
     }
   ],
   "func_sign": {

@@ -599,6 +599,114 @@
     {
       "input": "strs = [\"interstellar\", \"internet\", \"internal\"]",
       "output": "\"inter\""
+    },
+    {
+      "input": "strs = [\"prefix\", \"\", \"prelude\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"\", \"\", \"\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"abcdef\", \"abcde\", \"abc\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "strs = [\"same\", \"sample\", \"samba\"]",
+      "output": "\"sam\""
+    },
+    {
+      "input": "strs = [\"torch\", \"porch\", \"porchlight\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"a\", \"aa\", \"aaa\", \"aaaa\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "strs = [\"banana\", \"band\", \"banner\"]",
+      "output": "\"ban\""
+    },
+    {
+      "input": "strs = [\"star\", \"stairs\", \"stone\"]",
+      "output": "\"st\""
+    },
+    {
+      "input": "strs = [\"aaaaaaaaaab\", \"aaaaaaaaaac\", \"aaaaaaaaaad\"]",
+      "output": "\"aaaaaaaaaa\""
+    },
+    {
+      "input": "strs = [\"prefixed\", \"preform\", \"prevent\"]",
+      "output": "\"pre\""
+    },
+    {
+      "input": "strs = [\"lowercase\", \"low\", \"lower\"]",
+      "output": "\"low\""
+    },
+    {
+      "input": "strs = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]",
+      "output": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\""
+    },
+    {
+      "input": "strs = [\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\", \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"]",
+      "output": "\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\""
+    },
+    {
+      "input": "strs = [\"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccx\", \"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccy\"]",
+      "output": "\"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\""
+    },
+    {
+      "input": "strs = [\"alphabet\", \"alphanumeric\", \"almanac\"]",
+      "output": "\"al\""
+    },
+    {
+      "input": "strs = [\"qwerty\", \"qwe\", \"qwertz\", \"qweqqq\"]",
+      "output": "\"qwe\""
+    },
+    {
+      "input": "strs = [\"z\", \"\", \"zebra\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"planet\", \"planet\", \"planet\", \"planet\"]",
+      "output": "\"planet\""
+    },
+    {
+      "input": "strs = [\"framework\", \"framer\", \"frame\"]",
+      "output": "\"frame\""
+    },
+    {
+      "input": "strs = [\"car\", \"cargo\", \"carpet\"]",
+      "output": "\"car\""
+    },
+    {
+      "input": "strs = [\"handling\", \"handicap\", \"hand\"]",
+      "output": "\"hand\""
+    },
+    {
+      "input": "strs = [\"alpha\", \"beta\", \"gamma\", \"delta\", \"epsilon\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"preamble\", \"present\", \"pressure\"]",
+      "output": "\"pre\""
+    },
+    {
+      "input": "strs = [\"dogma\", \"dorm\", \"dot\"]",
+      "output": "\"do\""
+    },
+    {
+      "input": "strs = [\"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\", \"a\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "strs = [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]",
+      "output": "\"\""
+    },
+    {
+      "input": "strs = [\"xylophone\", \"xylem\", \"xylitol\"]",
+      "output": "\"xyl\""
     }
   ],
   "func_sign": {

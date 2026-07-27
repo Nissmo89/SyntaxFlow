@@ -595,6 +595,118 @@
     {
       "input": "nums = [8, 10, 2]",
       "output": "10"
+    },
+    {
+      "input": "nums = [2, 3, 4, 5, 6, 7]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [8, 1, 2, 12, 7, 6]",
+      "output": "15"
+    },
+    {
+      "input": "nums = [1, 2, 4, 8, 16, 32]",
+      "output": "48"
+    },
+    {
+      "input": "nums = [31, 14, 27, 8, 19, 3]",
+      "output": "29"
+    },
+    {
+      "input": "nums = [5, 25]",
+      "output": "28"
+    },
+    {
+      "input": "nums = [7, 7, 7, 7]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [0, 1, 2, 3, 4]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [1024, 512, 256, 128, 64]",
+      "output": "1536"
+    },
+    {
+      "input": "nums = [9, 6, 3]",
+      "output": "15"
+    },
+    {
+      "input": "nums = [15, 5, 10, 25, 2, 8]",
+      "output": "28"
+    },
+    {
+      "input": "nums = [1000000000, 1073741823]",
+      "output": "73741823"
+    },
+    {
+      "input": "nums = [2147483647, 0]",
+      "output": "2147483647"
+    },
+    {
+      "input": "nums = [2147483647, 1]",
+      "output": "2147483646"
+    },
+    {
+      "input": "nums = [123456789, 987654321, 555555555]",
+      "output": "1032168868"
+    },
+    {
+      "input": "nums = [42, 21, 10, 5, 2, 1]",
+      "output": "63"
+    },
+    {
+      "input": "nums = [17, 31, 47, 63, 79]",
+      "output": "112"
+    },
+    {
+      "input": "nums = [6, 28, 31, 7]",
+      "output": "27"
+    },
+    {
+      "input": "nums = [11, 22, 44, 88]",
+      "output": "116"
+    },
+    {
+      "input": "nums = [13, 26, 52, 104, 208]",
+      "output": "228"
+    },
+    {
+      "input": "nums = [9, 9, 8, 8, 7, 7]",
+      "output": "15"
+    },
+    {
+      "input": "nums = [1, 1023, 511, 255]",
+      "output": "1022"
+    },
+    {
+      "input": "nums = [100, 200, 300, 400, 500, 600]",
+      "output": "968"
+    },
+    {
+      "input": "nums = [123, 456, 789, 101112]",
+      "output": "101168"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 8}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 255}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 12}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1023}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 500, \"max\": 2000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 2147483647}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 199000, \"max\": 200000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": "0"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 199000, \"max\": 200000}, \"of\": {\"gen\": \"int\", \"min\": 2147483647, \"max\": 2147483647}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": "0"
     }
   ],
   "func_sign": {

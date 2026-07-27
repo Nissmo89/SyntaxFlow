@@ -601,6 +601,114 @@
     {
       "input": "arr = [1, -1, 1, -1, 1, -1]",
       "output": "true"
+    },
+    {
+      "input": "arr = [2, 2, 2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [3, 3, 3, 3, 3, 3]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [3, 3, 3, 3, 3]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [-1, -1, -1, -1, -1, -1]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [-1, -1, -1, -1]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [4, 1, 0, 1, 1, -6, 5, 0]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [4, 1, 0, 1, 1, -6, 5, 1]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [2, -2, 2, -2, 2, -2]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [0, 0, 0, 1, -1]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [1, 0, 1, 0]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [1, -1, 0, 0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [5, -2, 3, -6, 6, -6, 6, -6, 6]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [5, -2, 3, -6, 6, -6, 6, -6, 7]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [0, 1, -1, 0, 1, -1, 0]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [0, 1, -1, 0, 1, -1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [2, 2, 2, 2, 2, 2]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [2, 2, 2, 2, 2]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [1, 2, -3, 3, 0, 0, -3, 3]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [1, 2, -3, 3, 0, 0, -3, 2]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [1, 1, -2, 0, 0, 0]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [1, 1, -2, 0, 0, 1]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [0, 0, 0, 0, 1, -1, 0]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [0, 0, 0, 0, 1, -1, 1]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [2, -1, -1, 2, -1, -1, 2, -1, -1]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [2, -1, -1, 2, -1, -1, 2, -1, 0]",
+      "output": "false"
+    },
+    {
+      "input": "arr = [10, -10, 10, -10, 10, -10, 10, -10, 10, -10]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [10, -10, 10, -10, 10, -10, 10, -10, 10, -9]",
+      "output": "false"
     }
   ]
 }

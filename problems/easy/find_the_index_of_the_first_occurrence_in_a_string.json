@@ -615,6 +615,130 @@
     {
       "input": "haystack = \"aaaab\"\nneedle = \"aaab\"",
       "output": "1"
+    },
+    {
+      "input": "haystack = \"mississippi\"\nneedle = \"issip\"",
+      "output": "4"
+    },
+    {
+      "input": "haystack = \"zzzzzabc\"\nneedle = \"abc\"",
+      "output": "5"
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"a\"}\nneedle = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"a\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 2, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 3, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 2, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 10, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 3, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 25, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 5, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 7, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 10, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 250, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 20, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 500, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 30, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 1500, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 75, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 2000, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 2500, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 125, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 3000, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 150, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 3500, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 175, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 4000, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 200, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 4500, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 225, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 250, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 5500, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 275, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 6000, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 300, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 6500, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 325, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 7000, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 350, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 7500, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 375, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 8000, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 400, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 8500, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 425, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 9000, \"alphabet\": \"abcd\"}\nneedle = {\"gen\": \"str\", \"len\": 450, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 9500, \"alphabet\": \"ab\"}\nneedle = {\"gen\": \"str\", \"len\": 475, \"alphabet\": \"ab\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"abc\"}\nneedle = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "haystack = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"a\"}\nneedle = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"a\"}",
+      "output": ""
     }
   ],
   "func_sign": {

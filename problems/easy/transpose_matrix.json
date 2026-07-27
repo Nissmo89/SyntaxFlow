@@ -877,6 +877,114 @@
     {
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[12, 11, 10], [9, 8, 7], [6, 5, 4], [3, 2, 1]]}",
       "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 2, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 3, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 4, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 10, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 10, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 5, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": -50, \"max\": 50}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 1, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 100, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 100, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 1, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 3, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 7, \"of\": {\"gen\": \"int\", \"min\": -999, \"max\": 999}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 7, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 3, \"of\": {\"gen\": \"int\", \"min\": -999, \"max\": 999}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 8, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": -5, \"max\": 5}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 2, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 50, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 50, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 25, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 4, \"of\": {\"gen\": \"int\", \"min\": -20, \"max\": 20}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 4, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 25, \"of\": {\"gen\": \"int\", \"min\": -20, \"max\": 20}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 11, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 9, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 9, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 11, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 16, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 6, \"of\": {\"gen\": \"int\", \"min\": -7, \"max\": 7}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 6, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 16, \"of\": {\"gen\": \"int\", \"min\": -7, \"max\": 7}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 32, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 3, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 3, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 32, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 100, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 100, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": 1}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 500, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 500, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 12, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 12, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 20, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 5, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 5, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 30, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 30, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": 1}}}",
+      "output": ""
+    },
+    {
+      "input": "matrix = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 15, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 15, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}}}",
+      "output": ""
     }
   ],
   "func_sign": {

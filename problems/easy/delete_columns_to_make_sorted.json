@@ -521,6 +521,114 @@
     {
       "input": "strs = [\"bbbdbdcb\", \"cadbbadc\", \"caaccdbb\", \"bbbbaddd\", \"bbaddddc\"]",
       "output": "8"
+    },
+    {
+      "input": "strs = [\"c\", \"b\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"cbd\"]",
+      "output": "0"
+    },
+    {
+      "input": "strs = [\"db\", \"ab\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"cb\", \"cb\"]",
+      "output": "0"
+    },
+    {
+      "input": "strs = [\"a\", \"a\", \"b\", \"b\", \"b\", \"a\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"bdbac\", \"bbadb\", \"abbcd\"]",
+      "output": "5"
+    },
+    {
+      "input": "strs = [\"cdacdcac\", \"dabbccbc\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"aa\", \"dd\", \"cd\", \"da\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"c\"]",
+      "output": "0"
+    },
+    {
+      "input": "strs = [\"a\", \"d\", \"a\", \"c\", \"b\", \"b\", \"b\"]",
+      "output": "1"
+    },
+    {
+      "input": "strs = [\"ddacda\", \"dbaacc\", \"cdbcdd\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"bb\", \"aa\", \"dc\", \"cb\", \"bb\", \"ac\", \"cc\", \"cc\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"b\"]",
+      "output": "0"
+    },
+    {
+      "input": "strs = [\"cdbccdcb\", \"abcadada\", \"cacbbcba\", \"cdbacbca\"]",
+      "output": "8"
+    },
+    {
+      "input": "strs = [\"dddcbd\", \"acddaa\", \"addbac\", \"badaba\", \"aabcac\"]",
+      "output": "6"
+    },
+    {
+      "input": "strs = [\"ddaccab\", \"bbcddbb\", \"babccbd\", \"acbdbba\"]",
+      "output": "6"
+    },
+    {
+      "input": "strs = [\"aadc\", \"dbbd\", \"dbab\", \"daaa\", \"bbbd\", \"cacd\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"cdbaab\", \"bbaada\", \"bcbaaa\", \"bacbcb\"]",
+      "output": "5"
+    },
+    {
+      "input": "strs = [\"cbcd\", \"cdbb\", \"dcdd\", \"aadb\", \"bcda\", \"aadd\", \"abda\", \"acda\"]",
+      "output": "4"
+    },
+    {
+      "input": "strs = [\"baa\", \"bda\", \"aaa\", \"dad\", \"bdb\", \"aad\", \"dda\", \"adb\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"dbbdbbd\", \"dcbcbca\", \"bbbbacd\", \"adcddcc\", \"babcdbc\"]",
+      "output": "7"
+    },
+    {
+      "input": "strs = [\"ad\", \"cc\", \"aa\", \"dd\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"baddbb\", \"bdcdcb\", \"cbdddc\", \"cbccab\", \"bdaddb\"]",
+      "output": "6"
+    },
+    {
+      "input": "strs = [\"acba\", \"bbcb\", \"daab\", \"adcc\", \"babd\", \"bcbd\"]",
+      "output": "3"
+    },
+    {
+      "input": "strs = [\"baddcc\", \"ccbddc\", \"bdbaca\", \"daccbc\", \"abcaca\"]",
+      "output": "6"
+    },
+    {
+      "input": "strs = [\"ac\", \"ab\", \"dc\", \"dc\", \"bc\", \"cc\"]",
+      "output": "2"
+    },
+    {
+      "input": "strs = [\"dabbc\", \"dddbd\", \"dcabd\", \"acddb\", \"abdcd\", \"dcaab\"]",
+      "output": "5"
     }
   ],
   "func_sign": {

@@ -394,6 +394,118 @@
     {
       "input": "a = \"abcd\"\nb = \"dabcdab\"",
       "output": "3"
+    },
+    {
+      "input": "a = \"ab\"\nb = \"bababa\"",
+      "output": "4"
+    },
+    {
+      "input": "a = \"abc\"\nb = \"bcabcab\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"abc\"\nb = \"def\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"a\"\nb = \"aaaaa\"",
+      "output": "5"
+    },
+    {
+      "input": "a = \"ab\"\nb = \"baba\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"abca\"\nb = \"caabca\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"abcd\"\nb = \"cdabcdabc\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"abc\"\nb = \"cabd\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"abcdefghij\"\nb = \"fgh\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"abcdefghij\"\nb = \"hijabcde\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"xy\"\nb = \"yxyxy\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"xyz\"\nb = \"zyx\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"aaab\"\nb = \"abaaab\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"abcde\"\nb = \"deabcdeab\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"xyz\"\nb = \"xyzxyz\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"abcd\"\nb = \"cdabce\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"aa\"\nb = \"aaaaaa\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"aaa\"\nb = \"aaaaa\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"wxyz\"\nb = \"zwxyzw\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"bcda\"\nb = \"dabcdab\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nb = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nb = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nb = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "4"
+    },
+    {
+      "input": "a = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nb = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx\"\nb = \"wxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxabcde\"",
+      "output": "-1"
+    },
+    {
+      "input": "a = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx\"\nb = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx\"",
+      "output": "2"
+    },
+    {
+      "input": "a = \"ab\"\nb = \"babababababababababababababababababababababababababababababababababababababababababababababababababababa\"",
+      "output": "53"
+    },
+    {
+      "input": "a = \"abcdefghijklmnopqrstuvwxyz\"\nb = \"zyxwvutsrqponmlkjihgfedcba\"",
+      "output": "-1"
     }
   ],
   "func_sign": {

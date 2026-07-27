@@ -345,6 +345,114 @@
     {
       "input": "path = \"/a/b/c/../../\"",
       "output": "\"/a\""
+    },
+    {
+      "input": "path = \"/a//b////c/d//././/..\"",
+      "output": "\"/a/b/c\""
+    },
+    {
+      "input": "path = \"/../../../../x\"",
+      "output": "\"/x\""
+    },
+    {
+      "input": "path = \"/.../..../.....\"",
+      "output": "\"/.../..../.....\""
+    },
+    {
+      "input": "path = \"/a/.../b/../c\"",
+      "output": "\"/a/.../c\""
+    },
+    {
+      "input": "path = \"/_1/2_3/./4../..\"",
+      "output": "\"/_1/2_3\""
+    },
+    {
+      "input": "path = \"/a/b/c/.\"",
+      "output": "\"/a/b/c\""
+    },
+    {
+      "input": "path = \"/a/b/c/d/e/f/../../../../../\"",
+      "output": "\"/a\""
+    },
+    {
+      "input": "path = \"//////\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/dir/file.txt\"",
+      "output": "\"/dir/file.txt\""
+    },
+    {
+      "input": "path = \"/a/..hidden/....hidden/..\"",
+      "output": "\"/a/..hidden\""
+    },
+    {
+      "input": "path = \"/a//./b/../c//\"",
+      "output": "\"/a/c\""
+    },
+    {
+      "input": "path = \"/a/..\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/a/b/c/d/e/f/g/h/i/j\"",
+      "output": "\"/a/b/c/d/e/f/g/h/i/j\""
+    },
+    {
+      "input": "path = \"/a/b/c/../../x/y/z/../w\"",
+      "output": "\"/a/x/y/w\""
+    },
+    {
+      "input": "path = \"/usr/bin/../lib/./python3/../../share\"",
+      "output": "\"/usr/share\""
+    },
+    {
+      "input": "path = \"/./.../../....//.//..\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/a/../b/../c/../\"",
+      "output": "\"/\""
+    },
+    {
+      "input": "path = \"/a/b/../../../../c\"",
+      "output": "\"/c\""
+    },
+    {
+      "input": "path = \"/..a/../b\"",
+      "output": "\"/b\""
+    },
+    {
+      "input": "path = \"//./.././../x/.\"",
+      "output": "\"/x\""
+    },
+    {
+      "input": "path = \"/123/456/../789\"",
+      "output": "\"/123/789\""
+    },
+    {
+      "input": "path = \"/_/_/../__\"",
+      "output": "\"/_/__\""
+    },
+    {
+      "input": "path = \"/a/../b/../c/../d\"",
+      "output": "\"/d\""
+    },
+    {
+      "input": "path = \"/a.b/./c..d/../e...\"",
+      "output": "\"/a.b/e...\""
+    },
+    {
+      "input": "path = \"/a////b////c////d\"",
+      "output": "\"/a/b/c/d\""
+    },
+    {
+      "input": "path = \"/../x/../../y\"",
+      "output": "\"/y\""
+    },
+    {
+      "input": "path = \"/alpha/beta/gamma/delta/epsilon\"",
+      "output": "\"/alpha/beta/gamma/delta/epsilon\""
     }
   ],
   "func_sign": {

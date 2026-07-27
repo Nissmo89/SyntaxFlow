@@ -386,6 +386,114 @@
     {
       "input": "word1 = \"a\"\nword2 = \"ab\"",
       "output": "1"
+    },
+    {
+      "input": "word1 = \"ab\"\nword2 = \"a\"",
+      "output": "1"
+    },
+    {
+      "input": "word1 = \"abc\"\nword2 = \"xyz\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"prefix\"\nword2 = \"preform\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"swimming\"\nword2 = \"thing\"",
+      "output": "5"
+    },
+    {
+      "input": "word1 = \"saturday\"\nword2 = \"sunday\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"distance\"\nword2 = \"editing\"",
+      "output": "5"
+    },
+    {
+      "input": "word1 = \"aaaaa\"\nword2 = \"aaa\"",
+      "output": "2"
+    },
+    {
+      "input": "word1 = \"aaaab\"\nword2 = \"baaaa\"",
+      "output": "2"
+    },
+    {
+      "input": "word1 = \"abc\"\nword2 = \"abcdef\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"abcdef\"\nword2 = \"abc\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"ababab\"\nword2 = \"bababa\"",
+      "output": "2"
+    },
+    {
+      "input": "word1 = \"abcde\"\nword2 = \"abced\"",
+      "output": "2"
+    },
+    {
+      "input": "word1 = \"abc\"\nword2 = \"defg\"",
+      "output": "4"
+    },
+    {
+      "input": "word1 = \"z\"\nword2 = \"zzzzz\"",
+      "output": "4"
+    },
+    {
+      "input": "word1 = \"aaaaaaaaaab\"\nword2 = \"aaaaaaaaaac\"",
+      "output": "1"
+    },
+    {
+      "input": "word1 = \"baaaaaaaaaa\"\nword2 = \"caaaaaaaaaa\"",
+      "output": "1"
+    },
+    {
+      "input": "word1 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nword2 = \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+      "output": "100"
+    },
+    {
+      "input": "word1 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nword2 = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbb\"",
+      "output": "4"
+    },
+    {
+      "input": "word1 = \"bbbbccccddddaaaaeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssss\"\nword2 = \"bbbbccccddddzzzzeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssss\"",
+      "output": "4"
+    },
+    {
+      "input": "word1 = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcde\"\nword2 = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcde\"",
+      "output": "0"
+    },
+    {
+      "input": "word1 = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcde\"\nword2 = \"bcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdf\"",
+      "output": "2"
+    },
+    {
+      "input": "word1 = \"qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm\"\nword2 = \"qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbna\"",
+      "output": "1"
+    },
+    {
+      "input": "word1 = \"abc\"\nword2 = \"axc\"",
+      "output": "1"
+    },
+    {
+      "input": "word1 = \"sunday\"\nword2 = \"saturday\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"abcdefghij\"\nword2 = \"abxyzcdefghij\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"kittencat\"\nword2 = \"sittingat\"",
+      "output": "3"
+    },
+    {
+      "input": "word1 = \"abcde\"\nword2 = \"fghij\"",
+      "output": "5"
     }
   ],
   "func_sign": {

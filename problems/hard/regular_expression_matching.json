@@ -430,6 +430,134 @@
     {
       "input": "s = \"a\"\np = \".\"",
       "output": "true"
+    },
+    {
+      "input": "s = \"a\"\np = \"b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"a\"\np = \"ab*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaa\"\np = \"a*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"\np = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"\np = \"abd\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abc\"\np = \"a.c\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"\np = \"a.d\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcd\"\np = \".*d\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcd\"\np = \".*e\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaab\"\np = \"a*b\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaac\"\np = \"a*b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aab\"\np = \"c*a*b\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"mississippi\"\np = \"mis*is*p*.\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"mississippi\"\np = \"mis*is*ip*.\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab\"\np = \"ab*c*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab\"\np = \"ab.*c\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcdef\"\np = \"abc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"a\"\np = \"ab*c*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abbbcd\"\np = \"ab*cd\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abbbce\"\np = \"ab*cd\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"xyz\"\np = \".*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"xyz\"\np = \".*z\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"xyz\"\np = \".*a\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaab\"\np = \"a*a*a*a*a*a*a*a*a*b\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaac\"\np = \"a*a*a*a*a*a*a*a*a*b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"\"\np = \"c*d*e*f*\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaab\"\np = \"a*ab\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaac\"\np = \"a*ab\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcde\"\np = \".....\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcd\"\np = \".....\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"baaaab\"\np = \"b.*a*b\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"baaaac\"\np = \"b.*a*b\"",
+      "output": "false"
     }
   ],
   "func_sign": {

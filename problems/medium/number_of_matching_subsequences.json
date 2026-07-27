@@ -649,6 +649,118 @@
     {
       "input": "s = \"abcabc\"\nwords = [\"abc\", \"abc\", \"abc\", \"ac\", \"ac\", \"ca\"]",
       "output": "6"
+    },
+    {
+      "input": "s = \"abcd\"\nwords = [\"ab\", \"abc\", \"abcd\", \"a\", \"bcd\", \"d\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"banana\"\nwords = [\"ban\", \"nan\", \"ana\", \"baa\", \"bna\", \"nanaa\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abcde\"\nwords = [\"ace\", \"cae\", \"eca\", \"abde\", \"edcba\"]",
+      "output": "2"
+    },
+    {
+      "input": "s = \"aabccdeeff\"\nwords = [\"abc\", \"aabbcc\", \"ace\", \"aaccee\", \"adef\", \"aabccdeeff\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abc\"\nwords = [\"abcd\", \"aabc\", \"abcabc\", \"cba\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"abracadabra\"\nwords = [\"aba\", \"aba\", \"aba\", \"abra\", \"cad\", \"ra\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"xyzxyz\"\nwords = [\"x\", \"yy\", \"z\", \"xy\", \"yz\", \"zx\", \"xyz\", \"xyy\", \"xxz\"]",
+      "output": "9"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nwords = [\"abc\", \"xyz\", \"aceg\", \"zyx\", \"mnopq\", \"aaaaa\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"axbyczdwevfugthsirjqkplomn\"\nwords = [\"abcdef\", \"aeiou\", \"az\", \"xwv\", \"ajk\", \"an\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abcabcabcabc\"\nwords = [\"abcabc\", \"acac\", \"bcabca\", \"ccc\", \"abccba\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"aabbaaabbb\"\nwords = [\"ab\", \"aab\", \"abb\", \"aaabbb\", \"bbb\", \"aaaab\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"qwerty\"\nwords = [\"q\", \"ry\", \"qy\", \"wy\", \"qwe\", \"ty\", \"qwerty\"]",
+      "output": "7"
+    },
+    {
+      "input": "s = \"abcdef\"\nwords = [\"fed\", \"edc\", \"cba\", \"bdf\"]",
+      "output": "1"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nwords = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"b\"]",
+      "output": "2"
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nwords = [\"a\", \"aa\", \"aaa\", \"aaaa\", \"aaaaa\", \"aaaaaa\", \"aaaaaaa\", \"aaaaaaaa\", \"aaaaaaaaa\", \"aaaaaaaaaa\"]",
+      "output": "10"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx\"\nwords = [\"abcdefghijklmnopqrstuvwxyz\", \"zyx\", \"acegikmoqsuwy\", \"aaaaaaaaaa\", \"mnopqrstuvwxyz\", \"uvwxyzabcdef\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"abcabcabc\"\nwords = [\"a\", \"b\", \"c\", \"ab\", \"bc\", \"ca\", \"abc\", \"acb\", \"bac\"]",
+      "output": "9"
+    },
+    {
+      "input": "s = \"bbbbbbbbb\"\nwords = [\"a\", \"ab\", \"ba\", \"bb\", \"bbb\", \"c\", \"bc\"]",
+      "output": "2"
+    },
+    {
+      "input": "s = \"ababababab\"\nwords = [\"ababab\", \"baba\", \"aa\", \"bb\", \"abababa\", \"bbb\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"mnbvcxzlkjhgfdsapoiuytrewq\"\nwords = [\"mnv\", \"mnb\", \"zlk\", \"asd\", \"poi\", \"qwe\"]",
+      "output": "4"
+    },
+    {
+      "input": "s = \"thequickbrownfoxjumpsoveralazydog\"\nwords = [\"quick\", \"brown\", \"fox\", \"jumps\", \"over\", \"lazy\", \"dog\", \"qbfjod\"]",
+      "output": "8"
+    },
+    {
+      "input": "s = \"hellotheregeneralkenobi\"\nwords = [\"hello\", \"there\", \"general\", \"kenobi\", \"her\", \"leg\", \"obi\"]",
+      "output": "7"
+    },
+    {
+      "input": "s = \"abcabcabc\"\nwords = [\"d\", \"e\", \"f\", \"dg\", \"xyz\"]",
+      "output": "0"
+    },
+    {
+      "input": "s = \"zzxyzzxyzzxy\"\nwords = [\"zzx\", \"zzy\", \"zxyz\", \"yzz\", \"zzxyzz\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"cabcabca\"\nwords = [\"ca\", \"cab\", \"caba\", \"cabca\", \"cabcab\", \"cabcaba\"]",
+      "output": "6"
+    },
+    {
+      "input": "s = \"abacabadabacaba\"\nwords = [\"aba\", \"abac\", \"abad\", \"cab\", \"ddc\", \"aaaa\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"pqrstuvwxyz\"\nwords = [\"pqr\", \"pstu\", \"tvw\", \"wxyz\", \"pqq\", \"uvwxy\"]",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abcde\"\nwords = [\"a\", \"b\", \"c\", \"d\", \"e\", \"ab\", \"bc\", \"cd\", \"de\", \"abcde\", \"edcba\"]",
+      "output": "10"
     }
   ],
   "func_sign": {

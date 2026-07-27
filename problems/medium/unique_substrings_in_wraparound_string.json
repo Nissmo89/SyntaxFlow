@@ -360,6 +360,122 @@
     {
       "input": "s = \"abcdefghijklmnopqrstuvwxyz\"",
       "output": "351"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\"",
+      "output": "1027"
+    },
+    {
+      "input": "s = \"zzzz\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abcabcabc\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"cdefghijklmnopqrstuvwxyzab\"",
+      "output": "351"
+    },
+    {
+      "input": "s = \"xyzabc\"",
+      "output": "21"
+    },
+    {
+      "input": "s = \"aab\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"aaabbbccc\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"nopqrstuvwxyzabc\"",
+      "output": "136"
+    },
+    {
+      "input": "s = \"az\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"za\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"yza\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"lmno\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"pqrstuvwxyza\"",
+      "output": "78"
+    },
+    {
+      "input": "s = \"bcdefghijklmnopqrstuvwxyza\"",
+      "output": "351"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabc\"",
+      "output": "429"
+    },
+    {
+      "input": "s = \"bcdefghijklmnopqrstuvwxyz\"",
+      "output": "325"
+    },
+    {
+      "input": "s = \"qwerty\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyza\"",
+      "output": "377"
+    },
+    {
+      "input": "s = \"mnoprstuvwx\"",
+      "output": "38"
+    },
+    {
+      "input": "s = \"aaaaaaaaaa\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"zabcdefghijklmnopqrstuvwxyz\"",
+      "output": "377"
+    },
+    {
+      "input": "s = \"abcdzabc\"",
+      "output": "14"
+    },
+    {
+      "input": "s = \"helloworld\"",
+      "output": "7"
+    },
+    {
+      "input": "s = \"mnopqrstuvwxymnop\"",
+      "output": "91"
+    },
+    {
+      "input": "s = \"abcdefghijklmnoprstuvwxyz\"",
+      "output": "181"
+    },
+    {
+      "input": "s = \"vwxyzabcde\"",
+      "output": "55"
+    },
+    {
+      "input": "s = \"abacaba\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"rstuvwxyzabcdefghijklmnopq\"",
+      "output": "351"
+    },
+    {
+      "input": "s = \"tuvwxyzabcdefghijklmnopqrs\"",
+      "output": "351"
     }
   ],
   "func_sign": {

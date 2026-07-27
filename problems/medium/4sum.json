@@ -683,6 +683,114 @@
     {
       "input": "nums = [5, 5, 5, 5, 5, 5]\ntarget = 20",
       "output": ""
+    },
+    {
+      "input": "nums = [-4, -4, -4, -4, -4]\ntarget = -16",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6]\ntarget = 100",
+      "output": ""
+    },
+    {
+      "input": "nums = [10, 20, 30, 40, 50]\ntarget = -10",
+      "output": ""
+    },
+    {
+      "input": "nums = [-5, -4, -3, 0, 1, 2, 3, 4]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [-2, -1, -1, 1, 1, 2, 2]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [-2, -1, 0, 0, 1, 2, 2, 3]\ntarget = 2",
+      "output": ""
+    },
+    {
+      "input": "nums = [-2, -1, 0, 0, 1, 2, 2, 2]\ntarget = 3",
+      "output": ""
+    },
+    {
+      "input": "nums = [1000000000, 1000000000, -1000000000, -1000000000, 1, -1]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [1000000000, 999999999, -1000000000, -999999999, 0, 0]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 2, 2, 2]\ntarget = 5",
+      "output": ""
+    },
+    {
+      "input": "nums = [-1, -1, -1, 0, 0, 1, 1, 2]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [-3, -2, -1, 0, 0, 1, 2, 3]\ntarget = 1",
+      "output": ""
+    },
+    {
+      "input": "nums = [-3, -2, -1, 0, 1, 2, 3, 4]\ntarget = 2",
+      "output": ""
+    },
+    {
+      "input": "nums = [-4, -3, -2, -1, 1, 2, 3, 4]\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = [-5, -4, -1, 0, 1, 2, 3, 4, 5]\ntarget = 1",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 50, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = {\"gen\": \"int\", \"min\": -50, \"max\": 50}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 60, \"of\": {\"gen\": \"int\", \"min\": -200, \"max\": 200, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = {\"gen\": \"int\", \"min\": -100, \"max\": 100}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 80, \"of\": {\"gen\": \"int\", \"min\": -8, \"max\": 8, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = {\"gen\": \"int\", \"min\": -8, \"max\": 8}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": -5, \"max\": 5, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 12, \"of\": {\"gen\": \"int\", \"min\": -20, \"max\": 20, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 3",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 16, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 30, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 40",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 16, \"of\": {\"gen\": \"int\", \"min\": -30, \"max\": 0, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = -40",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 2",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 80, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 0",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 120, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}}\ntarget = 12345",
+      "output": ""
     }
   ],
   "func_sign": {

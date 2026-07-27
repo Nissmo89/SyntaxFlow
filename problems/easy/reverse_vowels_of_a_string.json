@@ -372,6 +372,114 @@
     {
       "input": "s = \"EA\"",
       "output": "\"\\\"AE\\\"\""
+    },
+    {
+      "input": "s = \"AaEeIiOoUu\"",
+      "output": "\"\\\"uUoOiIeEaA\\\"\""
+    },
+    {
+      "input": "s = \"hello, world!\"",
+      "output": "\"\\\"hollo, werld!\\\"\""
+    },
+    {
+      "input": "s = \"rhythm\"",
+      "output": "\"\\\"rhythm\\\"\""
+    },
+    {
+      "input": "s = \"Merry Christmas!\"",
+      "output": "\"\\\"Marry Christmes!\\\"\""
+    },
+    {
+      "input": "s = \"Aa\"",
+      "output": "\"\\\"aA\\\"\""
+    },
+    {
+      "input": "s = \"The quick brown fox jumps over the lazy dog.\"",
+      "output": "\"\\\"Tho qaeck brewn fox jumps ovor thi luzy deg.\\\"\""
+    },
+    {
+      "input": "s = \"xbcdfg\"",
+      "output": "\"\\\"xbcdfg\\\"\""
+    },
+    {
+      "input": "s = \"aeiou\"",
+      "output": "\"\\\"uoiea\\\"\""
+    },
+    {
+      "input": "s = \"AEIOU\"",
+      "output": "\"\\\"UOIEA\\\"\""
+    },
+    {
+      "input": "s = \"zzzaaa\"",
+      "output": "\"\\\"zzzaaa\\\"\""
+    },
+    {
+      "input": "s = \"zzzAAA\"",
+      "output": "\"\\\"zzzAAA\\\"\""
+    },
+    {
+      "input": "s = \"12345\"",
+      "output": "\"\\\"12345\\\"\""
+    },
+    {
+      "input": "s = \".,;:!\"",
+      "output": "\"\\\".,;:!\\\"\""
+    },
+    {
+      "input": "s = \"a!e?i,o.u\"",
+      "output": "\"\\\"u!o?i,e.a\\\"\""
+    },
+    {
+      "input": "s = \"xAeIoUb\"",
+      "output": "\"\\\"xUoIeAb\\\"\""
+    },
+    {
+      "input": "s = \"mango\"",
+      "output": "\"\\\"monga\\\"\""
+    },
+    {
+      "input": "s = \"queue\"",
+      "output": "\"\\\"qeueu\\\"\""
+    },
+    {
+      "input": "s = \"leetcodeisfun\"",
+      "output": "\"\\\"luitcedoesfen\\\"\""
+    },
+    {
+      "input": "s = \"LeEtCoDe\"",
+      "output": "\"\\\"LeotCEDe\\\"\""
+    },
+    {
+      "input": "s = \"uoiea\"",
+      "output": "\"\\\"aeiou\\\"\""
+    },
+    {
+      "input": "s = \"A man, a plan, a canal: Panama!\"",
+      "output": "\"\\\"a man, a plan, a canal: PanamA!\\\"\""
+    },
+    {
+      "input": "s = \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+      "output": "\"\\\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\\"\""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"alphabet\": \"abcdeiouAEIOU\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 2}, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 10}, \"alphabet\": \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 1000}, \"alphabet\": \" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 300000, \"max\": 300000}, \"alphabet\": \" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\"}",
+      "output": ""
     }
   ],
   "func_sign": {

@@ -382,6 +382,134 @@
     {
       "input": "expression = \"&(t,t)\"",
       "output": "true"
+    },
+    {
+      "input": "expression = \"&(t,f)\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"|(f,f)\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"|(f,t)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(|(t),!(f))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(&(t,f),t)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(&(&(t,t),|(f,f)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(t,t,t)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(f,f,t)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(f,f,f)\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"!(&(|(f,t),&(t,t),!(f)))\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"&(|(f,f,t),!(f),&(t,|(f,t)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(&(t,!(f)),&(f,t),!(|(f)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(!(!(t)))\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"&(!(&(t,f)),|(f,!(f)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(!(&(t,t)),&(t,!(f)),f)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(&(|(t,f),!(t),&(t,t)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(|(&(t,f),t),!(&(t,t)),|(f,t))\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"|(&(t,!(f),t),!(&(f,f)),&(t,t,t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(|(&(f,f),&(t,f),!(t)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(!(f),!(f),!(f))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(!(t),!(f),&(t,t,t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(&(!(t),|(f,f),t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(|(&(t,t),f),!(&(f,t)),|(f,!(f),f))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(&(!(f),!(f)),!(&(t,t)),&(t,|(f,t)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(&(|(&(t,f),&(t,t)),!(f),|(f,t)))\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"&(|(&(t,t),!(f)),!(&(t,f)),|(f,f,t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(!(&(|(f,f),t)),&(t,!(f),t),f)\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(!(t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"&(!(!(t)),|(!(f),f),!(|(f,f)))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"|(&(t,|(f,!(f))),!(&(t,t,t)),&(t,t))\"",
+      "output": "true"
+    },
+    {
+      "input": "expression = \"!(|(!(f),&(t,f),|(f,f,f)))\"",
+      "output": "false"
+    },
+    {
+      "input": "expression = \"&(|(t,f),|(f,f,t),!(f),!(|(f)))\"",
+      "output": "true"
     }
   ],
   "func_sign": {

@@ -345,6 +345,118 @@
     {
       "input": "x = 12",
       "output": "false"
+    },
+    {
+      "input": "x = 100",
+      "output": "false"
+    },
+    {
+      "input": "x = 12321",
+      "output": "true"
+    },
+    {
+      "input": "x = 1221",
+      "output": "true"
+    },
+    {
+      "input": "x = 12331",
+      "output": "false"
+    },
+    {
+      "input": "x = 1231",
+      "output": "false"
+    },
+    {
+      "input": "x = 7777777",
+      "output": "true"
+    },
+    {
+      "input": "x = 7777778",
+      "output": "false"
+    },
+    {
+      "input": "x = 1002001",
+      "output": "true"
+    },
+    {
+      "input": "x = 1002101",
+      "output": "false"
+    },
+    {
+      "input": "x = 2147447412",
+      "output": "true"
+    },
+    {
+      "input": "x = 2147447413",
+      "output": "false"
+    },
+    {
+      "input": "x = 2147412",
+      "output": "true"
+    },
+    {
+      "input": "x = 2147413",
+      "output": "false"
+    },
+    {
+      "input": "x = 2147483647",
+      "output": "false"
+    },
+    {
+      "input": "x = -2147483648",
+      "output": "false"
+    },
+    {
+      "input": "x = 2000000002",
+      "output": "true"
+    },
+    {
+      "input": "x = 2000000003",
+      "output": "false"
+    },
+    {
+      "input": "x = 1000000001",
+      "output": "true"
+    },
+    {
+      "input": "x = 999999999",
+      "output": "true"
+    },
+    {
+      "input": "x = 999999998",
+      "output": "false"
+    },
+    {
+      "input": "x = 1003001",
+      "output": "true"
+    },
+    {
+      "input": "x = 1003101",
+      "output": "false"
+    },
+    {
+      "input": "x = 123454321",
+      "output": "true"
+    },
+    {
+      "input": "x = 123454322",
+      "output": "false"
+    },
+    {
+      "input": "x = 1000000001",
+      "output": "true"
+    },
+    {
+      "input": "x = 1000000002",
+      "output": "false"
+    },
+    {
+      "input": "x = -101",
+      "output": "false"
+    },
+    {
+      "input": "x = 101",
+      "output": "true"
     }
   ],
   "func_sign": {

@@ -584,6 +584,122 @@
     {
       "input": "source = [\"abc/*def\", \"ghi*/jkl\"]",
       "output": "[\"abcjkl\"]"
+    },
+    {
+      "input": "source = [\"pre/*one\", \"two\", \"three*/post\"]",
+      "output": "[\"prepost\"]"
+    },
+    {
+      "input": "source = [\"aa/* block // still block\", \"end */bb\"]",
+      "output": "[\"aabb\"]"
+    },
+    {
+      "input": "source = [\"keep// ignore /* not block\", \"next\"]",
+      "output": "[\"keep\", \"next\"]"
+    },
+    {
+      "input": "source = [\"ab/*x*/cd//tail\"]",
+      "output": "[\"abcd\"]"
+    },
+    {
+      "input": "source = [\"a/*x*//*y*/b\"]",
+      "output": "[\"ab\"]"
+    },
+    {
+      "input": "source = [\"x/*/y*/z\"]",
+      "output": "[\"xz\"]"
+    },
+    {
+      "input": "source = [\"a/*x\", \"\", \"\", \"y*/b\"]",
+      "output": "[\"ab\"]"
+    },
+    {
+      "input": "source = [\"\", \"abc\", \"\"]",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "source = [\"a/b/c\", \"path/to/file\"]",
+      "output": "[\"a/b/c\", \"path/to/file\"]"
+    },
+    {
+      "input": "source = [\"a*b**c\"]",
+      "output": "[\"a*b**c\"]"
+    },
+    {
+      "input": "source = [\"ab/*c*/de//fg\"]",
+      "output": "[\"abde\"]"
+    },
+    {
+      "input": "source = [\"a/*x*/b/*y*/c\"]",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "source = [\"int main(){\", \"  int x = 0; /* init */\", \"  x++; // increment\", \"  return x;\", \"}\"]",
+      "output": "[\"int main(){\", \"  int x = 0; \", \"  x++; \", \"  return x;\", \"}\"]"
+    },
+    {
+      "input": "source = [\"abc//  \"]",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "source = [\"/*x*/abc\"]",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "source = [\"a/*x\", \"y\", \"z*/b\", \"c\"]",
+      "output": "[\"ab\", \"c\"]"
+    },
+    {
+      "input": "source = [\"   \"]",
+      "output": "[\"   \"]"
+    },
+    {
+      "input": "source = [\"  /*x*/  \"]",
+      "output": "[\"    \"]"
+    },
+    {
+      "input": "source = [\"one//x\", \"two//y\", \"three\"]",
+      "output": "[\"one\", \"two\", \"three\"]"
+    },
+    {
+      "input": "source = [\"a/*x*/b/*y\", \"z*/c\"]",
+      "output": "[\"abc\"]"
+    },
+    {
+      "input": "source = [\"/**/\", \"done\"]",
+      "output": "[\"done\"]"
+    },
+    {
+      "input": "source = [\"a/*b/*c*/d*/e\"]",
+      "output": "[\"ad*/e\"]"
+    },
+    {
+      "input": "source = [\"abc//def/*ghi\", \"jkl\"]",
+      "output": "[\"abc\", \"jkl\"]"
+    },
+    {
+      "input": "source = [\"/*abc*/x\", \"y\"]",
+      "output": "[\"x\", \"y\"]"
+    },
+    {
+      "input": "source = [\"m/*n*/o\", \"p\"]",
+      "output": "[\"mo\", \"p\"]"
+    },
+    {
+      "input": "source = [\"left/*a\", \"b\", \"c*/right\"]",
+      "output": "[\"leftright\"]"
+    },
+    {
+      "input": "source = [\"ab/*x*/cd//tail\", \"ef\"]",
+      "output": "[\"abcd\", \"ef\"]"
+    },
+    {
+      "input": "source = [\"a/*x\", \"\", \"\", \"*/b\", \"\", \"c\"]",
+      "output": "[\"ab\", \"c\"]"
+    },
+    {
+      "input": "source = [\"keep   \", \"drop//   \"]",
+      "output": "[\"keep   \", \"drop\"]"
     }
   ],
   "func_sign": {

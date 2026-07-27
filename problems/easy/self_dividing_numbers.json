@@ -485,6 +485,114 @@
     {
       "input": "left = 10\nright = 19",
       "output": "[11, 12, 15]"
+    },
+    {
+      "input": "left = 20\nright = 29",
+      "output": "[22, 24]"
+    },
+    {
+      "input": "left = 30\nright = 39",
+      "output": "[33, 36]"
+    },
+    {
+      "input": "left = 40\nright = 49",
+      "output": "[44, 48]"
+    },
+    {
+      "input": "left = 50\nright = 59",
+      "output": "[55]"
+    },
+    {
+      "input": "left = 60\nright = 69",
+      "output": "[66]"
+    },
+    {
+      "input": "left = 70\nright = 79",
+      "output": "[77]"
+    },
+    {
+      "input": "left = 80\nright = 89",
+      "output": "[88]"
+    },
+    {
+      "input": "left = 90\nright = 99",
+      "output": "[99]"
+    },
+    {
+      "input": "left = 98\nright = 102",
+      "output": "[99]"
+    },
+    {
+      "input": "left = 110\nright = 130",
+      "output": "[111, 112, 115, 122, 124, 126, 128]"
+    },
+    {
+      "input": "left = 128\nright = 128",
+      "output": "[128]"
+    },
+    {
+      "input": "left = 129\nright = 129",
+      "output": "[]"
+    },
+    {
+      "input": "left = 132\nright = 140",
+      "output": "[132, 135]"
+    },
+    {
+      "input": "left = 200\nright = 222",
+      "output": "[212, 216, 222]"
+    },
+    {
+      "input": "left = 300\nright = 350",
+      "output": "[312, 315, 324, 333, 336]"
+    },
+    {
+      "input": "left = 728\nright = 735",
+      "output": "[728, 735]"
+    },
+    {
+      "input": "left = 1111\nright = 1125",
+      "output": "[1111, 1112, 1113, 1115, 1116, 1122, 1124]"
+    },
+    {
+      "input": "left = 1230\nright = 1240",
+      "output": "[1236]"
+    },
+    {
+      "input": "left = 9990\nright = 10000",
+      "output": "[9999]"
+    },
+    {
+      "input": "left = 9000\nright = 10000",
+      "output": ""
+    },
+    {
+      "input": "left = 5000\nright = 10000",
+      "output": ""
+    },
+    {
+      "input": "left = 1\nright = 10000",
+      "output": ""
+    },
+    {
+      "input": "left = 1\nright = {\"gen\": \"int\", \"min\": 1, \"max\": 200}",
+      "output": ""
+    },
+    {
+      "input": "left = 128\nright = {\"gen\": \"int\", \"min\": 128, \"max\": 2048}",
+      "output": ""
+    },
+    {
+      "input": "left = 5000\nright = {\"gen\": \"int\", \"min\": 5000, \"max\": 8000}",
+      "output": ""
+    },
+    {
+      "input": "left = 9800\nright = {\"gen\": \"int\", \"min\": 9800, \"max\": 10000}",
+      "output": ""
+    },
+    {
+      "input": "left = 9999\nright = {\"gen\": \"int\", \"min\": 9999, \"max\": 10000}",
+      "output": ""
     }
   ],
   "func_sign": {

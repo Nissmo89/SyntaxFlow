@@ -356,6 +356,114 @@
     {
       "input": "s = \"LL\"",
       "output": "true"
+    },
+    {
+      "input": "s = \"LLL\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLPLL\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"LLALL\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ALLL\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"PLPLPLP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"PPPPPPPPPP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"LL\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"LLLL\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLPPA\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"PALLL\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"PALAP\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLPLLPLL\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"APAPAP\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ALPLLP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ALALLPPA\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LPLLLP\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLPLLPLLP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"PLPAPL\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"PPPPLAPP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"LAPALP\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLAPLLAP\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"LLPPLLAP\"",
+      "output": "true"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 8, \"alphabet\": \"ALP\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 25, \"alphabet\": \"ALP\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"ALP\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 999, \"alphabet\": \"ALP\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"ALP\"}",
+      "output": ""
     }
   ],
   "func_sign": {

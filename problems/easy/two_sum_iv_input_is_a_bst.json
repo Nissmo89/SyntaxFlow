@@ -688,6 +688,122 @@
     {
       "input": "root = [0, -3, 2, -4, null, 1]\nk = 8",
       "output": "false"
+    },
+    {
+      "input": "root = [8, 4, 12, 2, 6, 10, 14]\nk = 16",
+      "output": "true"
+    },
+    {
+      "input": "root = [8, 4, 12, 2, 6, 10, 14]\nk = 27",
+      "output": "false"
+    },
+    {
+      "input": "root = [5, 3, 6, 2, 4, null, 7]\nk = 12",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, 15, 3, 7, 13, 18]\nk = 8",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, 15, 3, 7, 13, 18]\nk = 31",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, 15, 3, 7, 13, 18]\nk = 28",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, 15, 3, 7, 13, 18]\nk = 19",
+      "output": "false"
+    },
+    {
+      "input": "root = [9, 7, null, 5, null, 3, null]\nk = 12",
+      "output": "true"
+    },
+    {
+      "input": "root = [9, 7, null, 5, null, 3, null]\nk = 4",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]\nk = 5",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]\nk = 9",
+      "output": "false"
+    },
+    {
+      "input": "root = [0, -2, 3, -3, -1, 2, 4]\nk = 0",
+      "output": "true"
+    },
+    {
+      "input": "root = [0, -2, 3, -3, -1, 2, 4]\nk = 1",
+      "output": "true"
+    },
+    {
+      "input": "root = [20, 10, 30, 5, 15, 25, 35, 3, 7, 13, 17, 23, 27, 33, 37]\nk = 40",
+      "output": "true"
+    },
+    {
+      "input": "root = [20, 10, 30, 5, 15, 25, 35, 3, 7, 13, 17, 23, 27, 33, 37]\nk = 41",
+      "output": "false"
+    },
+    {
+      "input": "root = [-10000, -10000, 0]\nk = -20000",
+      "output": "true"
+    },
+    {
+      "input": "root = [-10000, -10000, 0]\nk = -19999",
+      "output": "false"
+    },
+    {
+      "input": "root = [10000, 0, 10000]\nk = 20000",
+      "output": "true"
+    },
+    {
+      "input": "root = [10000, 0, 10000]\nk = 19999",
+      "output": "false"
+    },
+    {
+      "input": "root = [42]\nk = 84",
+      "output": "false"
+    },
+    {
+      "input": "root = [50, 25, 75, 10, 30, 60, 90, 5, 15, 27, 35, 55, 65, 80, 95]\nk = 125",
+      "output": "true"
+    },
+    {
+      "input": "root = [50, 25, 75, 10, 30, 60, 90, 5, 15, 27, 35, 55, 65, 80, 95]\nk = 126",
+      "output": "false"
+    },
+    {
+      "input": "root = [6, 2, 9, 1, 4, 7, 13, null, null, 3, 5]\nk = 8",
+      "output": "true"
+    },
+    {
+      "input": "root = [6, 2, 9, 1, 4, 7, 13, null, null, 3, 5]\nk = 18",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, -2, 3, -3, 0, 2, 4]\nk = 1",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, -2, 3, -3, 0, 2, 4]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "root = [4, 2, 6, 1, 3, 5, 7]\nk = 11",
+      "output": "true"
+    },
+    {
+      "input": "root = [4, 2, 6, 1, 3, 5, 7]\nk = 13",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, null, 2]\nk = 3",
+      "output": "true"
     }
   ],
   "func_sign": {

@@ -600,6 +600,118 @@
     {
       "input": "nums = [1, 1, 1]\nk = 1",
       "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]\nk = 10",
+      "output": "7"
+    },
+    {
+      "input": "nums = [8, 4, 2]\nk = 9",
+      "output": "4"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2]\nk = 8",
+      "output": "7"
+    },
+    {
+      "input": "nums = [2, 2, 2]\nk = 8",
+      "output": "5"
+    },
+    {
+      "input": "nums = [10, 5, 2, 6, 1]\nk = 100",
+      "output": "12"
+    },
+    {
+      "input": "nums = [3, 3, 3]\nk = 9",
+      "output": "3"
+    },
+    {
+      "input": "nums = [3, 3, 3]\nk = 10",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1000, 1000, 1000]\nk = 999",
+      "output": "0"
+    },
+    {
+      "input": "nums = [9, 9]\nk = 81",
+      "output": "2"
+    },
+    {
+      "input": "nums = [9, 9]\nk = 82",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 1, 2, 1]\nk = 3",
+      "output": "11"
+    },
+    {
+      "input": "nums = [1, 1000, 1, 1000, 1]\nk = 1001",
+      "output": "11"
+    },
+    {
+      "input": "nums = [1, 1, 1, 50, 1, 1]\nk = 50",
+      "output": "9"
+    },
+    {
+      "input": "nums = [1000, 1000, 1000, 1000]\nk = 1000000",
+      "output": "4"
+    },
+    {
+      "input": "nums = [1000, 1000, 1000]\nk = 1000001",
+      "output": "5"
+    },
+    {
+      "input": "nums = [2, 5, 3, 10, 2, 6]\nk = 30",
+      "output": "10"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2, 2, 2]\nk = 5",
+      "output": "11"
+    },
+    {
+      "input": "nums = [100, 1, 1, 1, 1]\nk = 2",
+      "output": "10"
+    },
+    {
+      "input": "nums = [1000, 1, 1000, 1, 1000]\nk = 1000",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 4, 8, 16]\nk = 33",
+      "output": "6"
+    },
+    {
+      "input": "nums = [2, 4, 8, 16]\nk = 32",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1, 1, 1000, 1, 1]\nk = 1000",
+      "output": "6"
+    },
+    {
+      "input": "nums = [7, 2, 1, 4]\nk = 8",
+      "output": "6"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 30000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 1000000",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 30000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 2",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 1000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 1000000",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 2000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 3",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 5000, \"of\": {\"gen\": \"int\", \"min\": 2, \"max\": 2}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 1024",
+      "output": ""
     }
   ],
   "func_sign": {

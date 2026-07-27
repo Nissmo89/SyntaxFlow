@@ -387,6 +387,114 @@
     {
       "input": "s1 = \"aaab\"\ns2 = \"abac\"",
       "output": "false"
+    },
+    {
+      "input": "s1 = \"great\"\ns2 = \"rgtae\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"ab\"\ns2 = \"ca\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"bca\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcdefghijkl\"\ns2 = \"efghabcdijkl\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcdefghijkl\"\ns2 = \"efghabdcijkm\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"badc\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aabc\"\ns2 = \"abca\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aabc\"\ns2 = \"abdc\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abca\"\ns2 = \"abca\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"zzzz\"\ns2 = \"zzzz\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abc\"\ns2 = \"cab\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"cdab\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcde\"\ns2 = \"eabcd\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcd\"\ns2 = \"abce\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abcde\"\ns2 = \"abcdf\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"aabb\"\ns2 = \"aabc\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"aabbcc\"\ns2 = \"aabbcd\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abcabc\"\ns2 = \"abcbad\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"aabbcc\"\ns2 = \"bbaacc\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aabbcc\"\ns2 = \"ccbbaa\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aaabbb\"\ns2 = \"bbbaaa\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abccba\"\ns2 = \"baccab\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abccba\"\ns2 = \"bacabd\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"abcdefghijklmn\"\ns2 = \"efghijklmnabcd\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"abcdefghijklmn\"\ns2 = \"efghijklmnabce\"",
+      "output": "false"
+    },
+    {
+      "input": "s1 = \"aabbccddeeff\"\ns2 = \"ddeeffaabbcc\"",
+      "output": "true"
+    },
+    {
+      "input": "s1 = \"aabbccddeeff\"\ns2 = \"ddeeffaabbcd\"",
+      "output": "false"
     }
   ],
   "func_sign": {

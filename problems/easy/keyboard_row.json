@@ -823,6 +823,138 @@
     {
       "input": "words = [\"Dad\", \"Peace\"]",
       "output": "[\"Dad\"]"
+    },
+    {
+      "input": "words = [\"Peace\", \"Hello\", \"Dad\", \"Alaska\"]",
+      "output": "[\"Dad\", \"Alaska\"]"
+    },
+    {
+      "input": "words = [\"TYPE\", \"ROW\", \"QWERTY\", \"ASDF\", \"ZXCV\"]",
+      "output": "[\"TYPE\", \"ROW\", \"QWERTY\", \"ASDF\", \"ZXCV\"]"
+    },
+    {
+      "input": "words = [\"MOM\", \"POP\", \"FAD\", \"BAG\"]",
+      "output": "[\"POP\", \"FAD\"]"
+    },
+    {
+      "input": "words = [\"asdf\", \"sad\", \"fa\", \"gk\", \"hj\", \"lol\", \"lkl\"]",
+      "output": "[\"asdf\", \"sad\", \"fa\", \"gk\", \"hj\", \"lkl\"]"
+    },
+    {
+      "input": "words = [\"qwerty\", \"uiop\", \"type\", \"row\", \"pop\", \"quiet\", \"tom\"]",
+      "output": "[\"qwerty\", \"uiop\", \"type\", \"row\", \"pop\", \"quiet\"]"
+    },
+    {
+      "input": "words = [\"zxcv\", \"bnm\", \"zzz\", \"mama\", \"vbn\", \"cvc\", \"zxq\"]",
+      "output": "[\"zxcv\", \"bnm\", \"zzz\", \"vbn\", \"cvc\"]"
+    },
+    {
+      "input": "words = [\"AaAa\", \"SsSs\", \"ZzZz\", \"QqQq\", \"MmMm\"]",
+      "output": "[\"AaAa\", \"SsSs\", \"ZzZz\", \"QqQq\", \"MmMm\"]"
+    },
+    {
+      "input": "words = [\"AlAsKa\", \"HeLLo\", \"PeAcE\", \"DaD\"]",
+      "output": "[\"AlAsKa\", \"DaD\"]"
+    },
+    {
+      "input": "words = [\"ad\", \"gf\", \"zx\", \"qp\", \"lk\", \"mn\"]",
+      "output": "[\"ad\", \"gf\", \"zx\", \"qp\", \"lk\", \"mn\"]"
+    },
+    {
+      "input": "words = [\"az\", \"qg\", \"jm\", \"dw\", \"xn\"]",
+      "output": "[\"xn\"]"
+    },
+    {
+      "input": "words = [\"dad\", \"mom\", \"pop\", \"sas\", \"wow\", \"zzz\"]",
+      "output": "[\"dad\", \"pop\", \"sas\", \"wow\", \"zzz\"]"
+    },
+    {
+      "input": "words = [\"cat\", \"dog\", \"pig\", \"hen\", \"owl\", \"car\"]",
+      "output": "[]"
+    },
+    {
+      "input": "words = [\"tree\", \"book\", \"moon\", \"back\", \"fool\"]",
+      "output": "[\"tree\"]"
+    },
+    {
+      "input": "words = [\"tree\", \"book\", \"moon\", \"back\", \"fool\", \"face\"]",
+      "output": "[\"tree\"]"
+    },
+    {
+      "input": "words = [\"qwert\", \"asdfg\", \"zxcvb\", \"poiuy\", \"lkjhg\"]",
+      "output": "[\"qwert\", \"asdfg\", \"zxcvb\", \"poiuy\", \"lkjhg\"]"
+    },
+    {
+      "input": "words = [\"qwert\", \"asdfg\", \"zxcvb\", \"poiuy\", \"lkjhg\", \"hello\"]",
+      "output": "[\"qwert\", \"asdfg\", \"zxcvb\", \"poiuy\", \"lkjhg\"]"
+    },
+    {
+      "input": "words = [\"qwerty\", \"asdfgh\", \"zxcvbn\", \"uiopui\", \"jkljkl\"]",
+      "output": "[\"qwerty\", \"asdfgh\", \"zxcvbn\", \"uiopui\", \"jkljkl\"]"
+    },
+    {
+      "input": "words = [\"qwerty\", \"asdfgh\", \"zxcvbn\", \"uiopui\", \"jkljkl\", \"peaces\"]",
+      "output": "[\"qwerty\", \"asdfgh\", \"zxcvbn\", \"uiopui\", \"jkljkl\"]"
+    },
+    {
+      "input": "words = [\"qwertyu\", \"asdfghj\", \"zxcvbnm\"]",
+      "output": "[\"qwertyu\", \"asdfghj\", \"zxcvbnm\"]"
+    },
+    {
+      "input": "words = [\"qwertyu\", \"asdfghj\", \"zxcvbnm\", \"alaska\", \"hello\"]",
+      "output": "[\"qwertyu\", \"asdfghj\", \"zxcvbnm\", \"alaska\"]"
+    },
+    {
+      "input": "words = [\"QWERTYUI\", \"ASDFGHJK\", \"ZXCVBNMZ\"]",
+      "output": "[\"QWERTYUI\", \"ASDFGHJK\", \"ZXCVBNMZ\"]"
+    },
+    {
+      "input": "words = [\"QWERTYUI\", \"ASDFGHJK\", \"ZXCVBNMZ\", \"MiXeDRow\"]",
+      "output": "[\"QWERTYUI\", \"ASDFGHJK\", \"ZXCVBNMZ\"]"
+    },
+    {
+      "input": "words = [\"qwertyuio\", \"asdfghjkl\", \"zxcvbnmzx\"]",
+      "output": "[\"qwertyuio\", \"asdfghjkl\", \"zxcvbnmzx\"]"
+    },
+    {
+      "input": "words = [\"qwertyuio\", \"asdfghjkl\", \"zxcvbnmzx\", \"hellohell\"]",
+      "output": "[\"qwertyuio\", \"asdfghjkl\", \"zxcvbnmzx\"]"
+    },
+    {
+      "input": "words = [\"qwertyuiop\", \"asdfghjkl\", \"zxcvbnmzxq\"]",
+      "output": "[\"qwertyuiop\", \"asdfghjkl\"]"
+    },
+    {
+      "input": "words = [\"qwertyuiop\", \"asdfghjkl\", \"zxcvbnmzxq\", \"peacepeace\"]",
+      "output": "[\"qwertyuiop\", \"asdfghjkl\"]"
+    },
+    {
+      "input": "words = [\"qwertyuiopqwertyuiop\", \"QWERTYUIOPQWERTYUIOP\", \"qweqweqweqweqweqweqwe\"]",
+      "output": "[\"qwertyuiopqwertyuiop\", \"QWERTYUIOPQWERTYUIOP\", \"qweqweqweqweqweqweqwe\"]"
+    },
+    {
+      "input": "words = [\"asdfghjklasdfghjkl\", \"ASDFGHJKLASDFGHJKL\", \"sadasdasdasdasdasd\"]",
+      "output": "[\"asdfghjklasdfghjkl\", \"ASDFGHJKLASDFGHJKL\", \"sadasdasdasdasdasd\"]"
+    },
+    {
+      "input": "words = [\"zxcvbnmzxcvbnm\", \"ZXCVBNMZXCVBNM\", \"mnbvcmnbvcmnbvc\"]",
+      "output": "[\"zxcvbnmzxcvbnm\", \"ZXCVBNMZXCVBNM\", \"mnbvcmnbvcmnbvc\"]"
+    },
+    {
+      "input": "words = [\"Hello\", \"World\", \"Alaska\", \"Dad\", \"Peace\", \"Quiz\", \"Mom\", \"Type\", \"Row\"]",
+      "output": "[\"Alaska\", \"Dad\", \"Type\", \"Row\"]"
+    },
+    {
+      "input": "words = [\"MOM\", \"Dad\", \"sSs\", \"qwerty\", \"ASDF\", \"zxcvbn\", \"UiOp\", \"JKL\"]",
+      "output": "[\"Dad\", \"sSs\", \"qwerty\", \"ASDF\", \"zxcvbn\", \"UiOp\", \"JKL\"]"
+    },
+    {
+      "input": "words = [\"q\", \"a\", \"z\", \"p\", \"l\", \"m\"]",
+      "output": "[\"q\", \"a\", \"z\", \"p\", \"l\", \"m\"]"
+    },
+    {
+      "input": "words = [\"qp\", \"al\", \"zm\", \"qa\", \"az\", \"pm\", \"lz\"]",
+      "output": "[\"qp\", \"al\", \"zm\"]"
     }
   ],
   "func_sign": {

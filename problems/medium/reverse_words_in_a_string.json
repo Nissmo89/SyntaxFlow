@@ -382,6 +382,126 @@
     {
       "input": "s = \"hello world   \"",
       "output": "\"world hello\""
+    },
+    {
+      "input": "s = \"   hello world   \"",
+      "output": "\"world hello\""
+    },
+    {
+      "input": "s = \"a   b    c     d\"",
+      "output": "\"d c b a\""
+    },
+    {
+      "input": "s = \"this is a test\"",
+      "output": "\"test a is this\""
+    },
+    {
+      "input": "s = \"AbC dEf Ghi\"",
+      "output": "\"Ghi dEf AbC\""
+    },
+    {
+      "input": "s = \"123 4567 89\"",
+      "output": "\"89 4567 123\""
+    },
+    {
+      "input": "s = \"a1 b2 c3\"",
+      "output": "\"c3 b2 a1\""
+    },
+    {
+      "input": "s = \"x y z\"",
+      "output": "\"z y x\""
+    },
+    {
+      "input": "s = \"  ab   cd  \"",
+      "output": "\"cd ab\""
+    },
+    {
+      "input": "s = \"repeat repeat repeat\"",
+      "output": "\"repeat repeat repeat\""
+    },
+    {
+      "input": "s = \"abc def ghi jkl\"",
+      "output": "\"jkl ghi def abc\""
+    },
+    {
+      "input": "s = \"keep calm and code on\"",
+      "output": "\"on code and calm keep\""
+    },
+    {
+      "input": "s = \"open leetcode local testing\"",
+      "output": "\"testing local leetcode open\""
+    },
+    {
+      "input": "s = \"one  two   three    four\"",
+      "output": "\"four three two one\""
+    },
+    {
+      "input": "s = \"aA Bb Cc Dd\"",
+      "output": "\"Dd Cc Bb aA\""
+    },
+    {
+      "input": "s = \"z9 9z y8 8y\"",
+      "output": "\"8y y8 9z z9\""
+    },
+    {
+      "input": "s = \"m n o p q r s t\"",
+      "output": "\"t s r q p o n m\""
+    },
+    {
+      "input": "s = \"a ab abc abcd abcde\"",
+      "output": "\"abcde abcd abc ab a\""
+    },
+    {
+      "input": "s = \"ALPHA BETA GAMMA\"",
+      "output": "\"GAMMA BETA ALPHA\""
+    },
+    {
+      "input": "s = \"alpha beta gamma\"",
+      "output": "\"gamma beta alpha\""
+    },
+    {
+      "input": "s = \"  a  bb   ccc    dddd     \"",
+      "output": "\"dddd ccc bb a\""
+    },
+    {
+      "input": "s = \"word1    word2 word3\"",
+      "output": "\"word3 word2 word1\""
+    },
+    {
+      "input": "s = \"supercalifragilisticexpialidocious a bb ccc\"",
+      "output": "\"ccc bb a supercalifragilisticexpialidocious\""
+    },
+    {
+      "input": "s = \"     alpha   beta    gamma     \"",
+      "output": "\"gamma beta alpha\""
+    },
+    {
+      "input": "s = \"      solo      \"",
+      "output": "\"solo\""
+    },
+    {
+      "input": "s = \"10 20 30 40 50\"",
+      "output": "\"50 40 30 20 10\""
+    },
+    {
+      "input": "s = \"a1b2 c3d4 e5f6\"",
+      "output": "\"e5f6 c3d4 a1b2\""
+    },
+    {
+      "input": "s = \"one\"",
+      "output": "\"one\""
+    },
+    {
+      "input": "s = \"go\"",
+      "output": "\"go\""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 32, \"max\": 64}, \"alphabet\": \" abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 20000, \"max\": 20000}, \"alphabet\": \" abcdefghijklmnopqrstuvwxyz\"}",
+      "output": ""
     }
   ],
   "func_sign": {

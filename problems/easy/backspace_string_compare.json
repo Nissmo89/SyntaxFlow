@@ -456,6 +456,134 @@
     {
       "input": "s = \"abcde####fgh#i\"\nt = \"abfghi###\"",
       "output": "false"
+    },
+    {
+      "input": "s = \"###a\"\nt = \"a\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a#b#c#d#e#\"\nt = \"#####\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a\"\nt = \"b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"a#b\"\nt = \"b\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc###\"\nt = \"d#\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"\nt = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"\nt = \"abd\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"######a\"\nt = \"a\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"######a\"\nt = \"b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ab###c\"\nt = \"c\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab###c\"\nt = \"d\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"a#bc#d##\"\nt = \"z##y#x###\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"bxj##tw\"\nt = \"bxo#j##tw\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"bxj##tw\"\nt = \"bxo#j##ty\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaaaaaaaa##########\"\nt = \"\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaaaaaaaa##########b\"\nt = \"\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ab##c#d\"\nt = \"ad\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ab##c#d\"\nt = \"ac\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"##########\"\nt = \"##########\"",
+      "output": "true"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 20, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 20, \"alphabet\": \"abc#\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abc#\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"abc#\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 150, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 150, \"alphabet\": \"abc#\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 200, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 200, \"alphabet\": \"abc#\"}",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz##########################\"\nt = \"\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a#b#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#\"\nt = \"\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcdefghij####################k\"\nt = \"\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aa#b#c\"\nt = \"c#d#e#f#g#\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ab#cd##e#f#g##\"\nt = \"a#b#cdef######\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"#a#b#c#\"\nt = \"###\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"z#y#x#q\"\nt = \"q\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"z#y#x#q\"\nt = \"r\"",
+      "output": "false"
     }
   ],
   "func_sign": {

@@ -856,6 +856,134 @@
     {
       "input": "root = [1, 2, 3, 4, null, null, 5]\nto_delete = [2, 3]",
       "output": ""
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4]\nto_delete = [2]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4]\nto_delete = [3]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4]\nto_delete = [4]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]\nto_delete = [2]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]\nto_delete = [3]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]\nto_delete = [4]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [4, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [1, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [2, 5]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 7]\nto_delete = [2, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7]\nto_delete = [3, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [4, 5, 6, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [1, 3, 5, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [2, 4, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [1, 3, 5]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, null, 4, null, 5]\nto_delete = [4]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 6, null]\nto_delete = [2, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, null, null, 6, 7]\nto_delete = [1, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5]\nto_delete = [1, 4, 5]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [2, 3, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 6, 7]\nto_delete = [1, 4]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7]\nto_delete = [5, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, null]\nto_delete = [2, 6]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [3, 4, 5]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [1, 2, 7]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\nto_delete = [8, 9, 10]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\nto_delete = [1, 4, 7, 10]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 6, 7, null, 9, 10, null, 12, 13, null, 15]\nto_delete = [2, 6, 13]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7, 8, null, null, 11]\nto_delete = [3, 8]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9]\nto_delete = [2, 4, 6, 8]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, null, null, 10, 11]\nto_delete = [5, 11]",
+      "output": ""
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7]\nto_delete = [1, 2, 3, 4, 5, 6]",
+      "output": ""
     }
   ],
   "func_sign": {

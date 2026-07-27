@@ -874,6 +874,118 @@
     {
       "input": "n = 5\nminProfit = 0\ngroup = [1, 2, 3]\nprofit = [0, 0, 0]",
       "output": "7"
+    },
+    {
+      "input": "n = 10\nminProfit = 10\ngroup = [2, 3, 5]\nprofit = [2, 3, 5]",
+      "output": "1"
+    },
+    {
+      "input": "n = 6\nminProfit = 4\ngroup = [2, 2, 2, 2]\nprofit = [1, 2, 3, 4]",
+      "output": "10"
+    },
+    {
+      "input": "n = 100\nminProfit = 100\ngroup = [100, 100, 100, 100, 100]\nprofit = [100, 100, 100, 100, 100]",
+      "output": "5"
+    },
+    {
+      "input": "n = 8\nminProfit = 3\ngroup = [2, 3, 5]\nprofit = [1, 2, 3]",
+      "output": "4"
+    },
+    {
+      "input": "n = 7\nminProfit = 2\ngroup = [2, 2, 2]\nprofit = [2, 2, 2]",
+      "output": "7"
+    },
+    {
+      "input": "n = 9\nminProfit = 4\ngroup = [2, 2, 3, 3]\nprofit = [1, 2, 3, 4]",
+      "output": "10"
+    },
+    {
+      "input": "n = 10\nminProfit = 0\ngroup = [2, 2, 2, 2]\nprofit = [1, 1, 1, 1]",
+      "output": "16"
+    },
+    {
+      "input": "n = 10\nminProfit = 6\ngroup = [2, 2, 3, 3]\nprofit = [3, 3, 3, 3]",
+      "output": "11"
+    },
+    {
+      "input": "n = 12\nminProfit = 7\ngroup = [3, 3, 4, 4]\nprofit = [2, 3, 4, 5]",
+      "output": "8"
+    },
+    {
+      "input": "n = 15\nminProfit = 8\ngroup = [5, 5, 5]\nprofit = [2, 3, 4]",
+      "output": "1"
+    },
+    {
+      "input": "n = 20\nminProfit = 9\ngroup = [2, 4, 6, 8]\nprofit = [1, 2, 3, 4]",
+      "output": "2"
+    },
+    {
+      "input": "n = 20\nminProfit = 1\ngroup = [10, 10, 10]\nprofit = [0, 1, 2]",
+      "output": "5"
+    },
+    {
+      "input": "n = 50\nminProfit = 25\ngroup = [5, 10, 15, 20, 25]\nprofit = [5, 10, 15, 20, 25]",
+      "output": "18"
+    },
+    {
+      "input": "n = 30\nminProfit = 12\ngroup = [3, 6, 9, 12]\nprofit = [1, 2, 3, 4]",
+      "output": "0"
+    },
+    {
+      "input": "n = 18\nminProfit = 6\ngroup = [2, 3, 4, 5]\nprofit = [2, 2, 2, 2]",
+      "output": "5"
+    },
+    {
+      "input": "n = 25\nminProfit = 10\ngroup = [1, 2, 3, 4, 5]\nprofit = [1, 1, 1, 1, 1]",
+      "output": "0"
+    },
+    {
+      "input": "n = 40\nminProfit = 18\ngroup = [4, 4, 4, 4, 4]\nprofit = [4, 4, 4, 4, 4]",
+      "output": "1"
+    },
+    {
+      "input": "n = 100\nminProfit = 0\ngroup = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\nprofit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+      "output": "1048576"
+    },
+    {
+      "input": "n = 100\nminProfit = 50\ngroup = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\nprofit = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]",
+      "output": "1"
+    },
+    {
+      "input": "n = 100\nminProfit = 100\ngroup = [1, 1, 1, 1, 1, 1, 1, 1]\nprofit = [100, 100, 100, 100, 100, 100, 100, 100]",
+      "output": "255"
+    },
+    {
+      "input": "n = 80\nminProfit = 30\ngroup = [2, 3, 5, 7, 11]\nprofit = [1, 2, 3, 4, 5]",
+      "output": "0"
+    },
+    {
+      "input": "n = 90\nminProfit = 45\ngroup = [10, 20, 30, 40, 50]\nprofit = [5, 10, 15, 20, 25]",
+      "output": "3"
+    },
+    {
+      "input": "n = 60\nminProfit = 20\ngroup = [6, 6, 6, 6, 6, 6]\nprofit = [2, 4, 6, 8, 10, 12]",
+      "output": "37"
+    },
+    {
+      "input": "n = 70\nminProfit = 35\ngroup = [7, 8, 9, 10, 11]\nprofit = [7, 8, 9, 10, 11]",
+      "output": "5"
+    },
+    {
+      "input": "n = 12\nminProfit = 0\ngroup = [2, 3, 4]\nprofit = [1, 2, 3]",
+      "output": "8"
+    },
+    {
+      "input": "n = 11\nminProfit = 5\ngroup = [2, 2, 2, 2, 2]\nprofit = [1, 2, 3, 4, 5]",
+      "output": "25"
+    },
+    {
+      "input": "n = 9\nminProfit = 7\ngroup = [3, 3, 3]\nprofit = [2, 2, 2]",
+      "output": "0"
+    },
+    {
+      "input": "n = 100\nminProfit = 1\ngroup = [100]\nprofit = [1]",
+      "output": "1"
     }
   ],
   "func_sign": {

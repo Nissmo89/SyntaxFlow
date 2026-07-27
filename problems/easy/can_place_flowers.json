@@ -952,6 +952,134 @@
     {
       "input": "flowerbed = [0, 0]\nn = 2",
       "output": "false"
+    },
+    {
+      "input": "flowerbed = [1, 1]\nn = 0",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1, 0, 1, 0, 1, 0, 1]\nn = 0",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1, 0, 1, 0, 1, 0, 1]\nn = 1",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0]\nn = 1",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0]\nn = 2",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0]\nn = 3",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0]\nn = 2",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 1, 0, 0, 0, 1, 0]\nn = 1",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 1, 0, 0, 0, 1, 0]\nn = 2",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 0, 0, 1, 0, 0]\nn = 2",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 0, 0, 1, 0, 0]\nn = 3",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1, 1, 1, 1, 1]\nn = 0",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1, 1, 1, 1, 1]\nn = 1",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 1, 1]\nn = 1",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 1, 1]\nn = 2",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [1, 1, 1, 0, 0]\nn = 1",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1, 1, 1, 0, 0]\nn = 2",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 1, 0, 1, 0, 1, 0]\nn = 0",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 1, 0, 1, 0, 1, 0]\nn = 1",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nn = 5",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nn = 6",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0]\nn = 4",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0]\nn = 5",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]\nn = 1",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1]\nn = 20",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1]\nn = 21",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1]\nn = 2",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1]\nn = 3",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]\nn = 3",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]\nn = 4",
+      "output": "false"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nn = 16",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nn = 17",
+      "output": "false"
     }
   ],
   "func_sign": {

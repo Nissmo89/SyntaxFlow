@@ -446,6 +446,118 @@
     {
       "input": "paragraph = \"Wow! Wow? wow.\"\nbanned = []",
       "output": "\"wow\""
+    },
+    {
+      "input": "paragraph = \"its time, its time its\"\nbanned = [\"time\"]",
+      "output": "\"its\""
+    },
+    {
+      "input": "paragraph = \"red, blue; red!\"\nbanned = [\"blue\"]",
+      "output": "\"red\""
+    },
+    {
+      "input": "paragraph = \"alpha beta alpha gamma beta alpha\"\nbanned = [\"gamma\"]",
+      "output": "\"alpha\""
+    },
+    {
+      "input": "paragraph = \"one two two three three three\"\nbanned = [\"one\", \"two\"]",
+      "output": "\"three\""
+    },
+    {
+      "input": "paragraph = \"x y x z y x\"\nbanned = [\"z\"]",
+      "output": "\"x\""
+    },
+    {
+      "input": "paragraph = \"One two THREE two one THREE three\"\nbanned = [\"one\"]",
+      "output": "\"three\""
+    },
+    {
+      "input": "paragraph = \"apple banana apple banana banana\"\nbanned = [\"banana\"]",
+      "output": "\"apple\""
+    },
+    {
+      "input": "paragraph = \"end, end. start?\"\nbanned = [\"start\"]",
+      "output": "\"end\""
+    },
+    {
+      "input": "paragraph = \"go! go? go.\"\nbanned = []",
+      "output": "\"go\""
+    },
+    {
+      "input": "paragraph = \"a b c a b c a b c a a d\"\nbanned = [\"d\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "paragraph = \"sun moon sun star moon sun\"\nbanned = [\"star\"]",
+      "output": "\"sun\""
+    },
+    {
+      "input": "paragraph = \"cat cat cat dog dog\"\nbanned = [\"cat\"]",
+      "output": "\"dog\""
+    },
+    {
+      "input": "paragraph = \"BaLL, ball! BALL?\"\nbanned = []",
+      "output": "\"ball\""
+    },
+    {
+      "input": "paragraph = \"I am fine I\"\nbanned = [\"am\"]",
+      "output": "\"i\""
+    },
+    {
+      "input": "paragraph = \"say 'hello' say hello hello\"\nbanned = []",
+      "output": "\"hello\""
+    },
+    {
+      "input": "paragraph = \"well well, well\"\nbanned = []",
+      "output": "\"well\""
+    },
+    {
+      "input": "paragraph = \"a a a b b c\"\nbanned = [\"c\"]",
+      "output": "\"a\""
+    },
+    {
+      "input": "paragraph = \"red red blue blue blue green green green green\"\nbanned = [\"red\"]",
+      "output": "\"green\""
+    },
+    {
+      "input": "paragraph = \"q q w e r t y q w w\"\nbanned = [\"q\"]",
+      "output": "\"w\""
+    },
+    {
+      "input": "paragraph = \"one one two two three three three\"\nbanned = [\"one\", \"two\"]",
+      "output": "\"three\""
+    },
+    {
+      "input": "paragraph = \"alpha, beta! beta? alpha. beta\"\nbanned = []",
+      "output": "\"beta\""
+    },
+    {
+      "input": "paragraph = \"Dog dog DOG cat CAT\"\nbanned = [\"cat\"]",
+      "output": "\"dog\""
+    },
+    {
+      "input": "paragraph = \"abc ab abc ab abc\"\nbanned = [\"ab\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "paragraph = \"left right left right left center\"\nbanned = [\"center\"]",
+      "output": "\"left\""
+    },
+    {
+      "input": "paragraph = \"x y z x y z x\"\nbanned = [\"y\"]",
+      "output": "\"x\""
+    },
+    {
+      "input": "paragraph = \"a a a b\"\nbanned = [\"a\"]",
+      "output": "\"b\""
+    },
+    {
+      "input": "paragraph = \"b a a a\"\nbanned = [\"a\"]",
+      "output": "\"b\""
+    },
+    {
+      "input": "paragraph = \"Foo bar foo BAR foo\"\nbanned = [\"bar\"]",
+      "output": "\"foo\""
     }
   ],
   "func_sign": {

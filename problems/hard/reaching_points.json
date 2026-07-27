@@ -498,6 +498,126 @@
     {
       "input": "sx = 2\nsy = 3\ntx = 11\nty = 3",
       "output": "true"
+    },
+    {
+      "input": "sx = 3\nsy = 2\ntx = 3\nty = 10",
+      "output": "false"
+    },
+    {
+      "input": "sx = 2\nsy = 3\ntx = 10\nty = 3",
+      "output": "false"
+    },
+    {
+      "input": "sx = 5\nsy = 7\ntx = 4\nty = 20",
+      "output": "false"
+    },
+    {
+      "input": "sx = 5\nsy = 7\ntx = 20\nty = 6",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 1\ntx = 7\nty = 11",
+      "output": "true"
+    },
+    {
+      "input": "sx = 4\nsy = 10\ntx = 31\nty = 82",
+      "output": "false"
+    },
+    {
+      "input": "sx = 4\nsy = 10\ntx = 14\nty = 38",
+      "output": "true"
+    },
+    {
+      "input": "sx = 1\nsy = 2\ntx = 13\nty = 34",
+      "output": "false"
+    },
+    {
+      "input": "sx = 2\nsy = 1\ntx = 34\nty = 13",
+      "output": "false"
+    },
+    {
+      "input": "sx = 2\nsy = 3\ntx = 23\nty = 32",
+      "output": "false"
+    },
+    {
+      "input": "sx = 3\nsy = 2\ntx = 32\nty = 23",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 1\ntx = 10\nty = 6",
+      "output": "false"
+    },
+    {
+      "input": "sx = 9\nsy = 4\ntx = 23\nty = 13",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 1\ntx = 1000000000\nty = 1",
+      "output": "true"
+    },
+    {
+      "input": "sx = 1\nsy = 1\ntx = 1\nty = 1000000000",
+      "output": "true"
+    },
+    {
+      "input": "sx = 1\nsy = 1\ntx = 1000000000\nty = 1000000000",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 999999999\ntx = 1\nty = 1000000000",
+      "output": "true"
+    },
+    {
+      "input": "sx = 999999999\nsy = 1\ntx = 1000000000\nty = 1",
+      "output": "true"
+    },
+    {
+      "input": "sx = 2\nsy = 1\ntx = 1000000000\nty = 999999999",
+      "output": "false"
+    },
+    {
+      "input": "sx = 3\nsy = 5\ntx = 1000000000\nty = 1000000000",
+      "output": "false"
+    },
+    {
+      "input": "sx = 5\nsy = 3\ntx = 1000000000\nty = 13",
+      "output": "false"
+    },
+    {
+      "input": "sx = 5\nsy = 3\ntx = 13\nty = 1000000000",
+      "output": "false"
+    },
+    {
+      "input": "sx = 9\nsy = 6\ntx = 57\nty = 24",
+      "output": "true"
+    },
+    {
+      "input": "sx = 9\nsy = 6\ntx = 58\nty = 24",
+      "output": "false"
+    },
+    {
+      "input": "sx = 35\nsy = 21\ntx = 35\nty = 999999999",
+      "output": "false"
+    },
+    {
+      "input": "sx = 35\nsy = 21\ntx = 1000000000\nty = 21",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 999999999\ntx = 1000000000\nty = 999999999",
+      "output": "true"
+    },
+    {
+      "input": "sx = 999999999\nsy = 1\ntx = 999999999\nty = 1000000000",
+      "output": "true"
+    },
+    {
+      "input": "sx = 999999999\nsy = 1\ntx = 1000000000\nty = 1000000000",
+      "output": "false"
+    },
+    {
+      "input": "sx = 1\nsy = 999999999\ntx = 1000000000\nty = 1000000000",
+      "output": "false"
     }
   ],
   "func_sign": {

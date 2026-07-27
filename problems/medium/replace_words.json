@@ -587,6 +587,134 @@
     {
       "input": "dictionary = [\"run\", \"walk\", \"talk\"]\nsentence = \"running walked talkative runner walk talk\"",
       "output": "\"run walk talk run walk talk\""
+    },
+    {
+      "input": "dictionary = [\"c\", \"ca\", \"cat\", \"cattle\"]\nsentence = \"cattle cat catch cater\"",
+      "output": "\"c c c c\""
+    },
+    {
+      "input": "dictionary = [\"blue\", \"bl\"]\nsentence = \"bluebird bluebird bluebird bluebird\"",
+      "output": "\"bl bl bl bl\""
+    },
+    {
+      "input": "dictionary = [\"a\", \"m\", \"z\"]\nsentence = \"apple mango zebra dog\"",
+      "output": "\"a m z dog\""
+    },
+    {
+      "input": "dictionary = [\"abc\", \"def\"]\nsentence = \"ab ac ad ae\"",
+      "output": "\"ab ac ad ae\""
+    },
+    {
+      "input": "dictionary = [\"supercalifragilistic\", \"super\"]\nsentence = \"supercalifragilisticexpialidocious superstructure super\"",
+      "output": "\"super super super\""
+    },
+    {
+      "input": "dictionary = [\"orange\", \"apple\"]\nsentence = \"bananas strawberries watermelons\"",
+      "output": "\"bananas strawberries watermelons\""
+    },
+    {
+      "input": "dictionary = [\"pre\", \"prefix\", \"preform\", \"press\"]\nsentence = \"prefixing preformed pressing preview\"",
+      "output": "\"pre pre pre pre\""
+    },
+    {
+      "input": "dictionary = [\"x\", \"xy\", \"xyz\"]\nsentence = \"xyzzy xylophone xray\"",
+      "output": "\"x x x\""
+    },
+    {
+      "input": "dictionary = [\"red\", \"green\", \"blue\"]\nsentence = \"redgreen bluegreen greenblue bluered\"",
+      "output": "\"red blue green blue\""
+    },
+    {
+      "input": "dictionary = [\"do\", \"dog\", \"dot\"]\nsentence = \"doggedly dotted doing done\"",
+      "output": "\"do do do do\""
+    },
+    {
+      "input": "dictionary = [\"moon\", \"sun\"]\nsentence = \"moon sun moonlight sunlight\"",
+      "output": "\"moon sun moon sun\""
+    },
+    {
+      "input": "dictionary = [\"he\", \"her\"]\nsentence = \"hello help hero herb\"",
+      "output": "\"he he he he\""
+    },
+    {
+      "input": "dictionary = [\"car\", \"cart\", \"care\"]\nsentence = \"career carpenter cartwheel car care\"",
+      "output": "\"car car car car car\""
+    },
+    {
+      "input": "dictionary = [\"a\", \"aa\", \"aaa\"]\nsentence = \"aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa\"",
+      "output": "\"a a a a a a a a a a\""
+    },
+    {
+      "input": "dictionary = [\"z\", \"zz\", \"zzz\"]\nsentence = \"zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz zzzzzzzzzz\"",
+      "output": "\"z z z z z z z z z z\""
+    },
+    {
+      "input": "dictionary = [\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv\", \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr\"]\nsentence = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstu\"",
+      "output": "\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr\""
+    },
+    {
+      "input": "dictionary = [\"p\", \"pq\", \"pqr\"]\nsentence = \"ppppp qqqqq rrrrr\"",
+      "output": "\"p qqqqq rrrrr\""
+    },
+    {
+      "input": "dictionary = [\"an\", \"ant\", \"anti\"]\nsentence = \"antic antler anatomy banana\"",
+      "output": "\"an an an banana\""
+    },
+    {
+      "input": "dictionary = [\"fin\", \"fish\"]\nsentence = \"fishing finisher finish\"",
+      "output": "\"fish fin fin\""
+    },
+    {
+      "input": "dictionary = [\"pro\", \"program\", \"progress\"]\nsentence = \"programming progress prologue prototype\"",
+      "output": "\"pro pro pro pro\""
+    },
+    {
+      "input": "dictionary = [\"st\", \"sta\", \"star\"]\nsentence = \"starting stable stars\"",
+      "output": "\"st st st\""
+    },
+    {
+      "input": "dictionary = [\"mi\", \"mid\", \"mind\"]\nsentence = \"midnight mindless missing mission\"",
+      "output": "\"mi mi mi mi\""
+    },
+    {
+      "input": "dictionary = [\"top\", \"to\"]\nsentence = \"today tomorrow topical top\"",
+      "output": "\"to to to to\""
+    },
+    {
+      "input": "dictionary = [\"un\", \"uni\", \"unit\"]\nsentence = \"unicode unique unit unify\"",
+      "output": "\"un un un un\""
+    },
+    {
+      "input": "dictionary = [\"ca\", \"cab\", \"cane\"]\nsentence = \"cabin canary candle caress\"",
+      "output": "\"ca ca ca ca\""
+    },
+    {
+      "input": "dictionary = [\"de\", \"del\", \"demo\"]\nsentence = \"delta develop demonstrate\"",
+      "output": "\"de de de\""
+    },
+    {
+      "input": "dictionary = [\"re\", \"rep\", \"report\"]\nsentence = \"replay repeat report reported\"",
+      "output": "\"re re re re\""
+    },
+    {
+      "input": "dictionary = [\"li\", \"lin\", \"link\"]\nsentence = \"linear linked linking listen\"",
+      "output": "\"li li li li\""
+    },
+    {
+      "input": "dictionary = [\"go\", \"gol\", \"gold\"]\nsentence = \"golden goose golf\"",
+      "output": "\"go go go\""
+    },
+    {
+      "input": "dictionary = [\"he\", \"her\", \"hero\"]\nsentence = \"helium heron heroic helper\"",
+      "output": "\"he he he he\""
+    },
+    {
+      "input": "dictionary = [\"pa\", \"par\", \"park\"]\nsentence = \"parent parallel parked parade\"",
+      "output": "\"pa pa pa pa\""
+    },
+    {
+      "input": "dictionary = [\"tr\", \"tra\", \"trap\"]\nsentence = \"travel train trapping transfer\"",
+      "output": "\"tr tr tr tr\""
     }
   ],
   "func_sign": {

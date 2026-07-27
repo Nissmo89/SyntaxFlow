@@ -1345,6 +1345,122 @@
     {
       "input": "intervals = [[1, 10], [15, 20]]\nnewInterval = [3, 4]",
       "output": "[[1, 10], [15, 20]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]\nnewInterval = [4, 8]",
+      "output": "[[1, 2], [3, 10], [12, 16]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 6], [8, 10]]\nnewInterval = [0, 20]",
+      "output": "[[0, 20]]"
+    },
+    {
+      "input": "intervals = []\nnewInterval = [4, 8]",
+      "output": "[[4, 8]]"
+    },
+    {
+      "input": "intervals = []\nnewInterval = [0, 0]",
+      "output": "[[0, 0]]"
+    },
+    {
+      "input": "intervals = [[10, 20]]\nnewInterval = [1, 5]",
+      "output": "[[1, 5], [10, 20]]"
+    },
+    {
+      "input": "intervals = [[10, 20]]\nnewInterval = [30, 40]",
+      "output": "[[10, 20], [30, 40]]"
+    },
+    {
+      "input": "intervals = [[10, 20]]\nnewInterval = [5, 10]",
+      "output": "[[5, 20]]"
+    },
+    {
+      "input": "intervals = [[10, 20]]\nnewInterval = [20, 25]",
+      "output": "[[10, 25]]"
+    },
+    {
+      "input": "intervals = [[10, 20]]\nnewInterval = [12, 18]",
+      "output": "[[10, 20]]"
+    },
+    {
+      "input": "intervals = [[2, 4], [7, 9]]\nnewInterval = [7, 9]",
+      "output": "[[2, 4], [7, 9]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 5], [7, 8]]\nnewInterval = [2, 7]",
+      "output": "[[1, 8]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [10, 11], [20, 21]]\nnewInterval = [5, 6]",
+      "output": "[[1, 2], [5, 6], [10, 11], [20, 21]]"
+    },
+    {
+      "input": "intervals = [[1, 3], [6, 9], [12, 16]]\nnewInterval = [2, 7]",
+      "output": "[[1, 9], [12, 16]]"
+    },
+    {
+      "input": "intervals = [[1, 3], [6, 9], [12, 16]]\nnewInterval = [8, 20]",
+      "output": "[[1, 3], [6, 20]]"
+    },
+    {
+      "input": "intervals = [[2, 3], [5, 7]]\nnewInterval = [0, 1]",
+      "output": "[[0, 1], [2, 3], [5, 7]]"
+    },
+    {
+      "input": "intervals = [[2, 3], [5, 7]]\nnewInterval = [8, 10]",
+      "output": "[[2, 3], [5, 7], [8, 10]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [5, 6]]\nnewInterval = [2, 5]",
+      "output": "[[1, 6]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 5], [7, 8], [10, 11]]\nnewInterval = [3, 9]",
+      "output": "[[1, 2], [3, 9], [10, 11]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [5, 7], [10, 12]]\nnewInterval = [3, 4]",
+      "output": "[[1, 2], [3, 4], [5, 7], [10, 12]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [6, 7], [10, 11]]\nnewInterval = [2, 10]",
+      "output": "[[1, 11]]"
+    },
+    {
+      "input": "intervals = [[1, 5], [10, 15]]\nnewInterval = [0, 0]",
+      "output": "[[0, 0], [1, 5], [10, 15]]"
+    },
+    {
+      "input": "intervals = [[0, 0], [10, 15]]\nnewInterval = [100000, 100000]",
+      "output": "[[0, 0], [10, 15], [100000, 100000]]"
+    },
+    {
+      "input": "intervals = [[0, 1000], [2000, 3000], [4000, 5000]]\nnewInterval = [1500, 4500]",
+      "output": "[[0, 1000], [1500, 5000]]"
+    },
+    {
+      "input": "intervals = [[0, 1], [3, 4], [6, 7], [9, 10], [12, 13]]\nnewInterval = [14, 15]",
+      "output": "[[0, 1], [3, 4], [6, 7], [9, 10], [12, 13], [14, 15]]"
+    },
+    {
+      "input": "intervals = [[2, 3], [5, 6], [8, 9], [11, 12]]\nnewInterval = [0, 1]",
+      "output": "[[0, 1], [2, 3], [5, 6], [8, 9], [11, 12]]"
+    },
+    {
+      "input": "intervals = [[2, 3], [5, 6], [8, 9], [11, 12]]\nnewInterval = [13, 14]",
+      "output": "[[2, 3], [5, 6], [8, 9], [11, 12], [13, 14]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 5], [7, 8], [10, 11]]\nnewInterval = [0, 12]",
+      "output": "[[0, 12]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [6, 7], [12, 13]]\nnewInterval = [3, 10]",
+      "output": "[[1, 2], [3, 10], [12, 13]]"
+    },
+    {
+      "input": "intervals = [[1, 2], [4, 5], [7, 8], [10, 11], [13, 14]]\nnewInterval = [9, 13]",
+      "output": "[[1, 2], [4, 5], [7, 8], [9, 14]]"
     }
   ],
   "func_sign": {

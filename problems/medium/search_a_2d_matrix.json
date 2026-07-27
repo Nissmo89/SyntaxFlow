@@ -975,6 +975,114 @@
     {
       "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 3, 5], [7, 9, 11]]}\ntarget = 7",
       "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 3, 5], [7, 9, 11]]}\ntarget = 6",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-10, -5, -1], [0, 3, 7]]}\ntarget = -5",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-10, -5, -1], [0, 3, 7]]}\ntarget = 6",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 4, 7, 10], [13, 16, 19, 22]]}\ntarget = 19",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 4, 7, 10], [13, 16, 19, 22]]}\ntarget = 15",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}\ntarget = 2",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2], [3, 4]]}\ntarget = 5",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]}\ntarget = 8",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]}\ntarget = 11",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1], [3], [5], [7], [9]]}\ntarget = 7",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1], [3], [5], [7], [9]]}\ntarget = 8",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[100, 101, 102], [200, 201, 202], [300, 301, 302]]}\ntarget = 301",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[100, 101, 102], [200, 201, 202], [300, 301, 302]]}\ntarget = 150",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 4, 7], [10, 13, 16]]}\ntarget = 7",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 4, 7], [10, 13, 16]]}\ntarget = 10",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 4, 7], [10, 13, 16]]}\ntarget = 8",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-4, -3, -2, -1], [0, 1, 2, 3], [4, 5, 6, 7]]}\ntarget = 2",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[-4, -3, -2, -1], [0, 1, 2, 3], [4, 5, 6, 7]]}\ntarget = 8",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [4, 5, 6]]}\ntarget = 0",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3], [4, 5, 6]]}\ntarget = 7",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4], [10, 11, 12, 13]]}\ntarget = 9",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 2, 3, 4], [10, 11, 12, 13]]}\ntarget = 12",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[2, 5, 8], [12, 15, 18], [22, 25, 28]]}\ntarget = 22",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[2, 5, 8], [12, 15, 18], [22, 25, 28]]}\ntarget = 21",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]}\ntarget = 34",
+      "output": "true"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]}\ntarget = 35",
+      "output": "false"
+    },
+    {
+      "input": "matrix = {\"elemType\": \"int\", \"value\": [[2, 4, 6, 8, 10], [12, 14, 16, 18, 20], [22, 24, 26, 28, 30], [32, 34, 36, 38, 40]]}\ntarget = 26",
+      "output": "true"
     }
   ],
   "func_sign": {

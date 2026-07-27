@@ -350,6 +350,122 @@
     {
       "input": "s = \"   openleetcode   \"",
       "output": "1"
+    },
+    {
+      "input": "s = \"a b\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"a   b\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"one two three\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"one  two   three\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"Hello, my name is John\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abc123 !@#\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"!@#$%^&*()_+-=',.:\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"!@# $%^\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"a b c d e\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"a  b  c  d\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"leetcode test case\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"  leetcode  test  case  \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"z\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"7\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \".\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"ab cd\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"a bc def ghij\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"a    bc\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"abc def ghi jkl\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"line1 line2 line3\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"A bC DeF\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"1 22 333 4444\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"a,b.c:d\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a,b c.d e:f\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=',.:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=',.:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=',.:\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a b c d e f g h i j k l m n o p q r s t u v w x y z\"",
+      "output": "26"
+    },
+    {
+      "input": "s = \"          x          \"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz 0123456789\"",
+      "output": "2"
     }
   ],
   "func_sign": {

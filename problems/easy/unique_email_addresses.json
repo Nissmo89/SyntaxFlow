@@ -490,6 +490,122 @@
     {
       "input": "emails = [\"a.b+c@leetcode.com\", \"ab@leetcode.com\", \"a.b@leetcode.com\"]",
       "output": "1"
+    },
+    {
+      "input": "emails = [\"a.a.a@x.com\", \"aaa@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"x+@x.com\", \"x@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"x.y+z@x.com\", \"xy@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"u.v.w@d.com\", \"uvwxyz@d.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"u.v.w+tag@d.com\", \"uvw@d.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"alice@leetcode.com\", \"alice+spam@leetcode.com\", \"a.l.i.c.e@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"bob@leetcode.com\", \"bob+spam@leet.code.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"a@a.com\", \"a+b@a.com\", \"a.b@a.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"aa@leetcode.com\", \"a.a@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"ab+cd@x.com\", \"ab@x.com\", \"a.b@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"abc@x.com\", \"ab.c@x.com\", \"a.bc@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a@x.com\", \"a@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a+b@x.com\", \"a+c@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a.b+c@x.com\", \"ab@x.com\", \"a.b@x.com\", \"a.b+c+d@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"z+spam@leetcode.com\", \"z@leetcode.com\", \"z.z@leetcode.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"foo.bar+baz@domain.com\", \"foobar@domain.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"foo.bar+baz@domain.com\", \"foo.bar@domain.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"q.w.e+r@domain.com\", \"qwe@domain.com\", \"q.w.e@domain.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"local+plus@d.com\", \"local@d.com\", \"lo.cal@d.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a.a+a@a.com\", \"aa@a.com\", \"a+a@a.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"abc+def@x.com\", \"a.b.c@x.com\", \"abc@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"abc+def@x.com\", \"a.b.c@x.com\", \"ab.c@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"p.q.r@s.com\", \"pqr@s.com\", \"p.qr@s.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a@leetcode.com\", \"a@leetcode.com\", \"a+spam@leetcode.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"m.n+o@dom.com\", \"mn@dom.com\", \"m.n@dom.com\", \"m.n+o@dom.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"x.x.x+tag@x.com\", \"xxx@x.com\", \"x.xx@x.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"u+1@u.com\", \"u+2@u.com\", \"u@u.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"same@d.com\", \"s.a.m.e@d.com\", \"same+tag@d.com\"]",
+      "output": "1"
+    },
+    {
+      "input": "emails = [\"a.b.c+d@leetcode.com\", \"a.bc+d@leetcode.com\", \"ab.c+d@leetcode.com\"]",
+      "output": "1"
     }
   ],
   "func_sign": {

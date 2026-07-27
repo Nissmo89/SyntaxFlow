@@ -674,6 +674,122 @@
     {
       "input": "root = [1, 2, null, 3, null, 4]",
       "output": "1234"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, null, 4]",
+      "output": "1234"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0]",
+      "output": "0"
+    },
+    {
+      "input": "root = [0, 1, 0, null, null, 0, 0]",
+      "output": "1"
+    },
+    {
+      "input": "root = [4, 9, 0, 5, 1, null, null]",
+      "output": "1026"
+    },
+    {
+      "input": "root = [4, 9, 0, null, 1]",
+      "output": "531"
+    },
+    {
+      "input": "root = [2, 1, 3, 4, 5, 6, 7]",
+      "output": "902"
+    },
+    {
+      "input": "root = [8, 4, 9, 1, 3, 7, 2]",
+      "output": "3473"
+    },
+    {
+      "input": "root = [8, 4, 9, 1, 3, 7, 2, null, 6]",
+      "output": "11048"
+    },
+    {
+      "input": "root = [3, 1, 5, 0, 2, null, 4]",
+      "output": "976"
+    },
+    {
+      "input": "root = [9, 9, 9, 9, 9, 9, 9]",
+      "output": "3996"
+    },
+    {
+      "input": "root = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "output": "8888"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 5, 6]",
+      "output": "395"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 4, 5, 6]",
+      "output": "395"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5]",
+      "output": "259"
+    },
+    {
+      "input": "root = [5, 1, null, 2]",
+      "output": "512"
+    },
+    {
+      "input": "root = [7, 8, null, 9, null, 1, null, 2]",
+      "output": "78912"
+    },
+    {
+      "input": "root = [7, null, 8, null, 9, null, 1, null, 2]",
+      "output": "78912"
+    },
+    {
+      "input": "root = [1, 0, 4, 5, 6, null, 7]",
+      "output": "358"
+    },
+    {
+      "input": "root = [2, 0, 1, 0, 9, null, 3]",
+      "output": "622"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4, null, 5, null, 6]",
+      "output": "123456"
+    },
+    {
+      "input": "root = [9, null, 8, null, 7, null, 6, null, 5]",
+      "output": "98765"
+    },
+    {
+      "input": "root = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]",
+      "output": "17776"
+    },
+    {
+      "input": "root = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]",
+      "output": "26664"
+    },
+    {
+      "input": "root = [1, 0, 1, 0, 1, 0, 1]",
+      "output": "422"
+    },
+    {
+      "input": "root = [1, 1, 1, 1, 1, 1, 1]",
+      "output": "444"
+    },
+    {
+      "input": "root = [2, 2, 2, 2, null, 2, 2]",
+      "output": "666"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, 4, null, 5, null, 6]",
+      "output": "123456"
+    },
+    {
+      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 15, \"max\": 15}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 31, \"max\": 31}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
     }
   ],
   "func_sign": {

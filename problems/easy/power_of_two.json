@@ -377,6 +377,134 @@
     {
       "input": "n = 2",
       "output": "true"
+    },
+    {
+      "input": "n = 4",
+      "output": "true"
+    },
+    {
+      "input": "n = 8",
+      "output": "true"
+    },
+    {
+      "input": "n = 32",
+      "output": "true"
+    },
+    {
+      "input": "n = 64",
+      "output": "true"
+    },
+    {
+      "input": "n = 128",
+      "output": "true"
+    },
+    {
+      "input": "n = 256",
+      "output": "true"
+    },
+    {
+      "input": "n = 512",
+      "output": "true"
+    },
+    {
+      "input": "n = 1024",
+      "output": "true"
+    },
+    {
+      "input": "n = 3",
+      "output": "false"
+    },
+    {
+      "input": "n = 5",
+      "output": "false"
+    },
+    {
+      "input": "n = 7",
+      "output": "false"
+    },
+    {
+      "input": "n = 9",
+      "output": "false"
+    },
+    {
+      "input": "n = 12",
+      "output": "false"
+    },
+    {
+      "input": "n = 18",
+      "output": "false"
+    },
+    {
+      "input": "n = 21",
+      "output": "false"
+    },
+    {
+      "input": "n = 15",
+      "output": "false"
+    },
+    {
+      "input": "n = 17",
+      "output": "false"
+    },
+    {
+      "input": "n = 31",
+      "output": "false"
+    },
+    {
+      "input": "n = 33",
+      "output": "false"
+    },
+    {
+      "input": "n = 63",
+      "output": "false"
+    },
+    {
+      "input": "n = 65",
+      "output": "false"
+    },
+    {
+      "input": "n = 127",
+      "output": "false"
+    },
+    {
+      "input": "n = 129",
+      "output": "false"
+    },
+    {
+      "input": "n = 255",
+      "output": "false"
+    },
+    {
+      "input": "n = 257",
+      "output": "false"
+    },
+    {
+      "input": "n = 1048576",
+      "output": "true"
+    },
+    {
+      "input": "n = 1073741824",
+      "output": "true"
+    },
+    {
+      "input": "n = 1048575",
+      "output": "false"
+    },
+    {
+      "input": "n = 1073741823",
+      "output": "false"
+    },
+    {
+      "input": "n = 2147483646",
+      "output": "false"
+    },
+    {
+      "input": "n = -2147483647",
+      "output": "false"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}",
+      "output": ""
     }
   ],
   "func_sign": {

@@ -412,6 +412,130 @@
     {
       "input": "s = \"aaaa\"\nt = \"baaaac\"",
       "output": "true"
+    },
+    {
+      "input": "s = \"aaaaa\"\nt = \"baaaac\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ace\"\nt = \"abcde\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aec\"\nt = \"abcde\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcd\"\nt = \"abc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"cde\"\nt = \"abcde\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"bcd\"\nt = \"abcde\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"acegik\"\nt = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"azzz\"\nt = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aaaab\"\nt = \"aaaaaaaaab\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"aaaaab\"\nt = \"aaaaaaaaab\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a1b2c3\"\nt = \"zzza1xxb2yyc3\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a1b2c4\"\nt = \"zzza1xxb2yyc3\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"a-b_c\"\nt = \"a---b___c\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"a-b_c\"\nt = \"a---c___b\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"leetcode\"\nt = \"lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxcxxxxxxxxxxoxxxxxdxxxe\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"leetcode\"\nt = \"lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxcxxxxxxxxxxoxxxxxdxxx\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"bbbbbb\"\nt = \"aababaabbababbabbb\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"bbbbbbb\"\nt = \"aababaabbababbabbb\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"\"\nt = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"z\"\nt = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"z\"\nt = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"ababab\"\nt = \"aaabbbababaabb\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abababa\"\nt = \"aaabbbababaabb\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"13579\"\nt = \"0123456789\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"97531\"\nt = \"0123456789\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"algorithm\"\nt = \"aalgoxxrithmm\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"algorithm\"\nt = \"aalgoxxrithm\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"subsequence\"\nt = \"sqqqqqqqqqqqqqqqqqqqqqqqqquwwwwwwwwwwwwwwwwwwwwwwwwwbertttttttttttttttttttttttttsqqqqqqqqqqqqqqqqqqqqqqqququence\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"subsequence\"\nt = \"sqqqqqqqqqqqqqqqqqqqqqqqqquwwwwwwwwwwwwwwwwwwwwwwwwwbertttttttttttttttttttttttttsqqqqqqqqqqqqqqqqqqqqqqqquenc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"abcxyz\"\nt = \"aabbccxxxyyyzzz\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abcxzy\"\nt = \"aabbccxxxyyyzzz\"",
+      "output": "false"
     }
   ],
   "func_sign": {

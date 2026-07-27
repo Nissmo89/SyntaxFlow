@@ -883,6 +883,130 @@
     {
       "input": "list1 = [\"a\", \"b\", \"c\"]\nlist2 = [\"b\", \"a\", \"x\"]",
       "output": "[\"a\", \"b\"]"
+    },
+    {
+      "input": "list1 = [\"a\", \"b\", \"c\"]\nlist2 = [\"c\", \"b\", \"a\"]",
+      "output": "[\"a\", \"b\", \"c\"]"
+    },
+    {
+      "input": "list1 = [\"sushi-house\", \"ramen-bar\", \"pizza-palace\"]\nlist2 = [\"burger-barn\", \"ramen-bar\", \"sushi-house\"]",
+      "output": "[\"sushi-house\", \"ramen-bar\"]"
+    },
+    {
+      "input": "list1 = [\"r1\", \"r2\", \"r3\", \"r4\"]\nlist2 = [\"x\", \"r3\", \"y\", \"z\"]",
+      "output": "[\"r3\"]"
+    },
+    {
+      "input": "list1 = [\"m1\", \"m2\", \"best\", \"m4\"]\nlist2 = [\"x\", \"y\", \"best\", \"m2\"]",
+      "output": "[\"m2\", \"best\"]"
+    },
+    {
+      "input": "list1 = [\"ab\", \"abc\", \"abcd\"]\nlist2 = [\"x\", \"abcd\", \"ab\"]",
+      "output": "[\"ab\"]"
+    },
+    {
+      "input": "list1 = [\"1\", \"2\", \"3\", \"4\"]\nlist2 = [\"9\", \"8\", \"2\", \"7\"]",
+      "output": "[\"2\"]"
+    },
+    {
+      "input": "list1 = [\"Alpha\", \"beta\", \"Gamma\"]\nlist2 = [\"theta\", \"Gamma\", \"Alpha\"]",
+      "output": "[\"Alpha\"]"
+    },
+    {
+      "input": "list1 = [\"a\", \"best\", \"c\", \"d\"]\nlist2 = [\"x\", \"y\", \"best\", \"a\"]",
+      "output": "[\"a\", \"best\"]"
+    },
+    {
+      "input": "list1 = [\"best\", \"x\", \"y\", \"z\"]\nlist2 = [\"q\", \"best\", \"z\"]",
+      "output": "[\"best\"]"
+    },
+    {
+      "input": "list1 = [\"x\", \"y\", \"z\", \"best\"]\nlist2 = [\"a\", \"b\", \"c\", \"best\"]",
+      "output": "[\"best\"]"
+    },
+    {
+      "input": "list1 = [\"r1\", \"r2\", \"r3\", \"r4\", \"r5\"]\nlist2 = [\"u1\", \"u2\", \"u3\", \"r4\", \"u5\"]",
+      "output": "[\"r4\"]"
+    },
+    {
+      "input": "list1 = [\"aa\", \"bb\", \"cc\", \"dd\"]\nlist2 = [\"bb\", \"aa\", \"ee\", \"ff\"]",
+      "output": "[\"aa\", \"bb\"]"
+    },
+    {
+      "input": "list1 = [\"p\", \"q\", \"r\", \"s\"]\nlist2 = [\"q\", \"x\", \"y\", \"p\"]",
+      "output": "[\"q\"]"
+    },
+    {
+      "input": "list1 = [\"solo\"]\nlist2 = [\"a\", \"solo\", \"b\"]",
+      "output": "[\"solo\"]"
+    },
+    {
+      "input": "list1 = [\"a\", \"b\", \"c\", \"solo\"]\nlist2 = [\"solo\"]",
+      "output": "[\"solo\"]"
+    },
+    {
+      "input": "list1 = [\"a1\", \"a2\", \"a3\", \"a4\", \"a5\", \"a6\"]\nlist2 = [\"b1\", \"b2\", \"a4\", \"b4\", \"a1\"]",
+      "output": "[\"a1\"]"
+    },
+    {
+      "input": "list1 = [\"olive\", \"mint\", \"sage\", \"thyme\"]\nlist2 = [\"basil\", \"sage\", \"mint\"]",
+      "output": "[\"mint\", \"sage\"]"
+    },
+    {
+      "input": "list1 = [\"target\", \"x1\", \"x2\"]\nlist2 = [\"target\", \"y1\", \"y2\"]",
+      "output": "[\"target\"]"
+    },
+    {
+      "input": "list1 = [\"x\", \"target\", \"z\"]\nlist2 = [\"target\", \"u\", \"v\"]",
+      "output": "[\"target\"]"
+    },
+    {
+      "input": "list1 = [\"ant\", \"bee\", \"cat\", \"dog\", \"eel\"]\nlist2 = [\"fox\", \"gnu\", \"cat\", \"hog\"]",
+      "output": "[\"cat\"]"
+    },
+    {
+      "input": "list1 = [\"rest1\", \"rest2\", \"rest3\"]\nlist2 = [\"a\", \"rest3\", \"rest1\"]",
+      "output": "[\"rest1\"]"
+    },
+    {
+      "input": "list1 = [\"c1\", \"c2\", \"c3\", \"c4\", \"c5\"]\nlist2 = [\"z1\", \"c5\", \"z2\", \"c3\", \"c2\"]",
+      "output": "[\"c2\", \"c3\", \"c5\"]"
+    },
+    {
+      "input": "list1 = [\"aa1\", \"aa2\", \"aa3\", \"aa4\", \"aa5\"]\nlist2 = [\"aa1\", \"aa2\", \"aa3\", \"aa4\", \"aa5\"]",
+      "output": "[\"aa1\"]"
+    },
+    {
+      "input": "list1 = [\"k1\", \"k2\", \"k3\", \"k4\", \"k5\"]\nlist2 = [\"u\", \"v\", \"w\", \"k5\", \"k1\"]",
+      "output": "[\"k1\"]"
+    },
+    {
+      "input": "list1 = [\"n1\", \"n2\", \"n3\", \"n4\", \"n5\", \"n6\"]\nlist2 = [\"m1\", \"m2\", \"m3\", \"n6\"]",
+      "output": "[\"n6\"]"
+    },
+    {
+      "input": "list1 = [\"u1\", \"u2\", \"u3\", \"u4\"]\nlist2 = [\"u4\", \"x\", \"u2\", \"y\", \"u1\"]",
+      "output": "[\"u2\", \"u4\"]"
+    },
+    {
+      "input": "list1 = [\"taco-truck\", \"pho-bowl\", \"noodle-hut\", \"curry-corner\"]\nlist2 = [\"pho-bowl\", \"curry-corner\", \"taco-truck\"]",
+      "output": "[\"pho-bowl\"]"
+    },
+    {
+      "input": "list1 = [\"place01\", \"place02\", \"place03\", \"place04\", \"place05\"]\nlist2 = [\"other01\", \"place04\", \"other02\", \"place01\"]",
+      "output": "[\"place01\"]"
+    },
+    {
+      "input": "list1 = [\"x\", \"y\"]\nlist2 = [\"y\", \"x\"]",
+      "output": "[\"x\", \"y\"]"
+    },
+    {
+      "input": "list1 = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nlist2 = [\"x\", \"b\", \"y\", \"c\", \"z\"]",
+      "output": "[\"b\"]"
+    },
+    {
+      "input": "list1 = [\"p1\", \"p2\", \"p3\", \"p4\", \"tail\"]\nlist2 = [\"u1\", \"u2\", \"u3\", \"tail\"]",
+      "output": "[\"tail\"]"
     }
   ],
   "func_sign": {

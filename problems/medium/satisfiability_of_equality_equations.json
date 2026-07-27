@@ -607,6 +607,114 @@
     {
       "input": "equations = [\"b!=c\", \"c!=d\", \"f==f\"]",
       "output": "true"
+    },
+    {
+      "input": "equations = [\"b!=d\", \"a==c\", \"c!=e\", \"e==a\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"b!=b\", \"c==d\", \"c==d\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e!=c\", \"a!=a\", \"b==e\", \"a!=c\", \"a==f\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"d!=e\", \"a==d\", \"a!=f\", \"a!=d\", \"f==f\", \"a==b\", \"c!=d\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"d!=c\", \"e==e\", \"e!=f\", \"e==b\", \"c!=b\", \"e!=d\", \"c!=b\", \"e!=e\", \"e!=b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"a!=c\", \"f!=b\", \"d==d\", \"d==e\", \"f!=f\", \"c!=c\", \"f==e\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"c!=f\", \"e!=f\", \"c!=e\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"e!=a\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"e==b\", \"a==e\", \"d!=f\", \"d!=a\", \"a==c\", \"c==b\", \"c==d\", \"c!=e\", \"d!=e\", \"b==b\", \"a==d\", \"d==b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e==c\", \"d==b\", \"a==e\", \"e!=a\", \"f==e\", \"f!=d\", \"d==f\", \"e==a\", \"d==b\", \"d!=d\", \"e==a\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"b!=b\", \"b!=b\", \"b==a\", \"d!=b\", \"b==e\", \"a!=f\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"a==d\", \"e==f\", \"b!=f\", \"a!=c\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"b!=d\", \"a==e\", \"e==c\", \"f!=a\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"e==b\", \"a!=d\", \"f==a\", \"d==c\", \"c!=c\", \"c==d\", \"f!=b\", \"c==a\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"a!=f\", \"d!=e\", \"c!=f\", \"d!=a\", \"a!=f\", \"f!=e\", \"c!=c\", \"b!=e\", \"a==f\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"f!=c\", \"b==c\", \"d!=c\", \"b!=f\", \"d==c\", \"d==b\", \"b!=d\", \"a!=c\", \"d==d\", \"e!=b\", \"a==c\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e==d\", \"b!=e\", \"b!=c\", \"b==f\", \"f==f\", \"c!=c\", \"b!=a\", \"b==f\", \"e!=d\", \"a!=f\", \"f==b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"c==e\", \"d==f\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"f==a\", \"b==f\", \"e==f\", \"d!=f\", \"e!=c\", \"a==f\", \"d==e\", \"b==c\", \"f==a\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e!=b\", \"e==b\", \"a==c\", \"d!=a\", \"f==b\", \"d!=a\", \"f==b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e!=f\", \"c==b\", \"e==a\", \"e==d\", \"a!=c\", \"f==e\", \"b==a\", \"e==a\", \"f!=a\", \"b!=f\", \"f==b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"d!=c\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"e==d\", \"b!=a\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"e==e\", \"a!=e\", \"b==a\", \"f==d\", \"c!=b\", \"f!=d\", \"a==b\", \"d!=b\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"c!=c\", \"f==e\", \"f==f\", \"f!=e\", \"a==e\", \"f!=e\"]",
+      "output": "false"
+    },
+    {
+      "input": "equations = [\"e!=a\", \"d==c\", \"a!=c\", \"d==e\", \"f!=c\", \"e==b\"]",
+      "output": "true"
+    },
+    {
+      "input": "equations = [\"c!=d\", \"f!=f\", \"a==d\", \"a!=f\", \"e==a\", \"b!=f\"]",
+      "output": "false"
     }
   ],
   "func_sign": {

@@ -591,6 +591,122 @@
     {
       "input": "startGene = \"AAAAACCC\"\nendGene = \"AAAACCCA\"\nbank = [\"AAAACCCC\", \"AAAACCCA\"]",
       "output": "2"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AACCCCCC\"\nbank = [\"AAAACCCC\", \"AAACCCCC\", \"AACCCCCC\"]",
+      "output": "3"
+    },
+    {
+      "input": "startGene = \"AAAAAAAA\"\nendGene = \"TTTTAAAA\"\nbank = [\"TAAAAAAA\", \"TTAAAAAA\", \"TTTAAAAA\", \"TTTTAAAA\"]",
+      "output": "4"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AACCGGTA\"\nbank = []",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AAACGGTA\"\nbank = [\"AACCGGTA\", \"AACCGCTA\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AACCCCCC\"\nbank = [\"AAAACCCA\", \"AAACCCCA\", \"AACCCCCA\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"AAAAAAAA\"\nendGene = \"CCCCCCCC\"\nbank = [\"AAAAACCC\", \"AAAACCCC\", \"AAACCCCC\", \"AACCCCCC\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AACCCCCC\"\nbank = [\"AAAACCCA\", \"AAAACCAC\", \"AACCCCCC\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"TTTTTTTT\"\nendGene = \"TTTTTTTA\"\nbank = [\"TTTTTTTA\", \"TTTTTTAA\", \"TTTTTAAA\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AAACGGTA\"\nbank = [\"AACCGGTA\", \"AACCGCTA\", \"AAACGGTA\", \"AAACGGTA\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"AAAAAAAC\"\nendGene = \"CAAAAAAC\"\nbank = [\"CAAAAAAC\", \"CAAAAAAT\", \"CAAAAACT\", \"GAAAAAAC\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AAAAAAAA\"\nendGene = \"AAAAACCC\"\nbank = [\"AAAAAAAA\", \"AAAAACAA\", \"AAAAACCA\", \"AAAAACCC\", \"AAAAGAAA\", \"AAAAGCAA\"]",
+      "output": "3"
+    },
+    {
+      "input": "startGene = \"GGGGGGGG\"\nendGene = \"GGGGAAGG\"\nbank = [\"GGGGGGGA\", \"GGGGGAGA\", \"GGGGAAGA\", \"GGGGAAGG\", \"GGGGGAGG\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"ACGTACGT\"\nendGene = \"ACGTACGA\"\nbank = [\"ACGTACGG\", \"ACGTACGC\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"TGCATGCA\"\nendGene = \"TGCATGCG\"\nbank = [\"TGCATGCC\", \"TGCATGCT\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"CAAACCCC\"\nbank = [\"AAAACCCC\", \"CAAACCCC\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AAAAACCG\"\nbank = [\"AAAAACCG\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AAAAACCC\"\nendGene = \"AAACCCCA\"\nbank = [\"AAAACCCC\", \"AAACCCCC\", \"AAACCCCA\", \"AAAACCCA\"]",
+      "output": "3"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"CACCGGTT\"\nbank = [\"CACCGGTT\", \"AACCGGTA\", \"AACCGCTA\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"TTTTTTTT\"\nbank = [\"AACCGGTA\", \"AACCGCTA\", \"AAACGGTA\", \"TTTTTTTT\"]",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"CCCCCCCC\"\nendGene = \"CCCCCCCA\"\nbank = [\"CCCCCCCG\", \"CCCCCCGG\", \"CCCCCCAA\", \"CCCCCCCA\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"GATTACAA\"\nendGene = \"GATTACAG\"\nbank = []",
+      "output": "-1"
+    },
+    {
+      "input": "startGene = \"GATTACAA\"\nendGene = \"GATTACAA\"\nbank = [\"GATTACAG\", \"GATTACAC\"]",
+      "output": "0"
+    },
+    {
+      "input": "startGene = \"TTTTGGGG\"\nendGene = \"TTTTGGGG\"\nbank = [\"TTTTGGGA\", \"TTTTGGGC\", \"TTTTGGGT\"]",
+      "output": "0"
+    },
+    {
+      "input": "startGene = \"AAAAAAAA\"\nendGene = \"AAAATTTT\"\nbank = [\"AAAATAAA\", \"AAAATTAA\", \"AAAATTTA\", \"AAAATTTT\"]",
+      "output": "4"
+    },
+    {
+      "input": "startGene = \"CCCCGGGG\"\nendGene = \"CCGGGGGG\"\nbank = [\"CCCGGGGG\", \"CCGGGGGG\", \"CCCCGGGA\", \"CCCCGGGC\"]",
+      "output": "2"
+    },
+    {
+      "input": "startGene = \"AACCGGTT\"\nendGene = \"AACCGGTC\"\nbank = [\"AACCGGTC\", \"AACCGGTA\", \"AACCGGTT\", \"AACCGGAT\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"ACGTACGT\"\nendGene = \"ACGTTCGT\"\nbank = [\"ACGTTCGT\", \"ACGTACGA\", \"ACGTACGG\", \"ACGTCCGT\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"AAAAAAAC\"\nendGene = \"AAAAAACC\"\nbank = [\"AAAAAAAC\", \"AAAAAACC\", \"AAAAAAGC\", \"AAAAAATC\"]",
+      "output": "1"
+    },
+    {
+      "input": "startGene = \"TTTAAAAA\"\nendGene = \"TTTCCCAA\"\nbank = [\"TTTCAAAA\", \"TTTCCAAA\", \"TTTCCCAA\", \"TTTAAAAA\", \"TTTCAAAT\"]",
+      "output": "3"
     }
   ],
   "func_sign": {

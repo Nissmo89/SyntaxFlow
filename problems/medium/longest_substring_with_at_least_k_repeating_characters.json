@@ -405,6 +405,122 @@
     {
       "input": "s = \"aaabbb\"\nk = 4",
       "output": "0"
+    },
+    {
+      "input": "s = \"ababacb\"\nk = 3",
+      "output": "0"
+    },
+    {
+      "input": "s = \"weitong\"\nk = 2",
+      "output": "0"
+    },
+    {
+      "input": "s = \"bbaaacbd\"\nk = 3",
+      "output": "3"
+    },
+    {
+      "input": "s = \"aaabb\"\nk = 3",
+      "output": "3"
+    },
+    {
+      "input": "s = \"ababbc\"\nk = 2",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abcabcabc\"\nk = 3",
+      "output": "9"
+    },
+    {
+      "input": "s = \"abcabcabc\"\nk = 4",
+      "output": "0"
+    },
+    {
+      "input": "s = \"zzzzzz\"\nk = 1",
+      "output": "6"
+    },
+    {
+      "input": "s = \"zzzzzz\"\nk = 6",
+      "output": "6"
+    },
+    {
+      "input": "s = \"zzzzzz\"\nk = 7",
+      "output": "0"
+    },
+    {
+      "input": "s = \"aaabbbcddddeee\"\nk = 3",
+      "output": "7"
+    },
+    {
+      "input": "s = \"aabbbccccdddde\"\nk = 2",
+      "output": "13"
+    },
+    {
+      "input": "s = \"aabbbccccdddde\"\nk = 4",
+      "output": "8"
+    },
+    {
+      "input": "s = \"aabbccddeeff\"\nk = 2",
+      "output": "12"
+    },
+    {
+      "input": "s = \"aabbccddeeff\"\nk = 3",
+      "output": "0"
+    },
+    {
+      "input": "s = \"abcdefghijklmnop\"\nk = 1",
+      "output": "16"
+    },
+    {
+      "input": "s = \"abcdefghijklmnop\"\nk = 2",
+      "output": "0"
+    },
+    {
+      "input": "s = \"aaaaabbbbbcccccdddddeeeee\"\nk = 5",
+      "output": "25"
+    },
+    {
+      "input": "s = \"aaaaabbbbbcccccdddddeeeee\"\nk = 6",
+      "output": "0"
+    },
+    {
+      "input": "s = \"aaabbaaaabbaaa\"\nk = 3",
+      "output": "14"
+    },
+    {
+      "input": "s = \"aaabbaaaabbaaa\"\nk = 4",
+      "output": "14"
+    },
+    {
+      "input": "s = \"qwertyqwertyqwerty\"\nk = 3",
+      "output": "18"
+    },
+    {
+      "input": "s = \"qwertyqwertyqwerty\"\nk = 4",
+      "output": "0"
+    },
+    {
+      "input": "s = \"mississippi\"\nk = 2",
+      "output": "10"
+    },
+    {
+      "input": "s = \"mississippi\"\nk = 3",
+      "output": "7"
+    },
+    {
+      "input": "s = \"ppqqqrrrssstttuuu\"\nk = 3",
+      "output": "15"
+    },
+    {
+      "input": "s = \"ppqqqrrrssstttuuu\"\nk = 4",
+      "output": "0"
+    },
+    {
+      "input": "s = \"abcdefffffghij\"\nk = 2",
+      "output": "5"
+    },
+    {
+      "input": "s = \"abcdefffffghij\"\nk = 5",
+      "output": "5"
     }
   ],
   "func_sign": {

@@ -449,6 +449,134 @@
     {
       "input": "n = 3\nk = 2",
       "output": "2"
+    },
+    {
+      "input": "n = 3\nk = 3",
+      "output": "1"
+    },
+    {
+      "input": "n = 4\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 4\nk = 1",
+      "output": "3"
+    },
+    {
+      "input": "n = 4\nk = 2",
+      "output": "5"
+    },
+    {
+      "input": "n = 4\nk = 3",
+      "output": "6"
+    },
+    {
+      "input": "n = 4\nk = 4",
+      "output": "5"
+    },
+    {
+      "input": "n = 5\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 5\nk = 1",
+      "output": "4"
+    },
+    {
+      "input": "n = 5\nk = 2",
+      "output": "9"
+    },
+    {
+      "input": "n = 5\nk = 5",
+      "output": "22"
+    },
+    {
+      "input": "n = 5\nk = 10",
+      "output": "1"
+    },
+    {
+      "input": "n = 6\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 6\nk = 1",
+      "output": "5"
+    },
+    {
+      "input": "n = 6\nk = 2",
+      "output": "14"
+    },
+    {
+      "input": "n = 6\nk = 3",
+      "output": "29"
+    },
+    {
+      "input": "n = 7\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 7\nk = 1",
+      "output": "6"
+    },
+    {
+      "input": "n = 7\nk = 6",
+      "output": "259"
+    },
+    {
+      "input": "n = 8\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 8\nk = 7",
+      "output": "961"
+    },
+    {
+      "input": "n = 10\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 10\nk = 1",
+      "output": "9"
+    },
+    {
+      "input": "n = 10\nk = 2",
+      "output": "44"
+    },
+    {
+      "input": "n = 10\nk = 10",
+      "output": "21670"
+    },
+    {
+      "input": "n = 12\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 12\nk = 11",
+      "output": "198497"
+    },
+    {
+      "input": "n = 1000\nk = 0",
+      "output": "1"
+    },
+    {
+      "input": "n = 1000\nk = 1",
+      "output": "999"
+    },
+    {
+      "input": "n = 1000\nk = 1000",
+      "output": "663677020"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 100}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 21, \"max\": 200}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 1000}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 201, \"max\": 1000}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 1000}",
+      "output": ""
     }
   ],
   "func_sign": {

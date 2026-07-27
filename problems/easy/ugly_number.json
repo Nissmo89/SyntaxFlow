@@ -406,6 +406,134 @@
     {
       "input": "n = 5",
       "output": "true"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": -20, \"max\": -1}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1}",
+      "output": ""
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 2, \"max\": 50}",
+      "output": ""
+    },
+    {
+      "input": "n = 7",
+      "output": "false"
+    },
+    {
+      "input": "n = 8",
+      "output": "true"
+    },
+    {
+      "input": "n = 9",
+      "output": "true"
+    },
+    {
+      "input": "n = 10",
+      "output": "true"
+    },
+    {
+      "input": "n = 11",
+      "output": "false"
+    },
+    {
+      "input": "n = 12",
+      "output": "true"
+    },
+    {
+      "input": "n = 14",
+      "output": "false"
+    },
+    {
+      "input": "n = 15",
+      "output": "true"
+    },
+    {
+      "input": "n = 16",
+      "output": "true"
+    },
+    {
+      "input": "n = 18",
+      "output": "true"
+    },
+    {
+      "input": "n = 21",
+      "output": "false"
+    },
+    {
+      "input": "n = 24",
+      "output": "true"
+    },
+    {
+      "input": "n = 25",
+      "output": "true"
+    },
+    {
+      "input": "n = 27",
+      "output": "true"
+    },
+    {
+      "input": "n = 28",
+      "output": "false"
+    },
+    {
+      "input": "n = 30",
+      "output": "true"
+    },
+    {
+      "input": "n = 120",
+      "output": "true"
+    },
+    {
+      "input": "n = 121",
+      "output": "false"
+    },
+    {
+      "input": "n = 256",
+      "output": "true"
+    },
+    {
+      "input": "n = 1000",
+      "output": "true"
+    },
+    {
+      "input": "n = 1001",
+      "output": "false"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1000000, \"max\": 2147483647}",
+      "output": ""
+    },
+    {
+      "input": "n = 2147483647",
+      "output": "false"
+    },
+    {
+      "input": "n = 2147483646",
+      "output": "false"
+    },
+    {
+      "input": "n = -2147483648",
+      "output": "false"
+    },
+    {
+      "input": "n = {\"gen\": \"int\", \"min\": 1000000000, \"max\": 2147483647}",
+      "output": ""
+    },
+    {
+      "input": "n = 1048576",
+      "output": "true"
+    },
+    {
+      "input": "n = 1953125",
+      "output": "true"
+    },
+    {
+      "input": "n = 1953127",
+      "output": "false"
     }
   ],
   "func_sign": {

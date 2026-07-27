@@ -498,6 +498,118 @@
     {
       "input": "s = \"2[abc]3[cd]efg\"",
       "output": "\"abcabccdcdcdefg\""
+    },
+    {
+      "input": "s = \"3[a2[b4[F]c]]\"",
+      "output": "\"abFFFFcbFFFFcabFFFFcbFFFFcabFFFFcbFFFFc\""
+    },
+    {
+      "input": "s = \"2[a2[b]]3[c]\"",
+      "output": "\"abbabbccc\""
+    },
+    {
+      "input": "s = \"x2[y]z\"",
+      "output": "\"xyyz\""
+    },
+    {
+      "input": "s = \"100[a]\"",
+      "output": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\""
+    },
+    {
+      "input": "s = \"12[a2[b]]\"",
+      "output": "\"abbabbabbabbabbabbabbabbabbabbabbabb\""
+    },
+    {
+      "input": "s = \"3[xy]z\"",
+      "output": "\"xyxyxyz\""
+    },
+    {
+      "input": "s = \"a2[b3[c]d]e\"",
+      "output": "\"abcccdbcccde\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "\"abcdefghijklmnopqrstuvwxyz\""
+    },
+    {
+      "input": "s = \"2[abcdefghij]\"",
+      "output": "\"abcdefghijabcdefghij\""
+    },
+    {
+      "input": "s = \"2[a3[b]c]d\"",
+      "output": "\"abbbcabbbcd\""
+    },
+    {
+      "input": "s = \"30[x]\"",
+      "output": "\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\""
+    },
+    {
+      "input": "s = \"2[3[a]b]\"",
+      "output": "\"aaabaaab\""
+    },
+    {
+      "input": "s = \"9[a]b\"",
+      "output": "\"aaaaaaaaab\""
+    },
+    {
+      "input": "s = \"p2[q]r3[s]\"",
+      "output": "\"pqqrsss\""
+    },
+    {
+      "input": "s = \"2[a2[b2[c]]]\"",
+      "output": "\"abccbccabccbcc\""
+    },
+    {
+      "input": "s = \"15[ab]\"",
+      "output": "\"ababababababababababababababab\""
+    },
+    {
+      "input": "s = \"z3[x2[y]]w\"",
+      "output": "\"zxyyxyyxyyw\""
+    },
+    {
+      "input": "s = \"2[a]2[b]2[c]\"",
+      "output": "\"aabbcc\""
+    },
+    {
+      "input": "s = \"2[a2[b2[c3[d]]]]\"",
+      "output": "\"abcdddcdddbcdddcdddabcdddcdddbcdddcddd\""
+    },
+    {
+      "input": "s = \"a2[b]c2[d]e\"",
+      "output": "\"abbcdde\""
+    },
+    {
+      "input": "s = \"5[leetcode]\"",
+      "output": "\"leetcodeleetcodeleetcodeleetcodeleetcode\""
+    },
+    {
+      "input": "s = \"2[abcdefghijklmn]\"",
+      "output": "\"abcdefghijklmnabcdefghijklmn\""
+    },
+    {
+      "input": "s = \"4[a2[b3[c]]]\"",
+      "output": "\"abcccbcccabcccbcccabcccbcccabcccbccc\""
+    },
+    {
+      "input": "s = \"3[a]xyz\"",
+      "output": "\"aaaxyz\""
+    },
+    {
+      "input": "s = \"xyz3[a]\"",
+      "output": "\"xyzaaa\""
+    },
+    {
+      "input": "s = \"2[a10[b]]\"",
+      "output": "\"abbbbbbbbbbabbbbbbbbbb\""
+    },
+    {
+      "input": "s = \"20[xy]\"",
+      "output": "\"xyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxyxy\""
+    },
+    {
+      "input": "s = \"2[a3[b2[c]]d]\"",
+      "output": "\"abccbccbccdabccbccbccd\""
     }
   ],
   "func_sign": {

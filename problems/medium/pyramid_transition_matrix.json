@@ -559,6 +559,114 @@
     {
       "input": "bottom = \"BCD\"\nallowed = [\"CDE\", \"CEA\"]",
       "output": "false"
+    },
+    {
+      "input": "bottom = \"AAA\"\nallowed = [\"AAA\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AAA\"\nallowed = [\"AAB\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"AAAAAA\"\nallowed = [\"AAA\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"ABCDEF\"\nallowed = []",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"ABCDEF\"\nallowed = [\"ABF\", \"BCF\", \"CDF\", \"DEF\", \"EFF\", \"FFA\", \"AAB\", \"BBC\", \"CCD\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"ABCDEF\"\nallowed = [\"ABF\", \"BCF\", \"CDF\", \"DEF\", \"EFF\", \"FFA\", \"AAB\", \"BBC\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"BAC\"\nallowed = [\"BAA\", \"ACA\", \"AAA\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"BAC\"\nallowed = [\"ABA\", \"CAA\", \"AAA\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"ABA\"\nallowed = [\"ABA\", \"BAA\", \"AAA\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AABB\"\nallowed = [\"AAC\", \"ABD\", \"BBE\", \"CDF\", \"DEA\", \"FAB\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AABB\"\nallowed = [\"AAC\", \"ABD\", \"BBE\", \"CDF\", \"DEA\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"ABCD\"\nallowed = [\"ABE\", \"BCF\", \"CDA\", \"EFA\", \"FAA\", \"AAB\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"ABCD\"\nallowed = [\"ABE\", \"BCF\", \"CDA\", \"EFA\", \"FAA\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"AABC\"\nallowed = [\"AAC\", \"ABD\", \"BCE\", \"CDF\", \"DEA\", \"FAB\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AABC\"\nallowed = [\"AAC\", \"ABD\", \"BCE\", \"CDF\", \"DEA\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"FFFF\"\nallowed = [\"FFF\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"FFFF\"\nallowed = [\"FFA\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"AAAA\"\nallowed = [\"AAB\", \"AAC\", \"BBB\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"AAAA\"\nallowed = [\"AAB\", \"AAC\", \"BBC\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"BDBD\"\nallowed = [\"BDC\", \"DBE\", \"BDD\", \"DBD\", \"DDD\", \"CEA\", \"EAF\", \"AFB\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"BDBD\"\nallowed = [\"BDC\", \"DBE\", \"CEA\", \"EAF\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"CCCCCC\"\nallowed = [\"CCC\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"CCCCCC\"\nallowed = [\"CCD\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"ABCBA\"\nallowed = [\"ABD\", \"BCE\", \"CBF\", \"BAE\", \"DEA\", \"EFB\", \"FEB\", \"ABC\", \"BBD\", \"CDE\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"ABCBA\"\nallowed = [\"ABD\", \"BCE\", \"CBF\", \"BAE\", \"DEA\", \"EFB\", \"FEB\", \"ABC\", \"BBD\"]",
+      "output": "false"
+    },
+    {
+      "input": "bottom = \"BCDA\"\nallowed = [\"BCE\", \"CDF\", \"DAA\", \"EFB\", \"FAB\", \"BBC\"]",
+      "output": "true"
+    },
+    {
+      "input": "bottom = \"BCDA\"\nallowed = [\"BCE\", \"CDF\", \"DAA\", \"EFB\", \"FAB\"]",
+      "output": "false"
     }
   ],
   "func_sign": {

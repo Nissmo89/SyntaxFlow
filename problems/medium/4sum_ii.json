@@ -1018,6 +1018,114 @@
     {
       "input": "nums1 = [3]\nnums2 = [1]\nnums3 = [-1]\nnums4 = [-2]",
       "output": "0"
+    },
+    {
+      "input": "nums1 = [0, 0]\nnums2 = [0, 0]\nnums3 = [0, 0]\nnums4 = [0, 0]",
+      "output": "16"
+    },
+    {
+      "input": "nums1 = [1, 1, 1]\nnums2 = [0, 0, 0]\nnums3 = [-1, -1, -1]\nnums4 = [0, 0, 0]",
+      "output": "81"
+    },
+    {
+      "input": "nums1 = [1, 2, 3]\nnums2 = [-1, -2, -3]\nnums3 = [0, 0, 0]\nnums4 = [0, 0, 0]",
+      "output": "27"
+    },
+    {
+      "input": "nums1 = [-1, -1]\nnums2 = [1, 1]\nnums3 = [0, 0]\nnums4 = [0, 0]",
+      "output": "16"
+    },
+    {
+      "input": "nums1 = [1, -1]\nnums2 = [1, -1]\nnums3 = [1, -1]\nnums4 = [-1, 1]",
+      "output": "6"
+    },
+    {
+      "input": "nums1 = [0, 1]\nnums2 = [-1, 0]\nnums3 = [0, 1]\nnums4 = [-1, 0]",
+      "output": "6"
+    },
+    {
+      "input": "nums1 = [2, 2, 2]\nnums2 = [-1, -1, -1]\nnums3 = [-1, -1, -1]\nnums4 = [0, 0, 0]",
+      "output": "81"
+    },
+    {
+      "input": "nums1 = [4, -4]\nnums2 = [4, -4]\nnums3 = [-4, 4]\nnums4 = [-4, 4]",
+      "output": "6"
+    },
+    {
+      "input": "nums1 = [5, -5]\nnums2 = [1, -1]\nnums3 = [-3, 3]\nnums4 = [-3, 3]",
+      "output": "2"
+    },
+    {
+      "input": "nums1 = [0, 0, 0]\nnums2 = [0, 0, 0]\nnums3 = [0, 0, 0]\nnums4 = [0, 0, 0]",
+      "output": "81"
+    },
+    {
+      "input": "nums1 = [7]\nnums2 = [-6]\nnums3 = [0]\nnums4 = [0]",
+      "output": "0"
+    },
+    {
+      "input": "nums1 = [7]\nnums2 = [-7]\nnums3 = [0]\nnums4 = [0]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = [1, 2, 3]\nnums2 = [4, 5, 6]\nnums3 = [-7, -8, -9]\nnums4 = [0, 0, 0]",
+      "output": "18"
+    },
+    {
+      "input": "nums1 = [1, 1]\nnums2 = [-1, -1]\nnums3 = [0, 0]\nnums4 = [0, 0]",
+      "output": "16"
+    },
+    {
+      "input": "nums1 = [0, 0]\nnums2 = [0, 0]\nnums3 = [0, 0]\nnums4 = [0, 0]",
+      "output": "16"
+    },
+    {
+      "input": "nums1 = [1, -1, 1]\nnums2 = [-1, 1, -1]\nnums3 = [0, 0, 0]\nnums4 = [0, 0, 0]",
+      "output": "45"
+    },
+    {
+      "input": "nums1 = [2, -2]\nnums2 = [2, -2]\nnums3 = [-2, 2]\nnums4 = [-2, 2]",
+      "output": "6"
+    },
+    {
+      "input": "nums1 = [268435456]\nnums2 = [268435456]\nnums3 = [-268435456]\nnums4 = [-268435456]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = [-268435456]\nnums2 = [268435456]\nnums3 = [1]\nnums4 = [-1]",
+      "output": "1"
+    },
+    {
+      "input": "nums1 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}\nnums2 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}\nnums3 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}\nnums4 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}",
+      "output": "1600000000"
+    },
+    {
+      "input": "nums1 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}}\nnums2 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}}\nnums3 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}}\nnums4 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}}",
+      "output": "0"
+    },
+    {
+      "input": "nums1 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": -268435456, \"max\": -268435456}}\nnums2 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 268435456, \"max\": 268435456}}\nnums3 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}\nnums4 = {\"gen\": \"array\", \"distinct\": false, \"sorted\": false, \"elemType\": \"int\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 0}}",
+      "output": "1600000000"
+    },
+    {
+      "input": "nums1 = [0, 0, 1, 1]\nnums2 = [0, 1, 0, 1]\nnums3 = [0, -1, 0, -1]\nnums4 = [0, 0, 0, 0]",
+      "output": "96"
+    },
+    {
+      "input": "nums1 = [9, 8, 7]\nnums2 = [6, 5, 4]\nnums3 = [-1, -2, -3]\nnums4 = [1, 2, 3]",
+      "output": "0"
+    },
+    {
+      "input": "nums1 = [1, 1, 1, 1]\nnums2 = [-1, -1, -1, -1]\nnums3 = [0, 0, 0, 0]\nnums4 = [0, 0, 0, 0]",
+      "output": "256"
+    },
+    {
+      "input": "nums1 = [1, 2]\nnums2 = [-1, -2]\nnums3 = [1, 2]\nnums4 = [-1, -2]",
+      "output": "6"
+    },
+    {
+      "input": "nums1 = [2, 2, 2, 2]\nnums2 = [0, 0, 0, 0]\nnums3 = [-2, -2, -2, -2]\nnums4 = [0, 0, 0, 0]",
+      "output": "256"
     }
   ],
   "func_sign": {

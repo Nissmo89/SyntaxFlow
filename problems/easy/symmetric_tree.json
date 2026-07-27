@@ -783,6 +783,118 @@
     {
       "input": "root = [0, 0, 0, 0, 0, 0, 0]",
       "output": "true"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, null, 0, 0]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 9, 8, 7, 6, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 9, 6, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, null, null, 3]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, null, 3, 3, null]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, null, 3, null, 4]",
+      "output": "false"
+    },
+    {
+      "input": "root = [-1, -2, -2, -3, -4, -4, -3]",
+      "output": "true"
+    },
+    {
+      "input": "root = [-1, -2, -2, -3, -4, -3, -4]",
+      "output": "false"
+    },
+    {
+      "input": "root = [5, 7, 7, 8, 9, 8, 9]",
+      "output": "false"
+    },
+    {
+      "input": "root = [2, 3, 3, 4, null, null, 4]",
+      "output": "true"
+    },
+    {
+      "input": "root = [2, 3, 3, 4, null, null, 4]",
+      "output": "true"
+    },
+    {
+      "input": "root = [2, 3, 3, 4, null, 4, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5, 9, 10, 11, 12, 12, 11, 10, 9]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5, 9, 10, 11, 12, 12, 11, 10, 8]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 1, null, null, null, null]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 1, null, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, null, 3, 3, null, null, null, 4, 4, null, null, null, null]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, null, 3, 3, null, null, null, 4, 5, null, null, null, null]",
+      "output": "false"
+    },
+    {
+      "input": "root = [7, 7, 7, 7, 7, 7, 7]",
+      "output": "true"
+    },
+    {
+      "input": "root = [7, 7, 7, 7, 7, 7, 8]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5, 9, 10, 11, 12, 13, 13, 12, 11, 10, 9, 14, 15, 16, 17, 18, 18, 17, 16, 15, 14]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5, 9, 10, 11, 12, 13, 13, 12, 11, 10, 9, 14, 15, 16, 17, 18, 18, 17, 16, 15, 13]",
+      "output": "false"
+    },
+    {
+      "input": "root = [4, 1, 1, 2, 3, 3, 2, 4, 5, 6, 7, 7, 6, 5, 4, 8, 9, 10, 11, 12, 12, 11, 10, 9, 8]",
+      "output": "false"
+    },
+    {
+      "input": "root = [4, 1, 1, 2, 3, 3, 2, 4, 5, 6, 7, 7, 6, 5, 4, 8, 9, 10, 11, 12, 12, 11, 10, 9, 7]",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, null, null, 6, 6, null, null, 5]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, null, null, 6, 6, null, null, 4]",
+      "output": "false"
     }
   ],
   "func_sign": {

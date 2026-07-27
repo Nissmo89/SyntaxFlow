@@ -963,6 +963,114 @@
     {
       "input": "wordlist = [\"cb\", \"bad\", \"cac\", \"d\"]\nqueries = [\"dDa\", \"DAAD\", \"cdB\", \"CC\", \"ccCa\", \"Dd\"]",
       "output": "[\"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"dddbb\", \"babca\", \"bdcbb\", \"c\", \"bcb\", \"dddac\"]\nqueries = [\"EACA\", \"E\", \"cCAEe\", \"bBDA\", \"C\", \"A\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"c\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cdb\", \"cc\", \"ddadd\", \"bac\"]\nqueries = [\"CB\", \"bdD\", \"BE\", \"EDA\", \"EADd\", \"ceCd\", \"cAaEB\", \"DBAd\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ccacc\"]\nqueries = [\"dBd\"]",
+      "output": "[\"\"]"
+    },
+    {
+      "input": "wordlist = [\"bd\", \"baaba\", \"da\", \"bd\", \"baaaa\", \"dccca\"]\nqueries = [\"Dae\", \"CaEDB\", \"CCae\", \"aCC\"]",
+      "output": "[\"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ccc\", \"dbab\"]\nqueries = [\"DC\", \"Acea\", \"AdC\", \"aAe\", \"CbDe\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"abdc\", \"ddca\"]\nqueries = [\"CE\", \"b\", \"adBE\", \"eBec\", \"c\", \"Eacd\", \"a\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"aab\", \"aab\", \"dd\", \"cdada\", \"adc\", \"abcc\", \"d\", \"aaab\"]\nqueries = [\"eDDb\", \"dEc\", \"baAe\", \"DB\", \"D\", \"ECBDa\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"d\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"bdcaa\", \"b\", \"badaa\", \"adca\", \"dd\", \"bdb\"]\nqueries = [\"Bc\"]",
+      "output": "[\"\"]"
+    },
+    {
+      "input": "wordlist = [\"bdc\", \"ab\", \"cbcd\", \"c\", \"cd\", \"ccbd\"]\nqueries = [\"a\", \"e\", \"CE\", \"EEA\"]",
+      "output": "[\"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ca\", \"bddb\", \"daaba\", \"a\", \"c\", \"c\"]\nqueries = [\"Cb\", \"Cddea\", \"beeb\", \"BAc\", \"bc\", \"Db\", \"BC\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cca\", \"ca\"]\nqueries = [\"aBbED\", \"bdE\", \"Dee\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"cdc\", \"abaad\", \"dcbc\", \"cdcd\", \"d\"]\nqueries = [\"eDdBB\", \"c\", \"eaAe\", \"DbaED\", \"ccA\", \"bb\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ca\", \"aa\", \"dd\"]\nqueries = [\"Dba\", \"DB\", \"aCcEc\", \"AEbBb\", \"bAe\", \"dABCe\", \"ceA\", \"Baaa\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"acdc\", \"d\", \"bad\", \"cb\", \"c\", \"ac\", \"a\"]\nqueries = [\"E\", \"eABcE\", \"bAe\", \"EabEB\", \"DdeeC\"]",
+      "output": "[\"a\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"b\", \"a\", \"a\", \"b\", \"acbdb\", \"ca\"]\nqueries = [\"B\", \"eEDAc\", \"e\", \"Dc\"]",
+      "output": "[\"b\", \"\", \"a\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"dcda\", \"aabc\", \"cdac\", \"cbdda\", \"bbacd\", \"a\"]\nqueries = [\"AE\", \"C\", \"dbe\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"caacd\", \"b\", \"dc\"]\nqueries = [\"D\", \"Cd\", \"aAcd\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ad\", \"da\", \"aaac\", \"b\", \"baacd\", \"db\", \"aacb\", \"c\"]\nqueries = [\"aB\", \"Ecbc\", \"ae\", \"CBC\"]",
+      "output": "[\"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"a\", \"dcb\", \"bbdb\", \"dca\", \"bab\", \"cbb\", \"c\"]\nqueries = [\"dE\", \"A\", \"cEE\", \"cbab\", \"DCA\"]",
+      "output": "[\"\", \"a\", \"\", \"\", \"dca\"]"
+    },
+    {
+      "input": "wordlist = [\"cacbc\", \"bca\", \"dba\", \"b\", \"bbcdc\", \"c\", \"a\"]\nqueries = [\"EAe\", \"C\"]",
+      "output": "[\"\", \"c\"]"
+    },
+    {
+      "input": "wordlist = [\"bd\", \"bdcb\", \"b\", \"adad\", \"d\", \"dacbb\"]\nqueries = [\"EeA\"]",
+      "output": "[\"\"]"
+    },
+    {
+      "input": "wordlist = [\"cd\"]\nqueries = [\"b\", \"aad\", \"aa\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"bc\", \"dabd\", \"adabd\"]\nqueries = [\"E\", \"CDa\", \"aDBD\", \"cC\", \"adcC\", \"CbdDb\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ba\", \"ccdac\", \"baa\", \"ada\", \"bacb\", \"ac\"]\nqueries = [\"Ed\", \"DBEEe\", \"eE\"]",
+      "output": "[\"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"bbbba\", \"bcda\", \"adacd\", \"adbad\", \"c\", \"dacad\", \"daccd\", \"bcb\"]\nqueries = [\"debCe\", \"EaBBA\", \"da\", \"cd\", \"cD\", \"BdEeb\", \"Ca\"]",
+      "output": "[\"\", \"\", \"\", \"\", \"\", \"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"b\", \"ca\", \"cdaad\", \"dc\", \"dcc\", \"acbaa\", \"bbb\"]\nqueries = [\"eeAE\", \"abadE\"]",
+      "output": "[\"\", \"\"]"
+    },
+    {
+      "input": "wordlist = [\"ba\", \"aac\", \"acb\", \"dcc\", \"cdba\", \"c\", \"c\", \"acbab\"]\nqueries = [\"E\", \"A\"]",
+      "output": "[\"\", \"\"]"
     }
   ],
   "func_sign": {

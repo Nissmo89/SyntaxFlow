@@ -387,6 +387,118 @@
     {
       "input": "pattern = \"aa\"\ns = \"one two\"",
       "output": "false"
+    },
+    {
+      "input": "pattern = \"abcabc\"\ns = \"red blue green red blue green\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abcabc\"\ns = \"red blue green red blue yellow\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abcabc\"\ns = \"red blue green red red green\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abab\"\ns = \"dog cat dog cat\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abab\"\ns = \"dog cat dog dog\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abcd\"\ns = \"a b c d\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abcd\"\ns = \"a b c a\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"aaaa\"\ns = \"same same same same\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"aaaa\"\ns = \"same same same different\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abcde\"\ns = \"one two three four\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"ab\"\ns = \"one two three\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"ab\"\ns = \"Dog dog\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"Aa\"\ns = \"one one\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abca\"\ns = \"x1 x2 x3 x1\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abca\"\ns = \"x1 x2 x3 x2\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"xyzxyz\"\ns = \"alpha beta gamma alpha beta gamma\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"xyzxyz\"\ns = \"alpha beta gamma alpha beta delta\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abcdef\"\ns = \"q q q q q q\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"zzzzzz\"\ns = \"q q q q q q\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abca\"\ns = \"dog dog cat dog\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abc\"\ns = \"one two three\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abc\"\ns = \"one two\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"paper\"\ns = \"title apple title title apple\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"paper\"\ns = \"title apple title title title\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"abc\"\ns = \"dog cat fish\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"abc\"\ns = \"dog cat dog\"",
+      "output": "false"
+    },
+    {
+      "input": "pattern = \"ababab\"\ns = \"red blue red blue red blue\"",
+      "output": "true"
+    },
+    {
+      "input": "pattern = \"ababab\"\ns = \"red blue red blue red green\"",
+      "output": "false"
     }
   ],
   "func_sign": {

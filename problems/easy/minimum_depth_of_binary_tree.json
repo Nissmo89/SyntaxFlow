@@ -808,6 +808,126 @@
     {
       "input": "root = [1, 2, 3, 4, null, null, 7]",
       "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, null, 3]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, null, 4, null, null, null, null, null, null, 5]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, null, 2, null, null, null, 3, null, null, null, null, null, null, null, 4, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 5]",
+      "output": "2"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 7, 8]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, null, 7, null, null, 10]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, null, null, 3, 4]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, null, 2, 3, null, null, 4]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 6, 7, 8, null, null, null, null, 14, null, 15]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 7, 8, 9, 10, 11]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]",
+      "output": "5"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, null, null, null, null, null, null, 15, 16]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, null, 9, 10, 11, 12, 13, 14, 15]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 7, 8, null, null, null, null, null, null, 15]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7, null, null, null, null, null, 14, 15]",
+      "output": "3"
+    },
+    {
+      "input": "root = [-1, -2, -3, -4, -5, -6, -7]",
+      "output": "3"
+    },
+    {
+      "input": "root = [-1, -2, null, -3]",
+      "output": "3"
+    },
+    {
+      "input": "root = [7, 7, 7, 7, null, null, 7]",
+      "output": "3"
+    },
+    {
+      "input": "root = [7, 7, null, 7, null, null, null, 7]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 7, 8, null, null, 11]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, null, 8, 9, null, null, 12]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, null, 4, null, null, null, null, null, null, 5]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, null]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, null, 9, 10, 11, 12, 13, 14, 15]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 6, 7, 8, null, null, null, null, 14]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 5, 6, 7, null, null, null, 11, 12, 13, 14, 15]",
+      "output": "3"
+    },
+    {
+      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 15, \"max\": 15}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 31, \"max\": 31}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
     }
   ],
   "func_sign": {

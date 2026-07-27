@@ -472,6 +472,114 @@
     {
       "input": "s1 = \"abc\"\nn1 = 10\ns2 = \"abc\"\nn2 = 1",
       "output": "10"
+    },
+    {
+      "input": "s1 = \"ab\"\nn1 = 1000000\ns2 = \"ba\"\nn2 = 1",
+      "output": "999999"
+    },
+    {
+      "input": "s1 = \"baba\"\nn1 = 3\ns2 = \"ba\"\nn2 = 1",
+      "output": "6"
+    },
+    {
+      "input": "s1 = \"baba\"\nn1 = 3\ns2 = \"ab\"\nn2 = 1",
+      "output": "5"
+    },
+    {
+      "input": "s1 = \"leetcode\"\nn1 = 2\ns2 = \"let\"\nn2 = 1",
+      "output": "2"
+    },
+    {
+      "input": "s1 = \"leetcode\"\nn1 = 5\ns2 = \"code\"\nn2 = 1",
+      "output": "5"
+    },
+    {
+      "input": "s1 = \"ababab\"\nn1 = 7\ns2 = \"abab\"\nn2 = 2",
+      "output": "5"
+    },
+    {
+      "input": "s1 = \"abcabc\"\nn1 = 8\ns2 = \"ac\"\nn2 = 1",
+      "output": "16"
+    },
+    {
+      "input": "s1 = \"abcabc\"\nn1 = 8\ns2 = \"ca\"\nn2 = 1",
+      "output": "15"
+    },
+    {
+      "input": "s1 = \"aaaaab\"\nn1 = 20\ns2 = \"ab\"\nn2 = 1",
+      "output": "20"
+    },
+    {
+      "input": "s1 = \"aaaaab\"\nn1 = 20\ns2 = \"ba\"\nn2 = 1",
+      "output": "19"
+    },
+    {
+      "input": "s1 = \"abcd\"\nn1 = 1000000\ns2 = \"abcd\"\nn2 = 1",
+      "output": "1000000"
+    },
+    {
+      "input": "s1 = \"xyz\"\nn1 = 100\ns2 = \"yz\"\nn2 = 1",
+      "output": "100"
+    },
+    {
+      "input": "s1 = \"xyz\"\nn1 = 100\ns2 = \"x\"\nn2 = 1",
+      "output": "100"
+    },
+    {
+      "input": "s1 = \"abcde\"\nn1 = 999999\ns2 = \"ace\"\nn2 = 1",
+      "output": "999999"
+    },
+    {
+      "input": "s1 = \"cab\"\nn1 = 100\ns2 = \"abc\"\nn2 = 1",
+      "output": "99"
+    },
+    {
+      "input": "s1 = \"cab\"\nn1 = 100\ns2 = \"cba\"\nn2 = 1",
+      "output": "50"
+    },
+    {
+      "input": "s1 = \"aaabbb\"\nn1 = 1000\ns2 = \"ab\"\nn2 = 3",
+      "output": "333"
+    },
+    {
+      "input": "s1 = \"aabbcc\"\nn1 = 500\ns2 = \"abc\"\nn2 = 1",
+      "output": "500"
+    },
+    {
+      "input": "s1 = \"bac\"\nn1 = 777\ns2 = \"bc\"\nn2 = 2",
+      "output": "388"
+    },
+    {
+      "input": "s1 = \"bac\"\nn1 = 777\ns2 = \"ca\"\nn2 = 1",
+      "output": "776"
+    },
+    {
+      "input": "s1 = \"abcdefg\"\nn1 = 12345\ns2 = \"bdg\"\nn2 = 1",
+      "output": "12345"
+    },
+    {
+      "input": "s1 = \"xyzxyz\"\nn1 = 88888\ns2 = \"xzz\"\nn2 = 1",
+      "output": "88888"
+    },
+    {
+      "input": "s1 = \"qwerty\"\nn1 = 250000\ns2 = \"qy\"\nn2 = 1",
+      "output": "250000"
+    },
+    {
+      "input": "s1 = \"lmnop\"\nn1 = 400000\ns2 = \"mp\"\nn2 = 1",
+      "output": "400000"
+    },
+    {
+      "input": "s1 = \"abc\"\nn1 = 1000000\ns2 = \"abcd\"\nn2 = 2",
+      "output": "0"
+    },
+    {
+      "input": "s1 = \"zzzzx\"\nn1 = 1000000\ns2 = \"zx\"\nn2 = 1",
+      "output": "1000000"
+    },
+    {
+      "input": "s1 = \"abc\"\nn1 = 3\ns2 = \"abc\"\nn2 = 2",
+      "output": "1"
     }
   ],
   "func_sign": {

@@ -378,6 +378,126 @@
     {
       "input": "s = \"hello   \"",
       "output": "5"
+    },
+    {
+      "input": "s = \"   hello   \"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"a   bb    ccc\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"one two three four five\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"a bb ccc dddd eeeee\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \"word x\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"supercalifragilisticexpialidocious x\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abc def \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abc def  \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"abc def      \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"     zzz     \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"a b c d e f\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"a bb ccc dddd\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "26"
+    },
+    {
+      "input": "s = \"PYTHON\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"OpenAI\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"test testcase\"",
+      "output": "8"
+    },
+    {
+      "input": "s = \"test a\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"test ab\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"test abc\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"      q      \"",
+      "output": "1"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"a\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"ab \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 256, \"alphabet\": \"abc \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 512, \"alphabet\": \"xyz \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 999, \"alphabet\": \"pqr \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1234, \"alphabet\": \"lmno \"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 2048, \"alphabet\": \"stuv \"}",
+      "output": ""
+    },
+    {
+      "input": "s = \"x                                                                                                   y\"",
+      "output": "1"
+    },
+    {
+      "input": "s = \"abc                                                                                                   \"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"                                                                                                   abc\"",
+      "output": "3"
     }
   ],
   "func_sign": {

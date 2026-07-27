@@ -36,7 +36,7 @@ pushd "%BUILD_DIR%"
 
 :: Use Ninja generator for faster CI builds and better integration with MSVC Dev Cmd
 set CMAKE_ARGS=-G Ninja
-set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release
+set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release -DPRECACHE_WASM_ENGINES=ON
 if not "%Qt6_DIR%"=="" (
     set CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_PREFIX_PATH="%Qt6_DIR%"
 ) else (

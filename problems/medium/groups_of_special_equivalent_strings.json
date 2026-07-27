@@ -559,6 +559,126 @@
     {
       "input": "words = [\"a\", \"b\", \"c\", \"d\"]",
       "output": "4"
+    },
+    {
+      "input": "words = [\"ab\", \"cd\", \"ef\", \"gh\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"az\", \"za\", \"az\", \"za\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"abcd\", \"bcda\", \"adcb\", \"cbad\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"aabb\", \"bbaa\", \"abab\", \"baba\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abc\", \"abc\", \"acb\", \"bca\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"aaa\", \"aab\", \"aba\", \"baa\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abcd\", \"abdc\", \"badc\", \"bcad\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"zzzz\", \"zzzz\", \"zzzz\"]",
+      "output": "1"
+    },
+    {
+      "input": "words = [\"azby\", \"byaz\", \"aybz\", \"zbya\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"abcde\", \"abced\", \"bacde\", \"baced\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"aaaaa\", \"aaaab\", \"aaaba\", \"aabaa\", \"abaaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abab\", \"baba\", \"aabb\", \"bbaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"qwer\", \"rewq\", \"erqw\", \"wqer\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abcd\", \"efgh\", \"ijkl\", \"mnop\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"abcd\", \"abcd\", \"abdc\", \"abdc\", \"badc\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"a\", \"a\", \"b\", \"b\", \"c\", \"c\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"ab\", \"ab\", \"ba\", \"ba\", \"aa\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abcdef\", \"abcdef\", \"badcfe\", \"badcfe\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"azazaz\", \"zazaza\", \"aazzaa\", \"zzaazz\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"aabbcc\", \"abcabc\", \"ccbbaa\", \"bacbac\"]",
+      "output": "1"
+    },
+    {
+      "input": "words = [\"mnopqr\", \"nmoqpr\", \"opmqnr\", \"qrpomn\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"abcdefg\", \"gfedcba\", \"abcdefg\"]",
+      "output": "1"
+    },
+    {
+      "input": "words = [\"aaabbbc\", \"abacbab\", \"cbbbaaa\", \"bbacaba\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abcdefgh\", \"hgfedcba\", \"badcfehg\", \"bdfhaceg\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"zzxyzzxy\", \"zzyxzzxy\", \"xyzzxyzz\", \"yxzzxyzz\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"aabbccdd\", \"ddccbbaa\", \"abcdabcd\", \"dcbaabcd\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"abcdefghi\", \"ihgfedcba\", \"acegibdfh\"]",
+      "output": "2"
+    },
+    {
+      "input": "words = [\"aaaaaaaaa\", \"aaaaaaaab\", \"aaaaaaaba\", \"aaaaaabaa\"]",
+      "output": "3"
+    },
+    {
+      "input": "words = [\"abcdefghij\", \"jihgfedcba\", \"ajcdebhgfi\", \"bjihedcgaf\"]",
+      "output": "4"
+    },
+    {
+      "input": "words = [\"ababababab\", \"bababababa\", \"aaaaabbbbb\", \"bbbbbaaaaa\"]",
+      "output": "4"
     }
   ],
   "func_sign": {

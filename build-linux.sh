@@ -69,7 +69,7 @@ echo "============================================================"
 mkdir -p "$BUILD_DIR"
 pushd "$BUILD_DIR" > /dev/null
 
-CMAKE_ARGS="-DCMAKE_BUILD_TYPE=Release"
+CMAKE_ARGS="-DCMAKE_BUILD_TYPE=Release -DPRECACHE_WASM_ENGINES=ON"
 
 if [ -n "$QT_PATH" ]; then
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QT_PATH"

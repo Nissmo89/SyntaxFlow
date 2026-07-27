@@ -402,6 +402,118 @@
     {
       "input": "s = \"thisisateststring\"\nt = \"tist\"",
       "output": "\"tstri\""
+    },
+    {
+      "input": "s = \"xyz\"\nt = \"xyzq\"",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"abcdef\"\nt = \"abc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"zzzabc\"\nt = \"abc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"aaabdabcefaecbef\"\nt = \"abc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"aAAbBcC\"\nt = \"AbC\"",
+      "output": "\"AbBcC\""
+    },
+    {
+      "input": "s = \"bbaac\"\nt = \"aba\"",
+      "output": "\"baa\""
+    },
+    {
+      "input": "s = \"cabefgecdaecf\"\nt = \"cef\"",
+      "output": "\"ecf\""
+    },
+    {
+      "input": "s = \"AAABBC\"\nt = \"AABC\"",
+      "output": "\"AABBC\""
+    },
+    {
+      "input": "s = \"abcd\"\nt = \"d\"",
+      "output": "\"d\""
+    },
+    {
+      "input": "s = \"abc\"\nt = \"aac\"",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"daabcbdab\"\nt = \"abc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaabbbbbbbbbbbbbbbbbcccccccccc\"\nt = \"abc\"",
+      "output": "\"abbbbbbbbbbbbbbbbbc\""
+    },
+    {
+      "input": "s = \"qwertyuiopasdfghjklzxcvbnm\"\nt = \"qxm\"",
+      "output": "\"qwertyuiopasdfghjklzxcvbnm\""
+    },
+    {
+      "input": "s = \"xyzaabcz\"\nt = \"azc\"",
+      "output": "\"abcz\""
+    },
+    {
+      "input": "s = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\nt = \"ZYX\"",
+      "output": "\"XYZ\""
+    },
+    {
+      "input": "s = \"aAaAaAbBbBcCcC\"\nt = \"aBc\"",
+      "output": "\"aAbBbBc\""
+    },
+    {
+      "input": "s = \"abbbbbbcdefghijklmna\"\nt = \"cma\"",
+      "output": "\"cdefghijklmna\""
+    },
+    {
+      "input": "s = \"zzzzz\"\nt = \"z\"",
+      "output": "\"z\""
+    },
+    {
+      "input": "s = \"aaabbb\"\nt = \"aab\"",
+      "output": "\"aab\""
+    },
+    {
+      "input": "s = \"cabbaac\"\nt = \"aba\"",
+      "output": "\"baa\""
+    },
+    {
+      "input": "s = \"aafebc\"\nt = \"abc\"",
+      "output": "\"afebc\""
+    },
+    {
+      "input": "s = \"bcaaa\"\nt = \"abc\"",
+      "output": "\"bca\""
+    },
+    {
+      "input": "s = \"abcdef\"\nt = \"gh\"",
+      "output": "\"\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nt = \"aaaaaaaaaa\"",
+      "output": "\"aaaaaaaaaa\""
+    },
+    {
+      "input": "s = \"bbbaacbbbaac\"\nt = \"abc\"",
+      "output": "\"acb\""
+    },
+    {
+      "input": "s = \"xaybzcdwevfugthsirjqkplomn\"\nt = \"cfi\"",
+      "output": "\"cdwevfugthsi\""
+    },
+    {
+      "input": "s = \"aaaabcbc\"\nt = \"abc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"abcaaa\"\nt = \"abc\"",
+      "output": "\"abc\""
     }
   ],
   "func_sign": {

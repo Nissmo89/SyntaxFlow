@@ -630,6 +630,130 @@
     {
       "input": "cost = [7, 7, 7, 7]",
       "output": "14"
+    },
+    {
+      "input": "cost = [1, 2, 3, 4, 5]",
+      "output": "6"
+    },
+    {
+      "input": "cost = [5, 4, 3, 2, 1]",
+      "output": "6"
+    },
+    {
+      "input": "cost = [1, 100, 1, 100, 1, 100]",
+      "output": "3"
+    },
+    {
+      "input": "cost = [100, 1, 100, 1, 100, 1]",
+      "output": "3"
+    },
+    {
+      "input": "cost = [9, 1, 9, 1, 9]",
+      "output": "2"
+    },
+    {
+      "input": "cost = [2, 1, 2, 1, 2, 1]",
+      "output": "3"
+    },
+    {
+      "input": "cost = [1, 2, 1, 2, 1, 2]",
+      "output": "3"
+    },
+    {
+      "input": "cost = [3, 0, 3, 0, 3]",
+      "output": "0"
+    },
+    {
+      "input": "cost = [4, 9, 2, 0]",
+      "output": "6"
+    },
+    {
+      "input": "cost = [0, 9, 2, 9]",
+      "output": "2"
+    },
+    {
+      "input": "cost = [8, 3, 4, 9, 2, 7]",
+      "output": "9"
+    },
+    {
+      "input": "cost = [1, 100, 1, 1, 100, 1, 1, 100, 1, 1]",
+      "output": "6"
+    },
+    {
+      "input": "cost = [999, 998, 997]",
+      "output": "998"
+    },
+    {
+      "input": "cost = [999, 0, 999, 0, 999, 0]",
+      "output": "0"
+    },
+    {
+      "input": "cost = [999, 999, 1, 999, 999, 1]",
+      "output": "1999"
+    },
+    {
+      "input": "cost = [10, 15, 20, 1]",
+      "output": "16"
+    },
+    {
+      "input": "cost = [1, 2, 99, 2]",
+      "output": "4"
+    },
+    {
+      "input": "cost = [6, 6, 6, 6, 6]",
+      "output": "12"
+    },
+    {
+      "input": "cost = [6, 6, 6, 6, 6, 6]",
+      "output": "18"
+    },
+    {
+      "input": "cost = [999, 999]",
+      "output": "999"
+    },
+    {
+      "input": "cost = [0, 999]",
+      "output": "0"
+    },
+    {
+      "input": "cost = [0, 5, 0, 5, 0, 5, 0]",
+      "output": "0"
+    },
+    {
+      "input": "cost = [999, 1, 999, 1, 999, 1, 999]",
+      "output": "3"
+    },
+    {
+      "input": "cost = [8, 8, 1, 1, 8, 8]",
+      "output": "17"
+    },
+    {
+      "input": "cost = [5, 100, 100, 1, 1, 1]",
+      "output": "102"
+    },
+    {
+      "input": "cost = [3, 6, 1, 8, 2, 9, 4]",
+      "output": "10"
+    },
+    {
+      "input": "cost = {\"gen\": \"array\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "cost = {\"gen\": \"array\", \"len\": 31, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "cost = {\"gen\": \"array\", \"len\": 128, \"of\": {\"gen\": \"int\", \"min\": 100, \"max\": 900}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "cost = {\"gen\": \"array\", \"len\": 999, \"of\": {\"gen\": \"int\", \"min\": 900, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
+    },
+    {
+      "input": "cost = {\"gen\": \"array\", \"len\": 1000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
+      "output": ""
     }
   ],
   "func_sign": {

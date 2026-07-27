@@ -497,6 +497,130 @@
     {
       "input": "x = 6\ny = 10\ntarget = 7",
       "output": "false"
+    },
+    {
+      "input": "x = 2\ny = 3\ntarget = 1",
+      "output": "true"
+    },
+    {
+      "input": "x = 2\ny = 3\ntarget = 4",
+      "output": "true"
+    },
+    {
+      "input": "x = 1\ny = 1000\ntarget = 999",
+      "output": "true"
+    },
+    {
+      "input": "x = 1\ny = 1000\ntarget = 998",
+      "output": "true"
+    },
+    {
+      "input": "x = 5\ny = 5\ntarget = 5",
+      "output": "true"
+    },
+    {
+      "input": "x = 5\ny = 5\ntarget = 3",
+      "output": "false"
+    },
+    {
+      "input": "x = 7\ny = 9\ntarget = 1",
+      "output": "true"
+    },
+    {
+      "input": "x = 7\ny = 9\ntarget = 2",
+      "output": "true"
+    },
+    {
+      "input": "x = 7\ny = 9\ntarget = 3",
+      "output": "true"
+    },
+    {
+      "input": "x = 8\ny = 15\ntarget = 14",
+      "output": "true"
+    },
+    {
+      "input": "x = 8\ny = 15\ntarget = 13",
+      "output": "true"
+    },
+    {
+      "input": "x = 9\ny = 6\ntarget = 3",
+      "output": "true"
+    },
+    {
+      "input": "x = 9\ny = 6\ntarget = 10",
+      "output": "false"
+    },
+    {
+      "input": "x = 12\ny = 18\ntarget = 12",
+      "output": "true"
+    },
+    {
+      "input": "x = 12\ny = 18\ntarget = 18",
+      "output": "true"
+    },
+    {
+      "input": "x = 12\ny = 18\ntarget = 10",
+      "output": "false"
+    },
+    {
+      "input": "x = 999\ny = 1\ntarget = 998",
+      "output": "true"
+    },
+    {
+      "input": "x = 999\ny = 1\ntarget = 997",
+      "output": "true"
+    },
+    {
+      "input": "x = 1000\ny = 999\ntarget = 1",
+      "output": "true"
+    },
+    {
+      "input": "x = 1000\ny = 999\ntarget = 2",
+      "output": "true"
+    },
+    {
+      "input": "x = 100\ny = 250\ntarget = 150",
+      "output": "true"
+    },
+    {
+      "input": "x = 100\ny = 250\ntarget = 151",
+      "output": "false"
+    },
+    {
+      "input": "x = 11\ny = 13\ntarget = 24",
+      "output": "true"
+    },
+    {
+      "input": "x = 11\ny = 13\ntarget = 23",
+      "output": "true"
+    },
+    {
+      "input": "x = 14\ny = 21\ntarget = 7",
+      "output": "true"
+    },
+    {
+      "input": "x = 14\ny = 21\ntarget = 8",
+      "output": "false"
+    },
+    {
+      "input": "x = 997\ny = 991\ntarget = 998",
+      "output": "true"
+    },
+    {
+      "input": "x = 997\ny = 991\ntarget = 996",
+      "output": "true"
+    },
+    {
+      "input": "x = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\ny = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 40}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"int\", \"min\": 1, \"max\": 200}\ny = {\"gen\": \"int\", \"min\": 1, \"max\": 200}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 400}",
+      "output": ""
+    },
+    {
+      "input": "x = {\"gen\": \"int\", \"min\": 500, \"max\": 1000}\ny = {\"gen\": \"int\", \"min\": 500, \"max\": 1000}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 1000}",
+      "output": ""
     }
   ],
   "func_sign": {

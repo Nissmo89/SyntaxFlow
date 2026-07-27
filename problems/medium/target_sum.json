@@ -725,6 +725,134 @@
     {
       "input": "nums = [1, 2, 1]\ntarget = 0",
       "output": "2"
+    },
+    {
+      "input": "nums = [2, 3, 5]\ntarget = 0",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 3, 5]\ntarget = 10",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 3, 5]\ntarget = -10",
+      "output": "1"
+    },
+    {
+      "input": "nums = [2, 3, 5]\ntarget = 1",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 7, 9, 980]\ntarget = 1000",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1000]\ntarget = 1000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1000]\ntarget = -1000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1000]\ntarget = 0",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1000, 1000]\ntarget = 0",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1000, 1000]\ntarget = 2000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1000, 1000]\ntarget = -2000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ntarget = 0",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ntarget = 5",
+      "output": "39"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ntarget = 55",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 1, 2, 2, 3, 3, 4, 4]\ntarget = 0",
+      "output": "26"
+    },
+    {
+      "input": "nums = [1, 1, 2, 2, 3, 3, 4, 4]\ntarget = 2",
+      "output": "24"
+    },
+    {
+      "input": "nums = [0, 1, 2, 3]\ntarget = 2",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 1, 2, 3]\ntarget = -2",
+      "output": "2"
+    },
+    {
+      "input": "nums = [0, 0, 1, 1, 1]\ntarget = 1",
+      "output": "12"
+    },
+    {
+      "input": "nums = [0, 0, 1, 1, 1]\ntarget = 3",
+      "output": "4"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]\ntarget = 0",
+      "output": "6"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]\ntarget = 20",
+      "output": "1"
+    },
+    {
+      "input": "nums = [5, 5, 5, 5]\ntarget = 10",
+      "output": "4"
+    },
+    {
+      "input": "nums = [100, 200, 300, 400]\ntarget = 0",
+      "output": "2"
+    },
+    {
+      "input": "nums = [100, 200, 300, 400]\ntarget = 1000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [100, 200, 300, 400]\ntarget = -1000",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\ntarget = 0",
+      "output": "184756"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\ntarget = 20",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\ntarget = 2",
+      "output": "167960"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\ntarget = 0",
+      "output": "1048576"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]\ntarget = 1",
+      "output": "524288"
+    },
+    {
+      "input": "nums = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]\ntarget = 0",
+      "output": "0"
     }
   ],
   "func_sign": {

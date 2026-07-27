@@ -350,6 +350,118 @@
     {
       "input": "s = \"+3.14\"",
       "output": "true"
+    },
+    {
+      "input": "s = \"-.7\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"0.0\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"2e10\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"3e-7\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"6E+1\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"53.5e93\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"-1.23e+4\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1a\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \" 1\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1 \"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1 1\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \".\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"+\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"-.\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1..2\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"--6\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"95-4\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1e\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1e+\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"e3\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"2e10e5\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1e3.5\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"1e1-\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"4.E2\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"4.E2.\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \".8e2\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \".e1\"",
+      "output": "false"
     }
   ],
   "func_sign": {

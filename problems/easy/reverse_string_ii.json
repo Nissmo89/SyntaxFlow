@@ -419,6 +419,114 @@
     {
       "input": "s = \"abcdefghij\"\nk = 3",
       "output": "\"cbadefihgj\""
+    },
+    {
+      "input": "s = \"abcdefghi\"\nk = 4",
+      "output": "\"dcbaefghi\""
+    },
+    {
+      "input": "s = \"abcdefghijkl\"\nk = 2",
+      "output": "\"bacdfeghjikl\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnop\"\nk = 3",
+      "output": "\"cbadefihgjklonmp\""
+    },
+    {
+      "input": "s = \"abcdef\"\nk = 3",
+      "output": "\"cbadef\""
+    },
+    {
+      "input": "s = \"abcde\"\nk = 3",
+      "output": "\"cbade\""
+    },
+    {
+      "input": "s = \"abcdef\"\nk = 5",
+      "output": "\"edcbaf\""
+    },
+    {
+      "input": "s = \"aaaaabbbbb\"\nk = 2",
+      "output": "\"aaaababbbb\""
+    },
+    {
+      "input": "s = \"abccbaabccba\"\nk = 4",
+      "output": "\"ccbabaababcc\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nk = 2",
+      "output": "\"bacdfeghjiklnmoprqstvuwxzy\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nk = 5",
+      "output": "\"edcbafghijonmlkpqrstyxwvuz\""
+    },
+    {
+      "input": "s = \"mnopqrstuv\"\nk = 4",
+      "output": "\"ponmqrstvu\""
+    },
+    {
+      "input": "s = \"mnopqrstuvwxy\"\nk = 4",
+      "output": "\"ponmqrstxwvuy\""
+    },
+    {
+      "input": "s = \"xyz\"\nk = 10000",
+      "output": "\"zyx\""
+    },
+    {
+      "input": "s = \"abababababab\"\nk = 3",
+      "output": "\"abababababab\""
+    },
+    {
+      "input": "s = \"helloleetcode\"\nk = 4",
+      "output": "\"lleholeedocte\""
+    },
+    {
+      "input": "s = \"openai\"\nk = 5",
+      "output": "\"anepoi\""
+    },
+    {
+      "input": "s = \"zzxyyxzz\"\nk = 2",
+      "output": "\"zzxyxyzz\""
+    },
+    {
+      "input": "s = \"abcdefg\"\nk = 3",
+      "output": "\"cbadefg\""
+    },
+    {
+      "input": "s = \"abcdefgh\"\nk = 3",
+      "output": "\"cbadefhg\""
+    },
+    {
+      "input": "s = \"abcdefghi\"\nk = 3",
+      "output": "\"cbadefihg\""
+    },
+    {
+      "input": "s = \"abcabcabcabcabc\"\nk = 4",
+      "output": "\"acbabcabcbacabc\""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nk = 7",
+      "output": "\"gfedcbahijklmnutsrqpovwxyz\""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 12, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 12}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 64, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 64}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1024, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 1024}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 9999, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
+      "output": ""
     }
   ],
   "func_sign": {

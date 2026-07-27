@@ -855,6 +855,126 @@
     {
       "input": "licensePlate = \"Ab1 cD2\"\nwords = [\"abcd\", \"cabd\", \"abcdd\", \"bdca\"]",
       "output": "\"abcd\""
+    },
+    {
+      "input": "licensePlate = \"PP\"\nwords = [\"p\", \"pp\", \"ppp\", \"app\"]",
+      "output": "\"pp\""
+    },
+    {
+      "input": "licensePlate = \"3x 2x\"\nwords = [\"axe\", \"box\", \"xx\", \"taxx\", \"xylx\"]",
+      "output": "\"xx\""
+    },
+    {
+      "input": "licensePlate = \"Gr8\"\nwords = [\"rag\", \"gear\", \"gr\", \"great\"]",
+      "output": "\"gr\""
+    },
+    {
+      "input": "licensePlate = \"nN2 a\"\nwords = [\"bananaa\", \"ann\", \"naan\", \"an\"]",
+      "output": "\"ann\""
+    },
+    {
+      "input": "licensePlate = \"te1\"\nwords = [\"tide\", \"emit\", \"let\", \"wet\"]",
+      "output": "\"let\""
+    },
+    {
+      "input": "licensePlate = \"s 9\"\nwords = [\"s\"]",
+      "output": "\"s\""
+    },
+    {
+      "input": "licensePlate = \"cC c\"\nwords = [\"cc\", \"ccc\", \"accc\", \"cccc\"]",
+      "output": "\"ccc\""
+    },
+    {
+      "input": "licensePlate = \"m2n\"\nwords = [\"moon\", \"mn\", \"mnoon\", \"name\"]",
+      "output": "\"mn\""
+    },
+    {
+      "input": "licensePlate = \"lP\"\nwords = [\"apple\", \"slip\", \"clap\", \"alp\", \"pal\"]",
+      "output": "\"alp\""
+    },
+    {
+      "input": "licensePlate = \"1 a2B\"\nwords = [\"ba\", \"abacus\", \"cab\", \"aaab\"]",
+      "output": "\"ba\""
+    },
+    {
+      "input": "licensePlate = \"ttt\"\nwords = [\"tt\", \"tntt\", \"tttt\", \"tattoo\"]",
+      "output": "\"tntt\""
+    },
+    {
+      "input": "licensePlate = \"bB2 aA\"\nwords = [\"abba\", \"baba\", \"baab\", \"aaabb\"]",
+      "output": "\"abba\""
+    },
+    {
+      "input": "licensePlate = \"k9k\"\nwords = [\"akk\", \"kak\", \"kka\", \"bookkeeper\"]",
+      "output": "\"akk\""
+    },
+    {
+      "input": "licensePlate = \"q1w2e3\"\nwords = [\"qweqqqqqqqqqqqq\", \"qqwweerrttyyuio\", \"qwe\", \"eqwxyzabcdefghi\"]",
+      "output": "\"qwe\""
+    },
+    {
+      "input": "licensePlate = \"hi\"\nwords = [\"h\", \"i\", \"ih\", \"hit\", \"high\"]",
+      "output": "\"ih\""
+    },
+    {
+      "input": "licensePlate = \"sS1s\"\nwords = [\"misses\", \"sss\", \"ss\", \"classs\"]",
+      "output": "\"sss\""
+    },
+    {
+      "input": "licensePlate = \"A 4 b C\"\nwords = [\"abc\", \"cab\", \"scab\", \"abacus\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "licensePlate = \"j7d\"\nwords = [\"jam\", \"judo\", \"dj\", \"jade\", \"jaded\"]",
+      "output": "\"dj\""
+    },
+    {
+      "input": "licensePlate = \"m1\"\nwords = [\"am\", \"mood\", \"time\"]",
+      "output": "\"am\""
+    },
+    {
+      "input": "licensePlate = \"v2\"\nwords = [\"alpha\", \"bravo\", \"civic\", \"v\"]",
+      "output": "\"v\""
+    },
+    {
+      "input": "licensePlate = \"sP4aCe\"\nwords = [\"space\", \"capes\", \"escape\", \"paces\"]",
+      "output": "\"space\""
+    },
+    {
+      "input": "licensePlate = \"L3lE\"\nwords = [\"ell\", \"label\", \"hello\", \"eell\"]",
+      "output": "\"ell\""
+    },
+    {
+      "input": "licensePlate = \"rR5u\"\nwords = [\"rural\", \"urr\", \"blur\", \"urrr\"]",
+      "output": "\"urr\""
+    },
+    {
+      "input": "licensePlate = \"1a2b3c\"\nwords = [\"a\", \"b\", \"c\", \"ab\", \"ac\", \"bc\", \"abc\", \"cab\", \"bca\", \"aaaaabbbbbccccc\", \"alphabet\", \"backpack\", \"crab\", \"scab\", \"abacus\", \"cabbage\", \"brace\", \"abracadabra\", \"abcabc\", \"abcc\", \"bacc\", \"ccab\", \"tree\", \"stone\", \"tablet\", \"binary\", \"coding\", \"python\", \"java\", \"swift\", \"kotlin\", \"ruby\", \"go\", \"rust\", \"scala\", \"elixir\", \"haskell\", \"clojure\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "licensePlate = \"M2mN3\"\nwords = [\"mn\", \"nm\", \"man\", \"name\", \"minimum\", \"common\", \"moment\", \"mnm\", \"mnnm\", \"nomnom\", \"banana\", \"cinnamon\", \"aluminum\", \"monument\", \"random\", \"nomad\", \"animal\", \"mnemonic\", \"mainframe\", \"moonman\", \"ironman\", \"snowman\", \"manymany\", \"mine\", \"mean\", \"omen\"]",
+      "output": "\"mnm\""
+    },
+    {
+      "input": "licensePlate = \"7 t T y\"\nwords = [\"ty\", \"yt\", \"tty\", \"tasty\", \"tatty\", \"thirty\", \"trophy\", \"entity\", \"titty\", \"tottery\", \"kitty\", \"pretty\", \"tyrant\", \"style\", \"types\", \"tyt\", \"ttty\", \"tytt\", \"typhoon\", \"tiny\"]",
+      "output": "\"tty\""
+    },
+    {
+      "input": "licensePlate = \"B4oB\"\nwords = [\"bob\", \"boob\", \"bobo\", \"baboon\", \"robot\", \"blob\", \"cabob\", \"bbq\", \"book\", \"boot\", \"booboo\", \"babble\", \"bubble\", \"oboe\", \"orb\", \"broom\", \"broth\", \"bomb\", \"boon\", \"bonobo\"]",
+      "output": "\"bob\""
+    },
+    {
+      "input": "licensePlate = \"c1a1t\"\nwords = [\"cat\", \"act\", \"tack\", \"coat\", \"cart\", \"trace\", \"cater\", \"scatter\", \"tacit\", \"attack\", \"at\", \"ta\", \"cta\", \"chat\", \"concat\", \"locator\", \"react\", \"crate\", \"artifact\", \"contact\"]",
+      "output": "\"cat\""
+    },
+    {
+      "input": "licensePlate = \"A1b2c3\"\nwords = [\"dddddd\", \"eeeeee\", \"ffffff\", \"gggggg\", \"hhhhhh\", \"iiiiii\", \"jjjjjj\", \"kkkkkk\", \"llllll\", \"mmmmmm\", \"nnnnnn\", \"oooooo\", \"pppppp\", \"qqqqqq\", \"rrrrrr\", \"ssssss\", \"tttttt\", \"uuuuuu\", \"vvvvvv\", \"wwwwww\", \"xxxxxx\", \"yyyyyy\", \"dedede\", \"efefef\", \"fgfgfg\", \"ghghgh\", \"hihihi\", \"ijijij\", \"jkjkjk\", \"klklkl\", \"lmlmlm\", \"mnmnmn\", \"nonono\", \"opopop\", \"pqpqpq\", \"qrqrqr\", \"rsrsrs\", \"ststst\", \"tututu\", \"uvuvuv\", \"vwvwvw\", \"wxwxwx\", \"xyxyxy\", \"ywywyw\", \"tetete\", \"rerere\", \"qeqeqe\", \"pepepe\", \"ofofof\", \"nfnfnf\", \"mfmfmf\", \"lglglg\", \"khkhkh\", \"jijiji\", \"abcabc\", \"abccba\", \"cabcab\", \"abacus\", \"cabbage\", \"scab\", \"brace\", \"crab\", \"tablet\", \"binary\", \"coding\", \"python\", \"kotlin\", \"haskell\", \"clojure\", \"rustace\", \"swiftly\", \"gopher\", \"elixir\", \"fortran\", \"nimble\", \"zigzag\", \"perl\", \"lisp\", \"scheme\", \"abc\"]",
+      "output": "\"abc\""
+    },
+    {
+      "input": "licensePlate = \"zZ9 z\"\nwords = [\"aaaaaa\", \"bbbbbb\", \"cccccc\", \"dddddd\", \"eeeeee\", \"ffffff\", \"gggggg\", \"hhhhhh\", \"iiiiii\", \"jjjjjj\", \"kkkkkk\", \"llllll\", \"mmmmmm\", \"nnnnnn\", \"oooooo\", \"pppppp\", \"qqqqqq\", \"rrrrrr\", \"ssssss\", \"tttttt\", \"uuuuuu\", \"vvvvvv\", \"wwwwww\", \"xxxxxx\", \"yyyyyy\", \"ababab\", \"bcbcbc\", \"cdcdcd\", \"dedede\", \"efefef\", \"fgfgfg\", \"ghghgh\", \"hihihi\", \"ijijij\", \"jkjkjk\", \"klklkl\", \"lmlmlm\", \"mnmnmn\", \"nonono\", \"opopop\", \"pqpqpq\", \"qrqrqr\", \"rsrsrs\", \"ststst\", \"tututu\", \"uvuvuv\", \"vwvwvw\", \"wxwxwx\", \"xyxyxy\", \"yzyzyz\", \"pizza\", \"fizz\", \"jazzy\", \"puzzle\", \"muzzle\", \"dazzle\", \"frozen\", \"hazel\", \"bronze\", \"blaze\", \"amazing\", \"sneeze\", \"dizzy\", \"razzmatazz\", \"fizzle\", \"buzzing\", \"topaz\", \"waltz\", \"snooze\", \"graze\", \"zzzzzz\", \"zzza\", \"azzz\", \"zzzb\", \"zebra\", \"zenith\", \"zephyr\", \"cozy\", \"lazy\", \"crazy\"]",
+      "output": "\"zzza\""
     }
   ],
   "func_sign": {

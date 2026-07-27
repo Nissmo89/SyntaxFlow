@@ -374,6 +374,130 @@
     {
       "input": "preorder = \"1,#,2,#,#\"",
       "output": "true"
+    },
+    {
+      "input": "preorder = \"1,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,2,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"#,1\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"8,4,2,#,#,6,#,#,10,9,#,#,12,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,3,4,#,#,#,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,3,4,#,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,#,2,#,3,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,#,2,#,3,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"0,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"100,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"100,#,#,99\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"5,2,#,3,#,#,7,6,#,#,8,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"5,2,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"5,2,#,#,7\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"5,2,#,#,7,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"5,#,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,2,#,4,#,#,3,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,#,4,#,#,3,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,2,3,4,5,6,#,#,#,#,#,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,3,4,5,6,#,#,#,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,2,#,#,3,4,#,#,5,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,#,#,3,4,#,#,5,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,#,2,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,#,2,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"1,2,4,#,#,5,#,#,3,6,#,#,7,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"1,2,4,#,#,5,#,#,3,6,#,#,7,#,#,#\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"2,1,#,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"2,#,1,#,#\"",
+      "output": "true"
+    },
+    {
+      "input": "preorder = \"2,1,#,#,#,0\"",
+      "output": "false"
+    },
+    {
+      "input": "preorder = \"9,#,#\"",
+      "output": "true"
     }
   ],
   "func_sign": {

@@ -520,6 +520,114 @@
     {
       "input": "text = \"foo bar baz\"\nfirst = \"bar\"\nsecond = \"baz\"",
       "output": "[]"
+    },
+    {
+      "input": "text = \"a b a b c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"a\", \"c\"]"
+    },
+    {
+      "input": "text = \"t u v t u w t u x\"\nfirst = \"t\"\nsecond = \"u\"",
+      "output": "[\"v\", \"w\", \"x\"]"
+    },
+    {
+      "input": "text = \"one two three four five six\"\nfirst = \"two\"\nsecond = \"three\"",
+      "output": "[\"four\"]"
+    },
+    {
+      "input": "text = \"red blue red blue green red blue yellow\"\nfirst = \"red\"\nsecond = \"blue\"",
+      "output": "[\"red\", \"green\", \"yellow\"]"
+    },
+    {
+      "input": "text = \"p q r p q s p q t\"\nfirst = \"p\"\nsecond = \"q\"",
+      "output": "[\"r\", \"s\", \"t\"]"
+    },
+    {
+      "input": "text = \"a x b c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[]"
+    },
+    {
+      "input": "text = \"a b c a b c a b d\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"c\", \"d\"]"
+    },
+    {
+      "input": "text = \"a b c a b c a b c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"c\", \"c\"]"
+    },
+    {
+      "input": "text = \"a b\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[]"
+    },
+    {
+      "input": "text = \"abc def ghi\"\nfirst = \"abc\"\nsecond = \"def\"",
+      "output": "[\"ghi\"]"
+    },
+    {
+      "input": "text = \"a b c d e f g h i j k l\"\nfirst = \"d\"\nsecond = \"e\"",
+      "output": "[\"f\"]"
+    },
+    {
+      "input": "text = \"aa bb cc dd ee ff gg hh ii jj kk ll mm\"\nfirst = \"ee\"\nsecond = \"ff\"",
+      "output": "[\"gg\"]"
+    },
+    {
+      "input": "text = \"a b c a b d a b e a b f\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"d\", \"e\", \"f\"]"
+    },
+    {
+      "input": "text = \"cat dog bird cat dog fish cat dog ant\"\nfirst = \"cat\"\nsecond = \"dog\"",
+      "output": "[\"bird\", \"fish\", \"ant\"]"
+    },
+    {
+      "input": "text = \"a b a c a b a d\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"a\", \"a\"]"
+    },
+    {
+      "input": "text = \"a b c a b c a b c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"c\", \"c\"]"
+    },
+    {
+      "input": "text = \"x y z x y z x y a x y b\"\nfirst = \"x\"\nsecond = \"y\"",
+      "output": "[\"z\", \"z\", \"a\", \"b\"]"
+    },
+    {
+      "input": "text = \"p q r s p q r t p q r u\"\nfirst = \"p\"\nsecond = \"q\"",
+      "output": "[\"r\", \"r\", \"r\"]"
+    },
+    {
+      "input": "text = \"alpha beta gamma alpha beta delta alpha beta epsilon\"\nfirst = \"alpha\"\nsecond = \"beta\"",
+      "output": "[\"gamma\", \"delta\", \"epsilon\"]"
+    },
+    {
+      "input": "text = \"a a b a a c a a d\"\nfirst = \"a\"\nsecond = \"a\"",
+      "output": "[\"b\", \"c\", \"d\"]"
+    },
+    {
+      "input": "text = \"hello world\"\nfirst = \"hello\"\nsecond = \"world\"",
+      "output": "[]"
+    },
+    {
+      "input": "text = \"w x y z\"\nfirst = \"x\"\nsecond = \"y\"",
+      "output": "[\"z\"]"
+    },
+    {
+      "input": "text = \"x y z\"\nfirst = \"y\"\nsecond = \"z\"",
+      "output": "[]"
+    },
+    {
+      "input": "text = \"a b c a b d a b e\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"c\", \"d\", \"e\"]"
+    },
+    {
+      "input": "text = \"one one two one one three one one four\"\nfirst = \"one\"\nsecond = \"one\"",
+      "output": "[\"two\", \"three\", \"four\"]"
+    },
+    {
+      "input": "text = \"red red blue red red green red red yellow\"\nfirst = \"red\"\nsecond = \"red\"",
+      "output": "[\"blue\", \"green\", \"yellow\"]"
+    },
+    {
+      "input": "text = \"a b a b a b a c\"\nfirst = \"a\"\nsecond = \"b\"",
+      "output": "[\"a\", \"a\", \"a\"]"
     }
   ],
   "func_sign": {

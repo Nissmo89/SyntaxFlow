@@ -670,6 +670,130 @@
     {
       "input": "stickers = [\"abc\", \"ab\", \"bc\"]\ntarget = \"cba\"",
       "output": "1"
+    },
+    {
+      "input": "stickers = [\"aaaa\", \"bbbb\"]\ntarget = \"ab\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"abc\", \"xyz\"]\ntarget = \"zzz\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"aabb\", \"bccd\"]\ntarget = \"abcd\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"abab\", \"baba\"]\ntarget = \"aabb\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"leetcode\", \"practice\", \"makes\"]\ntarget = \"leet\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"hello\", \"world\"]\ntarget = \"helloworld\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"an\", \"example\", \"of\", \"sticker\"]\ntarget = \"stick\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"the\", \"hat\"]\ntarget = \"thehat\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"these\", \"guess\", \"about\", \"garden\", \"him\"]\ntarget = \"atomher\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"travel\", \"trip\", \"plan\"]\ntarget = \"planet\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"green\", \"blue\", \"red\"]\ntarget = \"reed\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"aaa\", \"aa\", \"a\"]\ntarget = \"aaaaaaa\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"abca\", \"bcab\", \"cabc\"]\ntarget = \"abcabc\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"abc\", \"ade\", \"fgh\"]\ntarget = \"abcdef\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"ab\", \"cd\", \"ef\", \"gh\"]\ntarget = \"abcdefgh\"",
+      "output": "4"
+    },
+    {
+      "input": "stickers = [\"ab\", \"ac\", \"bc\"]\ntarget = \"abcabc\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"xyz\", \"yxz\", \"zxy\"]\ntarget = \"xxyz\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"aaaaa\", \"bbbbb\", \"ccccc\"]\ntarget = \"abcabcabc\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"abcde\", \"fghij\", \"klmno\"]\ntarget = \"kjihgfedcba\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"no\", \"way\", \"to\"]\ntarget = \"noway\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"miss\", \"issue\", \"sue\"]\ntarget = \"issue\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"stack\", \"overflow\", \"flow\"]\ntarget = \"overflow\"",
+      "output": "1"
+    },
+    {
+      "input": "stickers = [\"aab\", \"bbc\", \"cca\"]\ntarget = \"abccab\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"cat\", \"dog\", \"mouse\"]\ntarget = \"catdog\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"alpha\", \"beta\", \"gamma\"]\ntarget = \"alphabet\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"rain\", \"brain\", \"train\"]\ntarget = \"braintrain\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"one\", \"two\", \"three\"]\ntarget = \"onetwothree\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"zzz\", \"zz\"]\ntarget = \"zzzzzzzzzzzzzzz\"",
+      "output": "5"
+    },
+    {
+      "input": "stickers = [\"abc\", \"bca\", \"cab\"]\ntarget = \"aaabbbccc\"",
+      "output": "3"
+    },
+    {
+      "input": "stickers = [\"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\"]\ntarget = \"abcdefghijabcde\"",
+      "output": "2"
+    },
+    {
+      "input": "stickers = [\"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\", \"aaaaabbbbb\", \"cccccddddd\", \"eeeeefffff\", \"ggggghhhhh\", \"iiiiiqqqqq\"]\ntarget = \"abcdefghijklmno\"",
+      "output": "-1"
     }
   ],
   "func_sign": {

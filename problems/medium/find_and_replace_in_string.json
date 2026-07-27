@@ -816,6 +816,114 @@
     {
       "input": "s = \"abcabcabc\"\nindices = [0, 3, 6]\nsources = [\"ab\", \"bc\", \"abc\"]\ntargets = [\"xx\", \"yy\", \"zz\"]",
       "output": "\"xxcabczz\""
+    },
+    {
+      "input": "s = \"leetcode\"\nindices = [0, 4]\nsources = [\"leet\", \"code\"]\ntargets = [\"see\", \"do\"]",
+      "output": "\"seedo\""
+    },
+    {
+      "input": "s = \"abcdef\"\nindices = [0]\nsources = [\"ab\"]\ntargets = [\"zz\"]",
+      "output": "\"zzcdef\""
+    },
+    {
+      "input": "s = \"abcdef\"\nindices = [4]\nsources = [\"ef\"]\ntargets = [\"zz\"]",
+      "output": "\"abcdzz\""
+    },
+    {
+      "input": "s = \"xxabyycdzz\"\nindices = [2, 6]\nsources = [\"ab\", \"cd\"]\ntargets = [\"QQ\", \"RR\"]",
+      "output": "\"xxQQyyRRzz\""
+    },
+    {
+      "input": "s = \"aaaaabaaaa\"\nindices = [0, 5]\nsources = [\"aaaaa\", \"ba\"]\ntargets = [\"XX\", \"YY\"]",
+      "output": "\"XXYYaaa\""
+    },
+    {
+      "input": "s = \"abc\"\nindices = [0]\nsources = [\"abc\"]\ntargets = [\"xyz\"]",
+      "output": "\"xyz\""
+    },
+    {
+      "input": "s = \"xyz\"\nindices = [1]\nsources = [\"a\"]\ntargets = [\"bb\"]",
+      "output": "\"xyz\""
+    },
+    {
+      "input": "s = \"abcdefgh\"\nindices = [0, 2, 4, 6]\nsources = [\"ab\", \"xx\", \"ef\", \"yy\"]\ntargets = [\"MM\", \"NN\", \"OO\", \"PP\"]",
+      "output": "\"MMcdOOgh\""
+    },
+    {
+      "input": "s = \"foobarbaz\"\nindices = [0, 3]\nsources = [\"foo\", \"bar\"]\ntargets = [\"start\", \"middle\"]",
+      "output": "\"startmiddlebaz\""
+    },
+    {
+      "input": "s = \"programming\"\nindices = [0, 3]\nsources = [\"pro\", \"gr\"]\ntargets = [\"PP\", \"GG\"]",
+      "output": "\"PPGGamming\""
+    },
+    {
+      "input": "s = \"aBcDeF\"\nindices = [1, 3, 5]\nsources = [\"B\", \"D\", \"F\"]\ntargets = [\"bb\", \"dd\", \"ff\"]",
+      "output": "\"abbcddeff\""
+    },
+    {
+      "input": "s = \"abcdefg\"\nindices = [5]\nsources = [\"fg\"]\ntargets = [\"ZZ\"]",
+      "output": "\"abcdeZZ\""
+    },
+    {
+      "input": "s = \"abcdefg\"\nindices = [0]\nsources = [\"abc\"]\ntargets = [\"QQ\"]",
+      "output": "\"QQdefg\""
+    },
+    {
+      "input": "s = \"mississippi\"\nindices = [1, 4, 7]\nsources = [\"iss\", \"iss\", \"ipp\"]\ntargets = [\"AA\", \"BB\", \"CC\"]",
+      "output": "\"mAABBCCi\""
+    },
+    {
+      "input": "s = \"abcabc\"\nindices = [0, 3]\nsources = [\"abc\", \"abc\"]\ntargets = [\"aa\", \"bb\"]",
+      "output": "\"aabb\""
+    },
+    {
+      "input": "s = \"zzzabczzz\"\nindices = [0, 3, 6]\nsources = [\"yy\", \"abc\", \"yy\"]\ntargets = [\"xx\", \"QQ\", \"yy\"]",
+      "output": "\"zzzQQzzz\""
+    },
+    {
+      "input": "s = \"library\"\nindices = [0, 4]\nsources = [\"lib\", \"ary\"]\ntargets = [\"cat\", \"dog\"]",
+      "output": "\"catrdog\""
+    },
+    {
+      "input": "s = \"abcdxyzuvw\"\nindices = [0, 4, 7]\nsources = [\"ab\", \"xyz\", \"uv\"]\ntargets = [\"AA\", \"BB\", \"CC\"]",
+      "output": "\"AAcdBBCCw\""
+    },
+    {
+      "input": "s = \"abcdef\"\nindices = [0, 1]\nsources = [\"ab\", \"bc\"]\ntargets = [\"XX\", \"YY\"]",
+      "output": "\"XXcdef\""
+    },
+    {
+      "input": "s = \"hello\"\nindices = [0, 4]\nsources = [\"he\", \"o\"]\ntargets = [\"HH\", \"OO\"]",
+      "output": "\"HHllOO\""
+    },
+    {
+      "input": "s = \"banana\"\nindices = [1, 3]\nsources = [\"an\", \"an\"]\ntargets = [\"XX\", \"YY\"]",
+      "output": "\"bXXYYa\""
+    },
+    {
+      "input": "s = \"qwertyuiop\"\nindices = [0, 2, 4]\nsources = [\"zz\", \"xx\", \"vv\"]\ntargets = [\"aa\", \"bb\", \"cc\"]",
+      "output": "\"qwertyuiop\""
+    },
+    {
+      "input": "s = \"abracadabra\"\nindices = [0, 3, 5, 7]\nsources = [\"a\", \"a\", \"d\", \"a\"]\ntargets = [\"XX\", \"YY\", \"ZZ\", \"WW\"]",
+      "output": "\"XXbrYYcadWWbra\""
+    },
+    {
+      "input": "s = \"abcdefghij\"\nindices = [0, 3, 6, 9]\nsources = [\"abc\", \"def\", \"ghi\", \"j\"]\ntargets = [\"aa\", \"bb\", \"cc\", \"dd\"]",
+      "output": "\"aabbccdd\""
+    },
+    {
+      "input": "s = \"xxxyyyzzz\"\nindices = [0, 3, 6]\nsources = [\"xxx\", \"yyy\", \"aaa\"]\ntargets = [\"AA\", \"BB\", \"CC\"]",
+      "output": "\"AABBzzz\""
+    },
+    {
+      "input": "s = \"testcase\"\nindices = [0]\nsources = [\"test\"]\ntargets = [\"ok\"]",
+      "output": "\"okcase\""
+    },
+    {
+      "input": "s = \"testcase\"\nindices = [4]\nsources = [\"case\"]\ntargets = [\"done\"]",
+      "output": "\"testdone\""
     }
   ],
   "func_sign": {

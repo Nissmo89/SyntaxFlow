@@ -110,8 +110,6 @@ def process_manifest(manifest_path, existing_problems):
     # Build test cases for UI preview (max 8)
     test_cases = []
     for idx, tc in enumerate(manifest.get("tests", [])):
-        if idx >= 8:
-            break
         in_val = tc.get("in", {})
         out_val = tc.get("out")
         

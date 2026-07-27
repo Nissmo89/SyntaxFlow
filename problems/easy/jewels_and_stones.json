@@ -419,6 +419,130 @@
     {
       "input": "jewels = \"xyz\"\nstones = \"ABCDEF\"",
       "output": "0"
+    },
+    {
+      "input": "jewels = \"b\"\nstones = \"bbbbbbbbb\"",
+      "output": "9"
+    },
+    {
+      "input": "jewels = \"az\"\nstones = \"zzaazzz\"",
+      "output": "7"
+    },
+    {
+      "input": "jewels = \"aZ\"\nstones = \"aZaZaZ\"",
+      "output": "6"
+    },
+    {
+      "input": "jewels = \"m\"\nstones = \"mmmmmmmmmmmmmmmm\"",
+      "output": "16"
+    },
+    {
+      "input": "jewels = \"ab\"\nstones = \"ababababab\"",
+      "output": "10"
+    },
+    {
+      "input": "jewels = \"q\"\nstones = \"xxxxxqxxxx\"",
+      "output": "1"
+    },
+    {
+      "input": "jewels = \"aB\"\nstones = \"AaBbAaBb\"",
+      "output": "4"
+    },
+    {
+      "input": "jewels = \"c\"\nstones = \"DDDDDDDDDDDDDDDDDDDD\"",
+      "output": "0"
+    },
+    {
+      "input": "jewels = \"x\"\nstones = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"",
+      "output": "50"
+    },
+    {
+      "input": "jewels = \"abcdefghij\"\nstones = \"abcdefghijABCDEFGHIJ\"",
+      "output": "10"
+    },
+    {
+      "input": "jewels = \"ABCDEFGHIJ\"\nstones = \"ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDE\"",
+      "output": "45"
+    },
+    {
+      "input": "jewels = \"abcdefghij\"\nstones = \"KLMNOPQRSTUVWXYZKLMNOPQRSTUVWXYZKLMNOPQRSTUVWX\"",
+      "output": "0"
+    },
+    {
+      "input": "jewels = \"aBcDe\"\nstones = \"aBcDeABCDEabcde\"",
+      "output": "10"
+    },
+    {
+      "input": "jewels = \"z\"\nstones = \"zabcdefghijklmnopqrstuvwxy\"",
+      "output": "1"
+    },
+    {
+      "input": "jewels = \"p\"\nstones = \"pppppppppppppppppppppppppppppppppppppppppppppp\"",
+      "output": "46"
+    },
+    {
+      "input": "jewels = \"pq\"\nstones = \"pppppqqqqqpppppqqqqqpppppqqqqqpppppqqqqqpppppqqq\"",
+      "output": "48"
+    },
+    {
+      "input": "jewels = \"abcdefghijklmnopqrst\"\nstones = \"tsrqponmlkjihgfedcba\"",
+      "output": "20"
+    },
+    {
+      "input": "jewels = \"abcdef\"\nstones = \"xxaxxbxxcxx\"",
+      "output": "3"
+    },
+    {
+      "input": "jewels = \"ABCxyz\"\nstones = \"defGHIjklMNOpqrSTU\"",
+      "output": "0"
+    },
+    {
+      "input": "jewels = \"ABCxyz\"\nstones = \"ABCCBAxyzxyz\"",
+      "output": "12"
+    },
+    {
+      "input": "jewels = \"mNo\"\nstones = \"mNommNommNommNo\"",
+      "output": "15"
+    },
+    {
+      "input": "jewels = \"Q\"\nstones = \"qqqQQqQ\"",
+      "output": "3"
+    },
+    {
+      "input": "jewels = \"r\"\nstones = \"RRRrrrrR\"",
+      "output": "4"
+    },
+    {
+      "input": "jewels = \"abcdefghijKLMNOPQRST\"\nstones = \"KLMN\"",
+      "output": "4"
+    },
+    {
+      "input": "jewels = \"t\"\nstones = \"tttttttttttttttttttttttttttttttttttttttttttttttttt\"",
+      "output": "50"
+    },
+    {
+      "input": "jewels = \"aBc\"\nstones = \"AaBbCcabcABC\"",
+      "output": "6"
+    },
+    {
+      "input": "jewels = \"ABCDEFGHIJ\"\nstones = \"ABCDEFGHIJabcdefghijABCDEFGHIJabcdefghijABCDE\"",
+      "output": "25"
+    },
+    {
+      "input": "jewels = \"z\"\nstones = \"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyz\"",
+      "output": "1"
+    },
+    {
+      "input": "jewels = \"z\"\nstones = \"zyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\"",
+      "output": "1"
+    },
+    {
+      "input": "jewels = \"abcxyz\"\nstones = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"abcxyzABCXYZ\"}",
+      "output": ""
+    },
+    {
+      "input": "jewels = \"abcxyz\"\nstones = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"mnopqrMNOPQR\"}",
+      "output": ""
     }
   ],
   "func_sign": {

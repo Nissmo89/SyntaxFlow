@@ -777,6 +777,114 @@
     {
       "input": "nums = [-10, -10, -10, 7, 7, 7, 8, 9, 10]",
       "output": "[]"
+    },
+    {
+      "input": "nums = [5, 5, 6, 6, 7, 8]",
+      "output": "[]"
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 3}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 25}, \"of\": {\"gen\": \"int\", \"min\": -20, \"max\": 20}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 25}, \"of\": {\"gen\": \"int\", \"min\": -50, \"max\": 50}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 25}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 30}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 30}, \"of\": {\"gen\": \"int\", \"min\": -5, \"max\": 5}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -200, \"max\": 200}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 4}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -7, \"max\": 7}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -10000, \"max\": 10000}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 100}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": 1}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -500, \"max\": 500}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -2, \"max\": 2}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 2}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": -9, \"max\": 9}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": 1}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 45000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": -50, \"max\": 50}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 12}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 12}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
+    },
+    {
+      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 12}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}, \"distinct\": false, \"sorted\": false}",
+      "output": ""
     }
   ],
   "func_sign": {

@@ -621,6 +621,134 @@
     {
       "input": "nums = [5, 5]\nk = 5",
       "output": "true"
+    },
+    {
+      "input": "nums = [5]\nk = 5",
+      "output": "false"
+    },
+    {
+      "input": "nums = [2, 3]\nk = 1",
+      "output": "true"
+    },
+    {
+      "input": "nums = [9]\nk = 1",
+      "output": "false"
+    },
+    {
+      "input": "nums = [6, 0, 0]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3]\nk = 7",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5]\nk = 7",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2, 4, 3]\nk = 9",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 12]\nk = 6",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 9]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1000000000, 1000000000, 147483647]\nk = 2147483647",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1000000000, 1000000000, 147483646]\nk = 2147483647",
+      "output": "false"
+    },
+    {
+      "input": "nums = [2147483647, 0]\nk = 2147483647",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2147483646, 0]\nk = 2147483647",
+      "output": "false"
+    },
+    {
+      "input": "nums = [23, 2, 6, 4, 7, 1]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [6, 1]\nk = 6",
+      "output": "false"
+    },
+    {
+      "input": "nums = [6, 1, 5]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 6]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 3, 5]\nk = 6",
+      "output": "true"
+    },
+    {
+      "input": "nums = [5, 10, 15]\nk = 5",
+      "output": "true"
+    },
+    {
+      "input": "nums = [5, 1, 2]\nk = 5",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 1]\nk = 8",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1, 1, 1, 2]\nk = 8",
+      "output": "true"
+    },
+    {
+      "input": "nums = [0, 1, 0, 1, 0]\nk = 2",
+      "output": "true"
+    },
+    {
+      "input": "nums = [0, 1, 0]\nk = 2",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nk = 3",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 4, 8, 16, 32, 64, 128]\nk = 7",
+      "output": "true"
+    },
+    {
+      "input": "nums = [8, 8]\nk = 4",
+      "output": "true"
+    },
+    {
+      "input": "nums = [8, 1]\nk = 4",
+      "output": "false"
+    },
+    {
+      "input": "nums = [7, 3, 5, 2, 6, 4]\nk = 9",
+      "output": "true"
+    },
+    {
+      "input": "nums = [7, 3, 5, 2, 6, 5]\nk = 9",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2]\nk = 2",
+      "output": "true"
+    },
+    {
+      "input": "nums = [2, 2, 2]\nk = 5",
+      "output": "false"
     }
   ],
   "func_sign": {

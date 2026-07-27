@@ -417,6 +417,126 @@
     {
       "input": "name = \"abc\"\ntyped = \"abdc\"",
       "output": "false"
+    },
+    {
+      "input": "name = \"leetcode\"\ntyped = \"leetcode\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"vtkgn\"\ntyped = \"vvvtttkkkgggnn\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"qwer\"\ntyped = \"qqwwee\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"hello\"\ntyped = \"hheelllloo\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"z\"\ntyped = \"zz\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"aabbcc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"abbcx\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"ab\"\ntyped = \"ab\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"ab\"\ntyped = \"aab\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"ab\"\ntyped = \"abb\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"aabbcc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"abcc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"abccc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"ac\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"abcd\"\ntyped = \"abbccdd\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abcd\"\ntyped = \"aabbccd\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abcd\"\ntyped = \"aaaabbbbccccdddd\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"x\"\ntyped = \"xxx\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"mno\"\ntyped = \"mmnnnooo\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"hello\"\ntyped = \"heeellooo\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"hello\"\ntyped = \"helo\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"alex\"\ntyped = \"aaleexa\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"qwerty\"\ntyped = \"qwwerrtty\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"aab\"\ntyped = \"aaab\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"aaabbbccc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"ab\"\ntyped = \"baa\"",
+      "output": "false"
+    },
+    {
+      "input": "name = \"abc\"\ntyped = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "name = \"abcd\"\ntyped = \"abccd\"",
+      "output": "true"
+    },
+    {
+      "input": "name = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}\ntyped = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}",
+      "output": ""
+    },
+    {
+      "input": "name = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}\ntyped = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}",
+      "output": ""
     }
   ],
   "func_sign": {

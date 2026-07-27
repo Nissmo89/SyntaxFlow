@@ -873,6 +873,114 @@
     {
       "input": "root1 = [1]\nroot2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
       "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3]\nroot2 = [1, 2, 3]",
+      "output": "true"
+    },
+    {
+      "input": "root1 = [1, null, 2, 3, 4, 5, 6, 7, null, null, 8, 9, 10]\nroot2 = []",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2]\nroot2 = [1, null, 2]",
+      "output": "true"
+    },
+    {
+      "input": "root1 = [1, 2, 3, null, 4, null, null, null, null, 5, 6, 7]\nroot2 = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, 2, 3, 4, null, 5, null, 6, null, 7, 8]\nroot2 = [1, null, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2]\nroot2 = [1, null, null, 2, 3, 4, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, 2]\nroot2 = [1, null, 2, null, 3, null, 4, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, 5, 6, 7, null, 8, 9]\nroot2 = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, 2, 3, 4]\nroot2 = [1]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, 5]\nroot2 = [1]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, null, 5, null, 6, null, 7, 8, 9, 10]\nroot2 = [1, 2, null, 3, null, 4, 5, 6, 7, 8, 9, 10]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, null, 4, 5, null, 6, 7]\nroot2 = [1]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, 2, 3, 4, 5, 6, 7, 8]\nroot2 = [1, null, null, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, null, 2]\nroot2 = [1, null, null, 2]",
+      "output": "true"
+    },
+    {
+      "input": "root1 = [1, 2]\nroot2 = [1, null, 2, null, null, 3, 4, 5, 6, 7, 8]",
+      "output": "true"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, null, 5, 6, 7, 8, 9]\nroot2 = [1, 2, 3, null, 4]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3]\nroot2 = [1, 2, null, 3, 4, 5]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4]\nroot2 = [1, 2, 3, null, null, 4, 5, 6, 7]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, 5]\nroot2 = [1, 2, 3, 4, null, 5, null, 6, 7, null, 8, 9, 10]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = []\nroot2 = [1, 2, 3, 4, 5, 6]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = []\nroot2 = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1]\nroot2 = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, null, null, 2]\nroot2 = [1, null, null, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+      "output": "true"
+    },
+    {
+      "input": "root1 = [1, 2]\nroot2 = [1, 2, 3, 4, 5, null, null, 6, 7]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, null, 5, null, 6, 7, 8, 9, 10]\nroot2 = [1, 2, null, 3, 4]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2, 3, 4, 5, null, null, 6, 7, 8, 9, 10]\nroot2 = [1, 2]",
+      "output": "false"
+    },
+    {
+      "input": "root1 = [1, 2]\nroot2 = [1]",
+      "output": "false"
     }
   ],
   "func_sign": {

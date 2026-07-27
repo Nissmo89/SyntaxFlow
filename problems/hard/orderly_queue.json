@@ -387,6 +387,114 @@
     {
       "input": "s = \"abab\"\nk = 1",
       "output": "\"abab\""
+    },
+    {
+      "input": "s = \"abab\"\nk = 2",
+      "output": "\"aabb\""
+    },
+    {
+      "input": "s = \"dcba\"\nk = 1",
+      "output": "\"adcb\""
+    },
+    {
+      "input": "s = \"dcba\"\nk = 2",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"dcba\"\nk = 4",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"leetcode\"\nk = 1",
+      "output": "\"codeleet\""
+    },
+    {
+      "input": "s = \"leetcode\"\nk = 2",
+      "output": "\"cdeeelot\""
+    },
+    {
+      "input": "s = \"bca\"\nk = 1",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"bca\"\nk = 2",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"bca\"\nk = 3",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"zzxy\"\nk = 1",
+      "output": "\"xyzz\""
+    },
+    {
+      "input": "s = \"zzxy\"\nk = 2",
+      "output": "\"xyzz\""
+    },
+    {
+      "input": "s = \"zzxy\"\nk = 4",
+      "output": "\"xyzz\""
+    },
+    {
+      "input": "s = \"azbycxdw\"\nk = 1",
+      "output": "\"azbycxdw\""
+    },
+    {
+      "input": "s = \"azbycxdw\"\nk = 3",
+      "output": "\"abcdwxyz\""
+    },
+    {
+      "input": "s = \"qwerty\"\nk = 1",
+      "output": "\"ertyqw\""
+    },
+    {
+      "input": "s = \"qwerty\"\nk = 2",
+      "output": "\"eqrtwy\""
+    },
+    {
+      "input": "s = \"banana\"\nk = 1",
+      "output": "\"abanan\""
+    },
+    {
+      "input": "s = \"banana\"\nk = 2",
+      "output": "\"aaabnn\""
+    },
+    {
+      "input": "s = \"cabbage\"\nk = 1",
+      "output": "\"abbagec\""
+    },
+    {
+      "input": "s = \"cabbage\"\nk = 3",
+      "output": "\"aabbceg\""
+    },
+    {
+      "input": "s = \"mnoabc\"\nk = 1",
+      "output": "\"abcmno\""
+    },
+    {
+      "input": "s = \"mnoabc\"\nk = 2",
+      "output": "\"abcmno\""
+    },
+    {
+      "input": "s = \"mnoabc\"\nk = 6",
+      "output": "\"abcmno\""
+    },
+    {
+      "input": "s = \"xyzabc\"\nk = 1",
+      "output": "\"abcxyz\""
+    },
+    {
+      "input": "s = \"xyzabc\"\nk = 2",
+      "output": "\"abcxyz\""
+    },
+    {
+      "input": "s = \"xyzabc\"\nk = 5",
+      "output": "\"abcxyz\""
+    },
+    {
+      "input": "s = \"bacbac\"\nk = 1",
+      "output": "\"acbacb\""
     }
   ],
   "func_sign": {

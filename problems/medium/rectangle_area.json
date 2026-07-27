@@ -710,6 +710,134 @@
     {
       "input": "ax1 = -5\nay1 = -5\nax2 = 5\nay2 = 5\nbx1 = -2\nby1 = -1\nbx2 = 1\nby2 = 2",
       "output": "100"
+    },
+    {
+      "input": "ax1 = -1\nay1 = -1\nax2 = 1\nay2 = 1\nbx1 = -5\nby1 = -6\nbx2 = 7\nby2 = 8",
+      "output": "168"
+    },
+    {
+      "input": "ax1 = 1\nay1 = 1\nax2 = 4\nay2 = 6\nbx1 = 1\nby1 = 1\nbx2 = 4\nby2 = 6",
+      "output": "15"
+    },
+    {
+      "input": "ax1 = 3\nay1 = 7\nax2 = 3\nay2 = 10\nbx1 = 0\nby1 = 0\nbx2 = 2\nby2 = 2",
+      "output": "4"
+    },
+    {
+      "input": "ax1 = -2\nay1 = -2\nax2 = 4\nay2 = 1\nbx1 = 5\nby1 = 5\nbx2 = 5\nby2 = 9",
+      "output": "18"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 0\nay2 = 0\nbx1 = -1\nby1 = -1\nbx2 = -1\nby2 = -1",
+      "output": "0"
+    },
+    {
+      "input": "ax1 = -8\nay1 = -6\nax2 = -1\nay2 = 2\nbx1 = -5\nby1 = -3\nbx2 = 3\nby2 = 5",
+      "output": "100"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 5\nay2 = 2\nbx1 = 2\nby1 = 3\nbx2 = 4\nby2 = 6",
+      "output": "16"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 2\nay2 = 5\nbx1 = 3\nby1 = 2\nbx2 = 6\nby2 = 4",
+      "output": "16"
+    },
+    {
+      "input": "ax1 = -10\nay1 = -1\nax2 = 10\nay2 = 1\nbx1 = -5\nby1 = 0\nbx2 = 5\nby2 = 2",
+      "output": "50"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = -9990\nay2 = -9990\nbx1 = 9990\nby1 = 9990\nbx2 = 10000\nby2 = 10000",
+      "output": "200"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = -5000\nay2 = 10000\nbx1 = 5000\nby1 = -10000\nbx2 = 10000\nby2 = 10000",
+      "output": "200000000"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = 10000\nay2 = 10000\nbx1 = -10000\nby1 = -10000\nbx2 = 10000\nby2 = 10000",
+      "output": "400000000"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = 10000\nay2 = 10000\nbx1 = -1\nby1 = -1\nbx2 = 1\nby2 = 1",
+      "output": "400000000"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = -9999\nay2 = -9999\nbx1 = -9999\nby1 = -9999\nbx2 = -9998\nby2 = -9998",
+      "output": "2"
+    },
+    {
+      "input": "ax1 = 9998\nay1 = 9998\nax2 = 10000\nay2 = 10000\nbx1 = 10000\nby1 = 10000\nbx2 = 10000\nby2 = 10000",
+      "output": "4"
+    },
+    {
+      "input": "ax1 = 1\nay1 = 1\nax2 = 6\nay2 = 5\nbx1 = 4\nby1 = 3\nbx2 = 8\nby2 = 7",
+      "output": "32"
+    },
+    {
+      "input": "ax1 = -7\nay1 = -2\nax2 = 0\nay2 = 4\nbx1 = -3\nby1 = 1\nbx2 = 5\nby2 = 6",
+      "output": "73"
+    },
+    {
+      "input": "ax1 = -2\nay1 = 0\nax2 = 2\nay2 = 3\nbx1 = -2\nby1 = 1\nbx2 = 1\nby2 = 4",
+      "output": "15"
+    },
+    {
+      "input": "ax1 = 0\nay1 = -4\nax2 = 5\nay2 = 0\nbx1 = 2\nby1 = -4\nbx2 = 6\nby2 = -1",
+      "output": "23"
+    },
+    {
+      "input": "ax1 = 0\nay1 = 0\nax2 = 1\nay2 = 1\nbx1 = 1\nby1 = 1\nbx2 = 2\nby2 = 2",
+      "output": "2"
+    },
+    {
+      "input": "ax1 = -100\nay1 = -50\nax2 = 100\nay2 = 50\nbx1 = -25\nby1 = -25\nbx2 = 25\nby2 = 25",
+      "output": "20000"
+    },
+    {
+      "input": "ax1 = -12\nay1 = -1\nax2 = 8\nay2 = 9\nbx1 = -4\nby1 = -6\nbx2 = 14\nby2 = 3",
+      "output": "314"
+    },
+    {
+      "input": "ax1 = -1\nay1 = -8\nax2 = 1\nay2 = 8\nbx1 = 1\nby1 = -3\nbx2 = 4\nby2 = 3",
+      "output": "50"
+    },
+    {
+      "input": "ax1 = -6\nay1 = -6\nax2 = 6\nay2 = 6\nbx1 = -6\nby1 = -2\nbx2 = -2\nby2 = 2",
+      "output": "144"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = 0\nay2 = 0\nbx1 = 1\nby1 = 1\nbx2 = 10000\nby2 = 10000",
+      "output": "199980001"
+    },
+    {
+      "input": "ax1 = -10\nay1 = -10\nax2 = 10\nay2 = 10\nbx1 = -10\nby1 = 0\nbx2 = 10\nby2 = 1",
+      "output": "400"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = 0\nay2 = 0\nbx1 = -1\nby1 = -1\nbx2 = 10000\nby2 = 10000",
+      "output": "200020000"
+    },
+    {
+      "input": "ax1 = -4\nay1 = -4\nax2 = 2\nay2 = 3\nbx1 = -4\nby1 = -4\nbx2 = 0\nby2 = 0",
+      "output": "42"
+    },
+    {
+      "input": "ax1 = -6\nay1 = -1\nax2 = 4\nay2 = 5\nbx1 = -2\nby1 = 1\nbx2 = 4\nby2 = 5",
+      "output": "60"
+    },
+    {
+      "input": "ax1 = -8\nay1 = -3\nax2 = 8\nay2 = 1\nbx1 = -8\nby1 = 0\nbx2 = 8\nby2 = 4",
+      "output": "112"
+    },
+    {
+      "input": "ax1 = -3\nay1 = -8\nax2 = 1\nay2 = 8\nbx1 = 0\nby1 = -8\nbx2 = 4\nby2 = 8",
+      "output": "112"
+    },
+    {
+      "input": "ax1 = -10000\nay1 = -10000\nax2 = 10000\nay2 = 10000\nbx1 = -10000\nby1 = 9999\nbx2 = 10000\nby2 = 10000",
+      "output": "400000000"
     }
   ],
   "func_sign": {

@@ -532,6 +532,130 @@
     {
       "input": "board = [\"XXX\", \"   \", \"   \"]",
       "output": "false"
+    },
+    {
+      "input": "board = [\"XXX\", \"OO \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XXX\", \"OOO\", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"OOO\", \"X  \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"OOO\", \"XX \", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"X O\", \"XO \", \"X  \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"X O\", \"XO \", \"XO \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XO \", \"XO \", \" O \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"OO \", \"XO \", \"X  \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOO\", \"OX \", \"  X\"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOO\", \"OXO\", \"  X\"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XO \", \"XO \", \"O X\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"OO \", \"XO \", \"X X\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XXX\", \"OOO\", \"   \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"OXO\", \"OXO\"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"XXO\", \"OXO\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XXX\", \"OO \", \"OO \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"OOO\", \"XXO\", \"X  \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"OX \", \"X O\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"X X\", \"O O\", \"X  \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XXX\", \"O O\", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"OOO\", \"X X\", \"X  \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"XXX\", \"OO \", \"O  \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XOX\", \"OOO\", \"XXX\"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"X  \", \"OXO\", \" X \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"O  \", \"OXO\", \" X \"]",
+      "output": "false"
+    },
+    {
+      "input": "board = [\"XXO\", \"OOX\", \"XOX\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"OOX\", \"XXO\", \"XOX\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"X  \", \"   \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"O  \", \"X  \", \"   \"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"X O\", \" XO\", \"  X\"]",
+      "output": "true"
+    },
+    {
+      "input": "board = [\"X O\", \" OO\", \"  X\"]",
+      "output": "false"
     }
   ],
   "func_sign": {

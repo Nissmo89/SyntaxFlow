@@ -411,6 +411,126 @@
     {
       "input": "left = 15\nright = 17",
       "output": "1"
+    },
+    {
+      "input": "left = 31\nright = 33",
+      "output": "2"
+    },
+    {
+      "input": "left = 63\nright = 65",
+      "output": "1"
+    },
+    {
+      "input": "left = 127\nright = 129",
+      "output": "2"
+    },
+    {
+      "input": "left = 255\nright = 257",
+      "output": "1"
+    },
+    {
+      "input": "left = 511\nright = 513",
+      "output": "1"
+    },
+    {
+      "input": "left = 1023\nright = 1025",
+      "output": "1"
+    },
+    {
+      "input": "left = 1024\nright = 1024",
+      "output": "0"
+    },
+    {
+      "input": "left = 1023\nright = 1023",
+      "output": "0"
+    },
+    {
+      "input": "left = 100\nright = 130",
+      "output": "16"
+    },
+    {
+      "input": "left = 500\nright = 600",
+      "output": "55"
+    },
+    {
+      "input": "left = 999\nright = 1099",
+      "output": "51"
+    },
+    {
+      "input": "left = 4095\nright = 4097",
+      "output": "1"
+    },
+    {
+      "input": "left = 8191\nright = 8193",
+      "output": "2"
+    },
+    {
+      "input": "left = 65535\nright = 65537",
+      "output": "1"
+    },
+    {
+      "input": "left = 999983\nright = 999983",
+      "output": "1"
+    },
+    {
+      "input": "left = 1000000\nright = 1000000",
+      "output": "1"
+    },
+    {
+      "input": "left = 999990\nright = 1000000",
+      "output": "5"
+    },
+    {
+      "input": "left = 1\nright = 10001",
+      "output": "4252"
+    },
+    {
+      "input": "left = 123456\nright = 133456",
+      "output": "3614"
+    },
+    {
+      "input": "left = 990000\nright = 1000000",
+      "output": "3754"
+    },
+    {
+      "input": "left = 999000\nright = 999123",
+      "output": "49"
+    },
+    {
+      "input": "left = 997952\nright = 1000000",
+      "output": "710"
+    },
+    {
+      "input": "left = 127\nright = 190",
+      "output": "37"
+    },
+    {
+      "input": "left = 1023\nright = 1100",
+      "output": "44"
+    },
+    {
+      "input": "left = 73\nright = 137",
+      "output": "38"
+    },
+    {
+      "input": "left = 2047\nright = 2175",
+      "output": "71"
+    },
+    {
+      "input": "left = 54321\nright = 54444",
+      "output": "36"
+    },
+    {
+      "input": "left = 250000\nright = 250512",
+      "output": "128"
+    },
+    {
+      "input": "left = 1\nright = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
+      "output": ""
+    },
+    {
+      "input": "left = 100000\nright = {\"gen\": \"int\", \"min\": 100000, \"max\": 1000000}",
+      "output": ""
     }
   ],
   "func_sign": {

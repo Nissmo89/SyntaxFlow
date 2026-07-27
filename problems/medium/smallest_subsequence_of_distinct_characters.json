@@ -348,6 +348,114 @@
     {
       "input": "s = \"aaaaaaaaaa\"",
       "output": "\"a\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaa\"",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "output": "\"a\""
+    },
+    {
+      "input": "s = \"aaaabbaabb\"",
+      "output": "\"ab\""
+    },
+    {
+      "input": "s = \"bababababbbababbbbbb\"",
+      "output": "\"ab\""
+    },
+    {
+      "input": "s = \"baababaaaaababbbbbbaababaababa\"",
+      "output": "\"ab\""
+    },
+    {
+      "input": "s = \"bbbbaaaababaaabbbabbabaabaabbabaaaababbb\"",
+      "output": "\"ab\""
+    },
+    {
+      "input": "s = \"abaabbbabaababbabbaabbaaaaaaaaaabbaabbaabbababbbba\"",
+      "output": "\"ab\""
+    },
+    {
+      "input": "s = \"accaccbbcc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"cbaacabcaaccaacababa\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"baabcccbacabcbcaaaabbcbacabccb\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"aabacaaababbcabcbacabcbcbbaabcaaaaabaacc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"acbbcbacccbcbbaaaabaccbbabacaccbacaababaacbccbabbc\"",
+      "output": "\"abc\""
+    },
+    {
+      "input": "s = \"bdaccdbddc\"",
+      "output": "\"abdc\""
+    },
+    {
+      "input": "s = \"babddbddaddcdaacdccc\"",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"abdaddcdbdbadcaddbcddaaccdcdca\"",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"dbbbabadcdcbdaddddbbcbdaaadbdaadcaaabbab\"",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"dcccbddaaaaddcdadcbcbccbcabddacadcababcccabbbcabdb\"",
+      "output": "\"abcd\""
+    },
+    {
+      "input": "s = \"ddeeeccdce\"",
+      "output": "\"cde\""
+    },
+    {
+      "input": "s = \"adaabbcacdbabaeabebc\"",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"bccddeacacaceabcbbbbdbebbbaaaa\"",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"dbdcbcbeecbbdcdebadbcecccdbaabaeeacbbcab\"",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"ccbbdceaebbbbcecabaaabadaebebbaacadeacabcadabcacde\"",
+      "output": "\"abcde\""
+    },
+    {
+      "input": "s = \"babcdbdefbcbfadcaaccedccdfaafbdafeeddaceacafabfcff\"",
+      "output": "\"abcdef\""
+    },
+    {
+      "input": "s = \"bdfecedcbfcfeaaffdbaeeabadbbbddddcafdfeeeebfcdabcfaadecddccdefcabedbebbdcbdfefeffcbbeaefaeefeeceadea\"",
+      "output": "\"abcdef\""
+    },
+    {
+      "input": "s = \"aaeeeceabbfdaefdeefbabaabbdbaadbebfaabfadcaacddebfdbeaceffaaadcaeddbadebdebccbcbccefeaffbfdcdaefeefeffefcfbbbdabdbddcaaeaacecefbbbeaacdafdfbcdfcbedaff\"",
+      "output": "\"abcdef\""
     }
   ],
   "func_sign": {

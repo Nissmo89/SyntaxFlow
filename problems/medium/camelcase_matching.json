@@ -833,6 +833,134 @@
     {
       "input": "queries = [\"B\", \"AB\", \"aB\"]\npattern = \"A\"",
       "output": "[false, false, false]"
+    },
+    {
+      "input": "queries = [\"CamelCase\", \"Camel\", \"Case\", \"camelCase\"]\npattern = \"CC\"",
+      "output": "[true, false, false, false]"
+    },
+    {
+      "input": "queries = [\"HiThere\", \"Hi\", \"Hithere\", \"HiT\"]\npattern = \"HT\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"ABC\", \"A\", \"AB\", \"AbC\"]\npattern = \"ABC\"",
+      "output": "[true, false, false, false]"
+    },
+    {
+      "input": "queries = [\"aBc\", \"abC\", \"Abc\", \"aBC\"]\npattern = \"BC\"",
+      "output": "[false, false, false, true]"
+    },
+    {
+      "input": "queries = [\"HelloWorld\", \"HiWorld\", \"HWorld\", \"Helloworld\"]\npattern = \"HW\"",
+      "output": "[true, true, true, false]"
+    },
+    {
+      "input": "queries = [\"FooBar\", \"FBar\", \"Far\", \"F\"]\npattern = \"F\"",
+      "output": "[false, false, true, true]"
+    },
+    {
+      "input": "queries = [\"FoBa\", \"FoB\", \"FoaBa\", \"FoBaX\"]\npattern = \"FoBa\"",
+      "output": "[true, false, true, false]"
+    },
+    {
+      "input": "queries = [\"FrameBuffer\", \"Frame\", \"Buffer\", \"FrmBfr\"]\npattern = \"FB\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"TestCase\", \"Test\", \"Case\", \"testCase\"]\npattern = \"TC\"",
+      "output": "[true, false, false, false]"
+    },
+    {
+      "input": "queries = [\"AlphaBetaGamma\", \"AlphaBeta\", \"ABeGa\", \"ABG\"]\npattern = \"ABG\"",
+      "output": "[true, false, true, true]"
+    },
+    {
+      "input": "queries = [\"ABCDEF\", \"AB\", \"ABC\", \"ABcDEf\"]\npattern = \"ACE\"",
+      "output": "[false, false, false, false]"
+    },
+    {
+      "input": "queries = [\"Z\", \"ZZ\", \"zZ\", \"Zz\"]\npattern = \"Z\"",
+      "output": "[true, false, true, true]"
+    },
+    {
+      "input": "queries = [\"QuickBrownFox\", \"QuickFox\", \"QBF\", \"Quickbrownfox\"]\npattern = \"QBF\"",
+      "output": "[true, false, true, false]"
+    },
+    {
+      "input": "queries = [\"CamelCaseMatching\", \"CamelCase\", \"Matching\", \"camelcasematching\"]\npattern = \"CCM\"",
+      "output": "[true, false, false, false]"
+    },
+    {
+      "input": "queries = [\"AaaaBbbb\", \"Aaaa\", \"Bbbb\", \"AaBb\"]\npattern = \"AB\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"Hello\", \"HeLlo\", \"Helo\", \"HELL\"]\npattern = \"HL\"",
+      "output": "[false, true, false, false]"
+    },
+    {
+      "input": "queries = [\"XyZ\", \"XZ\", \"xYz\", \"Xyz\"]\npattern = \"XZ\"",
+      "output": "[true, true, false, false]"
+    },
+    {
+      "input": "queries = [\"DataBase\", \"Data\", \"Base\", \"Db\"]\npattern = \"DB\"",
+      "output": "[true, false, false, false]"
+    },
+    {
+      "input": "queries = [\"MySql\", \"My\", \"Sql\", \"MSql\"]\npattern = \"MS\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"OneTwoThree\", \"OneTwo\", \"OTT\", \"Onetwothree\"]\npattern = \"OTT\"",
+      "output": "[true, false, true, false]"
+    },
+    {
+      "input": "queries = [\"ABcD\", \"ABD\", \"AB\", \"AbCd\"]\npattern = \"ABD\"",
+      "output": "[true, true, false, false]"
+    },
+    {
+      "input": "queries = [\"HelloWorld\", \"HW\", \"HWorld\", \"HelloWorLd\"]\npattern = \"HW\"",
+      "output": "[true, true, true, false]"
+    },
+    {
+      "input": "queries = [\"CodeReview\", \"Code\", \"Review\", \"CoRe\"]\npattern = \"CR\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"OpenAI\", \"Open\", \"AI\", \"OAI\"]\npattern = \"OAI\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"GitHub\", \"Git\", \"Hub\", \"GH\"]\npattern = \"GH\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"StackOverflow\", \"Stack\", \"Overflow\", \"SO\"]\npattern = \"SO\"",
+      "output": "[true, false, false, true]"
+    },
+    {
+      "input": "queries = [\"RedBlueGreen\", \"RedBlue\", \"RBG\", \"Redgreen\"]\npattern = \"RBG\"",
+      "output": "[true, false, true, false]"
+    },
+    {
+      "input": "queries = [\"FooBarBaz\", \"FooBaz\", \"FBB\", \"FooBar\"]\npattern = \"FBB\"",
+      "output": "[true, false, true, false]"
+    },
+    {
+      "input": "queries = [\"ABCXYZ\", \"AXZ\", \"ABX\", \"ABC\"]\npattern = \"AXZ\"",
+      "output": "[false, true, false, false]"
+    },
+    {
+      "input": "queries = [\"Alpha\", \"Beta\", \"Gamma\", \"Delta\"]\npattern = \"AB\"",
+      "output": "[false, false, false, false]"
+    },
+    {
+      "input": "queries = [\"AaAaAa\", \"AAA\", \"AaA\", \"aAaA\"]\npattern = \"AAA\"",
+      "output": "[true, true, false, false]"
+    },
+    {
+      "input": "queries = [\"ZZTop\", \"ZTop\", \"Z\", \"Top\"]\npattern = \"ZT\"",
+      "output": "[false, true, false, false]"
     }
   ],
   "func_sign": {

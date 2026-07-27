@@ -378,6 +378,122 @@
     {
       "input": "s = \"aaaa\"",
       "output": "4"
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"dcba\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"aabb\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"abba\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"abca\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"abcba\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"abccba\"",
+      "output": "14"
+    },
+    {
+      "input": "s = \"cadac\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"bcbcbc\"",
+      "output": "12"
+    },
+    {
+      "input": "s = \"abcdcba\"",
+      "output": "22"
+    },
+    {
+      "input": "s = \"aaabbb\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"aabca\"",
+      "output": "7"
+    },
+    {
+      "input": "s = \"adadad\"",
+      "output": "12"
+    },
+    {
+      "input": "s = \"aaaabbbb\"",
+      "output": "8"
+    },
+    {
+      "input": "s = \"abababab\"",
+      "output": "22"
+    },
+    {
+      "input": "s = \"abcdabcd\"",
+      "output": "20"
+    },
+    {
+      "input": "s = \"abcddcba\"",
+      "output": "30"
+    },
+    {
+      "input": "s = \"dacbad\"",
+      "output": "14"
+    },
+    {
+      "input": "s = \"baab\"",
+      "output": "6"
+    },
+    {
+      "input": "s = \"aaaaaaaaaa\"",
+      "output": "10"
+    },
+    {
+      "input": "s = \"abcdabcdabcd\"",
+      "output": "72"
+    },
+    {
+      "input": "s = \"abccbaabccba\"",
+      "output": "84"
+    },
+    {
+      "input": "s = \"abdcabcdcbadacba\"",
+      "output": "309"
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 7, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 25, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 120, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 950, \"alphabet\": \"abcd\"}",
+      "output": ""
+    },
+    {
+      "input": "s = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abcd\"}",
+      "output": ""
     }
   ],
   "func_sign": {

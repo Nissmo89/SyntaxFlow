@@ -534,6 +534,130 @@
     {
       "input": "s = \"abcde\"\nwords = [\"fgh\"]",
       "output": ""
+    },
+    {
+      "input": "s = \"wordgoodgoodgoodbestword\"\nwords = [\"good\", \"good\", \"best\", \"word\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaabaaaab\"\nwords = [\"aa\", \"aa\", \"ba\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaaaa\"\nwords = [\"aa\", \"aa\", \"aa\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"xaaaaaaay\"\nwords = [\"aa\", \"aa\", \"aa\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"foofoobarfoo\"\nwords = [\"foo\", \"foo\", \"bar\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaabbbcccaaabbbccc\"\nwords = [\"aaa\", \"bbb\", \"ccc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"xaaabbbcccaaabbbcccy\"\nwords = [\"aaa\", \"bbb\", \"ccc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcabcabcabc\"\nwords = [\"abc\", \"abc\", \"abc\", \"abc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"zabcabcabcabcz\"\nwords = [\"abc\", \"abc\", \"abc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabcd\"\nwords = [\"abcdefghijklmnopqrstuvwxyzabcd\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdefghijklmnopqrstuvwxyzabce\"\nwords = [\"abcdefghijklmnopqrstuvwxyzabcd\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"zzbarfoobaz\"\nwords = [\"bar\", \"foo\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"barfooxthebarfoo\"\nwords = [\"bar\", \"foo\", \"the\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"zzbarfoothe\"\nwords = [\"bar\", \"foo\", \"the\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"barfoothezz\"\nwords = [\"bar\", \"foo\", \"the\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"catdogcatdogcatdog\"\nwords = [\"cat\", \"dog\", \"cat\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"dogcatcatdogcat\"\nwords = [\"cat\", \"dog\", \"cat\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"short\"\nwords = [\"longer\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcabcabc\"\nwords = [\"abd\", \"cba\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaabbbb\"\nwords = [\"aa\", \"ab\", \"bb\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdefabcdefabcdef\"\nwords = [\"abc\", \"def\", \"abc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"xabcdefabcdefabcdefy\"\nwords = [\"abc\", \"def\", \"abc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"foobarbazfoobarbaz\"\nwords = [\"foo\", \"bar\", \"baz\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"zfoobarbazfoobarbaz\"\nwords = [\"foo\", \"bar\", \"baz\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaabbbcccabc\"\nwords = [\"a\", \"b\", \"c\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaabbbcccaaa\"\nwords = [\"a\", \"a\", \"b\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nwords = [\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\", \"cccccccccccccccccccccccccccccc\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij\"\nwords = [\"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\", \"abcdefghij\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\nwords = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"qwertyqwertyuiopqwerty\"\nwords = [\"qwerty\", \"qwerty\"]",
+      "output": ""
+    },
+    {
+      "input": "s = \"qwertyuiopasdfgh\"\nwords = [\"qwerty\", \"uiopas\", \"dfghjk\"]",
+      "output": ""
     }
   ],
   "func_sign": {

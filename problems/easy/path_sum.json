@@ -892,6 +892,150 @@
     {
       "input": "root = [1, 2]\ntargetSum = 4",
       "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2]\ntargetSum = 3",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, null, 2]\ntargetSum = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4]\ntargetSum = 7",
+      "output": "true"
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]\ntargetSum = 18",
+      "output": "true"
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]\ntargetSum = 20",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3]\ntargetSum = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [-2, null, -3]\ntargetSum = -5",
+      "output": "true"
+    },
+    {
+      "input": "root = [-2, null, -3]\ntargetSum = -2",
+      "output": "false"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0]\ntargetSum = 0",
+      "output": "true"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0]\ntargetSum = 1",
+      "output": "false"
+    },
+    {
+      "input": "root = [2, 2, 2, 2, 2, 2, 2]\ntargetSum = 6",
+      "output": "true"
+    },
+    {
+      "input": "root = [2, 2, 2, 2, 2, 2, 2]\ntargetSum = 5",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, null, 4]\ntargetSum = 10",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, null, 4]\ntargetSum = 9",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, null, null, null, 3, null, null, null, null, null, null, null, 4]\ntargetSum = 10",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, null, 2, null, null, null, 3, null, null, null, null, null, null, null, 4]\ntargetSum = 11",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 6]\ntargetSum = 7",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 6]\ntargetSum = 8",
+      "output": "true"
+    },
+    {
+      "input": "root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]\ntargetSum = 27",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 3]\ntargetSum = 0",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\ntargetSum = 15",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\ntargetSum = 16",
+      "output": "true"
+    },
+    {
+      "input": "root = [10, 5, 20, 3, null, 15, 25, 2, 1, null, null, 14, 1, null, 4]\ntargetSum = 21",
+      "output": "false"
+    },
+    {
+      "input": "root = [10, 5, 20, 3, null, 15, 25, 2, 1, null, null, 14, 1, null, 4]\ntargetSum = 22",
+      "output": "false"
+    },
+    {
+      "input": "root = [-10, -20, -30, -5, -15, -25, -35]\ntargetSum = -35",
+      "output": "true"
+    },
+    {
+      "input": "root = [-10, -20, -30, -5, -15, -25, -35]\ntargetSum = -34",
+      "output": "false"
+    },
+    {
+      "input": "root = [0, 1, 0, null, null, 0, 0]\ntargetSum = 1",
+      "output": "true"
+    },
+    {
+      "input": "root = [0, 1, 0, null, null, 0, 0]\ntargetSum = 2",
+      "output": "false"
+    },
+    {
+      "input": "root = [8, 4, 10, 2, 6, null, 14, null, null, 5, 7, null, null, 13, 15]\ntargetSum = 37",
+      "output": "false"
+    },
+    {
+      "input": "root = [8, 4, 10, 2, 6, null, 14, null, null, 5, 7, null, null, 13, 15]\ntargetSum = 38",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 6, 5, 5, 6, 6, 5, 7, 8, 8, 7, 7, 8, 8, 7, 9, 10, 10, 9, 9, 10, 10, 9]\ntargetSum = 16",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 6, 5, 5, 6, 6, 5, 7, 8, 8, 7, 7, 8, 8, 7, 9, 10, 10, 9, 9, 10, 10, 9]\ntargetSum = 17",
+      "output": "false"
+    },
+    {
+      "input": "root = [3, 9, 20, null, null, 15, 7, null, null, null, null]\ntargetSum = 30",
+      "output": "true"
+    },
+    {
+      "input": "root = [3, 9, 20, null, null, 15, 7, null, null, null, null]\ntargetSum = 31",
+      "output": "false"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5]\ntargetSum = 7",
+      "output": "true"
+    },
+    {
+      "input": "root = [1, 2, null, 3, null, null, null, 4, null, null, null, null, null, null, 5]\ntargetSum = 15",
+      "output": "false"
     }
   ],
   "func_sign": {

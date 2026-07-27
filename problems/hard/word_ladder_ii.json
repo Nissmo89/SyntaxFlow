@@ -957,6 +957,134 @@
     {
       "input": "beginWord = \"lead\"\nendWord = \"load\"\nwordList = [\"load\", \"goad\", \"gold\"]",
       "output": "[[\"lead\", \"load\"]]"
+    },
+    {
+      "input": "beginWord = \"lead\"\nendWord = \"gold\"\nwordList = [\"load\", \"goad\", \"gold\", \"leaf\"]",
+      "output": "[[\"lead\", \"load\", \"goad\", \"gold\"]]"
+    },
+    {
+      "input": "beginWord = \"aaa\"\nendWord = \"ccc\"\nwordList = [\"aac\", \"aca\", \"acc\", \"cca\", \"ccc\"]",
+      "output": "[[\"aaa\", \"aac\", \"acc\", \"ccc\"], [\"aaa\", \"aca\", \"acc\", \"ccc\"], [\"aaa\", \"aca\", \"cca\", \"ccc\"]]"
+    },
+    {
+      "input": "beginWord = \"abc\"\nendWord = \"xyz\"\nwordList = [\"xzz\", \"ayy\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"a\"\nendWord = \"c\"\nwordList = [\"b\", \"c\"]",
+      "output": "[[\"a\", \"c\"]]"
+    },
+    {
+      "input": "beginWord = \"mate\"\nendWord = \"math\"\nwordList = [\"math\", \"path\", \"bath\", \"mate\"]",
+      "output": "[[\"mate\", \"math\"]]"
+    },
+    {
+      "input": "beginWord = \"spin\"\nendWord = \"spit\"\nwordList = [\"spit\", \"spun\", \"span\", \"spin\"]",
+      "output": "[[\"spin\", \"spit\"]]"
+    },
+    {
+      "input": "beginWord = \"aaaa\"\nendWord = \"bbbb\"\nwordList = [\"aaab\", \"aabb\", \"abbb\", \"bbbb\", \"baaa\", \"bbaa\", \"bbba\"]",
+      "output": "[[\"aaaa\", \"aaab\", \"aabb\", \"abbb\", \"bbbb\"], [\"aaaa\", \"baaa\", \"bbaa\", \"bbba\", \"bbbb\"]]"
+    },
+    {
+      "input": "beginWord = \"same\"\nendWord = \"came\"\nwordList = [\"came\", \"lame\", \"game\"]",
+      "output": "[[\"same\", \"came\"]]"
+    },
+    {
+      "input": "beginWord = \"road\"\nendWord = \"wise\"\nwordList = [\"roam\", \"foam\", \"form\", \"firm\", \"fire\", \"wise\", \"rode\", \"code\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"abc\"\nendWord = \"xyz\"\nwordList = [\"xbc\", \"xyc\", \"xyz\", \"abx\", \"axx\"]",
+      "output": "[[\"abc\", \"xbc\", \"xyc\", \"xyz\"]]"
+    },
+    {
+      "input": "beginWord = \"game\"\nendWord = \"came\"\nwordList = [\"came\", \"lame\", \"same\"]",
+      "output": "[[\"game\", \"came\"]]"
+    },
+    {
+      "input": "beginWord = \"start\"\nendWord = \"board\"\nwordList = [\"stark\", \"stack\", \"slack\", \"black\", \"blank\", \"bland\", \"board\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"hot\"\nendWord = \"dog\"\nwordList = [\"dot\", \"hog\", \"dog\", \"cot\"]",
+      "output": "[[\"hot\", \"hog\", \"dog\"], [\"hot\", \"dot\", \"dog\"]]"
+    },
+    {
+      "input": "beginWord = \"aa\"\nendWord = \"bb\"\nwordList = [\"ab\", \"ba\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"abc\"\nendWord = \"abd\"\nwordList = [\"acc\", \"adc\", \"abd\", \"abb\"]",
+      "output": "[[\"abc\", \"abd\"]]"
+    },
+    {
+      "input": "beginWord = \"tone\"\nendWord = \"cone\"\nwordList = [\"cone\", \"bone\", \"fone\"]",
+      "output": "[[\"tone\", \"cone\"]]"
+    },
+    {
+      "input": "beginWord = \"hit\"\nendWord = \"cog\"\nwordList = [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cig\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"lost\"\nendWord = \"cost\"\nwordList = [\"cost\", \"most\", \"host\", \"post\"]",
+      "output": "[[\"lost\", \"cost\"]]"
+    },
+    {
+      "input": "beginWord = \"aaa\"\nendWord = \"aab\"\nwordList = [\"aac\", \"abb\", \"aab\"]",
+      "output": "[[\"aaa\", \"aab\"]]"
+    },
+    {
+      "input": "beginWord = \"abcd\"\nendWord = \"abcf\"\nwordList = [\"abce\", \"abcf\", \"axcd\", \"axcf\"]",
+      "output": "[[\"abcd\", \"abcf\"]]"
+    },
+    {
+      "input": "beginWord = \"hit\"\nendWord = \"cog\"\nwordList = [\"hot\", \"hog\", \"cot\", \"cog\", \"dot\", \"dog\"]",
+      "output": "[[\"hit\", \"hot\", \"hog\", \"cog\"], [\"hit\", \"hot\", \"cot\", \"cog\"]]"
+    },
+    {
+      "input": "beginWord = \"red\"\nendWord = \"bed\"\nwordList = [\"bed\", \"bad\", \"bud\", \"rad\"]",
+      "output": "[[\"red\", \"bed\"]]"
+    },
+    {
+      "input": "beginWord = \"aaa\"\nendWord = \"bbb\"\nwordList = [\"aab\", \"abb\", \"bab\", \"bbb\", \"aba\"]",
+      "output": "[[\"aaa\", \"aab\", \"abb\", \"bbb\"], [\"aaa\", \"aba\", \"abb\", \"bbb\"], [\"aaa\", \"aab\", \"bab\", \"bbb\"]]"
+    },
+    {
+      "input": "beginWord = \"cold\"\nendWord = \"warm\"\nwordList = [\"cord\", \"word\", \"ward\", \"warm\", \"wold\", \"worm\", \"card\"]",
+      "output": "[[\"cold\", \"cord\", \"word\", \"worm\", \"warm\"], [\"cold\", \"wold\", \"word\", \"worm\", \"warm\"], [\"cold\", \"cord\", \"card\", \"ward\", \"warm\"], [\"cold\", \"cord\", \"word\", \"ward\", \"warm\"], [\"cold\", \"wold\", \"word\", \"ward\", \"warm\"]]"
+    },
+    {
+      "input": "beginWord = \"aaa\"\nendWord = \"bbb\"\nwordList = [\"aaa\", \"aba\", \"abb\", \"bbc\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"aaaaa\"\nendWord = \"zzzzz\"\nwordList = [\"aaaab\", \"aaabb\", \"aabbb\", \"abbbb\", \"bbbbb\", \"zzzza\", \"zzzzb\", \"zzzzc\", \"zzzzd\", \"zzzzz\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"abcde\"\nendWord = \"fghij\"\nwordList = [\"fbcde\", \"fgcde\", \"fghde\", \"fghie\", \"fghij\", \"bbcde\", \"cbcde\", \"dbcde\", \"ebcde\"]",
+      "output": "[[\"abcde\", \"fbcde\", \"fgcde\", \"fghde\", \"fghie\", \"fghij\"]]"
+    },
+    {
+      "input": "beginWord = \"make\"\nendWord = \"made\"\nwordList = [\"make\", \"made\", \"bade\", \"maze\"]",
+      "output": "[[\"make\", \"made\"]]"
+    },
+    {
+      "input": "beginWord = \"game\"\nendWord = \"math\"\nwordList = [\"gate\", \"math\"]",
+      "output": "[]"
+    },
+    {
+      "input": "beginWord = \"abcd\"\nendWord = \"abed\"\nwordList = [\"abed\", \"abcf\", \"aecd\"]",
+      "output": "[[\"abcd\", \"abed\"]]"
+    },
+    {
+      "input": "beginWord = \"aaaa\"\nendWord = \"aaaz\"\nwordList = [\"aaax\", \"aaaz\", \"aabz\"]",
+      "output": "[[\"aaaa\", \"aaaz\"]]"
+    },
+    {
+      "input": "beginWord = \"ab\"\nendWord = \"cd\"\nwordList = [\"ef\", \"gh\", \"ij\"]",
+      "output": "[]"
     }
   ],
   "func_sign": {

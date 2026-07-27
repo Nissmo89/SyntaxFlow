@@ -1478,6 +1478,114 @@
     {
       "input": "root = [1, 2, 3, 4, null, null, 5]",
       "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, null, 6, 7]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 4, 5, null, null, null, 6]",
+      "output": "5"
+    },
+    {
+      "input": "root = [1, 2, null, null, 3, 4]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, null, 2, 3, null, null, 4, null, 5]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5, 6, null, null, 7]",
+      "output": "6"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, null, 5]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, null, null, null, 4, null, 5]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, 6, null, 7]",
+      "output": "5"
+    },
+    {
+      "input": "root = [0, -1, -2, -3, -4, -5, -6]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "output": "5"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 4, 5, 6, null, null, 7]",
+      "output": "5"
+    },
+    {
+      "input": "root = [1, 2, 3]",
+      "output": "2"
+    },
+    {
+      "input": "root = [1, 2, 3, 4]",
+      "output": "3"
+    },
+    {
+      "input": "root = [1, null, 2, null, 3, 4, null, 5]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, 5, 6, null, 7, null, null, 8, null, null, 9]",
+      "output": "7"
+    },
+    {
+      "input": "root = [1, 2, 3, null, 4, null, 5, 6, null, null, 7]",
+      "output": "6"
+    },
+    {
+      "input": "root = [1, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1]",
+      "output": "9"
+    },
+    {
+      "input": "root = [1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1, null, 1]",
+      "output": "9"
+    },
+    {
+      "input": "root = [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0]",
+      "output": "19"
+    },
+    {
+      "input": "root = [0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0]",
+      "output": "19"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+      "output": "8"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+      "output": "10"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, null, null, 5, 6, null, null, 7, 8, null, null, 9]",
+      "output": "8"
+    },
+    {
+      "input": "root = [1, 2, 3, 4, 5, null, 6, 7, null, null, null, null, 8]",
+      "output": "6"
+    },
+    {
+      "input": "root = [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0]",
+      "output": "133"
+    },
+    {
+      "input": "root = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+      "output": "12"
+    },
+    {
+      "input": "root = [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0]",
+      "output": "146"
     }
   ],
   "func_sign": {
