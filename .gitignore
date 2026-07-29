@@ -51,3 +51,31 @@ RULES.md
 tools/
 core_Functionality/
 *.pch
+
+# ---- WebAssembly & Engines ----
+wasi-sdk/
+wasi-sdk.tar.gz
+wasmer.tar.gz
+python.webc
+quickjs-pkg/
+quickjs-*.tar.gz*
+zig/
+zig.tar.xz
+micromamba.tar.bz2
+bin/
+lib/
+info/
+
+# ---- Test & Scratch Files ----
+-
+cmake_out.txt
+make_out.txt
+test.py
+test_bin.wasm
+test_c.cpp
+test_cpp.cpp
+test_python.py
+test_python_runner.cpp
+user_code.py
+run_js_206.sh
+build-headless/

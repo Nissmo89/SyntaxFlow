@@ -45,6 +45,8 @@ QString WasmRunner::getWasiSdkCompiler() const {
     QString compilerName = m_isCpp ? "clang++" : "clang";
     
     QStringList searchPaths = {
+        basePath + "/_deps/wasi_sdk-src/bin/" + compilerName,
+        basePath + "/_deps/wasi_sdk-src/wasi-sdk-20.0/bin/" + compilerName,
         basePath + "/wasi-sdk/bin/" + compilerName,
         basePath + "/wasi-sdk/wasi-sdk-20.0/bin/" + compilerName,
         basePath + "/../wasi-sdk/bin/" + compilerName,
@@ -139,16 +141,25 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     
     compileArgs << "user_code" + ext << "-o" << "user_bin.wasm";
     
+    qDebug() << "WasmRunner: starting compileProc... args:" << compileArgs;
     compileProc.start(wasiSdkCompiler, compileArgs);
+    if (!compileProc.waitForStarted(2000)) {
+        result.error = QStringLiteral("Failed to start compiler: ") + compileProc.errorString();
+        result.exitCode = -1;
+        qDebug() << "WasmRunner: Failed to start compileProc";
+        return result;
+    }
+    compileProc.closeWriteChannel();
     QElapsedTimer compileTimer;
     compileTimer.start();
+    qDebug() << "WasmRunner: waiting for compile finish...";
     while (!compileProc.waitForFinished(100)) {
-        QCoreApplication::processEvents();
         if (stopRequested && *stopRequested) {
             compileProc.kill();
             compileProc.waitForFinished(500);
             result.error    = QStringLiteral("Compilation stopped by user");
             result.exitCode = -1;
+            qDebug() << "WasmRunner: compile aborted";
             return result;
         }
         if (compileTimer.elapsed() >= 300000) {
@@ -156,9 +167,11 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
             compileProc.waitForFinished(500);
             result.error    = QStringLiteral("Compilation timed out (300 s)");
             result.exitCode = -1;
+            qDebug() << "WasmRunner: compile timed out";
             return result;
         }
     }
+    qDebug() << "WasmRunner: compile finished. exitCode:" << compileProc.exitCode();
 
     if (compileProc.exitStatus() != QProcess::NormalExit || compileProc.exitCode() != 0) {
         result.error    = QString::fromUtf8(compileProc.readAllStandardError());
@@ -174,9 +187,17 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
     
     QStringList runArgs;
-    runArgs << "run" << "--volume" << ".:/" << "user_bin.wasm";
+    runArgs << "run" << "--mapdir" << "/src:." << "user_bin.wasm";
     
+    qDebug() << "WasmRunner: starting wasmer... args:" << runArgs;
     runProc.start(wasmerExe, runArgs);
+    if (!runProc.waitForStarted(2000)) {
+        result.error = QStringLiteral("Failed to start engine: ") + runProc.errorString();
+        result.exitCode = -1;
+        qDebug() << "WasmRunner: Failed to start";
+        return result;
+    }
+
     if (!stdinInput.isEmpty()) {
         runProc.write(stdinInput.toUtf8());
     }
@@ -185,29 +206,31 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     const int TIMEOUT_MS = 60000;
     QElapsedTimer timer;
     timer.start();
-
+    qDebug() << "WasmRunner: waiting for finish...";
     while (!runProc.waitForFinished(100)) {
-        QCoreApplication::processEvents();
         if (stopRequested && *stopRequested) {
             runProc.kill();
             runProc.waitForFinished(500);
             result.error    = QStringLiteral("Execution stopped by user");
             result.exitCode = -1;
             result.timedOut = false;
+            qDebug() << "WasmRunner: aborted";
             return result;
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
             runProc.kill();
-            runProc.waitForFinished(500);
             result.error    = QStringLiteral("Time limit exceeded (60 s)");
             result.exitCode = -1;
             result.timedOut = true;
+            qDebug() << "WasmRunner: timed out";
             return result;
         }
     }
-
-    result.output   = QString::fromLocal8Bit(runProc.readAllStandardOutput());
-    result.error    = QString::fromLocal8Bit(runProc.readAllStandardError());
+    qDebug() << "WasmRunner: finished. exitCode:" << runProc.exitCode();
+    result.output   = QString::fromUtf8(runProc.readAllStandardOutput());
+    result.error    = QString::fromUtf8(runProc.readAllStandardError());
     result.exitCode = runProc.exitCode();
+    result.timedOut = false;
+    qDebug() << "WasmRunner: returning result";
     return result;
 }

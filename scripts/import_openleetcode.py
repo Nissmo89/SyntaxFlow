@@ -148,16 +148,30 @@ def main():
         description = details["content"] if details else "No description available."
         hints = details["hints"] if details else []
         
+        def has_gen(tc_in):
+            if isinstance(tc_in, dict):
+                if "gen" in tc_in: return True
+                return any(has_gen(v) for v in tc_in.values())
+            if isinstance(tc_in, list):
+                return any(has_gen(v) for v in tc_in)
+            return False
+
         # Build testCases for UI
         test_cases = []
+        filtered_tests = []
         for idx, tc in enumerate(manifest.get("tests", [])):
             in_val = tc.get("in", {})
+            if has_gen(in_val):
+                continue # Skip test cases with generators for UI and fixed tests
             out_val = tc.get("out")
             
             test_cases.append({
                 "input": format_input_case(in_val),
                 "output": json.dumps(out_val) if out_val is not None else ""
             })
+            filtered_tests.append(tc)
+        
+        manifest["tests"] = filtered_tests
             
         # Parse constraints from description if possible
         constraints = []

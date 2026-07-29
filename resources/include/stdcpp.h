@@ -12,5 +12,14 @@
 #include <iomanip>
 #include <sstream>
 #include <nlohmann/json.hpp>
+#include <unordered_map>
+#include <unordered_set>
+#include <set>
+#include <algorithm>
+#include <numeric>
+#include <cstring>
+#include <cstdint>
+#include <memory>
+#include <stack>
 
 #endif // STDCPP_H

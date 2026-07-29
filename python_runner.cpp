@@ -64,9 +64,17 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
 #endif
 
     QStringList args;
-    args << "run" << "--volume" << ".:/" << "python/python" << "--" << "user_code.py";
+    QString pkgPath = QDir::cleanPath(basePath + "/../tools/wasmer/packages/python");
+    args << "run" << "--mapdir" << "/src:." << pkgPath << "--" << "/src/user_code.py";
     
+    qDebug() << "PythonRunner: starting wasmer... args:" << args;
     runProc.start(wasmerExe, args);
+    if (!runProc.waitForStarted(2000)) {
+        result.error = QStringLiteral("Failed to start engine: ") + runProc.errorString();
+        result.exitCode = -1;
+        qDebug() << "PythonRunner: Failed to start";
+        return result;
+    }
 
     if (!stdinInput.isEmpty()) {
         runProc.write(stdinInput.toUtf8());
@@ -76,14 +84,14 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     const int TIMEOUT_MS = 60000;
     QElapsedTimer timer;
     timer.start();
-
+    qDebug() << "PythonRunner: waiting for finish...";
     while (!runProc.waitForFinished(100)) {
-        QCoreApplication::processEvents();
         if (abort && *abort) {
             runProc.kill();
             result.error    = QStringLiteral("Execution stopped by user");
             result.exitCode = -1;
             result.timedOut = false;
+            qDebug() << "PythonRunner: aborted";
             return result;
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
@@ -91,12 +99,14 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
             result.error    = QStringLiteral("Time limit exceeded (60 s)");
             result.exitCode = -1;
             result.timedOut = true;
+            qDebug() << "PythonRunner: timed out";
             return result;
         }
     }
-
+    qDebug() << "PythonRunner: finished. exitCode:" << runProc.exitCode();
     result.output   = QString::fromLocal8Bit(runProc.readAllStandardOutput());
     result.error    = QString::fromLocal8Bit(runProc.readAllStandardError());
     result.exitCode = runProc.exitCode();
+    qDebug() << "PythonRunner: returning result";
     return result;
 }
