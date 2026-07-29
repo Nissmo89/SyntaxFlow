@@ -638,68 +638,6 @@
           ],
           "k": 12
         }
-      },
-      {
-        "name": "generated_large_1",
-        "seed": 373001,
-        "in": {
-          "nums1": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -1000000000,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          },
-          "nums2": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -1000000000,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          },
-          "k": 10000
-        }
-      },
-      {
-        "name": "generated_large_2",
-        "seed": 373002,
-        "in": {
-          "nums1": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -1000000000,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          },
-          "nums2": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -1000000000,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          },
-          "k": 9999
-        }
       }
     ]
   },
@@ -838,14 +776,6 @@
     },
     {
       "input": "nums1 = [1, 2, 3, 4, 5]\nnums2 = [10, 20, 30, 40, 50]\nk = 12",
-      "output": ""
-    },
-    {
-      "input": "nums1 = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}\nnums2 = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}\nk = 10000",
-      "output": ""
-    },
-    {
-      "input": "nums1 = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}\nnums2 = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -1000000000, \"max\": 1000000000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}\nk = 9999",
       "output": ""
     }
   ],

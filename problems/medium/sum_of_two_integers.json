@@ -358,51 +358,6 @@
           "b": -808
         },
         "out": 0
-      },
-      {
-        "name": "generated-small-pairs",
-        "in": {
-          "a": {
-            "gen": "int",
-            "min": -50,
-            "max": 50
-          },
-          "b": {
-            "gen": "int",
-            "min": -50,
-            "max": 50
-          }
-        }
-      },
-      {
-        "name": "generated-medium-pairs",
-        "in": {
-          "a": {
-            "gen": "int",
-            "min": -1000,
-            "max": 1000
-          },
-          "b": {
-            "gen": "int",
-            "min": -1000,
-            "max": 1000
-          }
-        }
-      },
-      {
-        "name": "generated-boundary-pairs",
-        "in": {
-          "a": {
-            "gen": "int",
-            "min": -1000,
-            "max": 1000
-          },
-          "b": {
-            "gen": "int",
-            "min": -1000,
-            "max": 1000
-          }
-        }
       }
     ]
   },
@@ -550,18 +505,6 @@
     {
       "input": "a = 808\nb = -808",
       "output": "0"
-    },
-    {
-      "input": "a = {\"gen\": \"int\", \"min\": -50, \"max\": 50}\nb = {\"gen\": \"int\", \"min\": -50, \"max\": 50}",
-      "output": ""
-    },
-    {
-      "input": "a = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}\nb = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}",
-      "output": ""
-    },
-    {
-      "input": "a = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}\nb = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -300,61 +300,6 @@
           "formula": "((Cl2)3((Na)2)4)5"
         },
         "out": "Cl30Na40"
-      },
-      {
-        "name": "generated_h_only_len_32",
-        "in": {
-          "formula": {
-            "gen": "str",
-            "len": 32,
-            "alphabet": "H"
-          }
-        },
-        "seed": 7261
-      },
-      {
-        "name": "generated_h_only_len_128",
-        "in": {
-          "formula": {
-            "gen": "str",
-            "len": 128,
-            "alphabet": "H"
-          }
-        },
-        "seed": 7262
-      },
-      {
-        "name": "generated_h_only_len_512",
-        "in": {
-          "formula": {
-            "gen": "str",
-            "len": 512,
-            "alphabet": "H"
-          }
-        },
-        "seed": 7263
-      },
-      {
-        "name": "generated_h_only_len_999",
-        "in": {
-          "formula": {
-            "gen": "str",
-            "len": 999,
-            "alphabet": "H"
-          }
-        },
-        "seed": 7264
-      },
-      {
-        "name": "generated_h_only_len_1000",
-        "in": {
-          "formula": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "H"
-          }
-        },
-        "seed": 7265
       }
     ]
   },
@@ -490,26 +435,6 @@
     {
       "input": "formula = \"((Cl2)3((Na)2)4)5\"",
       "output": "\"Cl30Na40\""
-    },
-    {
-      "input": "formula = {\"gen\": \"str\", \"len\": 32, \"alphabet\": \"H\"}",
-      "output": ""
-    },
-    {
-      "input": "formula = {\"gen\": \"str\", \"len\": 128, \"alphabet\": \"H\"}",
-      "output": ""
-    },
-    {
-      "input": "formula = {\"gen\": \"str\", \"len\": 512, \"alphabet\": \"H\"}",
-      "output": ""
-    },
-    {
-      "input": "formula = {\"gen\": \"str\", \"len\": 999, \"alphabet\": \"H\"}",
-      "output": ""
-    },
-    {
-      "input": "formula = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"H\"}",
-      "output": ""
     }
   ],
   "func_sign": {

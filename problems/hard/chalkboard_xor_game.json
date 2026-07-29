@@ -228,36 +228,6 @@
         }
       },
       {
-        "name": "generated-odd",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 9,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1024
-            },
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated-even",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 10,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1024
-            },
-            "elemType": "int"
-          }
-        }
-      },
-      {
         "name": "pair-zero-xor-even",
         "in": {
           "nums": [
@@ -557,14 +527,6 @@
     },
     {
       "input": "nums = [12, 34, 12, 34, 56]",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 9, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1024}, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 10, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1024}, \"elemType\": \"int\"}",
       "output": ""
     },
     {

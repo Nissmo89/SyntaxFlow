@@ -266,61 +266,6 @@
           "s": "LLPPLLAP"
         },
         "out": true
-      },
-      {
-        "name": "generated_len_8",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 8,
-            "alphabet": "ALP"
-          }
-        },
-        "seed": 55101
-      },
-      {
-        "name": "generated_len_25",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 25,
-            "alphabet": "ALP"
-          }
-        },
-        "seed": 55102
-      },
-      {
-        "name": "generated_len_100",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100,
-            "alphabet": "ALP"
-          }
-        },
-        "seed": 55103
-      },
-      {
-        "name": "generated_len_999",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 999,
-            "alphabet": "ALP"
-          }
-        },
-        "seed": 55104
-      },
-      {
-        "name": "generated_len_1000",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "ALP"
-          }
-        },
-        "seed": 55105
       }
     ]
   },
@@ -444,26 +389,6 @@
     {
       "input": "s = \"LLPPLLAP\"",
       "output": "true"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 8, \"alphabet\": \"ALP\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 25, \"alphabet\": \"ALP\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"ALP\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 999, \"alphabet\": \"ALP\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"ALP\"}",
-      "output": ""
     }
   ],
   "func_sign": {

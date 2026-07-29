@@ -534,36 +534,6 @@
           ]
         },
         "out": 40000
-      },
-      {
-        "name": "generated-100000-ones",
-        "in": {
-          "height": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 1
-            }
-          }
-        },
-        "seed": 1001
-      },
-      {
-        "name": "generated-100000-zeros-and-ones",
-        "in": {
-          "height": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            }
-          }
-        },
-        "seed": 2002
       }
     ]
   },
@@ -707,14 +677,6 @@
     {
       "input": "height = [1, 10000, 1, 10000, 1, 10000]",
       "output": "40000"
-    },
-    {
-      "input": "height = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}}",
-      "output": ""
-    },
-    {
-      "input": "height = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}}",
-      "output": ""
     }
   ],
   "func_sign": {

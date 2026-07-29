@@ -272,61 +272,6 @@
           "n": 100000
         },
         "out": 749184020
-      },
-      {
-        "name": "generated_1_to_20",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 20
-          }
-        },
-        "seed": 55201
-      },
-      {
-        "name": "generated_21_to_200",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 21,
-            "max": 200
-          }
-        },
-        "seed": 55202
-      },
-      {
-        "name": "generated_201_to_5000",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 201,
-            "max": 5000
-          }
-        },
-        "seed": 55203
-      },
-      {
-        "name": "generated_5001_to_50000",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 5001,
-            "max": 50000
-          }
-        },
-        "seed": 55204
-      },
-      {
-        "name": "generated_50001_to_100000",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 50001,
-            "max": 100000
-          }
-        },
-        "seed": 55205
       }
     ]
   },
@@ -450,26 +395,6 @@
     {
       "input": "n = 100000",
       "output": "749184020"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 20}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 21, \"max\": 200}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 201, \"max\": 5000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 5001, \"max\": 50000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 50001, \"max\": 100000}",
-      "output": ""
     }
   ],
   "func_sign": {

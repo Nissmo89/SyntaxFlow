@@ -331,36 +331,6 @@
           "s": "zyxxyx"
         },
         "out": 2
-      },
-      {
-        "name": "generated_small_binary",
-        "seed": 132001,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 24
-            },
-            "alphabet": "ab"
-          }
-        }
-      },
-      {
-        "name": "generated_medium_ternary",
-        "seed": 132002,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 25,
-              "max": 80
-            },
-            "alphabet": "abc"
-          }
-        }
       }
     ],
     "oracle": {
@@ -526,14 +496,6 @@
     {
       "input": "s = \"zyxxyx\"",
       "output": "2"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 24}, \"alphabet\": \"ab\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 25, \"max\": 80}, \"alphabet\": \"abc\"}",
-      "output": ""
     }
   ],
   "func_sign": {

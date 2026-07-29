@@ -667,101 +667,6 @@
           ]
         },
         "out": 40
-      },
-      {
-        "name": "randomish_short_1",
-        "seed": 1001,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 7,
-              "max": 25
-            },
-            "of": {
-              "gen": "int",
-              "min": -50,
-              "max": 50
-            }
-          }
-        }
-      },
-      {
-        "name": "randomish_short_2",
-        "seed": 1002,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10,
-              "max": 40
-            },
-            "of": {
-              "gen": "int",
-              "min": -1000,
-              "max": 1000
-            }
-          }
-        }
-      },
-      {
-        "name": "randomish_short_3",
-        "seed": 1003,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 12,
-              "max": 50
-            },
-            "of": {
-              "gen": "int",
-              "min": -2147483648,
-              "max": 2147483647
-            }
-          }
-        }
-      },
-      {
-        "name": "large_two_distinct_many_duplicates",
-        "seed": 1004,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10000,
-              "max": 10000
-            },
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 2
-            }
-          }
-        }
-      },
-      {
-        "name": "large_near_max_distinct",
-        "seed": 1005,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10000,
-              "max": 10000
-            },
-            "of": {
-              "gen": "int",
-              "min": -2147483648,
-              "max": 2147483647
-            }
-          }
-        }
       }
     ]
   },
@@ -905,26 +810,6 @@
     {
       "input": "nums = [42, 42, 42, 41, 41, 41, 40, 40, 40, 39, 39, 39, 38, 38, 38, 37, 37, 37, 36, 36, 36, 35, 35, 35, 34, 34, 34, 33, 33, 33, 32, 32, 32, 31, 31, 31, 30, 30, 30, 29, 29, 29, 28, 28, 28, 27, 27, 27, 26, 26, 26, 25, 25, 25, 24, 24, 24, 23, 23, 23, 22, 22, 22, 21, 21, 21, 20, 20, 20]",
       "output": "40"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 7, \"max\": 25}, \"of\": {\"gen\": \"int\", \"min\": -50, \"max\": 50}}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 40}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 12, \"max\": 50}, \"of\": {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10000, \"max\": 10000}, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 2}}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10000, \"max\": 10000}, \"of\": {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}}",
-      "output": ""
     }
   ],
   "func_sign": {

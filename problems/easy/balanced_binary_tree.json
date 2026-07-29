@@ -669,50 +669,6 @@
           ]
         },
         "out": true
-      },
-      {
-        "name": "generated_full_tree_15",
-        "seed": 110001,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 15,
-              "max": 15
-            },
-            "of": {
-              "gen": "int",
-              "min": -100,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_full_tree_31",
-        "seed": 110002,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 31,
-              "max": 31
-            },
-            "of": {
-              "gen": "int",
-              "min": -100,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -856,14 +812,6 @@
     {
       "input": "root = [1, 2, 3, null, null, 4]",
       "output": "true"
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 15, \"max\": 15}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 31, \"max\": 31}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

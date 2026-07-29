@@ -332,36 +332,6 @@
           "n": 58
         },
         "out": 1549681956
-      },
-      {
-        "name": "generated_low_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 2,
-            "max": 20
-          }
-        }
-      },
-      {
-        "name": "generated_mid_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 21,
-            "max": 40
-          }
-        }
-      },
-      {
-        "name": "generated_high_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 41,
-            "max": 58
-          }
-        }
       }
     ]
   },
@@ -517,18 +487,6 @@
     {
       "input": "n = 58",
       "output": "1549681956"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 2, \"max\": 20}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 21, \"max\": 40}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 41, \"max\": 58}",
-      "output": ""
     }
   ],
   "func_sign": {

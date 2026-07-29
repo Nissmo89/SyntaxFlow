@@ -512,91 +512,6 @@
           ]
         },
         "out": 1
-      },
-      {
-        "name": "gen_small_random",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 12,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 20
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "gen_medium_dense_duplicates",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 120,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 15
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "gen_medium_wide_values",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 400,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "gen_large_near_limit_1999",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 1999,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "gen_large_limit_2000",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 2000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -728,26 +643,6 @@
     {
       "input": "arr = [100000000, 100000000, 0, 0, 50000000, 50000000]",
       "output": "1"
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 12, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 20}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 120, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 15}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 400, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 1999, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 2000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

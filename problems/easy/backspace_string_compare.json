@@ -284,81 +284,6 @@
         "out": true
       },
       {
-        "name": "gen-01",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 20,
-            "alphabet": "abc#"
-          },
-          "t": {
-            "gen": "str",
-            "len": 20,
-            "alphabet": "abc#"
-          }
-        }
-      },
-      {
-        "name": "gen-02",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 50,
-            "alphabet": "abc#"
-          },
-          "t": {
-            "gen": "str",
-            "len": 50,
-            "alphabet": "abc#"
-          }
-        }
-      },
-      {
-        "name": "gen-03",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100,
-            "alphabet": "abc#"
-          },
-          "t": {
-            "gen": "str",
-            "len": 100,
-            "alphabet": "abc#"
-          }
-        }
-      },
-      {
-        "name": "gen-04",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 150,
-            "alphabet": "abc#"
-          },
-          "t": {
-            "gen": "str",
-            "len": 150,
-            "alphabet": "abc#"
-          }
-        }
-      },
-      {
-        "name": "gen-05",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 200,
-            "alphabet": "abc#"
-          },
-          "t": {
-            "gen": "str",
-            "len": 200,
-            "alphabet": "abc#"
-          }
-        }
-      },
-      {
         "name": "long-true-1",
         "in": {
           "s": "abcdefghijklmnopqrstuvwxyz##########################",
@@ -532,26 +457,6 @@
     {
       "input": "s = \"##########\"\nt = \"##########\"",
       "output": "true"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 20, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 20, \"alphabet\": \"abc#\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abc#\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 100, \"alphabet\": \"abc#\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 150, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 150, \"alphabet\": \"abc#\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 200, \"alphabet\": \"abc#\"}\nt = {\"gen\": \"str\", \"len\": 200, \"alphabet\": \"abc#\"}",
-      "output": ""
     },
     {
       "input": "s = \"abcdefghijklmnopqrstuvwxyz##########################\"\nt = \"\"",

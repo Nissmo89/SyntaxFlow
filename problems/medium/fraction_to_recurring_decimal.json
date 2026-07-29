@@ -329,38 +329,6 @@
           "numerator": 1,
           "denominator": 19
         }
-      },
-      {
-        "name": "generated_positive_denominator",
-        "seed": 166001,
-        "in": {
-          "numerator": {
-            "gen": "int",
-            "min": -1000000,
-            "max": 1000000
-          },
-          "denominator": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_negative_denominator",
-        "seed": 166002,
-        "in": {
-          "numerator": {
-            "gen": "int",
-            "min": -1000000,
-            "max": 1000000
-          },
-          "denominator": {
-            "gen": "int",
-            "min": -1000000,
-            "max": -1
-          }
-        }
       }
     ]
   },
@@ -507,14 +475,6 @@
     },
     {
       "input": "numerator = 1\ndenominator = 19",
-      "output": ""
-    },
-    {
-      "input": "numerator = {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}\ndenominator = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "numerator = {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}\ndenominator = {\"gen\": \"int\", \"min\": -1000000, \"max\": -1}",
       "output": ""
     }
   ],

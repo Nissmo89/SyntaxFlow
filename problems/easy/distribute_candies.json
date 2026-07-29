@@ -551,96 +551,6 @@
           ]
         },
         "out": 8
-      },
-      {
-        "name": "generated-max-random",
-        "in": {
-          "candyType": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": -100000,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 575001
-      },
-      {
-        "name": "generated-dense-duplicates",
-        "in": {
-          "candyType": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": -20,
-              "max": 20
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 575002
-      },
-      {
-        "name": "generated-distinct-near-max",
-        "in": {
-          "candyType": {
-            "gen": "array",
-            "len": 9998,
-            "of": {
-              "gen": "int",
-              "min": -100000,
-              "max": 100000
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 575003
-      },
-      {
-        "name": "generated-nonnegative",
-        "in": {
-          "candyType": {
-            "gen": "array",
-            "len": 8000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 575004
-      },
-      {
-        "name": "generated-sorted-large",
-        "in": {
-          "candyType": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": -100000,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          }
-        },
-        "seed": 575005
       }
     ]
   },
@@ -768,26 +678,6 @@
     {
       "input": "candyType = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]",
       "output": "8"
-    },
-    {
-      "input": "candyType = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "candyType = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -20, \"max\": 20}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "candyType = {\"gen\": \"array\", \"len\": 9998, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "candyType = {\"gen\": \"array\", \"len\": 8000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "candyType = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

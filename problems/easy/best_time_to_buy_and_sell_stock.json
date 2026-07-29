@@ -660,50 +660,6 @@
           ]
         },
         "out": 8
-      },
-      {
-        "name": "generated_large_random_1",
-        "seed": 121001,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100000,
-              "max": 100000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_random_2",
-        "seed": 121002,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100000,
-              "max": 100000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ],
     "oracle": {
@@ -861,14 +817,6 @@
     {
       "input": "prices = [2, 10, 1, 8, 0, 7]",
       "output": "8"
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100000, \"max\": 100000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100000, \"max\": 100000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

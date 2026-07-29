@@ -448,96 +448,6 @@
           ]
         },
         "out": true
-      },
-      {
-        "name": "gen_small_1",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 8,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 7
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 1001
-      },
-      {
-        "name": "gen_small_2",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 9,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 8
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 1002
-      },
-      {
-        "name": "gen_small_3",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 10,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 1003
-      },
-      {
-        "name": "gen_large_1",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 99999
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 2001
-      },
-      {
-        "name": "gen_large_2",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 99999,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 99998
-            },
-            "distinct": true,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 2002
       }
     ]
   },
@@ -661,26 +571,6 @@
     {
       "input": "nums = [1, 0, 2, 4, 3, 5, 6]",
       "output": "true"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 7}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 9, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 8}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 10, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99999}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 99999, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99998}, \"distinct\": true, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

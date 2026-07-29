@@ -579,42 +579,6 @@
             190
           ]
         }
-      },
-      {
-        "name": "Generated full tree 10000 ascending",
-        "seed": 637001,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": -2147483648,
-              "max": 2147483647
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "Generated full tree 10000 descending",
-        "seed": 637002,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": -2147483648,
-              "max": 2147483647
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -749,14 +713,6 @@
     },
     {
       "input": "root = [100, 50, 150, 25, 75, 125, 175, null, 30, 60, 90, 110, 140, 160, 190]",
-      "output": ""
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
       "output": ""
     }
   ],

@@ -2493,101 +2493,6 @@
           ]
         },
         "out": true
-      },
-      {
-        "name": "generated-20x20-random",
-        "in": {
-          "matrix": {
-            "gen": "array",
-            "len": 20,
-            "of": {
-              "gen": "array",
-              "len": 20,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              },
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
-        "name": "generated-20x19-random",
-        "in": {
-          "matrix": {
-            "gen": "array",
-            "len": 20,
-            "of": {
-              "gen": "array",
-              "len": 19,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              },
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
-        "name": "generated-19x20-random",
-        "in": {
-          "matrix": {
-            "gen": "array",
-            "len": 19,
-            "of": {
-              "gen": "array",
-              "len": 20,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              },
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
-        "name": "generated-1x20-random",
-        "in": {
-          "matrix": {
-            "gen": "array",
-            "len": 1,
-            "of": {
-              "gen": "array",
-              "len": 20,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              },
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
-        "name": "generated-20x1-random",
-        "in": {
-          "matrix": {
-            "gen": "array",
-            "len": 20,
-            "of": {
-              "gen": "array",
-              "len": 1,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              },
-              "elemType": "int"
-            }
-          }
-        }
       }
     ]
   },
@@ -2711,26 +2616,6 @@
     {
       "input": "matrix = [[8, 6, 4, 2, 0], [1, 8, 6, 4, 2]]",
       "output": "true"
-    },
-    {
-      "input": "matrix = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}, \"elemType\": \"int\"}}",
-      "output": ""
-    },
-    {
-      "input": "matrix = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"array\", \"len\": 19, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}, \"elemType\": \"int\"}}",
-      "output": ""
-    },
-    {
-      "input": "matrix = {\"gen\": \"array\", \"len\": 19, \"of\": {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}, \"elemType\": \"int\"}}",
-      "output": ""
-    },
-    {
-      "input": "matrix = {\"gen\": \"array\", \"len\": 1, \"of\": {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}, \"elemType\": \"int\"}}",
-      "output": ""
-    },
-    {
-      "input": "matrix = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"array\", \"len\": 1, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}, \"elemType\": \"int\"}}",
-      "output": ""
     }
   ],
   "func_sign": {

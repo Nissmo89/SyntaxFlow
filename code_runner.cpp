@@ -70,8 +70,8 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
     
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
         runPythonTestsBatch(code, m_currentManifest, -1);
-    } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
-        runCppTestsBatch(code, m_currentManifest, -1);
+    } else if ((languageId == "cpp" || languageId == "c++" || languageId == "c") && !m_currentManifest.isEmpty()) {
+        runCppTestsBatch(code, m_currentManifest, -1, languageId);
     } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
         runJavascriptTestsBatch(code, m_currentManifest, -1);
     } else {
@@ -137,8 +137,8 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
 
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
         runPythonTestsBatch(code, m_currentManifest, testIndex);
-    } else if ((languageId == "cpp" || languageId == "c++") && !m_currentManifest.isEmpty()) {
-        runCppTestsBatch(code, m_currentManifest, testIndex);
+    } else if ((languageId == "cpp" || languageId == "c++" || languageId == "c") && !m_currentManifest.isEmpty()) {
+        runCppTestsBatch(code, m_currentManifest, testIndex, languageId);
     } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
         runJavascriptTestsBatch(code, m_currentManifest, testIndex);
     } else {
@@ -345,14 +345,13 @@ void CodeRunner::runPythonTestsBatch(const QString &code, const QJsonObject &man
     QJsonDocument manifestDoc(runManifest);
     QString manifestJson = QString::fromUtf8(manifestDoc.toJson(QJsonDocument::Compact));
     
-    QString harnessTemplate = QString::fromUtf8(R"python(
+    QString harnessTemplate = R"python(
 import sys
 import json
 import time
 import io
 import traceback
 from typing import List, Optional, Any
-from dataclasses import is_dataclass, asdict
 
 # --- UTILITIES ---
 class TreeNode:
@@ -421,7 +420,7 @@ def to_json(obj: Any) -> str:
     seen = set()
     return _encode(obj, seen)
 
-def _encode(obj: Any, seen: set[int]) -> str:
+def _encode(obj: Any, seen: set) -> str:
     if obj is None:
         return "null"
     if obj is True:
@@ -456,8 +455,6 @@ def _encode(obj: Any, seen: set[int]) -> str:
             return "{" + ",".join(items) + "}"
         if isinstance(obj, (list, tuple, set, frozenset)):
             return "[" + ",".join(_encode(x, seen) for x in obj) + "]"
-        if is_dataclass(obj):
-            return _encode(asdict(obj), seen)
         if hasattr(obj, "__dict__"):
             d = {}
             for k, v in obj.__dict__.items():
@@ -619,7 +616,7 @@ def run_all_tests():
     print(json.dumps(results))
     print("SF_JSON_SUMMARY_END")
 run_all_tests()
-)python");
+)python";
 
     QString escapedManifest = manifestJson;
     escapedManifest.replace(QLatin1String("\\"), QLatin1String("\\\\"));
@@ -629,6 +626,12 @@ run_all_tests()
     QString fullExecutionCode = harnessTemplate;
     fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", QLatin1String("\"") + escapedManifest + QLatin1String("\""));
     fullExecutionCode.replace("_SF_USER_CODE_HERE_", code);
+    
+    QFile dumpFile("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_python.py");
+    if (dumpFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        dumpFile.write(fullExecutionCode.toUtf8());
+        dumpFile.close();
+    }
         
     EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested);
     
@@ -679,7 +682,7 @@ run_all_tests()
     }
 }
 
-void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex) {
+void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId) {
     QJsonObject runManifest = manifest;
     if (singleTestIndex >= 0) {
         QJsonArray allTests = manifest["tests"].toArray();
@@ -693,6 +696,10 @@ void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manife
     QJsonObject entry = manifest["entry"].toObject();
     QJsonObject params = entry["params"].toObject();
     QString cppCall = entry["call"].toObject()["cpp"].toString();
+    if (languageId == "c") {
+        cppCall.remove("Solution().");
+        cppCall.remove("Solution::");
+    }
     QString judgeType = manifest["judge"].toObject()["type"].toString("exact");
     
     QString mainCpp = R"(
@@ -1000,7 +1007,7 @@ inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
     
     mainCpp += R"(
 int main() {
-    ifstream _TEST_JSON_FILE_("test.json");
+    ifstream _TEST_JSON_FILE_("/src/test.json");
     if (!_TEST_JSON_FILE_.is_open()) { return 1; }
     string _TEST_JSON_STR_((istreambuf_iterator<char>(_TEST_JSON_FILE_)), istreambuf_iterator<char>());
     _JSON_ _TEST_JSON_ = _JSON_::parse(_TEST_JSON_STR_, nullptr, false);
@@ -1015,23 +1022,58 @@ int main() {
 
     for (auto it = params.begin(); it != params.end(); ++it) {
         QString pname = it.key();
-        QString ptype = it.value().toObject()["type"].toString();
+        QJsonObject pObj = it.value().toObject();
+        QString ptype = pObj["type"].toString();
+        if (ptype == "array") {
+            QString itemType = pObj["items"].toObject()["type"].toString();
+            if (itemType == "array") {
+                QString nestedType = pObj["items"].toObject()["items"].toObject()["type"].toString();
+                if (nestedType == "int") ptype = "vector<vector<int>>";
+                else if (nestedType == "string") ptype = "vector<vector<string>>";
+                else if (nestedType == "double") ptype = "vector<vector<double>>";
+                else if (nestedType == "bool") ptype = "vector<vector<bool>>";
+                else if (nestedType == "char") ptype = "vector<vector<char>>";
+            } else {
+                if (itemType == "int") ptype = "vector<int>";
+                else if (itemType == "string") ptype = "vector<string>";
+                else if (itemType == "double") ptype = "vector<double>";
+                else if (itemType == "bool") ptype = "vector<bool>";
+                else if (itemType == "char") ptype = "vector<char>";
+            }
+        }
+        
         if (ptype == "tree_node") {
-            mainCpp += "        TreeNode* _" + pname + " = toTreeNode(inputs[\"" + pname + "\"].get<vector<optional<int>>>());\n";
+            mainCpp += "        TreeNode* _" + pname + " = toTreeNode(jsonToOptionalIntArray(inputs[\"" + pname + "\"]));\n";
         } else if (ptype == "list_node") {
-            mainCpp += "        ListNode* _" + pname + " = toListNode(inputs[\"" + pname + "\"].get<vector<int>>());\n";
-        } else if (ptype == "int") {
+            mainCpp += "        ListNode* _" + pname + " = toListNode(jsonToIntArray(inputs[\"" + pname + "\"]));\n";
+        } else if (ptype == "int" || ptype == "integer") {
             mainCpp += "        int _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_number()) ? inputs[\"" + pname + "\"].get<int>() : 0;\n";
-        } else if (ptype == "double") {
+        } else if (ptype == "double" || ptype == "float") {
             mainCpp += "        double _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_number()) ? inputs[\"" + pname + "\"].get<double>() : 0.0;\n";
         } else if (ptype == "string") {
             mainCpp += "        string _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_string()) ? inputs[\"" + pname + "\"].get<string>() : \"\";\n";
-        } else if (ptype == "bool") {
+        } else if (ptype == "bool" || ptype == "boolean") {
             mainCpp += "        bool _" + pname + " = (inputs.contains(\"" + pname + "\") && inputs[\"" + pname + "\"].is_boolean()) ? inputs[\"" + pname + "\"].get<bool>() : false;\n";
         } else if (ptype == "vector<int>") {
             mainCpp += "        vector<int> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToIntArray(inputs[\"" + pname + "\"]) : vector<int>();\n";
         } else if (ptype == "vector<string>") {
-            mainCpp += "        vector<string> _" + pname + " = inputs.contains(\"" + pname + "\") ? inputs[\"" + pname + "\"].get<vector<string>>() : vector<string>();\n";
+            mainCpp += "        vector<string> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToStringArray(inputs[\"" + pname + "\"]) : vector<string>();\n";
+        } else if (ptype == "vector<double>") {
+            mainCpp += "        vector<double> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToDoubleArray(inputs[\"" + pname + "\"]) : vector<double>();\n";
+        } else if (ptype == "vector<char>") {
+            mainCpp += "        vector<char> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToCharArray(inputs[\"" + pname + "\"]) : vector<char>();\n";
+        } else if (ptype == "vector<bool>") {
+            mainCpp += "        vector<bool> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToBoolArray(inputs[\"" + pname + "\"]) : vector<bool>();\n";
+        } else if (ptype == "vector<vector<int>>") {
+            mainCpp += "        vector<vector<int>> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToIntMatrix(inputs[\"" + pname + "\"]) : vector<vector<int>>();\n";
+        } else if (ptype == "vector<vector<string>>") {
+            mainCpp += "        vector<vector<string>> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToStringMatrix(inputs[\"" + pname + "\"]) : vector<vector<string>>();\n";
+        } else if (ptype == "vector<vector<double>>") {
+            mainCpp += "        vector<vector<double>> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToDoubleMatrix(inputs[\"" + pname + "\"]) : vector<vector<double>>();\n";
+        } else if (ptype == "vector<vector<char>>") {
+            mainCpp += "        vector<vector<char>> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToCharMatrix(inputs[\"" + pname + "\"]) : vector<vector<char>>();\n";
+        } else if (ptype == "vector<vector<bool>>") {
+            mainCpp += "        vector<vector<bool>> _" + pname + " = inputs.contains(\"" + pname + "\") ? jsonToBoolMatrix(inputs[\"" + pname + "\"]) : vector<vector<bool>>();\n";
         }
     }
     
@@ -1065,6 +1107,12 @@ int main() {
 
     QString testJson = QString::fromUtf8(QJsonDocument(runManifest["tests"].toArray()).toJson(QJsonDocument::Compact));
     
+    QFile dumpFile("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_cpp.cpp");
+    if (dumpFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        dumpFile.write(mainCpp.toUtf8());
+        dumpFile.close();
+    }
+    
     QElapsedTimer timer;
     timer.start();
     EmbeddedRunner::Result r = m_wasmRunnerCpp->execute(mainCpp, "", &m_stopRequested, {{"test.json", testJson}});
@@ -1095,13 +1143,16 @@ int main() {
     
     QJsonArray results = doc.array();
     QJsonArray expectedResults = runManifest["tests"].toArray();
+    QJsonArray statuses = evaluateResultsWithPython(runManifest, results);
+    
     for (int i = 0; i < results.size(); ++i) {
         QJsonObject resObj = results[i].toObject();
-        QString actualStr = QString::fromUtf8(QJsonDocument(resObj["actual"].toArray()).toJson(QJsonDocument::Compact));
+        QString actualStr;
         if (resObj["actual"].isString()) actualStr = resObj["actual"].toString();
         else if (resObj["actual"].isDouble()) actualStr = QString::number(resObj["actual"].toDouble());
         else if (resObj["actual"].isBool()) actualStr = resObj["actual"].toBool() ? "true" : "false";
         else if (resObj["actual"].isNull()) actualStr = "null";
+        else if (resObj["actual"].isObject()) actualStr = QString::fromUtf8(QJsonDocument(resObj["actual"].toObject()).toJson(QJsonDocument::Compact));
         else actualStr = QString::fromUtf8(QJsonDocument(resObj["actual"].toArray()).toJson(QJsonDocument::Compact));
         
         QString expectedStr = "";
@@ -1113,7 +1164,7 @@ int main() {
             else expectedStr = QString::fromUtf8(QJsonDocument(resObj["expected"].toArray()).toJson(QJsonDocument::Compact));
         }
         
-        QString status = (actualStr == expectedStr) ? "Accepted" : "Wrong Answer";
+        QString status = (i < statuses.size()) ? statuses[i].toString() : "System Error";
         
         int targetIndex = (singleTestIndex >= 0) ? singleTestIndex : i;
         emit progress(i + 1, results.size());
@@ -1187,6 +1238,45 @@ function deserialize_val(val, val_type) {
     return val;
 }
 
+function from_list_node(node) {
+    let arr = [];
+    while (node !== null && node !== undefined) {
+        arr.push(node.val);
+        node = node.next;
+    }
+    return arr;
+}
+
+function from_tree_node(root) {
+    if (!root) return [];
+    let arr = [];
+    let queue = [root];
+    while (queue.length > 0) {
+        let node = queue.shift();
+        if (node !== null) {
+            arr.push(node.val);
+            queue.push(node.left);
+            queue.push(node.right);
+        } else {
+            arr.push(null);
+        }
+    }
+    while (arr.length > 0 && arr[arr.length - 1] === null) {
+        arr.pop();
+    }
+    return arr;
+}
+
+function serialize_val(val, val_type) {
+    if (val === null || val === undefined) return null;
+    if (val_type === 'list_node') return from_list_node(val);
+    if (val_type === 'tree_node') return from_tree_node(val);
+    return val;
+}
+
+const listNodeToArray = from_list_node;
+const treeNodeToArray = from_tree_node;
+
 // --- USER SOLUTION ---
 _SF_USER_CODE_HERE_
 
@@ -1216,8 +1306,8 @@ function run_all_tests() {
         stdout_cap += args.join(" ") + "\n";
     };
 
-    for (let i = 0; i < test_cases.length; i++) {
-        const tc = test_cases[i];
+    for (let _test_idx = 0; _test_idx < test_cases.length; _test_idx++) {
+        const tc = test_cases[_test_idx];
         stdout_cap = "";
         
         let actual_str = "";
@@ -1236,10 +1326,13 @@ function run_all_tests() {
             let res = eval(eval_expr);
             elapsed_ms = Date.now() - t0;
             
-            actual_str = res !== undefined ? JSON.stringify(res) : "";
+            const ret_type = (entry.return && entry.return.type) ? entry.return.type : 'any';
+            res = serialize_val(res, ret_type);
+            
+            actual_str = res !== undefined ? res : null;
             const exp_str = tc.out !== undefined ? JSON.stringify(tc.out) : "";
             
-            if (actual_str !== exp_str) {
+            if (res !== undefined && JSON.stringify(res) !== exp_str) {
                 status = "Wrong Answer";
             }
         } catch (e) {
@@ -1274,6 +1367,12 @@ run_all_tests();
     QString fullExecutionCode = harnessTemplate;
     fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", manifestJson);
     fullExecutionCode.replace("_SF_USER_CODE_HERE_", code);
+    
+    QFile dumpJs("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_js.js");
+    if (dumpJs.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        dumpJs.write(fullExecutionCode.toUtf8());
+        dumpJs.close();
+    }
         
     EmbeddedRunner::Result r = m_javascriptRunner->execute(fullExecutionCode, "", &m_stopRequested);
     
@@ -1302,13 +1401,28 @@ run_all_tests();
     }
     
     QJsonArray results = doc.array();
+    QJsonArray statuses = evaluateResultsWithPython(runManifest, results);
+    
     for (int i = 0; i < results.size(); ++i) {
         QJsonObject resObj = results[i].toObject();
         QString status = resObj["status"].toString();
-        QString actual = resObj["actual"].toString();
-        if (status == "Runtime Error") {
-            actual = OutputNormalizer::normalizeError(actual, "javascript", offset);
+        
+        if (status == "Wrong Answer" || status == "Accepted") {
+            status = (i < statuses.size()) ? statuses[i].toString() : "System Error";
         }
+        
+        QString actual;
+        if (resObj["actual"].isString()) actual = resObj["actual"].toString();
+        else if (resObj["actual"].isDouble()) actual = QString::number(resObj["actual"].toDouble());
+        else if (resObj["actual"].isBool()) actual = resObj["actual"].toBool() ? "true" : "false";
+        else if (resObj["actual"].isNull()) actual = "null";
+        else if (resObj["actual"].isObject()) actual = QString::fromUtf8(QJsonDocument(resObj["actual"].toObject()).toJson(QJsonDocument::Compact));
+        else actual = QString::fromUtf8(QJsonDocument(resObj["actual"].toArray()).toJson(QJsonDocument::Compact));
+        
+        if (resObj["status"].toString() == "Runtime Error") {
+            actual = OutputNormalizer::normalizeError(resObj["actual"].toString(), "javascript", offset);
+        }
+        
         QString expected = resObj["expected"].toString();
         qint64 elapsedMs = resObj["elapsedMs"].toInt();
         QString caseStdout = resObj["stdout"].toString();
@@ -1322,4 +1436,123 @@ run_all_tests();
         emit progress(i + 1, results.size());
         emit testResult(targetIndex, status, actual, expected, elapsedMs);
     }
+}
+
+QJsonArray CodeRunner::evaluateResultsWithPython(const QJsonObject &manifest, const QJsonArray &results) {
+    QJsonObject evalData;
+    evalData["manifest"] = manifest;
+    evalData["results"] = results;
+    
+    QString evalDataJson = QString::fromUtf8(QJsonDocument(evalData).toJson(QJsonDocument::Compact));
+    
+    QString escapedData = evalDataJson;
+    escapedData.replace(QLatin1String("\\"), QLatin1String("\\\\"));
+    escapedData.replace(QLatin1String("\""), QLatin1String("\\\""));
+    
+    QString evaluatorCode = QString::fromUtf8(R"python(
+import json
+import sys
+
+def compare_ignore_order(a, b):
+    if isinstance(a, list) and isinstance(b, list):
+        if len(a) != len(b): return False
+        b_copy = b[:]
+        for item in a:
+            found = False
+            for i, b_item in enumerate(b_copy):
+                if compare_ignore_order(item, b_item):
+                    b_copy.pop(i)
+                    found = True
+                    break
+            if not found: return False
+        return True
+    elif isinstance(a, dict) and isinstance(b, dict):
+        if len(a) != len(b): return False
+        for k, v in a.items():
+            if k not in b: return False
+            if not compare_ignore_order(v, b[k]): return False
+        return True
+    else:
+        return a == b
+
+def evaluate():
+    data_str = "_SF_DATA_JSON_HERE_"
+    data = json.loads(data_str)
+    
+    manifest = data.get('manifest', {})
+    results = data.get('results', [])
+    
+    judge_type = manifest.get('judge', {}).get('type', 'exact')
+    oracle = manifest.get('oracle', {}).get('python3', {})
+    oracle_code = oracle.get('checker', '')
+    oracle_call = oracle.get('call', '')
+    
+    if oracle_code:
+        exec(oracle_code, globals())
+        
+    statuses = []
+    for i, res in enumerate(results):
+        actual = res.get('actual')
+        tc = manifest.get('tests', [])[i]
+        exp = tc.get('out')
+        
+        status = "Accepted"
+        if exp is None or judge_type == 'custom':
+            if oracle_call:
+                local_vars = {}
+                for p_name, p_val in tc.get('in', {}).items():
+                    local_vars[p_name] = p_val
+                try:
+                    oracle_call_replaced = oracle_call.replace("{result}", "res")
+                    is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": actual})
+                    if not is_correct: status = "Wrong Answer"
+                except Exception as e:
+                    status = "System Error"
+            else:
+                if actual != exp: status = "Wrong Answer"
+        elif judge_type == 'unordered':
+            if not compare_ignore_order(actual, exp): status = "Wrong Answer"
+        else:
+            if json.dumps(actual, separators=(',', ':')) != json.dumps(exp, separators=(',', ':')):
+                status = "Wrong Answer"
+            
+        statuses.append(status)
+        
+    print("SF_EVAL_START")
+    print(json.dumps(statuses))
+    print("SF_EVAL_END")
+
+evaluate()
+)python");
+
+    evaluatorCode.replace("_SF_DATA_JSON_HERE_", escapedData);
+
+    QFile dumpFile("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_evaluator.py");
+    if (dumpFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        dumpFile.write(evaluatorCode.toUtf8());
+        dumpFile.close();
+    }
+
+    EmbeddedRunner::Result r = m_pythonRunner->execute(evaluatorCode, "", &m_stopRequested);
+    
+    if (r.exitCode == 0) {
+        int startIdx = r.output.indexOf("SF_EVAL_START");
+        int endIdx = r.output.indexOf("SF_EVAL_END");
+        if (startIdx != -1 && endIdx != -1) {
+            startIdx += QString("SF_EVAL_START").length();
+            QString jsonStr = r.output.mid(startIdx, endIdx - startIdx).trimmed();
+            QJsonParseError parseError;
+            QJsonDocument doc = QJsonDocument::fromJson(jsonStr.toUtf8(), &parseError);
+            if (parseError.error == QJsonParseError::NoError) {
+                return doc.array();
+            }
+        }
+    } else {
+        qDebug() << "Python evaluation failed!" << r.error << r.output;
+    }
+    
+    // Fallback if it fails
+    QJsonArray fallback;
+    for (int i = 0; i < results.size(); ++i) fallback.append("System Error");
+    return fallback;
 }

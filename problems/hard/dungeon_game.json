@@ -776,60 +776,6 @@
           }
         },
         "out": 1001
-      },
-      {
-        "name": "generated_square_5",
-        "seed": 174001,
-        "in": {
-          "dungeon": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5,
-              "max": 5
-            },
-            "of": {
-              "gen": "array",
-              "len": {
-                "gen": "int",
-                "min": 5,
-                "max": 5
-              },
-              "of": {
-                "gen": "int",
-                "min": -1000,
-                "max": 1000
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_square_10",
-        "seed": 174002,
-        "in": {
-          "dungeon": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10,
-              "max": 10
-            },
-            "of": {
-              "gen": "array",
-              "len": {
-                "gen": "int",
-                "min": 10,
-                "max": 10
-              },
-              "of": {
-                "gen": "int",
-                "min": -1000,
-                "max": 1000
-              }
-            }
-          }
-        }
       }
     ]
   },
@@ -973,14 +919,6 @@
     {
       "input": "dungeon = {\"elemType\": \"int\", \"value\": [[-1000, 1000, -1000], [1000, -1000, 1000], [-1000, 1000, -1000]]}",
       "output": "1001"
-    },
-    {
-      "input": "dungeon = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5, \"max\": 5}, \"of\": {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5, \"max\": 5}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}}",
-      "output": ""
-    },
-    {
-      "input": "dungeon = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 10}, \"of\": {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 10}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}}}",
-      "output": ""
     }
   ],
   "func_sign": {

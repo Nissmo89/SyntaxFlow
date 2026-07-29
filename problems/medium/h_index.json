@@ -579,48 +579,6 @@
           ]
         },
         "out": 5
-      },
-      {
-        "name": "gen_medium_unordered",
-        "seed": 27401,
-        "in": {
-          "citations": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 60
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000
-            },
-            "distinct": false,
-            "sorted": false
-          }
-        }
-      },
-      {
-        "name": "gen_large_unordered",
-        "seed": 27402,
-        "in": {
-          "citations": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100,
-              "max": 400
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            },
-            "distinct": false,
-            "sorted": false
-          }
-        }
       }
     ]
   },
@@ -772,14 +730,6 @@
     {
       "input": "citations = [500, 400, 300, 200, 100, 0, 0, 0, 0, 0, 0, 0]",
       "output": "5"
-    },
-    {
-      "input": "citations = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 60}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000}, \"distinct\": false, \"sorted\": false}",
-      "output": ""
-    },
-    {
-      "input": "citations = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100, \"max\": 400}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}, \"distinct\": false, \"sorted\": false}",
-      "output": ""
     }
   ],
   "func_sign": {

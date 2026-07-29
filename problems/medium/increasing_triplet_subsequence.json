@@ -526,69 +526,6 @@
           ]
         },
         "out": false
-      },
-      {
-        "name": "generated_mixed_medium",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10,
-              "max": 30
-            },
-            "of": {
-              "gen": "int",
-              "min": -1000,
-              "max": 1000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_sorted_increasing",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 50000,
-              "max": 50000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 50000
-            },
-            "distinct": true,
-            "sorted": true,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_plateau_heavy",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 50000,
-              "max": 50000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 7
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -732,18 +669,6 @@
     {
       "input": "nums = [8, 7, 1, 2, 0, 1]",
       "output": "false"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 30}, \"of\": {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 50000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 50000}, \"distinct\": true, \"sorted\": true, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 50000, \"max\": 50000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 7}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

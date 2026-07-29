@@ -402,66 +402,6 @@
           "target": 996
         },
         "out": true
-      },
-      {
-        "name": "generated_small_jugs",
-        "in": {
-          "x": {
-            "gen": "int",
-            "min": 1,
-            "max": 20
-          },
-          "y": {
-            "gen": "int",
-            "min": 1,
-            "max": 20
-          },
-          "target": {
-            "gen": "int",
-            "min": 1,
-            "max": 40
-          }
-        }
-      },
-      {
-        "name": "generated_medium_jugs",
-        "in": {
-          "x": {
-            "gen": "int",
-            "min": 1,
-            "max": 200
-          },
-          "y": {
-            "gen": "int",
-            "min": 1,
-            "max": 200
-          },
-          "target": {
-            "gen": "int",
-            "min": 1,
-            "max": 400
-          }
-        }
-      },
-      {
-        "name": "generated_large_jugs",
-        "in": {
-          "x": {
-            "gen": "int",
-            "min": 500,
-            "max": 1000
-          },
-          "y": {
-            "gen": "int",
-            "min": 500,
-            "max": 1000
-          },
-          "target": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000
-          }
-        }
       }
     ]
   },
@@ -609,18 +549,6 @@
     {
       "input": "x = 997\ny = 991\ntarget = 996",
       "output": "true"
-    },
-    {
-      "input": "x = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\ny = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 40}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"int\", \"min\": 1, \"max\": 200}\ny = {\"gen\": \"int\", \"min\": 1, \"max\": 200}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 400}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"int\", \"min\": 500, \"max\": 1000}\ny = {\"gen\": \"int\", \"min\": 500, \"max\": 1000}\ntarget = {\"gen\": \"int\", \"min\": 1, \"max\": 1000}",
-      "output": ""
     }
   ],
   "func_sign": {

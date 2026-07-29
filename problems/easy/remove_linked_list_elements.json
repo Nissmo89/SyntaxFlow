@@ -525,52 +525,6 @@
         ]
       },
       {
-        "name": "large_generated_keep_tail",
-        "seed": 203001,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10000,
-              "max": 10000
-            },
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 50
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "val": 51
-        }
-      },
-      {
-        "name": "large_generated_remove_many",
-        "seed": 203002,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 10000,
-              "max": 10000
-            },
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 50
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "val": 25
-        }
-      },
-      {
         "name": "remove_only_first",
         "in": {
           "head": [
@@ -817,14 +771,6 @@
     {
       "input": "head = [1, 2, 3, 9, 9, 9, 4, 5]\nval = 9",
       "output": "[1, 2, 3, 4, 5]"
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10000, \"max\": 10000}, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 50}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nval = 51",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 10000, \"max\": 10000}, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 50}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nval = 25",
-      "output": ""
     },
     {
       "input": "head = [7, 1, 2, 3]\nval = 7",

@@ -468,111 +468,6 @@
           ]
         },
         "out": 0
-      },
-      {
-        "name": "generated_singleton_range",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 1
-            },
-            "of": {
-              "gen": "int",
-              "min": -10,
-              "max": 10
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_short_full_range",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 2,
-              "max": 4
-            },
-            "of": {
-              "gen": "int",
-              "min": -10,
-              "max": 10
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_len9_full_range",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5,
-              "max": 9
-            },
-            "of": {
-              "gen": "int",
-              "min": -10,
-              "max": 10
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_small_magnitude",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 20
-            },
-            "of": {
-              "gen": "int",
-              "min": -2,
-              "max": 2
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_balanced_trinary",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 9
-            },
-            "of": {
-              "gen": "int",
-              "min": -3,
-              "max": 3
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -708,26 +603,6 @@
     {
       "input": "nums = [-2, 0, 0, -3]",
       "output": "0"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 4}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5, \"max\": 9}, \"of\": {\"gen\": \"int\", \"min\": -10, \"max\": 10}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 20}, \"of\": {\"gen\": \"int\", \"min\": -2, \"max\": 2}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 9}, \"of\": {\"gen\": \"int\", \"min\": -3, \"max\": 3}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

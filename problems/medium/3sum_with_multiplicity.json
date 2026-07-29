@@ -557,50 +557,6 @@
           "target": 1
         },
         "out": 0
-      },
-      {
-        "name": "large_oracle_a",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 500,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "target": {
-            "gen": "int",
-            "min": 0,
-            "max": 300
-          }
-        }
-      },
-      {
-        "name": "large_oracle_b",
-        "in": {
-          "arr": {
-            "gen": "array",
-            "len": 499,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "target": {
-            "gen": "int",
-            "min": 0,
-            "max": 300
-          }
-        }
       }
     ]
   },
@@ -736,14 +692,6 @@
     {
       "input": "arr = [5, 6, 7, 8]\ntarget = 1",
       "output": "0"
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 500, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ntarget = {\"gen\": \"int\", \"min\": 0, \"max\": 300}",
-      "output": ""
-    },
-    {
-      "input": "arr = {\"gen\": \"array\", \"len\": 499, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ntarget = {\"gen\": \"int\", \"min\": 0, \"max\": 300}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -6,9 +6,9 @@
 #include <atomic>
 #include <thread>
 #include "language_registry.h"
-#include "runners/python_runner.h"
-#include "runners/cpp_runner.h"
-#include "runners/javascript_runner.h"
+#include "python_runner.h"
+#include "wasm_runner.h"
+#include "javascript_runner.h"
 #include "driver_generator.h"
 
 class LanguageRegistry;
@@ -33,7 +33,7 @@ public:
                         int index, int offset = 0);
     
     void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
-    void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
+    void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId);
     void runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
 
     void runFreeCode(const QString &code, const QString &languageId);
@@ -54,9 +54,11 @@ signals:
 private:
     LanguageRegistry *m_registry;
     std::atomic<bool> m_running{false};
-    std::atomic<bool> m_stopRequested{false};
+    volatile bool m_stopRequested{false};
 
     QJsonObject m_currentManifest;
+    
+    QJsonArray evaluateResultsWithPython(const QJsonObject &manifest, const QJsonArray &results);
 
     bool loadTestCases(const QString &problemId, QJsonArray &tests, MethodSchema &schema);
 

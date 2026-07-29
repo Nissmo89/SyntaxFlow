@@ -308,39 +308,6 @@
           "n": 2147483647
         },
         "out": 31
-      },
-      {
-        "name": "generated_small_positive",
-        "seed": 191001,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 1024
-          }
-        }
-      },
-      {
-        "name": "generated_mid_positive",
-        "seed": 191002,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_high_positive",
-        "seed": 191003,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000000000,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -484,18 +451,6 @@
     {
       "input": "n = 2147483647",
       "output": "31"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 1024}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000000000, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

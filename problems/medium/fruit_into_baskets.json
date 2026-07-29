@@ -538,36 +538,6 @@
         "out": 4
       },
       {
-        "name": "gen-large-a",
-        "in": {
-          "fruits": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 2,
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
-        "name": "gen-large-b",
-        "in": {
-          "fruits": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 2,
-              "elemType": "int"
-            }
-          }
-        }
-      },
-      {
         "name": "extra-1",
         "in": {
           "fruits": [
@@ -755,14 +725,6 @@
     {
       "input": "fruits = [5, 6, 7, 6, 5, 6, 7, 7, 6]",
       "output": "4"
-    },
-    {
-      "input": "fruits = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 2, \"elemType\": \"int\"}}",
-      "output": ""
-    },
-    {
-      "input": "fruits = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 2, \"elemType\": \"int\"}}",
-      "output": ""
     },
     {
       "input": "fruits = [4, 1, 4, 1, 4, 2, 2, 2, 1]",

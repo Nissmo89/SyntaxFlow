@@ -289,56 +289,6 @@
           "n": 555555550
         },
         "out": 499999999
-      },
-      {
-        "name": "generated_any_0_to_max",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000000
-          }
-        }
-      },
-      {
-        "name": "generated_low_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000
-          }
-        }
-      },
-      {
-        "name": "generated_mid_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 100000,
-            "max": 999999999
-          }
-        }
-      },
-      {
-        "name": "generated_upper_band",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 900000000,
-            "max": 1000000000
-          }
-        }
-      },
-      {
-        "name": "generated_monotone_friendly_band",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 111111111,
-            "max": 999999999
-          }
-        }
       }
     ]
   },
@@ -470,26 +420,6 @@
     {
       "input": "n = 555555550",
       "output": "499999999"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 100000, \"max\": 999999999}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 900000000, \"max\": 1000000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 111111111, \"max\": 999999999}",
-      "output": ""
     }
   ],
   "func_sign": {

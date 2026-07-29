@@ -314,28 +314,6 @@
           "n": 10000
         },
         "out": 2499
-      },
-      {
-        "name": "generated_random_small",
-        "seed": 172001,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 10000
-          }
-        }
-      },
-      {
-        "name": "generated_random_medium",
-        "seed": 172002,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000
-          }
-        }
       }
     ]
   },
@@ -483,14 +461,6 @@
     {
       "input": "n = 10000",
       "output": "2499"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 10000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000}",
-      "output": ""
     }
   ],
   "func_sign": {

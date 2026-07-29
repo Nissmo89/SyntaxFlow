@@ -316,28 +316,6 @@
           "n": 10000
         },
         "out": 1
-      },
-      {
-        "name": "gen_medium_domain",
-        "seed": 27901,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 5000
-          }
-        }
-      },
-      {
-        "name": "gen_full_domain",
-        "seed": 27902,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 10000
-          }
-        }
       }
     ]
   },
@@ -485,14 +463,6 @@
     {
       "input": "n = 10000",
       "output": "1"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 5000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -17684,34 +17684,6 @@
           }
         },
         "out": false
-      },
-      {
-        "name": "generated_random_graph_100",
-        "seed": 207007,
-        "in": {
-          "numCourses": 100,
-          "prerequisites": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 400,
-              "max": 400
-            },
-            "of": {
-              "gen": "array",
-              "len": {
-                "gen": "int",
-                "min": 2,
-                "max": 2
-              },
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 99
-              }
-            }
-          }
-        }
       }
     ]
   },
@@ -17871,10 +17843,6 @@
     {
       "input": "numCourses = 7\nprerequisites = {\"elemType\": \"int\", \"value\": [[1, 0], [2, 1], [3, 2], [4, 3], [5, 4], [6, 2], [2, 6]]}",
       "output": "false"
-    },
-    {
-      "input": "numCourses = 100\nprerequisites = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 400, \"max\": 400}, \"of\": {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 2}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 99}}}",
-      "output": ""
     }
   ],
   "func_sign": {

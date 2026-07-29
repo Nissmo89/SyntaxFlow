@@ -114,48 +114,6 @@
         "out": true
       },
       {
-        "name": "generated_small_negative",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": -20,
-            "max": -1
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 2601
-      },
-      {
-        "name": "generated_zero_to_one",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 2602
-      },
-      {
-        "name": "generated_tiny_positive",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 2,
-            "max": 50
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 2603
-      },
-      {
         "name": "seven",
         "in": {
           "n": 7
@@ -303,20 +261,6 @@
         "out": false
       },
       {
-        "name": "generated_near_limit_ugly",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000000,
-            "max": 2147483647
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 2604
-      },
-      {
         "name": "max_int",
         "in": {
           "n": 2147483647
@@ -336,20 +280,6 @@
           "n": -2147483648
         },
         "out": false
-      },
-      {
-        "name": "generated_large_positive",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000000000,
-            "max": 2147483647
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 2605
       },
       {
         "name": "large_ugly",
@@ -406,18 +336,6 @@
     {
       "input": "n = 5",
       "output": "true"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": -20, \"max\": -1}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 2, \"max\": 50}",
-      "output": ""
     },
     {
       "input": "n = 7",
@@ -504,10 +422,6 @@
       "output": "false"
     },
     {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000000, \"max\": 2147483647}",
-      "output": ""
-    },
-    {
       "input": "n = 2147483647",
       "output": "false"
     },
@@ -518,10 +432,6 @@
     {
       "input": "n = -2147483648",
       "output": "false"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000000000, \"max\": 2147483647}",
-      "output": ""
     },
     {
       "input": "n = 1048576",

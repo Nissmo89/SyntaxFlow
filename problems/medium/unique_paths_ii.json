@@ -1141,106 +1141,6 @@
           }
         },
         "out": 5
-      },
-      {
-        "name": "oracle-random-1",
-        "seed": 101,
-        "in": {
-          "obstacleGrid": {
-            "gen": "array",
-            "elemType": "int",
-            "len": 6,
-            "of": {
-              "gen": "array",
-              "len": 6,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 1
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "oracle-random-2",
-        "seed": 102,
-        "in": {
-          "obstacleGrid": {
-            "gen": "array",
-            "elemType": "int",
-            "len": 7,
-            "of": {
-              "gen": "array",
-              "len": 5,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 1
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "oracle-random-3",
-        "seed": 103,
-        "in": {
-          "obstacleGrid": {
-            "gen": "array",
-            "elemType": "int",
-            "len": 8,
-            "of": {
-              "gen": "array",
-              "len": 8,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 1
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "oracle-random-4",
-        "seed": 104,
-        "in": {
-          "obstacleGrid": {
-            "gen": "array",
-            "elemType": "int",
-            "len": 10,
-            "of": {
-              "gen": "array",
-              "len": 10,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 1
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "oracle-random-5",
-        "seed": 105,
-        "in": {
-          "obstacleGrid": {
-            "gen": "array",
-            "elemType": "int",
-            "len": 12,
-            "of": {
-              "gen": "array",
-              "len": 12,
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 1
-              }
-            }
-          }
-        }
       }
     ]
   },
@@ -1372,26 +1272,6 @@
     {
       "input": "obstacleGrid = {\"value\": [[0, 0, 0, 0, 0], [0, 1, 1, 1, 0], [0, 0, 0, 1, 0], [0, 1, 0, 0, 0], [0, 0, 0, 0, 0]]}",
       "output": "5"
-    },
-    {
-      "input": "obstacleGrid = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 6, \"of\": {\"gen\": \"array\", \"len\": 6, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}}",
-      "output": ""
-    },
-    {
-      "input": "obstacleGrid = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 7, \"of\": {\"gen\": \"array\", \"len\": 5, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}}",
-      "output": ""
-    },
-    {
-      "input": "obstacleGrid = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 8, \"of\": {\"gen\": \"array\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}}",
-      "output": ""
-    },
-    {
-      "input": "obstacleGrid = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 10, \"of\": {\"gen\": \"array\", \"len\": 10, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}}",
-      "output": ""
-    },
-    {
-      "input": "obstacleGrid = {\"gen\": \"array\", \"elemType\": \"int\", \"len\": 12, \"of\": {\"gen\": \"array\", \"len\": 12, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1}}}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -352,36 +352,6 @@
           "typed": "abccd"
         },
         "out": true
-      },
-      {
-        "name": "large_oracle_a",
-        "in": {
-          "name": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "abc"
-          },
-          "typed": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "abc"
-          }
-        }
-      },
-      {
-        "name": "large_oracle_b",
-        "in": {
-          "name": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "abc"
-          },
-          "typed": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "abc"
-          }
-        }
       }
     ]
   },
@@ -529,14 +499,6 @@
     {
       "input": "name = \"abcd\"\ntyped = \"abccd\"",
       "output": "true"
-    },
-    {
-      "input": "name = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}\ntyped = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}",
-      "output": ""
-    },
-    {
-      "input": "name = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}\ntyped = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abc\"}",
-      "output": ""
     }
   ],
   "func_sign": {

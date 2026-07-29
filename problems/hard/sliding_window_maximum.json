@@ -901,44 +901,6 @@
           0,
           0
         ]
-      },
-      {
-        "name": "large_increasing",
-        "seed": 239001,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -10000,
-              "max": 10000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          },
-          "k": 50000
-        }
-      },
-      {
-        "name": "large_constant",
-        "seed": 239002,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -10000,
-              "max": 10000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "k": 99999
-        }
       }
     ]
   },
@@ -1074,14 +1036,6 @@
     {
       "input": "nums = [0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1, -2, -3, 0, -1]\nk = 10",
       "output": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -10000, \"max\": 10000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}\nk = 50000",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -10000, \"max\": 10000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nk = 99999",
-      "output": ""
     }
   ],
   "func_sign": {

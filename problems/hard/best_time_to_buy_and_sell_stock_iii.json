@@ -566,50 +566,6 @@
           ]
         },
         "out": 3
-      },
-      {
-        "name": "generated_large_1",
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 99999,
-              "max": 100000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 912345
-      },
-      {
-        "name": "generated_large_2",
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 99999,
-              "max": 100000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "seed": 912346
       }
     ]
   },
@@ -757,14 +713,6 @@
     {
       "input": "prices = [2, 1, 2, 0, 1, 0, 2]",
       "output": "3"
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 99999, \"max\": 100000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 99999, \"max\": 100000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

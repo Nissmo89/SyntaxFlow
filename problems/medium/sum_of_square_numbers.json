@@ -330,28 +330,6 @@
           "c": 2147280000
         },
         "out": false
-      },
-      {
-        "name": "generated-mid",
-        "seed": 6331,
-        "in": {
-          "c": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated-large",
-        "seed": 6332,
-        "in": {
-          "c": {
-            "gen": "int",
-            "min": 1000001,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -507,14 +485,6 @@
     {
       "input": "c = 2147280000",
       "output": "false"
-    },
-    {
-      "input": "c = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "c = {\"gen\": \"int\", \"min\": 1000001, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

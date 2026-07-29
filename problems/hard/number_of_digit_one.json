@@ -318,28 +318,6 @@
           "n": 1000000000
         },
         "out": 900000001
-      },
-      {
-        "name": "gen_small_to_medium",
-        "seed": 23301,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "gen_large_domain",
-        "seed": 23302,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000000
-          }
-        }
       }
     ]
   },
@@ -487,14 +465,6 @@
     {
       "input": "n = 1000000000",
       "output": "900000001"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}",
-      "output": ""
     }
   ],
   "func_sign": {

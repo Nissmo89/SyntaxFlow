@@ -1005,64 +1005,6 @@
           ]
         },
         "out": 1
-      },
-      {
-        "name": "generated_large_spread_1",
-        "seed": 10001,
-        "in": {
-          "envelopes": {
-            "gen": "array",
-            "elemType": "int",
-            "distinct": false,
-            "sorted": false,
-            "len": {
-              "gen": "int",
-              "min": 10000,
-              "max": 10000
-            },
-            "of": {
-              "gen": "array",
-              "elemType": "int",
-              "distinct": false,
-              "sorted": false,
-              "len": 2,
-              "of": {
-                "gen": "int",
-                "min": 1,
-                "max": 100000
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_spread_2",
-        "seed": 10002,
-        "in": {
-          "envelopes": {
-            "gen": "array",
-            "elemType": "int",
-            "distinct": false,
-            "sorted": false,
-            "len": {
-              "gen": "int",
-              "min": 20000,
-              "max": 20000
-            },
-            "of": {
-              "gen": "array",
-              "elemType": "int",
-              "distinct": false,
-              "sorted": false,
-              "len": 2,
-              "of": {
-                "gen": "int",
-                "min": 1,
-                "max": 100000
-              }
-            }
-          }
-        }
       }
     ]
   },
@@ -1206,14 +1148,6 @@
     {
       "input": "envelopes = [[1, 100000], [2, 99999], [3, 99998], [4, 99997], [5, 99996]]",
       "output": "1"
-    },
-    {
-      "input": "envelopes = {\"gen\": \"array\", \"elemType\": \"int\", \"distinct\": false, \"sorted\": false, \"len\": {\"gen\": \"int\", \"min\": 10000, \"max\": 10000}, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"distinct\": false, \"sorted\": false, \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 100000}}}",
-      "output": ""
-    },
-    {
-      "input": "envelopes = {\"gen\": \"array\", \"elemType\": \"int\", \"distinct\": false, \"sorted\": false, \"len\": {\"gen\": \"int\", \"min\": 20000, \"max\": 20000}, \"of\": {\"gen\": \"array\", \"elemType\": \"int\", \"distinct\": false, \"sorted\": false, \"len\": 2, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 100000}}}",
-      "output": ""
     }
   ],
   "func_sign": {

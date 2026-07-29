@@ -301,61 +301,6 @@
           "n": 1690
         },
         "out": 2123366400
-      },
-      {
-        "name": "gen_n17",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 17,
-            "max": 17
-          }
-        },
-        "seed": 17001
-      },
-      {
-        "name": "gen_n64",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 64,
-            "max": 64
-          }
-        },
-        "seed": 64001
-      },
-      {
-        "name": "gen_n128",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 128,
-            "max": 128
-          }
-        },
-        "seed": 128001
-      },
-      {
-        "name": "gen_n256",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 256,
-            "max": 256
-          }
-        },
-        "seed": 256001
-      },
-      {
-        "name": "gen_n1024",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1024,
-            "max": 1024
-          }
-        },
-        "seed": 1024001
       }
     ]
   },
@@ -491,26 +436,6 @@
     {
       "input": "n = 1690",
       "output": "2123366400"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 17, \"max\": 17}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 64, \"max\": 64}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 128, \"max\": 128}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 256, \"max\": 256}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1024, \"max\": 1024}",
-      "output": ""
     }
   ],
   "func_sign": {

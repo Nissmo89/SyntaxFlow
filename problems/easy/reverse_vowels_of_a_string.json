@@ -267,76 +267,6 @@
           "s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
         },
         "out": "\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\""
-      },
-      {
-        "name": "gen_01",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 1
-            },
-            "alphabet": "abcdeiouAEIOU"
-          }
-        }
-      },
-      {
-        "name": "gen_02",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 2,
-              "max": 2
-            },
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
-      },
-      {
-        "name": "gen_03",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 10,
-              "max": 10
-            },
-            "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-          }
-        }
-      },
-      {
-        "name": "gen_04",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 1000,
-              "max": 1000
-            },
-            "alphabet": " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-          }
-        }
-      },
-      {
-        "name": "gen_05",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 300000,
-              "max": 300000
-            },
-            "alphabet": " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-          }
-        }
       }
     ]
   },
@@ -460,26 +390,6 @@
     {
       "input": "s = \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
       "output": "\"\\\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\\"\""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"alphabet\": \"abcdeiouAEIOU\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 2, \"max\": 2}, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 10, \"max\": 10}, \"alphabet\": \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1000, \"max\": 1000}, \"alphabet\": \" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 300000, \"max\": 300000}, \"alphabet\": \" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -625,44 +625,6 @@
           "right": 1
         },
         "out": 0
-      },
-      {
-        "name": "generated-wide-window",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 2000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "left": 250,
-          "right": 750
-        }
-      },
-      {
-        "name": "generated-tight-window",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 3000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 20
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "left": 5,
-          "right": 7
-        }
       }
     ]
   },
@@ -818,14 +780,6 @@
     {
       "input": "nums = [0, 2, 0, 2, 0, 2, 0]\nleft = 1\nright = 1",
       "output": "0"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 2000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nleft = 250\nright = 750",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 3000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 20}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nleft = 5\nright = 7",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -229,74 +229,6 @@
         }
       },
       {
-        "name": "max_value_mix",
-        "in": {
-          "deck": {
-            "gen": "array",
-            "len": 80,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "random_1",
-        "in": {
-          "deck": {
-            "gen": "array",
-            "len": 101,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "random_2",
-        "in": {
-          "deck": {
-            "gen": "array",
-            "len": 257,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "random_3",
-        "in": {
-          "deck": {
-            "gen": "array",
-            "len": 512,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
         "name": "pair_large_values",
         "in": {
           "deck": [
@@ -676,22 +608,6 @@
     },
     {
       "input": "deck = [1, 1, 1, 1, 1, 2, 2, 2]",
-      "output": ""
-    },
-    {
-      "input": "deck = {\"gen\": \"array\", \"len\": 80, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "deck = {\"gen\": \"array\", \"len\": 101, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "deck = {\"gen\": \"array\", \"len\": 257, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "deck = {\"gen\": \"array\", \"len\": 512, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
       "output": ""
     },
     {

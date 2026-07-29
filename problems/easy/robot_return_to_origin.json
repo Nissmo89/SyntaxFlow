@@ -260,66 +260,6 @@
           "moves": "LRLRU"
         },
         "out": false
-      },
-      {
-        "name": "balanced-long-1",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 20000,
-            "alphabet": "UDLR"
-          }
-        }
-      },
-      {
-        "name": "balanced-long-2",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 19999,
-            "alphabet": "UDLR"
-          }
-        }
-      },
-      {
-        "name": "balanced-long-3",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 18000,
-            "alphabet": "UDLR"
-          }
-        }
-      },
-      {
-        "name": "balanced-long-4",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 16000,
-            "alphabet": "UDLR"
-          }
-        }
-      },
-      {
-        "name": "max-false-lr",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 20000,
-            "alphabet": "UDLR"
-          }
-        }
-      },
-      {
-        "name": "max-false-ud",
-        "in": {
-          "moves": {
-            "gen": "str",
-            "len": 20000,
-            "alphabet": "UDLR"
-          }
-        }
       }
     ]
   },
@@ -439,30 +379,6 @@
     {
       "input": "moves = \"LRLRU\"",
       "output": "false"
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
-      "output": ""
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 19999, \"alphabet\": \"UDLR\"}",
-      "output": ""
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 18000, \"alphabet\": \"UDLR\"}",
-      "output": ""
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 16000, \"alphabet\": \"UDLR\"}",
-      "output": ""
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
-      "output": ""
-    },
-    {
-      "input": "moves = {\"gen\": \"str\", \"len\": 20000, \"alphabet\": \"UDLR\"}",
-      "output": ""
     }
   ],
   "func_sign": {

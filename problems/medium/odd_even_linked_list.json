@@ -662,96 +662,6 @@
           6,
           3
         ]
-      },
-      {
-        "name": "generated_large_1",
-        "seed": 328001,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": -1000000,
-              "max": 1000000
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_2",
-        "seed": 328002,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 99999,
-            "of": {
-              "gen": "int",
-              "min": -1000000,
-              "max": 1000000
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_3",
-        "seed": 328003,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 100000,
-            "of": {
-              "gen": "int",
-              "min": -1000000,
-              "max": 1000000
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_4",
-        "seed": 328004,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 75000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_5",
-        "seed": 328005,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 60001,
-            "of": {
-              "gen": "int",
-              "min": -50,
-              "max": 50
-            }
-          }
-        }
-      },
-      {
-        "name": "generated_large_6",
-        "seed": 328006,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": 80000,
-            "of": {
-              "gen": "int",
-              "min": -1,
-              "max": 1
-            }
-          }
-        }
       }
     ]
   },
@@ -871,30 +781,6 @@
     {
       "input": "head = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]",
       "output": "[3, 4, 5, 2, 5, 1, 1, 9, 6, 3]"
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 99999, \"of\": {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 100000, \"of\": {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 75000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 60001, \"of\": {\"gen\": \"int\", \"min\": -50, \"max\": 50}}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": 80000, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": 1}}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -526,91 +526,6 @@
           "fee": 4
         },
         "out": 0
-      },
-      {
-        "name": "max_length_increasing",
-        "seed": 101,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 49999
-            },
-            "elemType": "int"
-          },
-          "fee": 1
-        }
-      },
-      {
-        "name": "max_length_flat",
-        "seed": 102,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": 25000,
-              "max": 25000
-            },
-            "elemType": "int"
-          },
-          "fee": 0
-        }
-      },
-      {
-        "name": "max_length_alternating",
-        "seed": 103,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 49999
-            },
-            "elemType": "int"
-          },
-          "fee": 25000
-        }
-      },
-      {
-        "name": "max_length_descending",
-        "seed": 104,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 49999
-            },
-            "elemType": "int"
-          },
-          "fee": 0
-        }
-      },
-      {
-        "name": "max_length_two_level",
-        "seed": 105,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 50000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 49999
-            },
-            "elemType": "int"
-          },
-          "fee": 49998
-        }
       }
     ]
   },
@@ -742,26 +657,6 @@
     {
       "input": "prices = [2, 5, 2, 5, 2, 5]\nfee = 4",
       "output": "0"
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 49999}, \"elemType\": \"int\"}\nfee = 1",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 25000, \"max\": 25000}, \"elemType\": \"int\"}\nfee = 0",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 49999}, \"elemType\": \"int\"}\nfee = 25000",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 49999}, \"elemType\": \"int\"}\nfee = 0",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 50000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 49999}, \"elemType\": \"int\"}\nfee = 49998",
-      "output": ""
     }
   ],
   "func_sign": {

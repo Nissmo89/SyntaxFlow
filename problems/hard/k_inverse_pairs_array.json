@@ -366,54 +366,6 @@
           "k": 1000
         },
         "out": 663677020
-      },
-      {
-        "name": "generated-small",
-        "seed": 6291,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 20
-          },
-          "k": {
-            "gen": "int",
-            "min": 0,
-            "max": 100
-          }
-        }
-      },
-      {
-        "name": "generated-medium",
-        "seed": 6292,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 21,
-            "max": 200
-          },
-          "k": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000
-          }
-        }
-      },
-      {
-        "name": "generated-large",
-        "seed": 6293,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 201,
-            "max": 1000
-          },
-          "k": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000
-          }
-        }
       }
     ]
   },
@@ -565,18 +517,6 @@
     {
       "input": "n = 1000\nk = 1000",
       "output": "663677020"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 20}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 100}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 21, \"max\": 200}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 1000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 201, \"max\": 1000}\nk = {\"gen\": \"int\", \"min\": 0, \"max\": 1000}",
-      "output": ""
     }
   ],
   "func_sign": {

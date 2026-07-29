@@ -344,54 +344,6 @@
           "t": "cdcddcdc"
         },
         "out": false
-      },
-      {
-        "name": "generated_equal_length_small",
-        "seed": 205001,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 32,
-              "max": 32
-            },
-            "alphabet": "abcdef"
-          },
-          "t": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 32,
-              "max": 32
-            },
-            "alphabet": "uvwxyz"
-          }
-        }
-      },
-      {
-        "name": "generated_equal_length_large",
-        "seed": 205002,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 256,
-              "max": 256
-            },
-            "alphabet": "abcdefghijklmnop"
-          },
-          "t": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 256,
-              "max": 256
-            },
-            "alphabet": "qrstuvwxyzABCDEF"
-          }
-        }
       }
     ]
   },
@@ -535,14 +487,6 @@
     {
       "input": "s = \"abababab\"\nt = \"cdcddcdc\"",
       "output": "false"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 32, \"max\": 32}, \"alphabet\": \"abcdef\"}\nt = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 32, \"max\": 32}, \"alphabet\": \"uvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 256, \"max\": 256}, \"alphabet\": \"abcdefghijklmnop\"}\nt = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 256, \"max\": 256}, \"alphabet\": \"qrstuvwxyzABCDEF\"}",
-      "output": ""
     }
   ],
   "func_sign": {

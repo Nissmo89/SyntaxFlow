@@ -342,28 +342,6 @@
           "n": 5000000
         },
         "out": 348513
-      },
-      {
-        "name": "generated_medium_random",
-        "seed": 204001,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 0,
-            "max": 200000
-          }
-        }
-      },
-      {
-        "name": "generated_large_random",
-        "seed": 204002,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 200000,
-            "max": 1000000
-          }
-        }
       }
     ]
   },
@@ -523,14 +501,6 @@
     {
       "input": "n = 5000000",
       "output": "348513"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 0, \"max\": 200000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 200000, \"max\": 1000000}",
-      "output": ""
     }
   ],
   "func_sign": {

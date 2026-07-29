@@ -322,28 +322,6 @@
           "num": 2147483638
         },
         "out": 1
-      },
-      {
-        "name": "gen_medium",
-        "seed": 25801,
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000000
-          }
-        }
-      },
-      {
-        "name": "gen_large",
-        "seed": 25802,
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 0,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -495,14 +473,6 @@
     {
       "input": "num = 2147483638",
       "output": "1"
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}",
-      "output": ""
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 0, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

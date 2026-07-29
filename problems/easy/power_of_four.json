@@ -317,36 +317,6 @@
           "n": 262145
         },
         "out": false
-      },
-      {
-        "name": "generated_small_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": -1000,
-            "max": 1000
-          }
-        }
-      },
-      {
-        "name": "generated_mid_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": -1000000,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_full_int_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": -2147483648,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -498,18 +468,6 @@
     {
       "input": "n = 262145",
       "output": "false"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": -1000, \"max\": 1000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": -1000000, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": -2147483648, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

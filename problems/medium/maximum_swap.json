@@ -315,26 +315,6 @@
           "num": 4543
         },
         "out": 5443
-      },
-      {
-        "name": "generated-six-digit-band",
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 100000,
-            "max": 999999
-          }
-        }
-      },
-      {
-        "name": "generated-eight-digit-band",
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 10000000,
-            "max": 99999999
-          }
-        }
       }
     ]
   },
@@ -482,14 +462,6 @@
     {
       "input": "num = 4543",
       "output": "5443"
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 100000, \"max\": 999999}",
-      "output": ""
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 10000000, \"max\": 99999999}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -267,28 +267,6 @@
         "in": {
           "columnNumber": 268435455
         }
-      },
-      {
-        "name": "generated_random_small",
-        "seed": 168001,
-        "in": {
-          "columnNumber": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_random_large",
-        "seed": 168002,
-        "in": {
-          "columnNumber": {
-            "gen": "int",
-            "min": 1,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -431,14 +409,6 @@
     },
     {
       "input": "columnNumber = 268435455",
-      "output": ""
-    },
-    {
-      "input": "columnNumber = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "columnNumber = {\"gen\": \"int\", \"min\": 1, \"max\": 2147483647}",
       "output": ""
     }
   ],

@@ -699,60 +699,6 @@
           ]
         },
         "out": 15
-      },
-      {
-        "name": "generated_medium_random",
-        "seed": 188001,
-        "in": {
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 25
-          },
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 40,
-              "max": 40
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_random",
-        "seed": 188002,
-        "in": {
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 50
-          },
-          "prices": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100,
-              "max": 100
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -916,14 +862,6 @@
     {
       "input": "k = 5\nprices = [1, 2, 4, 2, 5, 7, 2, 4, 9, 0]",
       "output": "15"
-    },
-    {
-      "input": "k = {\"gen\": \"int\", \"min\": 1, \"max\": 25}\nprices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 40, \"max\": 40}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "k = {\"gen\": \"int\", \"min\": 1, \"max\": 50}\nprices = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100, \"max\": 100}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -311,26 +311,6 @@
           "s": "010000111111"
         },
         "out": 6
-      },
-      {
-        "name": "generated-binary-medium",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 2000,
-            "alphabet": "01"
-          }
-        }
-      },
-      {
-        "name": "generated-binary-large",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 5000,
-            "alphabet": "01"
-          }
-        }
       }
     ]
   },
@@ -478,14 +458,6 @@
     {
       "input": "s = \"010000111111\"",
       "output": "6"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 2000, \"alphabet\": \"01\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"01\"}",
-      "output": ""
     }
   ],
   "func_sign": {

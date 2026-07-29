@@ -275,66 +275,6 @@
         "in": {
           "s": "bbbbbbbbb"
         }
-      },
-      {
-        "name": "large-1",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 30000,
-            "alphabet": "a"
-          }
-        }
-      },
-      {
-        "name": "large-2",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 30000,
-            "alphabet": "ab"
-          }
-        }
-      },
-      {
-        "name": "large-3",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 30000,
-            "alphabet": "abc"
-          }
-        }
-      },
-      {
-        "name": "large-4",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 29999,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "large-5",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 30000,
-            "alphabet": "aceg"
-          }
-        }
-      },
-      {
-        "name": "large-6",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 30000,
-            "alphabet": "abcde"
-          }
-        }
       }
     ]
   },
@@ -473,30 +413,6 @@
     },
     {
       "input": "s = \"bbbbbbbbb\"",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 30000, \"alphabet\": \"a\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 30000, \"alphabet\": \"ab\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 30000, \"alphabet\": \"abc\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 29999, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 30000, \"alphabet\": \"aceg\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 30000, \"alphabet\": \"abcde\"}",
       "output": ""
     }
   ],

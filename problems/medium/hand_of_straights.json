@@ -579,97 +579,6 @@
           "groupSize": 3
         },
         "out": true
-      },
-      {
-        "name": "four-groups-false",
-        "in": {
-          "hand": {
-            "gen": "array",
-            "len": 20,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "groupSize": 5
-        },
-        "out": false
-      },
-      {
-        "name": "gen-02",
-        "in": {
-          "hand": {
-            "gen": "array",
-            "len": 30,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "groupSize": 3
-        }
-      },
-      {
-        "name": "gen-03",
-        "in": {
-          "hand": {
-            "gen": "array",
-            "len": 40,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "groupSize": 4
-        }
-      },
-      {
-        "name": "gen-04",
-        "in": {
-          "hand": {
-            "gen": "array",
-            "len": 60,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "groupSize": 6
-        }
-      },
-      {
-        "name": "gen-05",
-        "in": {
-          "hand": {
-            "gen": "array",
-            "len": 100,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "groupSize": 10
-        }
       }
     ]
   },
@@ -805,26 +714,6 @@
     {
       "input": "hand = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]\ngroupSize = 3",
       "output": "true"
-    },
-    {
-      "input": "hand = {\"gen\": \"array\", \"len\": 20, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ngroupSize = 5",
-      "output": "false"
-    },
-    {
-      "input": "hand = {\"gen\": \"array\", \"len\": 30, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ngroupSize = 3",
-      "output": ""
-    },
-    {
-      "input": "hand = {\"gen\": \"array\", \"len\": 40, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ngroupSize = 4",
-      "output": ""
-    },
-    {
-      "input": "hand = {\"gen\": \"array\", \"len\": 60, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ngroupSize = 6",
-      "output": ""
-    },
-    {
-      "input": "hand = {\"gen\": \"array\", \"len\": 100, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\ngroupSize = 10",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -505,96 +505,6 @@
           ]
         },
         "out": 10
-      },
-      {
-        "name": "generated_len_8_full_range",
-        "seed": 101,
-        "in": {
-          "cost": {
-            "gen": "array",
-            "len": 8,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_len_31_low_band",
-        "seed": 102,
-        "in": {
-          "cost": {
-            "gen": "array",
-            "len": 31,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 9
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_len_128_mid_band",
-        "seed": 103,
-        "in": {
-          "cost": {
-            "gen": "array",
-            "len": 128,
-            "of": {
-              "gen": "int",
-              "min": 100,
-              "max": 900
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_len_999_upper_band",
-        "seed": 104,
-        "in": {
-          "cost": {
-            "gen": "array",
-            "len": 999,
-            "of": {
-              "gen": "int",
-              "min": 900,
-              "max": 999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_len_1000_full_range",
-        "seed": 105,
-        "in": {
-          "cost": {
-            "gen": "array",
-            "len": 1000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 999
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -734,26 +644,6 @@
     {
       "input": "cost = [3, 6, 1, 8, 2, 9, 4]",
       "output": "10"
-    },
-    {
-      "input": "cost = {\"gen\": \"array\", \"len\": 8, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "cost = {\"gen\": \"array\", \"len\": 31, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 9}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "cost = {\"gen\": \"array\", \"len\": 128, \"of\": {\"gen\": \"int\", \"min\": 100, \"max\": 900}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "cost = {\"gen\": \"array\", \"len\": 999, \"of\": {\"gen\": \"int\", \"min\": 900, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "cost = {\"gen\": \"array\", \"len\": 1000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 999}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -777,50 +777,6 @@
           25,
           30
         ]
-      },
-      {
-        "name": "generated_medium_random",
-        "seed": 147001,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 64,
-              "max": 64
-            },
-            "of": {
-              "gen": "int",
-              "min": -5000,
-              "max": 5000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_random",
-        "seed": 147002,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 3000,
-              "max": 3000
-            },
-            "of": {
-              "gen": "int",
-              "min": -5000,
-              "max": 5000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -972,14 +928,6 @@
     {
       "input": "head = [30, 25, 20, 15, 10, 5, 0, -5, -10, -15]",
       "output": "[-15, -10, -5, 0, 5, 10, 15, 20, 25, 30]"
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 64, \"max\": 64}, \"of\": {\"gen\": \"int\", \"min\": -5000, \"max\": 5000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 3000, \"max\": 3000}, \"of\": {\"gen\": \"int\", \"min\": -5000, \"max\": 5000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

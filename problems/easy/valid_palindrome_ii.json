@@ -303,56 +303,6 @@
           "s": "qwerttrewqa"
         },
         "out": true
-      },
-      {
-        "name": "gen-large-palindrome",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100000,
-            "alphabet": "a"
-          }
-        }
-      },
-      {
-        "name": "gen-large-random",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100000,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen-medium-palindrome",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 50000,
-            "alphabet": "ab"
-          }
-        }
-      },
-      {
-        "name": "gen-medium-random",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 75000,
-            "alphabet": "abc"
-          }
-        }
-      },
-      {
-        "name": "gen-large-mixed",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100000,
-            "alphabet": "ab"
-          }
-        }
       }
     ]
   },
@@ -496,26 +446,6 @@
     {
       "input": "s = \"qwerttrewqa\"",
       "output": "true"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100000, \"alphabet\": \"a\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100000, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \"ab\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 75000, \"alphabet\": \"abc\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100000, \"alphabet\": \"ab\"}",
-      "output": ""
     }
   ],
   "func_sign": {

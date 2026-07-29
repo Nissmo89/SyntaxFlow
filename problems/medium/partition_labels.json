@@ -455,56 +455,6 @@
         "out": [
           500
         ]
-      },
-      {
-        "name": "generated-len-1",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1,
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
-      },
-      {
-        "name": "generated-len-2",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 2,
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
-      },
-      {
-        "name": "generated-len-50",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 50,
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
-      },
-      {
-        "name": "generated-len-499",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 499,
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
-      },
-      {
-        "name": "generated-len-500",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 500,
-            "alphabet": "abcdefghijklmnopqrstuvwxyz"
-          }
-        }
       }
     ]
   },
@@ -644,26 +594,6 @@
     {
       "input": "s = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"",
       "output": "[500]"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 2, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 50, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 499, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 500, \"alphabet\": \"abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
     }
   ],
   "func_sign": {

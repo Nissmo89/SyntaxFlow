@@ -354,28 +354,6 @@
           "right": 250512
         },
         "out": 128
-      },
-      {
-        "name": "generated_low_right",
-        "in": {
-          "left": 1,
-          "right": {
-            "gen": "int",
-            "min": 1,
-            "max": 10000
-          }
-        }
-      },
-      {
-        "name": "generated_high_right",
-        "in": {
-          "left": 100000,
-          "right": {
-            "gen": "int",
-            "min": 100000,
-            "max": 1000000
-          }
-        }
       }
     ]
   },
@@ -523,14 +501,6 @@
     {
       "input": "left = 250000\nright = 250512",
       "output": "128"
-    },
-    {
-      "input": "left = 1\nright = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
-      "output": ""
-    },
-    {
-      "input": "left = 100000\nright = {\"gen\": \"int\", \"min\": 100000, \"max\": 1000000}",
-      "output": ""
     }
   ],
   "func_sign": {

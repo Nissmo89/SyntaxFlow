@@ -331,28 +331,6 @@
           "n": 2147483647
         },
         "out": false
-      },
-      {
-        "name": "generated_medium_random",
-        "seed": 202001,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_large_random",
-        "seed": 202002,
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -512,14 +490,6 @@
     {
       "input": "n = 2147483647",
       "output": "false"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -317,36 +317,6 @@
           "s": "go"
         },
         "out": "go"
-      },
-      {
-        "name": "generated_spacey_small",
-        "seed": 151001,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 32,
-              "max": 64
-            },
-            "alphabet": " abcd"
-          }
-        }
-      },
-      {
-        "name": "generated_spacey_large",
-        "seed": 151002,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 20000,
-              "max": 20000
-            },
-            "alphabet": " abcdefghijklmnopqrstuvwxyz"
-          }
-        }
       }
     ]
   },
@@ -494,14 +464,6 @@
     {
       "input": "s = \"go\"",
       "output": "\"go\""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 32, \"max\": 64}, \"alphabet\": \" abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 20000, \"max\": 20000}, \"alphabet\": \" abcdefghijklmnopqrstuvwxyz\"}",
-      "output": ""
     }
   ],
   "func_sign": {

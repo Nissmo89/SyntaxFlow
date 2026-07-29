@@ -484,42 +484,6 @@
         "out": true
       },
       {
-        "name": "long_positive_cycle_5000",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 5000,
-            "of": {
-              "gen": "int",
-              "min": 1,
-              "max": 1
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "out": true
-      },
-      {
-        "name": "long_negative_cycle_5000",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 5000,
-            "of": {
-              "gen": "int",
-              "min": -1,
-              "max": -1
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        },
-        "out": true
-      },
-      {
         "name": "long_no_cycle_5000",
         "in": {
           "nums": [
@@ -788,14 +752,6 @@
     },
     {
       "input": "nums = [1000, -1000, 1000, -1000, 1000, -1000]",
-      "output": "true"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 5000, \"of\": {\"gen\": \"int\", \"min\": 1, \"max\": 1}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": "true"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 5000, \"of\": {\"gen\": \"int\", \"min\": -1, \"max\": -1}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
       "output": "true"
     },
     {

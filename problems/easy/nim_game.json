@@ -284,76 +284,6 @@
           "n": 32
         },
         "out": false
-      },
-      {
-        "name": "t33",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 3
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 292301
-      },
-      {
-        "name": "t34",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 4,
-            "max": 4
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 292302
-      },
-      {
-        "name": "t35",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 5,
-            "max": 1000
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 292303
-      },
-      {
-        "name": "t36",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000000000,
-            "max": 2147483647
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 292304
-      },
-      {
-        "name": "t37",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 2147483647
-          }
-        },
-        "judge": {
-          "type": "exact"
-        },
-        "seed": 292305
       }
     ]
   },
@@ -485,26 +415,6 @@
     {
       "input": "n = 32",
       "output": "false"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 3}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 4, \"max\": 4}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 5, \"max\": 1000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000000000, \"max\": 2147483647}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

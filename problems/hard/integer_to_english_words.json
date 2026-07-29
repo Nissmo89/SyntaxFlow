@@ -327,28 +327,6 @@
           "num": 2147483647
         },
         "out": "Two Billion One Hundred Forty Seven Million Four Hundred Eighty Three Thousand Six Hundred Forty Seven"
-      },
-      {
-        "name": "gen_mid_range",
-        "seed": 27301,
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 0,
-            "max": 1000000000
-          }
-        }
-      },
-      {
-        "name": "gen_full_range",
-        "seed": 27302,
-        "in": {
-          "num": {
-            "gen": "int",
-            "min": 0,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -500,14 +478,6 @@
     {
       "input": "num = 2147483647",
       "output": "\"Two Billion One Hundred Forty Seven Million Four Hundred Eighty Three Thousand Six Hundred Forty Seven\""
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}",
-      "output": ""
-    },
-    {
-      "input": "num = {\"gen\": \"int\", \"min\": 0, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

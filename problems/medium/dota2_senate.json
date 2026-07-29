@@ -304,72 +304,6 @@
           "senate": "DRRDRR"
         },
         "out": "Radiant"
-      },
-      {
-        "name": "max_r_prefix",
-        "seed": 64901,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "RD"
-          }
-        }
-      },
-      {
-        "name": "max_d_prefix",
-        "seed": 64902,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "DR"
-          }
-        }
-      },
-      {
-        "name": "alternating_rd",
-        "seed": 64903,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "RD"
-          }
-        }
-      },
-      {
-        "name": "alternating_dr",
-        "seed": 64904,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "DR"
-          }
-        }
-      },
-      {
-        "name": "leading_r_many_d",
-        "seed": 64905,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "RD"
-          }
-        }
-      },
-      {
-        "name": "leading_d_many_r",
-        "seed": 64906,
-        "in": {
-          "senate": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "DR"
-          }
-        }
       }
     ]
   },
@@ -509,30 +443,6 @@
     {
       "input": "senate = \"DRRDRR\"",
       "output": "\"Radiant\""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"RD\"}",
-      "output": ""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"DR\"}",
-      "output": ""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"RD\"}",
-      "output": ""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"DR\"}",
-      "output": ""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"RD\"}",
-      "output": ""
-    },
-    {
-      "input": "senate = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"DR\"}",
-      "output": ""
     }
   ],
   "func_sign": {

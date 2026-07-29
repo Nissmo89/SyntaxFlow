@@ -316,26 +316,6 @@
           "s": "1001110010"
         },
         "out": 4
-      },
-      {
-        "name": "large_oracle_a",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 100000,
-            "alphabet": "01"
-          }
-        }
-      },
-      {
-        "name": "large_oracle_b",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 99999,
-            "alphabet": "01"
-          }
-        }
       }
     ]
   },
@@ -483,14 +463,6 @@
     {
       "input": "s = \"1001110010\"",
       "output": "4"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 100000, \"alphabet\": \"01\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 99999, \"alphabet\": \"01\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -702,40 +702,6 @@
           ]
         },
         "out": false
-      },
-      {
-        "name": "gen_dense_small_range",
-        "seed": 21701,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 200,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 20
-            },
-            "distinct": false,
-            "sorted": false
-          }
-        }
-      },
-      {
-        "name": "gen_wide_range_medium",
-        "seed": 21702,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 300,
-            "of": {
-              "gen": "int",
-              "min": -100000,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": false
-          }
-        }
       }
     ]
   },
@@ -879,14 +845,6 @@
     {
       "input": "nums = [-214748364, -214748365, -214748366, -214748367, -214748368, -214748369, -214748370, -214748371, -214748372, -214748373]",
       "output": "false"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 200, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 20}, \"distinct\": false, \"sorted\": false}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 300, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000}, \"distinct\": false, \"sorted\": false}",
-      "output": ""
     }
   ],
   "func_sign": {

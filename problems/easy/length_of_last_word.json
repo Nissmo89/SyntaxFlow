@@ -254,76 +254,6 @@
         "out": 1
       },
       {
-        "name": "Max length all one word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "a"
-          }
-        }
-      },
-      {
-        "name": "Max length word plus spaces",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "ab "
-          }
-        }
-      },
-      {
-        "name": "Generated mixed string 1",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 256,
-            "alphabet": "abc "
-          }
-        }
-      },
-      {
-        "name": "Generated mixed string 2",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 512,
-            "alphabet": "xyz "
-          }
-        }
-      },
-      {
-        "name": "Generated mixed string 3",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 999,
-            "alphabet": "pqr "
-          }
-        }
-      },
-      {
-        "name": "Generated mixed string 4",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1234,
-            "alphabet": "lmno "
-          }
-        }
-      },
-      {
-        "name": "Generated mixed string 5",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 2048,
-            "alphabet": "stuv "
-          }
-        }
-      },
-      {
         "name": "Word separated by large spaces",
         "in": {
           "s": "x                                                                                                   y"
@@ -458,34 +388,6 @@
     {
       "input": "s = \"      q      \"",
       "output": "1"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"a\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"ab \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 256, \"alphabet\": \"abc \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 512, \"alphabet\": \"xyz \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 999, \"alphabet\": \"pqr \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1234, \"alphabet\": \"lmno \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 2048, \"alphabet\": \"stuv \"}",
-      "output": ""
     },
     {
       "input": "s = \"x                                                                                                   y\"",

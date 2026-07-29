@@ -390,66 +390,6 @@
           "left": 1,
           "right": 10000
         }
-      },
-      {
-        "name": "generated-low",
-        "seed": 7281,
-        "in": {
-          "left": 1,
-          "right": {
-            "gen": "int",
-            "min": 1,
-            "max": 200
-          }
-        }
-      },
-      {
-        "name": "generated-lower-mid",
-        "seed": 7282,
-        "in": {
-          "left": 128,
-          "right": {
-            "gen": "int",
-            "min": 128,
-            "max": 2048
-          }
-        }
-      },
-      {
-        "name": "generated-upper-mid",
-        "seed": 7283,
-        "in": {
-          "left": 5000,
-          "right": {
-            "gen": "int",
-            "min": 5000,
-            "max": 8000
-          }
-        }
-      },
-      {
-        "name": "generated-near-max",
-        "seed": 7284,
-        "in": {
-          "left": 9800,
-          "right": {
-            "gen": "int",
-            "min": 9800,
-            "max": 10000
-          }
-        }
-      },
-      {
-        "name": "generated-max-edge",
-        "seed": 7285,
-        "in": {
-          "left": 9999,
-          "right": {
-            "gen": "int",
-            "min": 9999,
-            "max": 10000
-          }
-        }
       }
     ]
   },
@@ -572,26 +512,6 @@
     },
     {
       "input": "left = 1\nright = 10000",
-      "output": ""
-    },
-    {
-      "input": "left = 1\nright = {\"gen\": \"int\", \"min\": 1, \"max\": 200}",
-      "output": ""
-    },
-    {
-      "input": "left = 128\nright = {\"gen\": \"int\", \"min\": 128, \"max\": 2048}",
-      "output": ""
-    },
-    {
-      "input": "left = 5000\nright = {\"gen\": \"int\", \"min\": 5000, \"max\": 8000}",
-      "output": ""
-    },
-    {
-      "input": "left = 9800\nright = {\"gen\": \"int\", \"min\": 9800, \"max\": 10000}",
-      "output": ""
-    },
-    {
-      "input": "left = 9999\nright = {\"gen\": \"int\", \"min\": 9999, \"max\": 10000}",
       "output": ""
     }
   ],

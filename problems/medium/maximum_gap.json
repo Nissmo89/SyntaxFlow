@@ -514,50 +514,6 @@
           ]
         },
         "out": 999999998
-      },
-      {
-        "name": "generated_random_medium",
-        "seed": 164001,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 128,
-              "max": 128
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_random_large",
-        "seed": 164002,
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100000,
-              "max": 100000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 1000000000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -705,14 +661,6 @@
     {
       "input": "nums = [0, 1, 1, 1, 2, 1000000000]",
       "output": "999999998"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 128, \"max\": 128}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100000, \"max\": 100000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 1000000000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

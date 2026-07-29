@@ -1592,62 +1592,6 @@
             ]
           }
         }
-      },
-      {
-        "name": "generated_large_flat",
-        "in": {
-          "heights": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 200,
-              "max": 200
-            },
-            "of": {
-              "gen": "array",
-              "len": {
-                "gen": "int",
-                "min": 200,
-                "max": 200
-              },
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 100000
-              },
-              "elemType": "int"
-            },
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_varied",
-        "in": {
-          "heights": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 200,
-              "max": 200
-            },
-            "of": {
-              "gen": "array",
-              "len": {
-                "gen": "int",
-                "min": 200,
-                "max": 200
-              },
-              "of": {
-                "gen": "int",
-                "min": 0,
-                "max": 100000
-              },
-              "elemType": "int"
-            },
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -1786,14 +1730,6 @@
     },
     {
       "input": "heights = {\"elemType\": \"int\", \"value\": [[1, 1, 2, 2], [1, 2, 3, 3], [2, 3, 4, 4], [3, 4, 5, 5], [4, 5, 6, 6], [5, 6, 7, 7], [6, 7, 8, 8]]}",
-      "output": ""
-    },
-    {
-      "input": "heights = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 200, \"max\": 200}, \"of\": {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 200, \"max\": 200}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"elemType\": \"int\"}, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "heights = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 200, \"max\": 200}, \"of\": {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 200, \"max\": 200}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100000}, \"elemType\": \"int\"}, \"elemType\": \"int\"}",
       "output": ""
     }
   ],

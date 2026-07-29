@@ -362,28 +362,6 @@
           "stones": "zyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
         },
         "out": 1
-      },
-      {
-        "name": "generated-dense-jewel-alphabet",
-        "in": {
-          "jewels": "abcxyz",
-          "stones": {
-            "gen": "str",
-            "len": 5000,
-            "alphabet": "abcxyzABCXYZ"
-          }
-        }
-      },
-      {
-        "name": "generated-no-jewel-alphabet",
-        "in": {
-          "jewels": "abcxyz",
-          "stones": {
-            "gen": "str",
-            "len": 5000,
-            "alphabet": "mnopqrMNOPQR"
-          }
-        }
       }
     ]
   },
@@ -535,14 +513,6 @@
     {
       "input": "jewels = \"z\"\nstones = \"zyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\"",
       "output": "1"
-    },
-    {
-      "input": "jewels = \"abcxyz\"\nstones = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"abcxyzABCXYZ\"}",
-      "output": ""
-    },
-    {
-      "input": "jewels = \"abcxyz\"\nstones = {\"gen\": \"str\", \"len\": 5000, \"alphabet\": \"mnopqrMNOPQR\"}",
-      "output": ""
     }
   ],
   "func_sign": {

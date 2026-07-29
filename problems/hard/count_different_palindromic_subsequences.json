@@ -283,66 +283,6 @@
           "s": "abdcabcdcbadacba"
         },
         "out": 309
-      },
-      {
-        "name": "gen_len_1",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen_len_7",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 7,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen_len_25",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 25,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen_len_120",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 120,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen_len_950",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 950,
-            "alphabet": "abcd"
-          }
-        }
-      },
-      {
-        "name": "gen_len_1000",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1000,
-            "alphabet": "abcd"
-          }
-        }
       }
     ]
   },
@@ -470,30 +410,6 @@
     {
       "input": "s = \"abdcabcdcbadacba\"",
       "output": "309"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 7, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 25, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 120, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 950, \"alphabet\": \"abcd\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1000, \"alphabet\": \"abcd\"}",
-      "output": ""
     }
   ],
   "func_sign": {

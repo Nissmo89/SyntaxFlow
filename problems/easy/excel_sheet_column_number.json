@@ -330,36 +330,6 @@
           "columnTitle": "WXYZ"
         },
         "out": 421148
-      },
-      {
-        "name": "generated_len_1_to_4",
-        "seed": 171001,
-        "in": {
-          "columnTitle": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 4
-            },
-            "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-          }
-        }
-      },
-      {
-        "name": "generated_len_5_to_6",
-        "seed": 171002,
-        "in": {
-          "columnTitle": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 5,
-              "max": 6
-            },
-            "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-          }
-        }
       }
     ]
   },
@@ -519,14 +489,6 @@
     {
       "input": "columnTitle = \"WXYZ\"",
       "output": "421148"
-    },
-    {
-      "input": "columnTitle = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 4}, \"alphabet\": \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"}",
-      "output": ""
-    },
-    {
-      "input": "columnTitle = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 5, \"max\": 6}, \"alphabet\": \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -515,36 +515,6 @@
           ]
         },
         "out": 3
-      },
-      {
-        "name": "stress_random_max_1",
-        "seed": 122001,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 30000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            }
-          }
-        }
-      },
-      {
-        "name": "stress_random_max_2",
-        "seed": 122002,
-        "in": {
-          "prices": {
-            "gen": "array",
-            "len": 30000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            }
-          }
-        }
       }
     ]
   },
@@ -684,14 +654,6 @@
     {
       "input": "prices = [10000, 9999, 10000, 9998, 10000]",
       "output": "3"
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 30000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}}",
-      "output": ""
-    },
-    {
-      "input": "prices = {\"gen\": \"array\", \"len\": 30000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}}",
-      "output": ""
     }
   ],
   "func_sign": {

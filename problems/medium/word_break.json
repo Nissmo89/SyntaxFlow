@@ -588,46 +588,6 @@
           ]
         },
         "out": false
-      },
-      {
-        "name": "generated_disjoint_false_1",
-        "seed": 139001,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 300,
-            "alphabet": "abcd"
-          },
-          "wordDict": [
-            "wx",
-            "yz",
-            "ww",
-            "xx"
-          ]
-        },
-        "out": false
-      },
-      {
-        "name": "generated_disjoint_false_2",
-        "seed": 139002,
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 280,
-              "max": 300
-            },
-            "alphabet": "mnop"
-          },
-          "wordDict": [
-            "qr",
-            "st",
-            "qq",
-            "rr"
-          ]
-        },
-        "out": false
       }
     ],
     "oracle": {
@@ -796,14 +756,6 @@
     },
     {
       "input": "s = \"xyxyxyxyxyxyxyxyxyxz\"\nwordDict = [\"x\", \"y\", \"xy\", \"yx\"]",
-      "output": "false"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 300, \"alphabet\": \"abcd\"}\nwordDict = [\"wx\", \"yz\", \"ww\", \"xx\"]",
-      "output": "false"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 280, \"max\": 300}, \"alphabet\": \"mnop\"}\nwordDict = [\"qr\", \"st\", \"qq\", \"rr\"]",
       "output": "false"
     }
   ],

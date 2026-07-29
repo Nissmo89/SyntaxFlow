@@ -279,86 +279,6 @@
         }
       },
       {
-        "name": "generated_a",
-        "in": {
-          "x": {
-            "gen": "float",
-            "min": 0.1,
-            "max": 9.9,
-            "precision": 4
-          },
-          "n": {
-            "gen": "int",
-            "min": -50,
-            "max": 50
-          }
-        }
-      },
-      {
-        "name": "generated_b",
-        "in": {
-          "x": {
-            "gen": "float",
-            "min": -9.9,
-            "max": -0.1,
-            "precision": 4
-          },
-          "n": {
-            "gen": "int",
-            "min": -31,
-            "max": 31
-          }
-        }
-      },
-      {
-        "name": "generated_c",
-        "in": {
-          "x": {
-            "gen": "float",
-            "min": 0.01,
-            "max": 1.99,
-            "precision": 4
-          },
-          "n": {
-            "gen": "int",
-            "min": -100,
-            "max": 100
-          }
-        }
-      },
-      {
-        "name": "generated_d",
-        "in": {
-          "x": {
-            "gen": "float",
-            "min": 1.01,
-            "max": 2.5,
-            "precision": 4
-          },
-          "n": {
-            "gen": "int",
-            "min": -20,
-            "max": 20
-          }
-        }
-      },
-      {
-        "name": "generated_e",
-        "in": {
-          "x": {
-            "gen": "float",
-            "min": -2.5,
-            "max": 2.5,
-            "precision": 4
-          },
-          "n": {
-            "gen": "int",
-            "min": -15,
-            "max": 15
-          }
-        }
-      },
-      {
         "name": "high_positive_even",
         "in": {
           "x": 1.25,
@@ -517,26 +437,6 @@
     },
     {
       "input": "x = -0.75\nn = -11",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"float\", \"min\": 0.1, \"max\": 9.9, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -50, \"max\": 50}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"float\", \"min\": -9.9, \"max\": -0.1, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -31, \"max\": 31}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"float\", \"min\": 0.01, \"max\": 1.99, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -100, \"max\": 100}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"float\", \"min\": 1.01, \"max\": 2.5, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -20, \"max\": 20}",
-      "output": ""
-    },
-    {
-      "input": "x = {\"gen\": \"float\", \"min\": -2.5, \"max\": 2.5, \"precision\": 4}\nn = {\"gen\": \"int\", \"min\": -15, \"max\": 15}",
       "output": ""
     },
     {

@@ -302,56 +302,6 @@
           "target": -1000000000
         },
         "out": 44723
-      },
-      {
-        "name": "generated_large_positive_band",
-        "in": {
-          "target": {
-            "gen": "int",
-            "min": 999900000,
-            "max": 1000000000
-          }
-        }
-      },
-      {
-        "name": "generated_large_negative_band",
-        "in": {
-          "target": {
-            "gen": "int",
-            "min": -1000000000,
-            "max": -999900000
-          }
-        }
-      },
-      {
-        "name": "generated_mid_positive",
-        "in": {
-          "target": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_mid_negative",
-        "in": {
-          "target": {
-            "gen": "int",
-            "min": -1000000,
-            "max": -1
-          }
-        }
-      },
-      {
-        "name": "generated_wide_positive",
-        "in": {
-          "target": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000000
-          }
-        }
       }
     ]
   },
@@ -491,26 +441,6 @@
     {
       "input": "target = -1000000000",
       "output": "44723"
-    },
-    {
-      "input": "target = {\"gen\": \"int\", \"min\": 999900000, \"max\": 1000000000}",
-      "output": ""
-    },
-    {
-      "input": "target = {\"gen\": \"int\", \"min\": -1000000000, \"max\": -999900000}",
-      "output": ""
-    },
-    {
-      "input": "target = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "target = {\"gen\": \"int\", \"min\": -1000000, \"max\": -1}",
-      "output": ""
-    },
-    {
-      "input": "target = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000000}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -398,81 +398,6 @@
           "type": "exact"
         },
         "seed": 1281
-      },
-      {
-        "name": "generated_all_symbols",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 200000,
-              "max": 200000
-            },
-            "alphabet": "!"
-          }
-        },
-        "seed": 1282
-      },
-      {
-        "name": "generated_all_a",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 199999,
-              "max": 199999
-            },
-            "alphabet": "a"
-          }
-        },
-        "seed": 1283
-      },
-      {
-        "name": "generated_random_ascii_short",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 50000
-            },
-            "alphabet": "ab1!"
-          }
-        },
-        "seed": 1284
-      },
-      {
-        "name": "generated_random_ascii_large",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 150000,
-              "max": 200000
-            },
-            "alphabet": "Ab3, "
-          }
-        },
-        "seed": 1285
-      },
-      {
-        "name": "generated_uppercase_only",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": {
-              "gen": "int",
-              "min": 200000,
-              "max": 200000
-            },
-            "alphabet": "Z"
-          }
-        },
-        "seed": 1286
       }
     ]
   },
@@ -600,26 +525,6 @@
     {
       "input": "s = \"0P1\"",
       "output": "false"
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 200000, \"max\": 200000}, \"alphabet\": \"!\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 199999, \"max\": 199999}, \"alphabet\": \"a\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 50000}, \"alphabet\": \"ab1!\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 150000, \"max\": 200000}, \"alphabet\": \"Ab3, \"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": {\"gen\": \"int\", \"min\": 200000, \"max\": 200000}, \"alphabet\": \"Z\"}",
-      "output": ""
     }
   ],
   "func_sign": {

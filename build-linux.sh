@@ -24,6 +24,9 @@ echo " Source  : $SCRIPT_DIR"
 echo " Output  : $BUILD_DIR"
 echo ""
 
+# Clean up precompiled header to prevent timestamp mismatch on wasi-sdk rebuilds
+rm -f "$SCRIPT_DIR/resources/include/stdcpp.h.pch"
+
 # ---- Check prerequisites ----
 check_cmd() {
     if ! command -v "$1" &>/dev/null; then

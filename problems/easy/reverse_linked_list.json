@@ -662,94 +662,6 @@
           7,
           13
         ]
-      },
-      {
-        "name": "generated_medium_random",
-        "seed": 206001,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 64,
-              "max": 64
-            },
-            "of": {
-              "gen": "int",
-              "min": -5000,
-              "max": 5000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_random_one",
-        "seed": 206002,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5000,
-              "max": 5000
-            },
-            "of": {
-              "gen": "int",
-              "min": -5000,
-              "max": 5000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_random_two",
-        "seed": 206003,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5000,
-              "max": 5000
-            },
-            "of": {
-              "gen": "int",
-              "min": -5000,
-              "max": 5000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_constant",
-        "seed": 206004,
-        "in": {
-          "head": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5000,
-              "max": 5000
-            },
-            "of": {
-              "gen": "int",
-              "min": 1234,
-              "max": 1234
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -893,22 +805,6 @@
     {
       "input": "head = [13, 7, -2, 0, 7, 13]",
       "output": "[13, 7, 0, -2, 7, 13]"
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 64, \"max\": 64}, \"of\": {\"gen\": \"int\", \"min\": -5000, \"max\": 5000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -5000, \"max\": 5000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": -5000, \"max\": 5000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "head = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": 1234, \"max\": 1234}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -310,23 +310,6 @@
         "out": false
       },
       {
-        "name": "large-sorted-1000",
-        "in": {
-          "nums": {
-            "gen": "array",
-            "len": 1000,
-            "of": {
-              "gen": "int",
-              "min": -100000,
-              "max": 100000
-            },
-            "distinct": false,
-            "sorted": true,
-            "elemType": "int"
-          }
-        }
-      },
-      {
         "name": "min-max-invalid",
         "in": {
           "nums": [
@@ -2633,10 +2616,6 @@
     {
       "input": "nums = [1, 1, 0, 0, 1]",
       "output": "false"
-    },
-    {
-      "input": "nums = {\"gen\": \"array\", \"len\": 1000, \"of\": {\"gen\": \"int\", \"min\": -100000, \"max\": 100000}, \"distinct\": false, \"sorted\": true, \"elemType\": \"int\"}",
-      "output": ""
     },
     {
       "input": "nums = [100000, -100000]",

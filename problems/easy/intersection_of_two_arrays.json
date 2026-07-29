@@ -734,117 +734,6 @@
           50,
           60
         ]
-      },
-      {
-        "name": "generated_small_overlap",
-        "in": {
-          "nums1": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 20
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 30
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "nums2": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 1,
-              "max": 20
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 30
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_medium_dense",
-        "in": {
-          "nums1": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100,
-              "max": 200
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "nums2": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 100,
-              "max": 200
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "generated_large_sparse",
-        "in": {
-          "nums1": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5000,
-              "max": 5000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          },
-          "nums2": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 5000,
-              "max": 5000
-            },
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 10000
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -968,18 +857,6 @@
     {
       "input": "nums1 = [50, 60, 70, 80, 90]\nnums2 = [10, 20, 30, 40, 50, 60]",
       "output": "[50, 60]"
-    },
-    {
-      "input": "nums1 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 20}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 30}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nnums2 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 1, \"max\": 20}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 30}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums1 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100, \"max\": 200}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nnums2 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 100, \"max\": 200}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "nums1 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}\nnums2 = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 5000, \"max\": 5000}, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 10000}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

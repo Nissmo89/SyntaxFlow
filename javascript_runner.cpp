@@ -64,9 +64,17 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
 #endif
 
     QStringList args;
-    args << "run" << "--volume" << ".:/" << "syrusakbary/quickjs" << "--command" << "qjs" << "--" << "user_code.js";
+    QString pkgPath = QDir::cleanPath(basePath + "/../tools/wasmer/packages/quickjs");
+    args << "run" << "--mapdir" << "/src:." << pkgPath << "--command" << "qjs" << "--" << "/src/user_code.js";
     
+    qDebug() << "JavascriptRunner: starting wasmer... args:" << args;
     runProc.start(wasmerExe, args);
+    if (!runProc.waitForStarted(2000)) {
+        result.error = QStringLiteral("Failed to start engine: ") + runProc.errorString();
+        result.exitCode = -1;
+        qDebug() << "JavascriptRunner: Failed to start";
+        return result;
+    }
 
     if (!stdinInput.isEmpty()) {
         runProc.write(stdinInput.toUtf8());
@@ -76,14 +84,14 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
     const int TIMEOUT_MS = 60000;
     QElapsedTimer timer;
     timer.start();
-
+    qDebug() << "JavascriptRunner: waiting for finish...";
     while (!runProc.waitForFinished(100)) {
-        QCoreApplication::processEvents();
         if (abort && *abort) {
             runProc.kill();
             result.error    = QStringLiteral("Execution stopped by user");
             result.exitCode = -1;
             result.timedOut = false;
+            qDebug() << "JavascriptRunner: aborted";
             return result;
         }
         if (timer.elapsed() >= TIMEOUT_MS) {
@@ -91,12 +99,14 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
             result.error    = QStringLiteral("Time limit exceeded (60 s)");
             result.exitCode = -1;
             result.timedOut = true;
+            qDebug() << "JavascriptRunner: timed out";
             return result;
         }
     }
-
+    qDebug() << "JavascriptRunner: finished. exitCode:" << runProc.exitCode();
     result.output   = QString::fromLocal8Bit(runProc.readAllStandardOutput());
     result.error    = QString::fromLocal8Bit(runProc.readAllStandardError());
     result.exitCode = runProc.exitCode();
+    qDebug() << "JavascriptRunner: returning result";
     return result;
 }

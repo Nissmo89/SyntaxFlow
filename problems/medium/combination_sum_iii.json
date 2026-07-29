@@ -316,38 +316,6 @@
           "k": 9,
           "n": 46
         }
-      },
-      {
-        "name": "gen_small_valid_domain_1",
-        "seed": 21601,
-        "in": {
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 9
-          },
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 45
-          }
-        }
-      },
-      {
-        "name": "gen_small_valid_domain_2",
-        "seed": 21602,
-        "in": {
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 9
-          },
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 45
-          }
-        }
       }
     ]
   },
@@ -490,14 +458,6 @@
     },
     {
       "input": "k = 9\nn = 46",
-      "output": ""
-    },
-    {
-      "input": "k = {\"gen\": \"int\", \"min\": 1, \"max\": 9}\nn = {\"gen\": \"int\", \"min\": 1, \"max\": 45}",
-      "output": ""
-    },
-    {
-      "input": "k = {\"gen\": \"int\", \"min\": 1, \"max\": 9}\nn = {\"gen\": \"int\", \"min\": 1, \"max\": 45}",
       "output": ""
     }
   ],

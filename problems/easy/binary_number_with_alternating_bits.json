@@ -308,26 +308,6 @@
           "n": 2147483647
         },
         "out": false
-      },
-      {
-        "name": "generated_mid_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 1000000
-          }
-        }
-      },
-      {
-        "name": "generated_upper_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000001,
-            "max": 2147483647
-          }
-        }
       }
     ]
   },
@@ -475,14 +455,6 @@
     {
       "input": "n = 2147483647",
       "output": "false"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 1000000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000001, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -6338,56 +6338,6 @@
             1
           ]
         ]
-      },
-      {
-        "name": "gen_rows_1",
-        "in": {
-          "numRows": {
-            "gen": "int",
-            "min": 1,
-            "max": 30
-          }
-        }
-      },
-      {
-        "name": "gen_rows_2",
-        "in": {
-          "numRows": {
-            "gen": "int",
-            "min": 1,
-            "max": 30
-          }
-        }
-      },
-      {
-        "name": "gen_rows_3",
-        "in": {
-          "numRows": {
-            "gen": "int",
-            "min": 1,
-            "max": 30
-          }
-        }
-      },
-      {
-        "name": "gen_rows_4",
-        "in": {
-          "numRows": {
-            "gen": "int",
-            "min": 1,
-            "max": 30
-          }
-        }
-      },
-      {
-        "name": "gen_rows_5",
-        "in": {
-          "numRows": {
-            "gen": "int",
-            "min": 1,
-            "max": 30
-          }
-        }
       }
     ]
   },
@@ -6527,26 +6477,6 @@
     {
       "input": "numRows = 10",
       "output": "[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1], [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1], [1, 8, 28, 56, 70, 56, 28, 8, 1], [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]]"
-    },
-    {
-      "input": "numRows = {\"gen\": \"int\", \"min\": 1, \"max\": 30}",
-      "output": ""
-    },
-    {
-      "input": "numRows = {\"gen\": \"int\", \"min\": 1, \"max\": 30}",
-      "output": ""
-    },
-    {
-      "input": "numRows = {\"gen\": \"int\", \"min\": 1, \"max\": 30}",
-      "output": ""
-    },
-    {
-      "input": "numRows = {\"gen\": \"int\", \"min\": 1, \"max\": 30}",
-      "output": ""
-    },
-    {
-      "input": "numRows = {\"gen\": \"int\", \"min\": 1, \"max\": 30}",
-      "output": ""
     }
   ],
   "func_sign": {

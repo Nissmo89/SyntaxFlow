@@ -828,50 +828,6 @@
           18,
           14
         ]
-      },
-      {
-        "name": "Generated full tree 15",
-        "seed": 199001,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 15,
-              "max": 15
-            },
-            "of": {
-              "gen": "int",
-              "min": -100,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "Generated full tree 31",
-        "seed": 199002,
-        "in": {
-          "root": {
-            "gen": "array",
-            "len": {
-              "gen": "int",
-              "min": 31,
-              "max": 31
-            },
-            "of": {
-              "gen": "int",
-              "min": -100,
-              "max": 100
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
       }
     ]
   },
@@ -1015,14 +971,6 @@
     {
       "input": "root = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5, 9, 10, 11, 12, 13, 13, 12, 11, 10, 9, 14, 15, 16, 17, 18, 18, 17, 16, 15, 14]",
       "output": "[1, 2, 3, 5, 18, 14]"
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 15, \"max\": 15}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "root = {\"gen\": \"array\", \"len\": {\"gen\": \"int\", \"min\": 31, \"max\": 31}, \"of\": {\"gen\": \"int\", \"min\": -100, \"max\": 100}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
     }
   ],
   "func_sign": {

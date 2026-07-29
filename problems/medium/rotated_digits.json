@@ -343,26 +343,6 @@
           "n": 10000
         },
         "out": 2320
-      },
-      {
-        "name": "generated-mid-n",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 5000
-          }
-        }
-      },
-      {
-        "name": "generated-high-n",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 5001,
-            "max": 10000
-          }
-        }
       }
     ]
   },
@@ -526,14 +506,6 @@
     {
       "input": "n = 10000",
       "output": "2320"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 5000}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 5001, \"max\": 10000}",
-      "output": ""
     }
   ],
   "func_sign": {

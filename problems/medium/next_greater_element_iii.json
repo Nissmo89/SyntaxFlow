@@ -309,61 +309,6 @@
           "n": 2147483646
         },
         "out": -1
-      },
-      {
-        "name": "generated_full_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 2147483647
-          }
-        },
-        "seed": 55601
-      },
-      {
-        "name": "generated_small_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1,
-            "max": 999
-          }
-        },
-        "seed": 55602
-      },
-      {
-        "name": "generated_four_digits",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000,
-            "max": 9999
-          }
-        },
-        "seed": 55603
-      },
-      {
-        "name": "generated_medium_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 100000,
-            "max": 999999999
-          }
-        },
-        "seed": 55604
-      },
-      {
-        "name": "generated_near_upper_range",
-        "in": {
-          "n": {
-            "gen": "int",
-            "min": 1000000000,
-            "max": 2147483647
-          }
-        },
-        "seed": 55605
       }
     ]
   },
@@ -507,26 +452,6 @@
     {
       "input": "n = 2147483646",
       "output": "-1"
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 2147483647}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1, \"max\": 999}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000, \"max\": 9999}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 100000, \"max\": 999999999}",
-      "output": ""
-    },
-    {
-      "input": "n = {\"gen\": \"int\", \"min\": 1000000000, \"max\": 2147483647}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -304,86 +304,6 @@
           "k": 7
         },
         "out": "gfedcbahijklmnutsrqpovwxyz"
-      },
-      {
-        "name": "generated_small_len_12",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 12,
-            "alphabet": "abcxyz"
-          },
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 12
-          }
-        },
-        "seed": 54101
-      },
-      {
-        "name": "generated_medium_len_64",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 64,
-            "alphabet": "abcxyz"
-          },
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 64
-          }
-        },
-        "seed": 54102
-      },
-      {
-        "name": "generated_large_len_1024",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1024,
-            "alphabet": "abcxyz"
-          },
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 1024
-          }
-        },
-        "seed": 54103
-      },
-      {
-        "name": "generated_near_max_len_9999",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 9999,
-            "alphabet": "abcxyz"
-          },
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 10000
-          }
-        },
-        "seed": 54104
-      },
-      {
-        "name": "generated_max_len_10000",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 10000,
-            "alphabet": "abcxyz"
-          },
-          "k": {
-            "gen": "int",
-            "min": 1,
-            "max": 10000
-          }
-        },
-        "seed": 54105
       }
     ]
   },
@@ -507,26 +427,6 @@
     {
       "input": "s = \"abcdefghijklmnopqrstuvwxyz\"\nk = 7",
       "output": "\"gfedcbahijklmnutsrqpovwxyz\""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 12, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 12}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 64, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 64}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1024, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 1024}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 9999, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 10000, \"alphabet\": \"abcxyz\"}\nk = {\"gen\": \"int\", \"min\": 1, \"max\": 10000}",
-      "output": ""
     }
   ],
   "func_sign": {

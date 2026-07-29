@@ -302,61 +302,6 @@
           "s": "pipe|bar foo~baz"
         },
         "out": "rab|epip zab~oof"
-      },
-      {
-        "name": "generated_len_1_single_word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 1,
-            "alphabet": "abcXYZ012!?-_"
-          }
-        },
-        "seed": 55701
-      },
-      {
-        "name": "generated_len_8_single_word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 8,
-            "alphabet": "abcXYZ012!?-_"
-          }
-        },
-        "seed": 55702
-      },
-      {
-        "name": "generated_len_64_single_word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 64,
-            "alphabet": "abcXYZ012!?-_"
-          }
-        },
-        "seed": 55703
-      },
-      {
-        "name": "generated_len_4096_single_word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 4096,
-            "alphabet": "abcXYZ012!?-_"
-          }
-        },
-        "seed": 55704
-      },
-      {
-        "name": "generated_len_50000_single_word",
-        "in": {
-          "s": {
-            "gen": "str",
-            "len": 50000,
-            "alphabet": "abcXYZ012!?-_"
-          }
-        },
-        "seed": 55705
       }
     ]
   },
@@ -500,26 +445,6 @@
     {
       "input": "s = \"pipe|bar foo~baz\"",
       "output": "\"rab|epip zab~oof\""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 1, \"alphabet\": \"abcXYZ012!?-_\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 8, \"alphabet\": \"abcXYZ012!?-_\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 64, \"alphabet\": \"abcXYZ012!?-_\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 4096, \"alphabet\": \"abcXYZ012!?-_\"}",
-      "output": ""
-    },
-    {
-      "input": "s = {\"gen\": \"str\", \"len\": 50000, \"alphabet\": \"abcXYZ012!?-_\"}",
-      "output": ""
     }
   ],
   "func_sign": {

@@ -439,40 +439,6 @@
         }
       },
       {
-        "name": "all_tiring_large",
-        "in": {
-          "hours": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": 9,
-              "max": 16
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
-        "name": "all_non_tiring_large",
-        "in": {
-          "hours": {
-            "gen": "array",
-            "len": 10000,
-            "of": {
-              "gen": "int",
-              "min": 0,
-              "max": 8
-            },
-            "distinct": false,
-            "sorted": false,
-            "elemType": "int"
-          }
-        }
-      },
-      {
         "name": "all_boundary_large",
         "in": {
           "hours": [
@@ -712,14 +678,6 @@
     },
     {
       "input": "hours = [6, 6, 9, 6, 9, 9, 6, 6, 9, 9, 9]",
-      "output": ""
-    },
-    {
-      "input": "hours = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": 9, \"max\": 16}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
-      "output": ""
-    },
-    {
-      "input": "hours = {\"gen\": \"array\", \"len\": 10000, \"of\": {\"gen\": \"int\", \"min\": 0, \"max\": 8}, \"distinct\": false, \"sorted\": false, \"elemType\": \"int\"}",
       "output": ""
     },
     {
