@@ -140,22 +140,27 @@
 
     /* ─── Tags Bar ─── */
     .tags-bar {
+      position: sticky; top: 49px; z-index: 99;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      min-height: 36px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tags-bar-inner {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      gap: 6px;
-      padding: 8px 32px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: 49px; z-index: 99;
+      gap: 8px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 32px;
       overflow: hidden;
-      cursor: pointer;
-      user-select: none;
-      min-height: 36px;
-      transition: none;
     }
 
-    .tags-bar.expanded {
+    .tags-bar.expanded .tags-bar-inner {
       flex-wrap: wrap;
       cursor: default;
     }
@@ -362,7 +367,7 @@
 </div>
 
 <div class="tags-bar" id="tagsBar" style="display: none;">
-  <!-- Tags populated dynamically -->
+  <div class="tags-bar-inner" id="tagsBarInner"></div>
 </div>
 
 <div class="container">
@@ -489,19 +494,20 @@
 
   function toggleTags() {
     tagsExpanded = !tagsExpanded;
-    var container = document.getElementById('tagsBar');
-    container.classList.toggle('expanded', tagsExpanded);
-    var chips = container.querySelectorAll('.filter-tag-chip');
+    var outer = document.getElementById('tagsBar');
+    outer.classList.toggle('expanded', tagsExpanded);
+    var inner = document.getElementById('tagsBarInner');
+    var chips = inner.querySelectorAll('.filter-tag-chip');
     if (tagsExpanded) {
       chips.forEach(function(c) { c.style.display = ''; });
     } else {
       renderTags();
       return;
     }
-    var toggle = container.querySelector('.tags-toggle');
+    var toggle = inner.querySelector('.tags-toggle');
     if (toggle) {
       var hiddenCount = parseInt(toggle.dataset.count) || 0;
-      toggle.textContent = tagsExpanded ? 'Show less' : '+' + hiddenCount + ' more';
+      toggle.textContent = 'Show less';
     }
   }
 
@@ -512,21 +518,22 @@
     });
     var sortedTags = Array.from(tagSet).sort();
     
-    var container = document.getElementById('tagsBar');
-    container.innerHTML = '';
-    container.classList.toggle('expanded', tagsExpanded);
-    container.onclick = function(e) {
-      if (e.target === container && !tagsExpanded) {
+    var outer = document.getElementById('tagsBar');
+    var inner = document.getElementById('tagsBarInner');
+    inner.innerHTML = '';
+    outer.classList.toggle('expanded', tagsExpanded);
+    outer.onclick = function(e) {
+      if (e.target === outer && !tagsExpanded) {
         toggleTags();
-        container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        outer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     };
     
     if (sortedTags.length === 0) {
-      container.style.display = 'none';
+      outer.style.display = 'none';
       return;
     }
-    container.style.display = 'flex';
+    outer.style.display = 'block';
 
     sortedTags.forEach(function(tag) {
       var chip = document.createElement('div');
@@ -542,7 +549,7 @@
         chip.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
         render();
       };
-      container.appendChild(chip);
+      inner.appendChild(chip);
     });
 
     if (tagsExpanded) {
@@ -553,18 +560,18 @@
         e.stopPropagation();
         toggleTags();
       };
-      container.appendChild(showLess);
+      inner.appendChild(showLess);
       return;
     }
 
     // Collapsed: measure and trim overflow
     requestAnimationFrame(function() {
       if (sortedTags.length === 0) return;
-      var chips = container.querySelectorAll('.filter-tag-chip');
+      var chips = inner.querySelectorAll('.filter-tag-chip');
       if (chips.length === 0) return;
 
-      var gap = 6;
-      var containerW = container.clientWidth - 64;
+      var gap = 8;
+      var containerW = inner.clientWidth;
       var totalW = 0;
       var fitCount = 0;
 
@@ -603,7 +610,7 @@
         e.stopPropagation();
         toggleTags();
       };
-      container.appendChild(toggleBtn);
+      inner.appendChild(toggleBtn);
     });
   }
 
