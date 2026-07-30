@@ -5,338 +5,330 @@
   <title>SyntaxFlow Problem Set</title>
   <script src="qwebchannel.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      user-select: none;
+    :root {
+      --bg: #121212;
+      --bg-surface: #1a1a1c;
+      --bg-hover: #222225;
+      --border: #2a2a2d;
+      --border-light: #333336;
+      --text: #d4d4d8;
+      --text-secondary: #8b8b8f;
+      --text-muted: #5c5c62;
+      --accent: #5c9eff;
+      --accent-dim: rgba(92, 158, 255, 0.12);
+      --success: #4caf7d;
+      --warning: #d4a12a;
+      --danger: #e05555;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
     }
+
+    * { box-sizing: border-box; }
+
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100vh;
-      background-color: #0f0f11;
-      color: #e2e8f0;
-      font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
-      overflow-y: auto;
+      margin: 0; padding: 0;
+      width: 100%; min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      overflow-x: hidden; overflow-y: auto;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
+    /* ─── Header ─── */
     .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center;
       justify-content: space-between;
-      padding: 16px 32px;
-      background: rgba(18, 18, 22, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 32px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
 
     .logo {
-      font-size: 20px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
+      font-size: 16px; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.3px;
     }
 
     .subtitle {
-      font-size: 13px;
-      color: #64748b;
-      font-weight: 500;
+      font-size: 13px; color: var(--text-muted);
+      font-weight: 400;
     }
 
-    /* Controls Bar */
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    /* ─── Controls ─── */
+    .controls { display: flex; align-items: center; gap: 12px; }
 
-    .search-box {
-      position: relative;
-    }
+    .search-box { position: relative; }
 
     .search-input {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 8px 14px 8px 36px;
-      color: #f1f5f9;
-      font-size: 13px;
-      outline: none;
-      width: 220px;
-      transition: all 0.2s ease;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 12px 7px 32px;
+      color: var(--text);
+      font-size: 13px; outline: none;
+      width: 200px;
+      transition: border-color 0.15s, width 0.2s;
     }
 
+    .search-input::placeholder { color: var(--text-muted); }
+
     .search-input:focus {
-      border-color: #60a5fa;
-      background: rgba(30, 41, 59, 0.9);
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
-      width: 260px;
+      border-color: var(--accent);
+      width: 240px;
     }
 
     .search-icon {
       position: absolute;
-      left: 12px;
-      top: 50%;
+      left: 10px; top: 50%;
       transform: translateY(-50%);
-      color: #64748b;
-      font-size: 14px;
+      color: var(--text-muted);
       pointer-events: none;
+      width: 13px; height: 13px;
     }
 
-    .filter-pills {
-      display: flex;
-      background: rgba(30, 41, 59, 0.5);
-      padding: 3px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+    .filter-pills { display: flex; gap: 2px; }
 
     .filter-btn {
       background: transparent;
       border: none;
-      color: #94a3b8;
-      padding: 6px 12px;
+      color: var(--text-secondary);
+      padding: 6px 14px;
       border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
+      font-size: 12px; font-weight: 500;
+      cursor: pointer; user-select: none;
+      transition: background 0.15s, color 0.15s;
     }
 
-    .filter-btn:hover {
-      color: #f8fafc;
-    }
+    .filter-btn:hover { color: var(--text); background: var(--bg-hover); }
 
     .filter-btn.active {
-      background: rgba(255, 255, 255, 0.1);
-      color: #f8fafc;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      background: var(--bg-hover);
+      color: var(--text);
     }
 
-    /* Stats Pill */
+    /* ─── Stats ─── */
     .stats-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 14px;
-      border-radius: 8px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 12px;
       font-size: 12px;
+      color: var(--text-secondary);
     }
 
     .stats-text {
-      color: #94a3b8;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      white-space: nowrap;
     }
 
     .progress-bar-bg {
-      width: 80px;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
+      width: 64px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
       overflow: hidden;
     }
 
     .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+      height: 100%; width: 0%;
+      background: var(--success);
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Problem Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px 32px 64px 32px;
-    }
-
-    .problem-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* Problem Card */
-    .card {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(20, 20, 26, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 14px 20px 14px 24px;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      border-radius: 4px 0 0 4px;
-      transition: all 0.2s;
-    }
-
-    .card.easy::before { background: #10b981; }
-    .card.medium::before { background: #f59e0b; }
-    .card.hard::before { background: #ef4444; }
-
-    .card:hover {
-      background: rgba(30, 30, 40, 0.85);
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-info {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .diff-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .diff-badge.easy {
-      color: #34d399;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-    }
-
-    .diff-badge.medium {
-      color: #fbbf24;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-    }
-
-    .diff-badge.hard {
-      color: #f87171;
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.25);
-    }
-
+    /* ─── Tags Bar ─── */
     .tags-bar {
       display: flex;
+      flex-wrap: nowrap;
       align-items: center;
-      gap: 8px;
-      padding: 12px 32px;
-      background: rgba(15, 15, 17, 0.95);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      overflow-x: auto;
-      white-space: nowrap;
-      position: sticky;
-      top: 65px;
-      z-index: 99;
+      gap: 6px;
+      padding: 8px 32px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 49px; z-index: 99;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      min-height: 36px;
+      transition: none;
     }
 
-    .tags-bar::-webkit-scrollbar {
-      height: 4px;
+    .tags-bar.expanded {
+      flex-wrap: wrap;
+      cursor: default;
     }
 
     .filter-tag-chip {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 11px;
-      padding: 5px 12px;
-      border-radius: 12px;
-      background: rgba(30, 41, 59, 0.6);
-      color: #94a3b8;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      cursor: pointer; user-select: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
 
     .filter-tag-chip:hover {
-      background: rgba(45, 55, 72, 0.8);
-      color: #f1f5f9;
+      background: var(--bg-surface);
+      color: var(--text);
+      border-color: var(--border-light);
     }
 
     .filter-tag-chip.active {
-      background: rgba(96, 165, 250, 0.15);
-      color: #60a5fa;
-      border-color: rgba(96, 165, 250, 0.3);
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: rgba(92, 158, 255, 0.25);
     }
 
-    .solved-badge {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .tags-toggle {
+      font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 600;
-      color: #34d399;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
       padding: 4px 10px;
-      border-radius: 6px;
-    }
-
-    .unsolved-circle {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.2s;
-    }
-
-    .card:hover .unsolved-circle {
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0f0f11;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
       border-radius: 4px;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      cursor: pointer; user-select: none;
+      transition: background 0.15s;
+      flex-shrink: 0;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+
+    .tags-toggle:hover {
+      background: var(--accent-dim);
+      border-color: rgba(92, 158, 255, 0.25);
     }
+
+    /* ─── Container ─── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px 32px 64px;
+    }
+
+    /* ─── Problem List (table-like rows) ─── */
+    .problem-list {
+      display: flex; flex-direction: column;
+    }
+
+    .list-header {
+      display: flex; align-items: center;
+      padding: 8px 16px 8px 12px;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+      user-select: none;
+    }
+
+    .list-header .col-status { width: 40px; }
+    .list-header .col-title { flex: 1; }
+    .list-header .col-difficulty { width: 80px; text-align: right; }
+
+    .row {
+      display: flex; align-items: center;
+      padding: 10px 16px 10px 12px;
+      cursor: pointer; user-select: none;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+      height: 44px;
+    }
+
+    .row:hover { background: var(--bg-surface); }
+
+    .row .col-status {
+      width: 40px; display: flex; align-items: center;
+      justify-content: center;
+    }
+
+    .row .col-title {
+      flex: 1;
+      font-size: 14px; font-weight: 500;
+      color: var(--text);
+      user-select: text;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .row .col-difficulty {
+      width: 80px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 12px; font-weight: 500;
+    }
+
+    .diff-easy { color: var(--success); }
+    .diff-medium { color: var(--warning); }
+    .diff-hard { color: var(--danger); }
+
+    .status-icon {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center;
+      justify-content: center;
+    }
+
+    .status-icon.solved {
+      color: var(--success);
+    }
+
+    .status-icon.unsolved {
+      border: 1.5px solid var(--border-light);
+    }
+
+    .row:hover .status-icon.unsolved {
+      border-color: var(--text-muted);
+    }
+
+    /* ─── Empty State ─── */
+    .empty-state {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 80px 32px; text-align: center;
+    }
+
+    .empty-state-icon {
+      font-size: 40px; margin-bottom: 16px;
+      opacity: 0.15;
+    }
+
+    .empty-state-title {
+      font-size: 16px; font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .empty-state-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 380px; line-height: 1.5;
+    }
+
+    .clear-filters-btn {
+      margin-top: 20px;
+      padding: 7px 18px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(92, 158, 255, 0.2);
+      color: var(--accent);
+      border-radius: 6px;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer; user-select: none;
+      transition: background 0.15s;
+    }
+
+    .clear-filters-btn:hover {
+      background: rgba(92, 158, 255, 0.2);
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
   </style>
 </head>
 <body>
@@ -349,7 +341,7 @@
 
   <div class="controls">
     <div class="search-box">
-      <span class="search-icon">🔍</span>
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" id="searchInput" class="search-input" placeholder="Search problems or tags...">
     </div>
 
@@ -374,7 +366,13 @@
 </div>
 
 <div class="container">
-  <div id="problemList" class="problem-list"></div>
+  <div id="problemList" class="problem-list">
+    <div class="list-header" id="listHeader" style="display: none;">
+      <span class="col-status"></span>
+      <span class="col-title">Problem</span>
+      <span class="col-difficulty">Difficulty</span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -465,6 +463,20 @@
     flushPendingPaths();
   });
 
+  function resetFilters() {
+    currentFilter = 'all';
+    searchQuery = '';
+    selectedTags.clear();
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === 'all');
+    });
+    document.querySelectorAll('.filter-tag-chip').forEach(chip => {
+      chip.classList.remove('active');
+    });
+    render();
+  }
+
   function setFilter(filter) {
     currentFilter = filter;
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -473,33 +485,109 @@
     render();
   }
 
+  var tagsExpanded = false;
+
+  function toggleTags() {
+    tagsExpanded = !tagsExpanded;
+    var container = document.getElementById('tagsBar');
+    container.classList.toggle('expanded', tagsExpanded);
+    var toggle = container.querySelector('.tags-toggle');
+    if (toggle) {
+      var hiddenCount = parseInt(toggle.dataset.count) || 0;
+      toggle.textContent = tagsExpanded ? 'Show less' : '+' + hiddenCount + ' more';
+    }
+  }
+
   function renderTags() {
     var tagSet = new Set();
-    allProblems.forEach(p => {
-      (p.topics || []).forEach(t => tagSet.add(t));
+    allProblems.forEach(function(p) {
+      (p.topics || []).forEach(function(t) { tagSet.add(t); });
     });
     var sortedTags = Array.from(tagSet).sort();
     
     var container = document.getElementById('tagsBar');
     container.innerHTML = '';
+    container.classList.toggle('expanded', tagsExpanded);
+    container.onclick = function(e) {
+      if (e.target === container && !tagsExpanded) {
+        toggleTags();
+        container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    };
     
-    sortedTags.forEach(tag => {
-      var btn = document.createElement('div');
-      btn.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
-      btn.textContent = tag;
-      btn.onclick = function() {
+    if (sortedTags.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+    container.style.display = 'flex';
+
+    sortedTags.forEach(function(tag) {
+      var chip = document.createElement('div');
+      chip.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
+      chip.textContent = tag;
+      chip.onclick = function(e) {
+        e.stopPropagation();
         if (selectedTags.has(tag)) {
           selectedTags.delete(tag);
         } else {
           selectedTags.add(tag);
         }
-        btn.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
+        chip.className = 'filter-tag-chip' + (selectedTags.has(tag) ? ' active' : '');
         render();
       };
-      container.appendChild(btn);
+      container.appendChild(chip);
     });
-    
-    container.style.display = sortedTags.length > 0 ? 'flex' : 'none';
+
+    if (tagsExpanded) return;
+
+    // Collapsed: measure and trim overflow
+    requestAnimationFrame(function() {
+      if (sortedTags.length === 0) return;
+      var chips = container.querySelectorAll('.filter-tag-chip');
+      if (chips.length === 0) return;
+
+      var gap = 6;
+      var containerW = container.clientWidth - 64;
+      var totalW = 0;
+      var fitCount = 0;
+
+      for (var i = 0; i < chips.length; i++) {
+        var chipW = chips[i].offsetWidth;
+        var withGap = chipW + (fitCount > 0 ? gap : 0);
+        if (totalW + withGap <= containerW) {
+          totalW += withGap;
+          fitCount++;
+        } else {
+          break;
+        }
+      }
+
+      if (fitCount >= chips.length) return;
+
+      var hiddenCount = chips.length - fitCount;
+
+      // Remove last visible chip if toggle won't fit
+      var toggleEstimate = 80;
+      if (totalW + gap + toggleEstimate > containerW && fitCount > 1) {
+        chips[fitCount - 1].style.display = 'none';
+        hiddenCount++;
+        fitCount--;
+      }
+
+      for (var j = fitCount; j < chips.length; j++) {
+        chips[j].style.display = 'none';
+      }
+
+      var toggleBtn = document.createElement('div');
+      toggleBtn.className = 'tags-toggle';
+      toggleBtn.dataset.count = hiddenCount;
+      toggleBtn.textContent = '+' + hiddenCount + ' more';
+      toggleBtn.onclick = function(e) {
+        e.stopPropagation();
+        toggleTags();
+      };
+      container.appendChild(toggleBtn);
+    });
   }
 
   document.getElementById('searchInput').addEventListener('input', function(e) {
@@ -509,7 +597,7 @@
 
   function render() {
     var container = document.getElementById('problemList');
-    container.innerHTML = '';
+    var headerEl = document.getElementById('listHeader');
 
     var total = allProblems.length;
     var solvedCount = 0;
@@ -544,34 +632,48 @@
     var pct = total > 0 ? (solvedCount / total * 100) : 0;
     document.getElementById('progressFill').style.width = pct + '%';
 
+    // Remove old rows (keep header)
+    var rows = container.querySelectorAll('.row');
+    for (var i = rows.length - 1; i >= 0; i--) {
+      rows[i].remove();
+    }
+
+    if (filtered.length === 0) {
+      headerEl.style.display = 'none';
+      var emptyEl = document.createElement('div');
+      emptyEl.className = 'empty-state';
+      var hasAnyFilter = currentFilter !== 'all' || searchQuery || selectedTags.size > 0;
+      emptyEl.innerHTML = hasAnyFilter
+        ? '<div class="empty-state-icon">🔍</div><div class="empty-state-title">No problems found</div><div class="empty-state-desc">Try adjusting your search or filters.</div><button class="clear-filters-btn" onclick="resetFilters()">Clear all filters</button>'
+        : '<div class="empty-state-icon">📝</div><div class="empty-state-title">No problems loaded</div><div class="empty-state-desc">Problems will appear here once loaded from the data source.</div>';
+      container.appendChild(emptyEl);
+      return;
+    }
+
+    headerEl.style.display = 'flex';
     var fragment = document.createDocumentFragment();
 
     filtered.forEach(function(p) {
-      var card = document.createElement('div');
+      var row = document.createElement('div');
       var diffClass = (p.difficulty || 'easy').toLowerCase();
       var isSolved = !!solvedMap[p.id];
 
-      card.className = 'card ' + diffClass;
-      card.onclick = function(e) {
-        e.preventDefault();
+      row.className = 'row ' + diffClass;
+      row.onclick = function() {
         window.openProblemPath(p.path);
       };
 
-      var statusHtml = isSolved 
-        ? '<div class="solved-badge">✓ Solved</div>'
-        : '<div class="unsolved-circle"></div>';
+      var statusIcon = isSolved
+        ? '<svg class="status-icon solved" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>'
+        : '<div class="status-icon unsolved"></div>';
 
-      card.innerHTML = `
-        <div class="card-info">
-          <div class="card-title">${escapeHtml(p.title)}</div>
-          <div class="card-meta">
-            <span class="diff-badge ${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</span>
-          </div>
-        </div>
-        ${statusHtml}
+      row.innerHTML = `
+        <div class="col-status">${statusIcon}</div>
+        <div class="col-title">${escapeHtml(p.title || '')}</div>
+        <div class="col-difficulty diff-${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</div>
       `;
 
-      fragment.appendChild(card);
+      fragment.appendChild(row);
     });
 
     container.appendChild(fragment);
