@@ -4,38 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sidebar</title>
+  <link rel="stylesheet" href="design.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script src="qwebchannel.js"></script>
   <style>
-    :root {
-      --bg: #121212;
-      --bg-surface: #1a1a1c;
-      --bg-hover: #222225;
-      --border: #2a2a2d;
-      --border-light: #333336;
-      --text: #d4d4d8;
-      --text-secondary: #8b8b8f;
-      --text-muted: #5c5c62;
-      --accent: #5c9eff;
-      --accent-dim: rgba(92, 158, 255, 0.12);
-      --success: #4caf7d;
-      --warning: #d4a12a;
-      --danger: #e05555;
-      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 14px;
       overflow: hidden;
       user-select: none;
       height: 100vh;
@@ -43,7 +18,6 @@
       flex-direction: column;
       border-right: 1px solid var(--border);
       width: 100%;
-      -webkit-font-smoothing: antialiased;
     }
 
     .header {
