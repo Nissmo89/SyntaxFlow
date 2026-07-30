@@ -11,6 +11,7 @@
 #include <QDebug>
 #include "output_normalizer.h"
 #include "driver_generator.h"
+#include <QRegularExpression>
 
 CodeRunner::CodeRunner(LanguageRegistry *registry, QObject *parent)
     : QObject(parent), m_registry(registry) {
@@ -704,6 +705,7 @@ void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manife
     
     QString mainCpp = R"(
 #include "stdcpp.h"
+#include <type_traits>
 
 using namespace std;
 using _JSON_ = nlohmann::json;
@@ -1002,6 +1004,21 @@ inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
 )_UTILITIES_";
     
+    if (languageId == "c") {
+        mainCpp += R"_SF_C_COMPAT_(
+#include <cstdlib>
+struct _SF_AutoCast {
+    void* ptr;
+    _SF_AutoCast(void* p) : ptr(p) {}
+    template<typename U> operator U*() const { return static_cast<U*>(ptr); }
+};
+#define malloc(size) _SF_AutoCast(::malloc(size))
+#define calloc(n, size) _SF_AutoCast(::calloc(n, size))
+#define realloc(ptr, size) _SF_AutoCast(::realloc(ptr, size))
+)_SF_C_COMPAT_";
+        mainCpp += "\n";
+    }
+    
     int offset = mainCpp.count('\n');
     mainCpp += code + "\n";
     
@@ -1078,17 +1095,79 @@ int main() {
     }
     
     QString evalExpr = cppCall;
-    for (const QString &pname : params.keys()) {
-        evalExpr.replace("{" + pname + "}", "_" + pname);
+    QString preCall = "";
+    QString postCall = "";
+    bool hasReturnSize = false;
+
+    if (languageId == "c") {
+        QString funcName = cppCall;
+        int pIndex = funcName.indexOf('(');
+        if (pIndex != -1) funcName = funcName.left(pIndex).trimmed();
+        
+        QRegularExpression rx(funcName + "\\s*\\(([^)]*)\\)");
+        QRegularExpressionMatch match = rx.match(code);
+        if (match.hasMatch()) {
+            QString argsStr = match.captured(1);
+            QStringList args = argsStr.split(',');
+            QStringList cCallArgs;
+            for (QString arg : args) {
+                arg = arg.trimmed();
+                int lastSpace = arg.lastIndexOf(QRegularExpression("\\s|\\*"));
+                QString argName = arg.mid(lastSpace + 1).trimmed();
+                
+                if (argName == "returnSize") {
+                    preCall += "        int _sf_returnSize = 0;\n";
+                    cCallArgs << "&_sf_returnSize";
+                    hasReturnSize = true;
+                } else if (argName == "returnColumnSizes") {
+                    preCall += "        int* _sf_returnColSizes = nullptr;\n";
+                    cCallArgs << "&_sf_returnColSizes";
+                } else if (argName.endsWith("Size")) {
+                    QString base = argName.left(argName.length() - 4);
+                    cCallArgs << "_" + base + ".size()";
+                } else if (argName.endsWith("Sizes")) {
+                    QString base = argName.left(argName.length() - 5);
+                    preCall += "        vector<int> _sf_" + argName + ";\n";
+                    preCall += "        for(auto& r : _" + base + ") _sf_" + argName + ".push_back(r.size());\n";
+                    cCallArgs << "_sf_" + argName + ".data()";
+                } else {
+                    if (params.contains(argName) && params[argName].toObject()["type"].toString() == "array") {
+                        cCallArgs << "_" + argName + ".data()";
+                    } else {
+                        cCallArgs << "_" + argName;
+                    }
+                }
+            }
+            evalExpr = funcName + "(" + cCallArgs.join(", ") + ")";
+        } else {
+            for (const QString &pname : params.keys()) evalExpr.replace("{" + pname + "}", "_" + pname);
+        }
+    } else {
+        for (const QString &pname : params.keys()) {
+            evalExpr.replace("{" + pname + "}", "_" + pname);
+        }
     }
+
     if (evalExpr.isEmpty()) {
         evalExpr = "0"; // fallback if missing call
     }
     
+    mainCpp += preCall;
     mainCpp += "        auto res = " + evalExpr + ";\n";
     mainCpp += "        _JSON_ resObj;\n";
-    mainCpp += "        resObj = _JSON_::parse(toJson(res), nullptr, false);\n";
-    mainCpp += "        if (resObj.is_discarded()) { resObj = toJson(res); }\n";
+    
+    if (hasReturnSize) {
+        mainCpp += "        if (res) {\n";
+        mainCpp += "            vector<remove_pointer<decltype(res)>::type> _sf_res_vec(res, res + _sf_returnSize);\n";
+        mainCpp += "            resObj = _JSON_::parse(toJson(_sf_res_vec), nullptr, false);\n";
+        mainCpp += "            if (resObj.is_discarded()) { resObj = toJson(_sf_res_vec); }\n";
+        mainCpp += "        } else {\n";
+        mainCpp += "            resObj = _JSON_();\n";
+        mainCpp += "        }\n";
+    } else {
+        mainCpp += "        resObj = _JSON_::parse(toJson(res), nullptr, false);\n";
+        mainCpp += "        if (resObj.is_discarded()) { resObj = toJson(res); }\n";
+    }
     
     mainCpp += R"(
         _JSON_ resultItem;
