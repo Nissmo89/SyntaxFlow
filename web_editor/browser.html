@@ -190,21 +190,26 @@
     }
 
     .tags-toggle {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
       border-radius: 4px;
       background: transparent;
-      color: var(--accent);
+      color: var(--text-muted);
       border: 1px solid var(--border);
       cursor: pointer; user-select: none;
-      transition: background 0.15s;
+      transition: background 0.15s, color 0.15s;
       flex-shrink: 0;
+      font-size: 10px;
+      line-height: 1;
     }
 
     .tags-toggle:hover {
-      background: var(--accent-dim);
-      border-color: rgba(92, 158, 255, 0.25);
+      background: var(--bg-surface);
+      color: var(--text);
+      border-color: var(--border-light);
     }
 
     /* ─── Container ─── */
@@ -506,8 +511,8 @@
     }
     var toggle = inner.querySelector('.tags-toggle');
     if (toggle) {
-      var hiddenCount = parseInt(toggle.dataset.count) || 0;
-      toggle.textContent = 'Show less';
+      toggle.textContent = '▲';
+      toggle.title = 'Show less';
     }
   }
 
@@ -555,7 +560,8 @@
     if (tagsExpanded) {
       var showLess = document.createElement('div');
       showLess.className = 'tags-toggle';
-      showLess.textContent = 'Show less';
+      showLess.textContent = '▲';
+      showLess.title = 'Show less';
       showLess.onclick = function(e) {
         e.stopPropagation();
         toggleTags();
@@ -605,7 +611,8 @@
       var toggleBtn = document.createElement('div');
       toggleBtn.className = 'tags-toggle';
       toggleBtn.dataset.count = hiddenCount;
-      toggleBtn.textContent = '+' + hiddenCount + ' more';
+      toggleBtn.title = 'Show ' + hiddenCount + ' more';
+      toggleBtn.textContent = '▼';
       toggleBtn.onclick = function(e) {
         e.stopPropagation();
         toggleTags();
