@@ -491,6 +491,13 @@
     tagsExpanded = !tagsExpanded;
     var container = document.getElementById('tagsBar');
     container.classList.toggle('expanded', tagsExpanded);
+    var chips = container.querySelectorAll('.filter-tag-chip');
+    if (tagsExpanded) {
+      chips.forEach(function(c) { c.style.display = ''; });
+    } else {
+      renderTags();
+      return;
+    }
     var toggle = container.querySelector('.tags-toggle');
     if (toggle) {
       var hiddenCount = parseInt(toggle.dataset.count) || 0;
@@ -538,7 +545,17 @@
       container.appendChild(chip);
     });
 
-    if (tagsExpanded) return;
+    if (tagsExpanded) {
+      var showLess = document.createElement('div');
+      showLess.className = 'tags-toggle';
+      showLess.textContent = 'Show less';
+      showLess.onclick = function(e) {
+        e.stopPropagation();
+        toggleTags();
+      };
+      container.appendChild(showLess);
+      return;
+    }
 
     // Collapsed: measure and trim overflow
     requestAnimationFrame(function() {
