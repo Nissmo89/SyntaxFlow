@@ -16,6 +16,22 @@
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
 }
 
+:root[data-theme="light"] {
+  --bg: #f6f7f9;
+  --bg-surface: #ffffff;
+  --bg-hover: #eceef1;
+  --border: #d5d9df;
+  --border-light: #c0c6cf;
+  --text: #1c1f24;
+  --text-secondary: #4b5563;
+  --text-muted: #8b939e;
+  --accent: #2563eb;
+  --accent-dim: rgba(37, 99, 235, 0.1);
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+}
+
 * { box-sizing: border-box; }
 
 html, body {

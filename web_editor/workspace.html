@@ -33,10 +33,24 @@
       --saffron: #f5a623;
     }
 
+    :root[data-theme="light"] {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface-2: #eceef1;
+      --border: #d5d9df;
+      --border-subtle: #e2e5e9;
+      --text: #1c1f24;
+      --text-muted: #5b6470;
+      --accent: #2563eb;
+      --lime: #16a34a;
+      --rose: #dc2626;
+      --saffron: #d97706;
+    }
+
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0; width: 100%; height: 100%;
-      background-color: #121213; color: #e4e4e7;
+      background-color: var(--bg); color: var(--text);
       font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
       overflow: hidden;
       font-size: 14px;
@@ -66,6 +80,7 @@
     }
     .btn-primary:hover { background: rgba(92, 158, 255, 0.2); }
     .btn-run { color: var(--accent); }
+    .theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 32px; padding: 6px 0; }
     
     select.btn { outline: none; appearance: none; padding-right: 24px; }
 
@@ -176,6 +191,36 @@
     .problem-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
     .problem-content p { line-height: 1.6; }
 
+    html[data-theme="light"] .problem-content pre code.hljs,
+    html[data-theme="light"] .problem-content pre code {
+      background: #f6f7f9; color: #1c1f24;
+    }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-comment,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-meta { color: #8b939e; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-keyword,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-tag,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-selector-class,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-selector-id,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-deletion { color: #c026d3; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-string,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-symbol,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-addition { color: #15803d; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-number,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-literal,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-type,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-variable { color: #c2410c; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-title,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-property,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-section,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-attr { color: #1d4ed8; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-built_in,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-attribute { color: #c2410c; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-operator,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-name,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-quote { color: #1d4ed8; }
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-punctuation,
+    html[data-theme="light"] .problem-content pre code.hljs .hljs-params { color: #5b6470; }
+
     /* Code Editor wrapper */
     .editor-wrapper { flex: 1; min-height: 0; position: relative; }
     .CodeMirror { height: 100% !important; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
@@ -230,6 +275,55 @@
     }
     .CodeMirror-hint { color: #9a9aa3; }
     .CodeMirror-hint-active { background: rgba(92, 158, 255, 0.15); color: #e4e4e7; }
+
+    /* ─── Light theme overrides ─── */
+    html[data-theme="light"] .cm-s-syntaxflow.CodeMirror {
+      background: #ffffff; color: #1c1f24;
+    }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-gutters {
+      background: #f6f7f9; border-right: 1px solid #e2e5e9;
+    }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-linenumber { color: #b0b6bf; }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-cursor { border-left: 2px solid #2563eb; }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-selected { background: rgba(37, 99, 235, 0.14); }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-focused .CodeMirror-selected { background: rgba(37, 99, 235, 0.18); }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-activeline-background,
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-activeLine { background: rgba(0, 0, 0, 0.04); }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-matchingbracket {
+      color: #1c1f24; background: rgba(37, 99, 235, 0.12);
+      outline: 1px solid rgba(37, 99, 235, 0.35);
+    }
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-foldgutter-open,
+    html[data-theme="light"] .cm-s-syntaxflow .CodeMirror-foldgutter-folded { color: #b0b6bf; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-keyword { color: #c026d3; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-builtin { color: #c2410c; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-type { color: #1d4ed8; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-def { color: #0e7490; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-variable { color: #1c1f24; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-variable-2 { color: #6d28d9; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-variable-3 { color: #c2410c; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-property { color: #0e7490; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-operator { color: #374151; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-punctuation { color: #6b7280; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-bracket { color: #6b7280; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-number { color: #c2410c; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-string { color: #15803d; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-string-2 { color: #15803d; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-atom { color: #c2410c; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-comment { color: #94a3b8; font-style: italic; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-tag { color: #c026d3; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-attribute { color: #c2410c; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-qualifier { color: #1d4ed8; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-meta { color: #6b7280; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-hr { color: #94a3b8; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-link { color: #1d4ed8; }
+    html[data-theme="light"] .cm-s-syntaxflow .cm-error { color: #dc2626; text-decoration: underline; }
+    html[data-theme="light"] .CodeMirror-hints {
+      background: #ffffff; border: 1px solid #d5d9df; border-radius: 4px;
+      box-shadow: none; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    }
+    html[data-theme="light"] .CodeMirror-hint { color: #5b6470; }
+    html[data-theme="light"] .CodeMirror-hint-active { background: rgba(37, 99, 235, 0.12); color: #1c1f24; }
 
     .theme-toast {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -401,6 +495,7 @@
   
   <script src="marked.min.js"></script>
   <script src="highlight.min.js"></script>
+  <script src="theme.js"></script>
   <script src="qwebchannel.js"></script>
 </head>
 <body>
@@ -409,6 +504,7 @@
   <div class="toolbar">
     <button class="btn" id="btnBack">← Back</button>
     <div style="flex: 1;"></div>
+    <button class="btn theme-toggle" id="themeToggle" title="Switch theme"></button>
     <select class="btn" id="themeSelect" title="Editor theme (Ctrl+K Ctrl+T)"></select>
     <button class="btn btn-run" id="btnRun">▶ Run</button>
     <button class="btn btn-primary" id="btnSubmit">Submit</button>

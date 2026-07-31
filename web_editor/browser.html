@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>SyntaxFlow Problem Set</title>
   <link rel="stylesheet" href="design.css">
+  <script src="theme.js"></script>
   <script src="qwebchannel.js"></script>
   <style>
     html, body {
@@ -157,6 +158,22 @@
       font-family: var(--font-mono);
       font-size: 12px;
       white-space: nowrap;
+    }
+
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      cursor: pointer; user-select: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .theme-toggle:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+      border-color: var(--border-light);
     }
 
     .progress-bar-bg {
@@ -422,6 +439,8 @@
       </div>
       <span id="statsText" class="stats-text">0 / 0 Solved</span>
     </div>
+
+    <button type="button" class="theme-toggle" id="themeToggle" title="Switch theme"></button>
   </div>
 </div>
 

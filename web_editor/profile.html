@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard</title>
   <link rel="stylesheet" href="design.css">
+  <script src="theme.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
     :root {
@@ -84,6 +85,23 @@
       display: flex;
       align-items: center;
       gap: 4px;
+    }
+
+    .theme-toggle {
+      position: fixed; top: 28px; right: 32px; z-index: 100;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer; user-select: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .theme-toggle:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+      border-color: var(--border-light);
     }
 
     /* ─── Stats Grid ─── */
@@ -277,6 +295,8 @@
   </style>
 </head>
 <body>
+
+  <button class="theme-toggle" id="themeToggle" title="Switch theme"></button>
 
   <div class="dashboard-container">
     <!-- Profile Header -->
