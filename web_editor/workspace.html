@@ -19,10 +19,24 @@
   <link rel="stylesheet" href="highlight-tokyo-night.min.css">
 
   <style>
+    :root {
+      --bg: #121213;
+      --surface: #1a1a1c;
+      --surface-2: #222225;
+      --border: #3f3f46;
+      --border-subtle: #333338;
+      --text: #e4e4e7;
+      --text-muted: #9a9aa3;
+      --accent: #5c9eff;
+      --lime: #a3e635;
+      --rose: #fb7185;
+      --saffron: #f5a623;
+    }
+
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0; width: 100%; height: 100%;
-      background-color: #0d1117; color: #c9d1d9;
+      background-color: #121213; color: #e4e4e7;
       font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
       overflow: hidden;
       font-size: 14px;
@@ -34,20 +48,24 @@
     }
     
     .toolbar {
-      height: 48px; background: #161b22; display: flex; align-items: center;
-      padding: 0 16px; border-bottom: 1px solid #30363d;
+      height: 48px; background: var(--surface); display: flex; align-items: center;
+      padding: 0 16px; border-bottom: 1px solid var(--border);
       gap: 12px;
     }
 
     .btn {
-      background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
-      padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
-      font-weight: 500; transition: all 0.2s ease;
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+      padding: 6px 12px; cursor: pointer; font-size: 13px;
+      font-weight: 500; transition: all 0.15s ease;
+      border-radius: 4px;
     }
-    .btn:hover { background: #30363d; }
-    .btn-primary { background: #238636; border-color: rgba(240,246,252,0.1); color: #fff; }
-    .btn-primary:hover { background: #2ea043; }
-    .btn-run { color: #58a6ff; }
+    .btn:hover { background: var(--surface-2); }
+    .btn-primary {
+      background: rgba(92, 158, 255, 0.12); border-color: rgba(92, 158, 255, 0.35);
+      color: var(--accent);
+    }
+    .btn-primary:hover { background: rgba(92, 158, 255, 0.2); }
+    .btn-run { color: var(--accent); }
     
     select.btn { outline: none; appearance: none; padding-right: 24px; }
 
@@ -56,38 +74,49 @@
     }
 
     .pane { overflow: auto; position: relative; }
-    .left-pane { width: 40%; background: #0d1117; display: flex; flex-direction: column; }
+    .left-pane { width: 40%; background: var(--bg); display: flex; flex-direction: column; }
     
     .resizer-v {
-      width: 6px; background: #21262d; cursor: col-resize; z-index: 10;
-      transition: background 0.2s;
+      width: 6px; background: var(--border-subtle); cursor: col-resize; z-index: 10;
+      transition: background 0.15s;
     }
-    .resizer-v:hover, .resizer-v.active { background: #58a6ff; }
+    .resizer-v:hover, .resizer-v.active { background: var(--accent); }
 
-    .right-pane { width: calc(60% - 6px); display: flex; flex-direction: column; background: #0d1117; }
+    .right-pane { width: calc(60% - 6px); display: flex; flex-direction: column; background: var(--bg); }
     
     .top-pane { height: 65%; display: flex; flex-direction: column; }
-    .bottom-pane { height: calc(35% - 6px); background: #0d1117; display: flex; flex-direction: column; }
+    .bottom-pane { height: calc(35% - 6px); background: var(--bg); display: flex; flex-direction: column; }
 
     .resizer-h {
-      height: 6px; background: #21262d; cursor: row-resize; z-index: 10;
-      transition: background 0.2s;
+      height: 6px; background: var(--border-subtle); cursor: row-resize; z-index: 10;
+      transition: background 0.15s;
     }
-    .resizer-h:hover, .resizer-h.active { background: #58a6ff; }
+    .resizer-h:hover, .resizer-h.active { background: var(--accent); }
 
     /* Problem Description Styling */
     .problem-content { padding: 24px; overflow-y: auto; flex: 1; }
-    .problem-content h1 { font-size: 22px; color: #f0f6fc; margin-top: 0; }
+    .problem-content h1 { font-size: 22px; color: var(--text); margin-top: 0; }
     .diff-pill {
-      font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;
+      font-size: 11px; font-weight: 600; padding: 3px 10px;
+      display: inline-flex; align-items: center; gap: 6px;
+      text-transform: uppercase; letter-spacing: 0.2px;
       margin-right: 8px;
+      border: 1px solid transparent;
+      border-radius: 4px;
     }
-    .diff-easy { color: #3fb950; background: rgba(63, 185, 80, 0.1); }
-    .diff-medium { color: #d29922; background: rgba(210, 153, 34, 0.1); }
-    .diff-hard { color: #f85149; background: rgba(248, 81, 73, 0.1); }
-    .tag-chip { font-size: 11px; background: #21262d; padding: 2px 8px; border-radius: 12px; margin-right: 6px; }
+    .diff-pill::before {
+      content: ''; width: 6px; height: 6px; background: currentColor;
+    }
+    .diff-easy { color: var(--lime); background: rgba(163, 230, 53, 0.08); border-color: rgba(163, 230, 53, 0.35); }
+    .diff-medium { color: var(--saffron); background: rgba(245, 166, 35, 0.08); border-color: rgba(245, 166, 35, 0.35); }
+    .diff-hard { color: var(--rose); background: rgba(251, 113, 133, 0.08); border-color: rgba(251, 113, 133, 0.35); }
+    .tag-chip {
+      font-size: 11px; background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); padding: 2px 8px; margin-right: 6px;
+      border-radius: 4px;
+    }
     
-    .problem-content pre { background: #161b22 !important; padding: 12px; border-radius: 6px; overflow-x: auto; }
+    .problem-content pre { background: var(--surface) !important; padding: 12px; border: 1px solid var(--border); overflow-x: auto; }
     .problem-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
     .problem-content p { line-height: 1.6; }
 
@@ -95,69 +124,205 @@
     .editor-wrapper { flex: 1; position: relative; }
     .CodeMirror { height: 100% !important; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 
+    /* ─── Custom SyntaxFlow editor theme (matches UI palette) ─── */
+    .cm-s-syntaxflow.CodeMirror {
+      background: #121213; color: #e4e4e7;
+    }
+    .cm-s-syntaxflow .CodeMirror-gutters {
+      background: #161618; border-right: 1px solid #3f3f46;
+    }
+    .cm-s-syntaxflow .CodeMirror-linenumber { color: #55555e; }
+    .cm-s-syntaxflow .CodeMirror-cursor { border-left: 2px solid #5c9eff; }
+    .cm-s-syntaxflow .CodeMirror-selected { background: rgba(92, 158, 255, 0.18); }
+    .cm-s-syntaxflow .CodeMirror-focused .CodeMirror-selected { background: rgba(92, 158, 255, 0.22); }
+    .cm-s-syntaxflow .CodeMirror-activeline-background,
+    .cm-s-syntaxflow .CodeMirror-activeLine { background: rgba(255, 255, 255, 0.04); }
+    .cm-s-syntaxflow .CodeMirror-matchingbracket {
+      color: #e4e4e7; background: rgba(92, 158, 255, 0.15);
+      outline: 1px solid rgba(92, 158, 255, 0.4);
+    }
+    .cm-s-syntaxflow .CodeMirror-foldgutter-open,
+    .cm-s-syntaxflow .CodeMirror-foldgutter-folded { color: #55555e; }
+
+    .cm-s-syntaxflow .cm-keyword { color: #fb7185; }
+    .cm-s-syntaxflow .cm-builtin { color: #f5a623; }
+    .cm-s-syntaxflow .cm-type { color: #5c9eff; }
+    .cm-s-syntaxflow .cm-def { color: #7dd3fc; }
+    .cm-s-syntaxflow .cm-variable { color: #e4e4e7; }
+    .cm-s-syntaxflow .cm-variable-2 { color: #a5b4fc; }
+    .cm-s-syntaxflow .cm-variable-3 { color: #f5a623; }
+    .cm-s-syntaxflow .cm-property { color: #7dd3fc; }
+    .cm-s-syntaxflow .cm-operator { color: #cbd5e1; }
+    .cm-s-syntaxflow .cm-punctuation { color: #9a9aa3; }
+    .cm-s-syntaxflow .cm-bracket { color: #9a9aa3; }
+    .cm-s-syntaxflow .cm-number { color: #f5a623; }
+    .cm-s-syntaxflow .cm-string { color: #a3e635; }
+    .cm-s-syntaxflow .cm-string-2 { color: #a3e635; }
+    .cm-s-syntaxflow .cm-atom { color: #f5a623; }
+    .cm-s-syntaxflow .cm-comment { color: #6b6b74; font-style: italic; }
+    .cm-s-syntaxflow .cm-tag { color: #fb7185; }
+    .cm-s-syntaxflow .cm-attribute { color: #f5a623; }
+    .cm-s-syntaxflow .cm-qualifier { color: #5c9eff; }
+    .cm-s-syntaxflow .cm-meta { color: #9a9aa3; }
+    .cm-s-syntaxflow .cm-hr { color: #6b6b74; }
+    .cm-s-syntaxflow .cm-link { color: #5c9eff; }
+    .cm-s-syntaxflow .cm-error { color: #fb7185; text-decoration: underline; }
+
+    .CodeMirror-hints {
+      background: #1a1a1c; border: 1px solid #3f3f46; border-radius: 4px;
+      box-shadow: none; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    }
+    .CodeMirror-hint { color: #9a9aa3; }
+    .CodeMirror-hint-active { background: rgba(92, 158, 255, 0.15); color: #e4e4e7; }
+
+    .theme-toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); padding: 8px 18px; font-size: 13px; font-weight: 500;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+      z-index: 1000;
+    }
+    .theme-toast.show { opacity: 1; }
+
+    /* ─── Theme Palette ─── */
+    .theme-palette-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 12vh;
+      opacity: 0; pointer-events: none; transition: opacity 0.15s ease;
+    }
+    .theme-palette-overlay.show { opacity: 1; pointer-events: auto; }
+
+    .theme-palette {
+      width: 420px; max-width: 92vw;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+    .theme-palette-header {
+      padding: 12px 16px; font-size: 13px; font-weight: 600;
+      color: var(--text); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .theme-palette-grid {
+      padding: 8px; display: flex; flex-direction: column; gap: 2px;
+      max-height: 46vh; overflow-y: auto;
+    }
+    .theme-palette-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 10px; cursor: pointer; user-select: none;
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      transition: background 0.1s, color 0.1s;
+    }
+    .theme-palette-item:hover { background: var(--bg-hover); color: var(--text); }
+    .theme-palette-item.highlighted {
+      background: rgba(92, 158, 255, 0.12); color: var(--text);
+      border-color: rgba(92, 158, 255, 0.3);
+    }
+    .theme-palette-item.active .theme-palette-name { color: var(--accent); font-weight: 600; }
+    .theme-palette-swatch {
+      display: flex; width: 64px; height: 22px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 3px; overflow: hidden;
+    }
+    .theme-palette-swatch i { display: block; flex: 1; height: 100%; }
+    .theme-palette-name { flex: 1; font-size: 13px; font-weight: 500; }
+    .theme-palette-check { width: 16px; color: var(--accent); display: none; }
+    .theme-palette-item.active .theme-palette-check { display: block; }
+    .theme-palette-footer {
+      padding: 8px 16px; border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .theme-palette-footer kbd {
+      font-family: var(--font-mono); font-size: 10px;
+      background: var(--bg-hover); border: 1px solid var(--border);
+      padding: 1px 5px; color: var(--text-secondary);
+    }
+
     /* Test Case Panel */
     .testcase-header {
-      display: flex; background: #161b22; border-bottom: 1px solid #30363d;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
     }
     .tc-tab {
-      padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500;
-      color: #8b949e; border-bottom: 2px solid transparent;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
     }
-    .tc-tab.active { color: #c9d1d9; border-bottom-color: #58a6ff; }
-    
+    .tc-count {
+      font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--border);
+    }
+
     .testcase-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .case-list-bar {
-      display: flex; gap: 8px; padding: 12px 16px 0; overflow-x: auto;
+      display: flex; align-items: center; gap: 2px;
+      padding: 10px 16px 0; overflow-x: auto;
     }
     .case-pill {
-      padding: 6px 12px; background: #21262d; border-radius: 6px; cursor: pointer;
-      font-size: 12px; font-weight: 500; color: #8b949e; border: 1px solid transparent;
+      padding: 4px 12px; cursor: pointer;
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      border: none; background: transparent;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
     }
-    .case-pill.active { background: #30363d; color: #c9d1d9; }
-    .case-pill.passed { color: #3fb950; }
-    .case-pill.failed { color: #f85149; }
-    .case-pill.running { color: #d29922; }
+    .case-pill:hover { background: var(--surface-2); color: var(--text); }
+    .case-pill.active { background: var(--surface); color: var(--text); box-shadow: inset 0 0 0 1px var(--border); }
+    .case-pill.passed { color: var(--lime); }
+    .case-pill.failed { color: var(--rose); }
+    .case-pill.running { color: var(--saffron); }
+
+    /* Submissions grid: contained chips for dense selection list */
+    .sub-case-grid .case-pill { background: var(--surface-2); border: 1px solid var(--border-subtle); }
+    .sub-case-grid .case-pill:hover { background: var(--bg); border-color: var(--border); }
+    .sub-case-grid .case-pill.active { box-shadow: inset 0 0 0 1px rgba(92, 158, 255, 0.5); }
 
     /* Left Pane Tabs */
     .left-tabs {
-      display: flex; background: #161b22; border-bottom: 1px solid #30363d;
+      display: flex; background: var(--surface); border-bottom: 1px solid var(--border-subtle);
     }
     .left-tab {
       padding: 12px 20px; cursor: pointer; font-size: 14px; font-weight: 500;
-      color: #8b949e; border-bottom: 2px solid transparent; transition: all 0.2s;
+      color: var(--text-muted); border-bottom: 2px solid transparent; transition: all 0.2s;
     }
-    .left-tab.active { color: #c9d1d9; border-bottom-color: #58a6ff; }
-    .left-tab:hover:not(.active) { color: #c9d1d9; }
+    .left-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+    .left-tab:hover:not(.active) { color: var(--text); }
 
     .submissions-summary {
-      padding: 16px; border-bottom: 1px solid #30363d; background: #161b22;
-      border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px;
+      padding: 16px; border-bottom: 1px solid var(--border-subtle); background: var(--surface);
+      border-radius: 4px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px;
     }
     .sub-status { font-size: 20px; font-weight: bold; }
-    .sub-status.passed { color: #3fb950; }
-    .sub-status.failed { color: #f85149; }
-    .sub-status.running { color: #d29922; }
-    .sub-metrics { font-size: 13px; color: #8b949e; }
+    .sub-status.passed { color: var(--lime); }
+    .sub-status.failed { color: var(--rose); }
+    .sub-status.running { color: var(--saffron); }
+    .sub-metrics { font-size: 13px; color: var(--text-muted); }
     
     .sub-case-grid {
       display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
     }
 
-    .case-content { padding: 16px; overflow-y: auto; flex: 1; }
-    .case-field { margin-bottom: 16px; }
-    .case-field-title { font-size: 12px; color: #8b949e; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; }
-    .case-field-val {
-      background: #0d1117; padding: 10px; border-radius: 6px; border: 1px solid #30363d;
-      font-family: 'JetBrains Mono', monospace; font-size: 13px; white-space: pre-wrap;
+    .case-content { padding: 12px 16px 16px; overflow-y: auto; flex: 1; }
+    .case-field { margin-bottom: 12px; }
+    .case-field-title {
+      font-size: 10px; color: var(--text-muted); font-weight: 600;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
     }
-    .val-expected { border-left: 3px solid #3fb950; }
-    .val-actual-pass { border-left: 3px solid #3fb950; }
-    .val-actual-fail { border-left: 3px solid #f85149; }
+    .case-field-val {
+      background: var(--surface); padding: 10px 12px; border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      white-space: pre-wrap; line-height: 1.5;
+    }
+    .val-expected { border-left: 3px solid var(--lime); }
+    .val-actual-pass { border-left: 3px solid var(--lime); }
+    .val-actual-fail { border-left: 3px solid var(--rose); }
 
     ::-webkit-scrollbar { width: 10px; height: 10px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; border: 2px solid #0d1117; }
-    ::-webkit-scrollbar-thumb:hover { background: #484f58; }
+    ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 2px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border); }
   </style>
 
   <script src="codemirror.min.js"></script>
@@ -189,8 +354,26 @@
     <button class="btn" id="btnBack">← Back</button>
     <div style="flex: 1;"></div>
     <select class="btn" id="langSelect"></select>
+    <select class="btn" id="themeSelect" title="Editor theme (Ctrl+K Ctrl+T)"></select>
     <button class="btn btn-run" id="btnRun">▶ Run</button>
     <button class="btn btn-primary" id="btnSubmit">Submit</button>
+  </div>
+
+  <div class="theme-toast" id="themeToast"></div>
+
+  <div class="theme-palette-overlay" id="themePaletteOverlay">
+    <div class="theme-palette">
+      <div class="theme-palette-header">
+        <span>Color Theme</span>
+        <span class="theme-palette-check-label" style="color: var(--text-muted); font-weight: 400; font-size: 12px;">Ctrl+K Ctrl+T</span>
+      </div>
+      <div class="theme-palette-grid" id="themePaletteGrid"></div>
+      <div class="theme-palette-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> select</span>
+        <span><kbd>Esc</kbd> close</span>
+      </div>
+    </div>
   </div>
 
   <div class="main-workspace">
@@ -209,7 +392,7 @@
       </div>
       <div class="problem-content" id="submissionsPanel" style="display: none;">
         <div id="submissionSummary">
-          <div style="color:#8b949e; margin-top:20px;">Run your code to see submissions here.</div>
+          <div style="color:var(--text-muted); margin-top:20px;">Run your code to see submissions here.</div>
         </div>
         <div class="sub-case-grid" id="subCaseTabs"></div>
         <div class="case-content" id="subCaseContent" style="padding:0;"></div>
@@ -227,7 +410,8 @@
       
       <div class="pane bottom-pane" id="bottomPane">
         <div class="testcase-header">
-          <div class="tc-tab active">Testcases (Inputs)</div>
+          <span class="tc-tab">Testcases</span>
+          <span class="tc-count" id="tcCount"></span>
         </div>
         <div class="testcase-body">
           <div class="case-list-bar" id="caseTabs"></div>
@@ -291,7 +475,7 @@
 
   // ─── CODEMIRROR INIT ───
   editor = CodeMirror(document.getElementById('editorContainer'), {
-    value: "", mode: "text/x-c++src", theme: "ayu-mirage",
+    value: "", mode: "text/x-c++src", theme: "syntaxflow",
     lineNumbers: true, tabSize: 4, indentUnit: 4, lineWrapping: false,
     autoCloseBrackets: true, matchBrackets: true, styleActiveLine: true,
     foldGutter: true, gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
@@ -318,6 +502,127 @@
     if(workspaceBridge) workspaceBridge.onLanguageChanged(lang);
   };
 
+  // ─── THEME SWITCHER ───
+  const editorThemes = [
+    { id: 'syntaxflow', label: 'SyntaxFlow', swatch: ['#121213', '#5c9eff', '#a3e635', '#fb7185', '#f5a623'] },
+    { id: 'ayu-mirage', label: 'Ayu Mirage', swatch: ['#1f2430', '#39bae6', '#aad94c', '#ffd173', '#ffb454'] },
+    { id: 'monokai', label: 'Monokai', swatch: ['#272822', '#a6e22e', '#f92672', '#66d9ef', '#fd971f'] },
+    { id: 'dracula', label: 'Dracula', swatch: ['#282a36', '#ff79c6', '#50fa7b', '#bd93f9', '#8be9fd'] },
+    { id: 'material', label: 'Material', swatch: ['#263238', '#80cbc4', '#ff5370', '#82aaff', '#f78c6c'] },
+    { id: 'material-darker', label: 'Material Darker', swatch: ['#212121', '#80cbc4', '#ff5370', '#82aaff', '#f78c6c'] },
+    { id: 'nord', label: 'Nord', swatch: ['#2e3440', '#88c0d0', '#a3be8c', '#81a1c1', '#ebcb8b'] }
+  ];
+  let currentThemeIndex = 0;
+  let themeToastTimer = null;
+  const themeSelect = document.getElementById('themeSelect');
+  const paletteOverlay = document.getElementById('themePaletteOverlay');
+  const paletteGrid = document.getElementById('themePaletteGrid');
+  let paletteIndex = 0;
+  let paletteOpen = false;
+
+  editorThemes.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id; opt.textContent = t.label;
+    themeSelect.appendChild(opt);
+  });
+
+  function showThemeToast(label) {
+    const toast = document.getElementById('themeToast');
+    toast.textContent = `Theme: ${label}`;
+    toast.classList.add('show');
+    clearTimeout(themeToastTimer);
+    themeToastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
+  }
+
+  function applyEditorTheme(id) {
+    editor.setOption('theme', id);
+    themeSelect.value = id;
+    currentThemeIndex = editorThemes.findIndex(t => t.id === id);
+    const label = editorThemes.find(t => t.id === id).label;
+    showThemeToast(label);
+    refreshPalette();
+  }
+
+  themeSelect.onchange = (e) => { applyEditorTheme(e.target.value); };
+
+  // ─── THEME PALETTE ───
+  function refreshPalette() {
+    const items = paletteGrid.querySelectorAll('.theme-palette-item');
+    items.forEach((item, i) => {
+      item.classList.toggle('active', i === currentThemeIndex);
+      item.classList.toggle('highlighted', i === paletteIndex);
+    });
+  }
+
+  function buildPalette() {
+    paletteGrid.innerHTML = '';
+    editorThemes.forEach((t, i) => {
+      const item = document.createElement('div');
+      item.className = 'theme-palette-item' + (i === currentThemeIndex ? ' active' : '');
+      item.innerHTML = `
+        <div class="theme-palette-swatch">${t.swatch.map(c => `<i style="background:${c}"></i>`).join('')}</div>
+        <span class="theme-palette-name">${t.label}</span>
+        <span class="theme-palette-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></span>
+      `;
+      item.onclick = () => { applyEditorTheme(t.id); closePalette(); };
+      item.onmouseenter = () => { paletteIndex = i; refreshPalette(); };
+      paletteGrid.appendChild(item);
+    });
+  }
+
+  function openPalette() {
+    paletteIndex = currentThemeIndex;
+    paletteOpen = true;
+    buildPalette();
+    refreshPalette();
+    paletteOverlay.classList.add('show');
+  }
+
+  function closePalette() {
+    paletteOpen = false;
+    paletteOverlay.classList.remove('show');
+  }
+
+  paletteOverlay.addEventListener('mousedown', (e) => {
+    if (e.target === paletteOverlay) closePalette();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!paletteOpen) return;
+    const count = editorThemes.length;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      paletteIndex = (paletteIndex + (e.key === 'ArrowDown' ? 1 : -1) + count) % count;
+      refreshPalette();
+      const item = paletteGrid.children[paletteIndex];
+      if (item) item.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      applyEditorTheme(editorThemes[paletteIndex].id);
+      closePalette();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closePalette();
+    }
+  });
+
+  // Ctrl+K then Ctrl+T chord (VSCode-style) to open the theme palette
+  let ctrlKPending = false;
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      ctrlKPending = true;
+      return;
+    }
+    if (ctrlKPending) {
+      ctrlKPending = false;
+      if (e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        openPalette();
+      }
+    }
+  });
+
   document.getElementById('tabDesc').onclick = () => { setLeftView('desc'); };
   document.getElementById('tabSubmissions').onclick = () => { setLeftView('submissions'); };
 
@@ -341,13 +646,17 @@
     let tagsHtml = (data.tags || []).map(t => `<span class="tag-chip">${t}</span>`).join('');
     document.getElementById('probTags').innerHTML = tagsHtml;
     
-    marked.setOptions({
-      highlight: function(code, lang) {
-        if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
-        return hljs.highlightAuto(code).value;
-      }
-    });
-    document.getElementById('probDesc').innerHTML = marked.parse(data.markdown || data.description || '');
+    let descHtml = data.description || '';
+    if (data.markdown) {
+      marked.setOptions({
+        highlight: function(code, lang) {
+          if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
+          return hljs.highlightAuto(code).value;
+        }
+      });
+      descHtml = marked.parse(data.markdown);
+    }
+    document.getElementById('probDesc').innerHTML = descHtml;
   };
 
   window.setTestCases = function(tcList) {
@@ -429,16 +738,15 @@
   // ─── RENDERERS ───
   function renderInputTabs() {
     let html = '';
-    // For input preview in bottom pane, we only show first 8 to avoid clutter
-    let previewCount = Math.min(testCases.length, 8);
+    // Bottom panel previews only the first 3 inputs; the rest live in Submissions
+    let previewCount = Math.min(testCases.length, 3);
     for(let i = 0; i < previewCount; i++) {
       let active = i === currentCaseIndex ? 'active' : '';
       html += `<div class="case-pill ${active}" onclick="selectInputCase(${i})">Case ${i+1}</div>`;
     }
-    if (testCases.length > 8) {
-      html += `<div style="display:flex; align-items:center; font-size:12px; color:#8b949e; margin-left:8px;">+ ${testCases.length - 8} more</div>`;
-    }
     document.getElementById('caseTabs').innerHTML = html;
+    let countEl = document.getElementById('tcCount');
+    countEl.textContent = testCases.length > 0 ? `${currentCaseIndex + 1} / ${testCases.length}` : '';
   }
 
   window.selectInputCase = function(i) {
@@ -534,12 +842,12 @@
   function renderSubCaseContent() {
     let tc = testCases[currentSubCaseIndex];
     if (!tc || tc.status === 'pending') { 
-      document.getElementById('subCaseContent').innerHTML = '<div style="color:#8b949e; padding:16px;">This test case has not been run yet.</div>';
+      document.getElementById('subCaseContent').innerHTML = '<div style="color:var(--text-muted); padding:16px;">This test case has not been run yet.</div>';
       return; 
     }
     
     let actClass = tc.status === 'passed' ? 'val-actual-pass' : (tc.status === 'failed' ? 'val-actual-fail' : '');
-    let runTimeStr = tc.elapsedMs !== undefined ? ` <span style="font-size: 11px; color: #8b949e; font-weight: normal; margin-left: 8px;">(${tc.elapsedMs} ms)</span>` : '';
+    let runTimeStr = tc.elapsedMs !== undefined ? ` <span style="font-size: 11px; color: var(--text-muted); font-weight: normal; margin-left: 8px;">(${tc.elapsedMs} ms)</span>` : '';
     let statusDisplay = tc.statusText ? tc.statusText.toUpperCase() : tc.status.toUpperCase();
     
     let actualHtml = tc.status === 'running' ? 'Running...' : (tc.actualOutput || '—');
@@ -558,7 +866,7 @@
 
     let html = `
       <div class="case-field">
-        <div class="case-field-title" style="display: flex; align-items: center; color: ${tc.status==='passed'?'#3fb950':(tc.status==='running'?'#d29922':'#f85149')};">
+        <div class="case-field-title" style="display: flex; align-items: center; color: ${tc.status==='passed'?'var(--lime)':(tc.status==='running'?'var(--saffron)':'var(--rose)')};">
           ${statusDisplay} ${runTimeStr}
         </div>
       </div>

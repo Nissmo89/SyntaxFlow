@@ -37,24 +37,30 @@
     /* ─── Controls ─── */
     .controls { display: flex; align-items: center; gap: 12px; }
 
+    /* ─── Search ─── */
     .search-box { position: relative; }
 
     .search-input {
       background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 12px 7px 32px;
+      border-radius: 4px;
+      height: 32px;
+      padding: 0 34px 0 32px;
       color: var(--text);
-      font-size: 13px; outline: none;
-      width: 200px;
-      transition: border-color 0.15s, width 0.2s;
+      font-size: 13px;
+      outline: none;
+      width: 220px;
+      transition: border-color 0.15s, box-shadow 0.15s, width 0.2s ease;
     }
 
     .search-input::placeholder { color: var(--text-muted); }
 
+    .search-input:hover { border-color: var(--border-light); }
+
     .search-input:focus {
-      border-color: var(--accent);
-      width: 240px;
+      border-color: rgba(92, 158, 255, 0.45);
+      box-shadow: 0 0 0 3px rgba(92, 158, 255, 0.12);
+      width: 260px;
     }
 
     .search-icon {
@@ -63,27 +69,80 @@
       transform: translateY(-50%);
       color: var(--text-muted);
       pointer-events: none;
-      width: 13px; height: 13px;
+      width: 14px; height: 14px;
+      transition: color 0.15s;
     }
 
-    .filter-pills { display: flex; gap: 2px; }
+    .search-input:focus ~ .search-icon { color: var(--accent); }
+
+    .search-hint {
+      position: absolute;
+      right: 8px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; align-items: center;
+      height: 18px;
+      padding: 0 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 5px; top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      border: none; border-radius: 4px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .search-clear:hover {
+      color: var(--text);
+      background: var(--bg-hover);
+    }
+
+    .search-box:focus-within .search-hint,
+    .search-box.filled .search-hint { display: none; }
+    .search-box.filled .search-clear { display: flex; }
+
+    /* ─── Filter Segmented Control ─── */
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
 
     .filter-btn {
       background: transparent;
       border: none;
       color: var(--text-secondary);
-      padding: 6px 14px;
-      border-radius: 6px;
+      padding: 4px 12px;
+      border-radius: 4px;
       font-size: 12px; font-weight: 500;
       cursor: pointer; user-select: none;
       transition: background 0.15s, color 0.15s;
     }
 
-    .filter-btn:hover { color: var(--text); background: var(--bg-hover); }
+    .filter-btn:hover { color: var(--text); }
 
     .filter-btn.active {
       background: var(--bg-hover);
       color: var(--text);
+      box-shadow: inset 0 0 0 1px var(--border-light);
     }
 
     /* ─── Stats ─── */
@@ -213,7 +272,7 @@
 
     .list-header .col-status { width: 40px; }
     .list-header .col-title { flex: 1; }
-    .list-header .col-difficulty { width: 80px; text-align: right; }
+    .list-header .col-difficulty { width: 100px; text-align: right; }
 
     .row {
       display: flex; align-items: center;
@@ -242,19 +301,37 @@
     }
 
     .row .col-difficulty {
-      width: 80px;
+      width: 100px;
       text-align: right;
-      font-family: var(--font-mono);
-      font-size: 12px; font-weight: 500;
     }
 
-    .diff-easy { color: var(--success); }
-    .diff-medium { color: var(--warning); }
-    .diff-hard { color: var(--danger); }
+    .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+      line-height: 1.4;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .difficulty-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .diff-easy { color: var(--success); background: rgba(163, 230, 53, 0.1); border: 1px solid rgba(163, 230, 53, 0.35); }
+    .diff-medium { color: var(--warning); background: rgba(245, 166, 35, 0.1); border: 1px solid rgba(245, 166, 35, 0.35); }
+    .diff-hard { color: var(--danger); background: rgba(251, 113, 133, 0.1); border: 1px solid rgba(251, 113, 133, 0.35); }
 
     .status-icon {
       width: 18px; height: 18px;
-      border-radius: 50%;
+      border-radius: 4px;
       display: flex; align-items: center;
       justify-content: center;
     }
@@ -265,6 +342,7 @@
 
     .status-icon.unsolved {
       border: 1.5px solid var(--border-light);
+      border-radius: 50%;
     }
 
     .row:hover .status-icon.unsolved {
@@ -301,7 +379,7 @@
       background: var(--accent-dim);
       border: 1px solid rgba(92, 158, 255, 0.2);
       color: var(--accent);
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 13px; font-weight: 500;
       cursor: pointer; user-select: none;
       transition: background 0.15s;
@@ -322,9 +400,13 @@
   </div>
 
   <div class="controls">
-    <div class="search-box">
+    <div class="search-box" id="searchBox">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search problems or tags...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search problems or tags..." aria-label="Search problems or tags">
+      <span class="search-hint" id="searchHint">/</span>
+      <button type="button" class="search-clear" id="searchClear" aria-label="Clear search" onclick="clearSearch()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
 
     <div class="filter-pills">
@@ -449,7 +531,8 @@
     currentFilter = 'all';
     searchQuery = '';
     selectedTags.clear();
-    document.getElementById('searchInput').value = '';
+    searchInput.value = '';
+    document.getElementById('searchBox').classList.remove('filled');
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.classList.toggle('active', btn.textContent.toLowerCase() === 'all');
     });
@@ -593,9 +676,35 @@
     });
   }
 
-  document.getElementById('searchInput').addEventListener('input', function(e) {
+  var searchInput = document.getElementById('searchInput');
+
+  searchInput.addEventListener('input', function(e) {
     searchQuery = e.target.value.toLowerCase().trim();
+    document.getElementById('searchBox').classList.toggle('filled', searchQuery.length > 0);
     render();
+  });
+
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && searchQuery) {
+      e.preventDefault();
+      clearSearch();
+    }
+  });
+
+  function clearSearch() {
+    searchQuery = '';
+    searchInput.value = '';
+    document.getElementById('searchBox').classList.remove('filled');
+    render();
+    searchInput.focus();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    var tag = document.activeElement && document.activeElement.tagName;
+    if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
+      e.preventDefault();
+      searchInput.focus();
+    }
   });
 
   function render() {
@@ -673,7 +782,7 @@
       row.innerHTML = `
         <div class="col-status">${statusIcon}</div>
         <div class="col-title">${escapeHtml(p.title || '')}</div>
-        <div class="col-difficulty diff-${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</div>
+        <div class="col-difficulty"><span class="difficulty-badge diff-${diffClass}">${escapeHtml(p.difficulty || 'Easy')}</span></div>
       `;
 
       fragment.appendChild(row);

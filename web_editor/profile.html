@@ -121,9 +121,9 @@
     }
 
     .stat-icon.blue { background: var(--accent-dim); color: var(--accent); }
-    .stat-icon.green { background: rgba(76, 175, 125, 0.12); color: var(--success); }
+    .stat-icon.green { background: rgba(163, 230, 53, 0.12); color: var(--success); }
     .stat-icon.purple { background: rgba(139, 92, 246, 0.12); color: var(--purple); }
-    .stat-icon.orange { background: rgba(212, 161, 42, 0.12); color: var(--warning); }
+    .stat-icon.orange { background: rgba(245, 166, 35, 0.12); color: var(--warning); }
 
     .stat-info {
       display: flex;
@@ -186,7 +186,7 @@
       align-items: center;
       gap: 12px;
       padding: 10px 12px;
-      border-radius: 6px;
+      border-radius: 0;
       transition: background 0.15s;
     }
 
@@ -197,7 +197,7 @@
     .activity-icon {
       width: 32px;
       height: 32px;
-      border-radius: 6px;
+      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -257,13 +257,13 @@
       width: 100%;
       height: 4px;
       background: var(--border);
-      border-radius: 2px;
+      border-radius: 0;
       overflow: hidden;
     }
 
     .skill-fill {
       height: 100%;
-      border-radius: 2px;
+      border-radius: 0;
       background: var(--accent);
       width: 0%;
       transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -332,14 +332,14 @@
         <h2 class="panel-title"><i data-lucide="activity"></i> Recent Activity</h2>
         <div class="activity-list">
           <div class="activity-item">
-            <div class="activity-icon" style="background: rgba(76, 175, 125, 0.12); color: var(--success);"><i data-lucide="check-circle-2"></i></div>
+            <div class="activity-icon" style="background: rgba(163, 230, 53, 0.12); color: var(--success);"><i data-lucide="check-circle-2"></i></div>
             <div class="activity-details">
               <div class="activity-title">Solved "Two Sum"</div>
               <div class="activity-meta">C++ • 2 hours ago</div>
             </div>
           </div>
           <div class="activity-item">
-            <div class="activity-icon" style="background: rgba(76, 175, 125, 0.12); color: var(--success);"><i data-lucide="check-circle-2"></i></div>
+            <div class="activity-icon" style="background: rgba(163, 230, 53, 0.12); color: var(--success);"><i data-lucide="check-circle-2"></i></div>
             <div class="activity-details">
               <div class="activity-title">Solved "Longest Substring Without Repeating Characters"</div>
               <div class="activity-meta">Python • Yesterday</div>
@@ -353,7 +353,7 @@
             </div>
           </div>
           <div class="activity-item">
-            <div class="activity-icon" style="background: rgba(212, 161, 42, 0.12); color: var(--warning);"><i data-lucide="x-circle"></i></div>
+            <div class="activity-icon" style="background: rgba(245, 166, 35, 0.12); color: var(--warning);"><i data-lucide="x-circle"></i></div>
             <div class="activity-details">
               <div class="activity-title">Attempted "Median of Two Sorted Arrays"</div>
               <div class="activity-meta">Time Limit Exceeded • Last week</div>
