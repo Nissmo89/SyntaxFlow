@@ -33,6 +33,7 @@ WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     connect(m_bridge, &WorkspaceBridge::runRequested, this, &WebWorkspace::runRequested);
     connect(m_bridge, &WorkspaceBridge::submitRequested, this, &WebWorkspace::submitRequested);
     connect(m_bridge, &WorkspaceBridge::languageChanged, this, &WebWorkspace::languageChanged);
+    connect(m_bridge, &WorkspaceBridge::resetRequested, this, &WebWorkspace::resetRequested);
 
     layout->addWidget(m_view);
 

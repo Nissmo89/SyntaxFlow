@@ -93,6 +93,62 @@
     }
     .resizer-h:hover, .resizer-h.active { background: var(--accent); }
 
+    /* ─── Panel Headers & Icon Buttons (LeetCode-style) ─── */
+    .icon-btn {
+      width: 30px; height: 30px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; border: none; color: var(--text-muted);
+      cursor: pointer; border-radius: 4px; flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .icon-btn:hover { background: var(--surface-2); color: var(--text); }
+    .icon-btn svg { width: 15px; height: 15px; }
+
+    .editor-header {
+      height: 40px; min-height: 40px;
+      display: flex; align-items: center;
+      padding: 0 8px 0 12px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-subtle);
+      gap: 2px;
+    }
+    .lang-select {
+      appearance: none; outline: none; border: none; cursor: pointer;
+      background: transparent; color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 600;
+      padding: 6px 8px; border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .lang-select:hover { background: var(--surface-2); }
+    .lang-select option { background: var(--surface); color: var(--text); }
+
+    .left-tabs { position: relative; }
+    .left-tab-icon {
+      position: absolute; right: 8px; top: 50%;
+      transform: translateY(-50%);
+      width: 28px; height: 28px;
+    }
+
+    /* ─── Maximized Panel States ─── */
+    .main-workspace.m-desc .left-pane { width: 100% !important; }
+    .main-workspace.m-desc .right-pane,
+    .main-workspace.m-desc .resizer-v { display: none; }
+
+    .main-workspace.m-editor .left-pane,
+    .main-workspace.m-editor .resizer-v { display: none; }
+    .main-workspace.m-editor .right-pane { width: 100% !important; }
+    .main-workspace.m-editor .top-pane { height: 100% !important; }
+    .main-workspace.m-editor .bottom-pane,
+    .main-workspace.m-editor .resizer-h { display: none; }
+
+    .main-workspace.m-tc .left-pane,
+    .main-workspace.m-tc .resizer-v { display: none; }
+    .main-workspace.m-tc .right-pane { width: 100% !important; }
+    .main-workspace.m-tc .top-pane,
+    .main-workspace.m-tc .resizer-h { display: none; }
+    .main-workspace.m-tc .bottom-pane { height: 100% !important; flex: 1; }
+
     /* Problem Description Styling */
     .problem-content { padding: 24px; overflow-y: auto; flex: 1; }
     .problem-content h1 { font-size: 22px; color: var(--text); margin-top: 0; }
@@ -121,7 +177,7 @@
     .problem-content p { line-height: 1.6; }
 
     /* Code Editor wrapper */
-    .editor-wrapper { flex: 1; position: relative; }
+    .editor-wrapper { flex: 1; min-height: 0; position: relative; }
     .CodeMirror { height: 100% !important; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 
     /* ─── Custom SyntaxFlow editor theme (matches UI palette) ─── */
@@ -353,7 +409,6 @@
   <div class="toolbar">
     <button class="btn" id="btnBack">← Back</button>
     <div style="flex: 1;"></div>
-    <select class="btn" id="langSelect"></select>
     <select class="btn" id="themeSelect" title="Editor theme (Ctrl+K Ctrl+T)"></select>
     <button class="btn btn-run" id="btnRun">▶ Run</button>
     <button class="btn btn-primary" id="btnSubmit">Submit</button>
@@ -381,6 +436,7 @@
       <div class="left-tabs">
         <div class="left-tab active" id="tabDesc">Description</div>
         <div class="left-tab" id="tabSubmissions">Submissions</div>
+        <button class="icon-btn left-tab-icon" id="btnMaxDesc" title="Maximize description"></button>
       </div>
       <div class="problem-content" id="descPanel">
         <h1 id="probTitle">Loading...</h1>
@@ -403,6 +459,12 @@
     
     <div class="pane right-pane" id="rightPane">
       <div class="pane top-pane" id="topPane">
+        <div class="editor-header">
+          <select class="lang-select" id="langSelect" title="Editor language"></select>
+          <div style="flex: 1;"></div>
+          <button class="icon-btn" id="btnReset" title="Reset code to original template"></button>
+          <button class="icon-btn" id="btnMaxEditor" title="Maximize editor"></button>
+        </div>
         <div class="editor-wrapper" id="editorContainer"></div>
       </div>
       
@@ -412,6 +474,8 @@
         <div class="testcase-header">
           <span class="tc-tab">Testcases</span>
           <span class="tc-count" id="tcCount"></span>
+          <div style="flex: 1;"></div>
+          <button class="icon-btn" id="btnMaxTC" title="Maximize testcases"></button>
         </div>
         <div class="testcase-body">
           <div class="case-list-bar" id="caseTabs"></div>
@@ -495,12 +559,47 @@
   document.getElementById('btnBack').onclick = () => { if(workspaceBridge) workspaceBridge.onBackRequested(); };
   document.getElementById('btnRun').onclick = () => { if(workspaceBridge) workspaceBridge.onRunRequested(currentCaseIndex); };
   document.getElementById('btnSubmit').onclick = () => { if(workspaceBridge) workspaceBridge.onSubmitRequested(); };
+  document.getElementById('btnReset').onclick = () => { if(workspaceBridge) workspaceBridge.onResetRequested(); };
   
   document.getElementById('langSelect').onchange = (e) => {
     let lang = e.target.value;
     window.setLanguage(lang);
     if(workspaceBridge) workspaceBridge.onLanguageChanged(lang);
   };
+
+  // ─── PANEL MAXIMIZE (LeetCode-style full view) ───
+  const SVG_MAXIMIZE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
+  const SVG_MINIMIZE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
+  const SVG_RESET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>';
+
+  document.getElementById('btnReset').innerHTML = SVG_RESET;
+
+  const panelNames = { desc: 'description', editor: 'editor', tc: 'testcases' };
+  const maxButtons = {
+    desc: document.getElementById('btnMaxDesc'),
+    editor: document.getElementById('btnMaxEditor'),
+    tc: document.getElementById('btnMaxTC')
+  };
+  let maximizedPanel = null;
+
+  function setMaximized(panel) {
+    const ws = document.querySelector('.main-workspace');
+    ws.classList.remove('m-desc', 'm-editor', 'm-tc');
+    maximizedPanel = (maximizedPanel === panel) ? null : panel;
+    if (maximizedPanel) ws.classList.add('m-' + maximizedPanel);
+    for (const key in maxButtons) {
+      const isActive = maximizedPanel === key;
+      maxButtons[key].innerHTML = isActive ? SVG_MINIMIZE : SVG_MAXIMIZE;
+      maxButtons[key].title = (isActive ? 'Restore ' : 'Maximize ') + panelNames[key];
+    }
+  }
+
+  document.getElementById('btnMaxDesc').innerHTML = SVG_MAXIMIZE;
+  document.getElementById('btnMaxEditor').innerHTML = SVG_MAXIMIZE;
+  document.getElementById('btnMaxTC').innerHTML = SVG_MAXIMIZE;
+  document.getElementById('btnMaxDesc').onclick = () => setMaximized('desc');
+  document.getElementById('btnMaxEditor').onclick = () => setMaximized('editor');
+  document.getElementById('btnMaxTC').onclick = () => setMaximized('tc');
 
   // ─── THEME SWITCHER ───
   const editorThemes = [

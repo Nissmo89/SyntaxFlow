@@ -78,6 +78,7 @@ private slots:
     void populateLanguages();
 
     // Editor (Removed unused cursor changed)
+    void onResetCode();
 
 private:
     // Setup

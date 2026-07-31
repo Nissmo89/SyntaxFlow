@@ -21,12 +21,14 @@ signals:
     void textChanged(const QString &text);
     void cursorPositionChanged(int line, int col);
     void workspaceReady();
+    void resetRequested();
 
 public slots:
     Q_INVOKABLE void onBackRequested() { emit backRequested(); }
     Q_INVOKABLE void onRunRequested(int caseIndex) { emit runRequested(caseIndex); }
     Q_INVOKABLE void onSubmitRequested() { emit submitRequested(); }
     Q_INVOKABLE void onLanguageChanged(const QString &langId) { emit languageChanged(langId); }
+    Q_INVOKABLE void onResetRequested() { emit resetRequested(); }
     Q_INVOKABLE void onTextChanged(const QString &text) { emit textChanged(text); }
     Q_INVOKABLE void onCursorPositionChanged(int line, int col) { emit cursorPositionChanged(line, col); }
     Q_INVOKABLE void onWorkspaceReady() { emit workspaceReady(); }
@@ -56,6 +58,7 @@ signals:
     void submitRequested();
     void languageChanged(const QString &langId);
     void textChanged(const QString &text);
+    void resetRequested();
 
 private slots:
     void onBridgeWorkspaceReady();

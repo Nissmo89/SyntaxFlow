@@ -196,6 +196,8 @@ void MainWindow::setupConnections()
             this, &MainWindow::onRunAllTests);
     connect(m_workspace, &WebWorkspace::languageChanged,
             this, &MainWindow::onLanguageChanged);
+    connect(m_workspace, &WebWorkspace::resetRequested,
+            this, &MainWindow::onResetCode);
 
     connect(m_workspace, &WebWorkspace::textChanged, this, [this](const QString &text) {
         if (m_currentProblemId.isEmpty()) return;
@@ -255,6 +257,14 @@ void MainWindow::onLanguageChanged(const QString &langId)
         QString templ = m_backend->getProblemTemplate(langId, m_currentProblemId);
         m_workspace->setCode(templ);
     }
+}
+
+void MainWindow::onResetCode()
+{
+    if (m_currentProblemId.isEmpty()) return;
+    if (!m_backend->isLanguageAvailable(m_currentLangId)) return;
+    QString templ = m_backend->getProblemTemplate(m_currentLangId, m_currentProblemId);
+    m_workspace->setCode(templ);
 }
 
 void MainWindow::onNavigateToEditor(const QString &path)
