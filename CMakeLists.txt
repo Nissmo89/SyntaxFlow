@@ -9,8 +9,109 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+# ============================================================
+# Qt Prefix Hint & QWindowKit Options
+# ============================================================
+option(SYNTAXFLOW_USE_QWINDOWKIT "Enable QWindowKit frameless window integration" ON)
+option(SYNTAXFLOW_REQUIRE_QWINDOWKIT "Fail configure if QWindowKit is not found when enabled" ON)
+option(SYNTAXFLOW_FETCH_QWINDOWKIT "Fetch QWindowKit from source when not installed locally" ON)
+
+set(SYNTAXFLOW_QT_PREFIX "" CACHE PATH "Preferred Qt prefix (example: /path/to/Qt/6.x/<toolchain>)")
+set(SYNTAXFLOW_QWINDOWKIT_GIT_REPOSITORY "https://github.com/stdware/qwindowkit.git" CACHE STRING
+    "Git repository used when SYNTAXFLOW_FETCH_QWINDOWKIT=ON")
+set(SYNTAXFLOW_QWINDOWKIT_GIT_TAG "1.5.0" CACHE STRING
+    "QWindowKit git tag/commit used when SYNTAXFLOW_FETCH_QWINDOWKIT=ON")
+
+if(NOT SYNTAXFLOW_QT_PREFIX)
+    foreach(_qt_env_var IN ITEMS QTDIR QT_DIR QT_ROOT)
+        if(DEFINED ENV{${_qt_env_var}} AND EXISTS "$ENV{${_qt_env_var}}")
+            set(SYNTAXFLOW_QT_PREFIX "$ENV{${_qt_env_var}}")
+            break()
+        endif()
+    endforeach()
+endif()
+
+if(NOT SYNTAXFLOW_QT_PREFIX)
+    file(GLOB _NORD_HOME_QT_PREFIXES LIST_DIRECTORIES true "$ENV{HOME}/Qt/*/gcc_64")
+    if(_NORD_HOME_QT_PREFIXES)
+        list(SORT _NORD_HOME_QT_PREFIXES COMPARE NATURAL)
+        list(GET _NORD_HOME_QT_PREFIXES -1 SYNTAXFLOW_QT_PREFIX)
+    endif()
+endif()
+
+if(SYNTAXFLOW_QT_PREFIX)
+    message(STATUS "Using Qt prefix: ${SYNTAXFLOW_QT_PREFIX}")
+    list(PREPEND CMAKE_PREFIX_PATH "${SYNTAXFLOW_QT_PREFIX}")
+endif()
+
 # ---- Find Qt ----
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network WebEngineWidgets WebChannel)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network WebEngineWidgets WebChannel Svg)
+
+set(SYNTAXFLOW_HAS_QWINDOWKIT OFF)
+set(SYNTAXFLOW_QWINDOWKIT_SOURCE "disabled")
+if(SYNTAXFLOW_USE_QWINDOWKIT)
+    if(NOT QWindowKit_DIR AND SYNTAXFLOW_QT_PREFIX AND EXISTS "${SYNTAXFLOW_QT_PREFIX}/lib/cmake/QWindowKit")
+        set(QWindowKit_DIR "${SYNTAXFLOW_QT_PREFIX}/lib/cmake/QWindowKit" CACHE PATH "Path to QWindowKitConfig.cmake" FORCE)
+    endif()
+
+    find_package(QWindowKit QUIET CONFIG COMPONENTS Widgets)
+    if(QWindowKit_FOUND AND TARGET QWindowKit::Widgets)
+        set(SYNTAXFLOW_HAS_QWINDOWKIT ON)
+        set(SYNTAXFLOW_QWINDOWKIT_SOURCE "system")
+    endif()
+
+    if(NOT SYNTAXFLOW_HAS_QWINDOWKIT)
+        foreach(_SYNTAXFLOW_QWK_CHECK_DIR IN ITEMS "${CMAKE_SOURCE_DIR}/external/qwindowkit" "${CMAKE_SOURCE_DIR}/libs/qwindowkit")
+            if(EXISTS "${_SYNTAXFLOW_QWK_CHECK_DIR}/CMakeLists.txt")
+                message(STATUS "Using vendored QWindowKit sources at: ${_SYNTAXFLOW_QWK_CHECK_DIR}")
+                set(QWINDOWKIT_BUILD_WIDGETS ON CACHE BOOL "Build QWindowKit widgets module" FORCE)
+                set(QWINDOWKIT_BUILD_QUICK OFF CACHE BOOL "Build QWindowKit quick module" FORCE)
+                set(QWINDOWKIT_BUILD_EXAMPLES OFF CACHE BOOL "Build QWindowKit examples" FORCE)
+                set(QWINDOWKIT_BUILD_DOCUMENTATIONS OFF CACHE BOOL "Build QWindowKit docs" FORCE)
+                set(QWINDOWKIT_INSTALL OFF CACHE BOOL "Disable QWindowKit install rules in SyntaxFlow superbuild" FORCE)
+                add_subdirectory("${_SYNTAXFLOW_QWK_CHECK_DIR}" "${CMAKE_BINARY_DIR}/_deps/qwindowkit-build")
+                if(TARGET QWindowKit::Widgets)
+                    set(SYNTAXFLOW_HAS_QWINDOWKIT ON)
+                    set(SYNTAXFLOW_QWINDOWKIT_SOURCE "vendored")
+                    break()
+                endif()
+            endif()
+        endforeach()
+    endif()
+
+    if(NOT SYNTAXFLOW_HAS_QWINDOWKIT AND SYNTAXFLOW_FETCH_QWINDOWKIT)
+        include(FetchContent)
+        message(STATUS
+            "QWindowKit not found locally. Fetching ${SYNTAXFLOW_QWINDOWKIT_GIT_REPOSITORY} "
+            "(tag: ${SYNTAXFLOW_QWINDOWKIT_GIT_TAG})"
+        )
+        set(QWINDOWKIT_BUILD_WIDGETS ON CACHE BOOL "Build QWindowKit widgets module" FORCE)
+        set(QWINDOWKIT_BUILD_QUICK OFF CACHE BOOL "Build QWindowKit quick module" FORCE)
+        set(QWINDOWKIT_BUILD_EXAMPLES OFF CACHE BOOL "Build QWindowKit examples" FORCE)
+        set(QWINDOWKIT_BUILD_DOCUMENTATIONS OFF CACHE BOOL "Build QWindowKit docs" FORCE)
+        set(QWINDOWKIT_INSTALL OFF CACHE BOOL "Disable QWindowKit install rules in SyntaxFlow superbuild" FORCE)
+        FetchContent_Declare(qwindowkit
+            GIT_REPOSITORY "${SYNTAXFLOW_QWINDOWKIT_GIT_REPOSITORY}"
+            GIT_TAG "${SYNTAXFLOW_QWINDOWKIT_GIT_TAG}"
+            GIT_SHALLOW TRUE
+            GIT_SUBMODULES "qmsetup"
+            GIT_SUBMODULES_RECURSE TRUE
+        )
+        FetchContent_MakeAvailable(qwindowkit)
+        if(TARGET QWindowKit::Widgets)
+            set(SYNTAXFLOW_HAS_QWINDOWKIT ON)
+            set(SYNTAXFLOW_QWINDOWKIT_SOURCE "fetched")
+        endif()
+    endif()
+
+    if(SYNTAXFLOW_HAS_QWINDOWKIT)
+        message(STATUS "QWindowKit enabled (source: ${SYNTAXFLOW_QWINDOWKIT_SOURCE}).")
+    elseif(SYNTAXFLOW_REQUIRE_QWINDOWKIT)
+        message(FATAL_ERROR "QWindowKit is required but unavailable.")
+    else()
+        message(WARNING "QWindowKit not found. Building without frameless integration.")
+    endif()
+endif()
 
 # ============================================================
 # QText Browser Custom Renderer Module
@@ -85,6 +186,7 @@ add_executable(SyntaxFlow
     javascript_runner.h javascript_runner.cpp
     wasm_runner.h wasm_runner.cpp
     httpserver.h
+    resources/resources.qrc
 )
 
 # target_include_directories(SyntaxFlow PRIVATE ${Python3_INCLUDE_DIRS})
@@ -97,8 +199,14 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::Network
     Qt6::WebEngineWidgets
     Qt6::WebChannel
+    Qt6::Svg
     qtext_browser
 )
+
+if(SYNTAXFLOW_HAS_QWINDOWKIT)
+    target_link_libraries(SyntaxFlow PRIVATE QWindowKit::Widgets)
+    target_compile_definitions(SyntaxFlow PRIVATE SYNTAXFLOW_HAS_QWINDOWKIT)
+endif()
 
 if(PRECACHE_WASM_ENGINES)
     add_dependencies(SyntaxFlow PrecacheWasmEngines)

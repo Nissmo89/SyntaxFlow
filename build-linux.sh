@@ -27,6 +27,20 @@ echo ""
 # Clean up precompiled header to prevent timestamp mismatch on wasi-sdk rebuilds
 rm -f "$SCRIPT_DIR/resources/include/stdcpp.h.pch"
 
+# ---- Detect Qt6 Installation ----
+if [ -z "$QT_PATH" ]; then
+    for candidate in "$HOME/Qt"/*"/gcc_64" "/opt/Qt"/*"/gcc_64"; do
+        if [ -d "$candidate" ]; then
+            QT_PATH="$candidate"
+        fi
+    done
+fi
+
+if [ -n "$QT_PATH" ] && [ -d "$QT_PATH" ]; then
+    export PATH="$QT_PATH/bin:$PATH"
+    echo " Qt prefix: $QT_PATH"
+fi
+
 # ---- Check prerequisites ----
 check_cmd() {
     if ! command -v "$1" &>/dev/null; then
@@ -38,9 +52,7 @@ check_cmd() {
 check_cmd cmake
 check_cmd make
 
-# BUILD-02: check_cmd uses "exit 1" which terminates the whole script from a
-# function, so "check_cmd qmake6 || check_cmd qmake" never evaluates the rhs.
-# Use command -v directly for the fallback detection.
+# BUILD-02: Use command -v directly for the fallback detection.
 QMAKE_CMD=$(command -v qmake6 2>/dev/null || command -v qmake 2>/dev/null)
 if [ -z "$QMAKE_CMD" ]; then
     echo "[ERROR] Neither 'qmake6' nor 'qmake' found."
@@ -69,6 +81,21 @@ echo "============================================================"
 echo " Step 3: CMake Configure"
 echo "============================================================"
 
+# ---- Parse optional arguments ----
+CLEAN_BUILD=0
+for arg in "$@"; do
+    case "$arg" in
+        --clean|-c)
+            CLEAN_BUILD=1
+            ;;
+    esac
+done
+
+if [ "$CLEAN_BUILD" -eq 1 ] && [ -d "$BUILD_DIR" ]; then
+    echo " [CLEAN] Removing build directory: $BUILD_DIR"
+    rm -rf "$BUILD_DIR"
+fi
+
 mkdir -p "$BUILD_DIR"
 pushd "$BUILD_DIR" > /dev/null
 
@@ -76,7 +103,6 @@ CMAKE_ARGS="-DCMAKE_BUILD_TYPE=Release -DPRECACHE_WASM_ENGINES=ON"
 
 if [ -n "$QT_PATH" ]; then
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QT_PATH"
-    echo "  Qt prefix: $QT_PATH"
 fi
 
 cmake $CMAKE_ARGS "$SCRIPT_DIR"

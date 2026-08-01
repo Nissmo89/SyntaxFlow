@@ -17,12 +17,31 @@
 #include "progressmanager.h"
 
 
+#ifdef SYNTAXFLOW_HAS_QWINDOWKIT
+#include <QWKWidgets/widgetwindowagent.h>
+namespace QWK { class WidgetWindowAgent; }
+#endif
+
 class QStackedLayout;
 class WebWorkspace;
 class ProblemBrowser;
 class SidebarBridge;
 class Backend;
 class HttpServer;
+
+#ifndef SYNTAXFLOW_HAS_QWINDOWKIT
+class WidgetWindowAgent {
+public:
+    enum class SystemButton { Minimize, Maximize, Close, Unknown };
+    explicit WidgetWindowAgent(QWidget *) {}
+    void setup(QWidget *) {}
+    void setHitTestVisible(QWidget *, bool) {}
+    void setTitleBar(QWidget *) {}
+    void setSystemButton(SystemButton, QWidget *) {}
+};
+#else
+using WidgetWindowAgent = QWK::WidgetWindowAgent;
+#endif
 
 class SidebarBridge : public QObject
 {
@@ -53,6 +72,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
+    void changeEvent(QEvent *event) override;
 
 private slots:
     // Navigation
@@ -82,6 +102,7 @@ private slots:
 
 private:
     // Setup
+    void setupTitleBar();
     void setupUI();
     void setupBrowserPage();
     void setupEditorPage();
@@ -90,6 +111,16 @@ private:
     void setupConnections();
     void setupShortcuts();
     void setupBackend();
+
+    // ─── Frameless Window & Titlebar ───
+    static constexpr int m_titleBarHeight = 38;
+    QWidget *m_titleBar = nullptr;
+    QPushButton *m_btnMin = nullptr;
+    QPushButton *m_btnMax = nullptr;
+    QPushButton *m_btnClose = nullptr;
+    QLabel *m_titleLabel = nullptr;
+    QLabel *m_iconLabel = nullptr;
+    WidgetWindowAgent *m_windowAgent = nullptr;
 
     // UI State
     void setExecutionState(bool running);
@@ -111,6 +142,8 @@ private:
     QString m_currentProblemPath;
     QString m_currentLangId = "cpp";
     bool m_runningAllTests = false;
+    bool m_allTestsPassed = false;
+    int m_testsCompleted = 0;
 
     // ─── Progress ───
     ProgressManager *progressManager = nullptr;

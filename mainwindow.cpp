@@ -26,6 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     resize(1400, 900);
+    setWindowIcon(QIcon(":/icons/app_icon.svg"));
+
+#ifdef SYNTAXFLOW_HAS_QWINDOWKIT
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground, true);
+#endif
 
     const QString appDir = QCoreApplication::applicationDirPath();
     ProblemsBasePath = QDir(appDir).filePath("problems/");
@@ -66,12 +72,131 @@ void MainWindow::setupBackend()
             this, &MainWindow::populateLanguages);
 }
 
+void MainWindow::setupTitleBar()
+{
+    m_titleBar = new QWidget(this);
+    m_titleBar->setObjectName("titleBar");
+    m_titleBar->setFixedHeight(m_titleBarHeight);
+
+    auto *layout = new QHBoxLayout(m_titleBar);
+    layout->setContentsMargins(12, 0, 8, 0);
+    layout->setSpacing(8);
+
+    // App Icon
+    m_iconLabel = new QLabel(m_titleBar);
+    m_iconLabel->setObjectName("appIcon");
+    m_iconLabel->setFixedSize(20, 20);
+    m_iconLabel->setPixmap(QIcon(":/icons/app_icon.svg").pixmap(20, 20));
+    m_iconLabel->setScaledContents(true);
+
+    // App Title
+    m_titleLabel = new QLabel("SyntaxFlow", m_titleBar);
+    m_titleLabel->setObjectName("appTitle");
+
+    // Left side: Icon + Title
+    layout->addWidget(m_iconLabel, 0, Qt::AlignVCenter);
+    layout->addWidget(m_titleLabel, 0, Qt::AlignVCenter);
+    layout->addStretch(1);
+
+    // Window control buttons
+    m_btnMin = new QPushButton(m_titleBar);
+    m_btnMin->setObjectName("btnMin");
+    m_btnMin->setIcon(QIcon(":/icons/min.svg"));
+    m_btnMin->setIconSize(QSize(14, 14));
+    m_btnMin->setFixedSize(36, 26);
+    m_btnMin->setToolTip("Minimize");
+
+    m_btnMax = new QPushButton(m_titleBar);
+    m_btnMax->setObjectName("btnMax");
+    m_btnMax->setIcon(QIcon(":/icons/max.svg"));
+    m_btnMax->setIconSize(QSize(14, 14));
+    m_btnMax->setFixedSize(36, 26);
+    m_btnMax->setToolTip("Maximize");
+
+    m_btnClose = new QPushButton(m_titleBar);
+    m_btnClose->setObjectName("btnClose");
+    m_btnClose->setIcon(QIcon(":/icons/close.svg"));
+    m_btnClose->setIconSize(QSize(14, 14));
+    m_btnClose->setFixedSize(36, 26);
+    m_btnClose->setToolTip("Close");
+
+    layout->addWidget(m_btnMin, 0, Qt::AlignVCenter);
+    layout->addWidget(m_btnMax, 0, Qt::AlignVCenter);
+    layout->addWidget(m_btnClose, 0, Qt::AlignVCenter);
+
+    connect(m_btnMin, &QPushButton::clicked, this, &MainWindow::showMinimized);
+    connect(m_btnMax, &QPushButton::clicked, this, [this]() {
+        if (isMaximized()) {
+            showNormal();
+        } else {
+            showMaximized();
+        }
+        m_btnMax->setIcon(isMaximized() ? QIcon(":/icons/restore.svg") : QIcon(":/icons/max.svg"));
+    });
+    connect(m_btnClose, &QPushButton::clicked, this, &MainWindow::close);
+
+    // Setup QWindowKit Agent
+    m_windowAgent = new WidgetWindowAgent(this);
+    m_windowAgent->setup(this);
+    m_windowAgent->setTitleBar(m_titleBar);
+    m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Minimize, m_btnMin);
+    m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Maximize, m_btnMax);
+    m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Close, m_btnClose);
+    m_windowAgent->setHitTestVisible(m_btnMin, true);
+    m_windowAgent->setHitTestVisible(m_btnMax, true);
+    m_windowAgent->setHitTestVisible(m_btnClose, true);
+
+    // Apply TitleBar stylesheet
+    m_titleBar->setStyleSheet(
+        "QWidget#titleBar {"
+        "  background-color: #0f1015;"
+        "  border-bottom: 1px solid #1e2029;"
+        "}"
+        "QLabel#appTitle {"
+        "  color: #e2e8f0;"
+        "  font-size: 12px;"
+        "  font-weight: 600;"
+        "  letter-spacing: 0.5px;"
+        "  padding-left: 2px;"
+        "}"
+        "QPushButton#btnMin, QPushButton#btnMax, QPushButton#btnClose {"
+        "  background-color: transparent;"
+        "  border: 1px solid transparent;"
+        "  border-radius: 5px;"
+        "  padding: 0px;"
+        "}"
+        "QPushButton#btnMin:hover, QPushButton#btnMax:hover {"
+        "  background-color: rgba(255, 255, 255, 0.08);"
+        "  border: 1px solid rgba(255, 255, 255, 0.12);"
+        "}"
+        "QPushButton#btnMin:pressed, QPushButton#btnMax:pressed {"
+        "  background-color: rgba(255, 255, 255, 0.15);"
+        "}"
+        "QPushButton#btnClose:hover {"
+        "  background-color: #e81123;"
+        "  border: 1px solid #e81123;"
+        "}"
+        "QPushButton#btnClose:pressed {"
+        "  background-color: #bf101d;"
+        "}"
+    );
+}
+
 void MainWindow::setupUI()
 {
     auto *centralContainer = new QWidget(this);
     setCentralWidget(centralContainer);
 
-    stack = new QStackedLayout(centralContainer);
+    auto *rootLayout = new QVBoxLayout(centralContainer);
+    rootLayout->setContentsMargins(0, 0, 0, 0);
+    rootLayout->setSpacing(0);
+
+    setupTitleBar();
+    rootLayout->addWidget(m_titleBar);
+
+    auto *contentWidget = new QWidget(centralContainer);
+    stack = new QStackedLayout(contentWidget);
+    rootLayout->addWidget(contentWidget, 1);
 
     QFont appFont("Segoe UI", 10);
     appFont.setStyleHint(QFont::SansSerif);
@@ -143,7 +268,7 @@ void MainWindow::setupSidebar()
     sidebarView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
     sidebarView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
     sidebarView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    sidebarView->setGeometry(0, 0, 50, height()); // Width matching sidebar.html collapsed state
+    sidebarView->setGeometry(0, m_titleBarHeight, 50, height() - m_titleBarHeight); // Width matching sidebar.html collapsed state
     sidebarView->setContextMenuPolicy(Qt::NoContextMenu);
 
     sidebarBridge = new SidebarBridge(this);
@@ -166,7 +291,7 @@ void MainWindow::setupSidebar()
     });
 
     connect(sidebarBridge, &SidebarBridge::hoverChanged, this, [this](bool isHovered) {
-        sidebarView->setFixedWidth(isHovered ? 220 : 50);
+        sidebarView->setGeometry(0, m_titleBarHeight, isHovered ? 220 : 50, height() - m_titleBarHeight);
         if (isHovered) sidebarView->raise();
     });
 
@@ -333,6 +458,8 @@ void MainWindow::onRunAllTests()
     if (m_currentProblemPath.isEmpty()) return;
 
     m_runningAllTests = true;
+    m_allTestsPassed = true;
+    m_testsCompleted = 0;
     m_backend->runCode(m_workspace->code(), m_currentLangId, m_currentProblemPath);
 }
 
@@ -348,6 +475,13 @@ void MainWindow::onTestResult(int testIndex, const QString &status,
                               qint64 timeMs)
 {
     bool passed = (status == "Accepted");
+    if (m_runningAllTests) {
+        m_testsCompleted++;
+        if (!passed) {
+            m_allTestsPassed = false;
+        }
+    }
+
     QString displayOutput = output;
     if (status == "Time Limit Exceeded") displayOutput = "[TLE] Execution timed out";
     else if (status == "Runtime Error") displayOutput = "[RE] " + output;
@@ -387,6 +521,14 @@ void MainWindow::onExecutionStarted()
 void MainWindow::onExecutionFinished()
 {
     setExecutionState(false);
+    if (m_runningAllTests) {
+        if (m_allTestsPassed && m_testsCompleted > 0) {
+            if (progressManager) {
+                progressManager->markSolved(m_currentProblemId, true);
+            }
+        }
+        m_runningAllTests = false;
+    }
 }
 
 void MainWindow::setExecutionState(bool running)
@@ -397,7 +539,22 @@ void MainWindow::setExecutionState(bool running)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
-    if (sidebarView) sidebarView->setFixedHeight(height());
+    if (sidebarView) {
+        sidebarView->setGeometry(0, m_titleBarHeight, sidebarView->width(), height() - m_titleBarHeight);
+    }
+    if (m_btnMax) {
+        m_btnMax->setIcon(isMaximized() ? QIcon(":/icons/restore.svg") : QIcon(":/icons/max.svg"));
+    }
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    QMainWindow::changeEvent(event);
+    if (event->type() == QEvent::WindowStateChange) {
+        if (m_btnMax) {
+            m_btnMax->setIcon(isMaximized() ? QIcon(":/icons/restore.svg") : QIcon(":/icons/max.svg"));
+        }
+    }
 }
 
 void MainWindow::applyStyle(const QString &path)
