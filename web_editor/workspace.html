@@ -81,7 +81,6 @@
     .btn-primary:hover { background: rgba(92, 158, 255, 0.2); }
     .btn-run { color: var(--accent); }
     
-    select.btn { outline: none; appearance: none; padding-right: 24px; }
 
     .main-workspace {
       display: flex; flex: 1; overflow: hidden;
@@ -503,7 +502,6 @@
   <div class="toolbar">
     <button class="btn" id="btnBack">← Back</button>
     <div style="flex: 1;"></div>
-    <select class="btn" id="themeSelect" title="Editor theme (Ctrl+K Ctrl+T)"></select>
     <button class="btn btn-run" id="btnRun">▶ Run</button>
     <button class="btn btn-primary" id="btnSubmit">Submit</button>
   </div>
@@ -707,17 +705,10 @@
   ];
   let currentThemeIndex = 0;
   let themeToastTimer = null;
-  const themeSelect = document.getElementById('themeSelect');
   const paletteOverlay = document.getElementById('themePaletteOverlay');
   const paletteGrid = document.getElementById('themePaletteGrid');
   let paletteIndex = 0;
   let paletteOpen = false;
-
-  editorThemes.forEach(t => {
-    const opt = document.createElement('option');
-    opt.value = t.id; opt.textContent = t.label;
-    themeSelect.appendChild(opt);
-  });
 
   function showThemeToast(label) {
     const toast = document.getElementById('themeToast');
@@ -729,14 +720,11 @@
 
   function applyEditorTheme(id) {
     editor.setOption('theme', id);
-    themeSelect.value = id;
     currentThemeIndex = editorThemes.findIndex(t => t.id === id);
     const label = editorThemes.find(t => t.id === id).label;
     showThemeToast(label);
     refreshPalette();
   }
-
-  themeSelect.onchange = (e) => { applyEditorTheme(e.target.value); };
 
   // ─── THEME PALETTE ───
   function refreshPalette() {
