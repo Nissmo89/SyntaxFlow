@@ -28,6 +28,7 @@
       --text: #e4e4e7;
       --text-muted: #9a9aa3;
       --accent: #5c9eff;
+      --accent-dim: rgba(92, 158, 255, 0.12);
       --lime: #a3e635;
       --rose: #fb7185;
       --saffron: #f5a623;
@@ -42,6 +43,7 @@
       --text: #1c1f24;
       --text-muted: #5b6470;
       --accent: #2563eb;
+      --accent-dim: rgba(37, 99, 235, 0.1);
       --lime: #16a34a;
       --rose: #dc2626;
       --saffron: #d97706;
@@ -88,6 +90,61 @@
       padding: 6px 0;
     }
     .btn-run svg { width: 15px; height: 15px; }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 2px;
+    }
+
+    .btn-group {
+      display: inline-flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .btn-group .btn {
+      border: none;
+      border-radius: 0;
+    }
+    .btn-group .btn + .btn {
+      border-left: 1px solid var(--border);
+    }
+
+    /* ─── Toolbar dropdown (timer / stopwatch) ─── */
+    .toolbar .dropdown { position: relative; display: inline-flex; }
+    .toolbar .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      z-index: 200;
+      padding: 6px;
+      display: none;
+    }
+    .toolbar .dropdown.open .dropdown-menu { display: block; }
+    .toolbar .menu-section-title {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      padding: 4px 10px;
+    }
+    .toolbar .menu-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 10px; border-radius: 6px;
+      font-size: 13px; color: var(--text-secondary);
+      cursor: pointer; user-select: none; white-space: nowrap;
+      transition: background 0.12s, color 0.12s;
+    }
+    .toolbar .menu-item:hover { background: var(--surface-2); color: var(--text); }
+    .toolbar .menu-item.selected { color: var(--accent); font-weight: 500; background: var(--accent-dim); }
+    .toolbar .menu-item.selected::after { content: '✓'; margin-left: auto; font-size: 12px; }
 
     .main-workspace {
       display: flex; flex: 1; overflow: hidden;
@@ -508,9 +565,34 @@
 <div class="app-container">
   <div class="toolbar">
     <button class="btn" id="btnBack">← Back</button>
+    <div class="toolbar-divider"></div>
+
+    <div class="dropdown" id="timerDropdown">
+      <button class="icon-btn" id="btnTimer" title="Timer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+      </button>
+      <div class="dropdown-menu">
+        <div class="menu-section-title">Time</div>
+        <div class="menu-item selected" data-timer-mode="timer">Timer</div>
+        <div class="menu-item" data-timer-mode="stopwatch">Stopwatch</div>
+      </div>
+    </div>
+
+    <button class="icon-btn" id="btnNotes" title="Notes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+    </button>
+
+    <button class="icon-btn" id="btnSettings" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+
     <div style="flex: 1;"></div>
-    <button class="btn btn-run" id="btnRun" title="Run current test (Ctrl+Enter)"></button>
-    <button class="btn btn-primary" id="btnSubmit">Submit</button>
+
+    <div class="btn-group">
+      <button class="btn btn-run" id="btnRun" title="Run current test (Ctrl+Enter)"></button>
+      <button class="btn btn-primary" id="btnSubmit">Submit</button>
+    </div>
+
     <div style="flex: 1;"></div>
   </div>
 
@@ -660,6 +742,39 @@
   document.getElementById('btnRun').onclick = () => { if(workspaceBridge) workspaceBridge.onRunRequested(currentCaseIndex); };
   document.getElementById('btnSubmit').onclick = () => { if(workspaceBridge) workspaceBridge.onSubmitRequested(); };
   document.getElementById('btnReset').onclick = () => { if(workspaceBridge) workspaceBridge.onResetRequested(); };
+
+  // ─── TOOLBAR ICON ACTIONS ───
+  const timerDropdown = document.getElementById('timerDropdown');
+  const TIMER_SVG = '<line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/>';
+  const STOPWATCH_SVG = '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>';
+
+  document.getElementById('btnTimer').onclick = (e) => {
+    e.stopPropagation();
+    timerDropdown.classList.toggle('open');
+  };
+
+  timerDropdown.querySelectorAll('.menu-item').forEach(item => {
+    item.onclick = (e) => {
+      e.stopPropagation();
+      timerDropdown.querySelectorAll('.menu-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      const isStopwatch = item.dataset.timerMode === 'stopwatch';
+      const btn = document.getElementById('btnTimer');
+      btn.title = isStopwatch ? 'Stopwatch' : 'Timer';
+      btn.querySelector('svg').innerHTML = isStopwatch ? STOPWATCH_SVG : TIMER_SVG;
+      timerDropdown.classList.remove('open');
+    };
+  });
+
+  document.addEventListener('click', () => timerDropdown.classList.remove('open'));
+
+  document.getElementById('btnNotes').onclick = () => {
+    // Notes panel (coming soon)
+  };
+
+  document.getElementById('btnSettings').onclick = () => {
+    // Settings (coming soon)
+  };
   
   document.getElementById('langSelect').onchange = (e) => {
     let lang = e.target.value;
