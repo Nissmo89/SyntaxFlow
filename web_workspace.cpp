@@ -165,9 +165,33 @@ void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64)");
+    request.setRawHeader("Referer", "https://leetcode.com");
+
+    QString queryStr = QString(
+        "query getSolutions($slug: String!) {"
+        "  question(titleSlug: $slug) {"
+        "    solution {"
+        "      id title content paidOnly"
+        "    }"
+        "  }"
+        "  questionSolutions(filters: {questionSlug: $slug, skip: 0, first: 10, orderBy: most_votes}) {"
+        "    totalNum"
+        "    solutions {"
+        "      id title commentCount viewCount"
+        "      post {"
+        "        id content voteCount"
+        "        author { username }"
+        "      }"
+        "    }"
+        "  }"
+        "}");
 
     QJsonObject queryObj;
-    queryObj["query"] = QString("query { question(titleSlug: \"%1\") { solution { id title content paidOnly canSeeDetail } } }").arg(slug);
+    queryObj["query"] = queryStr;
+    QJsonObject variables;
+    variables["slug"] = slug;
+    queryObj["variables"] = variables;
+
     QByteArray body = QJsonDocument(queryObj).toJson(QJsonDocument::Compact);
 
     QNetworkReply *reply = m_netManager->post(request, body);
@@ -197,14 +221,45 @@ void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
         }
 
         QJsonObject root = doc.object();
-        QJsonObject question = root.value("data").toObject().value("question").toObject();
-        QJsonObject solution = question.value("solution").toObject();
+        QJsonObject dataObj = root.value("data").toObject();
+        QJsonObject question = dataObj.value("question").toObject();
+        QJsonObject officialSol = question.value("solution").toObject();
+        QJsonObject qSolutions = dataObj.value("questionSolutions").toObject();
+        QJsonArray commSolutions = qSolutions.value("solutions").toArray();
 
         QJsonObject res;
         res["status"] = "loaded";
-        res["paidOnly"] = solution.value("paidOnly").toBool(false);
-        res["content"] = solution.value("content").toString();
-        res["title"] = solution.value("title").toString();
+
+        // Official solution
+        if (!officialSol.isEmpty() && !officialSol.value("paidOnly").toBool(false) && !officialSol.value("content").toString().isEmpty()) {
+            QJsonObject offObj;
+            offObj["id"] = officialSol.value("id").toString();
+            offObj["title"] = officialSol.value("title").toString("Official Editorial");
+            offObj["content"] = officialSol.value("content").toString();
+            offObj["author"] = "LeetCode Editorial";
+            offObj["isOfficial"] = true;
+            res["official"] = offObj;
+        }
+
+        // Community solutions
+        QJsonArray list;
+        for (const QJsonValue &val : commSolutions) {
+            QJsonObject s = val.toObject();
+            QJsonObject p = s.value("post").toObject();
+            QString content = p.value("content").toString();
+            if (content.trimmed().isEmpty()) continue;
+
+            QJsonObject item;
+            item["id"] = QString::number(s.value("id").toInteger());
+            item["title"] = s.value("title").toString();
+            item["content"] = content;
+            item["voteCount"] = p.value("voteCount").toInt();
+            item["viewCount"] = s.value("viewCount").toInt();
+            item["author"] = p.value("author").toObject().value("username").toString();
+            item["isOfficial"] = false;
+            list.append(item);
+        }
+        res["community"] = list;
 
         QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
         QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
