@@ -30,6 +30,8 @@
       --accent: #5c9eff;
       --accent-dim: rgba(92, 158, 255, 0.12);
       --lime: #a3e635;
+      --lime-dim: rgba(163, 230, 53, 0.12);
+      --lime-border: rgba(163, 230, 53, 0.35);
       --rose: #fb7185;
       --saffron: #f5a623;
     }
@@ -45,6 +47,8 @@
       --accent: #2563eb;
       --accent-dim: rgba(37, 99, 235, 0.1);
       --lime: #16a34a;
+      --lime-dim: rgba(22, 163, 74, 0.12);
+      --lime-border: rgba(22, 163, 74, 0.35);
       --rose: #dc2626;
       --saffron: #d97706;
     }
@@ -77,10 +81,10 @@
     }
     .btn:hover { background: var(--surface-2); }
     .btn-primary {
-      background: rgba(92, 158, 255, 0.12); border-color: rgba(92, 158, 255, 0.35);
-      color: var(--accent);
+      background: var(--lime-dim); border-color: var(--lime-border);
+      color: var(--lime);
     }
-    .btn-primary:hover { background: rgba(92, 158, 255, 0.2); }
+    .btn-primary:hover { background: var(--lime-dim); border-color: var(--lime); }
     .btn-run {
       color: var(--accent);
       display: inline-flex;
