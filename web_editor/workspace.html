@@ -79,8 +79,15 @@
       color: var(--accent);
     }
     .btn-primary:hover { background: rgba(92, 158, 255, 0.2); }
-    .btn-run { color: var(--accent); }
-    
+    .btn-run {
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      padding: 6px 0;
+    }
+    .btn-run svg { width: 15px; height: 15px; }
 
     .main-workspace {
       display: flex; flex: 1; overflow: hidden;
@@ -502,8 +509,9 @@
   <div class="toolbar">
     <button class="btn" id="btnBack">← Back</button>
     <div style="flex: 1;"></div>
-    <button class="btn btn-run" id="btnRun">▶ Run</button>
+    <button class="btn btn-run" id="btnRun" title="Run current test (Ctrl+Enter)"></button>
     <button class="btn btn-primary" id="btnSubmit">Submit</button>
+    <div style="flex: 1;"></div>
   </div>
 
   <div class="theme-toast" id="themeToast"></div>
@@ -663,8 +671,10 @@
   const SVG_MAXIMIZE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
   const SVG_MINIMIZE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
   const SVG_RESET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>';
+  const SVG_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="15" height="15"><polygon points="6 3 20 12 6 21 6 3"/></svg>';
 
   document.getElementById('btnReset').innerHTML = SVG_RESET;
+  document.getElementById('btnRun').innerHTML = SVG_PLAY;
 
   const panelNames = { desc: 'description', editor: 'editor', tc: 'testcases' };
   const maxButtons = {
