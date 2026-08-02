@@ -198,14 +198,16 @@
       gap: 2px;
     }
     .lang-select {
-      appearance: none; outline: none; border: none; cursor: pointer;
-      background: transparent; color: var(--text);
+      appearance: none; outline: none; cursor: pointer;
+      border: 1px solid var(--border); color: var(--text);
+      background-color: var(--surface-2); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23808087' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 8px center;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px; font-weight: 600;
-      padding: 6px 8px; border-radius: 4px;
-      transition: background 0.15s;
+      padding: 6px 26px 6px 10px; border-radius: 6px;
+      transition: border-color 0.15s, background-color 0.15s;
     }
-    .lang-select:hover { background: var(--surface-2); }
+    .lang-select:hover { border-color: var(--accent); }
     .lang-select option { background: var(--surface); color: var(--text); }
 
     .left-tabs { position: relative; }
@@ -650,7 +652,9 @@
     <div class="pane right-pane" id="rightPane">
       <div class="pane top-pane" id="topPane">
         <div class="editor-header">
-          <select class="lang-select" id="langSelect" title="Editor language"></select>
+          <select class="lang-select" id="langSelect" title="Editor language">
+            <option value="">Loading languages...</option>
+          </select>
           <div style="flex: 1;"></div>
           <button class="icon-btn" id="btnReset" title="Reset code to original template"></button>
           <button class="icon-btn" id="btnMaxEditor" title="Maximize editor"></button>
