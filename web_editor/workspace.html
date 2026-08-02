@@ -1069,7 +1069,7 @@
     if(view === 'submissions') renderSubmissions();
     if(view === 'solutions' && currentProblemSlug) {
       if (solutionsState.slug !== currentProblemSlug || solutionsState.status === 'idle') {
-        fetchLiveSolution(currentProblemSlug);
+        loadSolution(currentProblemSlug);
       } else {
         renderSolutionView();
       }
@@ -1167,32 +1167,25 @@
       contentEl.innerHTML = `
         <div style="color: var(--text-muted); padding: 36px 0; text-align: center;">
           <div style="display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: sf-spin 0.8s linear infinite; vertical-align: middle; margin-right: 8px;"></div>
-          <span>Fetching live solutions from LeetCode...</span>
+          <span>Loading solution from solutions folder...</span>
         </div>
       `;
       return;
     }
 
-    if (solutionsState.status === 'error') {
+    if (solutionsState.status === 'error' || solutionsState.status === 'not_found' || !solutionsState.list || solutionsState.list.length === 0) {
       barEl.style.display = 'none';
       metaEl.style.display = 'none';
+      const cleanSlug = solutionsState.slug || currentProblemSlug;
       contentEl.innerHTML = `
         <div style="padding: 24px 0; color: var(--text-muted);">
-          <h3 style="color: var(--rose); margin-top: 0; margin-bottom: 8px;">Failed to Load Solutions</h3>
-          <p>Could not fetch live solutions from LeetCode GraphQL API (${solutionsState.error || 'Network error'}).</p>
-          <button class="case-pill active" style="margin-top: 12px; padding: 6px 14px; cursor: pointer;" onclick="fetchLiveSolution('${solutionsState.slug}')">Retry</button>
-        </div>
-      `;
-      return;
-    }
-
-    if (!solutionsState.list || solutionsState.list.length === 0) {
-      barEl.style.display = 'none';
-      metaEl.style.display = 'none';
-      contentEl.innerHTML = `
-        <div style="padding: 24px 0; color: var(--text-muted);">
-          <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">No Solutions Found</h3>
-          <p>No official or community solutions are currently available for this problem on LeetCode.</p>
+          <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">No Solution Markdown Found</h3>
+          <p style="margin-bottom: 16px;">No pre-generated markdown file exists in the <code>solutions/</code> directory for this problem yet.</p>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 16px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px;">Generate with AI Solution Pipeline:</div>
+            <code style="font-family: var(--font-mono); color: var(--accent); font-size: 12px; word-break: break-all;">python3 scripts/generate_ai_solutions.py --problem ${cleanSlug.replace(/-/g, '_')}</code>
+          </div>
+          <button class="case-pill active" style="padding: 6px 14px; cursor: pointer;" onclick="loadSolution('${cleanSlug}')">Reload Solution</button>
         </div>
       `;
       return;
@@ -1203,7 +1196,7 @@
       barEl.innerHTML = solutionsState.list.map((sol, idx) => {
         const isActive = idx === solutionsState.activeIndex;
         const badge = sol.isOfficial 
-          ? `<span class="official-badge">Official</span>`
+          ? `<span class="official-badge">Editorial</span>`
           : (sol.voteCount !== undefined ? `<span class="vote-badge">▲ ${sol.voteCount}</span>` : '');
         const titleClean = (sol.title || 'Solution').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return `
@@ -1238,7 +1231,7 @@
   };
 
   window.setSolutionResult = function(slug, result) {
-    if (slug !== currentProblemSlug) return;
+    if (slug !== currentProblemSlug && slug.replace(/-/g, '_') !== currentProblemSlug.replace(/-/g, '_')) return;
 
     if (result.status === 'loaded') {
       let list = [];
@@ -1259,10 +1252,10 @@
     } else {
       solutionsState = {
         slug: slug,
-        status: 'error',
+        status: 'not_found',
         list: [],
         activeIndex: 0,
-        error: result.error || 'Network error'
+        error: result.error || 'No solution file found'
       };
     }
 
@@ -1271,7 +1264,7 @@
     }
   };
 
-  function fetchLiveSolution(slug) {
+  function loadSolution(slug) {
     if (!slug) return;
     if (solutionsState.slug === slug && solutionsState.status === 'loaded' && solutionsState.list.length > 0) {
       renderSolutionView();
@@ -1288,7 +1281,7 @@
 
   // ─── C++ API EXPOSED ───
   window.setProblemData = function(data) {
-    currentProblemSlug = (data.manifest && data.manifest.entry && data.manifest.entry.title) || (data.id ? data.id.replace(/_/g, '-') : '');
+    currentProblemSlug = (data.problem_id) || (data.manifest && data.manifest.entry && data.manifest.entry.title) || (data.id ? data.id.replace(/_/g, '-') : '');
     solutionsState = { slug: '', status: 'idle', list: [], activeIndex: 0, error: null };
     document.getElementById('solutionsTabBar').innerHTML = '';
     document.getElementById('solutionsTabBar').style.display = 'none';
@@ -1313,7 +1306,7 @@
     }
 
     if (leftView === 'solutions' && currentProblemSlug) {
-      fetchLiveSolution(currentProblemSlug);
+      loadSolution(currentProblemSlug);
     }
   };
 

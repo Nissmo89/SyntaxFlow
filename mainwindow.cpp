@@ -490,8 +490,11 @@ void MainWindow::onNavigateToEditor(const QString &path)
     if (file.open(QIODevice::ReadOnly)) {
         QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
         if (doc.isObject()) {
-            m_workspace->setProblemData(doc.object());
-            m_workspace->setTestCases(doc.object()["testCases"].toArray());
+            QJsonObject obj = doc.object();
+            obj["problem_id"] = m_currentProblemId;
+            obj["problem_rel_path"] = path;
+            m_workspace->setProblemData(obj);
+            m_workspace->setTestCases(obj["testCases"].toArray());
         }
     }
 

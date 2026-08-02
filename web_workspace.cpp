@@ -161,169 +161,57 @@ void WebWorkspace::setLanguage(const QString &langId) {
 void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
     if (slug.isEmpty()) return;
 
-    QString underscoreSlug = QString(slug).replace('-', '_');
-    QString hyphenSlug = QString(slug).replace('_', '-');
+    QString underscoreSlug = QString(slug).replace('-', '_').toLower();
+    QString hyphenSlug = QString(slug).replace('_', '-').toLower();
 
-    // Check if pre-generated offline solution markdown exists
-    QStringList searchPaths = {
-        QDir::currentPath() + "/solutions/easy/" + underscoreSlug + ".md",
-        QDir::currentPath() + "/solutions/medium/" + underscoreSlug + ".md",
-        QDir::currentPath() + "/solutions/hard/" + underscoreSlug + ".md",
-        QDir::currentPath() + "/solutions/" + underscoreSlug + ".md",
-        QDir::currentPath() + "/solutions/easy/" + hyphenSlug + ".md",
-        QDir::currentPath() + "/solutions/medium/" + hyphenSlug + ".md",
-        QDir::currentPath() + "/solutions/hard/" + hyphenSlug + ".md",
-        QDir::currentPath() + "/solutions/" + hyphenSlug + ".md",
-        QCoreApplication::applicationDirPath() + "/solutions/easy/" + underscoreSlug + ".md",
-        QCoreApplication::applicationDirPath() + "/solutions/medium/" + underscoreSlug + ".md",
-        QCoreApplication::applicationDirPath() + "/solutions/hard/" + underscoreSlug + ".md",
-        QCoreApplication::applicationDirPath() + "/solutions/" + underscoreSlug + ".md"
+    // Check all potential project and executable root directories
+    QStringList baseDirs = {
+        QDir::currentPath(),
+        QCoreApplication::applicationDirPath(),
+        QDir(QCoreApplication::applicationDirPath()).filePath(".."),
+        QDir(QCoreApplication::applicationDirPath()).filePath("../..")
     };
 
-    for (const QString &path : searchPaths) {
-        QFile file(path);
-        if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QString content = QString::fromUtf8(file.readAll());
-            file.close();
-            if (!content.trimmed().isEmpty()) {
-                QJsonObject res;
-                res["status"] = "loaded";
-                QJsonObject offObj;
-                offObj["title"] = "AI Editorial Solution";
-                offObj["content"] = content;
-                offObj["author"] = "SyntaxFlow AI";
-                offObj["isOfficial"] = true;
-                res["official"] = offObj;
-                res["community"] = QJsonArray();
+    QStringList candidateRelPaths;
+    QStringList subDirs = {"solutions/easy", "solutions/medium", "solutions/hard", "solutions"};
 
-                QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
-                QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
-                runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
-                return;
+    for (const QString &sub : subDirs) {
+        candidateRelPaths << QString("%1/%2.md").arg(sub, underscoreSlug);
+        candidateRelPaths << QString("%1/%2.md").arg(sub, hyphenSlug);
+    }
+
+    for (const QString &base : baseDirs) {
+        for (const QString &rel : candidateRelPaths) {
+            QString fullPath = QDir(base).filePath(rel);
+            QFile file(fullPath);
+            if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                QString content = QString::fromUtf8(file.readAll());
+                file.close();
+                if (!content.trimmed().isEmpty()) {
+                    QJsonObject res;
+                    res["status"] = "loaded";
+                    QJsonObject offObj;
+                    offObj["title"] = "AI Editorial Solution & Explanation";
+                    offObj["content"] = content;
+                    offObj["author"] = "SyntaxFlow AI";
+                    offObj["isOfficial"] = true;
+                    res["official"] = offObj;
+                    res["community"] = QJsonArray();
+
+                    QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+                    QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+                    runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
+                    return;
+                }
             }
         }
     }
 
-    if (!m_netManager) return;
-
-    QUrl url("https://leetcode.com/graphql");
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64)");
-    request.setRawHeader("Referer", "https://leetcode.com");
-
-    QString queryStr = QString(
-        "query getSolutions($slug: String!) {"
-        "  question(titleSlug: $slug) {"
-        "    solution {"
-        "      id title content paidOnly"
-        "    }"
-        "  }"
-        "  questionSolutions(filters: {questionSlug: $slug, skip: 0, first: 10, orderBy: most_votes}) {"
-        "    totalNum"
-        "    solutions {"
-        "      id title commentCount viewCount"
-        "      post {"
-        "        id content voteCount"
-        "        author { username }"
-        "      }"
-        "    }"
-        "  }"
-        "}");
-
-    QJsonObject queryObj;
-    queryObj["query"] = queryStr;
-    QJsonObject variables;
-    variables["slug"] = slug;
-    queryObj["variables"] = variables;
-
-    QByteArray body = QJsonDocument(queryObj).toJson(QJsonDocument::Compact);
-
-    QNetworkReply *reply = m_netManager->post(request, body);
-    connect(reply, &QNetworkReply::finished, this, [this, reply, slug]() {
-        reply->deleteLater();
-        if (reply->error() != QNetworkReply::NoError) {
-            QJsonObject res;
-            res["status"] = "error";
-            res["error"] = reply->errorString();
-            QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
-            QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
-            runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
-            return;
-        }
-
-        QByteArray data = reply->readAll();
-        QJsonParseError parseErr;
-        QJsonDocument doc = QJsonDocument::fromJson(data, &parseErr);
-        if (parseErr.error != QJsonParseError::NoError) {
-            QJsonObject res;
-            res["status"] = "error";
-            res["error"] = "Failed to parse GraphQL response";
-            QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
-            QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
-            runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
-            return;
-        }
-
-        QJsonObject root = doc.object();
-        QJsonObject dataObj = root.value("data").toObject();
-        QJsonObject question = dataObj.value("question").toObject();
-        QJsonObject officialSol = question.value("solution").toObject();
-        QJsonObject qSolutions = dataObj.value("questionSolutions").toObject();
-        QJsonArray commSolutions = qSolutions.value("solutions").toArray();
-
-        auto sanitizeContent = [](QString str) -> QString {
-            if (str.contains("\\n")) {
-                str.replace("\\r\\n", "\n").replace("\\n", "\n");
-            }
-            if (str.contains("\\t")) {
-                str.replace("\\t", "    ");
-            }
-            if (str.contains("\\'")) {
-                str.replace("\\'", "'");
-            }
-            if (str.contains("\\\"")) {
-                str.replace("\\\"", "\"");
-            }
-            return str;
-        };
-
-        QJsonObject res;
-        res["status"] = "loaded";
-
-        // Official solution
-        if (!officialSol.isEmpty() && !officialSol.value("paidOnly").toBool(false) && !officialSol.value("content").toString().isEmpty()) {
-            QJsonObject offObj;
-            offObj["id"] = officialSol.value("id").toString();
-            offObj["title"] = officialSol.value("title").toString("Official Editorial");
-            offObj["content"] = sanitizeContent(officialSol.value("content").toString());
-            offObj["author"] = "LeetCode Editorial";
-            offObj["isOfficial"] = true;
-            res["official"] = offObj;
-        }
-
-        // Community solutions
-        QJsonArray list;
-        for (const QJsonValue &val : commSolutions) {
-            QJsonObject s = val.toObject();
-            QJsonObject p = s.value("post").toObject();
-            QString content = sanitizeContent(p.value("content").toString());
-            if (content.trimmed().isEmpty()) continue;
-
-            QJsonObject item;
-            item["id"] = QString::number(s.value("id").toInteger());
-            item["title"] = s.value("title").toString();
-            item["content"] = content;
-            item["voteCount"] = p.value("voteCount").toInt();
-            item["viewCount"] = s.value("viewCount").toInt();
-            item["author"] = p.value("author").toObject().value("username").toString();
-            item["isOfficial"] = false;
-            list.append(item);
-        }
-        res["community"] = list;
-
-        QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
-        QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
-        runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
-    });
+    // No local solution file found
+    QJsonObject res;
+    res["status"] = "not_found";
+    res["error"] = QString("No solution markdown found in solutions/ for '%1'.").arg(slug);
+    QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+    QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+    runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
 }
