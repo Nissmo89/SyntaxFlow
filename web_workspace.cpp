@@ -159,7 +159,52 @@ void WebWorkspace::setLanguage(const QString &langId) {
 }
 
 void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
-    if (slug.isEmpty() || !m_netManager) return;
+    if (slug.isEmpty()) return;
+
+    QString underscoreSlug = QString(slug).replace('-', '_');
+    QString hyphenSlug = QString(slug).replace('_', '-');
+
+    // Check if pre-generated offline solution markdown exists
+    QStringList searchPaths = {
+        QDir::currentPath() + "/solutions/easy/" + underscoreSlug + ".md",
+        QDir::currentPath() + "/solutions/medium/" + underscoreSlug + ".md",
+        QDir::currentPath() + "/solutions/hard/" + underscoreSlug + ".md",
+        QDir::currentPath() + "/solutions/" + underscoreSlug + ".md",
+        QDir::currentPath() + "/solutions/easy/" + hyphenSlug + ".md",
+        QDir::currentPath() + "/solutions/medium/" + hyphenSlug + ".md",
+        QDir::currentPath() + "/solutions/hard/" + hyphenSlug + ".md",
+        QDir::currentPath() + "/solutions/" + hyphenSlug + ".md",
+        QCoreApplication::applicationDirPath() + "/solutions/easy/" + underscoreSlug + ".md",
+        QCoreApplication::applicationDirPath() + "/solutions/medium/" + underscoreSlug + ".md",
+        QCoreApplication::applicationDirPath() + "/solutions/hard/" + underscoreSlug + ".md",
+        QCoreApplication::applicationDirPath() + "/solutions/" + underscoreSlug + ".md"
+    };
+
+    for (const QString &path : searchPaths) {
+        QFile file(path);
+        if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QString content = QString::fromUtf8(file.readAll());
+            file.close();
+            if (!content.trimmed().isEmpty()) {
+                QJsonObject res;
+                res["status"] = "loaded";
+                QJsonObject offObj;
+                offObj["title"] = "AI Editorial Solution";
+                offObj["content"] = content;
+                offObj["author"] = "SyntaxFlow AI";
+                offObj["isOfficial"] = true;
+                res["official"] = offObj;
+                res["community"] = QJsonArray();
+
+                QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+                QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+                runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
+                return;
+            }
+        }
+    }
+
+    if (!m_netManager) return;
 
     QUrl url("https://leetcode.com/graphql");
     QNetworkRequest request(url);
