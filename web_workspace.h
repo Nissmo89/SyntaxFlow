@@ -22,6 +22,7 @@ signals:
     void cursorPositionChanged(int line, int col);
     void workspaceReady();
     void resetRequested();
+    void fetchSolutionRequested(const QString &slug);
 
 public slots:
     Q_INVOKABLE void onBackRequested() { emit backRequested(); }
@@ -32,7 +33,10 @@ public slots:
     Q_INVOKABLE void onTextChanged(const QString &text) { emit textChanged(text); }
     Q_INVOKABLE void onCursorPositionChanged(int line, int col) { emit cursorPositionChanged(line, col); }
     Q_INVOKABLE void onWorkspaceReady() { emit workspaceReady(); }
+    Q_INVOKABLE void onFetchSolutionRequested(const QString &slug) { emit fetchSolutionRequested(slug); }
 };
+
+class QNetworkAccessManager;
 
 class WebWorkspace : public QWidget {
     Q_OBJECT
@@ -65,6 +69,7 @@ signals:
 private slots:
     void onBridgeWorkspaceReady();
     void onBridgeTextChanged(const QString &text);
+    void onFetchSolutionRequested(const QString &slug);
 
 private:
     void runJs(const QString &script);
@@ -72,6 +77,7 @@ private:
     QWebEngineView *m_view = nullptr;
     QWebChannel *m_channel = nullptr;
     WorkspaceBridge *m_bridge = nullptr;
+    QNetworkAccessManager *m_netManager = nullptr;
     
     bool m_isReady = false;
     QString m_text;

@@ -1007,7 +1007,53 @@
     document.getElementById(targetId).innerHTML = marked.parse(markdown);
   }
 
-  async function fetchLiveSolution(slug) {
+  window.setSolutionResult = function(slug, result) {
+    if (slug !== currentProblemSlug) return;
+    const contentEl = document.getElementById('solutionsContent');
+    if (!contentEl) return;
+
+    if (result.status === 'loaded') {
+      if (result.content) {
+        solutionsState = { slug: slug, status: 'loaded', content: result.content, error: null };
+        if (leftView === 'solutions') {
+          renderMarkdown('solutionsContent', result.content);
+        }
+      } else if (result.paidOnly) {
+        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'paid' };
+        if (leftView === 'solutions') {
+          contentEl.innerHTML = `
+            <div style="padding: 24px 0; color: var(--text-muted);">
+              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">Official Solution (LeetCode Premium)</h3>
+              <p>The official editorial solution for <strong>${slug}</strong> is locked behind LeetCode Premium.</p>
+            </div>
+          `;
+        }
+      } else {
+        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'none' };
+        if (leftView === 'solutions') {
+          contentEl.innerHTML = `
+            <div style="padding: 24px 0; color: var(--text-muted);">
+              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">No Official Solution Found</h3>
+              <p>An official editorial is not currently available for this problem on LeetCode.</p>
+            </div>
+          `;
+        }
+      }
+    } else {
+      solutionsState = { slug: slug, status: 'error', content: null, error: result.error || 'Network error' };
+      if (leftView === 'solutions') {
+        contentEl.innerHTML = `
+          <div style="padding: 24px 0; color: var(--text-muted);">
+            <h3 style="color: var(--rose); margin-top: 0; margin-bottom: 8px;">Failed to Load Solution</h3>
+            <p>Could not fetch live solution from LeetCode GraphQL API (${result.error || 'Network error'}).</p>
+            <button class="case-pill active" style="margin-top: 12px; padding: 6px 14px; cursor: pointer;" onclick="fetchLiveSolution('${slug}')">Retry</button>
+          </div>
+        `;
+      }
+    }
+  };
+
+  function fetchLiveSolution(slug) {
     if (!slug) return;
     if (solutionsState.slug === slug && solutionsState.status === 'loaded' && solutionsState.content) {
       return;
@@ -1022,70 +1068,8 @@
       </div>
     `;
 
-    const query = `query {
-      question(titleSlug: "${slug}") {
-        solution {
-          id
-          title
-          content
-          paidOnly
-          canSeeDetail
-        }
-      }
-    }`;
-
-    try {
-      const resp = await fetch('https://leetcode.com/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: query })
-      });
-
-      if (!resp.ok) {
-        throw new Error(`HTTP ${resp.status}`);
-      }
-
-      const json = await resp.json();
-      const question = json && json.data && json.data.question;
-      const sol = question && question.solution;
-
-      if (sol && sol.content) {
-        solutionsState = { slug: slug, status: 'loaded', content: sol.content, error: null };
-        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
-          renderMarkdown('solutionsContent', sol.content);
-        }
-      } else if (sol && sol.paidOnly) {
-        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'paid' };
-        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
-          contentEl.innerHTML = `
-            <div style="padding: 24px 0; color: var(--text-muted);">
-              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">Official Solution (LeetCode Premium)</h3>
-              <p>The official editorial solution for <strong>${slug}</strong> is locked behind LeetCode Premium.</p>
-            </div>
-          `;
-        }
-      } else {
-        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'none' };
-        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
-          contentEl.innerHTML = `
-            <div style="padding: 24px 0; color: var(--text-muted);">
-              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">No Official Solution Found</h3>
-              <p>An official editorial is not currently available for this problem on LeetCode.</p>
-            </div>
-          `;
-        }
-      }
-    } catch (err) {
-      solutionsState = { slug: slug, status: 'error', content: null, error: err.message };
-      if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
-        contentEl.innerHTML = `
-          <div style="padding: 24px 0; color: var(--text-muted);">
-            <h3 style="color: var(--rose); margin-top: 0; margin-bottom: 8px;">Failed to Load Solution</h3>
-            <p>Could not fetch live solution from LeetCode GraphQL API (${err.message}).</p>
-            <button class="case-pill active" style="margin-top: 12px; padding: 6px 14px; cursor: pointer;" onclick="fetchLiveSolution('${slug}')">Retry</button>
-          </div>
-        `;
-      }
+    if (workspaceBridge && workspaceBridge.onFetchSolutionRequested) {
+      workspaceBridge.onFetchSolutionRequested(slug);
     }
   }
 
@@ -1366,7 +1350,12 @@
 
   setupWebChannel(function(channel) {
     workspaceBridge = channel.objects.workspaceBridge;
-    if (workspaceBridge) workspaceBridge.onWorkspaceReady();
+    if (workspaceBridge) {
+      workspaceBridge.onWorkspaceReady();
+      if (leftView === 'solutions' && currentProblemSlug && solutionsState.status === 'loading') {
+        workspaceBridge.onFetchSolutionRequested(currentProblemSlug);
+      }
+    }
   });
 
 </script>

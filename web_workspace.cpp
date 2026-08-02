@@ -9,12 +9,17 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
+
+    m_netManager = new QNetworkAccessManager(this);
 
     m_view = new QWebEngineView(this);
     m_view->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
@@ -34,6 +39,7 @@ WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     connect(m_bridge, &WorkspaceBridge::submitRequested, this, &WebWorkspace::submitRequested);
     connect(m_bridge, &WorkspaceBridge::languageChanged, this, &WebWorkspace::languageChanged);
     connect(m_bridge, &WorkspaceBridge::resetRequested, this, &WebWorkspace::resetRequested);
+    connect(m_bridge, &WorkspaceBridge::fetchSolutionRequested, this, &WebWorkspace::onFetchSolutionRequested);
 
     layout->addWidget(m_view);
 
@@ -150,4 +156,58 @@ void WebWorkspace::setLanguage(const QString &langId) {
     if (m_isReady) {
         runJs(QString("window.setLanguage('%1');").arg(langId));
     }
+}
+
+void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
+    if (slug.isEmpty() || !m_netManager) return;
+
+    QUrl url("https://leetcode.com/graphql");
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64)");
+
+    QJsonObject queryObj;
+    queryObj["query"] = QString("query { question(titleSlug: \"%1\") { solution { id title content paidOnly canSeeDetail } } }").arg(slug);
+    QByteArray body = QJsonDocument(queryObj).toJson(QJsonDocument::Compact);
+
+    QNetworkReply *reply = m_netManager->post(request, body);
+    connect(reply, &QNetworkReply::finished, this, [this, reply, slug]() {
+        reply->deleteLater();
+        if (reply->error() != QNetworkReply::NoError) {
+            QJsonObject res;
+            res["status"] = "error";
+            res["error"] = reply->errorString();
+            QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+            QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+            runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
+            return;
+        }
+
+        QByteArray data = reply->readAll();
+        QJsonParseError parseErr;
+        QJsonDocument doc = QJsonDocument::fromJson(data, &parseErr);
+        if (parseErr.error != QJsonParseError::NoError) {
+            QJsonObject res;
+            res["status"] = "error";
+            res["error"] = "Failed to parse GraphQL response";
+            QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+            QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+            runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
+            return;
+        }
+
+        QJsonObject root = doc.object();
+        QJsonObject question = root.value("data").toObject().value("question").toObject();
+        QJsonObject solution = question.value("solution").toObject();
+
+        QJsonObject res;
+        res["status"] = "loaded";
+        res["paidOnly"] = solution.value("paidOnly").toBool(false);
+        res["content"] = solution.value("content").toString();
+        res["title"] = solution.value("title").toString();
+
+        QString slugJson = QString::fromUtf8(QJsonDocument(QJsonObject{{"slug", slug}}).toJson(QJsonDocument::Compact));
+        QString resJson = QString::fromUtf8(QJsonDocument(res).toJson(QJsonDocument::Compact));
+        runJs(QString("if (window.setSolutionResult) window.setSolutionResult(%1.slug, %2);").arg(slugJson, resJson));
+    });
 }
