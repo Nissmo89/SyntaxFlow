@@ -227,6 +227,22 @@ void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
         QJsonObject qSolutions = dataObj.value("questionSolutions").toObject();
         QJsonArray commSolutions = qSolutions.value("solutions").toArray();
 
+        auto sanitizeContent = [](QString str) -> QString {
+            if (str.contains("\\n")) {
+                str.replace("\\r\\n", "\n").replace("\\n", "\n");
+            }
+            if (str.contains("\\t")) {
+                str.replace("\\t", "    ");
+            }
+            if (str.contains("\\'")) {
+                str.replace("\\'", "'");
+            }
+            if (str.contains("\\\"")) {
+                str.replace("\\\"", "\"");
+            }
+            return str;
+        };
+
         QJsonObject res;
         res["status"] = "loaded";
 
@@ -235,7 +251,7 @@ void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
             QJsonObject offObj;
             offObj["id"] = officialSol.value("id").toString();
             offObj["title"] = officialSol.value("title").toString("Official Editorial");
-            offObj["content"] = officialSol.value("content").toString();
+            offObj["content"] = sanitizeContent(officialSol.value("content").toString());
             offObj["author"] = "LeetCode Editorial";
             offObj["isOfficial"] = true;
             res["official"] = offObj;
@@ -246,7 +262,7 @@ void WebWorkspace::onFetchSolutionRequested(const QString &slug) {
         for (const QJsonValue &val : commSolutions) {
             QJsonObject s = val.toObject();
             QJsonObject p = s.value("post").toObject();
-            QString content = p.value("content").toString();
+            QString content = sanitizeContent(p.value("content").toString());
             if (content.trimmed().isEmpty()) continue;
 
             QJsonObject item;
