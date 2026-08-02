@@ -396,7 +396,7 @@ class GroqClient:
             raise ValueError("No Groq API key provided")
 
         candidate_models = [self.model]
-        for fallback in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]:
+        for fallback in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "qwen/qwen3.6-27b"]:
             if fallback not in candidate_models:
                 candidate_models.append(fallback)
 
@@ -615,7 +615,7 @@ class AISolutionGenerator:
 
         raise RuntimeError(f"All AI providers failed. Last error: {last_error}")
 
-    def process_problem_with_retry(self, problem_filepath, index, total, max_retries=5):
+    def process_problem_with_retry(self, problem_filepath, index, total, max_retries=10):
         """
         Attempts to generate solution for the problem.
         CRITICAL: Never advances on failure; retries with exponential backoff on rate limits.
@@ -653,6 +653,8 @@ class AISolutionGenerator:
 
         prompt = build_user_prompt(problem_data, raw_leetcode)
 
+        backoff_schedule = [5, 10, 20, 30, 45, 60, 60, 60, 60, 60]
+
         # Retry loop: Will only succeed or pause pipeline
         for attempt in range(1, max_retries + 1):
             try:
@@ -687,9 +689,8 @@ class AISolutionGenerator:
                 print(f"{Colors.YELLOW}  [!] Attempt {attempt}/{max_retries} failed for {problem_id}: {err_str}{Colors.RESET}")
                 
                 if attempt < max_retries:
-                    # Exponential backoff (5s, 10s, 20s, 30s)
-                    wait_time = min(5 * (2 ** (attempt - 1)), 30)
-                    print(f"{Colors.DIM}  -> Waiting {wait_time}s before retrying current problem...{Colors.RESET}")
+                    wait_time = backoff_schedule[min(attempt - 1, len(backoff_schedule) - 1)]
+                    print(f"{Colors.DIM}  -> Waiting {wait_time}s for quota window before retrying current problem...{Colors.RESET}")
                     time.sleep(wait_time)
                 else:
                     print(f"{Colors.RED}  [✗] Max retries exhausted for {rel_key}. Pausing pipeline.{Colors.RESET}")
