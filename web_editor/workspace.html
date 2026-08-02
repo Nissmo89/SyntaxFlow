@@ -277,6 +277,19 @@
     .problem-content pre { background: var(--surface) !important; padding: 12px; border: 1px solid var(--border); overflow-x: auto; }
     .problem-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
     .problem-content p { line-height: 1.6; }
+    .problem-content h2 { font-size: 18px; color: var(--text); margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px; }
+    .problem-content h3 { font-size: 15px; color: var(--text); margin-top: 18px; margin-bottom: 8px; }
+    .problem-content h4 { font-size: 14px; color: var(--text); margin-top: 14px; margin-bottom: 6px; }
+    .problem-content ul, .problem-content ol { padding-left: 20px; line-height: 1.6; }
+    .problem-content li { margin-bottom: 6px; }
+    .problem-content hr { border: 0; border-top: 1px solid var(--border-subtle); margin: 20px 0; }
+    .problem-content blockquote { border-left: 3px solid var(--accent); padding-left: 12px; margin: 12px 0; color: var(--text-muted); }
+    .problem-content img { max-width: 100%; height: auto; border-radius: 4px; }
+    .problem-content table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13px; }
+    .problem-content th, .problem-content td { border: 1px solid var(--border-subtle); padding: 8px 12px; text-align: left; }
+    .problem-content th { background: var(--surface); color: var(--text); font-weight: 600; }
+
+    @keyframes sf-spin { to { transform: rotate(360deg); } }
 
     html[data-theme="light"] .problem-content pre code.hljs,
     html[data-theme="light"] .problem-content pre code {
@@ -963,6 +976,9 @@
     }
   });
 
+  let currentProblemSlug = '';
+  let solutionsState = { slug: '', status: 'idle', content: null, error: null };
+
   document.getElementById('tabDesc').onclick = () => { setLeftView('desc'); };
   document.getElementById('tabSubmissions').onclick = () => { setLeftView('submissions'); };
   document.getElementById('tabSolutions').onclick = () => { setLeftView('solutions'); };
@@ -976,6 +992,9 @@
     document.getElementById('submissionsPanel').style.display = view==='submissions' ? 'block' : 'none';
     document.getElementById('solutionsPanel').style.display = view==='solutions' ? 'block' : 'none';
     if(view === 'submissions') renderSubmissions();
+    if(view === 'solutions' && currentProblemSlug && (solutionsState.slug !== currentProblemSlug || solutionsState.status === 'idle')) {
+      fetchLiveSolution(currentProblemSlug);
+    }
   }
 
   function renderMarkdown(targetId, markdown) {
@@ -988,8 +1007,94 @@
     document.getElementById(targetId).innerHTML = marked.parse(markdown);
   }
 
+  async function fetchLiveSolution(slug) {
+    if (!slug) return;
+    if (solutionsState.slug === slug && solutionsState.status === 'loaded' && solutionsState.content) {
+      return;
+    }
+
+    solutionsState = { slug: slug, status: 'loading', content: null, error: null };
+    const contentEl = document.getElementById('solutionsContent');
+    contentEl.innerHTML = `
+      <div style="color: var(--text-muted); padding: 36px 0; text-align: center;">
+        <div style="display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: sf-spin 0.8s linear infinite; vertical-align: middle; margin-right: 8px;"></div>
+        <span>Fetching live solution from LeetCode...</span>
+      </div>
+    `;
+
+    const query = `query {
+      question(titleSlug: "${slug}") {
+        solution {
+          id
+          title
+          content
+          paidOnly
+          canSeeDetail
+        }
+      }
+    }`;
+
+    try {
+      const resp = await fetch('https://leetcode.com/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: query })
+      });
+
+      if (!resp.ok) {
+        throw new Error(`HTTP ${resp.status}`);
+      }
+
+      const json = await resp.json();
+      const question = json && json.data && json.data.question;
+      const sol = question && question.solution;
+
+      if (sol && sol.content) {
+        solutionsState = { slug: slug, status: 'loaded', content: sol.content, error: null };
+        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
+          renderMarkdown('solutionsContent', sol.content);
+        }
+      } else if (sol && sol.paidOnly) {
+        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'paid' };
+        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
+          contentEl.innerHTML = `
+            <div style="padding: 24px 0; color: var(--text-muted);">
+              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">Official Solution (LeetCode Premium)</h3>
+              <p>The official editorial solution for <strong>${slug}</strong> is locked behind LeetCode Premium.</p>
+            </div>
+          `;
+        }
+      } else {
+        solutionsState = { slug: slug, status: 'loaded', content: null, error: 'none' };
+        if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
+          contentEl.innerHTML = `
+            <div style="padding: 24px 0; color: var(--text-muted);">
+              <h3 style="color: var(--text); margin-top: 0; margin-bottom: 8px;">No Official Solution Found</h3>
+              <p>An official editorial is not currently available for this problem on LeetCode.</p>
+            </div>
+          `;
+        }
+      }
+    } catch (err) {
+      solutionsState = { slug: slug, status: 'error', content: null, error: err.message };
+      if (solutionsState.slug === currentProblemSlug && leftView === 'solutions') {
+        contentEl.innerHTML = `
+          <div style="padding: 24px 0; color: var(--text-muted);">
+            <h3 style="color: var(--rose); margin-top: 0; margin-bottom: 8px;">Failed to Load Solution</h3>
+            <p>Could not fetch live solution from LeetCode GraphQL API (${err.message}).</p>
+            <button class="case-pill active" style="margin-top: 12px; padding: 6px 14px; cursor: pointer;" onclick="fetchLiveSolution('${slug}')">Retry</button>
+          </div>
+        `;
+      }
+    }
+  }
+
   // ─── C++ API EXPOSED ───
   window.setProblemData = function(data) {
+    currentProblemSlug = (data.manifest && data.manifest.entry && data.manifest.entry.title) || (data.id ? data.id.replace(/_/g, '-') : '');
+    solutionsState = { slug: '', status: 'idle', content: null, error: null };
+    document.getElementById('solutionsContent').innerHTML = '';
+
     document.getElementById('probTitle').textContent = data.title || 'Untitled';
     let diff = (data.difficulty || 'easy').toLowerCase();
     let pDiff = document.getElementById('probDiff');
@@ -1002,9 +1107,13 @@
     let descHtml = data.description || '';
     if (data.markdown) {
       renderMarkdown('probDesc', data.markdown);
-      return;
+    } else {
+      document.getElementById('probDesc').innerHTML = descHtml;
     }
-    document.getElementById('probDesc').innerHTML = descHtml;
+
+    if (leftView === 'solutions' && currentProblemSlug) {
+      fetchLiveSolution(currentProblemSlug);
+    }
   };
 
   window.setTestCases = function(tcList) {
