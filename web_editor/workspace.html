@@ -214,6 +214,16 @@
     }
     .lang-select:hover { border-color: var(--accent); }
     .lang-select option { background: var(--surface); color: var(--text); }
+    .lang-select.loading {
+      min-width: 96px; color: transparent; border-color: transparent;
+      background-image: linear-gradient(90deg, var(--surface-2) 25%, var(--border-subtle) 37%, var(--surface-2) 63%);
+      background-size: 400% 100%; background-repeat: no-repeat; background-position: 0 0;
+      animation: skeleton-shimmer 1.4s ease infinite;
+    }
+    @keyframes skeleton-shimmer {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0 50%; }
+    }
 
     .left-tabs { position: relative; }
     .left-tab-icon {
@@ -657,9 +667,7 @@
     <div class="pane right-pane" id="rightPane">
       <div class="pane top-pane" id="topPane">
         <div class="editor-header">
-          <select class="lang-select" id="langSelect" title="Editor language">
-            <option value="">Loading languages...</option>
-          </select>
+          <select class="lang-select loading" id="langSelect" title="Editor language"></select>
           <div style="flex: 1;"></div>
           <button class="icon-btn" id="btnReset" title="Reset code to original template"></button>
           <button class="icon-btn" id="btnMaxEditor" title="Maximize editor"></button>
@@ -1038,6 +1046,7 @@
 
   window.setLanguages = function(data) {
     let sel = document.getElementById('langSelect');
+    sel.classList.remove('loading');
     sel.innerHTML = '';
     data.languages.forEach(l => {
       let opt = document.createElement('option');
