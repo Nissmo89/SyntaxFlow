@@ -7,12 +7,16 @@ GraphQL raw editorial/community discussions, then prompts Google Gemini or Groq
 to generate world-class, clean, multi-language editorial markdown solutions.
 
 Features:
-- Progress tracking with resume capability (re-starts where you left off).
-- Dual API support: Google Gemini (gemini-2.0-flash / gemini-1.5-flash) and Groq (llama-3.3-70b).
-- Automatic failover between Gemini and Groq on rate limits (HTTP 429).
+- Strict progress tracking: only advances to the next problem when the current
+  solution is successfully generated.
+- Seamless resume: if stopped after N problems, automatically restarts at N+1.
+- Dual API support: Google Gemini (gemini-2.5-flash / gemini-2.0-flash) and Groq (llama-3.3-70b / llama-3.1-8b).
+- Full browser User-Agent headers to avoid Cloudflare 403 blocks (error 1010).
+- Automatic failover between Gemini, Groq, and backup models on rate limits (HTTP 429).
+- Exponential backoff retry loop on transient errors without skipping problems.
 - Key rotation for multiple comma-separated API keys.
 - Outputs clean .md files to solutions/{difficulty}/{problem_id}.md.
-- Standalone: Zero mandatory external dependencies (standard Python library).
+- Zero mandatory external dependencies (standard Python library).
 """
 
 import os
@@ -21,6 +25,7 @@ import json
 import time
 import re
 import html
+import signal
 import argparse
 import urllib.request
 import urllib.error
@@ -36,9 +41,11 @@ SOLUTIONS_DIR = os.path.join(BASE_DIR, "solutions")
 PROGRESS_FILE = os.path.join(SOLUTIONS_DIR, "progress.json")
 ENV_FILE = os.path.join(BASE_DIR, ".env")
 
-DEFAULT_GEMINI_MODEL = "gemini-2.0-flash"
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 LEETCODE_GRAPHQL_URL = "https://leetcode.com/graphql"
+
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 
 # ==============================================================================
 # Terminal Colors & UI
@@ -134,7 +141,6 @@ def clean_html_description(html_text):
     # Replace preformatted blocks
     def replace_pre(m):
         code = m.group(1).strip()
-        # Clean HTML inside pre
         code = re.sub(r'<.*?>', '', code)
         code = html.unescape(code)
         return f"\n```\n{code}\n```\n"
@@ -216,7 +222,7 @@ def fetch_leetcode_raw_solutions(slug, timeout_sec=5):
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+            "User-Agent": USER_AGENT,
             "Referer": "https://leetcode.com"
         }
     )
@@ -233,7 +239,7 @@ def fetch_leetcode_raw_solutions(slug, timeout_sec=5):
                 if sol and not sol.get("paidOnly") and sol.get("content"):
                     official = {
                         "title": sol.get("title", "Official Editorial"),
-                        "content": sol.get("content", "")[:4000] # Cap size for context
+                        "content": sol.get("content", "")[:4000]
                     }
 
                 # Community top solutions
@@ -247,12 +253,11 @@ def fetch_leetcode_raw_solutions(slug, timeout_sec=5):
                             "title": s.get("title", ""),
                             "author": post.get("author", {}).get("username", "Anonymous"),
                             "votes": post.get("voteCount", 0),
-                            "content": cnt[:3000] # Cap size for prompt context
+                            "content": cnt[:3000]
                         })
 
                 return {"official": official, "community": community}
     except Exception:
-        # Graceful fallback: return empty dict if network or LeetCode is unreachable
         pass
 
     return {"official": None, "community": []}
@@ -319,48 +324,64 @@ class GeminiClient:
         if not key:
             raise ValueError("No Gemini API key provided")
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={key}"
-        
-        payload = {
-            "contents": [
-                {
-                    "role": "user",
-                    "parts": [{"text": prompt}]
+        # Models to attempt in order
+        candidate_models = [self.model]
+        for fallback in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+            if fallback not in candidate_models:
+                candidate_models.append(fallback)
+
+        last_error = None
+        for m in candidate_models:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={key}"
+            payload = {
+                "contents": [
+                    {
+                        "role": "user",
+                        "parts": [{"text": prompt}]
+                    }
+                ],
+                "systemInstruction": {
+                    "role": "system",
+                    "parts": [{"text": system_instruction}]
+                },
+                "generationConfig": {
+                    "temperature": 0.2,
+                    "maxOutputTokens": 8192
                 }
-            ],
-            "systemInstruction": {
-                "role": "system",
-                "parts": [{"text": system_instruction}]
-            },
-            "generationConfig": {
-                "temperature": 0.2,
-                "maxOutputTokens": 8192
             }
-        }
 
-        req = urllib.request.Request(
-            url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers={"Content-Type": "application/json"}
-        )
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "User-Agent": USER_AGENT
+                }
+            )
 
-        try:
-            with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                candidates = data.get("candidates", [])
-                if candidates:
-                    parts = candidates[0].get("content", {}).get("parts", [])
-                    if parts:
-                        return parts[0].get("text", "")
-                raise ValueError(f"Empty Gemini response: {json.dumps(data)[:200]}")
-        except urllib.error.HTTPError as e:
-            err_body = e.read().decode("utf-8", errors="ignore")
-            if e.code == 429:
-                self.key_pool.rotate()
-                raise RuntimeError(f"Gemini Rate Limit (429): {err_body[:150]}")
-            raise RuntimeError(f"Gemini HTTP {e.code}: {err_body[:200]}")
-        except Exception as e:
-            raise RuntimeError(f"Gemini Request failed: {e}")
+            try:
+                with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        parts = candidates[0].get("content", {}).get("parts", [])
+                        if parts:
+                            return parts[0].get("text", ""), m
+                    raise ValueError(f"Empty Gemini response: {json.dumps(data)[:200]}")
+            except urllib.error.HTTPError as e:
+                err_body = e.read().decode("utf-8", errors="ignore")
+                if e.code == 429:
+                    self.key_pool.rotate()
+                    last_error = RuntimeError(f"Gemini Rate Limit (429) on {m}: {err_body[:120]}")
+                    continue # Try next candidate model or key
+                elif e.code == 404:
+                    # Model not found, try next candidate
+                    continue
+                last_error = RuntimeError(f"Gemini HTTP {e.code} on {m}: {err_body[:150]}")
+            except Exception as e:
+                last_error = RuntimeError(f"Gemini Request failed on {m}: {e}")
+
+        raise last_error or RuntimeError("Gemini generation failed on all candidate models")
 
 
 class GroqClient:
@@ -374,42 +395,53 @@ class GroqClient:
         if not key:
             raise ValueError("No Groq API key provided")
 
+        candidate_models = [self.model]
+        for fallback in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]:
+            if fallback not in candidate_models:
+                candidate_models.append(fallback)
+
         url = "https://api.groq.com/openai/v1/chat/completions"
-        
-        payload = {
-            "model": self.model,
-            "messages": [
-                {"role": "system", "content": system_instruction},
-                {"role": "user", "content": prompt}
-            ],
-            "temperature": 0.2,
-            "max_tokens": 8000
-        }
+        last_error = None
 
-        req = urllib.request.Request(
-            url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {key}"
+        for m in candidate_models:
+            payload = {
+                "model": m,
+                "messages": [
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.2,
+                "max_tokens": 8000
             }
-        )
 
-        try:
-            with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                choices = data.get("choices", [])
-                if choices:
-                    return choices[0].get("message", {}).get("content", "")
-                raise ValueError(f"Empty Groq response: {json.dumps(data)[:200]}")
-        except urllib.error.HTTPError as e:
-            err_body = e.read().decode("utf-8", errors="ignore")
-            if e.code == 429:
-                self.key_pool.rotate()
-                raise RuntimeError(f"Groq Rate Limit (429): {err_body[:150]}")
-            raise RuntimeError(f"Groq HTTP {e.code}: {err_body[:200]}")
-        except Exception as e:
-            raise RuntimeError(f"Groq Request failed: {e}")
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {key}",
+                    "User-Agent": USER_AGENT
+                }
+            )
+
+            try:
+                with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    choices = data.get("choices", [])
+                    if choices:
+                        return choices[0].get("message", {}).get("content", ""), m
+                    raise ValueError(f"Empty Groq response: {json.dumps(data)[:200]}")
+            except urllib.error.HTTPError as e:
+                err_body = e.read().decode("utf-8", errors="ignore")
+                if e.code == 429:
+                    self.key_pool.rotate()
+                    last_error = RuntimeError(f"Groq Rate Limit (429) on {m}: {err_body[:120]}")
+                    continue
+                last_error = RuntimeError(f"Groq HTTP {e.code} on {m}: {err_body[:150]}")
+            except Exception as e:
+                last_error = RuntimeError(f"Groq Request failed on {m}: {e}")
+
+        raise last_error or RuntimeError("Groq generation failed on all candidate models")
 
 # ==============================================================================
 # Progress Tracker & State Management
@@ -440,7 +472,6 @@ class ProgressTracker:
         self.state["total_completed"] = len(self.state.get("completed_problems", {}))
         self.state["last_updated"] = datetime.now().isoformat()
         
-        # Write atomically using a temp file
         temp_path = self.filepath + ".tmp"
         with open(temp_path, "w", encoding="utf-8") as f:
             json.dump(self.state, f, indent=2)
@@ -451,7 +482,6 @@ class ProgressTracker:
         if rel_key in self.state.get("completed_problems", {}):
             if os.path.exists(md_filepath) and os.path.getsize(md_filepath) > 100:
                 return True
-        # Check if output .md already exists with substantial content
         if os.path.exists(md_filepath) and os.path.getsize(md_filepath) > 200:
             return True
         return False
@@ -498,7 +528,6 @@ def build_user_prompt(problem_data, raw_leetcode_data):
             if lang in func_signs:
                 func_sign_text += f"\n**{lang.upper()}:**\n```{lang}\n{func_signs[lang]}\n```\n"
 
-    # Reference raw LeetCode content (editorials / top community solutions)
     ref_text = ""
     if raw_leetcode_data.get("official"):
         off = raw_leetcode_data["official"]
@@ -561,6 +590,7 @@ class AISolutionGenerator:
                 raise ValueError("GROQ_API_KEY not set in environment or .env file")
             providers = [("Groq", self.groq_client)]
         else: # auto
+            # Prioritize available clients
             if self.gemini_client:
                 providers.append(("Gemini", self.gemini_client))
             if self.groq_client:
@@ -575,9 +605,9 @@ class AISolutionGenerator:
                 if self.verbose:
                     print(f"{Colors.DIM}  -> Querying {name} ({client.model})...{Colors.RESET}")
                 t0 = time.time()
-                result = client.generate(prompt)
+                result, used_model = client.generate(prompt)
                 elapsed = time.time() - t0
-                return result, name, client.model, elapsed
+                return result, name, used_model, elapsed
             except Exception as e:
                 last_error = e
                 print(f"{Colors.YELLOW}  [!] {name} failed: {e}. Attempting failover...{Colors.RESET}")
@@ -585,85 +615,94 @@ class AISolutionGenerator:
 
         raise RuntimeError(f"All AI providers failed. Last error: {last_error}")
 
-    def process_problem(self, problem_filepath, index, total):
-        """Processes a single problem JSON file and writes the generated .md solution."""
+    def process_problem_with_retry(self, problem_filepath, index, total, max_retries=5):
+        """
+        Attempts to generate solution for the problem.
+        CRITICAL: Never advances on failure; retries with exponential backoff on rate limits.
+        """
         difficulty = os.path.basename(os.path.dirname(problem_filepath)).lower()
         filename = os.path.basename(problem_filepath)
         problem_id = os.path.splitext(filename)[0]
         rel_key = f"{difficulty}/{problem_id}"
 
-        # Target output markdown file
         out_dir = os.path.join(SOLUTIONS_DIR, difficulty)
         os.makedirs(out_dir, exist_ok=True)
         out_filepath = os.path.join(out_dir, f"{problem_id}.md")
 
-        # Check if already completed
         if self.tracker.is_completed(rel_key, out_filepath):
-            print(f"{Colors.DIM}[{index:>3}/{total}] [SKIP] {difficulty.upper():<6} {problem_id} (Already generated){Colors.RESET}")
-            return True
+            print(f"{Colors.DIM}[{index:>3}/{total}] [SKIP] {difficulty.upper():<6} {problem_id} (Already completed){Colors.RESET}")
+            return "skipped"
 
-        # Load problem data
         try:
             with open(problem_filepath, "r", encoding="utf-8") as f:
                 problem_data = json.load(f)
         except Exception as e:
             print(f"{Colors.RED}[{index:>3}/{total}] [ERROR] Could not read {problem_filepath}: {e}{Colors.RESET}")
             self.tracker.mark_failed(rel_key, str(e))
-            return False
+            return "failed"
 
         title = problem_data.get("title", problem_id)
         slug = problem_data.get("manifest", {}).get("entry", {}).get("title") or problem_id.replace("_", "-")
 
-        print(f"{Colors.CYAN}[{index:>3}/{total}] [{difficulty.upper():<6}] {title} ({problem_id})...{Colors.RESET}")
+        print(f"\n{Colors.CYAN}[{index:>3}/{total}] [{difficulty.upper():<6}] {title} ({problem_id})...{Colors.RESET}")
 
-        # Step 1: Gather raw LeetCode data (editorial + community solutions)
+        # Gather raw LeetCode data
         if self.verbose:
             print(f"{Colors.DIM}  -> Fetching LeetCode GraphQL data for slug: {slug}...{Colors.RESET}")
         raw_leetcode = fetch_leetcode_raw_solutions(slug)
 
-        # Step 2: Build rich prompt
         prompt = build_user_prompt(problem_data, raw_leetcode)
 
-        # Step 3: Query AI with retry and failover
-        try:
-            markdown_content, prov_name, model_name, elapsed = self.generate_with_failover(prompt)
-            clean_md = sanitize_ai_output(markdown_content)
+        # Retry loop: Will only succeed or pause pipeline
+        for attempt in range(1, max_retries + 1):
+            try:
+                markdown_content, prov_name, model_name, elapsed = self.generate_with_failover(prompt)
+                clean_md = sanitize_ai_output(markdown_content)
 
-            if len(clean_md) < 150:
-                raise ValueError("Generated markdown is too short or empty")
+                if len(clean_md) < 150:
+                    raise ValueError("Generated markdown is too short or empty")
 
-            # Step 4: Write output file
-            with open(out_filepath, "w", encoding="utf-8") as f:
-                f.write(clean_md + "\n")
+                # Write output file
+                with open(out_filepath, "w", encoding="utf-8") as f:
+                    f.write(clean_md + "\n")
 
-            # Step 5: Mark completed in progress tracker
-            word_count = len(clean_md.split())
-            self.tracker.mark_completed(rel_key, {
-                "title": title,
-                "provider": prov_name,
-                "model": model_name,
-                "file_path": os.path.relpath(out_filepath, BASE_DIR),
-                "words": word_count,
-                "elapsed_sec": round(elapsed, 2)
-            })
+                word_count = len(clean_md.split())
+                self.tracker.mark_completed(rel_key, {
+                    "title": title,
+                    "provider": prov_name,
+                    "model": model_name,
+                    "file_path": os.path.relpath(out_filepath, BASE_DIR),
+                    "words": word_count,
+                    "elapsed_sec": round(elapsed, 2)
+                })
 
-            print(f"{Colors.GREEN}  [✓] Generated -> {os.path.relpath(out_filepath, BASE_DIR)} ({prov_name} {model_name} | {elapsed:.1f}s | {word_count} words){Colors.RESET}")
-            
-            if self.delay_sec > 0:
-                time.sleep(self.delay_sec)
-            return True
+                print(f"{Colors.GREEN}  [✓] Generated -> {os.path.relpath(out_filepath, BASE_DIR)} ({prov_name} {model_name} | {elapsed:.1f}s | {word_count} words){Colors.RESET}")
+                
+                if self.delay_sec > 0:
+                    time.sleep(self.delay_sec)
+                return "success"
 
-        except Exception as e:
-            print(f"{Colors.RED}  [✗] Failed to generate {rel_key}: {e}{Colors.RESET}")
-            self.tracker.mark_failed(rel_key, str(e))
-            return False
+            except Exception as e:
+                err_str = str(e)
+                print(f"{Colors.YELLOW}  [!] Attempt {attempt}/{max_retries} failed for {problem_id}: {err_str}{Colors.RESET}")
+                
+                if attempt < max_retries:
+                    # Exponential backoff (5s, 10s, 20s, 30s)
+                    wait_time = min(5 * (2 ** (attempt - 1)), 30)
+                    print(f"{Colors.DIM}  -> Waiting {wait_time}s before retrying current problem...{Colors.RESET}")
+                    time.sleep(wait_time)
+                else:
+                    print(f"{Colors.RED}  [✗] Max retries exhausted for {rel_key}. Pausing pipeline.{Colors.RESET}")
+                    self.tracker.mark_failed(rel_key, err_str)
+                    return "failed"
+
+        return "failed"
 
     def run(self, difficulties=None, limit=None, target_problem=None, force=False):
-        """Scans all problems and runs the generation pipeline with progress resume."""
+        """Scans all problems and runs the generation pipeline with strict progress resume."""
         if difficulties is None:
             difficulties = ["easy", "medium", "hard"]
 
-        # Collect problem files
         problem_files = []
         for diff in difficulties:
             diff_dir = os.path.join(PROBLEMS_DIR, diff)
@@ -674,7 +713,6 @@ class AISolutionGenerator:
                     problem_files.append(os.path.join(diff_dir, fname))
 
         if target_problem:
-            # Filter for specific problem
             norm_target = target_problem.lower().replace("-", "_")
             if not norm_target.endswith(".json"):
                 norm_target += ".json"
@@ -694,19 +732,28 @@ class AISolutionGenerator:
         print(f"Progress Tracker File:     {os.path.relpath(PROGRESS_FILE, BASE_DIR)}")
         
         already_done = len(self.tracker.state.get("completed_problems", {}))
-        print(f"Resuming Progress:         {Colors.GREEN}{already_done} completed{Colors.RESET} / {total_problems} total\n")
+        print(f"Resuming Progress:         {Colors.GREEN}{already_done} completed{Colors.RESET} / {total_problems} total")
 
-        processed_count = 0
-        success_count = 0
+        newly_generated_count = 0
+
+        # Handle graceful exit on Ctrl+C
+        def sigint_handler(sig, frame):
+            print(f"\n\n{Colors.YELLOW}Process interrupted by user (Ctrl+C). Saving state and exiting...{Colors.RESET}")
+            self.tracker.save()
+            completed_now = len(self.tracker.state.get("completed_problems", {}))
+            print(f"{Colors.GREEN}Progress saved: {completed_now} / {total_problems} completed.{Colors.RESET}")
+            print(f"To resume later, simply rerun: {Colors.BOLD}python3 scripts/generate_ai_solutions.py{Colors.RESET}\n")
+            sys.exit(0)
+
+        signal.signal(signal.SIGINT, sigint_handler)
 
         for idx, p_path in enumerate(problem_files, 1):
-            if limit and processed_count >= limit:
-                print(f"\n{Colors.YELLOW}Reached user limit of {limit} problems. Stopping.{Colors.RESET}")
+            if limit and newly_generated_count >= limit:
+                print(f"\n{Colors.YELLOW}Reached user limit of {limit} newly generated solutions. Stopping.{Colors.RESET}")
                 break
 
             diff = os.path.basename(os.path.dirname(p_path)).lower()
             p_id = os.path.splitext(os.path.basename(p_path))[0]
-            rel_k = f"{diff}/{p_id}"
             out_p = os.path.join(SOLUTIONS_DIR, diff, f"{p_id}.md")
 
             if force and os.path.exists(out_p):
@@ -715,14 +762,19 @@ class AISolutionGenerator:
                 except Exception:
                     pass
 
-            ok = self.process_problem(p_path, idx, total_problems)
-            processed_count += 1
-            if ok:
-                success_count += 1
+            status = self.process_problem_with_retry(p_path, idx, total_problems)
+            if status == "success":
+                newly_generated_count += 1
+            elif status == "failed":
+                # Pipeline halts on persistent failure so count does not skip
+                print(f"\n{Colors.RED}[!] Pipeline stopped at problem #{idx} ({p_id}) due to provider/quota failure.{Colors.RESET}")
+                print(f"{Colors.YELLOW}Check your API keys/quotas, then re-run to resume automatically from problem #{idx}.{Colors.RESET}\n")
+                break
 
-        print(f"\n{Colors.BOLD}{Colors.GREEN}=== Batch Run Complete ==={Colors.RESET}")
-        print(f"Processed: {processed_count} | Success: {success_count} | Total Stored: {len(self.tracker.state.get('completed_problems', {}))}")
-        print(f"Solutions saved in: {os.path.relpath(SOLUTIONS_DIR, BASE_DIR)}\n")
+        print(f"\n{Colors.BOLD}{Colors.GREEN}=== Summary ==={Colors.RESET}")
+        print(f"Successfully generated in this run: {newly_generated_count}")
+        print(f"Total Completed in Repository:      {len(self.tracker.state.get('completed_problems', {}))} / {total_problems}")
+        print(f"Solutions directory:                {os.path.relpath(SOLUTIONS_DIR, BASE_DIR)}\n")
 
 # ==============================================================================
 # CLI Entrypoint
@@ -764,7 +816,7 @@ def main():
         "--limit",
         type=int,
         default=None,
-        help="Limit number of problems to generate in this run"
+        help="Limit number of solutions to generate in this run"
     )
     parser.add_argument(
         "--delay",
