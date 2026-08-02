@@ -335,22 +335,6 @@
       white-space: nowrap;
     }
 
-    .theme-toggle {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; flex-shrink: 0;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text-secondary);
-      cursor: pointer; user-select: none;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-    .theme-toggle:hover {
-      background: var(--bg-hover);
-      color: var(--text);
-      border-color: var(--border-light);
-    }
-
     .progress-bar-bg {
       width: 64px; height: 4px;
       background: var(--border);
@@ -605,15 +589,12 @@
       </div>
       <span id="statsText" class="stats-text">0 / 0 Solved</span>
     </div>
-
-    <button type="button" class="theme-toggle" id="themeToggle" title="Switch theme"></button>
   </div>
 </div>
 
 <div class="tags-bar" id="tagsBar" style="display: none;">
   <div class="tags-bar-inner" id="tagsBarInner"></div>
 </div>
-
 <div class="container">
   <div class="list-toolbar">
     <div class="list-actions">

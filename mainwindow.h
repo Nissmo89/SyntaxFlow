@@ -70,6 +70,11 @@ public:
 
     void applyStyle(const QString &path);
 
+    // App theme (dark/light) toggled from the title bar
+    void onThemeToggle();
+    void applyAppTheme();
+    QString titleBarStyle() const;
+
 protected:
     void resizeEvent(QResizeEvent *event) override;
     void changeEvent(QEvent *event) override;
@@ -118,9 +123,11 @@ private:
     QPushButton *m_btnMin = nullptr;
     QPushButton *m_btnMax = nullptr;
     QPushButton *m_btnClose = nullptr;
+    QPushButton *m_btnTheme = nullptr;
     QLabel *m_titleLabel = nullptr;
     QLabel *m_iconLabel = nullptr;
     WidgetWindowAgent *m_windowAgent = nullptr;
+    bool m_darkTheme = true;
 
     // UI State
     void setExecutionState(bool running);

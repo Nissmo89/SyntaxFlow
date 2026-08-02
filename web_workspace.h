@@ -52,6 +52,8 @@ public:
     void setLanguages(const QJsonArray &langs, const QString &currentLang);
     void setLanguage(const QString &langId);
 
+    void applyTheme(const QString &script);
+
 signals:
     void backRequested();
     void runRequested(int caseIndex);

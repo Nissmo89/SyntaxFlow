@@ -48,6 +48,10 @@ void WebWorkspace::runJs(const QString &script) {
     }
 }
 
+void WebWorkspace::applyTheme(const QString &script) {
+    runJs(script);
+}
+
 void WebWorkspace::onBridgeWorkspaceReady() {
     m_isReady = true;
     if (!m_pendingProblemData.isEmpty()) {

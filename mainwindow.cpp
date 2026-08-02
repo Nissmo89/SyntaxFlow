@@ -98,6 +98,15 @@ void MainWindow::setupTitleBar()
     layout->addWidget(m_titleLabel, 0, Qt::AlignVCenter);
     layout->addStretch(1);
 
+    // App theme toggle (dark/light)
+    m_btnTheme = new QPushButton(m_titleBar);
+    m_btnTheme->setObjectName("btnTheme");
+    m_btnTheme->setIcon(QIcon(":/icons/theme-sun.svg"));
+    m_btnTheme->setIconSize(QSize(14, 14));
+    m_btnTheme->setFixedSize(36, 26);
+    m_btnTheme->setToolTip("Switch to light theme");
+    connect(m_btnTheme, &QPushButton::clicked, this, &MainWindow::onThemeToggle);
+
     // Window control buttons
     m_btnMin = new QPushButton(m_titleBar);
     m_btnMin->setObjectName("btnMin");
@@ -120,6 +129,7 @@ void MainWindow::setupTitleBar()
     m_btnClose->setFixedSize(36, 26);
     m_btnClose->setToolTip("Close");
 
+    layout->addWidget(m_btnTheme, 0, Qt::AlignVCenter);
     layout->addWidget(m_btnMin, 0, Qt::AlignVCenter);
     layout->addWidget(m_btnMax, 0, Qt::AlignVCenter);
     layout->addWidget(m_btnClose, 0, Qt::AlignVCenter);
@@ -142,35 +152,76 @@ void MainWindow::setupTitleBar()
     m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Minimize, m_btnMin);
     m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Maximize, m_btnMax);
     m_windowAgent->setSystemButton(WidgetWindowAgent::SystemButton::Close, m_btnClose);
+    m_windowAgent->setHitTestVisible(m_btnTheme, true);
     m_windowAgent->setHitTestVisible(m_btnMin, true);
     m_windowAgent->setHitTestVisible(m_btnMax, true);
     m_windowAgent->setHitTestVisible(m_btnClose, true);
 
     // Apply TitleBar stylesheet
-    m_titleBar->setStyleSheet(
+    m_titleBar->setStyleSheet(titleBarStyle());
+}
+
+QString MainWindow::titleBarStyle() const
+{
+    if (m_darkTheme) {
+        return
+            "QWidget#titleBar {"
+            "  background-color: #0f1015;"
+            "  border-bottom: 1px solid #1e2029;"
+            "}"
+            "QLabel#appTitle {"
+            "  color: #e2e8f0;"
+            "  font-size: 12px;"
+            "  font-weight: 600;"
+            "  letter-spacing: 0.5px;"
+            "  padding-left: 2px;"
+            "}"
+            "QPushButton#btnMin, QPushButton#btnMax, QPushButton#btnClose, QPushButton#btnTheme {"
+            "  background-color: transparent;"
+            "  border: 1px solid transparent;"
+            "  border-radius: 5px;"
+            "  padding: 0px;"
+            "}"
+            "QPushButton#btnMin:hover, QPushButton#btnMax:hover, QPushButton#btnTheme:hover {"
+            "  background-color: rgba(255, 255, 255, 0.08);"
+            "  border: 1px solid rgba(255, 255, 255, 0.12);"
+            "}"
+            "QPushButton#btnMin:pressed, QPushButton#btnMax:pressed, QPushButton#btnTheme:pressed {"
+            "  background-color: rgba(255, 255, 255, 0.15);"
+            "}"
+            "QPushButton#btnClose:hover {"
+            "  background-color: #e81123;"
+            "  border: 1px solid #e81123;"
+            "}"
+            "QPushButton#btnClose:pressed {"
+            "  background-color: #bf101d;"
+            "}";
+    }
+
+    return
         "QWidget#titleBar {"
-        "  background-color: #0f1015;"
-        "  border-bottom: 1px solid #1e2029;"
+        "  background-color: #f6f7f9;"
+        "  border-bottom: 1px solid #e2e5e9;"
         "}"
         "QLabel#appTitle {"
-        "  color: #e2e8f0;"
+        "  color: #1c1f24;"
         "  font-size: 12px;"
         "  font-weight: 600;"
         "  letter-spacing: 0.5px;"
         "  padding-left: 2px;"
         "}"
-        "QPushButton#btnMin, QPushButton#btnMax, QPushButton#btnClose {"
+        "QPushButton#btnMin, QPushButton#btnMax, QPushButton#btnClose, QPushButton#btnTheme {"
         "  background-color: transparent;"
         "  border: 1px solid transparent;"
         "  border-radius: 5px;"
         "  padding: 0px;"
         "}"
-        "QPushButton#btnMin:hover, QPushButton#btnMax:hover {"
-        "  background-color: rgba(255, 255, 255, 0.08);"
-        "  border: 1px solid rgba(255, 255, 255, 0.12);"
+        "QPushButton#btnMin:hover, QPushButton#btnMax:hover, QPushButton#btnTheme:hover {"
+        "  background-color: rgba(0, 0, 0, 0.06);"
+        "  border: 1px solid rgba(0, 0, 0, 0.10);"
         "}"
-        "QPushButton#btnMin:pressed, QPushButton#btnMax:pressed {"
-        "  background-color: rgba(255, 255, 255, 0.15);"
+        "QPushButton#btnMin:pressed, QPushButton#btnMax:pressed, QPushButton#btnTheme:pressed {"
+        "  background-color: rgba(0, 0, 0, 0.12);"
         "}"
         "QPushButton#btnClose:hover {"
         "  background-color: #e81123;"
@@ -178,8 +229,34 @@ void MainWindow::setupTitleBar()
         "}"
         "QPushButton#btnClose:pressed {"
         "  background-color: #bf101d;"
-        "}"
-    );
+        "}";
+}
+
+void MainWindow::onThemeToggle()
+{
+    m_darkTheme = !m_darkTheme;
+    applyAppTheme();
+}
+
+void MainWindow::applyAppTheme()
+{
+    const QString theme = m_darkTheme ? "dark" : "light";
+
+    if (m_btnTheme) {
+        m_btnTheme->setIcon(QIcon(m_darkTheme ? ":/icons/theme-sun.svg" : ":/icons/theme-moon.svg"));
+        m_btnTheme->setToolTip(m_darkTheme ? "Switch to light theme" : "Switch to dark theme");
+    }
+    if (m_titleBar) {
+        m_titleBar->setStyleSheet(titleBarStyle());
+    }
+
+    // Pages share the same origin (same embedded server), so they keep a
+    // single localStorage key; push the change to every loaded page.
+    const QString js = QStringLiteral("try { AppTheme.set('%1'); } catch (e) {}").arg(theme);
+    if (browser) browser->applyTheme(js);
+    if (m_workspace) m_workspace->applyTheme(js);
+    if (profileView) profileView->page()->runJavaScript(js);
+    if (sidebarView) sidebarView->page()->runJavaScript(js);
 }
 
 void MainWindow::setupUI()
@@ -306,6 +383,17 @@ void MainWindow::setupSidebar()
 
     QUrl url(m_server->getUrlFor("/sidebar.html", "mac=" + QUrl::toPercentEncoding(macAddress)));
     sidebarView->setUrl(url);
+
+    // Sync the title bar theme with the theme persisted by the web pages.
+    connect(sidebarView, &QWebEngineView::loadFinished, this, [this](bool ok) {
+        if (!ok) return;
+        sidebarView->page()->runJavaScript(
+            "try { localStorage.getItem('sf-theme') || 'dark' } catch (e) { 'dark' }",
+            [this](const QVariant &value) {
+                m_darkTheme = (value.toString() != "light");
+                applyAppTheme();
+            });
+    });
 }
 
 void MainWindow::setupConnections()

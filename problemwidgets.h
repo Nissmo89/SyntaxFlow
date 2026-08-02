@@ -39,6 +39,8 @@ public:
 
     void loadFromJson(const QString &filePath);
 
+    void applyTheme(const QString &script);
+
 signals:
     void navigateToEditor(const QString &problemPath);
 

@@ -50,6 +50,13 @@ ProblemBrowser::ProblemBrowser(const QUrl &url, ProgressManager *pm, QWidget *pa
     m_view->setUrl(url);
 }
 
+void ProblemBrowser::applyTheme(const QString &script)
+{
+    if (m_view && m_view->page()) {
+        m_view->page()->runJavaScript(script);
+    }
+}
+
 ProblemBrowser::~ProblemBrowser() = default;
 
 void ProblemBrowser::onBridgeBrowserReady()
