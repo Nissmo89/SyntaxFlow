@@ -517,14 +517,19 @@
 
     /* Left Pane Tabs */
     .left-tabs {
-      display: flex; background: var(--surface); border-bottom: 1px solid var(--border-subtle);
+      display: flex; gap: 4px; padding: 8px 10px;
+      background: var(--surface); border-bottom: 1px solid var(--border-subtle);
     }
     .left-tab {
-      padding: 12px 20px; cursor: pointer; font-size: 14px; font-weight: 500;
-      color: var(--text-muted); border-bottom: 2px solid transparent; transition: all 0.2s;
+      position: relative; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 600;
+      color: var(--text-muted); background: transparent; border: 1px solid transparent;
+      border-radius: 6px; transition: all 0.15s; user-select: none;
     }
-    .left-tab.active { color: var(--text); border-bottom-color: var(--accent); }
-    .left-tab:hover:not(.active) { color: var(--text); }
+    .left-tab:hover:not(.active) { background: var(--surface-2); color: var(--text); }
+    .left-tab.active {
+      color: var(--text); background: var(--surface-2); border-color: var(--border-subtle);
+      box-shadow: inset 0 2px 0 var(--accent);
+    }
 
     .submissions-summary {
       padding: 16px; border-bottom: 1px solid var(--border-subtle); background: var(--surface);
@@ -643,6 +648,7 @@
       <div class="left-tabs">
         <div class="left-tab active" id="tabDesc">Description</div>
         <div class="left-tab" id="tabSubmissions">Submissions</div>
+        <div class="left-tab" id="tabSolutions">Solutions</div>
         <button class="icon-btn left-tab-icon" id="btnMaxDesc" title="Maximize description"></button>
       </div>
       <div class="problem-content" id="descPanel">
@@ -659,6 +665,9 @@
         </div>
         <div class="sub-case-grid" id="subCaseTabs"></div>
         <div class="case-content" id="subCaseContent" style="padding:0;"></div>
+      </div>
+      <div class="problem-content" id="solutionsPanel" style="display: none;">
+        <div id="solutionsContent"></div>
       </div>
     </div>
     
@@ -703,7 +712,7 @@
   let testCases = [];
   let currentCaseIndex = 0;
   let currentSubCaseIndex = 0;
-  let leftView = 'desc'; // 'desc' or 'submissions'
+  let leftView = 'desc'; // 'desc', 'submissions' or 'solutions'
 
   // ─── RESIZER LOGIC ───
   const resizerV = document.getElementById('resizerV');
@@ -956,14 +965,27 @@
 
   document.getElementById('tabDesc').onclick = () => { setLeftView('desc'); };
   document.getElementById('tabSubmissions').onclick = () => { setLeftView('submissions'); };
+  document.getElementById('tabSolutions').onclick = () => { setLeftView('solutions'); };
 
   function setLeftView(view) {
     leftView = view;
     document.getElementById('tabDesc').className = `left-tab ${view==='desc'?'active':''}`;
     document.getElementById('tabSubmissions').className = `left-tab ${view==='submissions'?'active':''}`;
+    document.getElementById('tabSolutions').className = `left-tab ${view==='solutions'?'active':''}`;
     document.getElementById('descPanel').style.display = view==='desc' ? 'block' : 'none';
     document.getElementById('submissionsPanel').style.display = view==='submissions' ? 'block' : 'none';
+    document.getElementById('solutionsPanel').style.display = view==='solutions' ? 'block' : 'none';
     if(view === 'submissions') renderSubmissions();
+  }
+
+  function renderMarkdown(targetId, markdown) {
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
+        return hljs.highlightAuto(code).value;
+      }
+    });
+    document.getElementById(targetId).innerHTML = marked.parse(markdown);
   }
 
   // ─── C++ API EXPOSED ───
@@ -979,13 +1001,8 @@
     
     let descHtml = data.description || '';
     if (data.markdown) {
-      marked.setOptions({
-        highlight: function(code, lang) {
-          if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
-          return hljs.highlightAuto(code).value;
-        }
-      });
-      descHtml = marked.parse(data.markdown);
+      renderMarkdown('probDesc', data.markdown);
+      return;
     }
     document.getElementById('probDesc').innerHTML = descHtml;
   };
