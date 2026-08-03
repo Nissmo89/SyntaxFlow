@@ -81,3 +81,13 @@ run_js_206.sh
 build-headless/
 indented.txt
 patch.py
+
+# ---- Environment & Secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- AI Solutions (local generation) ----
+solutions/
+
+

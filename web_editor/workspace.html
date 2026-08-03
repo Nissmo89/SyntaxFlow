@@ -126,7 +126,7 @@
       border-left: 1px solid var(--border);
     }
 
-    /* ─── Toolbar dropdown (timer / stopwatch) ─── */
+    /* ─── Toolbar dropdown & Timer / Stopwatch Widget ─── */
     .toolbar .dropdown { position: relative; display: inline-flex; }
     .toolbar .dropdown-menu {
       position: absolute;
@@ -158,6 +158,420 @@
     .toolbar .menu-item:hover { background: var(--surface-2); color: var(--text); }
     .toolbar .menu-item.selected { color: var(--accent); font-weight: 500; background: var(--accent-dim); }
     .toolbar .menu-item.selected::after { content: '✓'; margin-left: auto; font-size: 12px; }
+
+    /* Timer Button & Popover Widget */
+    .timer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: auto !important;
+      padding: 0 8px;
+    }
+    .timer-btn.running {
+      color: var(--lime);
+    }
+    .timer-badge {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--lime);
+      background: var(--lime-dim);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--lime-border);
+      letter-spacing: 0.5px;
+    }
+
+    .timer-popover {
+      width: 280px;
+      padding: 12px !important;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      z-index: 220;
+    }
+    .timer-widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .timer-mode-switcher {
+      display: inline-flex;
+      background: var(--surface-2);
+      padding: 2px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+    }
+    .timer-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .timer-tab-btn:hover { color: var(--text); }
+    .timer-tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .timer-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.12s;
+    }
+    .timer-close-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .timer-digital-display {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      letter-spacing: 1px;
+      margin: 8px 0 10px;
+      user-select: none;
+    }
+    .timer-digital-display.running { color: var(--lime); }
+    .timer-digital-display.warning {
+      color: var(--rose);
+      animation: timerPulse 1s infinite alternate;
+    }
+    @keyframes timerPulse {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0.5; transform: scale(0.98); }
+    }
+
+    .timer-progress-track {
+      width: 100%;
+      height: 4px;
+      background: var(--surface-2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .timer-progress-fill {
+      height: 100%;
+      background: var(--lime);
+      transition: width 0.25s linear;
+    }
+
+    .timer-presets {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .preset-btn {
+      flex: 1;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s;
+      text-align: center;
+    }
+    .preset-btn:hover {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--accent);
+    }
+    .preset-btn.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .timer-custom-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .timer-custom-row input {
+      width: 52px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 12px;
+      text-align: center;
+      outline: none;
+    }
+    .timer-custom-row input:focus { border-color: var(--accent); }
+    .timer-custom-row .btn-sm {
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .timer-custom-row .btn-sm:hover {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .timer-action-row {
+      display: flex;
+      gap: 8px;
+    }
+    .timer-action-row .btn {
+      flex: 1;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+    .timer-main-btn {
+      background: var(--lime-dim) !important;
+      border-color: var(--lime-border) !important;
+      color: var(--lime) !important;
+    }
+    .timer-main-btn:hover { border-color: var(--lime) !important; }
+    .timer-main-btn.is-running {
+      background: rgba(251, 113, 133, 0.12) !important;
+      border-color: rgba(251, 113, 133, 0.35) !important;
+      color: var(--rose) !important;
+    }
+    .timer-lap-btn {
+      background: var(--surface-2) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text) !important;
+    }
+    .timer-lap-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .timer-reset-btn {
+      background: var(--surface-2) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text-muted) !important;
+      max-width: 65px;
+    }
+    .timer-reset-btn:hover { color: var(--text) !important; }
+
+    .stopwatch-laps-container {
+      margin-top: 12px;
+      max-height: 120px;
+      overflow-y: auto;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+    }
+    .laps-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0 4px 4px;
+    }
+    .laps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .lap-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text);
+      padding: 3px 6px;
+      border-radius: 4px;
+      background: var(--surface-2);
+    }
+
+    /* ─── Notes Widget & Drawer ─── */
+    #btnNotes {
+      position: relative;
+    }
+    #btnNotes.has-notes::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--lime);
+      box-shadow: 0 0 6px var(--lime);
+    }
+
+    .notes-drawer {
+      position: fixed;
+      top: 54px;
+      right: 16px;
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 480px;
+      max-height: calc(100vh - 70px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      z-index: 250;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: notesFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .notes-drawer.open {
+      display: flex;
+    }
+    @keyframes notesFadeIn {
+      from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border-subtle);
+      user-select: none;
+    }
+    .notes-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      min-width: 0;
+    }
+    .notes-heading {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 170px;
+    }
+    .notes-save-status {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+    .notes-save-status.saving {
+      color: var(--saffron);
+      border-color: var(--saffron);
+    }
+    .notes-save-status.saved {
+      color: var(--lime);
+    }
+
+    .notes-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .notes-header-actions .icon-btn {
+      width: 26px;
+      height: 26px;
+    }
+
+    .notes-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-subtle);
+      overflow-x: auto;
+    }
+    .notes-fmt-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.12s;
+    }
+    .notes-fmt-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-subtle);
+    }
+
+    .notes-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      background: var(--bg);
+    }
+    .notes-textarea {
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      resize: none;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 4px;
+    }
+    .notes-textarea::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .notes-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border-top: 1px solid var(--border-subtle);
+    }
 
     .main-workspace {
       display: flex; flex: 1; overflow: hidden;
@@ -274,20 +688,469 @@
       border-radius: 4px;
     }
     
-    .problem-content pre { background: var(--surface) !important; padding: 12px; border: 1px solid var(--border); overflow-x: auto; }
+    .problem-content pre { background: var(--surface) !important; padding: 14px; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; margin: 12px 0; }
     .problem-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-    .problem-content p { line-height: 1.6; }
-    .problem-content h2 { font-size: 18px; color: var(--text); margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px; }
-    .problem-content h3 { font-size: 15px; color: var(--text); margin-top: 18px; margin-bottom: 8px; }
-    .problem-content h4 { font-size: 14px; color: var(--text); margin-top: 14px; margin-bottom: 6px; }
-    .problem-content ul, .problem-content ol { padding-left: 20px; line-height: 1.6; }
+    .problem-content p { line-height: 1.65; margin: 8px 0; }
+    .problem-content h1 { font-size: 22px; color: var(--text); margin-top: 0; margin-bottom: 14px; font-weight: 700; letter-spacing: -0.2px; }
+    .problem-content h2 { font-size: 17px; color: var(--text); margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px; font-weight: 600; }
+    .problem-content h3 { font-size: 14px; color: var(--text); margin-top: 18px; margin-bottom: 8px; font-weight: 600; }
+    .problem-content h4 { font-size: 13px; color: var(--text); margin-top: 14px; margin-bottom: 6px; font-weight: 600; }
+    .problem-content ul, .problem-content ol { padding-left: 22px; line-height: 1.65; margin: 8px 0; }
     .problem-content li { margin-bottom: 6px; }
+    .problem-content li > p { margin: 2px 0; }
     .problem-content hr { border: 0; border-top: 1px solid var(--border-subtle); margin: 20px 0; }
-    .problem-content blockquote { border-left: 3px solid var(--accent); padding-left: 12px; margin: 12px 0; color: var(--text-muted); }
-    .problem-content img { max-width: 100%; height: auto; border-radius: 4px; }
-    .problem-content table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13px; }
-    .problem-content th, .problem-content td { border: 1px solid var(--border-subtle); padding: 8px 12px; text-align: left; }
-    .problem-content th { background: var(--surface); color: var(--text); font-weight: 600; }
+    .problem-content blockquote { border-left: 3px solid var(--accent); padding: 8px 14px; margin: 12px 0; color: var(--text-muted); background: rgba(255, 255, 255, 0.02); border-radius: 0 6px 6px 0; }
+    .problem-content img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); }
+    
+    /* Inline Code */
+    .problem-content :not(pre) > code {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--accent);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    html[data-theme="light"] .problem-content :not(pre) > code {
+      background: rgba(37, 99, 235, 0.06);
+      color: #1d4ed8;
+      border-color: rgba(37, 99, 235, 0.15);
+    }
+
+    /* Tables */
+    .table-wrapper { width: 100%; overflow-x: auto; margin: 16px 0; border-radius: 6px; border: 1px solid var(--border-subtle); }
+    .problem-content table { border-collapse: collapse; width: 100%; font-size: 13px; text-align: left; }
+    .problem-content th, .problem-content td { border: 1px solid var(--border-subtle); padding: 8px 14px; }
+    .problem-content th { background: var(--surface-2); color: var(--text); font-weight: 600; }
+    .problem-content tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
+    .problem-content tr:hover { background: rgba(255, 255, 255, 0.035); }
+    html[data-theme="light"] .problem-content tr:nth-child(even) { background: rgba(0, 0, 0, 0.02); }
+    html[data-theme="light"] .problem-content tr:hover { background: rgba(0, 0, 0, 0.04); }
+
+    /* ─── Math Formula Rendering ─── */
+    .sf-math {
+      font-family: 'KaTeX_Math', 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+      font-size: 1.03em;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: baseline;
+      padding: 1px 5px;
+      margin: 0 1px;
+      border-radius: 4px;
+      background: var(--math-bg, rgba(92, 158, 255, 0.08));
+      border: 1px solid var(--math-border, rgba(92, 158, 255, 0.22));
+      color: var(--accent, #5c9eff);
+      font-weight: 500;
+      vertical-align: baseline;
+      line-height: 1.25;
+    }
+    html[data-theme="light"] .sf-math {
+      --math-bg: rgba(37, 99, 235, 0.07);
+      --math-border: rgba(37, 99, 235, 0.2);
+      color: #1d4ed8;
+    }
+    .sf-math.sf-math-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 20px;
+      margin: 16px 0;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 1.15em;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    html[data-theme="light"] .sf-math.sf-math-block {
+      background: #ffffff;
+      border-color: var(--border);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .sf-math-var {
+      font-style: italic;
+      font-family: 'KaTeX_Math', 'Cambria Math', 'Georgia', serif;
+      padding: 0 1px;
+    }
+    .sf-math-op {
+      font-style: normal;
+      font-weight: 700;
+      font-family: 'KaTeX_Main', 'Cambria Math', 'Times New Roman', serif;
+    }
+    .sf-math-num {
+      font-style: normal;
+      font-family: 'KaTeX_Main', 'Cambria Math', 'Times New Roman', serif;
+    }
+    .sf-math-func {
+      font-style: normal;
+      font-weight: 600;
+      font-family: 'KaTeX_Main', -apple-system, sans-serif;
+      margin: 0 2px;
+    }
+    .sf-math-delim {
+      font-style: normal;
+      opacity: 0.85;
+    }
+    .sf-math-symbol {
+      padding: 0 2px;
+      font-style: normal;
+    }
+    .sf-math-sup {
+      font-size: 0.75em;
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 1px;
+    }
+    .sf-math-sub {
+      font-size: 0.75em;
+      vertical-align: sub;
+      line-height: 0;
+      margin-left: 1px;
+    }
+    .sf-math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 3px;
+      font-size: 0.9em;
+      line-height: 1.1;
+    }
+    .sf-math-num-frac {
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .sf-math-den-frac {
+      padding-top: 1px;
+    }
+    .sf-math-sqrt {
+      display: inline-flex;
+      align-items: baseline;
+      padding: 0 2px;
+    }
+    .sf-math-radicand {
+      font-size: 1.1em;
+      font-weight: 400;
+      margin-right: 1px;
+    }
+    .sf-math-body {
+      border-top: 1px solid currentColor;
+      padding-top: 1px;
+    }
+    .sf-math-cal {
+      font-family: 'KaTeX_Caligraphic', 'Brush Script MT', cursive;
+      font-weight: 600;
+      font-style: italic;
+    }
+    .sf-math-bf { font-weight: 700; }
+    .sf-math-it { font-style: italic; }
+    .sf-math-text { font-family: -apple-system, sans-serif; font-style: normal; }
+
+    /* ─── Multi-Language Code Tabs ─── */
+    .code-tabs-container {
+      margin: 18px 0 24px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    }
+    html[data-theme="light"] .code-tabs-container {
+      background: #ffffff;
+      border-color: var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .code-tabs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 5px 8px;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    html[data-theme="light"] .code-tabs-header {
+      background: #f1f3f6;
+    }
+    .code-tabs-nav {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      align-items: center;
+    }
+    .code-tabs-nav::-webkit-scrollbar { height: 3px; }
+    .code-tabs-nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .code-tab-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .code-tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    html[data-theme="light"] .code-tab-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .code-tab-btn.active {
+      color: var(--accent);
+      background: var(--surface);
+      border-color: var(--border);
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    html[data-theme="light"] .code-tab-btn.active {
+      background: #ffffff;
+      color: var(--accent);
+      border-color: var(--border);
+    }
+    .code-tab-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .code-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .code-copy-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .code-copy-btn.copied {
+      color: var(--lime);
+      border-color: var(--lime);
+      background: rgba(163, 230, 53, 0.12);
+    }
+    .code-copy-btn svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+    .code-tab-pane {
+      display: none;
+    }
+    .code-tab-pane.active {
+      display: block;
+    }
+    .code-tabs-container.expanded-mode .code-tab-pane {
+      display: block !important;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .code-tabs-container.expanded-mode .code-tab-pane-title {
+      display: block !important;
+      padding: 8px 16px 4px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .code-tab-pane-title { display: none; }
+    .code-tab-pane pre {
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 16px !important;
+      background: var(--surface) !important;
+    }
+    html[data-theme="light"] .code-tab-pane pre {
+      background: #f8f9fa !important;
+    }
+
+    /* ─── Standalone Code Blocks ─── */
+    .code-block-wrapper {
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    html[data-theme="light"] .code-block-wrapper {
+      background: #ffffff;
+      border-color: var(--border);
+    }
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 12px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    html[data-theme="light"] .code-block-header {
+      background: #f1f3f6;
+    }
+    .code-block-wrapper pre {
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 14px 16px !important;
+      background: var(--surface) !important;
+    }
+    html[data-theme="light"] .code-block-wrapper pre {
+      background: #f8f9fa !important;
+    }
+
+    /* ─── Complexity Cards ─── */
+    .complexity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin: 14px 0 20px 0;
+    }
+    .complexity-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    html[data-theme="light"] .complexity-card {
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+    .complexity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3.5px;
+    }
+    .complexity-card.complexity-time::before { background: #38bdf8; }
+    .complexity-card.complexity-space::before { background: #a855f7; }
+
+    .complexity-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .complexity-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .complexity-icon {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+    .complexity-time .complexity-icon { color: #38bdf8; }
+    .complexity-space .complexity-icon { color: #a855f7; }
+
+    .complexity-desc {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .complexity-desc p { margin: 4px 0; }
+    .complexity-desc ul { margin: 4px 0; padding-left: 16px; }
+
+    /* ─── Callouts / Admonitions ─── */
+    .sf-callout {
+      margin: 16px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      background: rgba(92, 158, 255, 0.07);
+    }
+    .sf-callout-note { border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.07); }
+    .sf-callout-tip { border-left-color: #4ade80; background: rgba(74, 222, 128, 0.07); }
+    .sf-callout-important { border-left-color: #a855f7; background: rgba(168, 85, 247, 0.07); }
+    .sf-callout-warning { border-left-color: #fbbf24; background: rgba(251, 191, 36, 0.07); }
+    .sf-callout-caution, .sf-callout-danger { border-left-color: #f87171; background: rgba(248, 113, 113, 0.07); }
+    .sf-callout-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
+      font-size: 12.5px;
+      margin-bottom: 5px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .sf-callout-icon { width: 14px; height: 14px; fill: currentColor; }
+    .sf-callout-body { font-size: 13px; line-height: 1.55; color: var(--text); }
+    .sf-callout-body > :first-child { margin-top: 0; }
+    .sf-callout-body > :last-child { margin-bottom: 0; }
+
+    /* ─── Stepper & Edge Cases ─── */
+    .step-item {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+    }
+    .step-badge {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .edge-case-card {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .edge-case-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-right: 6px;
+    }
 
     .solutions-tabs-bar {
       display: flex;
@@ -601,20 +1464,33 @@
     .sub-case-grid .case-pill:hover { background: var(--bg); border-color: var(--border); }
     .sub-case-grid .case-pill.active { box-shadow: inset 0 0 0 1px rgba(92, 158, 255, 0.5); }
 
-    /* Left Pane Tabs */
+    /* Left Pane Tabs — exact editor-header height (40px), Zed/CMD-style seamless active tab */
     .left-tabs {
-      display: flex; gap: 4px; padding: 8px 10px;
-      background: var(--surface); border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+      display: flex; align-items: stretch; gap: 4px;
+      height: 40px; min-height: 40px;
+      padding: 0 10px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
     }
     .left-tab {
-      position: relative; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 600;
-      color: var(--text-muted); background: transparent; border: 1px solid transparent;
-      border-radius: 6px; transition: all 0.15s; user-select: none;
+      position: relative;
+      display: inline-flex; align-items: center;
+      padding: 0 14px;
+      cursor: pointer; font-size: 13px; font-weight: 600;
+      color: var(--text-muted); background: transparent;
+      border: 1px solid transparent;
+      border-top: none;
+      border-bottom: none;
+      border-radius: 0;
+      margin-bottom: -1px;
+      transition: all 0.15s; user-select: none;
     }
     .left-tab:hover:not(.active) { background: var(--surface-2); color: var(--text); }
     .left-tab.active {
-      color: var(--text); background: var(--surface-2); border-color: var(--border-subtle);
-      box-shadow: inset 0 2px 0 var(--accent);
+      color: var(--text);
+      background: var(--bg);
+      border-color: var(--border);
     }
 
     .submissions-summary {
@@ -697,19 +1573,114 @@
     <div class="toolbar-divider"></div>
 
     <div class="dropdown" id="timerDropdown">
-      <button class="icon-btn" id="btnTimer" title="Timer">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+      <button class="icon-btn timer-btn" id="btnTimer" title="Timer & Stopwatch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="timerIconSvg"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+        <span class="timer-badge" id="timerBadge" style="display: none;">25:00</span>
       </button>
-      <div class="dropdown-menu">
-        <div class="menu-section-title">Time</div>
-        <div class="menu-item selected" data-timer-mode="timer">Timer</div>
-        <div class="menu-item" data-timer-mode="stopwatch">Stopwatch</div>
+      <div class="dropdown-menu timer-popover" id="timerPopover">
+        <div class="timer-widget-header">
+          <div class="timer-mode-switcher">
+            <button class="timer-tab-btn active" id="tabModeTimer" data-mode="timer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+              Timer
+            </button>
+            <button class="timer-tab-btn" id="tabModeStopwatch" data-mode="stopwatch">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Stopwatch
+            </button>
+          </div>
+          <button class="timer-close-btn" id="btnTimerClose" title="Close">✕</button>
+        </div>
+
+        <!-- Timer View -->
+        <div class="timer-view" id="timerView">
+          <div class="timer-digital-display" id="timerClock">25:00</div>
+          <div class="timer-progress-track">
+            <div class="timer-progress-fill" id="timerProgressFill" style="width: 100%;"></div>
+          </div>
+          <div class="timer-presets">
+            <button class="preset-btn" data-min="5">5m</button>
+            <button class="preset-btn" data-min="15">15m</button>
+            <button class="preset-btn active" data-min="25">25m</button>
+            <button class="preset-btn" data-min="45">45m</button>
+            <button class="preset-btn" data-min="60">60m</button>
+          </div>
+          <div class="timer-custom-row">
+            <span>Custom:</span>
+            <input type="number" id="customTimerMin" min="1" max="180" value="25" placeholder="min" />
+            <span>min</span>
+            <button class="btn-sm" id="btnSetCustomTimer">Set</button>
+          </div>
+          <div class="timer-action-row">
+            <button class="btn btn-primary timer-main-btn" id="btnTimerToggle">Start</button>
+            <button class="btn timer-reset-btn" id="btnTimerReset">Reset</button>
+          </div>
+        </div>
+
+        <!-- Stopwatch View -->
+        <div class="stopwatch-view" id="stopwatchView" style="display: none;">
+          <div class="timer-digital-display" id="stopwatchClock">00:00.00</div>
+          <div class="timer-action-row">
+            <button class="btn btn-primary timer-main-btn" id="btnStopwatchToggle">Start</button>
+            <button class="btn timer-lap-btn" id="btnStopwatchLap" disabled>Lap</button>
+            <button class="btn timer-reset-btn" id="btnStopwatchReset">Reset</button>
+          </div>
+          <div class="stopwatch-laps-container" id="stopwatchLapsContainer" style="display: none;">
+            <div class="laps-header">
+              <span>Lap</span>
+              <span>Split</span>
+              <span>Total</span>
+            </div>
+            <div class="laps-list" id="stopwatchLapsList"></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <button class="icon-btn" id="btnSettings" title="Settings">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
     </button>
+  </div>
+
+  <!-- ─── NOTES WIDGET DRAWER ─── -->
+  <div class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title-group">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+        <span class="notes-heading" id="notesHeading">Notes</span>
+        <span class="notes-save-status saved" id="notesSaveStatus">Saved</span>
+      </div>
+      <div class="notes-header-actions">
+        <button class="icon-btn" id="btnCopyNotes" title="Copy notes to clipboard">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+        <button class="icon-btn" id="btnClearNotes" title="Clear notes">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <button class="icon-btn" id="btnCloseNotes" title="Close Notes (Esc)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="notes-toolbar">
+      <button class="notes-fmt-btn" data-fmt="bold" title="Bold (**text**)"><b>B</b></button>
+      <button class="notes-fmt-btn" data-fmt="italic" title="Italic (*text*)"><i>I</i></button>
+      <button class="notes-fmt-btn" data-fmt="heading" title="Heading (### )">H3</button>
+      <button class="notes-fmt-btn" data-fmt="code" title="Inline Code (`code`)">&lt;/&gt;</button>
+      <button class="notes-fmt-btn" data-fmt="bullet" title="Bullet List (- )">• List</button>
+      <button class="notes-fmt-btn" data-fmt="check" title="Task (- [ ])">☑ Task</button>
+      <button class="notes-fmt-btn" data-fmt="complexity" title="Complexity Template">⚡ Complexity</button>
+    </div>
+
+    <div class="notes-body">
+      <textarea id="notesTextarea" class="notes-textarea" placeholder="Write personal notes, hints, approach, edge cases, and complexity analysis for this problem... (Auto-saved)"></textarea>
+    </div>
+
+    <div class="notes-footer">
+      <span id="notesCount">0 words · 0 chars</span>
+      <span id="notesLastSaved" style="color: var(--text-muted);">Auto-saved locally</span>
+    </div>
   </div>
 
   <div class="theme-toast" id="themeToast"></div>
@@ -801,6 +1772,17 @@
   let currentCaseIndex = 0;
   let currentSubCaseIndex = 0;
   let leftView = 'desc'; // 'desc', 'submissions' or 'solutions'
+  let currentProblemSlug = '';
+  let solutionsState = { slug: '', status: 'idle', list: [], activeIndex: 0, error: null };
+
+  function showToast(msg, duration = 1600) {
+    const toast = document.getElementById('themeToast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => toast.classList.remove('show'), duration);
+  }
 
   // ─── RESIZER LOGIC ───
   const resizerV = document.getElementById('resizerV');
@@ -865,34 +1847,489 @@
   document.getElementById('btnSubmit').onclick = () => { if(workspaceBridge) workspaceBridge.onSubmitRequested(); };
   document.getElementById('btnReset').onclick = () => { if(workspaceBridge) workspaceBridge.onResetRequested(); };
 
-  // ─── TOOLBAR ICON ACTIONS ───
+  // ─── TOOLBAR WIDGETS: TIMER, STOPWATCH & NOTES ───
   const timerDropdown = document.getElementById('timerDropdown');
+  const timerPopover = document.getElementById('timerPopover');
+  const btnTimer = document.getElementById('btnTimer');
+  const timerIconSvg = document.getElementById('timerIconSvg');
+  const timerBadge = document.getElementById('timerBadge');
+  const tabModeTimer = document.getElementById('tabModeTimer');
+  const tabModeStopwatch = document.getElementById('tabModeStopwatch');
+  const timerView = document.getElementById('timerView');
+  const stopwatchView = document.getElementById('stopwatchView');
+  const timerClock = document.getElementById('timerClock');
+  const timerProgressFill = document.getElementById('timerProgressFill');
+  const btnTimerToggle = document.getElementById('btnTimerToggle');
+  const btnTimerReset = document.getElementById('btnTimerReset');
+  const stopwatchClock = document.getElementById('stopwatchClock');
+  const btnStopwatchToggle = document.getElementById('btnStopwatchToggle');
+  const btnStopwatchLap = document.getElementById('btnStopwatchLap');
+  const btnStopwatchReset = document.getElementById('btnStopwatchReset');
+  const stopwatchLapsContainer = document.getElementById('stopwatchLapsContainer');
+  const stopwatchLapsList = document.getElementById('stopwatchLapsList');
+  const customTimerMin = document.getElementById('customTimerMin');
+  const btnSetCustomTimer = document.getElementById('btnSetCustomTimer');
+
   const TIMER_SVG = '<line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/>';
   const STOPWATCH_SVG = '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>';
 
-  document.getElementById('btnTimer').onclick = (e) => {
+  // State: Timer
+  let activeTimerTab = 'timer'; // 'timer' | 'stopwatch'
+  let timerTotalSec = 25 * 60;
+  let timerRemainingSec = timerTotalSec;
+  let timerIsRunning = false;
+  let timerIntervalId = null;
+  let timerEndTime = null;
+
+  // State: Stopwatch
+  let swElapsedMs = 0;
+  let swIsRunning = false;
+  let swIntervalId = null;
+  let swStartTime = null;
+  let swLaps = [];
+
+  function formatTimeHMS(totalSeconds) {
+    const s = Math.max(0, Math.floor(totalSeconds));
+    const hours = Math.floor(s / 3600);
+    const mins = Math.floor((s % 3600) / 60);
+    const secs = s % 60;
+    const mm = String(mins).padStart(2, '0');
+    const ss = String(secs).padStart(2, '0');
+    if (hours > 0) {
+      return `${hours}:${mm}:${ss}`;
+    }
+    return `${mm}:${ss}`;
+  }
+
+  function formatStopwatchMs(ms) {
+    const totalSec = Math.floor(ms / 1000);
+    const mins = Math.floor(totalSec / 60);
+    const secs = totalSec % 60;
+    const centis = Math.floor((ms % 1000) / 10);
+    const mm = String(mins).padStart(2, '0');
+    const ss = String(secs).padStart(2, '0');
+    const cs = String(centis).padStart(2, '0');
+    return `${mm}:${ss}.${cs}`;
+  }
+
+  function playChimeSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (e) {}
+  }
+
+  function updateTimerUI() {
+    const formatted = formatTimeHMS(timerRemainingSec);
+    timerClock.textContent = formatted;
+    
+    // Progress fill
+    const pct = timerTotalSec > 0 ? (timerRemainingSec / timerTotalSec) * 100 : 0;
+    timerProgressFill.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+
+    // Badge in toolbar
+    if (timerIsRunning || timerRemainingSec !== timerTotalSec) {
+      timerBadge.style.display = 'inline-block';
+      timerBadge.textContent = formatted;
+    } else if (!swIsRunning) {
+      timerBadge.style.display = 'none';
+    }
+
+    if (timerIsRunning) {
+      btnTimer.classList.add('running');
+      timerClock.classList.add('running');
+      btnTimerToggle.textContent = 'Pause';
+      btnTimerToggle.classList.add('is-running');
+    } else {
+      timerClock.classList.remove('running');
+      btnTimerToggle.textContent = 'Start';
+      btnTimerToggle.classList.remove('is-running');
+      if (!swIsRunning) btnTimer.classList.remove('running');
+    }
+
+    if (timerRemainingSec <= 10 && timerRemainingSec > 0 && timerIsRunning) {
+      timerClock.classList.add('warning');
+    } else {
+      timerClock.classList.remove('warning');
+    }
+  }
+
+  function startTimer() {
+    if (timerIsRunning) return;
+    if (timerRemainingSec <= 0) {
+      timerRemainingSec = timerTotalSec;
+    }
+    timerIsRunning = true;
+    timerEndTime = Date.now() + (timerRemainingSec * 1000);
+    updateTimerUI();
+
+    timerIntervalId = setInterval(() => {
+      const now = Date.now();
+      const remainingMs = timerEndTime - now;
+      if (remainingMs <= 0) {
+        timerRemainingSec = 0;
+        pauseTimer();
+        updateTimerUI();
+        playChimeSound();
+        showToast('⏰ Time is up!');
+      } else {
+        timerRemainingSec = Math.ceil(remainingMs / 1000);
+        updateTimerUI();
+      }
+    }, 250);
+  }
+
+  function pauseTimer() {
+    timerIsRunning = false;
+    if (timerIntervalId) {
+      clearInterval(timerIntervalId);
+      timerIntervalId = null;
+    }
+    updateTimerUI();
+  }
+
+  function resetTimer() {
+    pauseTimer();
+    timerRemainingSec = timerTotalSec;
+    updateTimerUI();
+  }
+
+  function setTimerPresetDuration(mins) {
+    pauseTimer();
+    timerTotalSec = mins * 60;
+    timerRemainingSec = timerTotalSec;
+    customTimerMin.value = mins;
+    
+    document.querySelectorAll('.timer-presets .preset-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.min, 10) === mins);
+    });
+    updateTimerUI();
+  }
+
+  // Stopwatch Logic
+  function updateStopwatchUI() {
+    const formatted = formatStopwatchMs(swElapsedMs);
+    stopwatchClock.textContent = formatted;
+
+    if (activeTimerTab === 'stopwatch') {
+      if (swIsRunning || swElapsedMs > 0) {
+        timerBadge.style.display = 'inline-block';
+        timerBadge.textContent = formatted.split('.')[0];
+      } else if (!timerIsRunning && timerRemainingSec === timerTotalSec) {
+        timerBadge.style.display = 'none';
+      }
+    }
+
+    if (swIsRunning) {
+      btnStopwatchToggle.textContent = 'Pause';
+      btnStopwatchToggle.classList.add('is-running');
+      btnStopwatchLap.disabled = false;
+      btnTimer.classList.add('running');
+    } else {
+      btnStopwatchToggle.textContent = 'Start';
+      btnStopwatchToggle.classList.remove('is-running');
+      btnStopwatchLap.disabled = true;
+      if (!timerIsRunning) btnTimer.classList.remove('running');
+    }
+  }
+
+  function startStopwatch() {
+    if (swIsRunning) return;
+    swIsRunning = true;
+    swStartTime = performance.now() - swElapsedMs;
+    updateStopwatchUI();
+
+    swIntervalId = setInterval(() => {
+      swElapsedMs = performance.now() - swStartTime;
+      updateStopwatchUI();
+    }, 33);
+  }
+
+  function pauseStopwatch() {
+    swIsRunning = false;
+    if (swIntervalId) {
+      clearInterval(swIntervalId);
+      swIntervalId = null;
+    }
+    updateStopwatchUI();
+  }
+
+  function resetStopwatch() {
+    pauseStopwatch();
+    swElapsedMs = 0;
+    swLaps = [];
+    stopwatchLapsList.innerHTML = '';
+    stopwatchLapsContainer.style.display = 'none';
+    updateStopwatchUI();
+  }
+
+  function recordStopwatchLap() {
+    if (!swIsRunning) return;
+    const lapNum = swLaps.length + 1;
+    const prevTotal = swLaps.length > 0 ? swLaps[swLaps.length - 1].totalMs : 0;
+    const splitMs = swElapsedMs - prevTotal;
+    const lapData = { lapNum, splitMs, totalMs: swElapsedMs };
+    swLaps.push(lapData);
+
+    const row = document.createElement('div');
+    row.className = 'lap-row';
+    row.innerHTML = `
+      <span>#${lapNum}</span>
+      <span>+${formatStopwatchMs(splitMs)}</span>
+      <span>${formatStopwatchMs(swElapsedMs)}</span>
+    `;
+    stopwatchLapsList.prepend(row);
+    stopwatchLapsContainer.style.display = 'block';
+  }
+
+  // Timer & Stopwatch Event Listeners
+  btnTimer.onclick = (e) => {
     e.stopPropagation();
     timerDropdown.classList.toggle('open');
   };
 
-  timerDropdown.querySelectorAll('.menu-item').forEach(item => {
-    item.onclick = (e) => {
-      e.stopPropagation();
-      timerDropdown.querySelectorAll('.menu-item').forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      const isStopwatch = item.dataset.timerMode === 'stopwatch';
-      const btn = document.getElementById('btnTimer');
-      btn.title = isStopwatch ? 'Stopwatch' : 'Timer';
-      btn.querySelector('svg').innerHTML = isStopwatch ? STOPWATCH_SVG : TIMER_SVG;
-      timerDropdown.classList.remove('open');
+  timerPopover.onclick = (e) => {
+    e.stopPropagation();
+  };
+
+  document.getElementById('btnTimerClose').onclick = (e) => {
+    e.stopPropagation();
+    timerDropdown.classList.remove('open');
+  };
+
+  tabModeTimer.onclick = () => {
+    activeTimerTab = 'timer';
+    tabModeTimer.classList.add('active');
+    tabModeStopwatch.classList.remove('active');
+    timerView.style.display = 'block';
+    stopwatchView.style.display = 'none';
+    timerIconSvg.innerHTML = TIMER_SVG;
+    btnTimer.title = 'Timer';
+    updateTimerUI();
+  };
+
+  tabModeStopwatch.onclick = () => {
+    activeTimerTab = 'stopwatch';
+    tabModeStopwatch.classList.add('active');
+    tabModeTimer.classList.remove('active');
+    timerView.style.display = 'none';
+    stopwatchView.style.display = 'block';
+    timerIconSvg.innerHTML = STOPWATCH_SVG;
+    btnTimer.title = 'Stopwatch';
+    updateStopwatchUI();
+  };
+
+  btnTimerToggle.onclick = () => {
+    if (timerIsRunning) pauseTimer();
+    else startTimer();
+  };
+
+  btnTimerReset.onclick = () => resetTimer();
+
+  document.querySelectorAll('.timer-presets .preset-btn').forEach(btn => {
+    btn.onclick = () => {
+      const min = parseInt(btn.dataset.min, 10);
+      setTimerPresetDuration(min);
     };
   });
 
-  document.addEventListener('click', () => timerDropdown.classList.remove('open'));
-
-  document.getElementById('btnNotes').onclick = () => {
-    // Notes panel (coming soon)
+  btnSetCustomTimer.onclick = () => {
+    const val = parseInt(customTimerMin.value, 10);
+    if (!isNaN(val) && val > 0 && val <= 300) {
+      setTimerPresetDuration(val);
+    }
   };
+
+  btnStopwatchToggle.onclick = () => {
+    if (swIsRunning) pauseStopwatch();
+    else startStopwatch();
+  };
+
+  btnStopwatchLap.onclick = () => recordStopwatchLap();
+  btnStopwatchReset.onclick = () => resetStopwatch();
+
+  document.addEventListener('click', (e) => {
+    if (!timerDropdown.contains(e.target)) {
+      timerDropdown.classList.remove('open');
+    }
+  });
+
+  // ─── NOTES WIDGET IMPLEMENTATION ───
+  const btnNotes = document.getElementById('btnNotes');
+  const notesDrawer = document.getElementById('notesDrawer');
+  const notesHeading = document.getElementById('notesHeading');
+  const notesSaveStatus = document.getElementById('notesSaveStatus');
+  const btnCopyNotes = document.getElementById('btnCopyNotes');
+  const btnClearNotes = document.getElementById('btnClearNotes');
+  const btnCloseNotes = document.getElementById('btnCloseNotes');
+  const notesTextarea = document.getElementById('notesTextarea');
+  const notesCount = document.getElementById('notesCount');
+  const notesLastSaved = document.getElementById('notesLastSaved');
+
+  let notesDebounceTimer = null;
+
+  function getNotesStorageKey() {
+    return 'sf_notes_' + (currentProblemSlug || 'general');
+  }
+
+  function updateNotesCountAndBadge(text) {
+    const len = text.length;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    notesCount.textContent = `${words} ${words === 1 ? 'word' : 'words'} · ${len} chars`;
+    btnNotes.classList.toggle('has-notes', len > 0);
+  }
+
+  function loadProblemNotes(title) {
+    const key = getNotesStorageKey();
+    const saved = localStorage.getItem(key) || '';
+    notesHeading.textContent = `Notes - ${title || (currentProblemSlug ? currentProblemSlug.replace(/-/g, ' ') : 'General')}`;
+    notesTextarea.value = saved;
+    updateNotesCountAndBadge(saved);
+    notesSaveStatus.textContent = 'Saved';
+    notesSaveStatus.className = 'notes-save-status saved';
+  }
+
+  function saveCurrentNotes() {
+    const key = getNotesStorageKey();
+    const content = notesTextarea.value;
+    localStorage.setItem(key, content);
+    updateNotesCountAndBadge(content);
+    notesSaveStatus.textContent = 'Saved';
+    notesSaveStatus.className = 'notes-save-status saved';
+    const now = new Date();
+    notesLastSaved.textContent = `Saved at ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  }
+
+  function applyNotesFormat(type) {
+    const start = notesTextarea.selectionStart;
+    const end = notesTextarea.selectionEnd;
+    const val = notesTextarea.value;
+    const selected = val.substring(start, end);
+    let replacement = '';
+    let newCursorPos = start;
+
+    switch (type) {
+      case 'bold':
+        replacement = `**${selected || 'bold text'}**`;
+        newCursorPos = selected ? end + 4 : start + 2;
+        break;
+      case 'italic':
+        replacement = `*${selected || 'italic text'}*`;
+        newCursorPos = selected ? end + 2 : start + 1;
+        break;
+      case 'heading':
+        replacement = `### ${selected || 'Heading'}\n`;
+        newCursorPos = start + replacement.length;
+        break;
+      case 'code':
+        if (selected.includes('\n')) {
+          replacement = `\`\`\`\n${selected || 'code'}\n\`\`\`\n`;
+        } else {
+          replacement = `\`${selected || 'code'}\``;
+        }
+        newCursorPos = selected ? end + (selected.includes('\n') ? 8 : 2) : start + 1;
+        break;
+      case 'bullet':
+        replacement = `- ${selected || 'Bullet item'}\n`;
+        newCursorPos = start + replacement.length;
+        break;
+      case 'check':
+        replacement = `- [ ] ${selected || 'Task'}\n`;
+        newCursorPos = start + replacement.length;
+        break;
+      case 'complexity':
+        replacement = `\n### Complexity Analysis\n- **Time Complexity:** $O()$\n- **Space Complexity:** $O()$\n`;
+        newCursorPos = start + replacement.length;
+        break;
+    }
+
+    notesTextarea.value = val.substring(0, start) + replacement + val.substring(end);
+    notesTextarea.focus();
+    notesTextarea.setSelectionRange(newCursorPos, newCursorPos);
+
+    notesSaveStatus.textContent = 'Saving...';
+    notesSaveStatus.className = 'notes-save-status saving';
+    clearTimeout(notesDebounceTimer);
+    notesDebounceTimer = setTimeout(saveCurrentNotes, 350);
+  }
+
+  btnNotes.onclick = (e) => {
+    e.stopPropagation();
+    const isOpen = notesDrawer.classList.toggle('open');
+    if (isOpen) {
+      notesTextarea.focus();
+    }
+  };
+
+  btnCloseNotes.onclick = () => {
+    notesDrawer.classList.remove('open');
+  };
+
+  btnCopyNotes.onclick = () => {
+    if (!notesTextarea.value.trim()) {
+      showToast('Notes are empty');
+      return;
+    }
+    navigator.clipboard.writeText(notesTextarea.value).then(() => {
+      showToast('✓ Notes copied to clipboard');
+    }).catch(() => {
+      showToast('Failed to copy');
+    });
+  };
+
+  btnClearNotes.onclick = () => {
+    if (!notesTextarea.value.trim()) return;
+    if (confirm('Clear notes for this problem?')) {
+      notesTextarea.value = '';
+      saveCurrentNotes();
+      showToast('Notes cleared');
+    }
+  };
+
+  notesTextarea.addEventListener('input', () => {
+    notesSaveStatus.textContent = 'Saving...';
+    notesSaveStatus.className = 'notes-save-status saving';
+    clearTimeout(notesDebounceTimer);
+    notesDebounceTimer = setTimeout(saveCurrentNotes, 350);
+    updateNotesCountAndBadge(notesTextarea.value);
+  });
+
+  // Tab key indentation inside notes textarea
+  notesTextarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = notesTextarea.selectionStart;
+      const end = notesTextarea.selectionEnd;
+      notesTextarea.value = notesTextarea.value.substring(0, start) + '  ' + notesTextarea.value.substring(end);
+      notesTextarea.selectionStart = notesTextarea.selectionEnd = start + 2;
+    }
+    if (e.key === 'Escape') {
+      notesDrawer.classList.remove('open');
+    }
+  });
+
+  document.querySelectorAll('.notes-toolbar .notes-fmt-btn').forEach(btn => {
+    btn.onclick = () => {
+      applyNotesFormat(btn.dataset.fmt);
+    };
+  });
+
+  // Initial UI state setup
+  updateTimerUI();
+  updateStopwatchUI();
+  loadProblemNotes();
 
   document.getElementById('btnSettings').onclick = () => {
     // Settings (coming soon)
@@ -958,11 +2395,7 @@
   let paletteOpen = false;
 
   function showThemeToast(label) {
-    const toast = document.getElementById('themeToast');
-    toast.textContent = `Theme: ${label}`;
-    toast.classList.add('show');
-    clearTimeout(themeToastTimer);
-    themeToastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
+    showToast(`Theme: ${label}`, 1400);
   }
 
   function applyEditorTheme(id) {
@@ -1051,9 +2484,6 @@
     }
   });
 
-  let currentProblemSlug = '';
-  let solutionsState = { slug: '', status: 'idle', list: [], activeIndex: 0, error: null };
-
   document.getElementById('tabDesc').onclick = () => { setLeftView('desc'); };
   document.getElementById('tabSubmissions').onclick = () => { setLeftView('submissions'); };
   document.getElementById('tabSolutions').onclick = () => { setLeftView('solutions'); };
@@ -1075,6 +2505,229 @@
       }
     }
   }
+
+  // ─── SAFE & CLEAN MATH FORMULA & LATEX PARSER ───
+  function renderMathToHtml(rawTex, isDisplay) {
+    if (!rawTex) return '';
+    let s = rawTex.trim();
+
+    // 1. Math cal / fonts
+    s = s.replace(/\\mathcal\{([a-zA-Z])\}/g, '<span class="sf-math-cal">$1</span>');
+    s = s.replace(/\\mathbb\{([a-zA-Z])\}/g, '<span class="sf-math-bb">$1</span>');
+    s = s.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+    s = s.replace(/\\mathit\{([^}]+)\}/g, '<em>$1</em>');
+    s = s.replace(/\\(?:mathrm|text)\{([^}]+)\}/g, '<span class="sf-math-text">$1</span>');
+
+    // 2. Fractions: \frac{a}{b} -> nested
+    let fracLimit = 5;
+    while (/\\frac\{([^{}]+)\}\{([^{}]+)\}/.test(s) && fracLimit-- > 0) {
+      s = s.replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, '<span class="sf-math-frac"><span class="sf-math-num-frac">$1</span><span class="sf-math-den-frac">$2</span></span>');
+    }
+
+    // 3. Roots: \sqrt[n]{x} and \sqrt{x}
+    s = s.replace(/\\sqrt\[([^\]]+)\]\{([^}]+)\}/g, '<span class="sf-math-sqrt"><sup>$1</sup>√<span class="sf-math-body">$2</span></span>');
+    s = s.replace(/\\sqrt\{([^}]+)\}/g, '<span class="sf-math-sqrt">√<span class="sf-math-body">$1</span></span>');
+
+    // 4. Standard Math Functions
+    s = s.replace(/\\(log|ln|lg|exp|sin|cos|tan|arcsin|arccos|arctan|min|max|gcd|lcm|det|deg|dim|lim|sup|inf)\b/g, '<span class="sf-math-func">$1</span>');
+
+    // 5. Greek Letters
+    const greekMap = {
+      'alpha': 'α', 'beta': 'β', 'gamma': 'γ', 'delta': 'δ', 'epsilon': 'ε', 'varepsilon': 'ε',
+      'zeta': 'ζ', 'eta': 'η', 'theta': 'θ', 'vartheta': 'ϑ', 'iota': 'ι', 'kappa': 'κ',
+      'lambda': 'λ', 'mu': 'μ', 'nu': 'ν', 'xi': 'ξ', 'pi': 'π', 'rho': 'ρ', 'sigma': 'σ',
+      'tau': 'τ', 'upsilon': 'υ', 'phi': 'φ', 'varphi': 'ϕ', 'chi': 'χ', 'psi': 'ψ', 'omega': 'ω',
+      'Gamma': 'Γ', 'Delta': 'Δ', 'Theta': 'Θ', 'Lambda': 'Λ', 'Xi': 'Ξ', 'Pi': 'Π', 'Sigma': 'Σ',
+      'Upsilon': 'Υ', 'Phi': 'Φ', 'Psi': 'Ψ', 'Omega': 'Ω'
+    };
+    s = s.replace(/\\(alpha|beta|gamma|delta|epsilon|varepsilon|zeta|eta|theta|vartheta|iota|kappa|lambda|mu|nu|xi|pi|rho|sigma|tau|upsilon|phi|varphi|chi|psi|omega|Gamma|Delta|Theta|Lambda|Xi|Pi|Sigma|Upsilon|Phi|Psi|Omega)\b/g, (m, g) => greekMap[g] || m);
+
+    // 6. Relational & Operator Symbols
+    const symbolMap = {
+      'leq': '≤', 'le': '≤', 'geq': '≥', 'ge': '≥', 'neq': '≠', 'ne': '≠',
+      'approx': '≈', 'equiv': '≡', 'sim': '∼', 'simeq': '≃', 'cong': '≅',
+      'times': '×', 'cdot': '·', 'pm': '±', 'mp': '∓', 'div': '÷',
+      'in': '∈', 'notin': '∉', 'subset': '⊂', 'subseteq': '⊆', 'supset': '⊃', 'supseteq': '⊇',
+      'cup': '∪', 'cap': '∩', 'setminus': '∖',
+      'to': '→', 'rightarrow': '→', 'leftarrow': '←', 'Rightarrow': '⇒', 'Leftarrow': '⇐',
+      'iff': '⇔', 'Leftrightarrow': '⇔', 'mapsto': '↦',
+      'infty': '∞', 'sum': '∑', 'prod': '∏', 'int': '∫', 'partial': '∂', 'nabla': '∇',
+      'forall': '∀', 'exists': '∃', 'nexists': '∄', 'emptyset': '∅',
+      'ldots': '…', 'cdots': '⋯', 'dots': '…', 'circ': '∘', 'bullet': '•', 'star': '⋆',
+      'langle': '⟨', 'rangle': '⟩', 'lfloor': '⌊', 'rfloor': '⌋', 'lceil': '⌈', 'rceil': '⌉',
+      'prime': '′', 'quad': '  ', 'qquad': '    '
+    };
+    s = s.replace(/\\(leq|le|geq|ge|neq|ne|approx|equiv|sim|simeq|cong|times|cdot|pm|mp|div|in|notin|subset|subseteq|supset|supseteq|cup|cap|setminus|to|rightarrow|leftarrow|Rightarrow|Leftarrow|iff|Leftrightarrow|mapsto|infty|sum|prod|int|partial|nabla|forall|exists|nexists|emptyset|ldots|cdots|dots|circ|bullet|star|langle|rangle|lfloor|rfloor|lceil|rceil|prime|quad|qquad)\b/g, (m, g) => symbolMap[g] !== undefined ? symbolMap[g] : m);
+
+    // 7. Strip delimiters and spacing macros
+    s = s.replace(/\\left\s*([(\[{|])/g, '$1').replace(/\\right\s*([)\]}|])/g, '$1');
+    s = s.replace(/\\left\./g, '').replace(/\\right\./g, '');
+    s = s.replace(/\\\{/g, '{').replace(/\\\}/g, '}');
+    s = s.replace(/\\([,;:!])/g, ' ');
+
+    // 8. Superscripts & Subscripts
+    s = s.replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>');
+    s = s.replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+    s = s.replace(/\^([0-9a-zA-Z+-]+)/g, '<sup>$1</sup>');
+    s = s.replace(/_([0-9a-zA-Z+-]+)/g, '<sub>$1</sub>');
+
+    if (isDisplay) {
+      return `<div class="sf-math sf-math-block">${s}</div>`;
+    }
+    return `<span class="sf-math sf-math-inline">${s}</span>`;
+  }
+
+  // Register Marked Extensions for Math once
+  if (window.marked && !window._sfMarkedMathConfigured) {
+    window._sfMarkedMathConfigured = true;
+    marked.use({
+      extensions: [
+        {
+          name: 'inlineMath',
+          level: 'inline',
+          start(src) {
+            const idx1 = src.indexOf('$');
+            const idx2 = src.indexOf('\\(');
+            if (idx1 === -1) return idx2;
+            if (idx2 === -1) return idx1;
+            return Math.min(idx1, idx2);
+          },
+          tokenizer(src) {
+            const doubleMatch = /^\$\$([\s\S]+?)\$\$/.exec(src);
+            if (doubleMatch) {
+              return {
+                type: 'inlineMath',
+                raw: doubleMatch[0],
+                text: doubleMatch[1].trim(),
+                display: true
+              };
+            }
+            const parenMatch = /^\\\(([\s\S]+?)\\\)/.exec(src);
+            if (parenMatch) {
+              return {
+                type: 'inlineMath',
+                raw: parenMatch[0],
+                text: parenMatch[1].trim(),
+                display: false
+              };
+            }
+            const singleMatch = /^\$((?:\\\$|[^\$\n\r])+?)\$/.exec(src);
+            if (singleMatch) {
+              const content = singleMatch[1].trim();
+              if (content && !/^\s/.test(singleMatch[1]) && !/\s$/.test(singleMatch[1])) {
+                return {
+                  type: 'inlineMath',
+                  raw: singleMatch[0],
+                  text: content,
+                  display: false
+                };
+              }
+            }
+          },
+          renderer(token) {
+            return renderMathToHtml(token.text, token.display);
+          }
+        },
+        {
+          name: 'blockMath',
+          level: 'block',
+          start(src) {
+            const idx1 = src.indexOf('$$');
+            const idx2 = src.indexOf('\\[');
+            if (idx1 === -1) return idx2;
+            if (idx2 === -1) return idx1;
+            return Math.min(idx1, idx2);
+          },
+          tokenizer(src) {
+            const match = /^(?:\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\])(?:\n+|$)/.exec(src);
+            if (match) {
+              return {
+                type: 'blockMath',
+                raw: match[0],
+                text: (match[1] || match[2]).trim()
+              };
+            }
+          },
+          renderer(token) {
+            return renderMathToHtml(token.text, true);
+          }
+        }
+      ]
+    });
+  }
+
+  // ─── CLIPBOARD COPY HELPER ───
+  window.copyTextToClipboard = function(text, btnEl) {
+    if (!text) return;
+    const doFeedback = () => {
+      if (btnEl) {
+        btnEl.classList.add('copied');
+        const textSpan = btnEl.querySelector('span');
+        const origText = textSpan ? textSpan.textContent : '';
+        if (textSpan) textSpan.textContent = 'Copied!';
+        setTimeout(() => {
+          btnEl.classList.remove('copied');
+          if (textSpan) textSpan.textContent = origText || 'Copy';
+        }, 1800);
+      }
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(doFeedback).catch(() => {
+        fallbackCopy(text);
+        doFeedback();
+      });
+    } else {
+      fallbackCopy(text);
+      doFeedback();
+    }
+  };
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+    } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  window.copyActiveTabCode = function(btnEl, tabsId) {
+    const container = document.getElementById(tabsId);
+    if (!container) return;
+    const activePane = container.querySelector('.code-tab-pane.active') || container.querySelector('.code-tab-pane');
+    if (!activePane) return;
+    const codeEl = activePane.querySelector('code');
+    const textToCopy = codeEl ? codeEl.textContent : activePane.textContent;
+    copyTextToClipboard(textToCopy, btnEl);
+  };
+
+  window.copyPreCode = function(btnEl) {
+    const wrapper = btnEl.closest('.code-block-wrapper');
+    if (!wrapper) return;
+    const codeEl = wrapper.querySelector('code');
+    const textToCopy = codeEl ? codeEl.textContent : (wrapper.querySelector('pre') ? wrapper.querySelector('pre').textContent : '');
+    copyTextToClipboard(textToCopy, btnEl);
+  };
+
+  window.switchCodeTab = function(tabsId, paneIndex) {
+    const container = document.getElementById(tabsId);
+    if (!container) return;
+    const navBtns = container.querySelectorAll('.code-tab-btn');
+    const panes = container.querySelectorAll('.code-tab-pane');
+    navBtns.forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === paneIndex);
+    });
+    panes.forEach((pane, idx) => {
+      pane.classList.toggle('active', idx === paneIndex);
+    });
+  };
 
   function normalizeMarkdown(text) {
     if (!text) return '';
@@ -1115,6 +2768,317 @@
     return res;
   }
 
+  // ─── DOM ENHANCER FOR RENDERED MARKDOWN ───
+  function enhanceRenderedMarkdown(containerEl) {
+    if (!containerEl) return;
+
+    // A. Multi-Language Implementations Tabbed Code Switcher
+    const knownLanguages = [
+      'c++', 'cpp', 'python', 'python 3', 'python3', 'py', 'java', 'javascript', 'js',
+      'typescript', 'ts', 'rust', 'rs', 'golang', 'go', 'c#', 'csharp', 'c', 'swift',
+      'kotlin', 'ruby', 'php', 'scala'
+    ];
+
+    const headings = Array.from(containerEl.querySelectorAll('h1, h2, h3, h4'));
+    let tabGroupCounter = 0;
+
+    for (const h of headings) {
+      const hText = (h.textContent || '').trim().toLowerCase();
+      const isMultiLangHeader = hText.includes('multi-language') || hText.includes('implementations') || hText.includes('solution code');
+
+      // Check if we have consecutive language headings after this heading or standalone
+      let langItems = [];
+      let sibling = h.nextElementSibling;
+
+      if (isMultiLangHeader) {
+        while (sibling && !['H1', 'H2'].includes(sibling.tagName)) {
+          const nextSib = sibling.nextElementSibling;
+          if (['H3', 'H4', 'H5'].includes(sibling.tagName)) {
+            const langName = sibling.textContent.trim();
+            if (nextSib && (nextSib.tagName === 'PRE' || nextSib.querySelector('pre'))) {
+              const preEl = nextSib.tagName === 'PRE' ? nextSib : nextSib.querySelector('pre');
+              langItems.push({
+                name: langName,
+                hEl: sibling,
+                preEl: preEl,
+                containerEl: nextSib
+              });
+              sibling = nextSib.nextElementSibling;
+              continue;
+            }
+          }
+          sibling = nextSib;
+        }
+      }
+
+      // If we collected 2 or more language implementations, turn them into tabbed container
+      if (langItems.length >= 2) {
+        tabGroupCounter++;
+        const tabsId = `sf-code-tabs-${Date.now()}-${tabGroupCounter}`;
+
+        const tabsContainer = document.createElement('div');
+        tabsContainer.className = 'code-tabs-container';
+        tabsContainer.id = tabsId;
+
+        // Determine default active language matching editor
+        let activeEditorLang = (document.getElementById('langSelect')?.value || '').toLowerCase();
+        let defaultActiveIdx = 0;
+        langItems.forEach((item, idx) => {
+          const lName = item.name.toLowerCase();
+          if (activeEditorLang === 'python' || activeEditorLang === 'py') {
+            if (lName.includes('python')) defaultActiveIdx = idx;
+          } else if (activeEditorLang === 'javascript' || activeEditorLang === 'js') {
+            if (lName.includes('javascript') || lName.includes('js')) defaultActiveIdx = idx;
+          } else if (activeEditorLang === 'rust' || activeEditorLang === 'rs') {
+            if (lName.includes('rust')) defaultActiveIdx = idx;
+          } else if (activeEditorLang === 'java') {
+            if (lName.includes('java') && !lName.includes('script')) defaultActiveIdx = idx;
+          } else if (activeEditorLang === 'cpp' || activeEditorLang === 'c++') {
+            if (lName.includes('c++') || lName.includes('cpp')) defaultActiveIdx = idx;
+          } else if (activeEditorLang === 'go') {
+            if (lName.includes('go')) defaultActiveIdx = idx;
+          }
+        });
+
+        // Build Nav Buttons
+        const navHtml = langItems.map((item, idx) => {
+          const isActive = idx === defaultActiveIdx ? 'active' : '';
+          return `<button class="code-tab-btn ${isActive}" onclick="switchCodeTab('${tabsId}', ${idx})">${item.name}</button>`;
+        }).join('');
+
+        const headerHtml = `
+          <div class="code-tabs-header">
+            <div class="code-tabs-nav">${navHtml}</div>
+            <div class="code-tab-tools">
+              <button class="code-copy-btn" onclick="copyActiveTabCode(this, '${tabsId}')" title="Copy code">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        `;
+
+        // Build Panes
+        const bodyEl = document.createElement('div');
+        bodyEl.className = 'code-tabs-body';
+
+        langItems.forEach((item, idx) => {
+          const paneEl = document.createElement('div');
+          paneEl.className = `code-tab-pane ${idx === defaultActiveIdx ? 'active' : ''}`;
+          paneEl.innerHTML = `<div class="code-tab-pane-title">${item.name}</div>`;
+          paneEl.appendChild(item.preEl.cloneNode(true));
+          bodyEl.appendChild(paneEl);
+        });
+
+        tabsContainer.innerHTML = headerHtml;
+        tabsContainer.appendChild(bodyEl);
+
+        // Replace original elements
+        if (langItems[0].hEl && langItems[0].hEl.parentNode) {
+          langItems[0].hEl.parentNode.insertBefore(tabsContainer, langItems[0].hEl);
+        }
+        langItems.forEach(item => {
+          if (item.hEl && item.hEl.parentNode) item.hEl.parentNode.removeChild(item.hEl);
+          if (item.containerEl && item.containerEl.parentNode) item.containerEl.parentNode.removeChild(item.containerEl);
+        });
+      }
+    }
+
+    // B. Standalone Code Blocks Header & Copy Button
+    const allPres = Array.from(containerEl.querySelectorAll('pre'));
+    for (const pre of allPres) {
+      if (pre.closest('.code-tabs-container') || pre.closest('.code-block-wrapper')) continue;
+
+      const codeEl = pre.querySelector('code');
+      let langName = 'CODE';
+      if (codeEl) {
+        const cls = codeEl.className || '';
+        const match = /language-([a-zA-Z0-9#+-]+)/.exec(cls);
+        if (match) {
+          langName = match[1].toUpperCase();
+          if (langName === 'CPP') langName = 'C++';
+          else if (langName === 'PYTHON') langName = 'PYTHON 3';
+          else if (langName === 'JS') langName = 'JAVASCRIPT';
+          else if (langName === 'TS') langName = 'TYPESCRIPT';
+        }
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+
+      const header = document.createElement('div');
+      header.className = 'code-block-header';
+      header.innerHTML = `
+        <span>${langName}</span>
+        <button class="code-copy-btn" onclick="copyPreCode(this)" title="Copy code">
+          <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          <span>Copy</span>
+        </button>
+      `;
+
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+    }
+
+    // C. Complexity Analysis Metric Cards
+    const complexityHeadings = Array.from(containerEl.querySelectorAll('h2, h3')).filter(h => {
+      const txt = (h.textContent || '').toLowerCase();
+      return txt.includes('complexity analysis') || txt.includes('complexity');
+    });
+
+    for (const compH of complexityHeadings) {
+      let compList = compH.nextElementSibling;
+      while (compList && !['UL', 'OL', 'P', 'DIV'].includes(compList.tagName) && !['H1', 'H2', 'H3'].includes(compList.tagName)) {
+        compList = compList.nextElementSibling;
+      }
+
+      if (compList && (compList.tagName === 'UL' || compList.tagName === 'OL')) {
+        const listItems = Array.from(compList.children);
+        let timeItem = null;
+        let spaceItem = null;
+
+        listItems.forEach(li => {
+          const text = li.innerHTML || '';
+          if (/time\s*complexity/i.test(text)) timeItem = li;
+          else if (/space\s*complexity/i.test(text)) spaceItem = li;
+        });
+
+        if (timeItem || spaceItem) {
+          const grid = document.createElement('div');
+          grid.className = 'complexity-grid';
+
+          const createCard = (type, liEl) => {
+            const isTime = type === 'time';
+            const iconSvg = isTime
+              ? `<svg class="complexity-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>`
+              : `<svg class="complexity-icon" viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></svg>`;
+            
+            let htmlContent = (liEl.innerHTML || '').trim();
+            if (htmlContent.startsWith('<p>') && htmlContent.endsWith('</p>')) {
+              htmlContent = htmlContent.slice(3, -4).trim();
+            }
+
+            // Clean out the leading bold "Time Complexity:" or "Space Complexity:"
+            htmlContent = htmlContent.replace(/^(?:<strong[^>]*>)?\s*(?:Time|Space)\s*Complexity\s*:?\s*(?:<\/strong>)?\s*:?\s*/i, '').trim();
+
+            // Extract primary metric formula if at start
+            let metricBadge = '';
+            const mathMatch = htmlContent.match(/^\s*(<span class="sf-math[^"]*">[\s\S]*?<\/span>)/i);
+            if (mathMatch) {
+              metricBadge = mathMatch[1];
+              htmlContent = htmlContent.substring(mathMatch[0].length).replace(/^[\s,:-]+/, '').trim();
+            } else {
+              const plainMatch = htmlContent.match(/^\s*(O\s*\([^)]+\))/i);
+              if (plainMatch) {
+                metricBadge = `<span class="sf-math sf-math-inline">${plainMatch[1]}</span>`;
+                htmlContent = htmlContent.substring(plainMatch[0].length).replace(/^[\s,:-]+/, '').trim();
+              }
+            }
+
+            if (htmlContent && htmlContent[0] && /[a-z]/.test(htmlContent[0])) {
+              htmlContent = htmlContent[0].toUpperCase() + htmlContent.slice(1);
+            }
+
+            return `
+              <div class="complexity-card complexity-${type}">
+                <div class="complexity-header">
+                  <div class="complexity-title-wrap">
+                    ${iconSvg}
+                    <span>${isTime ? 'Time Complexity' : 'Space Complexity'}</span>
+                  </div>
+                  ${metricBadge}
+                </div>
+                <div class="complexity-desc">${htmlContent}</div>
+              </div>
+            `;
+          };
+
+          if (timeItem) grid.innerHTML += createCard('time', timeItem);
+          if (spaceItem) grid.innerHTML += createCard('space', spaceItem);
+
+          compList.parentNode.insertBefore(grid, compList);
+          compList.parentNode.removeChild(compList);
+        }
+      }
+    }
+
+    // D. Callouts / Admonitions
+    const blockquotes = Array.from(containerEl.querySelectorAll('blockquote'));
+    for (const bq of blockquotes) {
+      const rawText = bq.textContent.trim();
+      let type = null;
+      let title = '';
+
+      if (rawText.startsWith('[!NOTE]') || /^\*\*Note:?\*\*/i.test(rawText)) {
+        type = 'note'; title = 'Note';
+      } else if (rawText.startsWith('[!TIP]') || /^\*\*Tip:?\*\*/i.test(rawText)) {
+        type = 'tip'; title = 'Tip';
+      } else if (rawText.startsWith('[!IMPORTANT]') || /^\*\*Important:?\*\*/i.test(rawText)) {
+        type = 'important'; title = 'Important';
+      } else if (rawText.startsWith('[!WARNING]') || /^\*\*Warning:?\*\*/i.test(rawText)) {
+        type = 'warning'; title = 'Warning';
+      } else if (rawText.startsWith('[!CAUTION]') || /^\*\*Caution:?\*\*/i.test(rawText)) {
+        type = 'caution'; title = 'Caution';
+      }
+
+      if (type) {
+        const callout = document.createElement('div');
+        callout.className = `sf-callout sf-callout-${type}`;
+
+        let bodyHtml = bq.innerHTML
+          .replace(/\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i, '')
+          .replace(/<strong>\s*(?:Note|Tip|Important|Warning|Caution):?\s*<\/strong>/i, '')
+          .trim();
+
+        const iconSvg = `<svg class="sf-callout-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>`;
+
+        callout.innerHTML = `
+          <div class="sf-callout-header">
+            ${iconSvg}
+            <span>${title}</span>
+          </div>
+          <div class="sf-callout-body">${bodyHtml}</div>
+        `;
+        bq.parentNode.insertBefore(callout, bq);
+        bq.parentNode.removeChild(bq);
+      }
+    }
+
+    // E. Edge Cases Cards
+    const edgeHeadings = Array.from(containerEl.querySelectorAll('h2, h3')).filter(h => {
+      const txt = (h.textContent || '').toLowerCase();
+      return txt.includes('edge cases') || txt.includes('pitfalls') || txt.includes('corner cases');
+    });
+
+    for (const eh of edgeHeadings) {
+      let nextList = eh.nextElementSibling;
+      while (nextList && !['OL', 'UL'].includes(nextList.tagName) && !['H1', 'H2', 'H3'].includes(nextList.tagName)) {
+        nextList = nextList.nextElementSibling;
+      }
+      if (nextList && (nextList.tagName === 'OL' || nextList.tagName === 'UL')) {
+        Array.from(nextList.children).forEach(li => {
+          const match = li.innerHTML.match(/^\s*<strong>([^<]+)<\/strong>:?\s*(.*)$/i);
+          if (match) {
+            li.innerHTML = `<span class="edge-case-title">${match[1]}</span> <span>${match[2]}</span>`;
+            li.classList.add('edge-case-card');
+          }
+        });
+      }
+    }
+
+    // F. Table Wrappers
+    const tables = Array.from(containerEl.querySelectorAll('table'));
+    for (const tbl of tables) {
+      if (!tbl.closest('.table-wrapper')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrapper';
+        tbl.parentNode.insertBefore(wrap, tbl);
+        wrap.appendChild(tbl);
+      }
+    }
+  }
+
   function renderMarkdown(targetId, markdown) {
     const cleanMarkdown = normalizeMarkdown(markdown);
     marked.setOptions({
@@ -1153,7 +3117,11 @@
         }
       }
     });
-    document.getElementById(targetId).innerHTML = marked.parse(cleanMarkdown);
+
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+    targetEl.innerHTML = marked.parse(cleanMarkdown);
+    enhanceRenderedMarkdown(targetEl);
   }
 
   function renderSolutionView() {
@@ -1307,6 +3275,11 @@
 
     if (leftView === 'solutions' && currentProblemSlug) {
       loadSolution(currentProblemSlug);
+    }
+
+    // Auto-load saved notes for this problem
+    if (typeof loadProblemNotes === 'function') {
+      loadProblemNotes(data.title);
     }
   };
 

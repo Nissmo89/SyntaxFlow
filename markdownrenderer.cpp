@@ -89,6 +89,14 @@ static QString processInlineElements(QString text)
     static const QRegularExpression inlineCodeRx(R"(`([^`]+)`)");
     text.replace(inlineCodeRx, "<code>\\1</code>");
 
+    // Math Block: $$...$$
+    static const QRegularExpression mathBlockRx(R"(\$\$([^\$]+)\$\$)");
+    text.replace(mathBlockRx, R"(<div class="sf-math sf-math-block">\1</div>)");
+
+    // Inline Math: $...$
+    static const QRegularExpression mathInlineRx(R"(\$([^\$\n]+)\$)");
+    text.replace(mathInlineRx, R"(<span class="sf-math sf-math-inline">\1</span>)");
+
     // Bold: **text**
     static const QRegularExpression boldRx(R"(\*\*([^*]+)\*\*)");
     text.replace(boldRx, "<b>\\1</b>");
