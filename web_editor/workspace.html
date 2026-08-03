@@ -415,7 +415,7 @@
       background: var(--surface-2);
     }
 
-    /* ─── Notes Panel (editor tab, edit/preview modes) ─── */
+    /* ─── Notes Floating Window (draggable, resizable) ─── */
     #btnNotes {
       position: relative;
     }
@@ -432,42 +432,59 @@
       box-shadow: 0 0 6px var(--lime);
     }
 
-    /* Editor tabs (Code | Notes) inside the editor header */
-    .editor-tabs {
-      display: flex;
-      align-items: stretch;
-      gap: 2px;
-      height: 100%;
-      margin-right: 8px;
+    .notes-window {
+      position: fixed;
+      z-index: 500;
+      min-width: 420px;
+      min-height: 300px;
+      display: none;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
     }
-    .editor-tab {
-      display: inline-flex;
+    .notes-window.open { display: flex; }
+
+    .notes-win-resize {
+      position: absolute;
+      z-index: 3;
+    }
+    .r-n  { top: -3px;   left: 8px;   right: 8px;  height: 6px; cursor: ns-resize; }
+    .r-s  { bottom: -3px; left: 8px;  right: 8px;  height: 6px; cursor: ns-resize; }
+    .r-e  { right: -3px;  top: 8px;   bottom: 8px; width: 6px;  cursor: ew-resize; }
+    .r-w  { left: -3px;   top: 8px;   bottom: 8px; width: 6px;  cursor: ew-resize; }
+    .r-ne { top: -4px;    right: -4px; width: 12px; height: 12px; cursor: nesw-resize; }
+    .r-nw { top: -4px;    left: -4px;  width: 12px; height: 12px; cursor: nwse-resize; }
+    .r-se { bottom: -4px; right: -4px; width: 12px; height: 12px; cursor: nwse-resize; }
+    .r-sw { bottom: -4px; left: -4px;  width: 12px; height: 12px; cursor: nesw-resize; }
+
+    .notes-win-header {
+      display: flex;
       align-items: center;
-      padding: 0 12px;
-      cursor: pointer;
+      gap: 8px;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: move;
+      user-select: none;
+      flex-shrink: 0;
+      border-radius: 9px 9px 0 0;
+    }
+    .notes-win-title {
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-muted);
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
-      transition: all 0.15s;
-      user-select: none;
-      white-space: nowrap;
-    }
-    .editor-tab:hover { color: var(--text); }
-    .editor-tab.active {
       color: var(--text);
-      border-bottom-color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+    .notes-win-header .icon-btn {
+      width: 26px;
+      height: 26px;
+    }
+    .notes-win-header .icon-btn svg { width: 14px; height: 14px; }
 
-    .notes-panel {
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg);
-    }
     .notes-panel-header {
       display: flex;
       align-items: center;
@@ -475,6 +492,7 @@
       padding: 6px 10px;
       background: var(--surface);
       border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
     }
     .notes-mode-btn {
       background: transparent;
@@ -495,14 +513,10 @@
       background: var(--accent-dim);
       border-color: var(--accent);
     }
-    .notes-panel-header .icon-btn {
-      width: 28px;
-      height: 28px;
-    }
     .notes-save-status {
       font-size: 11px;
       color: var(--text-muted);
-      background: var(--surface-2);
+      background: var(--surface);
       padding: 2px 8px;
       border-radius: 4px;
       border: 1px solid var(--border-subtle);
@@ -524,6 +538,7 @@
       background: var(--surface);
       border-bottom: 1px solid var(--border-subtle);
       overflow-x: auto;
+      flex-shrink: 0;
     }
     .notes-fmt-btn {
       background: transparent;
@@ -556,6 +571,7 @@
       font-size: 14px;
       line-height: 1.6;
       padding: 14px 16px;
+      user-select: text;
     }
     .notes-textarea::placeholder {
       color: var(--text-muted);
@@ -564,6 +580,7 @@
     .notes-preview.problem-content {
       flex: 1;
       min-height: 0;
+      overflow-y: auto;
       padding: 16px 24px;
     }
 
@@ -576,6 +593,8 @@
       color: var(--text-muted);
       background: var(--surface-2);
       border-top: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      border-radius: 0 0 9px 9px;
     }
 
     .main-workspace {
@@ -1699,45 +1718,12 @@
     <div class="pane right-pane" id="rightPane">
       <div class="pane top-pane" id="topPane">
         <div class="editor-header">
-          <div class="editor-tabs" id="editorTabs">
-            <div class="editor-tab active" id="tabCode">Code</div>
-            <div class="editor-tab" id="tabNotes" style="display: none;">Notes</div>
-          </div>
           <select class="lang-select loading" id="langSelect" title="Editor language"></select>
           <div style="flex: 1;"></div>
           <button class="icon-btn" id="btnReset" title="Reset code to original template"></button>
           <button class="icon-btn" id="btnMaxEditor" title="Maximize editor"></button>
         </div>
         <div class="editor-wrapper" id="editorContainer"></div>
-        <div class="notes-panel" id="notesPanel" style="display: none;">
-          <div class="notes-panel-header">
-            <button class="notes-mode-btn active" id="notesModeEdit">Edit</button>
-            <button class="notes-mode-btn" id="notesModePreview">Preview</button>
-            <div style="flex: 1;"></div>
-            <span class="notes-save-status saved" id="notesSaveStatus">Saved</span>
-            <button class="icon-btn" id="btnCopyNotes" title="Copy notes to clipboard">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-            <button class="icon-btn" id="btnClearNotes" title="Clear notes">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </button>
-          </div>
-          <div class="notes-fmt-toolbar" id="notesFmtToolbar">
-            <button class="notes-fmt-btn" data-fmt="bold" title="Bold (**text**)"><b>B</b></button>
-            <button class="notes-fmt-btn" data-fmt="italic" title="Italic (*text*)"><i>I</i></button>
-            <button class="notes-fmt-btn" data-fmt="heading" title="Heading (### )">H3</button>
-            <button class="notes-fmt-btn" data-fmt="code" title="Inline Code (`code`)">&lt;/&gt;</button>
-            <button class="notes-fmt-btn" data-fmt="bullet" title="Bullet List (- )">• List</button>
-            <button class="notes-fmt-btn" data-fmt="check" title="Task (- [ ])">☑ Task</button>
-            <button class="notes-fmt-btn" data-fmt="complexity" title="Complexity Template">⚡ Complexity</button>
-          </div>
-          <textarea id="notesTextarea" class="notes-textarea" placeholder="Write personal notes, hints, approach, edge cases, and complexity analysis for this problem... (Auto-saved)"></textarea>
-          <div class="notes-preview problem-content" id="notesPreview" style="display: none;"></div>
-          <div class="notes-footer">
-            <span id="notesCount">0 words · 0 chars</span>
-            <span style="color: var(--text-muted);">Auto-saved locally</span>
-          </div>
-        </div>
       </div>
       
       <div class="resizer-h" id="resizerH"></div>
@@ -1756,6 +1742,53 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ─── NOTES FLOATING WINDOW (draggable, resizable) ─── -->
+  <div class="notes-window" id="notesWindow">
+    <div class="notes-win-resize r-n" data-r="n"></div>
+    <div class="notes-win-resize r-s" data-r="s"></div>
+    <div class="notes-win-resize r-e" data-r="e"></div>
+    <div class="notes-win-resize r-w" data-r="w"></div>
+    <div class="notes-win-resize r-ne" data-r="ne"></div>
+    <div class="notes-win-resize r-nw" data-r="nw"></div>
+    <div class="notes-win-resize r-se" data-r="se"></div>
+    <div class="notes-win-resize r-sw" data-r="sw"></div>
+    <div class="notes-win-header" id="notesWinHeader">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+      <span class="notes-win-title" id="notesWinTitle">Notes</span>
+      <div style="flex: 1;"></div>
+      <span class="notes-save-status saved" id="notesSaveStatus">Saved</span>
+      <button class="icon-btn" id="btnCopyNotes" title="Copy notes to clipboard">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </button>
+      <button class="icon-btn" id="btnClearNotes" title="Clear notes">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </button>
+      <button class="icon-btn" id="btnCloseNotes" title="Close (Esc)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="notes-panel-header">
+      <button class="notes-mode-btn active" id="notesModeEdit">Edit</button>
+      <button class="notes-mode-btn" id="notesModePreview">Preview</button>
+    </div>
+    <div class="notes-fmt-toolbar" id="notesFmtToolbar">
+      <button class="notes-fmt-btn" data-fmt="bold" title="Bold (**text**)"><b>B</b></button>
+      <button class="notes-fmt-btn" data-fmt="italic" title="Italic (*text*)"><i>I</i></button>
+      <button class="notes-fmt-btn" data-fmt="heading" title="Heading (### )">H3</button>
+      <button class="notes-fmt-btn" data-fmt="code" title="Inline Code (`code`)">&lt;/&gt;</button>
+      <button class="notes-fmt-btn" data-fmt="bullet" title="Bullet List (- )">• List</button>
+      <button class="notes-fmt-btn" data-fmt="check" title="Task (- [ ])">☑ Task</button>
+      <button class="notes-fmt-btn" data-fmt="complexity" title="Complexity Template">⚡ Complexity</button>
+    </div>
+    <textarea id="notesTextarea" class="notes-textarea" placeholder="Write personal notes, hints, approach, edge cases, and complexity analysis for this problem... (Auto-saved)"></textarea>
+    <div class="notes-preview problem-content" id="notesPreview" style="display: none;"></div>
+    <div class="notes-footer">
+      <span id="notesCount">0 words · 0 chars</span>
+      <div style="flex: 1;"></div>
+      <span style="color: var(--text-muted);">Auto-saved locally</span>
     </div>
   </div>
 </div>
@@ -2163,12 +2196,10 @@
     }
   });
 
-  // ─── NOTES (editor tab, edit/preview modes) ───
+  // ─── NOTES (floating resizable window, edit/preview modes) ───
   const btnNotes = document.getElementById('btnNotes');
-  const tabCode = document.getElementById('tabCode');
-  const tabNotes = document.getElementById('tabNotes');
-  const editorContainer = document.getElementById('editorContainer');
-  const notesPanel = document.getElementById('notesPanel');
+  const notesWindow = document.getElementById('notesWindow');
+  const notesWinHeader = document.getElementById('notesWinHeader');
   const notesTextarea = document.getElementById('notesTextarea');
   const notesPreview = document.getElementById('notesPreview');
   const notesSaveStatus = document.getElementById('notesSaveStatus');
@@ -2176,13 +2207,18 @@
   const notesFmtToolbar = document.getElementById('notesFmtToolbar');
   const btnCopyNotes = document.getElementById('btnCopyNotes');
   const btnClearNotes = document.getElementById('btnClearNotes');
+  const btnCloseNotes = document.getElementById('btnCloseNotes');
   const notesModeEdit = document.getElementById('notesModeEdit');
   const notesModePreview = document.getElementById('notesModePreview');
 
-  let notesEnabled = false;
   let notesMode = 'edit';
   let notesSaveTimer = null;
   let notesPreviewTimer = null;
+  let notesWinDrag = null;
+
+  const NOTES_MIN_W = 420;
+  const NOTES_MIN_H = 300;
+  const NOTES_MARGIN = 8;
 
   function getNotesStorageKey() {
     return 'sf_notes_' + (currentProblemSlug || 'general');
@@ -2200,12 +2236,16 @@
     notesSaveStatus.className = 'notes-save-status saved';
   }
 
+  function isNotesWindowVisible() {
+    return notesWindow.classList.contains('open');
+  }
+
   function loadProblemNotes() {
     const saved = localStorage.getItem(getNotesStorageKey()) || '';
     notesTextarea.value = saved;
     updateNotesCountAndBadge(saved);
     setNotesSavedState();
-    if (notesMode === 'preview' && notesPanel.style.display !== 'none') {
+    if (notesMode === 'preview' && isNotesWindowVisible()) {
       renderNotesPreview();
     }
   }
@@ -2239,28 +2279,31 @@
     }
   }
 
-  function setEditorView(view) {
-    const isNotes = view === 'notes';
-    tabCode.classList.toggle('active', !isNotes);
-    tabNotes.classList.toggle('active', isNotes);
-    editorContainer.style.display = isNotes ? 'none' : '';
-    notesPanel.style.display = isNotes ? '' : 'none';
-    if (isNotes) {
-      setNotesMode(notesMode);
-    } else if (editor) {
-      editor.refresh();
+  function openNotesWindow() {
+    if (!isNotesWindowVisible()) {
+      const w = Math.max(NOTES_MIN_W, Math.min(860, window.innerWidth - 32));
+      const h = Math.max(NOTES_MIN_H, Math.min(680, window.innerHeight - 32));
+      notesWindow.style.width = w + 'px';
+      notesWindow.style.height = h + 'px';
+      notesWindow.style.left = Math.max(NOTES_MARGIN, Math.min((window.innerWidth - w) / 2, window.innerWidth - NOTES_MARGIN - w)) + 'px';
+      notesWindow.style.top = Math.max(NOTES_MARGIN, Math.min((window.innerHeight - h) / 2, window.innerHeight - NOTES_MARGIN - h)) + 'px';
     }
+    notesWindow.classList.add('open');
+    btnNotes.classList.add('active');
+    setNotesMode(notesMode);
+  }
+
+  function closeNotesWindow() {
+    notesWindow.classList.remove('open');
+    btnNotes.classList.remove('active');
   }
 
   btnNotes.onclick = () => {
-    notesEnabled = !notesEnabled;
-    tabNotes.style.display = notesEnabled ? '' : 'none';
-    btnNotes.classList.toggle('active', notesEnabled);
-    setEditorView(notesEnabled ? 'notes' : 'code');
+    if (isNotesWindowVisible()) closeNotesWindow();
+    else openNotesWindow();
   };
 
-  tabCode.onclick = () => setEditorView('code');
-  tabNotes.onclick = () => setEditorView('notes');
+  btnCloseNotes.onclick = closeNotesWindow;
 
   notesModeEdit.onclick = () => setNotesMode('edit');
   notesModePreview.onclick = () => setNotesMode('preview');
@@ -2308,7 +2351,7 @@
       notesTextarea.selectionStart = notesTextarea.selectionEnd = start + 2;
     }
     if (e.key === 'Escape') {
-      setEditorView('code');
+      closeNotesWindow();
     }
   });
 
@@ -2373,6 +2416,78 @@
       clearTimeout(notesPreviewTimer);
       notesPreviewTimer = setTimeout(renderNotesPreview, 250);
     }
+  }
+
+  // ─── Draggable & resizable notes window ───
+  notesWinHeader.addEventListener('mousedown', (e) => {
+    if (e.target.closest('button, .icon-btn, input, textarea, select')) return;
+    const rect = notesWindow.getBoundingClientRect();
+    notesWinDrag = { type: 'move', startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
+    document.addEventListener('mousemove', onNotesWinDrag);
+    document.addEventListener('mouseup', endNotesWinDrag);
+    e.preventDefault();
+  });
+
+  document.querySelectorAll('.notes-win-resize').forEach(handle => {
+    handle.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const rect = notesWindow.getBoundingClientRect();
+      notesWinDrag = { type: handle.dataset.r, startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
+      document.addEventListener('mousemove', onNotesWinDrag);
+      document.addEventListener('mouseup', endNotesWinDrag);
+    });
+  });
+
+  function onNotesWinDrag(e) {
+    if (!notesWinDrag) return;
+    const dx = e.clientX - notesWinDrag.startX;
+    const dy = e.clientY - notesWinDrag.startY;
+    const type = notesWinDrag.type;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let left = notesWinDrag.left;
+    let top = notesWinDrag.top;
+    let w = notesWinDrag.w;
+    let h = notesWinDrag.h;
+
+    if (type === 'move') {
+      left = notesWinDrag.left + dx;
+      top = notesWinDrag.top + dy;
+    } else {
+      switch (type) {
+        case 'e': w = notesWinDrag.w + dx; break;
+        case 's': h = notesWinDrag.h + dy; break;
+        case 'w': w = notesWinDrag.w - dx; break;
+        case 'n': h = notesWinDrag.h - dy; break;
+        case 'se': w = notesWinDrag.w + dx; h = notesWinDrag.h + dy; break;
+        case 'sw': w = notesWinDrag.w - dx; h = notesWinDrag.h + dy; break;
+        case 'ne': w = notesWinDrag.w + dx; h = notesWinDrag.h - dy; break;
+        case 'nw': w = notesWinDrag.w - dx; h = notesWinDrag.h - dy; break;
+      }
+      if (w < NOTES_MIN_W) w = NOTES_MIN_W;
+      if (h < NOTES_MIN_H) h = NOTES_MIN_H;
+      if (type === 'w' || type === 'nw' || type === 'sw') left = notesWinDrag.left + (notesWinDrag.w - w);
+      if (type === 'n' || type === 'ne' || type === 'nw') top = notesWinDrag.top + (notesWinDrag.h - h);
+    }
+
+    if (left < NOTES_MARGIN) left = NOTES_MARGIN;
+    if (top < NOTES_MARGIN) top = NOTES_MARGIN;
+    const maxW = vw - NOTES_MARGIN - left;
+    const maxH = vh - NOTES_MARGIN - top;
+    if (w > maxW) w = Math.max(NOTES_MIN_W, maxW);
+    if (h > maxH) h = Math.max(NOTES_MIN_H, maxH);
+
+    notesWindow.style.left = left + 'px';
+    notesWindow.style.top = top + 'px';
+    notesWindow.style.width = w + 'px';
+    notesWindow.style.height = h + 'px';
+  }
+
+  function endNotesWinDrag() {
+    notesWinDrag = null;
+    document.removeEventListener('mousemove', onNotesWinDrag);
+    document.removeEventListener('mouseup', endNotesWinDrag);
   }
 
   // Initial UI state setup
