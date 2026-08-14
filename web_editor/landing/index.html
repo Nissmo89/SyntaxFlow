@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyntaxFlow — Write. Run. Rank up.</title>
+    <meta name="description" content="A competitive coding playground for C++, Python, JavaScript, Rust and more. Solve problems, race the leaderboard, level up.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="windowfx.css">
+    <script>
+    /* apply theme before first paint to avoid flash */
+    (function () {
+        var theme = "dark";
+        try {
+            var s = localStorage.getItem("sf-theme");
+            if (s === "light" || s === "dark") theme = s;
+        } catch (e) { /* localStorage unavailable (file:///private mode) */ }
+        document.documentElement.setAttribute("data-theme", theme);
+    })();
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="../Syntax_Flow.svg" alt="SyntaxFlow Logo" width="28" height="28" />
+            <span class="logo-text">SyntaxFlow</span>
+        </a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Problems</a>
+            <a href="#" class="nav-link">Leaderboard</a>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+                <svg class="icon icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <a href="#" class="btn btn-ghost">Get Started</a>
+            <a href="#" class="btn btn-primary">
+                <svg class="gh" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+                </svg>
+                Login with GitHub
+            </a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="glow-orb"></div>
+        <div class="shape-layer" id="shapeLayer" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <span class="chip">⚡ No setup — runs right in your browser</span>
+            <h1 class="hero-title">Write it. Run it.<br>Climb the <span class="accent-text">ranks</span>.</h1>
+            <p class="hero-subtitle">A competitive coding playground for C++, Python, JavaScript, Rust & more. Solve problems, beat the leaderboard, and level up your craft.</p>
+
+            <div class="cta-group">
+                <a href="#" class="btn btn-large btn-primary">Get Started</a>
+            </div>
+        </div>
+    </main>
+
+    <section class="showcase" id="showcase">
+        <div class="float-chip chip-a">
+            <span class="dot">▲</span> +120 rank today
+        </div>
+        <div class="float-chip chip-b">
+            <span class="dot">✓</span> 3 / 4 test cases passed
+        </div>
+
+        <div class="window-stage" id="stage">
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="windowfx.js"></script>
+    <script>
+    (function () {
+        var html = document.documentElement;
+        var dark = html.getAttribute("data-theme") === "dark";
+
+        document.getElementById("themeToggle").addEventListener("click", function () {
+            dark = !dark;
+            html.setAttribute("data-theme", dark ? "dark" : "light");
+            try { localStorage.setItem("sf-theme", dark ? "dark" : "light"); } catch (e) {}
+            if (winEl) winEl.classList.toggle("dark", dark);
+            syncEditorTheme();
+        });
+
+        function syncEditorTheme() {
+            var frame = document.querySelector("#stage iframe");
+            if (frame) frame.contentWindow.postMessage({ theme: dark ? "dark" : "light" }, "*");
+        }
+        syncEditorTheme();
+
+        /* ---- fixed code-editor showpiece ---- */
+        var stage = document.getElementById("stage");
+        var vw = Math.min(window.innerWidth - 40, 660);
+        var showWin = WindowFx.create({
+            title: "SyntaxFlow · two-sum",
+            theme: "mac",
+            mode: dark ? "dark" : "light",
+            width: vw,
+            height: 400,
+            x: 0,
+            y: 0,
+            draggable: false,
+            resizable: false,
+            minimizable: false,
+            maximizable: false,
+            closable: false,
+            content: {
+                type: "iframe",
+                src: "editor.html"
+            }
+        });
+
+        function findWinEl() {
+            var wins = document.querySelectorAll(".window");
+            for (var i = 0; i < wins.length; i++) {
+                var t = wins[i].querySelector(".windowTitle");
+                if (t && t.textContent.indexOf("two-sum") !== -1) return wins[i];
+            }
+            return wins[0] || null;
+        }
+
+        var winEl = showWin.el || findWinEl();
+
+        function center() {
+            if (!winEl) return;
+            var sx = stage.clientWidth;
+            var sy = stage.clientHeight;
+            var w = winEl.offsetWidth;
+            var h = winEl.offsetHeight;
+            winEl.style.left = Math.max(0, (sx - w) / 2) + "px";
+            winEl.style.top = Math.max(0, (sy - h) / 2) + "px";
+        }
+        if (winEl) {
+            stage.appendChild(winEl);
+            winEl.classList.add("showpiece");
+            center();
+        }
+        window.addEventListener("resize", center);
+        setTimeout(syncEditorTheme, 600);
+
+        /* ---- cycle through window themes every 4 seconds ---- */
+        var themes = ["templeos", "arch", "win8", "mac"];
+        var themeIdx = 0;
+        setInterval(function() {
+            if (showWin && showWin.setTheme) {
+                themeIdx = (themeIdx + 1) % themes.length;
+                if (window.triggerGlitchTransition && showWin.element) {
+                    window.triggerGlitchTransition(showWin.element, function() {
+                        showWin.setTheme(themes[themeIdx]);
+                    });
+                } else {
+                    showWin.setTheme(themes[themeIdx]);
+                }
+            }
+        }, 4000);
+    })();
+    </script>
+    <script src="glitch.js"></script>
+    <script src="bg-shader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="shapes3d.js"></script>
+    <script src="../qwebchannel.js"></script>
+    <script>
+        if (typeof qt !== 'undefined') {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                var mainWindow = channel.objects.mainWindow;
+                var links = document.querySelectorAll('.nav-link, .btn');
+                links.forEach(function(link) {
+                    if (link.id === 'themeToggle') return;
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (mainWindow && mainWindow.onNavigateToBrowser) {
+                            mainWindow.onNavigateToBrowser();
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

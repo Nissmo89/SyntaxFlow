@@ -79,11 +79,13 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
     void changeEvent(QEvent *event) override;
 
-private slots:
+public slots:
     // Navigation
     void onNavigateToEditor(const QString &path);
     void onNavigateToBrowser();
     void onNavigateToProfile();
+
+private slots:
 
     // Code Execution
     void onRunCurrentTest(int index);
@@ -109,6 +111,7 @@ private:
     // Setup
     void setupTitleBar();
     void setupUI();
+    void setupWelcomePage();
     void setupBrowserPage();
     void setupEditorPage();
     void setupProfilePage();
@@ -157,6 +160,10 @@ private:
 
     // ─── Layout ───
     QStackedLayout *stack = nullptr;
+
+    // ─── Welcome Page ───
+    QWidget *welcomePage = nullptr;
+    QWebEngineView *welcomeView = nullptr;
 
     // ─── Browser Page ───
     QWidget *browserPage = nullptr;

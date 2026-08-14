@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #121213;
+            transition: background 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            display: flex;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 10px;
+        }
+
+        .tab {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 10px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .tab:hover {
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab.active {
+            color: #fff;
+            border-bottom-color: #5c9eff;
+        }
+
+        .editor-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .CodeMirror {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            background: transparent;
+            padding: 10px 0;
+        }
+
+        /* Customize scrollbars for a sleek look */
+        .CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
+            outline: none;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ─── Custom SyntaxFlow editor theme (matches UI palette) ─── */
+        .cm-s-syntaxflow.CodeMirror {
+          background: #121213; color: #e4e4e7;
+        }
+        .cm-s-syntaxflow .CodeMirror-gutters {
+          background: #121213; border-right: 1px solid #3f3f46;
+        }
+        .cm-s-syntaxflow .CodeMirror-linenumber { color: #55555e; }
+        .cm-s-syntaxflow .CodeMirror-cursor { border-left: 2px solid #5c9eff; }
+        .cm-s-syntaxflow .CodeMirror-selected { background: rgba(92, 158, 255, 0.18); }
+        .cm-s-syntaxflow .CodeMirror-focused .CodeMirror-selected { background: rgba(92, 158, 255, 0.22); }
+        .cm-s-syntaxflow .CodeMirror-activeline-background,
+        .cm-s-syntaxflow .CodeMirror-activeLine { background: rgba(255, 255, 255, 0.04); }
+        .cm-s-syntaxflow .CodeMirror-matchingbracket {
+          color: #e4e4e7; background: rgba(92, 158, 255, 0.15);
+          outline: 1px solid rgba(92, 158, 255, 0.4);
+        }
+        .cm-s-syntaxflow .CodeMirror-foldgutter-open,
+        .cm-s-syntaxflow .CodeMirror-foldgutter-folded { color: #55555e; }
+
+        .cm-s-syntaxflow .cm-keyword { color: #fb7185; }
+        .cm-s-syntaxflow .cm-builtin { color: #f5a623; }
+        .cm-s-syntaxflow .cm-type { color: #5c9eff; }
+        .cm-s-syntaxflow .cm-def { color: #7dd3fc; }
+        .cm-s-syntaxflow .cm-variable { color: #e4e4e7; }
+        .cm-s-syntaxflow .cm-variable-2 { color: #a5b4fc; }
+        .cm-s-syntaxflow .cm-variable-3 { color: #f5a623; }
+        .cm-s-syntaxflow .cm-property { color: #7dd3fc; }
+        .cm-s-syntaxflow .cm-operator { color: #cbd5e1; }
+        .cm-s-syntaxflow .cm-punctuation { color: #9a9aa3; }
+        .cm-s-syntaxflow .cm-bracket { color: #9a9aa3; }
+        .cm-s-syntaxflow .cm-number { color: #f5a623; }
+        .cm-s-syntaxflow .cm-string { color: #a3e635; }
+        .cm-s-syntaxflow .cm-string-2 { color: #a3e635; }
+        .cm-s-syntaxflow .cm-atom { color: #f5a623; }
+        .cm-s-syntaxflow .cm-comment { color: #6b6b74; font-style: italic; }
+        .cm-s-syntaxflow .cm-tag { color: #fb7185; }
+        .cm-s-syntaxflow .cm-attribute { color: #f5a623; }
+        .cm-s-syntaxflow .cm-qualifier { color: #5c9eff; }
+        .cm-s-syntaxflow .cm-meta { color: #9a9aa3; }
+        .cm-s-syntaxflow .cm-hr { color: #6b6b74; }
+        .cm-s-syntaxflow .cm-link { color: #5c9eff; }
+        .cm-s-syntaxflow .cm-error { color: #fb7185; text-decoration: underline; }
+
+        /* ─── Light theme overrides ─── */
+        body.light-theme {
+            background: #ffffff;
+        }
+        body.light-theme .editor-header {
+            background: rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        body.light-theme .tab {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        body.light-theme .tab:hover {
+            color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.05);
+        }
+        body.light-theme .tab.active {
+            color: #000;
+            border-bottom-color: #2563eb;
+        }
+        body.light-theme ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        body.light-theme ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .editor-statusbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
+            height: 26px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.18);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            user-select: none;
+        }
+        .editor-statusbar .st-ac { color: #a3e635; }
+        .editor-statusbar .st-right { margin-left: auto; }
+
+        body.light-theme .editor-statusbar {
+            color: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.03);
+            border-top-color: rgba(0, 0, 0, 0.08);
+        }
+        body.light-theme .editor-statusbar .st-ac { color: #15803d; }
+
+        body.light-theme .cm-s-syntaxflow.CodeMirror {
+          background: #ffffff; color: #1c1f24;
+        }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-gutters {
+          background: #ffffff; border-right: 1px solid #e2e5e9;
+        }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-linenumber { color: #b0b6bf; }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-cursor { border-left: 2px solid #2563eb; }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-selected { background: rgba(37, 99, 235, 0.14); }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-focused .CodeMirror-selected { background: rgba(37, 99, 235, 0.18); }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-activeline-background,
+        body.light-theme .cm-s-syntaxflow .CodeMirror-activeLine { background: rgba(0, 0, 0, 0.04); }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-matchingbracket {
+          color: #1c1f24; background: rgba(37, 99, 235, 0.12);
+          outline: 1px solid rgba(37, 99, 235, 0.35);
+        }
+        body.light-theme .cm-s-syntaxflow .CodeMirror-foldgutter-open,
+        body.light-theme .cm-s-syntaxflow .CodeMirror-foldgutter-folded { color: #b0b6bf; }
+        body.light-theme .cm-s-syntaxflow .cm-keyword { color: #c026d3; }
+        body.light-theme .cm-s-syntaxflow .cm-builtin { color: #c2410c; }
+        body.light-theme .cm-s-syntaxflow .cm-type { color: #1d4ed8; }
+        body.light-theme .cm-s-syntaxflow .cm-def { color: #0e7490; }
+        body.light-theme .cm-s-syntaxflow .cm-variable { color: #1c1f24; }
+        body.light-theme .cm-s-syntaxflow .cm-variable-2 { color: #6d28d9; }
+        body.light-theme .cm-s-syntaxflow .cm-variable-3 { color: #c2410c; }
+        body.light-theme .cm-s-syntaxflow .cm-property { color: #0e7490; }
+        body.light-theme .cm-s-syntaxflow .cm-operator { color: #374151; }
+        body.light-theme .cm-s-syntaxflow .cm-punctuation { color: #6b7280; }
+        body.light-theme .cm-s-syntaxflow .cm-bracket { color: #6b7280; }
+        body.light-theme .cm-s-syntaxflow .cm-number { color: #c2410c; }
+        body.light-theme .cm-s-syntaxflow .cm-string { color: #15803d; }
+        body.light-theme .cm-s-syntaxflow .cm-string-2 { color: #15803d; }
+        body.light-theme .cm-s-syntaxflow .cm-atom { color: #c2410c; }
+        body.light-theme .cm-s-syntaxflow .cm-comment { color: #94a3b8; font-style: italic; }
+        body.light-theme .cm-s-syntaxflow .cm-tag { color: #c026d3; }
+        body.light-theme .cm-s-syntaxflow .cm-attribute { color: #c2410c; }
+        body.light-theme .cm-s-syntaxflow .cm-qualifier { color: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+<div class="editor-header">
+    <div class="tab active" data-lang="cpp">C++</div>
+    <div class="tab" data-lang="python">Python</div>
+    <div class="tab" data-lang="javascript">JavaScript</div>
+    <div class="tab" data-lang="rust">Rust</div>
+</div>
+
+<div class="editor-container">
+    <textarea id="code"></textarea>
+</div>
+
+<div class="editor-statusbar">
+    <span class="st-lang">C++</span>
+    <span class="st-sep">·</span>
+    <span class="st-info">two-sum.cpp</span>
+    <span class="st-sep">·</span>
+    <span class="st-ac">✓ Accepted</span>
+    <span class="st-right">12ms · 5.2 MB</span>
+</div>
+
+<!-- CodeMirror JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/mode/simple.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/rust/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
+
+<script>
+    const snippets = {
+        cpp: `class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numMap;
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (numMap.count(complement)) {
+                return {numMap[complement], i};
+            }
+            numMap[nums[i]] = i;
+        }
+        return {};
+    }
+};`,
+        python: `class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        numMap = {}
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in numMap:
+                return [numMap[complement], i]
+            numMap[num] = i
+        return []`,
+        javascript: `/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const numMap = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (numMap.has(complement)) {
+            return [numMap.get(complement), i];
+        }
+        numMap.set(nums[i], i);
+    }
+    return [];
+};`,
+        rust: `use std::collections::HashMap;
+
+impl Solution {
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut num_map = HashMap::new();
+        for (i, &num) in nums.iter().enumerate() {
+            let complement = target - num;
+            if let Some(&index) = num_map.get(&complement) {
+                return vec![index as i32, i as i32];
+            }
+            num_map.insert(num, i);
+        }
+        vec![]
+    }
+}`
+    };
+
+    const modes = {
+        cpp: "text/x-c++src",
+        python: "text/x-python",
+        javascript: "text/javascript",
+        rust: "text/x-rustsrc"
+    };
+
+    document.getElementById("code").value = snippets.cpp;
+
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        mode: modes.cpp,
+        theme: "syntaxflow",
+        matchBrackets: true,
+        indentUnit: 4,
+        viewportMargin: Infinity
+    });
+
+    const tabs = document.querySelectorAll('.tab');
+    const stLang = document.querySelector('.st-lang');
+    const stInfo = document.querySelector('.st-info');
+    const fileNames = { cpp: "two-sum.cpp", python: "two-sum.py", javascript: "two-sum.js", rust: "two-sum.rs" };
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const lang = tab.getAttribute('data-lang');
+            editor.setValue(snippets[lang]);
+            editor.setOption("mode", modes[lang]);
+            if (stLang) stLang.textContent = lang === "javascript" ? "JavaScript" : lang.charAt(0).toUpperCase() + lang.slice(1);
+            if (stInfo) stInfo.textContent = fileNames[lang];
+        });
+    });
+
+    // Listen for theme toggle messages from the parent window
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.theme) {
+            if (event.data.theme === 'light') {
+                document.body.classList.add("light-theme");
+            } else {
+                document.body.classList.remove("light-theme");
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

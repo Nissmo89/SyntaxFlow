@@ -279,12 +279,36 @@ void MainWindow::setupUI()
     appFont.setStyleHint(QFont::SansSerif);
     qApp->setFont(appFont);
 
+    setupWelcomePage();
     setupBrowserPage();
     setupEditorPage();
     setupProfilePage();
     setupSidebar();
 
-    stack->setCurrentWidget(browserPage);
+    stack->setCurrentWidget(welcomePage);
+    sidebarView->hide();
+}
+
+void MainWindow::setupWelcomePage()
+{
+    welcomePage = new QWidget(this);
+    auto *layout = new QVBoxLayout(welcomePage);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    welcomeView = new QWebEngineView(this);
+    welcomeView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    welcomeView->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+    welcomeView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+
+    QUrl url(m_server->getUrlFor("/landing/index.html"));
+    welcomeView->setUrl(url);
+
+    QWebChannel *welcomeChannel = new QWebChannel(this);
+    welcomeChannel->registerObject(QStringLiteral("mainWindow"), this);
+    welcomeView->page()->setWebChannel(welcomeChannel);
+
+    layout->addWidget(welcomeView);
+    stack->addWidget(welcomePage);
 }
 
 void MainWindow::setupBrowserPage()
@@ -500,6 +524,7 @@ void MainWindow::onNavigateToEditor(const QString &path)
 
     m_workspace->clearAllResults();
     stack->setCurrentWidget(editorPage);
+    sidebarView->show();
     onLanguageChanged(m_currentLangId);
 }
 
@@ -511,6 +536,7 @@ void MainWindow::onNavigateToBrowser()
     m_currentProblemPath.clear();
     m_currentProblemId.clear();
     stack->setCurrentWidget(browserPage);
+    sidebarView->show();
 }
 
 void MainWindow::onNavigateToProfile()
@@ -521,6 +547,7 @@ void MainWindow::onNavigateToProfile()
     m_currentProblemPath.clear();
     m_currentProblemId.clear();
     stack->setCurrentWidget(profilePage);
+    sidebarView->show();
 }
 
 void MainWindow::onRunCurrentTest(int index)
