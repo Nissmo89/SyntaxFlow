@@ -257,6 +257,7 @@ void MainWindow::applyAppTheme()
     if (m_workspace) m_workspace->applyTheme(js);
     if (profileView) profileView->page()->runJavaScript(js);
     if (sidebarView) sidebarView->page()->runJavaScript(js);
+    if (welcomeView) welcomeView->page()->runJavaScript(js);
 }
 
 void MainWindow::setupUI()
