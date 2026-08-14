@@ -181,12 +181,31 @@ def deserialize_val(val, val_type):
 
 # --- USER SOLUTION ---
 class Solution:
-    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
-        return [[0]]
+    def addStrings(self, num1: str, num2: str) -> str:
+        result = [] # Use a list of characters to build the result
+        i = len(num1) - 1
+        j = len(num2) - 1
+        carry = 0
+
+        # Loop until both numbers are processed and there's no carry left
+        while i >= 0 or j >= 0 or carry:
+            digit1 = int(num1[i]) if i >= 0 else 0
+            digit2 = int(num2[j]) if j >= 0 else 0
+
+            current_sum = digit1 + digit2 + carry
+            result.append(str(current_sum % 10)) # Append the digit as a string
+            carry = current_sum // 10 # Integer division for carry
+
+            i -= 1 # Move to the next digit in num1
+            j -= 1 # Move to the next digit in num2
+        
+        # The result is built in reverse order, so reverse the list and join
+        return "".join(result[::-1])
+
 
 # --- RUNNER ---
 def run_all_tests():
-    manifest = json.loads("{\"entry\":{\"call\":{\"cpp\":\"Solution().flipAndInvertImage({image})\",\"csharp\":\"new Solution().FlipAndInvertImage({image})\",\"dart\":\"Solution().flipAndInvertImage({image})\",\"go\":\"flipAndInvertImage({image})\",\"java\":\"new Solution().flipAndInvertImage({image})\",\"kotlin\":\"Solution().flipAndInvertImage({image})\",\"python2\":\"Solution().flipAndInvertImage({image})\",\"python3\":\"Solution().flipAndInvertImage({image})\",\"ruby\":\"flip_and_invert_image({image})\",\"rust\":\"Solution::flip_and_invert_image({image})\",\"swift\":\"Solution().flipAndInvertImage({image})\",\"typescript\":\"flipAndInvertImage({image})\"},\"id\":832,\"params\":{\"image\":{\"items\":{\"items\":{\"type\":\"int\"},\"type\":\"array\"},\"type\":\"array\"}},\"title\":\"flipping-an-image\"},\"judge\":{\"type\":\"exact\"},\"limits\":{\"memory_mb\":256,\"time_ms\":1000},\"oracle\":{\"python3\":{\"call\":\"Checker().check({result})\",\"checker\":\"class Checker:\\n    def check(self, result):\\n        return True\\n\"}},\"seed\":832,\"tests\":[{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,0],[1,0,1],[0,0,0]]}},\"name\":\"ex1\",\"out\":[[1,0,0],[0,1,0],[1,1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]}},\"name\":\"ex2\",\"out\":[[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0]]}},\"name\":\"single_zero\",\"out\":[[1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1]]}},\"name\":\"single_one\",\"out\":[[0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0],[0,0]]}},\"name\":\"two_by_two_all_zero\",\"out\":[[1,1],[1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0],[0,1]]}},\"name\":\"two_by_two_checker\",\"out\":[[1,0],[0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,1],[0,1,0],[1,1,0]]}},\"name\":\"odd_size_mix\",\"out\":[[0,1,0],[1,0,1],[1,0,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1,0,1],[1,1,1,0],[0,0,1,1],[1,0,0,0]]}},\"name\":\"rectangular_pattern_1\",\"out\":[[0,1,0,1],[1,0,0,0],[0,0,1,1],[1,1,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0,1],[0,0,0,0],[1,1,0,0],[0,1,1,0]]}},\"name\":\"four_by_four_edges\",\"out\":[[0,1,1,0],[1,1,1,1],[1,1,0,0],[1,0,0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,1,0,0],[0,1,0,1,0],[1,0,0,0,1],[0,0,1,1,0],[1,0,1,0,1]]}},\"name\":\"five_by_five_dense\",\"out\":[[1,1,0,0,0],[1,0,1,0,1],[0,1,1,1,0],[1,0,0,1,1],[0,1,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,1,0,1],[0,0,1,0,0]]}},\"name\":\"row_palindrome\",\"out\":[[0,1,0,1,0],[1,1,0,1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,1],[1,1,1],[1,1,1]]}},\"name\":\"all_ones_3x3\",\"out\":[[0,0,0],[0,0,0],[0,0,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0,0,0],[0,0,0,0],[0,0,0,0]]}},\"name\":\"all_zero_3x4\",\"out\":[[1,1,1,1],[1,1,1,1],[1,1,1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1],[1,0],[0,1],[1,1]]}},\"name\":\"mixed_rect_1\",\"out\":[[0,1],[1,0],[0,1],[0,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0],[0,1,1]]}},\"name\":\"mixed_rect_2\",\"out\":[[1,1,0],[0,0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,1,1,0,0]]}},\"name\":\"mixed_rect_3\",\"out\":[[1,1,0,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0,1,1,1],[1,0,1,0,1]]}},\"name\":\"mixed_rect_4\",\"out\":[[0,0,0,1,1],[0,1,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,0,1],[0,1,0,0],[1,0,1,0]]}},\"name\":\"mixed_rect_5\",\"out\":[[0,1,0,0],[1,1,0,1],[1,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0,1,1,0]]}},\"name\":\"single_row\",\"out\":[[1,0,0,1,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1],[0],[1]]}},\"name\":\"single_col\",\"out\":[[0],[1],[0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]}},\"name\":\"diagonal_4x4\",\"out\":[[1,1,1,0],[1,1,0,1],[1,0,1,1],[0,1,1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1],[1,0],[0,1],[1,0],[0,1]]}},\"name\":\"alternating_5x2\",\"out\":[[0,1],[1,0],[0,1],[1,0],[0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0,0,0,0],[0,0,0,0,0],[0,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]]}},\"name\":\"center_one_5x5\",\"out\":[[1,1,1,1,1],[1,1,1,1,1],[1,1,0,1,1],[1,1,1,1,1],[1,1,1,1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,1,1,0]]}},\"name\":\"one_row_odd\",\"out\":[[1,0,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1,1,0]]}},\"name\":\"one_row_even\",\"out\":[[1,0,0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0],[1],[1],[0]]}},\"name\":\"one_col_mix\",\"out\":[[1],[0],[0],[1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0],[0,1,0],[1,0,1],[0,0,1],[1,1,0]]}},\"name\":\"tall_rect_1\",\"out\":[[1,1,0],[1,0,1],[0,1,0],[0,1,1],[1,0,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1,0,0],[1,1,1,0],[0,1,0,1]]}},\"name\":\"tall_rect_2\",\"out\":[[1,1,0,0],[1,0,0,0],[0,1,0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1,1,0,0,1],[1,0,1,0,1,0],[0,0,0,1,1,1],[1,1,0,0,1,1],[0,1,0,1,0,0],[1,0,1,1,0,1]]}},\"name\":\"square_6\",\"out\":[[0,1,1,0,0,1],[1,0,1,0,1,0],[0,0,0,1,1,1],[0,0,1,1,0,0],[1,1,0,1,0,1],[0,1,0,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0,1,0,0],[1,0,0,0,1],[1,1,0,1,0],[0,1,1,0,1]]}},\"name\":\"sparse_4x5\",\"out\":[[1,1,0,1,1],[0,1,1,1,0],[1,0,1,0,0],[0,1,0,0,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,0,0,1]]}},\"name\":\"extra_1\",\"out\":[[0,1,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1,0,0],[1,0,1,1]]}},\"name\":\"extra_2\",\"out\":[[1,1,0,1],[0,0,1,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,0,0],[1,0,0],[1,1,1]]}},\"name\":\"extra_3\",\"out\":[[1,1,1],[1,1,0],[0,0,0]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[1,1],[0,1],[1,0],[0,0]]}},\"name\":\"extra_4\",\"out\":[[0,0],[0,1],[1,0],[1,1]]},{\"in\":{\"image\":{\"elemType\":\"int\",\"value\":[[0,1,1,0,1],[1,0,0,1,0]]}},\"name\":\"extra_5\",\"out\":[[0,1,0,0,1],[1,0,1,1,0]]}]}")
+    manifest = json.loads("{\"entry\":{\"call\":{\"cpp\":\"Solution().addStrings({num1}, {num2})\",\"csharp\":\"new Solution().AddStrings({num1}, {num2})\",\"dart\":\"Solution().addStrings({num1}, {num2})\",\"go\":\"addStrings({num1}, {num2})\",\"java\":\"new Solution().addStrings({num1}, {num2})\",\"kotlin\":\"Solution().addStrings({num1}, {num2})\",\"python2\":\"Solution().addStrings({num1}, {num2})\",\"python3\":\"Solution().addStrings({num1}, {num2})\",\"ruby\":\"add_strings({num1}, {num2})\",\"rust\":\"Solution::add_strings({num1}, {num2})\",\"swift\":\"Solution().addStrings({num1}, {num2})\",\"typescript\":\"addStrings({num1}, {num2})\"},\"id\":415,\"params\":{\"num1\":{\"type\":\"string\"},\"num2\":{\"type\":\"string\"}},\"title\":\"add-strings\"},\"judge\":{\"type\":\"exact\"},\"limits\":{\"memory_mb\":256,\"time_ms\":1000},\"oracle\":{\"python3\":{\"call\":\"Checker().addStrings(num1, num2, {result})\",\"checker\":\"class Checker:\\n    def addStrings(self, num1, num2, result):\\n        if not isinstance(num1, str) or not isinstance(num2, str):\\n            return False\\n        if not isinstance(result, str):\\n            return False\\n\\n        i, j = len(num1) - 1, len(num2) - 1\\n        carry = 0\\n        digits = []\\n\\n        while i >= 0 or j >= 0 or carry:\\n            d1 = ord(num1[i]) - ord('0') if i >= 0 else 0\\n            d2 = ord(num2[j]) - ord('0') if j >= 0 else 0\\n            total = d1 + d2 + carry\\n            digits.append(chr(total % 10 + ord('0')))\\n            carry = total // 10\\n            i -= 1\\n            j -= 1\\n\\n        expected = ''.join(reversed(digits))\\n        return result == expected\\n\"}},\"seed\":415,\"tests\":[{\"in\":{\"num1\":\"11\",\"num2\":\"123\"},\"name\":\"example-1\"},{\"in\":{\"num1\":\"456\",\"num2\":\"77\"},\"name\":\"example-2\"},{\"in\":{\"num1\":\"0\",\"num2\":\"0\"},\"name\":\"example-3\"},{\"in\":{\"num1\":\"5\",\"num2\":\"5\"},\"name\":\"carry-single-digit\"},{\"in\":{\"num1\":\"1\",\"num2\":\"2\"},\"name\":\"no-carry-single-digit\"},{\"in\":{\"num1\":\"19\",\"num2\":\"1\"},\"name\":\"different-length-no-carry\"},{\"in\":{\"num1\":\"99\",\"num2\":\"1\"},\"name\":\"different-length-carry\"},{\"in\":{\"num1\":\"999\",\"num2\":\"1\"},\"name\":\"leading-carry-chain\"},{\"in\":{\"num1\":\"109\",\"num2\":\"991\"},\"name\":\"alternating-carry\"},{\"in\":{\"num1\":\"0\",\"num2\":\"123456789\"},\"name\":\"zero-plus-large\"},{\"in\":{\"num1\":\"987654321\",\"num2\":\"0\"},\"name\":\"large-plus-zero\"},{\"in\":{\"num1\":\"1000\",\"num2\":\"1000\"},\"name\":\"many-zeros\"},{\"in\":{\"num1\":\"1010\",\"num2\":\"9090\"},\"name\":\"mixed-carrys\"},{\"in\":{\"num1\":\"123456789\",\"num2\":\"987654321\"},\"name\":\"same-length-with-carries\"},{\"in\":{\"num1\":\"9999\",\"num2\":\"999\"},\"name\":\"different-length-with-carries\"},{\"in\":{\"num1\":\"500\",\"num2\":\"500\"},\"name\":\"one-more-digit-result\"},{\"in\":{\"num1\":\"10000\",\"num2\":\"1\"},\"name\":\"first-longer-by-one\"},{\"in\":{\"num1\":\"1\",\"num2\":\"10000\"},\"name\":\"second-longer-by-one\"},{\"in\":{\"num1\":\"99999\",\"num2\":\"99999\"},\"name\":\"all-nines-small\"},{\"in\":{\"num1\":\"900000000\",\"num2\":\"1\"},\"name\":\"carry-through-zeros\"},{\"in\":{\"num1\":\"123450000\",\"num2\":\"55\"},\"name\":\"carry-across-middle\"},{\"in\":{\"num1\":\"11111111111111111111\",\"num2\":\"88888888888888888889\"},\"name\":\"long-prefix-carry\"},{\"in\":{\"num1\":\"31415926535897932384\",\"num2\":\"31415926535897932384\"},\"name\":\"equal-long-strings\"},{\"in\":{\"num1\":\"42\",\"num2\":\"58\"},\"name\":\"randomish-small-1\"},{\"in\":{\"num1\":\"67\",\"num2\":\"33\"},\"name\":\"randomish-small-2\"},{\"in\":{\"num1\":\"808\",\"num2\":\"192\"},\"name\":\"randomish-small-3\"},{\"in\":{\"num1\":\"7654\",\"num2\":\"3456\"},\"name\":\"randomish-small-4\"},{\"in\":{\"num1\":\"2500\",\"num2\":\"2500\"},\"name\":\"randomish-small-5\"},{\"in\":{\"num1\":\"11111111111111111111111111111111111111111111111111\",\"num2\":\"22222222222222222222222222222222222222222222222222\"},\"name\":\"long-1\"},{\"in\":{\"num1\":\"99999999999999999999999999999999999999999999999999\",\"num2\":\"1\"},\"name\":\"long-2\"},{\"in\":{\"num1\":\"12345678901234567890123456789012345678901234567890\",\"num2\":\"98765432109876543210987654321098765432109876543210\"},\"name\":\"long-3\"},{\"in\":{\"num1\":\"10000000000000000000000000000000000000000000000000\",\"num2\":\"10000000000000000000000000000000000000000000000000\"},\"name\":\"long-4\"},{\"in\":{\"num1\":\"13579135791357913579135791357913579135791357913579\",\"num2\":\"24680246802468024680246802468024680246802468024680\"},\"name\":\"long-5\"},{\"in\":{\"num1\":\"99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999\",\"num2\":\"1\"},\"name\":\"max-1\"},{\"in\":{\"num1\":\"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678\",\"num2\":\"87654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321\"},\"name\":\"max-2\"},{\"in\":{\"num1\":\"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\",\"num2\":\"88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889\"},\"name\":\"max-3\"},{\"in\":{\"num1\":\"10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"num2\":\"10000000000000000000000000000000000000000000000000\"},\"name\":\"max-4\"},{\"in\":{\"num1\":\"314159265358979323846264338327950288419716939937510\",\"num2\":\"271828182845904523536028747135266249775724709369995\"},\"name\":\"max-5\"}]}")
     test_cases = manifest.get('tests', [])
     entry = manifest.get('entry', {})
     params_schema = entry.get('params', {})
@@ -234,22 +253,36 @@ def run_all_tests():
             actual_str = actual_json
             
             exp_val = tc.get('out')
-            if exp_val is not None:
-                exp_json = to_json(exp_val)
-                if judge_type == 'custom':
+            extracted_expected = [None]
+            if exp_val is None or judge_type == 'custom':
+                if oracle_call:
                     try:
-                        is_correct = eval(oracle_call, globals(), {**local_vars, "res": res_val})
+                        def trace_calls(frame, event, arg):
+                            if event == "return":
+                                locals_dict = frame.f_locals
+                                if "expected" in locals_dict:
+                                    extracted_expected[0] = locals_dict["expected"]
+                            return trace_calls
+                        sys.settrace(trace_calls)
+                        oracle_call_replaced = oracle_call.replace("{result}", "res")
+                        is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})
+                        sys.settrace(None)
                         if not is_correct:
                             status = "Wrong Answer"
                     except Exception as e:
+                        sys.settrace(None)
                         status = "System Error"
                         actual_str = f"Checker error: {str(e)}"
-                elif judge_type == 'unordered':
-                    if not compare_ignore_order(res_val, exp_val):
-                        status = "Wrong Answer"
                 else:
-                    if actual_json != exp_json:
+                    if res_val != exp_val:
                         status = "Wrong Answer"
+            elif judge_type == 'unordered':
+                if not compare_ignore_order(res_val, exp_val):
+                    status = "Wrong Answer"
+            else:
+                exp_json = to_json(exp_val)
+                if actual_json != exp_json:
+                    status = "Wrong Answer"
                         
         except Exception as e:
             status = "Runtime Error"
@@ -262,7 +295,7 @@ def run_all_tests():
         results.append({
             "status": status,
             "actual": actual_str,
-            "expected": to_json(tc.get('out')) if tc.get('out') is not None else "",
+            "expected": to_json(extracted_expected[0]) if extracted_expected[0] is not None else (to_json(tc.get('out')) if tc.get('out') is not None else ""),
             "elapsedMs": elapsed_ms,
             "stdout": captured_stdout.getvalue() + captured_stderr.getvalue()
         })
