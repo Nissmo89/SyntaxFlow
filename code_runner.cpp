@@ -580,14 +580,25 @@ def run_all_tests():
             actual_str = actual_json
             
             exp_val = tc.get('out')
+            extracted_expected = [None]
             if exp_val is None or judge_type == 'custom':
                 if oracle_call:
                     try:
+                        import sys
+                        def trace_calls(frame, event, arg):
+                            if event == "return":
+                                locals_dict = frame.f_locals
+                                if "expected" in locals_dict:
+                                    extracted_expected[0] = locals_dict["expected"]
+                            return trace_calls
+                        sys.settrace(trace_calls)
                         oracle_call_replaced = oracle_call.replace("{result}", "res")
                         is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})
+                        sys.settrace(None)
                         if not is_correct:
                             status = "Wrong Answer"
                     except Exception as e:
+                        sys.settrace(None)
                         status = "System Error"
                         actual_str = f"Checker error: {str(e)}"
                 else:
@@ -612,7 +623,7 @@ def run_all_tests():
         results.append({
             "status": status,
             "actual": actual_str,
-            "expected": to_json(tc.get('out')) if tc.get('out') is not None else "",
+            "expected": to_json(extracted_expected[0]) if extracted_expected[0] is not None else (to_json(tc.get('out')) if tc.get('out') is not None else ""),
             "elapsedMs": elapsed_ms,
             "stdout": captured_stdout.getvalue() + captured_stderr.getvalue()
         })
@@ -1247,7 +1258,21 @@ int main() {
             else expectedStr = QString::fromUtf8(QJsonDocument(resObj["expected"].toArray()).toJson(QJsonDocument::Compact));
         }
         
-        QString status = (i < statuses.size()) ? statuses[i].toString() : "System Error";
+        QString status = "System Error";
+        if (i < statuses.size()) {
+            if (statuses[i].isObject()) {
+                QJsonObject obj = statuses[i].toObject();
+                status = obj["status"].toString();
+                if (obj.contains("expected") && !obj["expected"].isNull()) {
+                    if (obj["expected"].isString()) expectedStr = obj["expected"].toString();
+                    else if (obj["expected"].isDouble()) expectedStr = QString::number(obj["expected"].toDouble());
+                    else if (obj["expected"].isBool()) expectedStr = obj["expected"].toBool() ? "true" : "false";
+                    else expectedStr = QString::fromUtf8(QJsonDocument(obj["expected"].toArray()).toJson(QJsonDocument::Compact));
+                }
+            } else {
+                status = statuses[i].toString();
+            }
+        }
         
         int targetIndex = (singleTestIndex >= 0) ? singleTestIndex : i;
         emit progress(i + 1, results.size());
@@ -1489,9 +1514,24 @@ run_all_tests();
     for (int i = 0; i < results.size(); ++i) {
         QJsonObject resObj = results[i].toObject();
         QString status = resObj["status"].toString();
+        QString expectedStr = resObj["expected"].toString();
         
         if (status == "Wrong Answer" || status == "Accepted") {
-            status = (i < statuses.size()) ? statuses[i].toString() : "System Error";
+            status = "System Error";
+            if (i < statuses.size()) {
+                if (statuses[i].isObject()) {
+                    QJsonObject obj = statuses[i].toObject();
+                    status = obj["status"].toString();
+                    if (obj.contains("expected") && !obj["expected"].isNull()) {
+                        if (obj["expected"].isString()) expectedStr = obj["expected"].toString();
+                        else if (obj["expected"].isDouble()) expectedStr = QString::number(obj["expected"].toDouble());
+                        else if (obj["expected"].isBool()) expectedStr = obj["expected"].toBool() ? "true" : "false";
+                        else expectedStr = QString::fromUtf8(QJsonDocument(obj["expected"].toArray()).toJson(QJsonDocument::Compact));
+                    }
+                } else {
+                    status = statuses[i].toString();
+                }
+            }
         }
         
         QString actual;
@@ -1506,7 +1546,7 @@ run_all_tests();
             actual = OutputNormalizer::normalizeError(resObj["actual"].toString(), "javascript", offset);
         }
         
-        QString expected = resObj["expected"].toString();
+        QString expected = expectedStr.isEmpty() ? resObj["expected"].toString() : expectedStr;
         qint64 elapsedMs = resObj["elapsedMs"].toInt();
         QString caseStdout = resObj["stdout"].toString();
         
@@ -1580,16 +1620,27 @@ def evaluate():
         exp = tc.get('out')
         
         status = "Accepted"
+        extracted_expected = [None]
         if exp is None or judge_type == 'custom':
             if oracle_call:
                 local_vars = {}
                 for p_name, p_val in tc.get('in', {}).items():
                     local_vars[p_name] = p_val
                 try:
+                    import sys
+                    def trace_calls(frame, event, arg):
+                        if event == "return":
+                            locals_dict = frame.f_locals
+                            if "expected" in locals_dict:
+                                extracted_expected[0] = locals_dict["expected"]
+                        return trace_calls
+                    sys.settrace(trace_calls)
                     oracle_call_replaced = oracle_call.replace("{result}", "res")
                     is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": actual})
+                    sys.settrace(None)
                     if not is_correct: status = "Wrong Answer"
                 except Exception as e:
+                    sys.settrace(None)
                     status = "System Error"
             else:
                 if actual != exp: status = "Wrong Answer"
@@ -1599,7 +1650,10 @@ def evaluate():
             if json.dumps(actual, separators=(',', ':')) != json.dumps(exp, separators=(',', ':')):
                 status = "Wrong Answer"
             
-        statuses.append(status)
+        if extracted_expected[0] is not None:
+            statuses.append({"status": status, "expected": extracted_expected[0]})
+        else:
+            statuses.append(status)
         
     print("SF_EVAL_START")
     print(json.dumps(statuses))
