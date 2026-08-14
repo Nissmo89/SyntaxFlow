@@ -303,8 +303,11 @@ void MainWindow::setupWelcomePage()
     QUrl url(m_server->getUrlFor("/landing/index.html"));
     welcomeView->setUrl(url);
 
+    welcomeBridge = new WelcomeBridge(this);
+    connect(welcomeBridge, &WelcomeBridge::requestedBrowser, this, &MainWindow::onNavigateToBrowser);
+
     QWebChannel *welcomeChannel = new QWebChannel(this);
-    welcomeChannel->registerObject(QStringLiteral("mainWindow"), this);
+    welcomeChannel->registerObject(QStringLiteral("welcomeBridge"), welcomeBridge);
     welcomeView->page()->setWebChannel(welcomeChannel);
 
     layout->addWidget(welcomeView);

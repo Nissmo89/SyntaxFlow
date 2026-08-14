@@ -295,23 +295,12 @@ template <typename T> string toJson(const vector<T> &v) {
 
 inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
-#include <string>
-#include <cstdio>
-
 class Solution {
 public:
-    std::string complexNumberMultiply(std::string num1, std::string num2) {
-        int a, b, c, d;
-        // Parse "a+bi" and "c+di" directly using sscanf
-        sscanf(num1.c_str(), "%d+%di", &a, &b);
-        sscanf(num2.c_str(), "%d+%di", &c, &d);
-        
-        // Calculate real and imaginary parts of the product
-        int real_part = a * c - b * d;
-        int imag_part = a * d + b * c;
-        
-        // Format into the output string "real+imaginaryi"
-        return std::to_string(real_part) + "+" + std::to_string(imag_part) + "i";
+    int addDigits(int n) {
+        if(n < 10)
+            return n;
+        return 1 + (n - 1) % 9 ;
     }
 };
 
@@ -327,9 +316,8 @@ int main() {
     for (auto& caseJson : _TEST_JSON_) {
         cout << "DEBUG:" << caseJson.dump() << endl;
         auto inputs = caseJson["in"];
-        string _num1 = (inputs.contains("num1") && inputs["num1"].is_string()) ? inputs["num1"].get<string>() : "";
-        string _num2 = (inputs.contains("num2") && inputs["num2"].is_string()) ? inputs["num2"].get<string>() : "";
-        auto res = Solution().complexNumberMultiply(_num1, _num2);
+        int _num = (inputs.contains("num") && inputs["num"].is_number()) ? inputs["num"].get<int>() : 0;
+        auto res = Solution().addDigits(_num);
         _JSON_ resObj;
         resObj = _JSON_::parse(toJson(res), nullptr, false);
         if (resObj.is_discarded()) { resObj = toJson(res); }

@@ -180,6 +180,9 @@
       border-radius: 4px;
       border: 1px solid var(--lime-border);
       letter-spacing: 0.5px;
+      font-variant-numeric: tabular-nums;
+      min-width: 48px;
+      text-align: center;
     }
 
     .timer-popover {
@@ -225,6 +228,10 @@
       font-weight: 600;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
+    .timer-tab-btn:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: -1px;
+    }
     .timer-close-btn {
       background: transparent;
       border: none;
@@ -252,6 +259,7 @@
       letter-spacing: 1px;
       margin: 8px 0 10px;
       user-select: none;
+      font-variant-numeric: tabular-nums;
     }
     .timer-digital-display.running { color: var(--lime); }
     .timer-digital-display.warning {
@@ -259,8 +267,13 @@
       animation: timerPulse 1s infinite alternate;
     }
     @keyframes timerPulse {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0.5; transform: scale(0.98); }
+      from { opacity: 1; }
+      to { opacity: 0.55; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .timer-digital-display.warning { animation: none; }
+      .timer-progress-fill { transition: none; }
     }
 
     .timer-progress-track {
@@ -306,6 +319,12 @@
       color: var(--accent);
       border-color: var(--accent);
     }
+    .preset-btn:focus-visible,
+    .timer-action-row .btn:focus-visible,
+    .timer-custom-row .btn-sm:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: -1px;
+    }
 
     .timer-custom-row {
       display: flex;
@@ -325,7 +344,14 @@
       font-size: 12px;
       text-align: center;
       outline: none;
+      font-variant-numeric: tabular-nums;
     }
+    .timer-custom-row input::-webkit-outer-spin-button,
+    .timer-custom-row input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .timer-custom-row input[type="number"] { -moz-appearance: textfield; }
     .timer-custom-row input:focus { border-color: var(--accent); }
     .timer-custom-row .btn-sm {
       background: var(--surface-2);
@@ -1631,7 +1657,7 @@
           </div>
           <div class="timer-custom-row">
             <span>Custom:</span>
-            <input type="number" id="customTimerMin" min="1" max="180" value="25" placeholder="min" />
+            <input type="number" id="customTimerMin" min="1" max="300" value="25" placeholder="min" />
             <span>min</span>
             <button class="btn-sm" id="btnSetCustomTimer">Set</button>
           </div>
@@ -2181,6 +2207,13 @@
       setTimerPresetDuration(val);
     }
   };
+
+  customTimerMin.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      btnSetCustomTimer.click();
+    }
+  });
 
   btnStopwatchToggle.onclick = () => {
     if (swIsRunning) pauseStopwatch();
@@ -2820,7 +2853,6 @@
     });
   }
 
-  // ─── CLIPBOARD COPY HELPER ───
   window.copyTextToClipboard = function(text, btnEl) {
     if (!text) return;
     const doFeedback = () => {
@@ -2836,14 +2868,15 @@
       }
     };
 
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(doFeedback).catch(() => {
-        fallbackCopy(text);
-        doFeedback();
-      });
-    } else {
-      fallbackCopy(text);
+    let success = false;
+    try {
+      success = fallbackCopy(text);
+    } catch (e) {}
+
+    if (success) {
       doFeedback();
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(doFeedback).catch(() => {});
     }
   };
 
@@ -2856,10 +2889,12 @@
     document.body.appendChild(ta);
     ta.focus();
     ta.select();
+    let res = false;
     try {
-      document.execCommand('copy');
+      res = document.execCommand('copy');
     } catch (e) {}
     document.body.removeChild(ta);
+    return res;
   }
 
   window.copyActiveTabCode = function(btnEl, tabsId) {
@@ -3248,6 +3283,7 @@
     marked.setOptions({
       gfm: true,
       breaks: true,
+      langPrefix: 'hljs language-',
       highlight: function(code, lang) {
         if (lang) {
           const cleanLang = lang.replace(/\s*\[.*\]/, '').trim().toLowerCase();
@@ -3702,6 +3738,12 @@
       if (leftView === 'solutions' && currentProblemSlug && solutionsState.status === 'loading') {
         workspaceBridge.onFetchSolutionRequested(currentProblemSlug);
       }
+    }
+  });
+
+  window.addEventListener("message", function(event) {
+    if (event.data && event.data.theme) {
+      document.documentElement.setAttribute("data-theme", event.data.theme);
     }
   });
 

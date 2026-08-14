@@ -60,6 +60,19 @@ signals:
     void hoverChanged(bool isHovered);
 };
 
+class WelcomeBridge : public QObject
+{
+    Q_OBJECT
+public:
+    explicit WelcomeBridge(QObject *parent = nullptr) : QObject(parent) {}
+
+public slots:
+    void navigateToBrowser() { emit requestedBrowser(); }
+
+signals:
+    void requestedBrowser();
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -164,6 +177,7 @@ private:
     // ─── Welcome Page ───
     QWidget *welcomePage = nullptr;
     QWebEngineView *welcomeView = nullptr;
+    WelcomeBridge *welcomeBridge = nullptr;
 
     // ─── Browser Page ───
     QWidget *browserPage = nullptr;

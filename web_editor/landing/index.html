@@ -174,14 +174,14 @@
     <script>
         if (typeof qt !== 'undefined') {
             new QWebChannel(qt.webChannelTransport, function(channel) {
-                var mainWindow = channel.objects.mainWindow;
+                var welcomeBridge = channel.objects.welcomeBridge;
                 var links = document.querySelectorAll('.nav-link, .btn');
                 links.forEach(function(link) {
                     if (link.id === 'themeToggle') return;
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
-                        if (mainWindow && mainWindow.onNavigateToBrowser) {
-                            mainWindow.onNavigateToBrowser();
+                        if (welcomeBridge && welcomeBridge.navigateToBrowser) {
+                            welcomeBridge.navigateToBrowser();
                         }
                     });
                 });
