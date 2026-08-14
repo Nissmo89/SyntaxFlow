@@ -580,22 +580,26 @@ def run_all_tests():
             actual_str = actual_json
             
             exp_val = tc.get('out')
-            if exp_val is not None:
-                exp_json = to_json(exp_val)
-                if judge_type == 'custom':
+            if exp_val is None or judge_type == 'custom':
+                if oracle_call:
                     try:
-                        is_correct = eval(oracle_call, globals(), {**local_vars, "res": res_val})
+                        oracle_call_replaced = oracle_call.replace("{result}", "res")
+                        is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})
                         if not is_correct:
                             status = "Wrong Answer"
                     except Exception as e:
                         status = "System Error"
                         actual_str = f"Checker error: {str(e)}"
-                elif judge_type == 'unordered':
-                    if not compare_ignore_order(res_val, exp_val):
-                        status = "Wrong Answer"
                 else:
-                    if actual_json != exp_json:
+                    if res_val != exp_val:
                         status = "Wrong Answer"
+            elif judge_type == 'unordered':
+                if not compare_ignore_order(res_val, exp_val):
+                    status = "Wrong Answer"
+            else:
+                exp_json = to_json(exp_val)
+                if actual_json != exp_json:
+                    status = "Wrong Answer"
                         
         except Exception as e:
             status = "Runtime Error"
