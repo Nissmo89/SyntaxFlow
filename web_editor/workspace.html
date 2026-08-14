@@ -3591,7 +3591,7 @@
       </div>
       <div class="case-field">
         <div class="case-field-title">Expected Output</div>
-        <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || ''}</div>
+        <div class="case-field-val val-expected">${tc.output || tc.expectedOutput || '<span style="color:var(--text-muted); font-style:italic;">Evaluated by custom checker</span>'}</div>
       </div>
     `;
     document.getElementById('caseContent').innerHTML = html;
@@ -3682,9 +3682,13 @@
        }
     } catch(e){}
 
-    let expectedHtml = tc.output || tc.expectedOutput || '';
+    let expectedHtml = tc.output || tc.expectedOutput;
+    if (expectedHtml === undefined || expectedHtml === null || expectedHtml === "") {
+        expectedHtml = '<span style="color:var(--text-muted); font-style:italic;">Evaluated by custom checker</span>';
+    }
+    
     try {
-       if (expectedHtml.startsWith('{') || expectedHtml.startsWith('[')) {
+       if (typeof expectedHtml === 'string' && (expectedHtml.startsWith('{') || expectedHtml.startsWith('['))) {
            expectedHtml = JSON.stringify(JSON.parse(expectedHtml), null, 2);
        }
     } catch(e){}
