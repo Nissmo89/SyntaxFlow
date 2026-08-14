@@ -584,7 +584,6 @@ def run_all_tests():
             if exp_val is None or judge_type == 'custom':
                 if oracle_call:
                     try:
-                        import sys
                         def trace_calls(frame, event, arg):
                             if event == "return":
                                 locals_dict = frame.f_locals
@@ -1627,7 +1626,6 @@ def evaluate():
                 for p_name, p_val in tc.get('in', {}).items():
                     local_vars[p_name] = p_val
                 try:
-                    import sys
                     def trace_calls(frame, event, arg):
                         if event == "return":
                             locals_dict = frame.f_locals
