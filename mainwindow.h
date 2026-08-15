@@ -22,6 +22,8 @@
 namespace QWK { class WidgetWindowAgent; }
 #endif
 
+#include "githubauth.h"
+
 class QStackedLayout;
 class WebWorkspace;
 class ProblemBrowser;
@@ -71,6 +73,21 @@ public slots:
 
 signals:
     void requestedBrowser();
+};
+
+class ProfileBridge : public QObject
+{
+    Q_OBJECT
+public:
+    explicit ProfileBridge(QObject *parent = nullptr) : QObject(parent) {}
+
+public slots:
+    void loginGithub() { emit requestedGithubLogin(); }
+
+signals:
+    void requestedGithubLogin();
+    void userCodeReady(const QString &code, const QString &uri);
+    void profileUpdated(const QString &avatarUrl, const QString &login, const QString &name);
 };
 
 class MainWindow : public QMainWindow
@@ -186,6 +203,8 @@ private:
     // ─── Profile Page ───
     QWidget *profilePage = nullptr;
     QWebEngineView *profileView = nullptr;
+    ProfileBridge *profileBridge = nullptr;
+    QWebChannel *profileChannel = nullptr;
 
     // ─── Editor Page ───
     QWidget *editorPage = nullptr;
@@ -209,6 +228,12 @@ private:
 
     // ─── Embedded Server ───
     HttpServer *m_server = nullptr;
+
+    // ─── GitHub Auth ───
+    GithubAuth *m_githubAuth = nullptr;
+    QString m_currentUserLogin;
+    QString m_currentUserName;
+    QString m_currentUserAvatar;
 };
 
 #endif // MAINWINDOW_H

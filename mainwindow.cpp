@@ -7,6 +7,9 @@
 #include <QNetworkInterface>
 #include "backend.h"
 #include "httpserver.h"
+#include <QDesktopServices>
+#include <QClipboard>
+
 
 #include <QStackedLayout>
 #include <QVBoxLayout>
@@ -45,10 +48,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_server = new HttpServer(this);
 
+    m_githubAuth = new GithubAuth(this);
+
+    // Default mac
+    for(const QNetworkInterface& interface : QNetworkInterface::allInterfaces()) {
+        if(!(interface.flags() & QNetworkInterface::IsLoopBack) && interface.hardwareAddress().length() > 0) {
+            m_currentUserAvatar = "https://api.dicebear.com/9.x/identicon/svg?seed=" + QUrl::toPercentEncoding(interface.hardwareAddress());
+            m_currentUserLogin = interface.hardwareAddress().mid(0, 8);
+            m_currentUserName = "Local User";
+            break;
+        }
+    }
+
     setupBackend();
+    setupTitleBar();
     setupUI();
     setupConnections();
     setupShortcuts();
+
     populateLanguages();
 }
 
@@ -360,8 +377,14 @@ void MainWindow::setupProfilePage()
         }
     }
 
+    profileBridge = new ProfileBridge(this);
+    profileChannel = new QWebChannel(this);
+    profileChannel->registerObject(QStringLiteral("profileBridge"), profileBridge);
+    profileView->page()->setWebChannel(profileChannel);
+
     QUrl url(m_server->getUrlFor("/profile.html", "mac=" + QUrl::toPercentEncoding(macAddress)));
     profileView->setUrl(url);
+
 
     layout->addWidget(profileView);
     stack->addWidget(profilePage);
@@ -426,8 +449,34 @@ void MainWindow::setupSidebar()
 
 void MainWindow::setupConnections()
 {
+    connect(profileBridge, &ProfileBridge::requestedGithubLogin, m_githubAuth, &GithubAuth::initiateAuth);
+
+    connect(m_githubAuth, &GithubAuth::userCodeReceived, this, [this](const QString &code, const QString &uri) {
+        QClipboard *clipboard = QGuiApplication::clipboard();
+        clipboard->setText(code);
+        QMessageBox::information(this, "GitHub Login",
+            QString("Your device code is: <b>%1</b> (copied to clipboard!)<br><br>"
+                    "Please go to <a href=\"%2\">%2</a> and enter the code to authorize.").arg(code, uri));
+        QDesktopServices::openUrl(QUrl(uri));
+    });
+
+    connect(m_githubAuth, &GithubAuth::profileDataReceived, this, [this](const QString &avatarUrl, const QString &login, const QString &name) {
+        m_currentUserAvatar = avatarUrl;
+        m_currentUserLogin = login;
+        m_currentUserName = name;
+        
+        QString js = QString("if(typeof updateProfile === 'function') updateProfile('%1', '%2', '%3');").arg(avatarUrl, login, name);
+        profileView->page()->runJavaScript(js);
+        sidebarView->page()->runJavaScript(js);
+    });
+
+    connect(m_githubAuth, &GithubAuth::errorOccurred, this, [this](const QString &errorMsg) {
+        QMessageBox::warning(this, "GitHub Login Error", errorMsg);
+    });
+
     connect(browser, &ProblemBrowser::navigateToEditor,
             this, &MainWindow::onNavigateToEditor);
+
 
     connect(m_workspace, &WebWorkspace::backRequested,
             this, &MainWindow::onNavigateToBrowser);

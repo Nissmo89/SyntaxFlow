@@ -6,6 +6,7 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="design.css">
   <script src="theme.js"></script>
+  <script src="qwebchannel.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
     :root {
@@ -65,6 +66,24 @@
       font-weight: 700;
       color: var(--text);
       letter-spacing: -0.3px;
+    }
+
+    .github-btn {
+      margin-left: auto;
+      padding: 8px 16px;
+      background: #24292e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .github-btn:hover {
+      background: #2f363d;
     }
 
     .profile-title {
@@ -286,14 +305,18 @@
         <img id="dashboard-avatar" src="" alt="Avatar" />
       </div>
       <div class="profile-details">
-        <div class="profile-name">Local User</div>
-        <div class="profile-title">Algorithm Enthusiast</div>
+        <div class="profile-name" id="profile-name">Local User</div>
+        <div class="profile-title" id="profile-login">Algorithm Enthusiast</div>
         <div class="profile-meta">
           <span><i data-lucide="calendar" width="12" height="12"></i> Member since 2024</span>
           <span><i data-lucide="map-pin" width="12" height="12"></i> Global</span>
         </div>
       </div>
+      <button class="github-btn" id="github-login-btn">
+        <i data-lucide="github"></i> Connect GitHub
+      </button>
     </div>
+
 
     <!-- Stats -->
     <div class="stats-grid">
@@ -406,11 +429,33 @@
     const mac = params.get("mac") || "default";
     document.getElementById("dashboard-avatar").src = `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(mac)}`;
 
+
+    let profileBridge = null;
+    if (typeof qt !== 'undefined') {
+      new QWebChannel(qt.webChannelTransport, function(channel) {
+        profileBridge = channel.objects.profileBridge;
+      });
+    }
+
+    document.getElementById('github-login-btn').onclick = function() {
+      if (profileBridge) {
+        profileBridge.loginGithub();
+      }
+    };
+
+    function updateProfile(avatarUrl, login, name) {
+      document.getElementById('dashboard-avatar').src = avatarUrl;
+      document.getElementById('profile-name').innerText = name;
+      document.getElementById('profile-login').innerText = "@" + login;
+      document.getElementById('github-login-btn').style.display = 'none';
+    }
+
     setTimeout(() => {
       document.querySelectorAll('.skill-fill').forEach(bar => {
         bar.style.width = bar.getAttribute('data-target');
       });
     }, 100);
   </script>
+
 </body>
 </html>

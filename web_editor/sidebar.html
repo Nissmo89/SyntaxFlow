@@ -295,6 +295,12 @@
         sidebarBridge.bottomItemClicked(1);
       }
     };
+
+    function updateProfile(avatarUrl, login, name) {
+      document.getElementById('avatar-img').src = avatarUrl;
+      document.querySelector('.profile-name').innerText = login;
+      document.getElementById('mac-text').innerText = 'GITHUB';
+    }
   </script>
 </body>
 </html>

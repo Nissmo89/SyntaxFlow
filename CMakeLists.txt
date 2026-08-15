@@ -114,6 +114,21 @@ if(SYNTAXFLOW_USE_QWINDOWKIT)
 endif()
 
 # ============================================================
+# QtKeychain Integration
+# ============================================================
+include(FetchContent)
+set(BUILD_TRANSLATIONS OFF CACHE BOOL "No translations" FORCE)
+set(BUILD_TEST_APPLICATION OFF CACHE BOOL "No tests" FORCE)
+set(BUILD_WITH_QT6 ON CACHE BOOL "Build qtkeychain with Qt6" FORCE)
+FetchContent_Declare(
+  qtkeychain
+  GIT_REPOSITORY https://github.com/frankosterfeld/qtkeychain.git
+  GIT_TAG 0.14.2
+)
+FetchContent_MakeAvailable(qtkeychain)
+
+
+# ============================================================
 # QText Browser Custom Renderer Module
 # ============================================================
 add_subdirectory(libs/qtext_browser)
@@ -185,6 +200,7 @@ add_executable(SyntaxFlow
     python_runner.h python_runner.cpp
     javascript_runner.h javascript_runner.cpp
     wasm_runner.h wasm_runner.cpp
+    githubauth.h githubauth.cpp
     httpserver.h
     resources/resources.qrc
 )
@@ -201,7 +217,10 @@ target_link_libraries(SyntaxFlow PRIVATE
     Qt6::WebChannel
     Qt6::Svg
     qtext_browser
+    qt6keychain
 )
+
+target_include_directories(SyntaxFlow PRIVATE ${qtkeychain_SOURCE_DIR} ${qtkeychain_BINARY_DIR})
 
 if(SYNTAXFLOW_HAS_QWINDOWKIT)
     target_link_libraries(SyntaxFlow PRIVATE QWindowKit::Widgets)
