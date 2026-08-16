@@ -23,6 +23,7 @@ namespace QWK { class WidgetWindowAgent; }
 #endif
 
 #include "githubauth.h"
+#include "copilotmanager.h"
 
 class QStackedLayout;
 class WebWorkspace;
@@ -231,6 +232,7 @@ private:
 
     // ─── GitHub Auth ───
     GithubAuth *m_githubAuth = nullptr;
+    CopilotManager *m_copilotManager = nullptr;
     QString m_currentUserLogin;
     QString m_currentUserName;
     QString m_currentUserAvatar;
