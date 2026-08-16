@@ -1,13 +1,29 @@
 import { CopilotClient } from "@github/copilot-sdk";
 
+import fs from 'fs';
+
+fs.writeFileSync('bridge_debug.log', `[${new Date().toISOString()}] Bridge started with Node ${process.version}\n`);
+
 // Map to hold active sessions
 const sessions = new Map();
 let client = null;
 
 // Send JSON response to C++ backend
 function sendResponse(id, result, error = null) {
-  process.stdout.write(JSON.stringify({ id, result, error }) + "\n");
+  const msg = JSON.stringify({ id, result, error }) + "\n";
+  fs.appendFileSync('bridge_debug.log', `[OUT] ${msg}`);
+  process.stdout.write(msg);
 }
+
+process.on('uncaughtException', err => {
+  fs.appendFileSync('bridge_debug.log', `[FATAL] ${err.stack}\n`);
+  process.stderr.write(`FATAL: ${err.stack}\n`);
+  process.exit(1);
+});
+process.on('unhandledRejection', err => {
+  fs.appendFileSync('bridge_debug.log', `[REJECTION] ${err.stack}\n`);
+  process.stderr.write(`REJECTION: ${err.stack}\n`);
+});
 
 async function handleRequest(request) {
   const { id, method, params } = request;
@@ -88,6 +104,7 @@ process.stdin.on("data", (data) => {
     buffer = buffer.slice(newlineIndex + 1);
     
     if (line) {
+      fs.appendFileSync('bridge_debug.log', `[IN] ${line}\n`);
       try {
         const req = JSON.parse(line);
         handleRequest(req);
