@@ -4,8 +4,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QDebug>
-#include <QSettings>
-#include <QCoreApplication>
+#include <keychain.h>
 
 GithubAuth::GithubAuth(QObject *parent) : QObject(parent) {
     m_nam = new QNetworkAccessManager(this);
@@ -18,17 +17,16 @@ GithubAuth::GithubAuth(QObject *parent) : QObject(parent) {
     // want to substitute this with your own SyntaxFlow Client ID.
     m_clientId = "178c6fc778ccc68e1d6a"; 
 
-    // Attempt to load existing token from local file
-    QString configPath = QCoreApplication::applicationDirPath() + "/github_auth.ini";
-    QSettings settings(configPath, QSettings::IniFormat);
-    QString savedToken = settings.value("github_access_token").toString();
-    
-    if (!savedToken.isEmpty()) {
-        // We delay the fetch slightly so that signals can be connected by the caller
-        QTimer::singleShot(0, this, [this, savedToken]() {
+    // Attempt to load existing token from secure OS keyring
+    auto *job = new QKeychain::ReadPasswordJob("SyntaxFlow", this);
+    job->setKey("github_access_token");
+    connect(job, &QKeychain::Job::finished, this, [this, job]() {
+        if (!job->error()) {
+            QString savedToken = job->textData();
             fetchUserProfile(savedToken);
-        });
-    }
+        }
+    });
+    job->start();
 }
 
 void GithubAuth::initiateAuth() {
@@ -116,11 +114,16 @@ void GithubAuth::onAccessTokenReply() {
         m_pollTimer->stop();
         QString token = obj["access_token"].toString();
         
-        // Save the token securely to the local file
-        QString configPath = QCoreApplication::applicationDirPath() + "/github_auth.ini";
-        QSettings settings(configPath, QSettings::IniFormat);
-        settings.setValue("github_access_token", token);
-        settings.sync();
+        // Save the token securely to the OS keyring
+        auto *job = new QKeychain::WritePasswordJob("SyntaxFlow", this);
+        job->setKey("github_access_token");
+        job->setTextData(token);
+        connect(job, &QKeychain::Job::finished, this, [job]() {
+            if (job->error()) {
+                qWarning() << "Failed to save token to keyring:" << job->errorString();
+            }
+        });
+        job->start();
         
         emit authenticated(token);
         fetchUserProfile(token);
@@ -142,11 +145,10 @@ void GithubAuth::onProfileReply() {
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        // Token is likely invalid or revoked. Delete it from local settings.
-        QString configPath = QCoreApplication::applicationDirPath() + "/github_auth.ini";
-        QSettings settings(configPath, QSettings::IniFormat);
-        settings.remove("github_access_token");
-        settings.sync();
+        // Token is likely invalid or revoked. Delete it from keyring securely.
+        auto *job = new QKeychain::DeletePasswordJob("SyntaxFlow", this);
+        job->setKey("github_access_token");
+        job->start();
         
         emit errorOccurred("Failed to fetch profile (or token invalid): " + reply->errorString());
         return;
