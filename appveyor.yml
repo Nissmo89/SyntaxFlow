@@ -17,7 +17,9 @@ environment:
   Qt6_DIR: 'C:\Qt\6.8.0\msvc2022_64\lib\cmake\Qt6'
 
 init:
-  - for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VS_PATH=%%i"
+  - set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+  - if not exist "%VSWHERE%" ( echo [ERROR] vswhere.exe not found & exit 1 )
+  - for /f "usebackq tokens=*" %%i in (`"%VSWHERE%" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VS_PATH=%%i"
   - if "%VS_PATH%"=="" ( echo [ERROR] Visual Studio installation not found & exit 1 )
   - echo [OK] Visual Studio found at %VS_PATH%
   - call "%VS_PATH%\Common7\Tools\VsDevCmd.bat" -arch=x64
