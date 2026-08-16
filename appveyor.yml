@@ -62,14 +62,14 @@ after_build:
   - echo [OK] SyntaxFlow.exe found in %EXE_DIR%
   - mkdir package
   - copy "%EXE_DIR%\SyntaxFlow.exe" package\
-  - if exist "%EXE_DIR%\*.dll" copy "%EXE_DIR%\*.dll" package\
+  - for /R build-windows %%F in (*.dll) do if not "%%~dpF"=="%CD%\package\" copy /Y "%%F" package\
   - if exist "%EXE_DIR%\problems" xcopy /E /I /Y "%EXE_DIR%\problems" package\problems
   - if exist "%EXE_DIR%\problems.json" copy /Y "%EXE_DIR%\problems.json" package\
   - if exist "%EXE_DIR%\style.css" copy /Y "%EXE_DIR%\style.css" package\
   - if exist "%EXE_DIR%\fonts" xcopy /E /I /Y "%EXE_DIR%\fonts" package\fonts
   - if exist "%EXE_DIR%\web_editor" xcopy /E /I /Y "%EXE_DIR%\web_editor" package\web_editor
   - if exist "%EXE_DIR%\wasi-sdk" xcopy /E /I /Y "%EXE_DIR%\wasi-sdk" package\wasi-sdk
-  - if exist "%EXE_DIR%\*.dll" copy /Y "%EXE_DIR%\*.dll" "%QT_PATH%\bin\"
+  - for /R build-windows %%F in (qt6*.dll) do copy /Y "%%F" "%QT_PATH%\bin\"
   - call "%QT_PATH%\bin\windeployqt.exe" --release --no-translations package\SyntaxFlow.exe
   - if not exist "package\SyntaxFlow.exe" ( echo [ERROR] SyntaxFlow.exe missing after deployment & exit 1 )
   - if not exist "package\Qt6Core.dll" ( echo [ERROR] Qt6Core.dll missing after deployment & exit 1 )
