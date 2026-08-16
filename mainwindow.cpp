@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_server = new HttpServer(this);
 
     m_githubAuth = new GithubAuth(this);
+    m_copilotManager = new CopilotManager(this);
 
     // Default mac
     for(const QNetworkInterface& interface : QNetworkInterface::allInterfaces()) {
@@ -466,6 +467,12 @@ void MainWindow::setupSidebar()
 void MainWindow::setupConnections()
 {
     connect(profileBridge, &ProfileBridge::requestedGithubLogin, m_githubAuth, &GithubAuth::initiateAuth);
+
+    connect(m_githubAuth, &GithubAuth::authenticated, this, [this](const QString &token) {
+        if (m_copilotManager) {
+            m_copilotManager->startBridge(token);
+        }
+    });
 
     connect(m_githubAuth, &GithubAuth::userCodeReceived, this, [this](const QString &code, const QString &uri) {
         QClipboard *clipboard = QGuiApplication::clipboard();
