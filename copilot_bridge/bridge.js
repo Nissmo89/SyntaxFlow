@@ -34,7 +34,7 @@ async function handleRequest(request) {
         const token = params.token;
         if (!token) throw new Error("GitHub token is required for initialization");
         
-        client = new CopilotClient({ token });
+        client = new CopilotClient({ gitHubToken: token });
         await client.start();
         sendResponse(id, { status: "initialized" });
         break;
