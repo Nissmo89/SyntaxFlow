@@ -69,7 +69,8 @@ async function handleRequest(request) {
         const { prompt, codeContext, languageContext } = params;
         const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
         
-        let fullPrompt = `The user is writing ${languageContext} code. Here is the current code context:\n\`\`\`${languageContext}\n${codeContext}\n\`\`\`\n\nUser query: ${prompt}`;
+        const systemPrompt = "System Instruction: You are the AI assistant inside 'SyntaxFlow', a lightweight competitive programming and algorithm editor. Do not mention VS Code, GitHub repositories, or offer to make Git commits, as you do not have those capabilities in this environment. Keep your answers highly concise and focus purely on providing or explaining the code.";
+        let fullPrompt = `${systemPrompt}\n\nThe user is writing ${languageContext} code. Here is the current code context:\n\`\`\`${languageContext}\n${codeContext}\n\`\`\`\n\nUser query: ${prompt}`;
         
         const chatResponse = await chatSession.sendAndWait({ prompt: fullPrompt });
         sendResponse(id, { 
