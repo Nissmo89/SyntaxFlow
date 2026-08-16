@@ -10,6 +10,7 @@ CopilotManager::CopilotManager(QObject *parent) : QObject(parent) {
     connect(m_process, &QProcess::readyReadStandardError, this, [this]() {
         QString errOutput = m_process->readAllStandardError().trimmed();
         qWarning() << "[Copilot Bridge stderr]" << errOutput;
+        m_lastError = errOutput;
         emit errorOccurred("Node: " + errOutput);
     });
     connect(m_process, &QProcess::errorOccurred, this, &CopilotManager::onProcessError);
@@ -46,7 +47,8 @@ void CopilotManager::startBridge(const QString &githubToken) {
     m_process->start(nodeExecutable, QStringList() << scriptPath);
     if (!m_process->waitForStarted()) {
         qWarning() << "Failed to start Node.js for Copilot bridge!";
-        emit errorOccurred("Node.js is not installed or not in PATH.");
+        m_lastError = "Node.js is not installed or not in PATH.";
+        emit errorOccurred(m_lastError);
         return;
     }
 
@@ -69,7 +71,9 @@ void CopilotManager::sendRequest(const QString &method, const QJsonObject &param
 
 void CopilotManager::requestCompletion(const QString &requestId, const QString &code, const QString &language, int cursorOffset) {
     if (!m_ready) {
-        emit errorOccurred("Copilot is not ready yet.");
+        QString msg = "Copilot is not ready yet.";
+        if (!m_lastError.isEmpty()) msg += " (Reason: " + m_lastError + ")";
+        emit errorOccurred(msg);
         return;
     }
 
@@ -86,7 +90,9 @@ void CopilotManager::requestCompletion(const QString &requestId, const QString &
 
 void CopilotManager::requestChat(const QString &requestId, const QString &prompt, const QString &codeContext, const QString &languageContext) {
     if (!m_ready) {
-        emit errorOccurred("Copilot is not ready yet.");
+        QString msg = "Copilot is not ready yet.";
+        if (!m_lastError.isEmpty()) msg += " (Reason: " + m_lastError + ")";
+        emit errorOccurred(msg);
         return;
     }
 
@@ -117,7 +123,8 @@ void CopilotManager::onProcessReadyRead() {
         QString id = obj["id"].toString();
         
         if (obj.contains("error") && !obj["error"].isNull()) {
-            emit errorOccurred(obj["error"].toString());
+            m_lastError = obj["error"].toString();
+            emit errorOccurred(m_lastError);
             continue;
         }
 
@@ -146,10 +153,12 @@ void CopilotManager::onProcessReadyRead() {
 }
 
 void CopilotManager::onProcessError(QProcess::ProcessError error) {
+    m_lastError = "Process error: " + QString::number(error);
     qWarning() << "Copilot bridge process error:" << error;
 }
 
 void CopilotManager::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+    m_lastError = "Process exited with code " + QString::number(exitCode);
     qWarning() << "Copilot bridge process finished:" << exitCode << exitStatus;
     m_ready = false;
 }

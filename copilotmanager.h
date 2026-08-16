@@ -43,6 +43,7 @@ private:
     QProcess *m_process;
     bool m_ready = false;
     QString m_sessionId;
+    QString m_lastError;
 };
 
 #endif // COPILOTMANAGER_H
