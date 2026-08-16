@@ -50,6 +50,8 @@ public:
     void setTestRunning(int caseIndex);
     void clearAllResults();
     
+    void setCopilotManager(class CopilotManager *manager);
+    
     void setCode(const QString &code);
     QString code() const;
     

@@ -12,6 +12,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include "copilotmanager.h"
 
 WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     : QWidget(parent)
@@ -44,6 +45,12 @@ WebWorkspace::WebWorkspace(const QUrl &url, QWidget *parent)
     layout->addWidget(m_view);
 
     m_view->setUrl(url);
+}
+
+void WebWorkspace::setCopilotManager(CopilotManager *manager) {
+    if (m_channel && manager) {
+        m_channel->registerObject("copilotManager", manager);
+    }
 }
 
 WebWorkspace::~WebWorkspace() = default;

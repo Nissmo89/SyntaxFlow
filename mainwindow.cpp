@@ -354,6 +354,7 @@ void MainWindow::setupEditorPage()
     layout->setSpacing(0);
 
     m_workspace = new WebWorkspace(QUrl(m_server->getUrlFor("/workspace.html")), this);
+    m_workspace->setCopilotManager(m_copilotManager);
     layout->addWidget(m_workspace);
 
     stack->addWidget(editorPage);
