@@ -1611,6 +1611,9 @@
     <div style="flex: 1;"></div>
 
     <div class="btn-group">
+      <button class="icon-btn" id="btnCopilotChat" title="Copilot Chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-7.07 17.07L2 22l2.93-2.93A10 10 0 1 0 12 2z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+      </button>
       <button class="icon-btn" id="btnNotes" title="Notes">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
       </button>
@@ -1819,12 +1822,44 @@
   </div>
 </div>
 
+<!-- Copilot Chat Window -->
+<div class="notes-window" id="copilotWindow" style="right: 50px; bottom: 50px; width: 450px; height: 500px; display: none;">
+  <div class="notes-win-resize r-n" data-r="n"></div>
+  <div class="notes-win-resize r-s" data-r="s"></div>
+  <div class="notes-win-resize r-e" data-r="e"></div>
+  <div class="notes-win-resize r-w" data-r="w"></div>
+  <div class="notes-win-resize r-ne" data-r="ne"></div>
+  <div class="notes-win-resize r-nw" data-r="nw"></div>
+  <div class="notes-win-resize r-se" data-r="se"></div>
+  <div class="notes-win-resize r-sw" data-r="sw"></div>
+  
+  <div class="notes-win-header" id="copilotWinHeader">
+    <div class="icon-btn" style="pointer-events:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-7.07 17.07L2 22l2.93-2.93A10 10 0 1 0 12 2z"/></svg>
+    </div>
+    <div class="notes-win-title" style="flex:1;">Copilot Chat</div>
+    <button class="icon-btn" id="btnCloseCopilot" title="Close (Esc)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  
+  <div class="problem-content" id="copilotChatLog" style="flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="color: var(--text-muted); font-size: 12px; text-align: center;">Ask Copilot a question. Your current code is automatically sent as context.</div>
+  </div>
+  
+  <div class="notes-footer" style="padding: 10px; background: var(--surface);">
+    <textarea id="copilotChatInput" class="notes-textarea" style="min-height: 40px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; resize: none;" placeholder="Ask Copilot... (Shift+Enter for newline)"></textarea>
+    <button class="btn btn-primary" id="btnSendCopilot" style="margin-left: 8px; align-self: flex-end;">Send</button>
+  </div>
+</div>
+
 <script>
   // ─── STATE ───
   let workspaceBridge = null;
   let copilotManager = null;
   let copilotGhostText = null;
   let copilotSuggestionId = 0;
+  let copilotChatId = 0;
   let copilotDebounce = null;
   let editor = null;
   let isInternalChange = false;
@@ -2512,21 +2547,26 @@
   }
 
   // ─── Draggable & resizable notes window ───
-  notesWinHeader.addEventListener('mousedown', (e) => {
-    if (e.target.closest('button, .icon-btn, input, textarea, select')) return;
-    const rect = notesWindow.getBoundingClientRect();
-    notesWinDrag = { type: 'move', startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
-    document.addEventListener('mousemove', onNotesWinDrag);
-    document.addEventListener('mouseup', endNotesWinDrag);
-    e.preventDefault();
-  });
+  function setupDraggableWindow(headerElem, windowElem) {
+    headerElem.addEventListener('mousedown', (e) => {
+      if (e.target.closest('button, .icon-btn, input, textarea, select')) return;
+      const rect = windowElem.getBoundingClientRect();
+      notesWinDrag = { window: windowElem, type: 'move', startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
+      document.addEventListener('mousemove', onNotesWinDrag);
+      document.addEventListener('mouseup', endNotesWinDrag);
+      e.preventDefault();
+    });
+  }
+  setupDraggableWindow(notesWinHeader, notesWindow);
+  setupDraggableWindow(document.getElementById('copilotWinHeader'), document.getElementById('copilotWindow'));
 
   document.querySelectorAll('.notes-win-resize').forEach(handle => {
     handle.addEventListener('mousedown', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const rect = notesWindow.getBoundingClientRect();
-      notesWinDrag = { type: handle.dataset.r, startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
+      const windowElem = handle.closest('.notes-window');
+      const rect = windowElem.getBoundingClientRect();
+      notesWinDrag = { window: windowElem, type: handle.dataset.r, startX: e.clientX, startY: e.clientY, left: rect.left, top: rect.top, w: rect.width, h: rect.height };
       document.addEventListener('mousemove', onNotesWinDrag);
       document.addEventListener('mouseup', endNotesWinDrag);
     });
@@ -2571,10 +2611,10 @@
     if (w > maxW) w = Math.max(NOTES_MIN_W, maxW);
     if (h > maxH) h = Math.max(NOTES_MIN_H, maxH);
 
-    notesWindow.style.left = left + 'px';
-    notesWindow.style.top = top + 'px';
-    notesWindow.style.width = w + 'px';
-    notesWindow.style.height = h + 'px';
+    notesWinDrag.window.style.left = left + 'px';
+    notesWinDrag.window.style.top = top + 'px';
+    notesWinDrag.window.style.width = w + 'px';
+    notesWinDrag.window.style.height = h + 'px';
   }
 
   function endNotesWinDrag() {
@@ -2587,6 +2627,66 @@
   updateTimerUI();
   updateStopwatchUI();
   loadProblemNotes();
+
+  // ─── COPILOT CHAT LOGIC ───
+  const btnCopilotChat = document.getElementById('btnCopilotChat');
+  const copilotWindow = document.getElementById('copilotWindow');
+  const btnCloseCopilot = document.getElementById('btnCloseCopilot');
+  const copilotChatInput = document.getElementById('copilotChatInput');
+  const btnSendCopilot = document.getElementById('btnSendCopilot');
+  const copilotChatLog = document.getElementById('copilotChatLog');
+
+  btnCopilotChat.onclick = () => {
+    if (copilotWindow.style.display === 'none' || !copilotWindow.style.display) {
+      copilotWindow.style.display = 'flex';
+      btnCopilotChat.classList.add('active');
+      copilotChatInput.focus();
+    } else {
+      copilotWindow.style.display = 'none';
+      btnCopilotChat.classList.remove('active');
+    }
+  };
+  btnCloseCopilot.onclick = () => {
+    copilotWindow.style.display = 'none';
+    btnCopilotChat.classList.remove('active');
+  };
+
+  function sendCopilotChatMessage() {
+    const text = copilotChatInput.value.trim();
+    if (!text || !copilotManager) return;
+    
+    // Add user message to log
+    const userMsg = document.createElement('div');
+    userMsg.style.cssText = "background: rgba(92, 158, 255, 0.1); padding: 8px 12px; border-radius: 6px; align-self: flex-end; max-width: 85%; word-wrap: break-word;";
+    userMsg.textContent = text;
+    copilotChatLog.appendChild(userMsg);
+    
+    copilotChatInput.value = '';
+    
+    let id = (++copilotChatId).toString();
+    let code = editor.getValue();
+    let lang = document.getElementById('langSelect').value;
+    
+    // Add loading indicator
+    const loadingMsg = document.createElement('div');
+    loadingMsg.id = 'copilotLoading_' + id;
+    loadingMsg.style.cssText = "color: var(--text-muted); font-size: 12px; font-style: italic;";
+    loadingMsg.textContent = "Copilot is thinking...";
+    copilotChatLog.appendChild(loadingMsg);
+    copilotChatLog.scrollTop = copilotChatLog.scrollHeight;
+    
+    copilotManager.requestChat(id, text, code, lang);
+  }
+
+  btnSendCopilot.onclick = sendCopilotChatMessage;
+  copilotChatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendCopilotChatMessage();
+    } else if (e.key === 'Escape') {
+      btnCloseCopilot.onclick();
+    }
+  });
 
   document.getElementById('btnSettings').onclick = () => {
     // Settings (coming soon)
@@ -3804,6 +3904,39 @@
             if (id === copilotSuggestionId.toString() && text) {
                 displayCopilotGhostText(text);
             }
+        });
+        copilotManager.chatReceived.connect(function(id, responseText) {
+            const loadingMsg = document.getElementById('copilotLoading_' + id);
+            if (loadingMsg) loadingMsg.remove();
+            
+            const botMsg = document.createElement('div');
+            botMsg.style.cssText = "background: var(--surface-2); padding: 8px 12px; border-radius: 6px; align-self: flex-start; max-width: 95%; word-wrap: break-word; line-height: 1.5;";
+            
+            // Basic markdown handling for code blocks
+            let formattedText = responseText.replace(/```([\s\S]*?)```/g, function(match, codeBlock) {
+                const lines = codeBlock.trim().split('\\n');
+                const lang = lines.length > 1 && !lines[0].includes(' ') ? lines[0] : '';
+                const code = lang ? lines.slice(1).join('\\n') : codeBlock.trim();
+                
+                // Add Apply button
+                const btnId = 'apply_code_' + Math.random().toString(36).substring(7);
+                setTimeout(() => {
+                    const btn = document.getElementById(btnId);
+                    if (btn) {
+                        btn.onclick = () => {
+                            isInternalChange = true;
+                            editor.replaceSelection(code);
+                            isInternalChange = false;
+                        };
+                    }
+                }, 100);
+                
+                return `<div style="margin: 8px 0;"><div style="display:flex;justify-content:flex-end;"><button id="${btnId}" class="notes-fmt-btn" style="border:1px solid var(--border);border-bottom:none;border-radius:4px 4px 0 0;font-size:10px;">Apply to Editor</button></div><pre style="margin:0;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:4px 0 4px 4px;overflow-x:auto;"><code>${code}</code></pre></div>`;
+            });
+            
+            botMsg.innerHTML = formattedText;
+            copilotChatLog.appendChild(botMsg);
+            copilotChatLog.scrollTop = copilotChatLog.scrollHeight;
         });
     }
 

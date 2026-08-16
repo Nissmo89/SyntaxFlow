@@ -50,6 +50,19 @@ async function handleRequest(request) {
         sendResponse(id, { completion: response });
         break;
         
+      case "chat":
+        if (!client) throw new Error("Client not initialized");
+        const { prompt, codeContext, languageContext } = params;
+        const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-5" });
+        
+        let fullPrompt = `The user is writing ${languageContext} code. Here is the current code context:\n\`\`\`${languageContext}\n${codeContext}\n\`\`\`\n\nUser query: ${prompt}`;
+        
+        const chatResponse = await chatSession.send({ prompt: fullPrompt });
+        sendResponse(id, { 
+            chat: chatResponse.text || chatResponse.completion || (typeof chatResponse === 'string' ? chatResponse : JSON.stringify(chatResponse)) 
+        });
+        break;
+        
       case "stop":
         if (client) {
             await client.stop();

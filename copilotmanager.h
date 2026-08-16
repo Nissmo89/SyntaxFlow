@@ -22,12 +22,15 @@ public:
 signals:
     // Signals to frontend JS via QWebChannel
     void completionReceived(const QString &requestId, const QString &completionText);
+    void chatReceived(const QString &requestId, const QString &response);
     void errorOccurred(const QString &errorMessage);
     void bridgeReady();
 
 public slots:
     // Slot called by Frontend JS to request a completion
     void requestCompletion(const QString &requestId, const QString &code, const QString &language, int cursorOffset);
+    // Slot called by Frontend JS to request a chat response
+    void requestChat(const QString &requestId, const QString &prompt, const QString &codeContext, const QString &languageContext);
 
 private slots:
     void onProcessReadyRead();

@@ -82,6 +82,23 @@ void CopilotManager::requestCompletion(const QString &requestId, const QString &
     sendRequest("get_completion", params, requestId);
 }
 
+void CopilotManager::requestChat(const QString &requestId, const QString &prompt, const QString &codeContext, const QString &languageContext) {
+    if (!m_ready) {
+        emit errorOccurred("Copilot is not ready yet.");
+        return;
+    }
+
+    QJsonObject params;
+    params["prompt"] = prompt;
+    params["codeContext"] = codeContext;
+    params["languageContext"] = languageContext;
+    if (!m_sessionId.isEmpty()) {
+        params["sessionId"] = m_sessionId;
+    }
+
+    sendRequest("chat", params, requestId);
+}
+
 void CopilotManager::onProcessReadyRead() {
     while (m_process->canReadLine()) {
         QByteArray line = m_process->readLine().trimmed();
@@ -112,19 +129,15 @@ void CopilotManager::onProcessReadyRead() {
             m_ready = true;
             emit bridgeReady();
         } else {
-            // It's a completion request response
+            // It's a completion or chat request response
             if (result.contains("completion")) {
-                // We'll extract whatever the SDK actually returns as text
-                // Adjust this based on actual SDK response structure
                 QString completionText = "";
                 if (result["completion"].isObject()) {
                     QJsonObject compObj = result["completion"].toObject();
-                    // Just a placeholder. The actual SDK might return an array of choices
-                    // or a direct text field.
-                    // For example: compObj["choices"].toArray()[0].toObject()["text"].toString()
                 }
-                // Emit the raw completion text to frontend
                 emit completionReceived(id, completionText);
+            } else if (result.contains("chat")) {
+                emit chatReceived(id, result["chat"].toString());
             }
         }
     }
