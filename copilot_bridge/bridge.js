@@ -25,7 +25,7 @@ async function handleRequest(request) {
 
       case "create_session":
         if (!client) throw new Error("Client not initialized");
-        const session = await client.createSession({ model: params.model || "gpt-5" }); // Defaults based on SDK
+        const session = await client.createSession({ model: params.model || "gpt-4" }); // Defaults based on SDK
         const sessionId = Math.random().toString(36).substring(7);
         sessions.set(sessionId, session);
         sendResponse(id, { sessionId });
