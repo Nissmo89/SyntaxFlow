@@ -29,6 +29,7 @@ GithubAuth::GithubAuth(QObject *parent) : QObject(parent) {
             qDebug() << "Reading GitHub credential...";
             qDebug() << "QKeychain read completed: success for Service:" << job->service() << "Key:" << job->key();
             QString savedToken = job->textData();
+            emit authenticated(savedToken);
             fetchUserProfile(savedToken);
         }
     });
