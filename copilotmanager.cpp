@@ -8,7 +8,9 @@ CopilotManager::CopilotManager(QObject *parent) : QObject(parent) {
     m_process = new QProcess(this);
     connect(m_process, &QProcess::readyReadStandardOutput, this, &CopilotManager::onProcessReadyRead);
     connect(m_process, &QProcess::readyReadStandardError, this, [this]() {
-        qWarning() << "[Copilot Bridge stderr]" << m_process->readAllStandardError().trimmed();
+        QString errOutput = m_process->readAllStandardError().trimmed();
+        qWarning() << "[Copilot Bridge stderr]" << errOutput;
+        emit errorOccurred("Node: " + errOutput);
     });
     connect(m_process, &QProcess::errorOccurred, this, &CopilotManager::onProcessError);
     connect(m_process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &CopilotManager::onProcessFinished);

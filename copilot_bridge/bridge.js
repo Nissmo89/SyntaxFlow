@@ -38,7 +38,7 @@ async function handleRequest(request) {
         // This simulates a completion request for CodeMirror inline ghost text.
         // The actual SDK method might be `session.send()` or `session.complete()`.
         // We will structure it as a typical Copilot prompt.
-        const activeSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-5" });
+        const activeSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
         
         // Request completion
         const response = await activeSession.send({
@@ -53,7 +53,7 @@ async function handleRequest(request) {
       case "chat":
         if (!client) throw new Error("Client not initialized");
         const { prompt, codeContext, languageContext } = params;
-        const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-5" });
+        const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
         
         let fullPrompt = `The user is writing ${languageContext} code. Here is the current code context:\n\`\`\`${languageContext}\n${codeContext}\n\`\`\`\n\nUser query: ${prompt}`;
         

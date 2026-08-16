@@ -3938,6 +3938,16 @@
             copilotChatLog.appendChild(botMsg);
             copilotChatLog.scrollTop = copilotChatLog.scrollHeight;
         });
+        copilotManager.errorOccurred.connect(function(errMsg) {
+            const loadingMsgs = document.querySelectorAll('[id^="copilotLoading_"]');
+            loadingMsgs.forEach(m => m.remove());
+            
+            const errDiv = document.createElement('div');
+            errDiv.style.cssText = "color: var(--rose); font-size: 12px; font-weight: 500; text-align: center; margin-top: 8px;";
+            errDiv.textContent = "Error: " + errMsg;
+            copilotChatLog.appendChild(errDiv);
+            copilotChatLog.scrollTop = copilotChatLog.scrollHeight;
+        });
     }
 
     if (workspaceBridge) {
