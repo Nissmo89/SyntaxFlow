@@ -1822,6 +1822,10 @@
 <script>
   // ─── STATE ───
   let workspaceBridge = null;
+  let copilotManager = null;
+  let copilotGhostText = null;
+  let copilotSuggestionId = 0;
+  let copilotDebounce = null;
   let editor = null;
   let isInternalChange = false;
   let testCases = [];
@@ -1879,18 +1883,74 @@
     resizerV.classList.remove('active'); resizerH.classList.remove('active');
   });
 
+  // ─── COPILOT HELPERS ───
+  function clearCopilotGhostText() {
+    if (copilotGhostText) {
+      copilotGhostText.clear();
+      copilotGhostText = null;
+    }
+  }
+
+  function displayCopilotGhostText(text) {
+    clearCopilotGhostText();
+    if (!text || !editor) return;
+    const pos = editor.getCursor();
+    const span = document.createElement("span");
+    span.className = "copilot-ghost-text";
+    span.style.opacity = "0.5";
+    span.style.fontStyle = "italic";
+    span.style.pointerEvents = "none";
+    span.innerText = text;
+    copilotGhostText = editor.setBookmark(pos, { widget: span, insertLeft: true });
+  }
+
+  function applyCopilotSuggestion() {
+    if (copilotGhostText && copilotGhostText.widgetNode) {
+      const text = copilotGhostText.widgetNode.innerText;
+      const pos = copilotGhostText.find();
+      if (pos) {
+        clearCopilotGhostText();
+        isInternalChange = true;
+        editor.replaceRange(text, pos);
+        isInternalChange = false;
+        return true;
+      }
+    }
+    return false;
+  }
+
   // ─── CODEMIRROR INIT ───
   editor = CodeMirror(document.getElementById('editorContainer'), {
     value: "", mode: "text/x-c++src", theme: "syntaxflow",
     lineNumbers: true, tabSize: 4, indentUnit: 4, lineWrapping: false,
     autoCloseBrackets: true, matchBrackets: true, styleActiveLine: true,
     foldGutter: true, gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-    extraKeys: { "Ctrl-Space": "autocomplete" }
+    extraKeys: { 
+      "Ctrl-Space": "autocomplete",
+      "Tab": function(cm) {
+          if (!applyCopilotSuggestion()) {
+              cm.execCommand("insertSoftTab");
+          }
+      }
+    }
   });
 
-  editor.on('change', function(cm) {
+  editor.on('change', function(cm, changeObj) {
     if (isInternalChange) return;
+    clearCopilotGhostText();
     if (workspaceBridge) workspaceBridge.onTextChanged(cm.getValue());
+    
+    // Copilot Debounce
+    if (copilotManager) {
+        clearTimeout(copilotDebounce);
+        copilotDebounce = setTimeout(() => {
+            let id = (++copilotSuggestionId).toString();
+            let code = cm.getValue();
+            let lang = document.getElementById('langSelect').value;
+            let offset = cm.indexFromPos(cm.getCursor());
+            copilotManager.requestCompletion(id, code, lang, offset);
+        }, 500); // 500ms debounce
+    }
   });
   editor.on('cursorActivity', function(cm) {
     let pos = cm.getCursor();
@@ -3737,6 +3797,16 @@
 
   setupWebChannel(function(channel) {
     workspaceBridge = channel.objects.workspaceBridge;
+    copilotManager = channel.objects.copilotManager;
+    
+    if (copilotManager) {
+        copilotManager.completionReceived.connect(function(id, text) {
+            if (id === copilotSuggestionId.toString() && text) {
+                displayCopilotGhostText(text);
+            }
+        });
+    }
+
     if (workspaceBridge) {
       workspaceBridge.onWorkspaceReady();
       if (leftView === 'solutions' && currentProblemSlug && solutionsState.status === 'loading') {
