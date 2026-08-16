@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
     QApplication a(argc, argv);
+    QCoreApplication::setOrganizationName("SyntaxFlow");
+    QCoreApplication::setApplicationName("SyntaxFlow");
     a.setWindowIcon(QIcon(":/icons/app_icon.svg"));
 
     MainWindow w;

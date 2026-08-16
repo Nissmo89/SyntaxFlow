@@ -21,7 +21,13 @@ GithubAuth::GithubAuth(QObject *parent) : QObject(parent) {
     auto *job = new QKeychain::ReadPasswordJob("SyntaxFlow", this);
     job->setKey("github_access_token");
     connect(job, &QKeychain::Job::finished, this, [this, job]() {
-        if (!job->error()) {
+        if (job->error()) {
+            qWarning() << "Reading GitHub credential...";
+            qWarning() << "QKeychain read failed for Service:" << job->service() << "Key:" << job->key();
+            qWarning() << "Error:" << job->errorString() << "(Code:" << job->error() << ")";
+        } else {
+            qDebug() << "Reading GitHub credential...";
+            qDebug() << "QKeychain read completed: success for Service:" << job->service() << "Key:" << job->key();
             QString savedToken = job->textData();
             fetchUserProfile(savedToken);
         }
@@ -120,7 +126,12 @@ void GithubAuth::onAccessTokenReply() {
         job->setTextData(token);
         connect(job, &QKeychain::Job::finished, this, [job]() {
             if (job->error()) {
-                qWarning() << "Failed to save token to keyring:" << job->errorString();
+                qWarning() << "Writing GitHub credential...";
+                qWarning() << "Failed to save token to keyring for Service:" << job->service() << "Key:" << job->key();
+                qWarning() << "Error:" << job->errorString() << "(Code:" << job->error() << ")";
+            } else {
+                qDebug() << "Writing GitHub credential...";
+                qDebug() << "QKeychain write completed: success for Service:" << job->service() << "Key:" << job->key();
             }
         });
         job->start();
@@ -148,6 +159,15 @@ void GithubAuth::onProfileReply() {
         // Token is likely invalid or revoked. Delete it from keyring securely.
         auto *job = new QKeychain::DeletePasswordJob("SyntaxFlow", this);
         job->setKey("github_access_token");
+        connect(job, &QKeychain::Job::finished, this, [job]() {
+            if (job->error()) {
+                qWarning() << "Deleting GitHub credential...";
+                qWarning() << "QKeychain delete failed:" << job->errorString() << "(Error code:" << job->error() << ")";
+            } else {
+                qDebug() << "Deleting GitHub credential...";
+                qDebug() << "QKeychain delete completed: success";
+            }
+        });
         job->start();
         
         emit errorOccurred("Failed to fetch profile (or token invalid): " + reply->errorString());
