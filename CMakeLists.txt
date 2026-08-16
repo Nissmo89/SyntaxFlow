@@ -202,6 +202,7 @@ add_executable(SyntaxFlow
     wasm_runner.h wasm_runner.cpp
     githubauth.h githubauth.cpp
     httpserver.h
+    copilotmanager.h copilotmanager.cpp
     resources/resources.qrc
 )
 
