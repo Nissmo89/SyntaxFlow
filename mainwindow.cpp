@@ -385,6 +385,14 @@ void MainWindow::setupProfilePage()
     QUrl url(m_server->getUrlFor("/profile.html", "mac=" + QUrl::toPercentEncoding(macAddress)));
     profileView->setUrl(url);
 
+    connect(profileView, &QWebEngineView::loadFinished, this, [this](bool ok) {
+        if (!ok) return;
+        if (m_currentUserName != "Local User" && !m_currentUserName.isEmpty()) {
+            QString js = QString("if(typeof updateProfile === 'function') updateProfile('%1', '%2', '%3');")
+                             .arg(m_currentUserAvatar, m_currentUserLogin, m_currentUserName);
+            profileView->page()->runJavaScript(js);
+        }
+    });
 
     layout->addWidget(profileView);
     stack->addWidget(profilePage);
@@ -444,6 +452,14 @@ void MainWindow::setupSidebar()
                 m_darkTheme = (value.toString() != "light");
                 applyAppTheme();
             });
+            
+        // If GithubAuth finished quickly and updated the C++ state before this page loaded,
+        // we must inject the state now.
+        if (m_currentUserName != "Local User" && !m_currentUserName.isEmpty()) {
+            QString js = QString("if(typeof updateProfile === 'function') updateProfile('%1', '%2', '%3');")
+                             .arg(m_currentUserAvatar, m_currentUserLogin, m_currentUserName);
+            sidebarView->page()->runJavaScript(js);
+        }
     });
 }
 
