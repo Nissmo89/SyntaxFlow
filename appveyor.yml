@@ -10,65 +10,68 @@ configuration:
 
 clone_depth: 1
 
+environment:
+  QT_VERSION: "6.8.0"
+  QT_ARCH: "win64_msvc2022_64"
+  QT_PATH: 'C:\Qt\6.8.0\msvc2022_64'
+  Qt6_DIR: 'C:\Qt\6.8.0\msvc2022_64\lib\cmake\Qt6'
+
 init:
-  - call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" -arch=x64
+  - for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VS_PATH=%%i"
+  - if "%VS_PATH%"=="" ( echo [ERROR] Visual Studio installation not found & exit 1 )
+  - echo [OK] Visual Studio found at %VS_PATH%
+  - call "%VS_PATH%\Common7\Tools\VsDevCmd.bat" -arch=x64
 
 install:
-  # Install the same Qt version used by the GitHub Actions build
-  - python -m pip install --upgrade pip
-  - python -m pip install aqtinstall
-
-  - python -m aqt install-qt windows desktop 6.8.0 win64_msvc2022_64 --modules qtwebengine qtwebchannel qtpositioning
-
-  # Make Qt available to CMake and the build environment
-  - set QTDIR=C:\Qt\6.8.0\msvc2022_64
-  - set Qt6_DIR=C:\Qt\6.8.0\msvc2022_64\lib\cmake\Qt6
-  - set CMAKE_PREFIX_PATH=C:\Qt\6.8.0\msvc2022_64
-
-  # Diagnostics
-  - echo QTDIR=%QTDIR%
-  - where cmake
+  - set "PATH=%QT_PATH%\bin;%PATH%"
+  - echo Checking for Qt at %QT_PATH%...
+  - if not exist "%QT_PATH%" python -m pip install --upgrade pip
+  - if not exist "%QT_PATH%" python -m pip install aqtinstall
+  - if not exist "%QT_PATH%" python -m aqt install-qt windows desktop %QT_VERSION% %QT_ARCH% --outputdir C:\Qt --modules qtwebengine qtwebchannel qtpositioning
+  - if exist "%QT_PATH%" echo Qt %QT_VERSION% is present.
+  - echo ==========================================
+  - echo Environment Information:
+  - qmake --version
   - cmake --version
+  - ninja --version
   - where cl
   - cl
-  - qmake --version
+  - echo ==========================================
 
 before_build:
-  # Show the important Qt installation
-  - dir "%QTDIR%\bin"
-  - dir "%QTDIR%\lib\cmake\Qt6"
-
-  # Configure
-  - cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="%QTDIR%" -DSYNTAXFLOW_QT_PREFIX="%QTDIR%" -DSYNTAXFLOW_USE_QWINDOWKIT=ON -DSYNTAXFLOW_REQUIRE_QWINDOWKIT=ON -DSYNTAXFLOW_FETCH_QWINDOWKIT=ON -DPRECACHE_WASM_ENGINES=OFF
+  - if exist build-windows rmdir /S /Q build-windows
+  - mkdir build-windows
+  - cd build-windows
+  - cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DPRECACHE_WASM_ENGINES=ON -DCMAKE_PREFIX_PATH="%Qt6_DIR%"
+  - cd ..
 
 build_script:
-  - cmake --build build --config Release --parallel
+  - cd build-windows
+  - cmake --build . --config Release --parallel
+  - cd ..
 
 after_build:
-  # Find the executable
-  - dir /s /b build\SyntaxFlow.exe
-  - dir /s /b build\Release\SyntaxFlow.exe
-
-  # Deploy Qt DLLs/plugins
-  - if exist "build\Release\SyntaxFlow.exe" "%QTDIR%\bin\windeployqt.exe" --release --no-translations --no-system-d3d-compiler --no-opengl-sw "build\Release\SyntaxFlow.exe"
-  - if exist "build\SyntaxFlow.exe" "%QTDIR%\bin\windeployqt.exe" --release --no-translations --no-system-d3d-compiler --no-opengl-sw "build\SyntaxFlow.exe"
-
-  # Create distribution directory
+  - echo ==========================================
+  - echo Packaging Application
+  - echo ==========================================
+  - set "EXE_DIR=build-windows"
+  - if exist "build-windows\Release\SyntaxFlow.exe" set "EXE_DIR=build-windows\Release"
+  - if not exist "%EXE_DIR%\SyntaxFlow.exe" ( echo [ERROR] SyntaxFlow.exe not found & exit 1 )
+  - echo [OK] SyntaxFlow.exe found in %EXE_DIR%
   - mkdir package
-
-  # Copy application output
-  - if exist "build\Release\SyntaxFlow.exe" xcopy /E /I /Y "build\Release\*" "package\"
-  - if exist "build\SyntaxFlow.exe" xcopy /E /I /Y "build\*" "package\"
-
-  # Copy runtime assets explicitly
-  - xcopy /E /I /Y "problems" "package\problems"
-  - copy /Y "problems.json" "package\problems.json"
-  - copy /Y "libs\qtext_browser\style.css" "package\style.css"
-  - xcopy /E /I /Y "libs\qtext_browser\fonts" "package\fonts"
-  - xcopy /E /I /Y "web_editor" "package\web_editor"
-
-  # Package
+  - copy "%EXE_DIR%\SyntaxFlow.exe" package\
+  - if exist "%EXE_DIR%\*.dll" copy "%EXE_DIR%\*.dll" package\
+  - if exist "%EXE_DIR%\problems" xcopy /E /I /Y "%EXE_DIR%\problems" package\problems
+  - if exist "%EXE_DIR%\problems.json" copy /Y "%EXE_DIR%\problems.json" package\
+  - if exist "%EXE_DIR%\style.css" copy /Y "%EXE_DIR%\style.css" package\
+  - if exist "%EXE_DIR%\fonts" xcopy /E /I /Y "%EXE_DIR%\fonts" package\fonts
+  - if exist "%EXE_DIR%\web_editor" xcopy /E /I /Y "%EXE_DIR%\web_editor" package\web_editor
+  - if exist "%EXE_DIR%\wasi-sdk" xcopy /E /I /Y "%EXE_DIR%\wasi-sdk" package\wasi-sdk
+  - call "%QT_PATH%\bin\windeployqt.exe" --release --no-translations package\SyntaxFlow.exe
+  - if not exist "package\SyntaxFlow.exe" ( echo [ERROR] SyntaxFlow.exe missing after deployment & exit 1 )
+  - if not exist "package\Qt6Core.dll" ( echo [ERROR] Qt6Core.dll missing after deployment & exit 1 )
   - 7z a -tzip "SyntaxFlow-Windows-x64.zip" ".\package\*"
+  - if not exist "SyntaxFlow-Windows-x64.zip" ( echo [ERROR] ZIP file not created & exit 1 )
 
 artifacts:
   - path: SyntaxFlow-Windows-x64.zip
