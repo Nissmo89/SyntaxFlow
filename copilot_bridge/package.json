@@ -1,0 +1,13 @@
+{
+  "name": "syntaxflow-copilot-bridge",
+  "version": "1.0.0",
+  "description": "Node.js bridge for GitHub Copilot SDK to interface with SyntaxFlow C++ backend via stdin/stdout.",
+  "main": "bridge.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bridge.js"
+  },
+  "dependencies": {
+    "@github/copilot-sdk": "^1.0.0"
+  }
+}
