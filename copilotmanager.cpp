@@ -26,17 +26,22 @@ void CopilotManager::startBridge(const QString &githubToken) {
     if (m_process->state() != QProcess::NotRunning) return;
 
     QString appDir = QCoreApplication::applicationDirPath();
+    
+    QString nodeExecutable = "node";
 #ifdef Q_OS_WIN
+    QString localNode = QDir(appDir).filePath("node.exe");
+    if (QFile::exists(localNode)) {
+        nodeExecutable = localNode;
+    }
     QString scriptPath = QDir(appDir).filePath("copilot_bridge/bridge.js");
 #else
-    // For Linux during dev, adjust path as necessary or assume relative to run dir
     QString scriptPath = QDir(appDir).filePath("../copilot_bridge/bridge.js");
     if (!QFile::exists(scriptPath)) {
         scriptPath = QDir(appDir).filePath("copilot_bridge/bridge.js");
     }
 #endif
 
-    m_process->start("node", QStringList() << scriptPath);
+    m_process->start(nodeExecutable, QStringList() << scriptPath);
     if (!m_process->waitForStarted()) {
         qWarning() << "Failed to start Node.js for Copilot bridge!";
         emit errorOccurred("Node.js is not installed or not in PATH.");
