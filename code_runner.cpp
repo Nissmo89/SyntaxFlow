@@ -569,6 +569,7 @@ def run_all_tests():
         actual_str = ""
         elapsed_ms = 0
         
+        extracted_expected = [None]
         try:
             local_vars = {}
             for p_name, p_schema in params_schema.items():
@@ -585,7 +586,6 @@ def run_all_tests():
             actual_str = actual_json
             
             exp_val = tc.get('out')
-            extracted_expected = [None]
             if exp_val is None or judge_type == 'custom':
                 if oracle_call:
                     try:

@@ -183,33 +183,36 @@ def deserialize_val(val, val_type):
 class Solution:
     def isAdditiveNumber(self, num: str) -> bool:
         for i in range(1, len(num) // 2 + 1):
-            for j in range(1, (len(num) - i) // 2 + 1):
-                if self.check(num[:i], num[i:i + j], num[i + j:]):
+            for j in range(1, len(num) - i):
+                num1 = num[:i]
+                num2 = num[i:i+j]
+                remainder = num[i+j:]
+                
+                if (len(num1) > 1 and num1[0] == '0') or (len(num2) > 1 and num2[0] == '0'):
+                    continue
+                if self.isValid(num1, num2, remainder):
                     return True
         return False
-
-    def check(self, num1, num2, num):
-        if len(num1) > 1 and num1[0] == '0' or len(num2) > 1 and num2[0] == '0':
-            return False
-        sum_str = self.add(num1, num2)
-        if num == sum_str:
-            return True
-        if len(num) <= len(sum_str) or num[:len(sum_str)] != sum_str:
-            return False
-        else:
-            return self.check(num2, sum_str, num[len(sum_str):])
-
+    
+    def isValid(self, num1, num2, remainder):
+        while remainder:
+            sum_val = self.add(num1, num2)
+            if not remainder.startswith(sum_val):
+                return False
+            num1, num2 = num2, sum_val
+            remainder = remainder[len(sum_val):]
+        return True
+    
     def add(self, n, m):
         res = ''
         i, j, carry = len(n) - 1, len(m) - 1, 0
         while i >= 0 or j >= 0:
-            sum_val = carry + (i >= 0 and int(n[i]) or 0) + (j >= 0 and int(m[j]) or 0)
+            sum_val = carry + (int(n[i]) if i >= 0 else 0) + (int(m[j]) if j >= 0 else 0)
             res = str(sum_val % 10) + res
             carry = sum_val // 10
-        if carry:
-            res = str(carry) + res
-        return res
-
+            i -= 1
+            j -= 1
+        return (str(carry) + res) if carry else res
 
 # --- RUNNER ---
 def run_all_tests():
@@ -245,6 +248,7 @@ def run_all_tests():
         actual_str = ""
         elapsed_ms = 0
         
+        extracted_expected = [None]
         try:
             local_vars = {}
             for p_name, p_schema in params_schema.items():
@@ -261,7 +265,6 @@ def run_all_tests():
             actual_str = actual_json
             
             exp_val = tc.get('out')
-            extracted_expected = [None]
             if exp_val is None or judge_type == 'custom':
                 if oracle_call:
                     try:
