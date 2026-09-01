@@ -24,7 +24,7 @@ def get_wasmer_url():
         else:
             return base_url + "wasmer-darwin-amd64.tar.gz"
     elif system == "windows":
-        return base_url + "wasmer-windows-amd64.zip"
+        return base_url + "wasmer-windows-amd64.tar.gz"
     else:
         print(f"Unsupported system: {system} {machine}")
         sys.exit(1)
