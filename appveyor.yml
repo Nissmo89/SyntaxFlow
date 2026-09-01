@@ -75,7 +75,7 @@ after_build:
   - if exist "%EXE_DIR%\wasi-sdk" xcopy /E /I /Y "%EXE_DIR%\wasi-sdk" package\wasi-sdk
   - xcopy /E /I /Y "copilot_bridge" package\copilot_bridge
   - C:\Python310-x64\python.exe scripts\setup_wasm_tools.py
-  - xcopy /E /I /Y "tools" package\tools
+  - xcopy /E /I /Y "tools\wasmer" package\tools\wasmer
   - curl -sL -o package\node.exe https://nodejs.org/dist/v22.14.0/win-x64/node.exe
   - for /R build-windows %%F in (qt6*.dll) do copy /Y "%%F" "%QT_PATH%\bin\"
   - call "%QT_PATH%\bin\windeployqt.exe" --release --no-translations package\SyntaxFlow.exe
