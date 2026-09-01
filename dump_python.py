@@ -181,31 +181,39 @@ def deserialize_val(val, val_type):
 
 # --- USER SOLUTION ---
 class Solution:
-    def addStrings(self, num1: str, num2: str) -> str:
-        result = [] # Use a list of characters to build the result
-        i = len(num1) - 1
-        j = len(num2) - 1
-        carry = 0
+    def isAdditiveNumber(self, num: str) -> bool:
+        for i in range(1, len(num) // 2 + 1):
+            for j in range(1, (len(num) - i) // 2 + 1):
+                if self.check(num[:i], num[i:i + j], num[i + j:]):
+                    return True
+        return False
 
-        # Loop until both numbers are processed and there's no carry left
-        while i >= 0 or j >= 0 or carry:
-            digit1 = int(num1[i]) if i >= 0 else 0
-            digit2 = int(num2[j]) if j >= 0 else 0
+    def check(self, num1, num2, num):
+        if len(num1) > 1 and num1[0] == '0' or len(num2) > 1 and num2[0] == '0':
+            return False
+        sum_str = self.add(num1, num2)
+        if num == sum_str:
+            return True
+        if len(num) <= len(sum_str) or num[:len(sum_str)] != sum_str:
+            return False
+        else:
+            return self.check(num2, sum_str, num[len(sum_str):])
 
-            current_sum = digit1 + digit2 + carry
-            result.append(str(current_sum % 10)) # Append the digit as a string
-            carry = current_sum // 10 # Integer division for carry
-
-            i -= 1 # Move to the next digit in num1
-            j -= 1 # Move to the next digit in num2
-        
-        # The result is built in reverse order, so reverse the list and join
-        return "".join(result[::-1])
+    def add(self, n, m):
+        res = ''
+        i, j, carry = len(n) - 1, len(m) - 1, 0
+        while i >= 0 or j >= 0:
+            sum_val = carry + (i >= 0 and int(n[i]) or 0) + (j >= 0 and int(m[j]) or 0)
+            res = str(sum_val % 10) + res
+            carry = sum_val // 10
+        if carry:
+            res = str(carry) + res
+        return res
 
 
 # --- RUNNER ---
 def run_all_tests():
-    manifest = json.loads("{\"entry\":{\"call\":{\"cpp\":\"Solution().addStrings({num1}, {num2})\",\"csharp\":\"new Solution().AddStrings({num1}, {num2})\",\"dart\":\"Solution().addStrings({num1}, {num2})\",\"go\":\"addStrings({num1}, {num2})\",\"java\":\"new Solution().addStrings({num1}, {num2})\",\"kotlin\":\"Solution().addStrings({num1}, {num2})\",\"python2\":\"Solution().addStrings({num1}, {num2})\",\"python3\":\"Solution().addStrings({num1}, {num2})\",\"ruby\":\"add_strings({num1}, {num2})\",\"rust\":\"Solution::add_strings({num1}, {num2})\",\"swift\":\"Solution().addStrings({num1}, {num2})\",\"typescript\":\"addStrings({num1}, {num2})\"},\"id\":415,\"params\":{\"num1\":{\"type\":\"string\"},\"num2\":{\"type\":\"string\"}},\"title\":\"add-strings\"},\"judge\":{\"type\":\"exact\"},\"limits\":{\"memory_mb\":256,\"time_ms\":1000},\"oracle\":{\"python3\":{\"call\":\"Checker().addStrings(num1, num2, {result})\",\"checker\":\"class Checker:\\n    def addStrings(self, num1, num2, result):\\n        if not isinstance(num1, str) or not isinstance(num2, str):\\n            return False\\n        if not isinstance(result, str):\\n            return False\\n\\n        i, j = len(num1) - 1, len(num2) - 1\\n        carry = 0\\n        digits = []\\n\\n        while i >= 0 or j >= 0 or carry:\\n            d1 = ord(num1[i]) - ord('0') if i >= 0 else 0\\n            d2 = ord(num2[j]) - ord('0') if j >= 0 else 0\\n            total = d1 + d2 + carry\\n            digits.append(chr(total % 10 + ord('0')))\\n            carry = total // 10\\n            i -= 1\\n            j -= 1\\n\\n        expected = ''.join(reversed(digits))\\n        return result == expected\\n\"}},\"seed\":415,\"tests\":[{\"in\":{\"num1\":\"11\",\"num2\":\"123\"},\"name\":\"example-1\"},{\"in\":{\"num1\":\"456\",\"num2\":\"77\"},\"name\":\"example-2\"},{\"in\":{\"num1\":\"0\",\"num2\":\"0\"},\"name\":\"example-3\"},{\"in\":{\"num1\":\"5\",\"num2\":\"5\"},\"name\":\"carry-single-digit\"},{\"in\":{\"num1\":\"1\",\"num2\":\"2\"},\"name\":\"no-carry-single-digit\"},{\"in\":{\"num1\":\"19\",\"num2\":\"1\"},\"name\":\"different-length-no-carry\"},{\"in\":{\"num1\":\"99\",\"num2\":\"1\"},\"name\":\"different-length-carry\"},{\"in\":{\"num1\":\"999\",\"num2\":\"1\"},\"name\":\"leading-carry-chain\"},{\"in\":{\"num1\":\"109\",\"num2\":\"991\"},\"name\":\"alternating-carry\"},{\"in\":{\"num1\":\"0\",\"num2\":\"123456789\"},\"name\":\"zero-plus-large\"},{\"in\":{\"num1\":\"987654321\",\"num2\":\"0\"},\"name\":\"large-plus-zero\"},{\"in\":{\"num1\":\"1000\",\"num2\":\"1000\"},\"name\":\"many-zeros\"},{\"in\":{\"num1\":\"1010\",\"num2\":\"9090\"},\"name\":\"mixed-carrys\"},{\"in\":{\"num1\":\"123456789\",\"num2\":\"987654321\"},\"name\":\"same-length-with-carries\"},{\"in\":{\"num1\":\"9999\",\"num2\":\"999\"},\"name\":\"different-length-with-carries\"},{\"in\":{\"num1\":\"500\",\"num2\":\"500\"},\"name\":\"one-more-digit-result\"},{\"in\":{\"num1\":\"10000\",\"num2\":\"1\"},\"name\":\"first-longer-by-one\"},{\"in\":{\"num1\":\"1\",\"num2\":\"10000\"},\"name\":\"second-longer-by-one\"},{\"in\":{\"num1\":\"99999\",\"num2\":\"99999\"},\"name\":\"all-nines-small\"},{\"in\":{\"num1\":\"900000000\",\"num2\":\"1\"},\"name\":\"carry-through-zeros\"},{\"in\":{\"num1\":\"123450000\",\"num2\":\"55\"},\"name\":\"carry-across-middle\"},{\"in\":{\"num1\":\"11111111111111111111\",\"num2\":\"88888888888888888889\"},\"name\":\"long-prefix-carry\"},{\"in\":{\"num1\":\"31415926535897932384\",\"num2\":\"31415926535897932384\"},\"name\":\"equal-long-strings\"},{\"in\":{\"num1\":\"42\",\"num2\":\"58\"},\"name\":\"randomish-small-1\"},{\"in\":{\"num1\":\"67\",\"num2\":\"33\"},\"name\":\"randomish-small-2\"},{\"in\":{\"num1\":\"808\",\"num2\":\"192\"},\"name\":\"randomish-small-3\"},{\"in\":{\"num1\":\"7654\",\"num2\":\"3456\"},\"name\":\"randomish-small-4\"},{\"in\":{\"num1\":\"2500\",\"num2\":\"2500\"},\"name\":\"randomish-small-5\"},{\"in\":{\"num1\":\"11111111111111111111111111111111111111111111111111\",\"num2\":\"22222222222222222222222222222222222222222222222222\"},\"name\":\"long-1\"},{\"in\":{\"num1\":\"99999999999999999999999999999999999999999999999999\",\"num2\":\"1\"},\"name\":\"long-2\"},{\"in\":{\"num1\":\"12345678901234567890123456789012345678901234567890\",\"num2\":\"98765432109876543210987654321098765432109876543210\"},\"name\":\"long-3\"},{\"in\":{\"num1\":\"10000000000000000000000000000000000000000000000000\",\"num2\":\"10000000000000000000000000000000000000000000000000\"},\"name\":\"long-4\"},{\"in\":{\"num1\":\"13579135791357913579135791357913579135791357913579\",\"num2\":\"24680246802468024680246802468024680246802468024680\"},\"name\":\"long-5\"},{\"in\":{\"num1\":\"99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999\",\"num2\":\"1\"},\"name\":\"max-1\"},{\"in\":{\"num1\":\"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678\",\"num2\":\"87654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321\"},\"name\":\"max-2\"},{\"in\":{\"num1\":\"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\",\"num2\":\"88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889\"},\"name\":\"max-3\"},{\"in\":{\"num1\":\"10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"num2\":\"10000000000000000000000000000000000000000000000000\"},\"name\":\"max-4\"},{\"in\":{\"num1\":\"314159265358979323846264338327950288419716939937510\",\"num2\":\"271828182845904523536028747135266249775724709369995\"},\"name\":\"max-5\"}]}")
+    manifest = json.loads("{\"entry\":{\"call\":{\"cpp\":\"Solution().isAdditiveNumber({num})\",\"csharp\":\"new Solution().IsAdditiveNumber({num})\",\"dart\":\"Solution().isAdditiveNumber({num})\",\"go\":\"isAdditiveNumber({num})\",\"java\":\"new Solution().isAdditiveNumber({num})\",\"kotlin\":\"Solution().isAdditiveNumber({num})\",\"python2\":\"Solution().isAdditiveNumber({num})\",\"python3\":\"Solution().isAdditiveNumber({num})\",\"ruby\":\"is_additive_number({num})\",\"rust\":\"Solution::is_additive_number({num}.to_string())\",\"swift\":\"Solution().isAdditiveNumber({num})\",\"typescript\":\"isAdditiveNumber({num})\"},\"id\":306,\"params\":{\"num\":{\"type\":\"string\"}},\"title\":\"additive-number\"},\"judge\":{\"type\":\"exact\"},\"limits\":{\"memory_mb\":256,\"time_ms\":1000},\"oracle\":{\"python3\":{\"call\":\"Checker().isAdditiveNumber(num, {result})\",\"checker\":\"class Checker:\\n    def isAdditiveNumber(self, num, result):\\n        if not isinstance(result, bool):\\n            return False\\n\\n        def add_strings(a, b):\\n            i, j = len(a) - 1, len(b) - 1\\n            carry = 0\\n            out = []\\n            while i >= 0 or j >= 0 or carry:\\n                s = carry\\n                if i >= 0:\\n                    s += ord(a[i]) - 48\\n                    i -= 1\\n                if j >= 0:\\n                    s += ord(b[j]) - 48\\n                    j -= 1\\n                out.append(chr(48 + (s % 10)))\\n                carry = s // 10\\n            return ''.join(reversed(out))\\n\\n        n = len(num)\\n        expected = False\\n        for i in range(1, n):\\n            if num[0] == '0' and i > 1:\\n                break\\n            for j in range(i + 1, n):\\n                if num[i] == '0' and j > i + 1:\\n                    break\\n                a = num[:i]\\n                b = num[i:j]\\n                k = j\\n                count = 2\\n                while k < n:\\n                    c = add_strings(a, b)\\n                    if not num.startswith(c, k):\\n                        break\\n                    k += len(c)\\n                    a, b = b, c\\n                    count += 1\\n                if k == n and count >= 3:\\n                    expected = True\\n                    return result == expected\\n        return result == expected\\n\"}},\"seed\":306306,\"tests\":[{\"in\":{\"num\":\"112358\"},\"name\":\"example 1\",\"out\":true},{\"in\":{\"num\":\"199100199\"},\"name\":\"example 2\",\"out\":true},{\"in\":{\"num\":\"1\"},\"name\":\"too short\",\"out\":false},{\"in\":{\"num\":\"12\"},\"name\":\"two digits\",\"out\":false},{\"in\":{\"num\":\"123\"},\"name\":\"simple additive\",\"out\":true},{\"in\":{\"num\":\"000\"},\"name\":\"leading zero trio\",\"out\":true},{\"in\":{\"num\":\"010\"},\"name\":\"leading zero invalid\",\"out\":false},{\"in\":{\"num\":\"1023\"},\"name\":\"leading zero in second number\",\"out\":false},{\"in\":{\"num\":\"101\"},\"name\":\"additive with zero\",\"out\":true},{\"in\":{\"num\":\"101202303\"},\"name\":\"additive with zeros\",\"out\":true},{\"in\":{\"num\":\"102030\"},\"name\":\"classic false\",\"out\":true},{\"in\":{\"num\":\"12122436\"},\"name\":\"classic true\",\"out\":true},{\"in\":{\"num\":\"1123581\"},\"name\":\"false with trailing mismatch\",\"out\":false},{\"in\":{\"num\":\"112359\"},\"name\":\"false due to wrong next sum\",\"out\":false},{\"in\":{\"num\":\"199100198\"},\"name\":\"false due to too many digits\",\"out\":false},{\"in\":{\"num\":\"112358132134558914423337761098715972584418167651094617711286\"},\"name\":\"large true fibonacci prefix\",\"out\":false},{\"in\":{\"num\":\"112358132134558914423337761098715972584418167651094617711287\"},\"name\":\"large false fibonacci prefix\",\"out\":false},{\"in\":{\"num\":\"0001\"},\"name\":\"many leading zeros invalid\",\"out\":false},{\"in\":{\"num\":\"011235\"},\"name\":\"zero and one\",\"out\":true},{\"in\":{\"num\":\"120122436\"},\"name\":\"hidden leading zero invalid\",\"out\":false},{\"in\":{\"num\":\"198019823962\"},\"name\":\"true mixed sizes\",\"out\":true},{\"in\":{\"num\":\"198019823961\"},\"name\":\"false mixed sizes\",\"out\":false},{\"in\":{\"num\":\"12122436601096516155\"},\"name\":\"true long carry chain\",\"out\":false},{\"in\":{\"num\":\"12122436601096516156\"},\"name\":\"false long carry chain\",\"out\":false},{\"in\":{\"num\":\"000000\"},\"name\":\"all zeros longer\",\"out\":true},{\"in\":{\"num\":\"0000001\"},\"name\":\"all zeros with extra digit\",\"out\":false},{\"in\":{\"num\":\"123581321\"},\"name\":\"true with larger first term\",\"out\":true},{\"in\":{\"num\":\"123581322\"},\"name\":\"false with larger first term\",\"out\":false},{\"in\":{\"num\":\"199100299399\"},\"name\":\"true from 1 99 100\",\"out\":true},{\"in\":{\"num\":\"199100299398\"},\"name\":\"false from 1 99 100\",\"out\":false},{\"in\":{\"num\":\"01\"},\"name\":\"false tiny zeroes\",\"out\":false},{\"in\":{\"num\":\"1122243360\"},\"name\":\"true nested carry\",\"out\":false},{\"in\":{\"num\":\"1122243361\"},\"name\":\"false nested carry\",\"out\":false},{\"in\":{\"num\":\"111122335588\"},\"name\":\"true alternating small\",\"out\":true},{\"in\":{\"num\":\"1234565790\"},\"name\":\"false with non additive middle\",\"out\":false}]}")
     test_cases = manifest.get('tests', [])
     entry = manifest.get('entry', {})
     params_schema = entry.get('params', {})
@@ -258,11 +266,19 @@ def run_all_tests():
                 if oracle_call:
                     try:
                         def trace_calls(frame, event, arg):
+                            if event == "call":
+                                if "expected" in frame.f_code.co_varnames:
+                                    if hasattr(frame, 'f_trace_lines'):
+                                        frame.f_trace_lines = False
+                                    return trace_calls_local
+                                return None
+                            return None
+                        def trace_calls_local(frame, event, arg):
                             if event == "return":
                                 locals_dict = frame.f_locals
                                 if "expected" in locals_dict:
                                     extracted_expected[0] = locals_dict["expected"]
-                            return trace_calls
+                            return trace_calls_local
                         sys.settrace(trace_calls)
                         oracle_call_replaced = oracle_call.replace("{result}", "res")
                         is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})

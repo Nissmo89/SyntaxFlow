@@ -58,14 +58,22 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
 
     QString basePath = QCoreApplication::applicationDirPath();
+    QString toolsPath = QDir::cleanPath(basePath + "/tools");
+    if (!QDir(toolsPath).exists()) {
+        toolsPath = QDir::cleanPath(basePath + "/../tools");
+    }
+    if (!QDir(toolsPath).exists()) {
+        toolsPath = QDir::cleanPath(basePath + "/../../tools");
+    }
+
 #ifdef Q_OS_WIN
-    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer.exe");
+    QString wasmerExe = QDir::cleanPath(toolsPath + "/wasmer/bin/wasmer.exe");
 #else
-    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer");
+    QString wasmerExe = QDir::cleanPath(toolsPath + "/wasmer/bin/wasmer");
 #endif
 
     QStringList args;
-    QString pkgPath = QDir::cleanPath(basePath + "/../tools/wasmer/packages/quickjs");
+    QString pkgPath = QDir::cleanPath(toolsPath + "/wasmer/packages/quickjs");
     args << "run" << "--mapdir" << "/src:." << pkgPath << "--command" << "qjs" << "--" << "/src/user_code.js";
     
     qDebug() << "JavascriptRunner: starting wasmer... args:" << args;

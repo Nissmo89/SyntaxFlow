@@ -58,14 +58,22 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
 
     QString basePath = QCoreApplication::applicationDirPath();
+    QString toolsPath = QDir::cleanPath(basePath + "/tools");
+    if (!QDir(toolsPath).exists()) {
+        toolsPath = QDir::cleanPath(basePath + "/../tools");
+    }
+    if (!QDir(toolsPath).exists()) {
+        toolsPath = QDir::cleanPath(basePath + "/../../tools");
+    }
+
 #ifdef Q_OS_WIN
-    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer.exe");
+    QString wasmerExe = QDir::cleanPath(toolsPath + "/wasmer/bin/wasmer.exe");
 #else
-    QString wasmerExe = QDir::cleanPath(basePath + "/../tools/wasmer/bin/wasmer");
+    QString wasmerExe = QDir::cleanPath(toolsPath + "/wasmer/bin/wasmer");
 #endif
 
     QStringList args;
-    QString pkgPath = QDir::cleanPath(basePath + "/../tools/wasmer/packages/python");
+    QString pkgPath = QDir::cleanPath(toolsPath + "/wasmer/packages/python");
     args << "run" << "--mapdir" << "/src:." << pkgPath << "--" << "/src/user_code.py";
     
     qDebug() << "PythonRunner: starting wasmer... args:" << args;

@@ -297,10 +297,11 @@ inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
 class Solution {
 public:
-    int addDigits(int n) {
-        if(n < 10)
-            return n;
-        return 1 + (n - 1) % 9 ;
+    int addDigits(int num) {
+        if (num == 0) {
+            return 0;
+        }
+        return 1 + (num - 1) % 9;
     }
 };
 
