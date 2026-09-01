@@ -83,8 +83,8 @@ after_build:
   - if not exist "package\Qt6Core.dll" ( echo [ERROR] Qt6Core.dll missing after deployment & exit 1 )
   - 7z a -tzip "SyntaxFlow-Windows-x64.zip" ".\package\*"
   - if not exist "SyntaxFlow-Windows-x64.zip" ( echo [ERROR] ZIP file not created & exit 1 )
-  - echo Uploading to transfer.sh...
-  - curl --upload-file SyntaxFlow-Windows-x64.zip https://transfer.sh/SyntaxFlow-Windows-x64.zip
+  - echo Uploading artifact to bashupload.com...
+  - curl --upload-file SyntaxFlow-Windows-x64.zip https://bashupload.com/SyntaxFlow-Windows-x64.zip || echo [WARNING] Upload failed, but continuing...
 
 artifacts:
   - path: SyntaxFlow-Windows-x64.zip
