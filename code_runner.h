@@ -30,11 +30,11 @@ public:
 
     void executeTestRaw(EmbeddedRunner* runner, const QString &code,
                         const QJsonObject &test,
-                        int index, int offset = 0);
+                        int index, int offset = 0, int timeoutMs = 60000);
     
-    void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
-    void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId);
-    void runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex);
+    void runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, int timeoutMs);
+    void runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId, int timeoutMs);
+    void runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, int timeoutMs);
 
     void runFreeCode(const QString &code, const QString &languageId);
 
@@ -57,10 +57,12 @@ private:
     volatile bool m_stopRequested{false};
 
     QJsonObject m_currentManifest;
+    QJsonObject m_currentProblem;
     
     QJsonArray evaluateResultsWithPython(const QJsonObject &manifest, const QJsonArray &results);
 
     bool loadTestCases(const QString &problemId, QJsonArray &tests, MethodSchema &schema);
+    int calculateSmartTimeLimit(const QString &languageId);
 
     EmbeddedRunner* getRunner(const QString &languageId);
 

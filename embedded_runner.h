@@ -29,7 +29,8 @@ public:
     virtual Result execute(const QString &code,
                            const QString &stdinInput,
                            volatile bool *stopRequested = nullptr,
-                           const QMap<QString, QString> &additionalFiles = {}) = 0;
+                           const QMap<QString, QString> &additionalFiles = {},
+                           int timeoutMs = 60000) = 0;
 
     virtual QString languageId()   const = 0;   // e.g. "c", "javascript", "python"
     virtual QString languageName() const = 0;   // e.g. "C",  "JavaScript",  "Python"

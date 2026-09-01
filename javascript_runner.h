@@ -32,7 +32,8 @@ public:
     Result execute(const QString &code,
                    const QString &stdinInput = "",
                    volatile bool *abort = nullptr,
-                   const QMap<QString, QString> &additionalFiles = {}) override;
+                   const QMap<QString, QString> &additionalFiles = {},
+                   int timeoutMs = 60000) override;
 
     QString languageId()   const override { return QStringLiteral("javascript"); }
     QString languageName() const override { return QStringLiteral("Javascript");  }

@@ -69,12 +69,14 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
         return;
     }
     
+    int timeLimit = calculateSmartTimeLimit(languageId);
+
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
-        runPythonTestsBatch(code, m_currentManifest, -1);
+        runPythonTestsBatch(code, m_currentManifest, -1, timeLimit);
     } else if ((languageId == "cpp" || languageId == "c++" || languageId == "c") && !m_currentManifest.isEmpty()) {
-        runCppTestsBatch(code, m_currentManifest, -1, languageId);
+        runCppTestsBatch(code, m_currentManifest, -1, languageId, timeLimit);
     } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
-        runJavascriptTestsBatch(code, m_currentManifest, -1);
+        runJavascriptTestsBatch(code, m_currentManifest, -1, timeLimit);
     } else {
         QString fullCode = code;
         int offset = 0;
@@ -86,7 +88,7 @@ void CodeRunner::runCode(const QString &code, const QString &languageId, const Q
 
         for (int i = 0; i < tests.size() && !m_stopRequested; ++i) {
             emit progress(i + 1, tests.size());
-            executeTestRaw(runner, fullCode, tests[i].toObject(), i, offset);
+            executeTestRaw(runner, fullCode, tests[i].toObject(), i, offset, timeLimit / qMax(1, (int)tests.size()));
         }
     }
 
@@ -136,12 +138,14 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
         return;
     }
 
+    int timeLimit = calculateSmartTimeLimit(languageId);
+
     if (languageId == "python" && !m_currentManifest.isEmpty()) {
-        runPythonTestsBatch(code, m_currentManifest, testIndex);
+        runPythonTestsBatch(code, m_currentManifest, testIndex, timeLimit);
     } else if ((languageId == "cpp" || languageId == "c++" || languageId == "c") && !m_currentManifest.isEmpty()) {
-        runCppTestsBatch(code, m_currentManifest, testIndex, languageId);
+        runCppTestsBatch(code, m_currentManifest, testIndex, languageId, timeLimit);
     } else if ((languageId == "javascript" || languageId == "js") && !m_currentManifest.isEmpty()) {
-        runJavascriptTestsBatch(code, m_currentManifest, testIndex);
+        runJavascriptTestsBatch(code, m_currentManifest, testIndex, timeLimit);
     } else {
         QString fullCode = code;
         int offset = 0;
@@ -151,7 +155,7 @@ void CodeRunner::runSingleTest(const QString &code, const QString &languageId,
             fullCode = header + fullCode + DriverGenerator::generateDriver(schema, languageId);
         }
 
-        executeTestRaw(runner, fullCode, tests[testIndex].toObject(), testIndex, offset);
+        executeTestRaw(runner, fullCode, tests[testIndex].toObject(), testIndex, offset, timeLimit / qMax(1, (int)tests.size()));
     }
 
     m_running = false;
@@ -210,9 +214,10 @@ bool CodeRunner::loadTestCases(const QString &problemPath, QJsonArray &tests, Me
     qDebug() << "Loading test cases from:" << problemPath;
     
     auto parseDoc = [&](const QJsonDocument& doc) {
-        tests = doc.object()["testCases"].toArray();
-        if (doc.object().contains("method")) {
-            schema = MethodSchema::fromJson(doc.object()["method"].toObject());
+        m_currentProblem = doc.object();
+        tests = m_currentProblem["testCases"].toArray();
+        if (m_currentProblem.contains("method")) {
+            schema = MethodSchema::fromJson(m_currentProblem["method"].toObject());
         }
         if (doc.object().contains("manifest")) {
             m_currentManifest = doc.object()["manifest"].toObject();
@@ -286,7 +291,7 @@ QString CodeRunner::getProblemsPath(const QString &problemId) const {
 
 void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
                                 const QJsonObject &test,
-                                int index, int offset)
+                                int index, int offset, int timeoutMs)
 {
     QString input    = test["input"].toString();
     QString expected = test["expected"].toString().trimmed();
@@ -294,7 +299,7 @@ void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
     QElapsedTimer timer;
     timer.start();
     
-    EmbeddedRunner::Result r = runner->execute(code, input, &m_stopRequested);
+    EmbeddedRunner::Result r = runner->execute(code, input, &m_stopRequested, {}, timeoutMs);
     
     qint64 elapsedMs = timer.elapsed();
 
@@ -330,7 +335,7 @@ void CodeRunner::executeTestRaw(EmbeddedRunner* runner, const QString &code,
     emit testResult(index, status, actual, expected, elapsedMs);
 }
 
-void CodeRunner::runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex) {
+void CodeRunner::runPythonTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, int timeoutMs) {
     QJsonObject runManifest = manifest;
     
     // If running single test, filter tests array
@@ -585,11 +590,19 @@ def run_all_tests():
                 if oracle_call:
                     try:
                         def trace_calls(frame, event, arg):
+                            if event == "call":
+                                if "expected" in frame.f_code.co_varnames:
+                                    if hasattr(frame, 'f_trace_lines'):
+                                        frame.f_trace_lines = False
+                                    return trace_calls_local
+                                return None
+                            return None
+                        def trace_calls_local(frame, event, arg):
                             if event == "return":
                                 locals_dict = frame.f_locals
                                 if "expected" in locals_dict:
                                     extracted_expected[0] = locals_dict["expected"]
-                            return trace_calls
+                            return trace_calls_local
                         sys.settrace(trace_calls)
                         oracle_call_replaced = oracle_call.replace("{result}", "res")
                         is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})
@@ -648,7 +661,7 @@ run_all_tests()
         dumpFile.close();
     }
         
-    EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested);
+    EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested, {}, timeoutMs);
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
         emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "python", offset));
@@ -697,7 +710,7 @@ run_all_tests()
     }
 }
 
-void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId) {
+void CodeRunner::runCppTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, const QString &languageId, int timeoutMs) {
     QJsonObject runManifest = manifest;
     if (singleTestIndex >= 0) {
         QJsonArray allTests = manifest["tests"].toArray();
@@ -1208,7 +1221,8 @@ int main() {
     
     QElapsedTimer timer;
     timer.start();
-    EmbeddedRunner::Result r = m_wasmRunnerCpp->execute(mainCpp, "", &m_stopRequested, {{"test.json", testJson}});
+    EmbeddedRunner *runner = (languageId == "c") ? (EmbeddedRunner*)m_wasmRunnerC : (EmbeddedRunner*)m_wasmRunnerCpp;
+    EmbeddedRunner::Result r = runner->execute(mainCpp, "", &m_stopRequested, {{"test.json", testJson}}, timeoutMs);
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
         emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "cpp", offset));
@@ -1279,7 +1293,7 @@ int main() {
     }
 }
 
-void CodeRunner::runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex) {
+void CodeRunner::runJavascriptTestsBatch(const QString &code, const QJsonObject &manifest, int singleTestIndex, int timeoutMs) {
     QJsonObject runManifest = manifest;
     if (singleTestIndex >= 0) {
         QJsonArray allTests = manifest["tests"].toArray();
@@ -1481,7 +1495,7 @@ run_all_tests();
         dumpJs.close();
     }
         
-    EmbeddedRunner::Result r = m_javascriptRunner->execute(fullExecutionCode, "", &m_stopRequested);
+    EmbeddedRunner::Result r = m_javascriptRunner->execute(fullExecutionCode, "", &m_stopRequested, {}, timeoutMs);
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
         emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "javascript", offset));
@@ -1627,11 +1641,19 @@ def evaluate():
                     local_vars[p_name] = p_val
                 try:
                     def trace_calls(frame, event, arg):
+                        if event == "call":
+                            if "expected" in frame.f_code.co_varnames:
+                                if hasattr(frame, 'f_trace_lines'):
+                                    frame.f_trace_lines = False
+                                return trace_calls_local
+                            return None
+                        return None
+                    def trace_calls_local(frame, event, arg):
                         if event == "return":
                             locals_dict = frame.f_locals
                             if "expected" in locals_dict:
                                 extracted_expected[0] = locals_dict["expected"]
-                        return trace_calls
+                        return trace_calls_local
                     sys.settrace(trace_calls)
                     oracle_call_replaced = oracle_call.replace("{result}", "res")
                     is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": actual})
@@ -1690,4 +1712,48 @@ evaluate()
     QJsonArray fallback;
     for (int i = 0; i < results.size(); ++i) fallback.append("System Error");
     return fallback;
+}
+
+int CodeRunner::calculateSmartTimeLimit(const QString &languageId) {
+    int timeLimit = 60000; // default 60s
+    bool isSlowLang = (languageId == "python" || languageId == "javascript" || languageId == "js");
+    
+    QJsonArray tags = m_currentProblem["tags"].toArray();
+    bool hasBacktracking = false;
+    for (int i = 0; i < tags.size(); ++i) {
+        QString tag = tags[i].toString().toLower();
+        if (tag.contains("backtracking") || tag.contains("recursion") || tag.contains("dynamic programming")) {
+            hasBacktracking = true;
+            break;
+        }
+    }
+    
+    bool smallConstraints = false;
+    QJsonArray constraints = m_currentProblem["constraints"].toArray();
+    for (int i = 0; i < constraints.size(); ++i) {
+        QString c = constraints[i].toString();
+        QRegularExpression regex(R"(<=\s*(\d+))");
+        QRegularExpressionMatch match = regex.match(c);
+        if (match.hasMatch()) {
+            int val = match.captured(1).toInt();
+            if (val <= 30) {
+                smallConstraints = true;
+                break;
+            }
+        }
+    }
+    
+    if (hasBacktracking || smallConstraints) {
+        timeLimit = isSlowLang ? 180000 : 120000; // 3 mins for slow, 2 mins for fast
+    }
+    
+    int numTests = m_currentProblem["testCases"].toArray().size();
+    if (numTests > 0) {
+        int minTime = numTests * (isSlowLang ? 2000 : 500);
+        if (timeLimit < minTime) {
+            timeLimit = minTime;
+        }
+    }
+    
+    return timeLimit;
 }

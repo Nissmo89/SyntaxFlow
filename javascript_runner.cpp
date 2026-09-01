@@ -22,7 +22,8 @@ JavascriptRunner::~JavascriptRunner()
 EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
                                              const QString &stdinInput,
                                              volatile bool *abort,
-                                             const QMap<QString, QString> &additionalFiles)
+                                             const QMap<QString, QString> &additionalFiles,
+                                             int timeoutMs)
 {
     QMutexLocker lock(&m_mutex);
     Result result;
@@ -81,7 +82,6 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
     }
     runProc.closeWriteChannel();
 
-    const int TIMEOUT_MS = 60000;
     QElapsedTimer timer;
     timer.start();
     qDebug() << "JavascriptRunner: waiting for finish...";
@@ -94,9 +94,9 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
             qDebug() << "JavascriptRunner: aborted";
             return result;
         }
-        if (timer.elapsed() >= TIMEOUT_MS) {
+        if (timer.elapsed() >= timeoutMs) {
             runProc.kill();
-            result.error    = QStringLiteral("Time limit exceeded (60 s)");
+            result.error    = QString("Time limit exceeded (%1 s)").arg(timeoutMs / 1000.0);
             result.exitCode = -1;
             result.timedOut = true;
             qDebug() << "JavascriptRunner: timed out";
