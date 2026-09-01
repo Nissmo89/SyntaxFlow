@@ -30,7 +30,7 @@ install:
   - echo Checking for Qt at %QT_PATH%...
   - if not exist "%QT_PATH%" C:\Python310-x64\python.exe -m pip install --upgrade pip
   - if not exist "%QT_PATH%" C:\Python310-x64\python.exe -m pip install aqtinstall
-  - if not exist "%QT_PATH%" C:\Python310-x64\python.exe -m aqt install-qt windows desktop %QT_VERSION% %QT_ARCH% --outputdir C:\Qt --modules qtwebengine qtwebchannel qtpositioning
+  - if not exist "%QT_PATH%" C:\Python310-x64\python.exe -m aqt install-qt windows desktop %QT_VERSION% %QT_ARCH% --outputdir C:\Qt --modules qtwebengine qtwebchannel qtpositioning --external 7z
   - if exist "%QT_PATH%" echo Qt %QT_VERSION% is present.
   - echo ==========================================
   - echo Environment Information:
