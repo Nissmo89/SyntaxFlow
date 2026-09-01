@@ -1846,9 +1846,7 @@
   
   <div style="flex: 1; position: relative;">
     <deep-chat id="copilotDeepChat" 
-      style="border: none; width: 100%; height: 100%; background: transparent; border-radius: 0 0 12px 12px;"
-      messageStyles='{"default": {"shared": {"bubble": {"backgroundColor": "var(--surface)", "color": "var(--text)"}}, "user": {"bubble": {"backgroundColor": "var(--accent-dim)", "color": "var(--text)"}}, "ai": {"bubble": {"backgroundColor": "var(--surface-2)", "color": "var(--text)"}}}}'
-      textInput='{"styles": {"container": {"backgroundColor": "var(--surface)", "border": "1px solid var(--border)", "color": "var(--text)"}}}'
+      style="border: none; width: 100%; height: 100%; background-color: var(--bg); border-radius: 0 0 12px 12px; font-family: inherit;"
     ></deep-chat>
   </div>
 </div>
@@ -2638,6 +2636,27 @@
   const chatResolvers = {};
 
   if (copilotDeepChat) {
+    copilotDeepChat.messageStyles = {
+      default: {
+        shared: { bubble: { maxWidth: "90%", backgroundColor: "var(--surface)", color: "var(--text)", padding: "12px", fontSize: "14px", lineHeight: "1.5", border: "1px solid var(--border)" } },
+        user: { bubble: { backgroundColor: "var(--accent-dim)", color: "var(--text)", border: "1px solid var(--accent-dim)" } },
+        ai: { bubble: { backgroundColor: "var(--surface-2)", color: "var(--text)" } }
+      }
+    };
+    copilotDeepChat.textInput = {
+      styles: {
+        container: { backgroundColor: "var(--surface)", border: "1px solid var(--border)", color: "var(--text)", boxShadow: "none" },
+        text: { color: "var(--text)" }
+      },
+      placeholder: { text: "Ask Copilot...", style: { color: "var(--text-muted)" } }
+    };
+    copilotDeepChat.submitButtonStyles = {
+      submit: {
+        container: { default: { backgroundColor: "transparent" }, hover: { backgroundColor: "var(--surface-2)" } },
+        svg: { styles: { default: { filter: "none", color: "var(--accent)" } } }
+      }
+    };
+
     copilotDeepChat.request = {
       handler: (message, signals) => {
         if (!copilotManager) {
@@ -3886,11 +3905,37 @@
         });
         copilotManager.chatReceived.connect(function(id, responseText) {
             if (chatResolvers[id]) {
-                // deep-chat natively renders Markdown, but we inject a small script block that
-                // intercepts code blocks to allow applying to editor. Actually, deep-chat natively
-                // handles markdown but we can't easily append "Apply to Editor" without custom HTML.
-                // For now, let deep-chat handle markdown styling gracefully.
-                chatResolvers[id]({ text: responseText });
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = marked.parse(normalizeMarkdown(responseText));
+                enhanceRenderedMarkdown(wrapper);
+                
+                if (!window.applyCopilotCode) {
+                    window.applyCopilotCode = function(btn) {
+                        const pre = btn.parentElement;
+                        const codeBlock = pre.querySelector('code');
+                        if (codeBlock && window.editor) {
+                            window.isInternalChange = true;
+                            window.editor.replaceSelection(codeBlock.innerText);
+                            window.isInternalChange = false;
+                        }
+                    };
+                }
+                
+                // Add Apply to Editor buttons
+                wrapper.querySelectorAll('pre').forEach(pre => {
+                    const codeBlock = pre.querySelector('code');
+                    if (codeBlock) {
+                        const btn = document.createElement('button');
+                        btn.className = 'notes-fmt-btn';
+                        btn.style.cssText = "position:absolute; top:4px; right:4px; border:1px solid var(--border); border-radius:4px; font-size:10px; background:var(--surface); cursor:pointer;";
+                        btn.textContent = 'Apply to Editor';
+                        btn.setAttribute('onclick', 'applyCopilotCode(this)');
+                        pre.style.position = "relative";
+                        pre.appendChild(btn);
+                    }
+                });
+
+                chatResolvers[id]({ html: wrapper.innerHTML });
                 delete chatResolvers[id];
             }
         });
