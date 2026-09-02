@@ -4089,32 +4089,19 @@
 
     document.addEventListener('click', (e) => {
         const path = e.composedPath();
-        
-        // Debugging mode for any click inside deep-chat
-        const isDeepChat = path.some(el => el.tagName === 'DEEP-CHAT');
-        if (isDeepChat) {
-            console.log("[DEBUG GLOBAL-CLICK] Click detected inside deep-chat shadow root. Path length:", path.length);
-        }
 
         const applyBtn = path.find(el => el.classList && el.classList.contains('ai-apply-btn'));
         if (applyBtn) {
-            console.log("[DEBUG GLOBAL-CLICK] Caught ai-apply-btn click!");
             const wrapper = applyBtn.closest('.ai-code-wrapper');
             const codeBlock = wrapper ? wrapper.querySelector('code') : null;
             if (codeBlock) {
-                console.log("[DEBUG GLOBAL-CLICK] Found code block of length:", codeBlock.innerText.length);
                 if (typeof window.setCode === 'function') {
-                    console.log("[DEBUG GLOBAL-CLICK] Calling window.setCode...");
                     window.setCode(codeBlock.innerText);
                     const originalText = applyBtn.innerText;
                     applyBtn.innerText = "✓ Applied!";
                     applyBtn.style.color = "var(--lime)";
                     setTimeout(() => { applyBtn.innerText = originalText; applyBtn.style.color = ""; }, 2000);
-                } else {
-                    console.error("[DEBUG GLOBAL-CLICK] window.setCode is undefined!");
                 }
-            } else {
-                console.error("[DEBUG GLOBAL-CLICK] Could not find codeBlock!");
             }
             return;
         }
