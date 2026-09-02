@@ -423,7 +423,14 @@
   </div>
 
   <script>
-    lucide.createIcons();
+    function initIcons() {
+      if (typeof lucide !== 'undefined') {
+        try { lucide.createIcons(); } catch(e) {}
+      } else {
+        setTimeout(initIcons, 100);
+      }
+    }
+    initIcons(); 
 
     const params = new URLSearchParams(window.location.search);
     const mac = params.get("mac") || "default";

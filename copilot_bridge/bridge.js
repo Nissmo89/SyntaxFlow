@@ -41,7 +41,7 @@ async function handleRequest(request) {
 
       case "create_session":
         if (!client) throw new Error("Client not initialized");
-        const session = await client.createSession({ model: params.model || "gpt-4" }); // Defaults based on SDK
+        const session = await client.createSession(params.model ? { model: params.model } : undefined);
         const sessionId = Math.random().toString(36).substring(7);
         sessions.set(sessionId, session);
         sendResponse(id, { sessionId });
@@ -52,7 +52,7 @@ async function handleRequest(request) {
         const { code, language, cursorOffset } = params;
         
         // This simulates a completion request for CodeMirror inline ghost text.
-        const activeSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
+        const activeSession = sessions.get(params.sessionId) || await client.createSession();
         
         // Request completion
         const compResponse = await activeSession.sendAndWait({
@@ -67,7 +67,7 @@ async function handleRequest(request) {
       case "chat":
         if (!client) throw new Error("Client not initialized");
         const { prompt, context } = params;
-        const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
+        const chatSession = sessions.get(params.sessionId) || await client.createSession();
         
         const systemPrompt = `You are SyntaxFlow Assistant, an AI programming assistant for competitive programming and algorithmic problem solving.
 
