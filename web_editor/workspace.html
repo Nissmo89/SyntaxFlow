@@ -2738,66 +2738,7 @@
     const themeObserver = new MutationObserver(() => { applyDeepChatTheme(); });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    copilotDeepChat.htmlClassUtilities = {
-      'ai-apply-btn': {
-        events: {
-          click: (event) => {
-            console.log("[DEBUG AI-Apply] Click event triggered on ai-apply-btn");
-            console.log("[DEBUG AI-Apply] Event target:", event.target);
-            
-            const applyBtn = event.target.closest('.ai-apply-btn');
-            console.log("[DEBUG AI-Apply] applyBtn resolved:", applyBtn);
-            
-            if (applyBtn) {
-              const wrapper = applyBtn.closest('.ai-code-wrapper');
-              console.log("[DEBUG AI-Apply] wrapper resolved:", wrapper);
-              
-              const codeBlock = wrapper ? wrapper.querySelector('code') : null;
-              console.log("[DEBUG AI-Apply] codeBlock resolved:", codeBlock);
-              
-              if (codeBlock) {
-                  console.log("[DEBUG AI-Apply] codeBlock.innerText length:", codeBlock.innerText.length);
-                  console.log("[DEBUG AI-Apply] window.setCode type:", typeof window.setCode);
-                  
-                  if (typeof window.setCode === 'function') {
-                      console.log("[DEBUG AI-Apply] Calling window.setCode with payload...");
-                      window.setCode(codeBlock.innerText);
-                      console.log("[DEBUG AI-Apply] window.setCode executed successfully");
-                      
-                      const originalText = applyBtn.innerText;
-                      applyBtn.innerText = "✓ Applied!";
-                      applyBtn.style.color = "var(--lime)";
-                      setTimeout(() => { applyBtn.innerText = originalText; applyBtn.style.color = ""; }, 2000);
-                  } else {
-                      console.error("[DEBUG AI-Apply] window.setCode is NOT a function! It is:", window.setCode);
-                  }
-              } else {
-                  console.error("[DEBUG AI-Apply] Could not find <code> block inside wrapper!");
-              }
-            }
-          }
-        }
-      },
-      'ai-copy-btn': {
-        events: {
-          click: (event) => {
-            const copyBtn = event.target.closest('.ai-copy-btn');
-            if (copyBtn) {
-              const wrapper = copyBtn.closest('.ai-code-wrapper');
-              const codeBlock = wrapper ? wrapper.querySelector('code') : null;
-              if (codeBlock) {
-                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-                  const originalText = copyBtn.innerText;
-                  copyBtn.innerText = "✓ Copied!";
-                  copyBtn.style.color = "var(--lime)";
-                  setTimeout(() => { copyBtn.innerText = originalText; copyBtn.style.color = ""; }, 2000);
-                });
-              }
-            }
-          }
-        }
-      }
-    };
+    copilotDeepChat.htmlClassUtilities = {};
 
     copilotDeepChat.request = {
       handler: (message, signals) => {
@@ -4145,6 +4086,53 @@
       document.documentElement.setAttribute("data-theme", event.data.theme);
     }
   });
+
+    document.addEventListener('click', (e) => {
+        const path = e.composedPath();
+        
+        // Debugging mode for any click inside deep-chat
+        const isDeepChat = path.some(el => el.tagName === 'DEEP-CHAT');
+        if (isDeepChat) {
+            console.log("[DEBUG GLOBAL-CLICK] Click detected inside deep-chat shadow root. Path length:", path.length);
+        }
+
+        const applyBtn = path.find(el => el.classList && el.classList.contains('ai-apply-btn'));
+        if (applyBtn) {
+            console.log("[DEBUG GLOBAL-CLICK] Caught ai-apply-btn click!");
+            const wrapper = applyBtn.closest('.ai-code-wrapper');
+            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+            if (codeBlock) {
+                console.log("[DEBUG GLOBAL-CLICK] Found code block of length:", codeBlock.innerText.length);
+                if (typeof window.setCode === 'function') {
+                    console.log("[DEBUG GLOBAL-CLICK] Calling window.setCode...");
+                    window.setCode(codeBlock.innerText);
+                    const originalText = applyBtn.innerText;
+                    applyBtn.innerText = "✓ Applied!";
+                    applyBtn.style.color = "var(--lime)";
+                    setTimeout(() => { applyBtn.innerText = originalText; applyBtn.style.color = ""; }, 2000);
+                } else {
+                    console.error("[DEBUG GLOBAL-CLICK] window.setCode is undefined!");
+                }
+            } else {
+                console.error("[DEBUG GLOBAL-CLICK] Could not find codeBlock!");
+            }
+            return;
+        }
+
+        const copyBtn = path.find(el => el.classList && el.classList.contains('ai-copy-btn'));
+        if (copyBtn) {
+            const wrapper = copyBtn.closest('.ai-code-wrapper');
+            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+            if (codeBlock) {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    const originalText = copyBtn.innerText;
+                    copyBtn.innerText = "✓ Copied!";
+                    copyBtn.style.color = "var(--lime)";
+                    setTimeout(() => { copyBtn.innerText = originalText; copyBtn.style.color = ""; }, 2000);
+                });
+            }
+        }
+    });
 
   </script>
 </body>
