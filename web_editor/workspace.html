@@ -2732,6 +2732,55 @@
     const themeObserver = new MutationObserver(() => { applyDeepChatTheme(); });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
+    copilotDeepChat.htmlClassUtilities = {
+      'ai-apply-btn': {
+        events: {
+          click: (event) => {
+            const applyBtn = event.target.closest('.ai-apply-btn');
+            if (applyBtn && window.editor) {
+              const wrapper = applyBtn.closest('.ai-code-wrapper');
+              const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+              if (codeBlock) {
+                window.isInternalChange = true;
+                window.editor.replaceSelection(codeBlock.innerText);
+                window.isInternalChange = false;
+                
+                const span = applyBtn.querySelector('span');
+                if (span) {
+                    const originalText = span.innerText;
+                    span.innerText = "Applied!";
+                    span.style.color = "var(--lime)";
+                    setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
+                }
+              }
+            }
+          }
+        }
+      },
+      'ai-copy-btn': {
+        events: {
+          click: (event) => {
+            const copyBtn = event.target.closest('.ai-copy-btn');
+            if (copyBtn) {
+              const wrapper = copyBtn.closest('.ai-code-wrapper');
+              const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+              if (codeBlock) {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                  const span = copyBtn.querySelector('span');
+                  if (span) {
+                      const originalText = span.innerText;
+                      span.innerText = "Copied!";
+                      span.style.color = "var(--lime)";
+                      setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
+                  }
+                });
+              }
+            }
+          }
+        }
+      }
+    };
+
     copilotDeepChat.request = {
       handler: (message, signals) => {
         if (!copilotManager) {
@@ -4085,50 +4134,6 @@
       document.documentElement.setAttribute("data-theme", event.data.theme);
     }
   });
-
-    // Event delegation for AI Copilot action buttons (since they're inside shadow DOM / sanitized HTML)
-    document.addEventListener('click', (e) => {
-        const path = e.composedPath();
-        
-        // Handle "Accept/Apply to Editor"
-        const applyBtn = path.find(el => el.classList && el.classList.contains('ai-apply-btn'));
-        if (applyBtn && window.editor) {
-            const wrapper = applyBtn.closest('.ai-code-wrapper');
-            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
-            if (codeBlock) {
-                window.isInternalChange = true;
-                window.editor.replaceSelection(codeBlock.innerText);
-                window.isInternalChange = false;
-                
-                const span = applyBtn.querySelector('span');
-                if (span) {
-                    const originalText = span.innerText;
-                    span.innerText = "Applied!";
-                    span.style.color = "var(--lime)";
-                    setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
-                }
-            }
-            return;
-        }
-        
-        // Handle "Copy"
-        const copyBtn = path.find(el => el.classList && el.classList.contains('ai-copy-btn'));
-        if (copyBtn) {
-            const wrapper = copyBtn.closest('.ai-code-wrapper');
-            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
-            if (codeBlock) {
-                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-                    const span = copyBtn.querySelector('span');
-                    if (span) {
-                        const originalText = span.innerText;
-                        span.innerText = "Copied!";
-                        span.style.color = "var(--lime)";
-                        setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
-                    }
-                });
-            }
-        }
-    });
 
   </script>
 </body>
