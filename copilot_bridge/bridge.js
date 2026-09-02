@@ -86,6 +86,7 @@ RULES:
 - You must reason about the user's request, gather information using tools, test your code, and THEN answer the user.
 - If the user asks a simple question ("hi"), you can just use "answer_user" immediately.
 - If the user asks you to solve or debug, use "get_problem" or "get_code", then write and test code with "compile_and_run", analyze the results, and finally "answer_user".
+- IMPORTANT: If your code causes an unexpected system crash or consistently fails with "null" output multiple times, ASSUME there is a backend sandbox/compiler issue. DO NOT loop infinitely trying to fix it. Instead, use "answer_user" to inform the user about the suspected system error.
 `;
 
         let fullPrompt = prompt;

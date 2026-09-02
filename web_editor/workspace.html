@@ -2747,6 +2747,8 @@
           return;
         }
         let id = (++copilotChatId).toString();
+        window.agentIterations = window.agentIterations || {};
+        window.agentIterations[id] = 0;
         
         let code = editor.getValue();
         let lang = document.getElementById('langSelect').value;
@@ -4092,9 +4094,16 @@
                 if (toolCallObj.tool === "answer_user") {
                     responseText = toolCallObj.args ? toolCallObj.args.message : "Done.";
                 } else {
-                    console.log("[AGENT] Tool call received:", toolCallObj);
-                    executeAgentTool(id, toolCallObj);
-                    return; // DO NOT render to chat UI yet
+                    window.agentIterations[id] = (window.agentIterations[id] || 0) + 1;
+                    if (window.agentIterations[id] > 5) {
+                        console.log("[AGENT] Max iterations reached for id", id);
+                        responseText = "⚠️ **Agent Error:** I've tried multiple times but I'm getting stuck in an infinite loop. There might be an issue with the testing system or the execution environment (e.g., getting `null` output). Please check the execution logs manually!";
+                        isToolCall = false; // Fall through to standard rendering
+                    } else {
+                        console.log(`[AGENT] Tool call received (Iteration ${window.agentIterations[id]}):`, toolCallObj);
+                        executeAgentTool(id, toolCallObj);
+                        return; // DO NOT render to chat UI yet
+                    }
                 }
             }
 
