@@ -4012,31 +4012,45 @@
                 try {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = marked.parse(normalizeMarkdown(responseText));
-                    enhanceRenderedMarkdown(wrapper);
                     
-                    if (!window.applyCopilotCode) {
-                        window.applyCopilotCode = function(btn) {
-                            const pre = btn.parentElement;
-                            const codeBlock = pre.querySelector('code');
-                            if (codeBlock && window.editor) {
-                                window.isInternalChange = true;
-                                window.editor.replaceSelection(codeBlock.innerText);
-                                window.isInternalChange = false;
-                            }
-                        };
-                    }
+                    // We don't call enhanceRenderedMarkdown here because deep-chat's Shadow DOM 
+                    // blocks global CSS and strips inline onclick attributes.
+                    // Instead, we build an inline-styled VS Code-like header.
                     
                     wrapper.querySelectorAll('pre').forEach(pre => {
-                        const codeBlock = pre.querySelector('code');
-                        if (codeBlock) {
-                            const btn = document.createElement('button');
-                            btn.className = 'notes-fmt-btn';
-                            btn.style.cssText = "position:absolute; top:4px; right:4px; border:1px solid var(--border); border-radius:4px; font-size:10px; background:var(--surface); cursor:pointer;";
-                            btn.textContent = 'Apply to Editor';
-                            btn.setAttribute('onclick', 'applyCopilotCode(this)');
-                            pre.style.position = "relative";
-                            pre.appendChild(btn);
-                        }
+                        const codeEl = pre.querySelector('code');
+                        if (!codeEl) return;
+                        
+                        let langName = 'Code';
+                        const match = /language-([a-zA-Z0-9#+-]+)/.exec(codeEl.className || '');
+                        if (match) langName = match[1].toUpperCase();
+
+                        const blockWrapper = document.createElement('div');
+                        blockWrapper.className = 'ai-code-wrapper';
+                        blockWrapper.style.cssText = "margin: 12px 0; border-radius: 6px; overflow: hidden; border: 1px solid var(--border);";
+                        
+                        const header = document.createElement('div');
+                        header.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: var(--surface2); padding: 6px 12px; font-size: 11px; color: var(--text-muted); font-family: sans-serif;";
+                        
+                        header.innerHTML = `
+                            <span style="font-weight: 600;">${langName}</span>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="ai-apply-btn" style="display: flex; align-items: center; gap: 4px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px; padding: 0;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Accept</span>
+                                </button>
+                                <button class="ai-copy-btn" style="display: flex; align-items: center; gap: 4px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px; padding: 0;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                    <span>Copy</span>
+                                </button>
+                            </div>
+                        `;
+                        
+                        pre.style.cssText = "margin: 0; border-radius: 0; padding: 12px; background: var(--surface); overflow-x: auto;";
+                        
+                        pre.parentNode.insertBefore(blockWrapper, pre);
+                        blockWrapper.appendChild(header);
+                        blockWrapper.appendChild(pre);
                     });
 
                     chatResolvers[id]({ html: wrapper.innerHTML });
@@ -4072,6 +4086,50 @@
     }
   });
 
-</script>
+    // Event delegation for AI Copilot action buttons (since they're inside shadow DOM / sanitized HTML)
+    document.addEventListener('click', (e) => {
+        const path = e.composedPath();
+        
+        // Handle "Accept/Apply to Editor"
+        const applyBtn = path.find(el => el.classList && el.classList.contains('ai-apply-btn'));
+        if (applyBtn && window.editor) {
+            const wrapper = applyBtn.closest('.ai-code-wrapper');
+            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+            if (codeBlock) {
+                window.isInternalChange = true;
+                window.editor.replaceSelection(codeBlock.innerText);
+                window.isInternalChange = false;
+                
+                const span = applyBtn.querySelector('span');
+                if (span) {
+                    const originalText = span.innerText;
+                    span.innerText = "Applied!";
+                    span.style.color = "var(--lime)";
+                    setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
+                }
+            }
+            return;
+        }
+        
+        // Handle "Copy"
+        const copyBtn = path.find(el => el.classList && el.classList.contains('ai-copy-btn'));
+        if (copyBtn) {
+            const wrapper = copyBtn.closest('.ai-code-wrapper');
+            const codeBlock = wrapper ? wrapper.querySelector('code') : null;
+            if (codeBlock) {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    const span = copyBtn.querySelector('span');
+                    if (span) {
+                        const originalText = span.innerText;
+                        span.innerText = "Copied!";
+                        span.style.color = "var(--lime)";
+                        setTimeout(() => { span.innerText = originalText; span.style.color = ""; }, 2000);
+                    }
+                });
+            }
+        }
+    });
+
+  </script>
 </body>
 </html>
