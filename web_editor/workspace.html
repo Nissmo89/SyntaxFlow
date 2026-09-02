@@ -2758,10 +2758,27 @@
           return;
         }
         let id = (++copilotChatId).toString();
+        
         let code = editor.getValue();
         let lang = document.getElementById('langSelect').value;
+        let selection = editor.getSelection();
+        
+        let probDescEl = document.getElementById('probDesc');
+        let problemText = probDescEl ? probDescEl.innerText.substring(0, 3000) : "";
+        
+        let subSummaryEl = document.getElementById('submissionSummary');
+        let lastExecution = subSummaryEl ? subSummaryEl.innerText.trim() : "";
+
+        let contextObj = {
+          code: code,
+          lang: lang,
+          selection: selection,
+          problem: problemText,
+          lastExecution: lastExecution
+        };
+
         chatResolvers[id] = signals.onResponse;
-        copilotManager.requestChat(id, message.text, code, lang);
+        copilotManager.requestChat(id, message.text, contextObj);
       }
     };
   }

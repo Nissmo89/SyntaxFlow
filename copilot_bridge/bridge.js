@@ -66,11 +66,91 @@ async function handleRequest(request) {
         
       case "chat":
         if (!client) throw new Error("Client not initialized");
-        const { prompt, codeContext, languageContext } = params;
+        const { prompt, context } = params;
         const chatSession = sessions.get(params.sessionId) || await client.createSession({ model: "gpt-4" });
         
-        const systemPrompt = "System Instruction: You are the AI assistant inside 'SyntaxFlow', a lightweight competitive programming and algorithm editor. Do not mention VS Code, GitHub repositories, or offer to make Git commits. Keep your answers concise. CRITICAL: Always use markdown code blocks (```) for code. Always preserve newlines, proper indentation, and formatting. Do NOT minify or flatten code into a single line.";
-        let fullPrompt = `${systemPrompt}\n\nThe user is writing ${languageContext} code. Here is the current code context:\n\`\`\`${languageContext}\n${codeContext}\n\`\`\`\n\nUser query: ${prompt}`;
+        const systemPrompt = `You are SyntaxFlow Assistant, an AI programming assistant for competitive programming and algorithmic problem solving.
+
+Your primary goals are:
+1. Help the user understand programming problems.
+2. Help users develop correct algorithms.
+3. Debug and analyze submitted code.
+4. Explain mistakes clearly.
+5. Improve inefficient solutions.
+6. Teach problem-solving techniques rather than merely producing answers.
+
+GENERAL BEHAVIOR
+- Understand the user's intent before responding.
+- Prefer correctness over brevity.
+- Do not invent compiler output, test results, or execution results.
+- When tools are available, use them instead of guessing.
+- Do not modify code unless the user asks for a fix, implementation, or rewrite.
+- Preserve the user's programming language unless they explicitly request another language.
+
+COMPETITIVE PROGRAMMING
+When solving a problem:
+1. Understand the problem.
+2. Identify constraints.
+3. Determine the required complexity.
+4. Develop an algorithm.
+5. Check edge cases.
+6. Implement the solution.
+7. Verify the implementation when execution tools are available.
+8. Explain the final approach.
+
+DEBUGGING
+When debugging:
+1. Reproduce the problem if possible.
+2. Inspect compiler/runtime errors.
+3. Identify the smallest failing case.
+4. Locate the root cause.
+5. Explain why the bug occurs.
+6. Provide a corrected implementation if appropriate.
+
+HINT MODE
+When the user asks for a hint:
+- Do not immediately reveal the complete solution.
+- Give progressively stronger hints.
+- Preserve the educational value of the problem.
+
+CODE
+- Always preserve indentation and formatting.
+- Use fenced Markdown code blocks.
+- Specify the language of code blocks.
+- Do not minify code.
+- Do not unnecessarily rewrite working code.
+
+RESPONSE STYLE
+Be like an experienced competitive programmer helping another programmer.
+Prefer: short explanations, clear reasoning, concrete examples, complexity analysis, edge cases.
+Avoid: unnecessary introductions, generic motivational text, repeating the user's question, unrelated explanations.`;
+
+        let mode = "SOLVE";
+        const lowerPrompt = prompt.toLowerCase();
+        if (lowerPrompt.includes("hint") || lowerPrompt.includes("stuck")) mode = "HINT";
+        else if (lowerPrompt.includes("tle") || lowerPrompt.includes("optimize") || lowerPrompt.includes("faster") || lowerPrompt.includes("complexity")) mode = "OPTIMIZE";
+        else if (lowerPrompt.includes("fail") || lowerPrompt.includes("wrong answer") || lowerPrompt.includes("error") || lowerPrompt.includes("debug") || lowerPrompt.includes("why")) mode = "DEBUG";
+        else if (lowerPrompt.includes("explain") || lowerPrompt.includes("how does")) mode = "EXPLAIN";
+        
+        let contextEng = `TASK TYPE: ${mode}\n`;
+        contextEng += `LANGUAGE: ${context?.lang || 'unknown'}\n`;
+        
+        if (context?.problem && context.problem.trim() !== "Loading..." && context.problem.length > 10) {
+            contextEng += `\nPROBLEM:\n${context.problem}\n`;
+        }
+        
+        if (context?.lastExecution && !context.lastExecution.includes("Run your code to see submissions here")) {
+            contextEng += `\nLAST COMPILATION / EXECUTION:\n${context.lastExecution}\n`;
+        }
+        
+        if (context?.selection && context.selection.trim().length > 0) {
+            contextEng += `\nSELECTED CODE:\n\`\`\`${context?.lang || 'cpp'}\n${context.selection}\n\`\`\`\n`;
+        } else if (context?.code && context.code.trim().length > 0) {
+            contextEng += `\nUSER CODE:\n\`\`\`${context?.lang || 'cpp'}\n${context.code}\n\`\`\`\n`;
+        }
+        
+        contextEng += `\nUSER QUERY:\n${prompt}`;
+        let fullPrompt = `${systemPrompt}\n\n====================\n\n${contextEng}`;
         
         const chatResponse = await chatSession.sendAndWait({ prompt: fullPrompt });
         sendResponse(id, { 

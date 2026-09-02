@@ -30,7 +30,7 @@ public slots:
     // Slot called by Frontend JS to request a completion
     void requestCompletion(const QString &requestId, const QString &code, const QString &language, int cursorOffset);
     // Slot called by Frontend JS to request a chat response
-    void requestChat(const QString &requestId, const QString &prompt, const QString &codeContext, const QString &languageContext);
+    void requestChat(const QString &requestId, const QString &prompt, const QJsonObject &context);
 
 private slots:
     void onProcessReadyRead();

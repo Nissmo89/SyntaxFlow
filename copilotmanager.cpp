@@ -88,7 +88,7 @@ void CopilotManager::requestCompletion(const QString &requestId, const QString &
     sendRequest("get_completion", params, requestId);
 }
 
-void CopilotManager::requestChat(const QString &requestId, const QString &prompt, const QString &codeContext, const QString &languageContext) {
+void CopilotManager::requestChat(const QString &requestId, const QString &prompt, const QJsonObject &context) {
     if (!m_ready) {
         QString msg = "Copilot is not ready yet.";
         if (!m_lastError.isEmpty()) msg += " (Reason: " + m_lastError + ")";
@@ -98,8 +98,7 @@ void CopilotManager::requestChat(const QString &requestId, const QString &prompt
 
     QJsonObject params;
     params["prompt"] = prompt;
-    params["codeContext"] = codeContext;
-    params["languageContext"] = languageContext;
+    params["context"] = context;
     if (!m_sessionId.isEmpty()) {
         params["sessionId"] = m_sessionId;
     }
