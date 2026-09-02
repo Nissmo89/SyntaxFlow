@@ -1773,6 +1773,22 @@
         </div>
       </div>
     </div>
+    
+    <div class="resizer-v" id="resizerCopilot" style="display: none;"></div>
+    <div class="pane copilot-pane" id="copilotWindow" style="display: none; width: 350px; flex-shrink: 0; flex-direction: column; background: var(--surface);">
+      <div class="editor-header" id="copilotWinHeader" style="justify-content: space-between; border-left: 1px solid var(--border-subtle);">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-7.07 17.07L2 22l2.93-2.93A10 10 0 1 0 12 2z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text);">Copilot Chat</span>
+        </div>
+        <button class="icon-btn" id="btnCloseCopilot" title="Close (Esc)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div id="copilotChatContainer" style="flex: 1; position: relative; overflow: hidden; min-height: 0; background: var(--bg); border-left: 1px solid var(--border-subtle);">
+        <deep-chat id="copilotDeepChat" style="height: 100%; width: 100%; display: block; border: none; border-radius: 0;"></deep-chat>
+      </div>
+    </div>
   </div>
 
   <!-- ─── NOTES FLOATING WINDOW (draggable, resizable) ─── -->
@@ -1823,33 +1839,6 @@
   </div>
 </div>
 
-<!-- Copilot Chat Window -->
-<div class="notes-window" id="copilotWindow" style="right: 50px; bottom: 50px; width: 450px; height: 500px; display: none;">
-  <div class="notes-win-resize r-n" data-r="n"></div>
-  <div class="notes-win-resize r-s" data-r="s"></div>
-  <div class="notes-win-resize r-e" data-r="e"></div>
-  <div class="notes-win-resize r-w" data-r="w"></div>
-  <div class="notes-win-resize r-ne" data-r="ne"></div>
-  <div class="notes-win-resize r-nw" data-r="nw"></div>
-  <div class="notes-win-resize r-se" data-r="se"></div>
-  <div class="notes-win-resize r-sw" data-r="sw"></div>
-  
-  <div class="notes-win-header" id="copilotWinHeader">
-    <div class="icon-btn" style="pointer-events:none;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-7.07 17.07L2 22l2.93-2.93A10 10 0 1 0 12 2z"/></svg>
-    </div>
-    <div class="notes-win-title" style="flex:1;">Copilot Chat</div>
-    <button class="icon-btn" id="btnCloseCopilot" title="Close (Esc)">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  
-  <div style="flex: 1; position: relative;">
-    <deep-chat id="copilotDeepChat" 
-      style="border: none; width: 100%; height: 100%; background-color: var(--bg); border-radius: 0 0 12px 12px; font-family: inherit;"
-    ></deep-chat>
-  </div>
-</div>
 
 <script>
   // ─── STATE ───
@@ -1883,8 +1872,15 @@
   const rightPane = document.getElementById('rightPane');
   
   let isResizingV = false;
-  resizerV.addEventListener('mousedown', (e) => { isResizingV = true; resizerV.classList.add('active'); });
+  resizerV.addEventListener('mousedown', (e) => { isResizingV = true; resizerV.classList.add('active'); rightPane.style.width = 'auto'; rightPane.style.flex = '1'; });
   
+  const resizerCopilot = document.getElementById('resizerCopilot');
+  const copilotWindowElem = document.getElementById('copilotWindow');
+  let isResizingCopilot = false;
+  if (resizerCopilot) {
+    resizerCopilot.addEventListener('mousedown', (e) => { isResizingCopilot = true; resizerCopilot.classList.add('active'); rightPane.style.width = 'auto'; rightPane.style.flex = '1'; });
+  }
+
   const resizerH = document.getElementById('resizerH');
   const topPane = document.getElementById('topPane');
   const bottomPane = document.getElementById('bottomPane');
@@ -1897,7 +1893,13 @@
       let newLW = (e.clientX / totalW) * 100;
       if (newLW > 10 && newLW < 90) {
         leftPane.style.width = newLW + '%';
-        rightPane.style.width = `calc(${100 - newLW}% - 6px)`;
+      }
+    }
+    if (isResizingCopilot) {
+      let totalW = document.body.clientWidth;
+      let newCopilotW = totalW - e.clientX;
+      if (newCopilotW > 200 && newCopilotW < totalW * 0.8) {
+        copilotWindowElem.style.width = newCopilotW + 'px';
       }
     }
     if (isResizingH) {
@@ -1912,8 +1914,10 @@
   });
 
   document.addEventListener('mouseup', () => {
-    isResizingV = false; isResizingH = false;
-    resizerV.classList.remove('active'); resizerH.classList.remove('active');
+    isResizingV = false; isResizingH = false; isResizingCopilot = false;
+    resizerV.classList.remove('active'); 
+    resizerH.classList.remove('active');
+    if (resizerCopilot) resizerCopilot.classList.remove('active');
   });
 
   // ─── COPILOT HELPERS ───
@@ -2556,7 +2560,6 @@
     });
   }
   setupDraggableWindow(notesWinHeader, notesWindow);
-  setupDraggableWindow(document.getElementById('copilotWinHeader'), document.getElementById('copilotWindow'));
 
   document.querySelectorAll('.notes-win-resize').forEach(handle => {
     handle.addEventListener('mousedown', (e) => {
@@ -2636,26 +2639,117 @@
   const chatResolvers = {};
 
   if (copilotDeepChat) {
-    copilotDeepChat.messageStyles = {
-      default: {
-        shared: { bubble: { maxWidth: "90%", backgroundColor: "var(--surface)", color: "var(--text)", padding: "12px", fontSize: "14px", lineHeight: "1.5", border: "1px solid var(--border)" } },
-        user: { bubble: { backgroundColor: "var(--accent-dim)", color: "var(--text)", border: "1px solid var(--accent-dim)" } },
-        ai: { bubble: { backgroundColor: "var(--surface-2)", color: "var(--text)" } }
+    // Helper: detect dark mode from document root
+    function isDarkTheme() {
+      return document.documentElement.getAttribute('data-theme') !== 'light';
+    }
+
+    function getChatColors() {
+      if (isDarkTheme()) {
+        return {
+          chatBg: '#1a1a1c', surface: '#1a1a1c', surface2: '#222225',
+          border: '#3f3f46', text: '#e4e4e7', textMuted: '#9a9aa3',
+          accent: '#5c9eff', accentDim: 'rgba(92, 158, 255, 0.12)',
+          userBg: 'rgba(92, 158, 255, 0.12)', userBorder: 'rgba(92, 158, 255, 0.3)',
+          aiBg: '#222225', inputBg: '#1a1a1c', inputBorder: '#3f3f46'
+        };
+      } else {
+        return {
+          chatBg: '#ffffff', surface: '#ffffff', surface2: '#eceef1',
+          border: '#d5d9df', text: '#1c1f24', textMuted: '#5b6470',
+          accent: '#2563eb', accentDim: 'rgba(37, 99, 235, 0.1)',
+          userBg: 'rgba(37, 99, 235, 0.1)', userBorder: 'rgba(37, 99, 235, 0.25)',
+          aiBg: '#eceef1', inputBg: '#ffffff', inputBorder: '#d5d9df'
+        };
       }
-    };
-    copilotDeepChat.textInput = {
-      styles: {
-        container: { backgroundColor: "var(--surface)", border: "1px solid var(--border)", color: "var(--text)", boxShadow: "none" },
-        text: { color: "var(--text)" }
-      },
-      placeholder: { text: "Ask Copilot...", style: { color: "var(--text-muted)" } }
-    };
-    copilotDeepChat.submitButtonStyles = {
-      submit: {
-        container: { default: { backgroundColor: "transparent" }, hover: { backgroundColor: "var(--surface-2)" } },
-        svg: { styles: { default: { filter: "none", color: "var(--accent)" } } }
-      }
-    };
+    }
+
+    function applyDeepChatTheme() {
+      const c = getChatColors();
+      copilotDeepChat.chatStyle = {
+        backgroundColor: 'transparent', borderRadius: '0', height: '100%', width: '100%', display: 'block', border: 'none'
+      };
+      copilotDeepChat.messageStyles = {
+        default: {
+          shared: {
+            bubble: {
+              maxWidth: '92%', padding: '12px 16px', fontSize: '14px', lineHeight: '1.6',
+            }
+          },
+          user: {
+            bubble: {
+              backgroundColor: c.surface2, color: c.text,
+              border: 'none', borderRadius: '12px',
+              marginLeft: 'auto'
+            }
+          },
+          ai: {
+            bubble: {
+              backgroundColor: 'transparent', color: c.text,
+              border: 'none', paddingLeft: '4px',
+              boxShadow: 'none'
+            }
+          }
+        }
+      };
+      copilotDeepChat.textInput = {
+        styles: {
+          container: {
+            backgroundColor: 'transparent', border: '1px solid ' + c.border,
+            color: c.text, boxShadow: 'none', borderRadius: '8px',
+            margin: '12px'
+          },
+          text: { color: c.text }
+        },
+        placeholder: { text: 'Ask Copilot...', style: { color: c.textMuted } }
+      };
+      copilotDeepChat.submitButtonStyles = {
+        submit: {
+          container: {
+            default: { backgroundColor: c.accent, borderRadius: '6px', margin: '4px 6px' },
+            hover: { backgroundColor: c.accent }
+          },
+          svg: { styles: { default: { filter: 'none', color: '#ffffff' } } }
+        }
+      };
+      copilotDeepChat.auxiliaryStyle = `
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: ${c.border}; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: ${c.textMuted}; }
+        .chat-bubble { font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif !important; box-shadow: none !important; }
+        .ai-message { background-color: transparent !important; }
+        .user-message { background-color: ${c.surface2} !important; border-radius: 12px 12px 2px 12px !important; }
+        
+        pre { 
+          background: ${c.surface2}; 
+          padding: 12px; 
+          border-radius: 6px; 
+          overflow-x: auto; 
+          white-space: pre; 
+          margin: 8px 0; 
+          border: 1px solid ${c.border};
+        }
+        code { 
+          font-family: 'JetBrains Mono', 'Consolas', monospace; 
+          font-size: 13px; 
+        }
+        p { margin: 6px 0; }
+        .notes-fmt-btn {
+          position: absolute; top: 4px; right: 4px; 
+          border: 1px solid ${c.border}; border-radius: 4px; 
+          font-size: 10px; background: ${c.surface}; 
+          color: ${c.text}; cursor: pointer; padding: 2px 6px;
+        }
+        .notes-fmt-btn:hover { background: ${c.surface2}; }
+      `;
+    }
+
+    applyDeepChatTheme();
+
+    // Re-apply theme when document theme changes
+    const themeObserver = new MutationObserver(() => { applyDeepChatTheme(); });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     copilotDeepChat.request = {
       handler: (message, signals) => {
@@ -2675,14 +2769,27 @@
   btnCopilotChat.onclick = () => {
     if (copilotWindow.style.display === 'none' || !copilotWindow.style.display) {
       copilotWindow.style.display = 'flex';
+      document.getElementById('resizerCopilot').style.display = 'block';
       btnCopilotChat.classList.add('active');
+      // Force deep-chat to recalculate its layout after becoming visible
+      requestAnimationFrame(() => {
+        const container = document.getElementById('copilotChatContainer');
+        if (container) {
+          container.style.display = 'none';
+          container.offsetHeight; // force reflow
+          container.style.display = '';
+        }
+        if (copilotDeepChat) copilotDeepChat.refreshMessages();
+      });
     } else {
       copilotWindow.style.display = 'none';
+      document.getElementById('resizerCopilot').style.display = 'none';
       btnCopilotChat.classList.remove('active');
     }
   };
   btnCloseCopilot.onclick = () => {
     copilotWindow.style.display = 'none';
+    document.getElementById('resizerCopilot').style.display = 'none';
     btnCopilotChat.classList.remove('active');
   };
 
