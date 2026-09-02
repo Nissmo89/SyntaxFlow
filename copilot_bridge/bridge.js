@@ -67,90 +67,41 @@ async function handleRequest(request) {
       case "chat":
         if (!client) throw new Error("Client not initialized");
         const { prompt, context } = params;
+        const isInternalAgentLoop = context?.isInternalAgentLoop === true;
         const chatSession = sessions.get(params.sessionId) || await client.createSession();
         
-        const systemPrompt = `You are SyntaxFlow Assistant, an AI programming assistant for competitive programming and algorithmic problem solving.
+        const agentSystemPrompt = `You are SyntaxFlow Agent, an autonomous competitive programming assistant.
+You do NOT just passively output code. You have tools to read, compile, test, and debug code.
 
-Your primary goals are:
-1. Help the user understand programming problems.
-2. Help users develop correct algorithms.
-3. Debug and analyze submitted code.
-4. Explain mistakes clearly.
-5. Improve inefficient solutions.
-6. Teach problem-solving techniques rather than merely producing answers.
+AVAILABLE TOOLS:
+1. {"tool": "get_problem"} - Returns the problem description and constraints.
+2. {"tool": "get_code"} - Returns the current code in the editor.
+3. {"tool": "compile_and_run", "args": {"code": "..."}} - Overwrites the editor with new code and runs all test cases.
+4. {"tool": "run_test_cases"} - Runs test cases on the current editor code.
+5. {"tool": "answer_user", "args": {"message": "..."}} - Sends a formatted Markdown message back to the user. Use this when you have finished your reasoning/tools and are ready to talk to the user.
 
-GENERAL BEHAVIOR
-- Understand the user's intent before responding.
-- Prefer correctness over brevity.
-- Do not invent compiler output, test results, or execution results.
-- When tools are available, use them instead of guessing.
-- Do not modify code unless the user asks for a fix, implementation, or rewrite.
-- Preserve the user's programming language unless they explicitly request another language.
+RULES:
+- When you want to use a tool, you MUST output ONLY the raw JSON object and absolutely nothing else.
+- DO NOT wrap the JSON in markdown code blocks.
+- You must reason about the user's request, gather information using tools, test your code, and THEN answer the user.
+- If the user asks a simple question ("hi"), you can just use "answer_user" immediately.
+- If the user asks you to solve or debug, use "get_problem" or "get_code", then write and test code with "compile_and_run", analyze the results, and finally "answer_user".
+`;
 
-COMPETITIVE PROGRAMMING
-When solving a problem:
-1. Understand the problem.
-2. Identify constraints.
-3. Determine the required complexity.
-4. Develop an algorithm.
-5. Check edge cases.
-6. Implement the solution.
-7. Verify the implementation when execution tools are available.
-8. Explain the final approach.
-
-DEBUGGING
-When debugging:
-1. Reproduce the problem if possible.
-2. Inspect compiler/runtime errors.
-3. Identify the smallest failing case.
-4. Locate the root cause.
-5. Explain why the bug occurs.
-6. Provide a corrected implementation if appropriate.
-
-HINT MODE
-When the user asks for a hint:
-- Do not immediately reveal the complete solution.
-- Give progressively stronger hints.
-- Preserve the educational value of the problem.
-
-CODE
-- Always preserve indentation and formatting.
-- Use fenced Markdown code blocks.
-- Specify the language of code blocks.
-- Do not minify code.
-- Do not unnecessarily rewrite working code.
-
-RESPONSE STYLE
-Be like an experienced competitive programmer helping another programmer.
-Prefer: short explanations, clear reasoning, concrete examples, complexity analysis, edge cases.
-Avoid: unnecessary introductions, generic motivational text, repeating the user's question, unrelated explanations.`;
-
-        let mode = "SOLVE";
-        const lowerPrompt = prompt.toLowerCase();
-        if (lowerPrompt.includes("hint") || lowerPrompt.includes("stuck")) mode = "HINT";
-        else if (lowerPrompt.includes("tle") || lowerPrompt.includes("optimize") || lowerPrompt.includes("faster") || lowerPrompt.includes("complexity")) mode = "OPTIMIZE";
-        else if (lowerPrompt.includes("fail") || lowerPrompt.includes("wrong answer") || lowerPrompt.includes("error") || lowerPrompt.includes("debug") || lowerPrompt.includes("why")) mode = "DEBUG";
-        else if (lowerPrompt.includes("explain") || lowerPrompt.includes("how does")) mode = "EXPLAIN";
+        let fullPrompt = prompt;
         
-        let contextEng = `TASK TYPE: ${mode}\n`;
-        contextEng += `LANGUAGE: ${context?.lang || 'unknown'}\n`;
-        
-        if (context?.problem && context.problem.trim() !== "Loading..." && context.problem.length > 10) {
-            contextEng += `\nPROBLEM:\n${context.problem}\n`;
+        // Only inject the heavy system prompt and context on the initial user message
+        if (!isInternalAgentLoop) {
+            let mode = "SOLVE";
+            const lowerPrompt = prompt.toLowerCase();
+            if (lowerPrompt.includes("hint") || lowerPrompt.includes("stuck")) mode = "HINT";
+            else if (lowerPrompt.includes("tle") || lowerPrompt.includes("optimize")) mode = "OPTIMIZE";
+            else if (lowerPrompt.includes("fail") || lowerPrompt.includes("debug") || lowerPrompt.includes("why")) mode = "DEBUG";
+            
+            let contextEng = `USER REQUEST: ${prompt}\n\n`;
+            
+            fullPrompt = `${agentSystemPrompt}\n\n====================\n\n${contextEng}\nPlease begin your agentic loop by choosing a tool.`;
         }
-        
-        if (context?.lastExecution && !context.lastExecution.includes("Run your code to see submissions here")) {
-            contextEng += `\nLAST COMPILATION / EXECUTION:\n${context.lastExecution}\n`;
-        }
-        
-        if (context?.selection && context.selection.trim().length > 0) {
-            contextEng += `\nSELECTED CODE:\n\`\`\`${context?.lang || 'cpp'}\n${context.selection}\n\`\`\`\n`;
-        } else if (context?.code && context.code.trim().length > 0) {
-            contextEng += `\nUSER CODE:\n\`\`\`${context?.lang || 'cpp'}\n${context.code}\n\`\`\`\n`;
-        }
-        
-        contextEng += `\nUSER QUERY:\n${prompt}`;
-        let fullPrompt = `${systemPrompt}\n\n====================\n\n${contextEng}`;
         
         const chatResponse = await chatSession.sendAndWait({ prompt: fullPrompt });
         sendResponse(id, { 

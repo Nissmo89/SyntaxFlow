@@ -4009,6 +4009,61 @@
     workspaceBridge = channel.objects.workspaceBridge;
     copilotManager = channel.objects.copilotManager;
     
+    async function executeAgentTool(id, toolCall) {
+        let result = "";
+        try {
+            if (toolCall.tool === "get_problem") {
+                let probDescEl = document.getElementById('probDesc');
+                result = probDescEl ? probDescEl.innerText : "Problem description not found.";
+            } else if (toolCall.tool === "get_code") {
+                result = editor.getValue();
+            } else if (toolCall.tool === "compile_and_run" || toolCall.tool === "run_test_cases") {
+                if (toolCall.args && toolCall.args.code) {
+                    window.setCode(toolCall.args.code);
+                }
+                
+                if (workspaceBridge) {
+                    window.clearAllResults();
+                    workspaceBridge.onSubmitRequested();
+                }
+                
+                if (testCases.length === 0) {
+                    result = "Execution finished (no test cases available).";
+                } else {
+                    await new Promise((resolve) => {
+                        let timeout = setTimeout(() => { clearInterval(checkInterval); resolve(); }, 15000);
+                        let checkInterval = setInterval(() => {
+                            let isFinished = true;
+                            let hasRun = false;
+                            for (let i = 0; i < testCases.length; i++) {
+                                if (testCases[i].status === "running" || testCases[i].status === "pending") isFinished = false;
+                                if (testCases[i].status === "passed" || testCases[i].status === "failed") hasRun = true;
+                            }
+                            if (hasRun && isFinished) {
+                                clearInterval(checkInterval);
+                                clearTimeout(timeout);
+                                resolve();
+                            }
+                        }, 500);
+                    });
+                    let summaryEl = document.getElementById('submissionSummary');
+                    result = summaryEl ? summaryEl.innerText.trim() : "Execution finished, but no summary found.";
+                }
+                
+            } else {
+                result = `Error: Tool '${toolCall.tool}' not recognized.`;
+            }
+        } catch (err) {
+            result = `Error executing tool: ${err.message}`;
+        }
+        
+        let toolContext = { isInternalAgentLoop: true };
+        let toolPrompt = `[TOOL_RESULT for ${toolCall.tool}]\n${result}\n\nWhat is your next step? (Return ONLY a JSON tool call, or "answer_user" if done)`;
+        
+        console.log("[AGENT] Returning tool result:", result.substring(0, 150));
+        copilotManager.requestChat(id, toolPrompt, toolContext);
+    }
+    
     if (copilotManager) {
         copilotManager.completionReceived.connect(function(id, text) {
             if (id === copilotSuggestionId.toString() && text) {
@@ -4016,6 +4071,33 @@
             }
         });
         copilotManager.chatReceived.connect(function(id, responseText) {
+            let isToolCall = false;
+            let toolCallObj = null;
+            try {
+                let cleanText = responseText.trim();
+                if (cleanText.startsWith("```json")) {
+                    cleanText = cleanText.substring(7, cleanText.length - 3).trim();
+                } else if (cleanText.startsWith("```")) {
+                    cleanText = cleanText.substring(3, cleanText.length - 3).trim();
+                }
+                toolCallObj = JSON.parse(cleanText);
+                if (toolCallObj && toolCallObj.tool) {
+                    isToolCall = true;
+                }
+            } catch (e) {
+                // Not a valid JSON tool call
+            }
+
+            if (isToolCall) {
+                if (toolCallObj.tool === "answer_user") {
+                    responseText = toolCallObj.args ? toolCallObj.args.message : "Done.";
+                } else {
+                    console.log("[AGENT] Tool call received:", toolCallObj);
+                    executeAgentTool(id, toolCallObj);
+                    return; // DO NOT render to chat UI yet
+                }
+            }
+
             if (chatResolvers[id]) {
                 try {
                     const wrapper = document.createElement('div');
