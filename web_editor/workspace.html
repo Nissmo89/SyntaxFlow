@@ -2743,13 +2743,11 @@
         events: {
           click: (event) => {
             const applyBtn = event.target.closest('.ai-apply-btn');
-            if (applyBtn && window.editor) {
+            if (applyBtn) {
               const wrapper = applyBtn.closest('.ai-code-wrapper');
               const codeBlock = wrapper ? wrapper.querySelector('code') : null;
-              if (codeBlock) {
-                window.isInternalChange = true;
-                window.editor.replaceSelection(codeBlock.innerText);
-                window.isInternalChange = false;
+              if (codeBlock && typeof window.setCode === 'function') {
+                window.setCode(codeBlock.innerText);
                 const originalText = applyBtn.innerText;
                 applyBtn.innerText = "✓ Applied!";
                 applyBtn.style.color = "var(--lime)";
