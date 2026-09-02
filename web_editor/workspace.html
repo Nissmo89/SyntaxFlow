@@ -2751,7 +2751,7 @@
     const themeObserver = new MutationObserver(() => { applyDeepChatTheme(); });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    copilotDeepChat.connect = {
+    copilotDeepChat.request = {
       handler: (message, signals) => {
         if (!copilotManager) {
           signals.onResponse({ error: "Copilot not connected." });
