@@ -1785,8 +1785,8 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-      <div id="copilotChatContainer" style="flex: 1; position: relative; overflow: hidden; min-height: 0; background: var(--bg); border-left: 1px solid var(--border-subtle);">
-        <deep-chat id="copilotDeepChat" style="height: 100%; width: 100%; display: block; border: none; border-radius: 0;"></deep-chat>
+      <div id="copilotChatContainer" style="flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; min-height: 0; background: var(--bg); border-left: 1px solid var(--border-subtle);">
+        <deep-chat id="copilotDeepChat" style="flex: 1; width: 100%; display: block; border: none; border-radius: 0;"></deep-chat>
       </div>
     </div>
   </div>
@@ -2692,26 +2692,7 @@
           }
         }
       };
-      copilotDeepChat.textInput = {
-        styles: {
-          container: {
-            backgroundColor: 'transparent', border: '1px solid ' + c.border,
-            color: c.text, boxShadow: 'none', borderRadius: '8px',
-            margin: '12px'
-          },
-          text: { color: c.text }
-        },
-        placeholder: { text: 'Ask Copilot...', style: { color: c.textMuted } }
-      };
-      copilotDeepChat.submitButtonStyles = {
-        submit: {
-          container: {
-            default: { backgroundColor: c.accent, borderRadius: '6px', margin: '4px 6px' },
-            hover: { backgroundColor: c.accent }
-          },
-          svg: { styles: { default: { filter: 'none', color: '#ffffff' } } }
-        }
-      };
+
       copilotDeepChat.auxiliaryStyle = `
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -4028,37 +4009,41 @@
         });
         copilotManager.chatReceived.connect(function(id, responseText) {
             if (chatResolvers[id]) {
-                const wrapper = document.createElement('div');
-                wrapper.innerHTML = marked.parse(normalizeMarkdown(responseText));
-                enhanceRenderedMarkdown(wrapper);
-                
-                if (!window.applyCopilotCode) {
-                    window.applyCopilotCode = function(btn) {
-                        const pre = btn.parentElement;
-                        const codeBlock = pre.querySelector('code');
-                        if (codeBlock && window.editor) {
-                            window.isInternalChange = true;
-                            window.editor.replaceSelection(codeBlock.innerText);
-                            window.isInternalChange = false;
-                        }
-                    };
-                }
-                
-                // Add Apply to Editor buttons
-                wrapper.querySelectorAll('pre').forEach(pre => {
-                    const codeBlock = pre.querySelector('code');
-                    if (codeBlock) {
-                        const btn = document.createElement('button');
-                        btn.className = 'notes-fmt-btn';
-                        btn.style.cssText = "position:absolute; top:4px; right:4px; border:1px solid var(--border); border-radius:4px; font-size:10px; background:var(--surface); cursor:pointer;";
-                        btn.textContent = 'Apply to Editor';
-                        btn.setAttribute('onclick', 'applyCopilotCode(this)');
-                        pre.style.position = "relative";
-                        pre.appendChild(btn);
+                try {
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = marked.parse(normalizeMarkdown(responseText));
+                    enhanceRenderedMarkdown(wrapper);
+                    
+                    if (!window.applyCopilotCode) {
+                        window.applyCopilotCode = function(btn) {
+                            const pre = btn.parentElement;
+                            const codeBlock = pre.querySelector('code');
+                            if (codeBlock && window.editor) {
+                                window.isInternalChange = true;
+                                window.editor.replaceSelection(codeBlock.innerText);
+                                window.isInternalChange = false;
+                            }
+                        };
                     }
-                });
+                    
+                    wrapper.querySelectorAll('pre').forEach(pre => {
+                        const codeBlock = pre.querySelector('code');
+                        if (codeBlock) {
+                            const btn = document.createElement('button');
+                            btn.className = 'notes-fmt-btn';
+                            btn.style.cssText = "position:absolute; top:4px; right:4px; border:1px solid var(--border); border-radius:4px; font-size:10px; background:var(--surface); cursor:pointer;";
+                            btn.textContent = 'Apply to Editor';
+                            btn.setAttribute('onclick', 'applyCopilotCode(this)');
+                            pre.style.position = "relative";
+                            pre.appendChild(btn);
+                        }
+                    });
 
-                chatResolvers[id]({ html: wrapper.innerHTML });
+                    chatResolvers[id]({ html: wrapper.innerHTML });
+                } catch (err) {
+                    console.error("Markdown formatting error:", err);
+                    chatResolvers[id]({ text: responseText || "An error occurred while formatting the response." });
+                }
                 delete chatResolvers[id];
             }
         });
