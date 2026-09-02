@@ -38,6 +38,7 @@ GithubAuth::GithubAuth(QObject *parent) : QObject(parent) {
 
 void GithubAuth::initiateAuth() {
     QNetworkRequest request(QUrl("https://github.com/login/device/code"));
+    request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     request.setRawHeader("Accept", "application/json");
 
@@ -79,6 +80,7 @@ void GithubAuth::onDeviceCodeReply() {
 
 void GithubAuth::pollAccessToken() {
     QNetworkRequest request(QUrl("https://github.com/login/oauth/access_token"));
+    request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     request.setRawHeader("Accept", "application/json");
 
@@ -144,6 +146,7 @@ void GithubAuth::onAccessTokenReply() {
 
 void GithubAuth::fetchUserProfile(const QString &token) {
     QNetworkRequest request(QUrl("https://api.github.com/user"));
+    request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
     request.setRawHeader("Authorization", ("Bearer " + token).toUtf8());
     request.setRawHeader("Accept", "application/vnd.github.v3+json");
 
