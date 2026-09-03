@@ -650,10 +650,10 @@ run_all_tests()
     escapedManifest.replace(QLatin1String("\\"), QLatin1String("\\\\"));
     escapedManifest.replace(QLatin1String("\""), QLatin1String("\\\""));
     
-    int offset = harnessTemplate.left(harnessTemplate.indexOf("_SF_USER_CODE_HERE_")).count('\n');
+    int offset = 0; // offset is 0 because user code is in a separate file (solution.py)
     QString fullExecutionCode = harnessTemplate;
     fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", QLatin1String("\"") + escapedManifest + QLatin1String("\""));
-    fullExecutionCode.replace("_SF_USER_CODE_HERE_", code);
+    fullExecutionCode.replace("_SF_USER_CODE_HERE_", "from solution import *");
     
     QFile dumpFile("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_python.py");
     if (dumpFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -661,7 +661,10 @@ run_all_tests()
         dumpFile.close();
     }
         
-    EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested, {}, timeoutMs);
+    QMap<QString, QString> addFiles;
+    addFiles["solution.py"] = code;
+    
+    EmbeddedRunner::Result r = m_pythonRunner->execute(fullExecutionCode, "", &m_stopRequested, addFiles, timeoutMs);
     
     if (r.exitCode != 0 && r.output.isEmpty()) {
         emit compilationError(OutputNormalizer::normalizeError(r.error.isEmpty() ? "Execution failed with non-zero exit code" : r.error, "python", offset));

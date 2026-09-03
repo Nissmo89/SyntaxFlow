@@ -20,17 +20,17 @@ public:
         QString result = errorOutput;
         
         if (languageId == "python") {
-            // Python traceback lines: File "user_code.py", line 152, in ...
-            QRegularExpression re(QStringLiteral("(File\\s+\"[^\"]*user_code\\.py\",\\s+line\\s+)(\\d+)"));
+            // Python traceback lines: File "/src/user_code.py", line 152, in ...
+            QRegularExpression re(QStringLiteral("File\\s+\"[^\"]*(?:user_code|solution)\\.py\",\\s+line\\s+(\\d+)"));
             auto it = re.globalMatch(errorOutput);
             int diff = 0;
             while (it.hasNext()) {
                 QRegularExpressionMatch match = it.next();
-                int originalLine = match.captured(2).toInt();
+                int originalLine = match.captured(1).toInt();
                 int newLine = originalLine - offset;
                 if (newLine < 1) newLine = 1;
                 
-                QString replacement = match.captured(1) + QString::number(newLine);
+                QString replacement = "File \"user_code.py\", line " + QString::number(newLine);
                 result.replace(match.capturedStart() + diff, match.capturedLength(), replacement);
                 diff += replacement.length() - match.capturedLength();
             }
