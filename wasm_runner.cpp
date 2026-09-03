@@ -1,6 +1,5 @@
 #include "wasm_runner.h"
 
-#include <QMutexLocker>
 #include <QProcess>
 #include <QTemporaryDir>
 #include <QTemporaryFile>
@@ -78,7 +77,6 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
                                              const QMap<QString, QString> &additionalFiles,
                                              int timeoutMs)
 {
-    QMutexLocker lock(&m_mutex);
     Result result;
 
     QTemporaryDir tmpDir;
@@ -209,7 +207,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     qDebug() << "WasmRunner: waiting for finish...";
         QByteArray outBuf;
     QByteArray errBuf;
-    const int MAX_OUTPUT_SIZE = 1 * 1024 * 1024; // 1 MB
+    const int MAX_OUTPUT_SIZE = 10 * 1024 * 1024; // 1 MB
 
     while (!runProc.waitForFinished(100)) {
         outBuf.append(runProc.readAllStandardOutput());
