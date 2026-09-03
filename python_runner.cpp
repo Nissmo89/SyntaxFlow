@@ -93,7 +93,22 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
     QElapsedTimer timer;
     timer.start();
     qDebug() << "PythonRunner: waiting for finish...";
+        QByteArray outBuf;
+    QByteArray errBuf;
+    const int MAX_OUTPUT_SIZE = 1 * 1024 * 1024; // 1 MB
+
     while (!runProc.waitForFinished(100)) {
+        outBuf.append(runProc.readAllStandardOutput());
+        errBuf.append(runProc.readAllStandardError());
+        if (outBuf.size() + errBuf.size() > MAX_OUTPUT_SIZE) {
+            runProc.kill();
+            runProc.waitForFinished(500);
+            result.error = QString("Output limit exceeded (%1 MB)").arg(MAX_OUTPUT_SIZE / 1024.0 / 1024.0);
+            result.exitCode = -1;
+            result.timedOut = false;
+            return result;
+        }
+
         if (abort && *abort) {
             runProc.kill();
             result.error    = QStringLiteral("Execution stopped by user");
@@ -112,8 +127,17 @@ EmbeddedRunner::Result PythonRunner::execute(const QString &code,
         }
     }
     qDebug() << "PythonRunner: finished. exitCode:" << runProc.exitCode();
-    result.output   = QString::fromLocal8Bit(runProc.readAllStandardOutput());
-    result.error    = QString::fromLocal8Bit(runProc.readAllStandardError());
+    
+    outBuf.append(runProc.readAllStandardOutput());
+    errBuf.append(runProc.readAllStandardError());
+    if (outBuf.size() + errBuf.size() > MAX_OUTPUT_SIZE) {
+        result.error = QString("Output limit exceeded (%1 MB)").arg(MAX_OUTPUT_SIZE / 1024.0 / 1024.0);
+        result.exitCode = -1;
+        result.timedOut = false;
+        return result;
+    }
+    result.output = QString::fromLocal8Bit(outBuf);
+    result.error = QString::fromLocal8Bit(errBuf);
     result.exitCode = runProc.exitCode();
     qDebug() << "PythonRunner: returning result";
     return result;

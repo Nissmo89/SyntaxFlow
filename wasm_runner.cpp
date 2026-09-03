@@ -207,7 +207,22 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     QElapsedTimer timer;
     timer.start();
     qDebug() << "WasmRunner: waiting for finish...";
+        QByteArray outBuf;
+    QByteArray errBuf;
+    const int MAX_OUTPUT_SIZE = 1 * 1024 * 1024; // 1 MB
+
     while (!runProc.waitForFinished(100)) {
+        outBuf.append(runProc.readAllStandardOutput());
+        errBuf.append(runProc.readAllStandardError());
+        if (outBuf.size() + errBuf.size() > MAX_OUTPUT_SIZE) {
+            runProc.kill();
+            runProc.waitForFinished(500);
+            result.error = QString("Output limit exceeded (%1 MB)").arg(MAX_OUTPUT_SIZE / 1024.0 / 1024.0);
+            result.exitCode = -1;
+            result.timedOut = false;
+            return result;
+        }
+
         if (stopRequested && *stopRequested) {
             runProc.kill();
             runProc.waitForFinished(500);
@@ -228,8 +243,17 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
         }
     }
     qDebug() << "WasmRunner: finished. exitCode:" << runProc.exitCode();
-    result.output   = QString::fromUtf8(runProc.readAllStandardOutput());
-    result.error    = QString::fromUtf8(runProc.readAllStandardError());
+    
+    outBuf.append(runProc.readAllStandardOutput());
+    errBuf.append(runProc.readAllStandardError());
+    if (outBuf.size() + errBuf.size() > MAX_OUTPUT_SIZE) {
+        result.error = QString("Output limit exceeded (%1 MB)").arg(MAX_OUTPUT_SIZE / 1024.0 / 1024.0);
+        result.exitCode = -1;
+        result.timedOut = false;
+        return result;
+    }
+    result.output = QString::fromUtf8(outBuf);
+    result.error = QString::fromUtf8(errBuf);
     result.exitCode = runProc.exitCode();
     result.timedOut = false;
     qDebug() << "WasmRunner: returning result";
