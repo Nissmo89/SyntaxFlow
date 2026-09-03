@@ -22,7 +22,7 @@ public:
         if (languageId == "python") {
             // Python traceback lines: File "user_code.py", line 152, in ...
             QRegularExpression re(QStringLiteral("(File\\s+\"[^\"]*user_code\\.py\",\\s+line\\s+)(\\d+)"));
-            auto it = re.globalMatch(result);
+            auto it = re.globalMatch(errorOutput);
             int diff = 0;
             while (it.hasNext()) {
                 QRegularExpressionMatch match = it.next();
@@ -33,12 +33,11 @@ public:
                 QString replacement = match.captured(1) + QString::number(newLine);
                 result.replace(match.capturedStart() + diff, match.capturedLength(), replacement);
                 diff += replacement.length() - match.capturedLength();
-                it = re.globalMatch(result, match.capturedStart() + diff);
             }
         } else if (languageId == "javascript" || languageId == "js") {
             // QuickJS error lines: (user_code.js:152) or SyntaxError: ... user_code.js:152
             QRegularExpression re(QStringLiteral("(user_code\\.js:)(\\d+)"));
-            auto it = re.globalMatch(result);
+            auto it = re.globalMatch(errorOutput);
             int diff = 0;
             while (it.hasNext()) {
                 QRegularExpressionMatch match = it.next();
@@ -49,13 +48,12 @@ public:
                 QString replacement = match.captured(1) + QString::number(newLine);
                 result.replace(match.capturedStart() + diff, match.capturedLength(), replacement);
                 diff += replacement.length() - match.capturedLength();
-                it = re.globalMatch(result, match.capturedStart() + diff);
             }
         } else if (languageId == "c" || languageId == "cpp" || languageId == "c++") {
             // Clang error lines: user_code.cpp:152:5: error: ...
             // Or user_code.c:152:
             QRegularExpression re(QStringLiteral("(user_code\\.(?:cpp|c|cc|cxx)):(\\d+)"));
-            auto it = re.globalMatch(result);
+            auto it = re.globalMatch(errorOutput);
             int diff = 0;
             while (it.hasNext()) {
                 QRegularExpressionMatch match = it.next();
@@ -66,7 +64,6 @@ public:
                 QString replacement = match.captured(1) + ":" + QString::number(newLine);
                 result.replace(match.capturedStart() + diff, match.capturedLength(), replacement);
                 diff += replacement.length() - match.capturedLength();
-                it = re.globalMatch(result, match.capturedStart() + diff);
             }
         }
         
