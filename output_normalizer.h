@@ -15,14 +15,18 @@ public:
     }
     
     static QString normalizeError(const QString &errorOutput, const QString &languageId, int offset) {
-        if (offset <= 0 || errorOutput.isEmpty()) return errorOutput;
+        if (errorOutput.isEmpty()) return errorOutput;
         
         QString result = errorOutput;
         
         if (languageId == "python") {
-            // Python traceback lines: File "/src/user_code.py", line 152, in ...
+            // Remove harness tracebacks before normalization
+            QRegularExpression filterRe(QStringLiteral("[ \\t]*File\\s+\"[^\"]*user_code\\.py\".*?\\n.*?(?:\\n|$)"));
+            result.replace(filterRe, QStringLiteral(""));
+
+            // Normalize solution.py (user code) to user_code.py and apply offset
             QRegularExpression re(QStringLiteral("File\\s+\"[^\"]*(?:user_code|solution)\\.py\",\\s+line\\s+(\\d+)"));
-            auto it = re.globalMatch(errorOutput);
+            auto it = re.globalMatch(result);
             int diff = 0;
             while (it.hasNext()) {
                 QRegularExpressionMatch match = it.next();
