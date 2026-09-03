@@ -357,7 +357,7 @@ import json
 import time
 import io
 import traceback
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Dict, Set, Tuple, Union, Callable
 
 # --- UTILITIES ---
 class TreeNode:
@@ -449,7 +449,7 @@ def _encode(obj: Any, seen: set) -> str:
         pass
     oid = id(obj)
     if oid in seen:
-        raise ValueError("Cycle detected while encoding to json")
+        return '"<cycle>"'
     seen.add(oid)
     try:
         if isinstance(obj, dict):
