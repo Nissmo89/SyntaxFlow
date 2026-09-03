@@ -76,7 +76,14 @@
             0,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "example-2",
@@ -90,7 +97,14 @@
             0,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "example-3",
@@ -105,7 +119,16 @@
             1,
             0
           ]
-        }
+        },
+        "out": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "single-one",
@@ -113,7 +136,10 @@
           "root": [
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "single-zero",
@@ -121,7 +147,8 @@
           "root": [
             0
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "left-zero-chain",
@@ -132,7 +159,8 @@
             null,
             0
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "right-zero-chain",
@@ -144,7 +172,8 @@
             null,
             0
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "root-one-left-pruned",
@@ -157,7 +186,10 @@
             null,
             0
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "root-one-right-pruned",
@@ -171,7 +203,16 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          0,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "balanced-all-ones",
@@ -185,7 +226,16 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
       },
       {
         "name": "balanced-all-zero",
@@ -199,7 +249,8 @@
             0,
             0
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "mixed-deep-left",
@@ -213,7 +264,14 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          null,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "mixed-deep-right",
@@ -230,7 +288,17 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          0,
+          null,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "sparse-with-one-leaf",
@@ -244,7 +312,14 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "deep-branched",
@@ -266,7 +341,20 @@
             0,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          0,
+          null,
+          1,
+          null,
+          0,
+          1,
+          null,
+          null,
+          1
+        ]
       },
       {
         "name": "all-zero-full-depth4",
@@ -288,7 +376,8 @@
             0,
             0
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "only-rightmost-one",
@@ -310,7 +399,8 @@
             null,
             1
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "left-subtree-survives",
@@ -324,7 +414,13 @@
             0,
             0
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "right-subtree-survives",
@@ -338,7 +434,14 @@
             0,
             0
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          null,
+          null,
+          1
+        ]
       },
       {
         "name": "root-pruned-to-empty",
@@ -352,7 +455,14 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          null,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "zigzag-survival",
@@ -367,7 +477,17 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          0,
+          1,
+          null,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "top-one-with-zero-leaves",
@@ -381,7 +501,10 @@
             0,
             0
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "single-right-path-one",
@@ -393,7 +516,14 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "single-left-path-one",
@@ -404,7 +534,13 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "mixed-wide",
@@ -426,7 +562,17 @@
             1,
             0
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1
+        ]
       },
       {
         "name": "long-left-spine",
@@ -441,7 +587,15 @@
             null,
             0
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "right-heavy-survival",
@@ -455,7 +609,16 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          1,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "left-heavy-survival",
@@ -468,7 +631,15 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          1,
+          null,
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "root-kept-one-leaf",
@@ -482,7 +653,16 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1
+        ]
       },
       {
         "name": "prune-both-sides",
@@ -496,7 +676,13 @@
             1,
             0
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          0,
+          1
+        ]
       },
       {
         "name": "alternating-depth",
@@ -510,7 +696,16 @@
             0,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          0,
+          null,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "single-leaf-one-in-zero-tree",
@@ -522,7 +717,14 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          0,
+          null,
+          null,
+          1
+        ]
       },
       {
         "name": "compact-survival",
@@ -534,7 +736,14 @@
             0,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          0,
+          1,
+          null,
+          1
+        ]
       },
       {
         "name": "zero-root-one-descendant",
@@ -544,7 +753,12 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          0,
+          null,
+          1
+        ]
       },
       {
         "name": "asymmetric-prune",
@@ -558,7 +772,13 @@
             1,
             null
           ]
-        }
+        },
+        "out": [
+          1,
+          null,
+          1,
+          1
+        ]
       }
     ]
   },

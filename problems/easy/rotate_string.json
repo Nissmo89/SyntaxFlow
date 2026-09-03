@@ -70,245 +70,280 @@
         "in": {
           "s": "abcde",
           "goal": "cdeab"
-        }
+        },
+        "out": false
       },
       {
         "name": "ex2",
         "in": {
           "s": "abcde",
           "goal": "abced"
-        }
+        },
+        "out": false
       },
       {
         "name": "single_true",
         "in": {
           "s": "a",
           "goal": "a"
-        }
+        },
+        "out": true
       },
       {
         "name": "single_false",
         "in": {
           "s": "a",
           "goal": "b"
-        }
+        },
+        "out": false
       },
       {
         "name": "two_true_1",
         "in": {
           "s": "ab",
           "goal": "ab"
-        }
+        },
+        "out": false
       },
       {
         "name": "two_true_2",
         "in": {
           "s": "ab",
           "goal": "ba"
-        }
+        },
+        "out": true
       },
       {
         "name": "two_false",
         "in": {
           "s": "ab",
           "goal": "aa"
-        }
+        },
+        "out": false
       },
       {
         "name": "repeated_true",
         "in": {
           "s": "aaaa",
           "goal": "aaaa"
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated_false",
         "in": {
           "s": "aaaa",
           "goal": "aaab"
-        }
+        },
+        "out": false
       },
       {
         "name": "no_rotation_match",
         "in": {
           "s": "waterbottle",
           "goal": "erbottlewat"
-        }
+        },
+        "out": false
       },
       {
         "name": "no_rotation_mismatch",
         "in": {
           "s": "waterbottle",
           "goal": "erbottlewta"
-        }
+        },
+        "out": false
       },
       {
         "name": "prefix_shift_1",
         "in": {
           "s": "rotation",
           "goal": "otationr"
-        }
+        },
+        "out": true
       },
       {
         "name": "prefix_shift_2",
         "in": {
           "s": "rotation",
           "goal": "tationro"
-        }
+        },
+        "out": false
       },
       {
         "name": "prefix_shift_3",
         "in": {
           "s": "rotation",
           "goal": "ationrot"
-        }
+        },
+        "out": false
       },
       {
         "name": "prefix_shift_false",
         "in": {
           "s": "rotation",
           "goal": "ationrto"
-        }
+        },
+        "out": false
       },
       {
         "name": "all_same_length_1",
         "in": {
           "s": "xyzxyz",
           "goal": "zxyzxy"
-        }
+        },
+        "out": false
       },
       {
         "name": "all_same_length_2",
         "in": {
           "s": "xyzxyz",
           "goal": "xyzxyz"
-        }
+        },
+        "out": false
       },
       {
         "name": "all_same_length_false",
         "in": {
           "s": "xyzxyz",
           "goal": "xzyxzy"
-        }
+        },
+        "out": false
       },
       {
         "name": "mixed_true_1",
         "in": {
           "s": "aabca",
           "goal": "caaab"
-        }
+        },
+        "out": false
       },
       {
         "name": "mixed_true_2",
         "in": {
           "s": "aabca",
           "goal": "baaac"
-        }
+        },
+        "out": false
       },
       {
         "name": "mixed_false_1",
         "in": {
           "s": "aabca",
           "goal": "caaba"
-        }
+        },
+        "out": false
       },
       {
         "name": "long_shift_1",
         "in": {
           "s": "abcdefghijklmnopqrstuvwxyz",
           "goal": "bcdefghijklmnopqrstuvwxyza"
-        }
+        },
+        "out": true
       },
       {
         "name": "long_shift_2",
         "in": {
           "s": "abcdefghijklmnopqrstuvwxyz",
           "goal": "zabcdefghijklmnopqrstuvwxy"
-        }
+        },
+        "out": false
       },
       {
         "name": "long_false_1",
         "in": {
           "s": "abcdefghijklmnopqrstuvwxyz",
           "goal": "bcdefghijklmnopqrstuvwxyzz"
-        }
+        },
+        "out": false
       },
       {
         "name": "boundary_len_100_true",
         "in": {
           "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
+        },
+        "out": true
       },
       {
         "name": "boundary_len_100_false",
         "in": {
           "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-        }
+        },
+        "out": false
       },
       {
         "name": "wrap_true",
         "in": {
           "s": "cab",
           "goal": "abc"
-        }
+        },
+        "out": true
       },
       {
         "name": "wrap_false",
         "in": {
           "s": "cab",
           "goal": "acb"
-        }
+        },
+        "out": false
       },
       {
         "name": "distinct_false_1",
         "in": {
           "s": "qwerty",
           "goal": "yqwert"
-        }
+        },
+        "out": false
       },
       {
         "name": "distinct_true_1",
         "in": {
           "s": "qwerty",
           "goal": "ertyqw"
-        }
+        },
+        "out": false
       },
       {
         "name": "distinct_false_2",
         "in": {
           "s": "rotation",
           "goal": "rotationn"
-        }
+        },
+        "out": false
       },
       {
         "name": "repeated_pattern_true",
         "in": {
           "s": "abababab",
           "goal": "babababa"
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated_pattern_false",
         "in": {
           "s": "abababab",
           "goal": "abababaa"
-        }
+        },
+        "out": false
       },
       {
         "name": "pal_true",
         "in": {
           "s": "level",
           "goal": "level"
-        }
+        },
+        "out": false
       },
       {
         "name": "pal_false",
         "in": {
           "s": "level",
           "goal": "elvel"
-        }
+        },
+        "out": false
       }
     ]
   },

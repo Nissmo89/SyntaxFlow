@@ -86,7 +86,11 @@
             "foo",
             "bar"
           ]
-        }
+        },
+        "out": [
+          0,
+          9
+        ]
       },
       {
         "name": "example_2",
@@ -98,7 +102,8 @@
             "best",
             "word"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "example_3",
@@ -109,7 +114,12 @@
             "foo",
             "the"
           ]
-        }
+        },
+        "out": [
+          6,
+          9,
+          12
+        ]
       },
       {
         "name": "single_exact_match",
@@ -119,7 +129,10 @@
             "bar",
             "foo"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "single_reverse_match",
@@ -129,7 +142,10 @@
             "bar",
             "foo"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "no_match_wrong_order_chars",
@@ -140,7 +156,8 @@
             "cd",
             "ef"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "one_word_exact",
@@ -149,7 +166,10 @@
           "words": [
             "bcd"
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "one_word_missing",
@@ -158,7 +178,8 @@
           "words": [
             "fgh"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "duplicate_words_basic",
@@ -170,7 +191,10 @@
             "best",
             "word"
           ]
-        }
+        },
+        "out": [
+          8
+        ]
       },
       {
         "name": "duplicate_words_with_overlap",
@@ -181,7 +205,11 @@
             "aa",
             "ba"
           ]
-        }
+        },
+        "out": [
+          0,
+          2
+        ]
       },
       {
         "name": "repeated_small_words",
@@ -192,7 +220,10 @@
             "aa",
             "aa"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "repeated_small_words_offset",
@@ -203,7 +234,11 @@
             "aa",
             "aa"
           ]
-        }
+        },
+        "out": [
+          2,
+          1
+        ]
       },
       {
         "name": "overlapping_matches",
@@ -214,7 +249,11 @@
             "foo",
             "bar"
           ]
-        }
+        },
+        "out": [
+          0,
+          3
+        ]
       },
       {
         "name": "multiple_offsets",
@@ -225,7 +264,13 @@
             "bbb",
             "ccc"
           ]
-        }
+        },
+        "out": [
+          0,
+          3,
+          6,
+          9
+        ]
       },
       {
         "name": "multiple_offsets_shifted",
@@ -236,7 +281,13 @@
             "bbb",
             "ccc"
           ]
-        }
+        },
+        "out": [
+          1,
+          4,
+          7,
+          10
+        ]
       },
       {
         "name": "all_same_word",
@@ -248,7 +299,10 @@
             "abc",
             "abc"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "all_same_word_with_noise",
@@ -259,7 +313,11 @@
             "abc",
             "abc"
           ]
-        }
+        },
+        "out": [
+          1,
+          4
+        ]
       },
       {
         "name": "long_word_len_30",
@@ -268,7 +326,10 @@
           "words": [
             "abcdefghijklmnopqrstuvwxyzabcd"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "long_word_len_30_missing",
@@ -277,7 +338,8 @@
           "words": [
             "abcdefghijklmnopqrstuvwxyzabcd"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "prefix_suffix_noise",
@@ -287,7 +349,10 @@
             "bar",
             "foo"
           ]
-        }
+        },
+        "out": [
+          2
+        ]
       },
       {
         "name": "internal_noise_breaks_window",
@@ -298,7 +363,10 @@
             "foo",
             "the"
           ]
-        }
+        },
+        "out": [
+          7
+        ]
       },
       {
         "name": "windows_at_end",
@@ -309,7 +377,10 @@
             "foo",
             "the"
           ]
-        }
+        },
+        "out": [
+          2
+        ]
       },
       {
         "name": "windows_at_beginning",
@@ -320,7 +391,10 @@
             "foo",
             "the"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "many_repeated_hits",
@@ -331,7 +405,11 @@
             "dog",
             "cat"
           ]
-        }
+        },
+        "out": [
+          0,
+          6
+        ]
       },
       {
         "name": "many_repeated_hits_2",
@@ -342,7 +420,12 @@
             "dog",
             "cat"
           ]
-        }
+        },
+        "out": [
+          0,
+          3,
+          6
+        ]
       },
       {
         "name": "no_match_due_length",
@@ -351,7 +434,8 @@
           "words": [
             "longer"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "no_match_due_characters",
@@ -361,7 +445,8 @@
             "abd",
             "cba"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "unsatisfied_duplicate_requirement",
@@ -372,7 +457,10 @@
             "ab",
             "bb"
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "repeated_pattern_exact",
@@ -383,7 +471,11 @@
             "def",
             "abc"
           ]
-        }
+        },
+        "out": [
+          0,
+          6
+        ]
       },
       {
         "name": "repeated_pattern_offset",
@@ -394,7 +486,11 @@
             "def",
             "abc"
           ]
-        }
+        },
+        "out": [
+          1,
+          7
+        ]
       },
       {
         "name": "adjacent_matches",
@@ -405,7 +501,13 @@
             "bar",
             "baz"
           ]
-        }
+        },
+        "out": [
+          0,
+          3,
+          6,
+          9
+        ]
       },
       {
         "name": "adjacent_matches_shifted",
@@ -416,7 +518,13 @@
             "bar",
             "baz"
           ]
-        }
+        },
+        "out": [
+          1,
+          4,
+          7,
+          10
+        ]
       },
       {
         "name": "single_char_words",
@@ -427,7 +535,11 @@
             "b",
             "c"
           ]
-        }
+        },
+        "out": [
+          8,
+          9
+        ]
       },
       {
         "name": "single_char_words_duplicates",
@@ -438,7 +550,10 @@
             "a",
             "b"
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "near_max_no_match",
@@ -448,7 +563,8 @@
             "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
             "cccccccccccccccccccccccccccccc"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "near_max_repeated_blocks",
@@ -466,7 +582,10 @@
             "abcdefghij",
             "abcdefghij"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "near_max_overlapping_repeats",
@@ -477,7 +596,20 @@
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           ]
-        }
+        },
+        "out": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
       },
       {
         "name": "mixed_length_boundary_valid",
@@ -487,7 +619,10 @@
             "qwerty",
             "qwerty"
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "mixed_length_boundary_missing",
@@ -498,7 +633,8 @@
             "uiopas",
             "dfghjk"
           ]
-        }
+        },
+        "out": []
       }
     ]
   },

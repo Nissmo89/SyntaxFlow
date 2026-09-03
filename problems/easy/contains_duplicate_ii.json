@@ -79,7 +79,8 @@
             1
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "example2",
@@ -91,7 +92,8 @@
             1
           ],
           "k": 1
-        }
+        },
+        "out": true
       },
       {
         "name": "example3",
@@ -105,7 +107,8 @@
             3
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "single-element",
@@ -114,7 +117,8 @@
             7
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "two-same-zero-k",
@@ -124,7 +128,8 @@
             5
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "two-same-one-k",
@@ -134,7 +139,8 @@
             5
           ],
           "k": 1
-        }
+        },
+        "out": true
       },
       {
         "name": "adjacent-duplicate",
@@ -146,7 +152,8 @@
             3
           ],
           "k": 1
-        }
+        },
+        "out": true
       },
       {
         "name": "duplicate-outside-window",
@@ -158,7 +165,8 @@
             1
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "duplicate-at-window-boundary",
@@ -170,7 +178,8 @@
             9
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "duplicate-just-beyond-window",
@@ -182,7 +191,8 @@
             9
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "all-unique-small",
@@ -195,7 +205,8 @@
             5
           ],
           "k": 4
-        }
+        },
+        "out": false
       },
       {
         "name": "all-unique-k-zero",
@@ -208,7 +219,8 @@
             5
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "repeated-triple-nearby",
@@ -221,7 +233,8 @@
             4
           ],
           "k": 2
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated-triple-far",
@@ -234,7 +247,8 @@
             4
           ],
           "k": 1
-        }
+        },
+        "out": false
       },
       {
         "name": "negatives-nearby",
@@ -246,7 +260,8 @@
             -1
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "negatives-far",
@@ -258,7 +273,8 @@
             -1
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "zero-values-duplicate",
@@ -270,7 +286,8 @@
             0
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "zero-values-not-nearby",
@@ -282,7 +299,8 @@
             0
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "k-larger-than-array",
@@ -294,7 +312,8 @@
             10
           ],
           "k": 10
-        }
+        },
+        "out": true
       },
       {
         "name": "duplicate-late",
@@ -308,7 +327,8 @@
             1
           ],
           "k": 5
-        }
+        },
+        "out": true
       },
       {
         "name": "duplicate-late-outside",
@@ -322,7 +342,8 @@
             1
           ],
           "k": 4
-        }
+        },
+        "out": false
       },
       {
         "name": "alternating-with-hit",
@@ -336,7 +357,8 @@
             2
           ],
           "k": 1
-        }
+        },
+        "out": false
       },
       {
         "name": "alternating-no-hit",
@@ -350,7 +372,8 @@
             2
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "prefix-duplicate",
@@ -363,7 +386,8 @@
             3
           ],
           "k": 1
-        }
+        },
+        "out": true
       },
       {
         "name": "prefix-duplicate-no-hit",
@@ -376,7 +400,8 @@
             3
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "repeated-last-two",
@@ -389,7 +414,8 @@
             6
           ],
           "k": 1
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated-last-two-nohit",
@@ -402,7 +428,8 @@
             6
           ],
           "k": 0
-        }
+        },
+        "out": false
       },
       {
         "name": "near-max-int-hit",
@@ -414,7 +441,8 @@
             1000000000
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "near-max-int-nohit",
@@ -426,7 +454,8 @@
             1000000000
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "many-distinct-small",
@@ -442,7 +471,8 @@
             15
           ],
           "k": 7
-        }
+        },
+        "out": false
       },
       {
         "name": "many-distinct-small-nohit",
@@ -458,7 +488,8 @@
             15
           ],
           "k": 2
-        }
+        },
+        "out": false
       },
       {
         "name": "repeated-middle-hit",
@@ -471,7 +502,8 @@
             1
           ],
           "k": 2
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated-middle-nohit",
@@ -484,7 +516,8 @@
             1
           ],
           "k": 1
-        }
+        },
+        "out": false
       },
       {
         "name": "generated-large-distinct",
@@ -542,7 +575,8 @@
             50
           ],
           "k": 99999
-        }
+        },
+        "out": false
       },
       {
         "name": "generated-large-mixed",
@@ -580,7 +614,8 @@
             7
           ],
           "k": 50000
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated-near-end",
@@ -592,7 +627,8 @@
             17
           ],
           "k": 2
-        }
+        },
+        "out": true
       },
       {
         "name": "repeated-near-end-nohit",
@@ -604,7 +640,8 @@
             17
           ],
           "k": 1
-        }
+        },
+        "out": false
       },
       {
         "name": "spaced-repeats-hit",
@@ -619,7 +656,8 @@
             1
           ],
           "k": 3
-        }
+        },
+        "out": true
       },
       {
         "name": "spaced-repeats-nohit",
@@ -634,7 +672,8 @@
             1
           ],
           "k": 2
-        }
+        },
+        "out": false
       }
     ]
   },

@@ -107,7 +107,8 @@
           ],
           "source": 1,
           "target": 6
-        }
+        },
+        "out": 2
       },
       {
         "name": "example-2",
@@ -137,7 +138,8 @@
           ],
           "source": 15,
           "target": 12
-        }
+        },
+        "out": -1
       },
       {
         "name": "same-source-target",
@@ -151,7 +153,8 @@
           ],
           "source": 2,
           "target": 2
-        }
+        },
+        "out": 0
       },
       {
         "name": "direct-one-bus",
@@ -169,7 +172,8 @@
           ],
           "source": 1,
           "target": 7
-        }
+        },
+        "out": 1
       },
       {
         "name": "two-buses-chain",
@@ -192,7 +196,8 @@
           ],
           "source": 1,
           "target": 10
-        }
+        },
+        "out": 3
       },
       {
         "name": "no-path-disconnected",
@@ -211,7 +216,8 @@
           ],
           "source": 1,
           "target": 6
-        }
+        },
+        "out": -1
       },
       {
         "name": "multiple-intersections",
@@ -241,7 +247,8 @@
           ],
           "source": 1,
           "target": 10
-        }
+        },
+        "out": 4
       },
       {
         "name": "source-on-later-bus",
@@ -265,7 +272,8 @@
           ],
           "source": 1,
           "target": 15
-        }
+        },
+        "out": 3
       },
       {
         "name": "target-unreachable-but-present",
@@ -286,7 +294,8 @@
           ],
           "source": 100,
           "target": 500
-        }
+        },
+        "out": -1
       },
       {
         "name": "hub-and-spokes",
@@ -311,7 +320,8 @@
           ],
           "source": 1,
           "target": 4
-        }
+        },
+        "out": 2
       },
       {
         "name": "repeated-stop-on-many-routes",
@@ -340,7 +350,8 @@
           ],
           "source": 1,
           "target": 33
-        }
+        },
+        "out": 4
       },
       {
         "name": "longer-chain",
@@ -369,7 +380,8 @@
           ],
           "source": 1,
           "target": 6
-        }
+        },
+        "out": 5
       },
       {
         "name": "one-bus-many-stops",
@@ -386,7 +398,8 @@
           ],
           "source": 3,
           "target": 11
-        }
+        },
+        "out": 1
       },
       {
         "name": "overlapping-with-detour",
@@ -415,7 +428,8 @@
           ],
           "source": 1,
           "target": 7
-        }
+        },
+        "out": 3
       },
       {
         "name": "source-only-route",
@@ -434,7 +448,8 @@
           ],
           "source": 4,
           "target": 8
-        }
+        },
+        "out": -1
       },
       {
         "name": "target-on-source-route",
@@ -452,7 +467,8 @@
           ],
           "source": 10,
           "target": 30
-        }
+        },
+        "out": 1
       },
       {
         "name": "two-hop-through-hub",
@@ -473,7 +489,8 @@
           ],
           "source": 1,
           "target": 4
-        }
+        },
+        "out": 3
       },
       {
         "name": "long-spoke-chain",
@@ -502,7 +519,8 @@
           ],
           "source": 5,
           "target": 13
-        }
+        },
+        "out": 4
       },
       {
         "name": "sparse-disconnected-many",
@@ -527,7 +545,8 @@
           ],
           "source": 1,
           "target": 700
-        }
+        },
+        "out": -1
       },
       {
         "name": "shared-stop-ladder",
@@ -552,7 +571,8 @@
           ],
           "source": 1,
           "target": 12
-        }
+        },
+        "out": 4
       },
       {
         "name": "branching-via-middle",
@@ -581,7 +601,8 @@
           ],
           "source": 1,
           "target": 15
-        }
+        },
+        "out": 3
       },
       {
         "name": "cycle-like-overlap",
@@ -605,7 +626,8 @@
           ],
           "source": 2,
           "target": 6
-        }
+        },
+        "out": 2
       },
       {
         "name": "route-with-target-as-source-hop",
@@ -629,7 +651,8 @@
           ],
           "source": 7,
           "target": 13
-        }
+        },
+        "out": 3
       },
       {
         "name": "isolated-source",
@@ -648,7 +671,8 @@
           ],
           "source": 9,
           "target": 6
-        }
+        },
+        "out": -1
       },
       {
         "name": "isolated-target",
@@ -667,7 +691,8 @@
           ],
           "source": 1,
           "target": 9
-        }
+        },
+        "out": -1
       },
       {
         "name": "zero-stop-values",
@@ -686,7 +711,8 @@
           ],
           "source": 0,
           "target": 4
-        }
+        },
+        "out": 2
       },
       {
         "name": "many-small-routes",
@@ -719,7 +745,8 @@
           ],
           "source": 1,
           "target": 7
-        }
+        },
+        "out": 6
       },
       {
         "name": "shared-target-hub",
@@ -748,7 +775,8 @@
           ],
           "source": 1,
           "target": 5
-        }
+        },
+        "out": 2
       },
       {
         "name": "source-and-target-appear-multiple-times",
@@ -775,7 +803,8 @@
           ],
           "source": 2,
           "target": 9
-        }
+        },
+        "out": 2
       },
       {
         "name": "long-route-direct",
@@ -794,7 +823,8 @@
           ],
           "source": 1,
           "target": 15
-        }
+        },
+        "out": 1
       },
       {
         "name": "dense-overlap",
@@ -823,7 +853,8 @@
           ],
           "source": 1,
           "target": 7
-        }
+        },
+        "out": 3
       },
       {
         "name": "late-start-shortcut",
@@ -852,7 +883,8 @@
           ],
           "source": 20,
           "target": 90
-        }
+        },
+        "out": 4
       },
       {
         "name": "three-hop-middle",
@@ -876,7 +908,8 @@
           ],
           "source": 1,
           "target": 15
-        }
+        },
+        "out": 3
       },
       {
         "name": "unreachable-after-one-hop",
@@ -897,7 +930,8 @@
           ],
           "source": 1,
           "target": 30
-        }
+        },
+        "out": -1
       },
       {
         "name": "direct-via-shared-stop",
@@ -916,7 +950,8 @@
           ],
           "source": 1,
           "target": 5
-        }
+        },
+        "out": 2
       }
     ]
   },

@@ -95,7 +95,8 @@
           "target": 1,
           "startFuel": 1,
           "stations": []
-        }
+        },
+        "out": 0
       },
       {
         "name": "ex2",
@@ -111,7 +112,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "ex3",
@@ -139,7 +141,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 2
       },
       {
         "name": "no_stops_exact",
@@ -147,7 +150,8 @@
           "target": 50,
           "startFuel": 50,
           "stations": []
-        }
+        },
+        "out": 0
       },
       {
         "name": "no_stops_over",
@@ -155,7 +159,8 @@
           "target": 50,
           "startFuel": 60,
           "stations": []
-        }
+        },
+        "out": 0
       },
       {
         "name": "impossible_before_first",
@@ -175,7 +180,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "one_stop_exact",
@@ -195,7 +201,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "one_stop_needed",
@@ -219,7 +226,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "two_stops_chain",
@@ -247,7 +255,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 2
       },
       {
         "name": "three_stops_chain",
@@ -275,7 +284,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 3
       },
       {
         "name": "greedy_choice_1",
@@ -303,7 +313,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 2
       },
       {
         "name": "greedy_choice_2",
@@ -331,7 +342,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 3
       },
       {
         "name": "zero_left_at_station",
@@ -379,7 +391,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 9
       },
       {
         "name": "exact_arrival_zero",
@@ -403,7 +416,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 3
       },
       {
         "name": "many_small_fuels",
@@ -455,7 +469,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "large_fuel_first",
@@ -483,7 +498,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "large_fuel_late",
@@ -515,7 +531,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "unreachable_gap",
@@ -535,7 +552,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "reachable_with_many",
@@ -587,7 +605,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 10
       },
       {
         "name": "dense_small",
@@ -635,7 +654,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 9
       },
       {
         "name": "dense_medium",
@@ -719,7 +739,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 18
       },
       {
         "name": "station_at_target_minus_one",
@@ -739,7 +760,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "station_at_first_reach",
@@ -767,7 +789,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 4
       },
       {
         "name": "stop_at_every_station",
@@ -799,7 +822,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 5
       },
       {
         "name": "skip_some_stations",
@@ -831,7 +855,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "need_last_big_station",
@@ -863,7 +888,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "no_station_needed_with_surplus",
@@ -874,7 +900,8 @@
             "elemType": "int",
             "value": []
           }
-        }
+        },
+        "out": 0
       },
       {
         "name": "sparse_large",
@@ -902,7 +929,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "sparse_impossible",
@@ -926,7 +954,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": -1
       },
       {
         "name": "exact_chain_with_final_zero",
@@ -946,7 +975,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 2
       },
       {
         "name": "end_with_one_stop",
@@ -970,7 +1000,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 1
       },
       {
         "name": "end_with_two_stops",
@@ -998,7 +1029,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 2
       },
       {
         "name": "end_with_three_stops",
@@ -1030,7 +1062,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 4
       },
       {
         "name": "long_gap_but_possible",
@@ -1062,7 +1095,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 5
       },
       {
         "name": "long_gap_impossible",
@@ -1094,7 +1128,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 5
       },
       {
         "name": "maxed_station_count_small_steps",
@@ -1142,7 +1177,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 9
       },
       {
         "name": "maxed_station_count_big_refuel",
@@ -1190,7 +1226,8 @@
               ]
             ]
           }
-        }
+        },
+        "out": 5
       }
     ]
   },

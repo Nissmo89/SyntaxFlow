@@ -106,7 +106,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 17
+        "seed": 17,
+        "out": false
       },
       {
         "name": "example-2",
@@ -128,7 +129,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 34
+        "seed": 34,
+        "out": true
       },
       {
         "name": "single-fit",
@@ -145,7 +147,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 51
+        "seed": 51,
+        "out": true
       },
       {
         "name": "single-over",
@@ -162,7 +165,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 68
+        "seed": 68,
+        "out": false
       },
       {
         "name": "touching-endpoints",
@@ -184,7 +188,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 85
+        "seed": 85,
+        "out": true
       },
       {
         "name": "touching-endpoints-fit",
@@ -206,7 +211,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 102
+        "seed": 102,
+        "out": true
       },
       {
         "name": "nested-trips",
@@ -233,7 +239,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 119
+        "seed": 119,
+        "out": true
       },
       {
         "name": "nested-trips-over",
@@ -260,7 +267,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 136
+        "seed": 136,
+        "out": false
       },
       {
         "name": "ordered-simple",
@@ -287,7 +295,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 153
+        "seed": 153,
+        "out": true
       },
       {
         "name": "ordered-simple-fit",
@@ -314,7 +323,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 170
+        "seed": 170,
+        "out": true
       },
       {
         "name": "unordered",
@@ -341,7 +351,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 187
+        "seed": 187,
+        "out": false
       },
       {
         "name": "unordered-over",
@@ -368,7 +379,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 204
+        "seed": 204,
+        "out": false
       },
       {
         "name": "same-start",
@@ -395,7 +407,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 221
+        "seed": 221,
+        "out": false
       },
       {
         "name": "same-start-over",
@@ -422,7 +435,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 238
+        "seed": 238,
+        "out": false
       },
       {
         "name": "same-end",
@@ -449,7 +463,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 255
+        "seed": 255,
+        "out": true
       },
       {
         "name": "same-end-over",
@@ -476,7 +491,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 272
+        "seed": 272,
+        "out": false
       },
       {
         "name": "zero-gap",
@@ -503,7 +519,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 289
+        "seed": 289,
+        "out": true
       },
       {
         "name": "zero-gap-overlap",
@@ -530,7 +547,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 306
+        "seed": 306,
+        "out": true
       },
       {
         "name": "peak-1",
@@ -557,7 +575,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 323
+        "seed": 323,
+        "out": true
       },
       {
         "name": "peak-2",
@@ -584,7 +603,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 340
+        "seed": 340,
+        "out": false
       },
       {
         "name": "many-small-fit",
@@ -616,7 +636,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 357
+        "seed": 357,
+        "out": true
       },
       {
         "name": "many-small-over",
@@ -648,7 +669,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 374
+        "seed": 374,
+        "out": false
       },
       {
         "name": "large-capacity",
@@ -675,7 +697,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 391
+        "seed": 391,
+        "out": true
       },
       {
         "name": "large-capacity-over",
@@ -702,7 +725,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 408
+        "seed": 408,
+        "out": false
       },
       {
         "name": "boundary-1000",
@@ -724,7 +748,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 425
+        "seed": 425,
+        "out": false
       },
       {
         "name": "boundary-1000-over",
@@ -746,7 +771,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 442
+        "seed": 442,
+        "out": false
       },
       {
         "name": "chain-fit",
@@ -773,7 +799,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 459
+        "seed": 459,
+        "out": true
       },
       {
         "name": "chain-over",
@@ -800,7 +827,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 476
+        "seed": 476,
+        "out": false
       },
       {
         "name": "random-1",
@@ -832,7 +860,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 493
+        "seed": 493,
+        "out": false
       },
       {
         "name": "random-2",
@@ -864,7 +893,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 510
+        "seed": 510,
+        "out": false
       },
       {
         "name": "random-3",
@@ -891,7 +921,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 527
+        "seed": 527,
+        "out": false
       },
       {
         "name": "random-4",
@@ -918,7 +949,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 544
+        "seed": 544,
+        "out": false
       },
       {
         "name": "max-trips-simple",
@@ -5930,7 +5962,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 561
+        "seed": 561,
+        "out": true
       },
       {
         "name": "max-trips-over",
@@ -10942,7 +10975,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 578
+        "seed": 578,
+        "out": false
       },
       {
         "name": "dense-overlap",
@@ -11204,7 +11238,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 595
+        "seed": 595,
+        "out": true
       },
       {
         "name": "dense-overlap-fail",
@@ -11466,7 +11501,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 612
+        "seed": 612,
+        "out": false
       },
       {
         "name": "staggered",
@@ -11498,7 +11534,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 629
+        "seed": 629,
+        "out": false
       }
     ]
   },

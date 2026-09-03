@@ -84,7 +84,8 @@
           "poured": 1,
           "query_row": 1,
           "query_glass": 1
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "ex2",
@@ -92,7 +93,8 @@
           "poured": 2,
           "query_row": 1,
           "query_glass": 1
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "ex3",
@@ -100,7 +102,8 @@
           "poured": 100000009,
           "query_row": 33,
           "query_glass": 17
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "zero_top",
@@ -108,7 +111,8 @@
           "poured": 0,
           "query_row": 0,
           "query_glass": 0
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "one_top",
@@ -116,7 +120,8 @@
           "poured": 1,
           "query_row": 0,
           "query_glass": 0
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "two_rows_left",
@@ -124,7 +129,8 @@
           "poured": 2,
           "query_row": 1,
           "query_glass": 0
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "two_rows_right",
@@ -132,7 +138,8 @@
           "poured": 2,
           "query_row": 1,
           "query_glass": 0
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "three_center_half",
@@ -140,7 +147,8 @@
           "poured": 4,
           "query_row": 2,
           "query_glass": 1
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "three_edge_quarter",
@@ -148,7 +156,8 @@
           "poured": 4,
           "query_row": 2,
           "query_glass": 0
-        }
+        },
+        "out": 0.25
       },
       {
         "name": "small_full_row",
@@ -156,7 +165,8 @@
           "poured": 3,
           "query_row": 1,
           "query_glass": 0
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "small_full_row_right",
@@ -164,7 +174,8 @@
           "poured": 3,
           "query_row": 1,
           "query_glass": 1
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "exact_one_more",
@@ -172,7 +183,8 @@
           "poured": 5,
           "query_row": 2,
           "query_glass": 1
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "exact_three_rows",
@@ -180,7 +192,8 @@
           "poured": 6,
           "query_row": 2,
           "query_glass": 1
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_1",
@@ -188,7 +201,8 @@
           "poured": 10,
           "query_row": 3,
           "query_glass": 1
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_2",
@@ -196,7 +210,8 @@
           "poured": 10,
           "query_row": 3,
           "query_glass": 2
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_3",
@@ -204,7 +219,8 @@
           "poured": 25,
           "query_row": 4,
           "query_glass": 2
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_4",
@@ -212,7 +228,8 @@
           "poured": 25,
           "query_row": 4,
           "query_glass": 0
-        }
+        },
+        "out": 0.625
       },
       {
         "name": "medium_5",
@@ -220,7 +237,8 @@
           "poured": 25,
           "query_row": 4,
           "query_glass": 4
-        }
+        },
+        "out": 0.625
       },
       {
         "name": "medium_6",
@@ -228,7 +246,8 @@
           "poured": 100,
           "query_row": 6,
           "query_glass": 3
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_7",
@@ -236,7 +255,8 @@
           "poured": 100,
           "query_row": 6,
           "query_glass": 0
-        }
+        },
+        "out": 0.578125
       },
       {
         "name": "medium_8",
@@ -244,7 +264,8 @@
           "poured": 100,
           "query_row": 6,
           "query_glass": 6
-        }
+        },
+        "out": 0.578125
       },
       {
         "name": "medium_9",
@@ -252,7 +273,8 @@
           "poured": 1000,
           "query_row": 10,
           "query_glass": 5
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "medium_10",
@@ -260,7 +282,8 @@
           "poured": 1000,
           "query_row": 10,
           "query_glass": 0
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "medium_11",
@@ -268,7 +291,8 @@
           "poured": 1000,
           "query_row": 10,
           "query_glass": 10
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "boundary_row_99_left",
@@ -276,7 +300,8 @@
           "poured": 1000000000,
           "query_row": 99,
           "query_glass": 0
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "boundary_row_99_mid",
@@ -284,7 +309,8 @@
           "poured": 1000000000,
           "query_row": 99,
           "query_glass": 50
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "boundary_row_99_right",
@@ -292,7 +318,8 @@
           "poured": 1000000000,
           "query_row": 99,
           "query_glass": 99
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "boundary_row_50",
@@ -300,7 +327,8 @@
           "poured": 123456789,
           "query_row": 50,
           "query_glass": 25
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "boundary_row_50_edge",
@@ -308,7 +336,8 @@
           "poured": 123456789,
           "query_row": 50,
           "query_glass": 0
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "boundary_row_50_right",
@@ -316,7 +345,8 @@
           "poured": 123456789,
           "query_row": 50,
           "query_glass": 50
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "randomish_1",
@@ -324,7 +354,8 @@
           "poured": 7,
           "query_row": 3,
           "query_glass": 0
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "randomish_2",
@@ -332,7 +363,8 @@
           "poured": 7,
           "query_row": 3,
           "query_glass": 1
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "randomish_3",
@@ -340,7 +372,8 @@
           "poured": 7,
           "query_row": 3,
           "query_glass": 2
-        }
+        },
+        "out": 0.5
       },
       {
         "name": "randomish_4",
@@ -348,7 +381,8 @@
           "poured": 7,
           "query_row": 3,
           "query_glass": 3
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "randomish_5",
@@ -356,7 +390,8 @@
           "poured": 50,
           "query_row": 5,
           "query_glass": 2
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "randomish_6",
@@ -364,7 +399,8 @@
           "poured": 50,
           "query_row": 5,
           "query_glass": 5
-        }
+        },
+        "out": 0.59375
       }
     ]
   },

@@ -86,7 +86,8 @@
             "hi",
             "helo"
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "example-2",
@@ -97,7 +98,8 @@
             "zy",
             "zyy"
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "single-word-match",
@@ -106,7 +108,8 @@
           "words": [
             "a"
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "single-word-no-match",
@@ -115,7 +118,8 @@
           "words": [
             "b"
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "repeated-groups",
@@ -127,7 +131,8 @@
             "aaa",
             "aaaa"
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "three-groups",
@@ -139,7 +144,8 @@
             "abcccd",
             "abcccdx"
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "alternating",
@@ -150,7 +156,8 @@
             "abcd",
             "abcdd"
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "long-middle-run",
@@ -161,7 +168,8 @@
             "helo",
             "heello"
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "many-short-words",
@@ -174,7 +182,8 @@
             "qqrrrsss",
             "qrrs"
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "different-first-char",
@@ -185,7 +194,8 @@
             "mmn",
             "mnn"
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "two-groups-tough",
@@ -197,7 +207,8 @@
             "aaabbb",
             "aaabb"
           ]
-        }
+        },
+        "out": 4
       },
       {
         "name": "one-long-run",
@@ -210,7 +221,8 @@
             "zzzz",
             "zzzzz"
           ]
-        }
+        },
+        "out": 4
       },
       {
         "name": "no-stretch-possible",
@@ -222,7 +234,8 @@
             "bc",
             "abcd"
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "mixed-counts",
@@ -233,7 +246,8 @@
             "kelloo",
             "kello"
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "long-run-and-singletons",
@@ -245,7 +259,8 @@
             "ppqqqqrr",
             "ppqrr"
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "exact-equality",

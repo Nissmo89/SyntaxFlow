@@ -13,7 +13,7 @@
   "inputFormat": "Passed directly as parameters.",
   "outputFormat": "Returned value from the solution method.",
   "constraints": [
-    "-231 <=\u00a0numerator, denominator <= 231 - 1",
+    "-231 <= numerator, denominator <= 231 - 1",
     "denominator != 0"
   ],
   "hints": [
@@ -83,252 +83,288 @@
         "in": {
           "numerator": 0,
           "denominator": 1
-        }
+        },
+        "out": "0"
       },
       {
         "name": "one-over-one",
         "in": {
           "numerator": 1,
           "denominator": 1
-        }
+        },
+        "out": "1"
       },
       {
         "name": "negative-numerator",
         "in": {
           "numerator": -1,
           "denominator": 1
-        }
+        },
+        "out": "-1"
       },
       {
         "name": "negative-denominator",
         "in": {
           "numerator": 1,
           "denominator": -1
-        }
+        },
+        "out": "-1"
       },
       {
         "name": "double-negative",
         "in": {
           "numerator": -1,
           "denominator": -1
-        }
+        },
+        "out": "1"
       },
       {
         "name": "example-half",
         "in": {
           "numerator": 1,
           "denominator": 2
-        }
+        },
+        "out": "0.5"
       },
       {
         "name": "example-integer",
         "in": {
           "numerator": 2,
           "denominator": 1
-        }
+        },
+        "out": "2"
       },
       {
         "name": "example-recurring",
         "in": {
           "numerator": 4,
           "denominator": 333
-        }
+        },
+        "out": "0.(012)"
       },
       {
         "name": "simple-recurring",
         "in": {
           "numerator": 2,
           "denominator": 3
-        }
+        },
+        "out": "0.(6)"
       },
       {
         "name": "terminating-sixth",
         "in": {
           "numerator": 1,
           "denominator": 6
-        }
+        },
+        "out": "0.1(6)"
       },
       {
         "name": "recurring-seventh",
         "in": {
           "numerator": 1,
           "denominator": 7
-        }
+        },
+        "out": "0.(142857)"
       },
       {
         "name": "recurring-ninth",
         "in": {
           "numerator": 1,
           "denominator": 9
-        }
+        },
+        "out": "0.(1)"
       },
       {
         "name": "mixed-three-sevenths",
         "in": {
           "numerator": 22,
           "denominator": 7
-        }
+        },
+        "out": "3.(142857)"
       },
       {
         "name": "negative-finite",
         "in": {
           "numerator": -50,
           "denominator": 8
-        }
+        },
+        "out": "-6.25"
       },
       {
         "name": "negative-recurring",
         "in": {
           "numerator": 7,
           "denominator": -12
-        }
+        },
+        "out": "-0.58(3)"
       },
       {
         "name": "min-int-overflow-safe",
         "in": {
           "numerator": -2147483648,
           "denominator": 1
-        }
+        },
+        "out": "-2147483648"
       },
       {
         "name": "max-int",
         "in": {
           "numerator": 2147483647,
           "denominator": 1
-        }
+        },
+        "out": "2147483647"
       },
       {
         "name": "max-int-half",
         "in": {
           "numerator": 2147483647,
           "denominator": 2
-        }
+        },
+        "out": "1073741823.5"
       },
       {
         "name": "min-int-double-negative",
         "in": {
           "numerator": -2147483648,
           "denominator": -1
-        }
+        },
+        "out": "2147483648"
       },
       {
         "name": "min-int-half",
         "in": {
           "numerator": -2147483648,
           "denominator": 2
-        }
+        },
+        "out": "-1073741824"
       },
       {
         "name": "quarter",
         "in": {
           "numerator": 1,
           "denominator": 4
-        }
+        },
+        "out": "0.25"
       },
       {
         "name": "fifth",
         "in": {
           "numerator": 1,
           "denominator": 5
-        }
+        },
+        "out": "0.2"
       },
       {
         "name": "eighth",
         "in": {
           "numerator": 1,
           "denominator": 8
-        }
+        },
+        "out": "0.125"
       },
       {
         "name": "sixteenth",
         "in": {
           "numerator": 1,
           "denominator": 16
-        }
+        },
+        "out": "0.0625"
       },
       {
         "name": "one-over-125",
         "in": {
           "numerator": 1,
           "denominator": 125
-        }
+        },
+        "out": "0.008"
       },
       {
         "name": "reducible-finite",
         "in": {
           "numerator": 50,
           "denominator": 100
-        }
+        },
+        "out": "0.5"
       },
       {
         "name": "negative-half",
         "in": {
           "numerator": -1,
           "denominator": 2
-        }
+        },
+        "out": "-0.5"
       },
       {
         "name": "negative-half-denominator",
         "in": {
           "numerator": 1,
           "denominator": -2
-        }
+        },
+        "out": "-0.5"
       },
       {
         "name": "repeating-third",
         "in": {
           "numerator": 10,
           "denominator": 3
-        }
+        },
+        "out": "3.(3)"
       },
       {
         "name": "repeating-third-negative",
         "in": {
           "numerator": -10,
           "denominator": 3
-        }
+        },
+        "out": "-3.(3)"
       },
       {
         "name": "repeating-two-digit-cycle",
         "in": {
           "numerator": 1,
           "denominator": 11
-        }
+        },
+        "out": "0.(09)"
       },
       {
         "name": "terminating-after-leading-zeroes",
         "in": {
           "numerator": 1,
           "denominator": 12
-        }
+        },
+        "out": "0.08(3)"
       },
       {
         "name": "simple-fifth",
         "in": {
           "numerator": 2,
           "denominator": 5
-        }
+        },
+        "out": "0.4"
       },
       {
         "name": "mixed-decimal",
         "in": {
           "numerator": 29,
           "denominator": 12
-        }
+        },
+        "out": "2.41(6)"
       },
       {
         "name": "seventeenth",
         "in": {
           "numerator": 1,
           "denominator": 17
-        }
+        },
+        "out": "0.(0588235294117647)"
       },
       {
         "name": "nineteenth",
         "in": {
           "numerator": 1,
           "denominator": 19
-        }
+        },
+        "out": "0.(052631578947368421)"
       }
     ]
   },

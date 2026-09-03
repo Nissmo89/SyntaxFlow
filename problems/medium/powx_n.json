@@ -80,245 +80,280 @@
         "in": {
           "x": 2.0,
           "n": 10
-        }
+        },
+        "out": 1024.0
       },
       {
         "name": "example2",
         "in": {
           "x": 2.1,
           "n": 3
-        }
+        },
+        "out": 9.261000000000001
       },
       {
         "name": "example3",
         "in": {
           "x": 2.0,
           "n": -2
-        }
+        },
+        "out": 0.25
       },
       {
         "name": "zero_positive",
         "in": {
           "x": 0.0,
           "n": 7
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "zero_large_positive",
         "in": {
           "x": 0.0,
           "n": 2147483647
-        }
+        },
+        "out": 0.0
       },
       {
         "name": "one_zero",
         "in": {
           "x": 1.0,
           "n": 0
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "one_positive",
         "in": {
           "x": 1.0,
           "n": 2147483647
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "one_negative",
         "in": {
           "x": 1.0,
           "n": -2147483648
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "neg_one_even",
         "in": {
           "x": -1.0,
           "n": 2147483646
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "neg_one_odd",
         "in": {
           "x": -1.0,
           "n": 2147483647
-        }
+        },
+        "out": -1.0
       },
       {
         "name": "neg_one_negative_even",
         "in": {
           "x": -1.0,
           "n": -2147483648
-        }
+        },
+        "out": 1.0
       },
       {
         "name": "neg_one_negative_odd",
         "in": {
           "x": -1.0,
           "n": -2147483647
-        }
+        },
+        "out": -1.0
       },
       {
         "name": "positive_unit_exponent",
         "in": {
           "x": 2.0,
           "n": 1
-        }
+        },
+        "out": 2.0
       },
       {
         "name": "negative_base_odd",
         "in": {
           "x": -2.0,
           "n": 3
-        }
+        },
+        "out": -8.0
       },
       {
         "name": "negative_base_even",
         "in": {
           "x": -2.0,
           "n": 4
-        }
+        },
+        "out": 16.0
       },
       {
         "name": "negative_base_negative_odd",
         "in": {
           "x": -2.0,
           "n": -3
-        }
+        },
+        "out": -0.125
       },
       {
         "name": "negative_base_negative_even",
         "in": {
           "x": -2.0,
           "n": -4
-        }
+        },
+        "out": 0.0625
       },
       {
         "name": "fractional_positive",
         "in": {
           "x": 0.5,
           "n": 5
-        }
+        },
+        "out": 0.03125
       },
       {
         "name": "fractional_negative",
         "in": {
           "x": 0.5,
           "n": -5
-        }
+        },
+        "out": 32.0
       },
       {
         "name": "near_one_small",
         "in": {
           "x": 1.0001,
           "n": 1000
-        }
+        },
+        "out": 1.105165392603197
       },
       {
         "name": "near_one_negative",
         "in": {
           "x": 1.0001,
           "n": -1000
-        }
+        },
+        "out": 0.9048419419327561
       },
       {
         "name": "tenth_power",
         "in": {
           "x": 10.0,
           "n": 4
-        }
+        },
+        "out": 10000.0
       },
       {
         "name": "tenth_negative",
         "in": {
           "x": 10.0,
           "n": -4
-        }
+        },
+        "out": 0.00010000000000000005
       },
       {
         "name": "pi_small",
         "in": {
           "x": 3.14159,
           "n": 2
-        }
+        },
+        "out": 9.869587728099999
       },
       {
         "name": "pi_negative",
         "in": {
           "x": 3.14159,
           "n": -2
-        }
+        },
+        "out": 0.10132135480723983
       },
       {
         "name": "small_fraction",
         "in": {
           "x": 0.25,
           "n": 8
-        }
+        },
+        "out": 1.52587890625e-05
       },
       {
         "name": "small_fraction_negative",
         "in": {
           "x": 0.25,
           "n": -8
-        }
+        },
+        "out": 65536.0
       },
       {
         "name": "mixed_sign_large",
         "in": {
           "x": -0.75,
           "n": 11
-        }
+        },
+        "out": -0.04223513603210449
       },
       {
         "name": "mixed_sign_large_negative",
         "in": {
           "x": -0.75,
           "n": -11
-        }
+        },
+        "out": -23.676968845083458
       },
       {
         "name": "high_positive_even",
         "in": {
           "x": 1.25,
           "n": 32
-        }
+        },
+        "out": 1262.177448353619
       },
       {
         "name": "high_positive_negative",
         "in": {
           "x": 1.25,
           "n": -32
-        }
+        },
+        "out": 0.0007922816251426461
       },
       {
         "name": "high_negative_even",
         "in": {
           "x": -1.25,
           "n": 32
-        }
+        },
+        "out": 1262.177448353619
       },
       {
         "name": "high_negative_odd",
         "in": {
           "x": -1.25,
           "n": 33
-        }
+        },
+        "out": -1577.7218104420238
       },
       {
         "name": "high_negative_even_negexp",
         "in": {
           "x": -1.25,
           "n": -32
-        }
+        },
+        "out": 0.0007922816251426461
       },
       {
         "name": "high_negative_odd_negexp",
         "in": {
           "x": -1.25,
           "n": -33
-        }
+        },
+        "out": -0.0006338253001141169
       }
     ]
   },

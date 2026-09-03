@@ -70,25 +70,43 @@
         "name": "example_1",
         "in": {
           "s": "a1b2"
-        }
+        },
+        "out": [
+          "a1b2",
+          "a1B2",
+          "A1b2",
+          "A1B2"
+        ]
       },
       {
         "name": "example_2",
         "in": {
           "s": "3z4"
-        }
+        },
+        "out": [
+          "3z4",
+          "3Z4"
+        ]
       },
       {
         "name": "single_lower",
         "in": {
           "s": "a"
-        }
+        },
+        "out": [
+          "a",
+          "A"
+        ]
       },
       {
         "name": "single_upper",
         "in": {
           "s": "Z"
-        }
+        },
+        "out": [
+          "Z",
+          "z"
+        ]
       },
       {
         "name": "single_digit",
@@ -100,19 +118,37 @@
         "name": "two_letters",
         "in": {
           "s": "ab"
-        }
+        },
+        "out": [
+          "ab",
+          "aB",
+          "Ab",
+          "AB"
+        ]
       },
       {
         "name": "mixed_simple",
         "in": {
           "s": "aB3"
-        }
+        },
+        "out": [
+          "aB3",
+          "ab3",
+          "AB3",
+          "Ab3"
+        ]
       },
       {
         "name": "mixed_digits_edges",
         "in": {
           "s": "1a2B3"
-        }
+        },
+        "out": [
+          "1a2B3",
+          "1a2b3",
+          "1A2B3",
+          "1A2b3"
+        ]
       },
       {
         "name": "all_digits_short",
@@ -124,73 +160,347 @@
         "name": "all_letters_lower",
         "in": {
           "s": "abcdef"
-        }
+        },
+        "out": [
+          "abcdef",
+          "abcdeF",
+          "abcdEf",
+          "abcdEF",
+          "abcDef",
+          "abcDeF",
+          "abcDEf",
+          "abcDEF",
+          "abCdef",
+          "abCdeF",
+          "abCdEf",
+          "abCdEF",
+          "abCDef",
+          "abCDeF",
+          "abCDEf",
+          "abCDEF",
+          "aBcdef",
+          "aBcdeF",
+          "aBcdEf",
+          "aBcdEF",
+          "aBcDef",
+          "aBcDeF",
+          "aBcDEf",
+          "aBcDEF",
+          "aBCdef",
+          "aBCdeF",
+          "aBCdEf",
+          "aBCdEF",
+          "aBCDef",
+          "aBCDeF",
+          "aBCDEf",
+          "aBCDEF",
+          "Abcdef",
+          "AbcdeF",
+          "AbcdEf",
+          "AbcdEF",
+          "AbcDef",
+          "AbcDeF",
+          "AbcDEf",
+          "AbcDEF",
+          "AbCdef",
+          "AbCdeF",
+          "AbCdEf",
+          "AbCdEF",
+          "AbCDef",
+          "AbCDeF",
+          "AbCDEf",
+          "AbCDEF",
+          "ABcdef",
+          "ABcdeF",
+          "ABcdEf",
+          "ABcdEF",
+          "ABcDef",
+          "ABcDeF",
+          "ABcDEf",
+          "ABcDEF",
+          "ABCdef",
+          "ABCdeF",
+          "ABCdEf",
+          "ABCdEF",
+          "ABCDef",
+          "ABCDeF",
+          "ABCDEf",
+          "ABCDEF"
+        ]
       },
       {
         "name": "all_letters_upper",
         "in": {
           "s": "ABCDEF"
-        }
+        },
+        "out": [
+          "ABCDEF",
+          "ABCDEf",
+          "ABCDeF",
+          "ABCDef",
+          "ABCdEF",
+          "ABCdEf",
+          "ABCdeF",
+          "ABCdef",
+          "ABcDEF",
+          "ABcDEf",
+          "ABcDeF",
+          "ABcDef",
+          "ABcdEF",
+          "ABcdEf",
+          "ABcdeF",
+          "ABcdef",
+          "AbCDEF",
+          "AbCDEf",
+          "AbCDeF",
+          "AbCDef",
+          "AbCdEF",
+          "AbCdEf",
+          "AbCdeF",
+          "AbCdef",
+          "AbcDEF",
+          "AbcDEf",
+          "AbcDeF",
+          "AbcDef",
+          "AbcdEF",
+          "AbcdEf",
+          "AbcdeF",
+          "Abcdef",
+          "aBCDEF",
+          "aBCDEf",
+          "aBCDeF",
+          "aBCDef",
+          "aBCdEF",
+          "aBCdEf",
+          "aBCdeF",
+          "aBCdef",
+          "aBcDEF",
+          "aBcDEf",
+          "aBcDeF",
+          "aBcDef",
+          "aBcdEF",
+          "aBcdEf",
+          "aBcdeF",
+          "aBcdef",
+          "abCDEF",
+          "abCDEf",
+          "abCDeF",
+          "abCDef",
+          "abCdEF",
+          "abCdEf",
+          "abCdeF",
+          "abCdef",
+          "abcDEF",
+          "abcDEf",
+          "abcDeF",
+          "abcDef",
+          "abcdEF",
+          "abcdEf",
+          "abcdeF",
+          "abcdef"
+        ]
       },
       {
         "name": "alternating_cases",
         "in": {
           "s": "aBcDeF"
-        }
+        },
+        "out": [
+          "aBcDeF",
+          "aBcDef",
+          "aBcDEF",
+          "aBcDEf",
+          "aBcdeF",
+          "aBcdef",
+          "aBcdEF",
+          "aBcdEf",
+          "aBCDeF",
+          "aBCDef",
+          "aBCDEF",
+          "aBCDEf",
+          "aBCdeF",
+          "aBCdef",
+          "aBCdEF",
+          "aBCdEf",
+          "abcDeF",
+          "abcDef",
+          "abcDEF",
+          "abcDEf",
+          "abcdeF",
+          "abcdef",
+          "abcdEF",
+          "abcdEf",
+          "abCDeF",
+          "abCDef",
+          "abCDEF",
+          "abCDEf",
+          "abCdeF",
+          "abCdef",
+          "abCdEF",
+          "abCdEf",
+          "ABcDeF",
+          "ABcDef",
+          "ABcDEF",
+          "ABcDEf",
+          "ABcdeF",
+          "ABcdef",
+          "ABcdEF",
+          "ABcdEf",
+          "ABCDeF",
+          "ABCDef",
+          "ABCDEF",
+          "ABCDEf",
+          "ABCdeF",
+          "ABCdef",
+          "ABCdEF",
+          "ABCdEf",
+          "AbcDeF",
+          "AbcDef",
+          "AbcDEF",
+          "AbcDEf",
+          "AbcdeF",
+          "Abcdef",
+          "AbcdEF",
+          "AbcdEf",
+          "AbCDeF",
+          "AbCDef",
+          "AbCDEF",
+          "AbCDEf",
+          "AbCdeF",
+          "AbCdef",
+          "AbCdEF",
+          "AbCdEf"
+        ]
       },
       {
         "name": "alpha_numeric_1",
         "in": {
           "s": "0a0"
-        }
+        },
+        "out": [
+          "0a0",
+          "0A0"
+        ]
       },
       {
         "name": "alpha_numeric_2",
         "in": {
           "s": "9Z9"
-        }
+        },
+        "out": [
+          "9Z9",
+          "9z9"
+        ]
       },
       {
         "name": "alpha_numeric_3",
         "in": {
           "s": "a0b0c"
-        }
+        },
+        "out": [
+          "a0b0c",
+          "a0b0C",
+          "a0B0c",
+          "a0B0C",
+          "A0b0c",
+          "A0b0C",
+          "A0B0c",
+          "A0B0C"
+        ]
       },
       {
         "name": "alpha_numeric_4",
         "in": {
           "s": "A1b2C3"
-        }
+        },
+        "out": [
+          "A1b2C3",
+          "A1b2c3",
+          "A1B2C3",
+          "A1B2c3",
+          "a1b2C3",
+          "a1b2c3",
+          "a1B2C3",
+          "a1B2c3"
+        ]
       },
       {
         "name": "alpha_numeric_5",
         "in": {
           "s": "4q5"
-        }
+        },
+        "out": [
+          "4q5",
+          "4Q5"
+        ]
       },
       {
         "name": "alpha_numeric_6",
         "in": {
           "s": "m7N8"
-        }
+        },
+        "out": [
+          "m7N8",
+          "m7n8",
+          "M7N8",
+          "M7n8"
+        ]
       },
       {
         "name": "alpha_numeric_7",
         "in": {
           "s": "x9y8z7"
-        }
+        },
+        "out": [
+          "x9y8z7",
+          "x9y8Z7",
+          "x9Y8z7",
+          "x9Y8Z7",
+          "X9y8z7",
+          "X9y8Z7",
+          "X9Y8z7",
+          "X9Y8Z7"
+        ]
       },
       {
         "name": "alpha_numeric_8",
         "in": {
           "s": "P0q1R2"
-        }
+        },
+        "out": [
+          "P0q1R2",
+          "P0q1r2",
+          "P0Q1R2",
+          "P0Q1r2",
+          "p0q1R2",
+          "p0q1r2",
+          "p0Q1R2",
+          "p0Q1r2"
+        ]
       },
       {
         "name": "alpha_numeric_9",
         "in": {
           "s": "tTtT"
-        }
+        },
+        "out": [
+          "tTtT",
+          "tTtt",
+          "tTTT",
+          "tTTt",
+          "tttT",
+          "tttt",
+          "ttTT",
+          "ttTt",
+          "TTtT",
+          "TTtt",
+          "TTTT",
+          "TTTt",
+          "TttT",
+          "Tttt",
+          "TtTT",
+          "TtTt"
+        ]
       },
       {
         "name": "alpha_numeric_10",
@@ -202,55 +512,289 @@
         "name": "alpha_numeric_11",
         "in": {
           "s": "b0"
-        }
+        },
+        "out": [
+          "b0",
+          "B0"
+        ]
       },
       {
         "name": "alpha_numeric_12",
         "in": {
           "s": "0b"
-        }
+        },
+        "out": [
+          "0b",
+          "0B"
+        ]
       },
       {
         "name": "alpha_numeric_13",
         "in": {
           "s": "b1c2d3"
-        }
+        },
+        "out": [
+          "b1c2d3",
+          "b1c2D3",
+          "b1C2d3",
+          "b1C2D3",
+          "B1c2d3",
+          "B1c2D3",
+          "B1C2d3",
+          "B1C2D3"
+        ]
       },
       {
         "name": "alpha_numeric_14",
         "in": {
           "s": "1A2B3C"
-        }
+        },
+        "out": [
+          "1A2B3C",
+          "1A2B3c",
+          "1A2b3C",
+          "1A2b3c",
+          "1a2B3C",
+          "1a2B3c",
+          "1a2b3C",
+          "1a2b3c"
+        ]
       },
       {
         "name": "edge_digits_then_letters",
         "in": {
           "s": "123a"
-        }
+        },
+        "out": [
+          "123a",
+          "123A"
+        ]
       },
       {
         "name": "edge_letters_then_digits",
         "in": {
           "s": "a123"
-        }
+        },
+        "out": [
+          "a123",
+          "A123"
+        ]
       },
       {
         "name": "edge_alternating_12",
         "in": {
           "s": "a1B2c3D4e5F6"
-        }
+        },
+        "out": [
+          "a1B2c3D4e5F6",
+          "a1B2c3D4e5f6",
+          "a1B2c3D4E5F6",
+          "a1B2c3D4E5f6",
+          "a1B2c3d4e5F6",
+          "a1B2c3d4e5f6",
+          "a1B2c3d4E5F6",
+          "a1B2c3d4E5f6",
+          "a1B2C3D4e5F6",
+          "a1B2C3D4e5f6",
+          "a1B2C3D4E5F6",
+          "a1B2C3D4E5f6",
+          "a1B2C3d4e5F6",
+          "a1B2C3d4e5f6",
+          "a1B2C3d4E5F6",
+          "a1B2C3d4E5f6",
+          "a1b2c3D4e5F6",
+          "a1b2c3D4e5f6",
+          "a1b2c3D4E5F6",
+          "a1b2c3D4E5f6",
+          "a1b2c3d4e5F6",
+          "a1b2c3d4e5f6",
+          "a1b2c3d4E5F6",
+          "a1b2c3d4E5f6",
+          "a1b2C3D4e5F6",
+          "a1b2C3D4e5f6",
+          "a1b2C3D4E5F6",
+          "a1b2C3D4E5f6",
+          "a1b2C3d4e5F6",
+          "a1b2C3d4e5f6",
+          "a1b2C3d4E5F6",
+          "a1b2C3d4E5f6",
+          "A1B2c3D4e5F6",
+          "A1B2c3D4e5f6",
+          "A1B2c3D4E5F6",
+          "A1B2c3D4E5f6",
+          "A1B2c3d4e5F6",
+          "A1B2c3d4e5f6",
+          "A1B2c3d4E5F6",
+          "A1B2c3d4E5f6",
+          "A1B2C3D4e5F6",
+          "A1B2C3D4e5f6",
+          "A1B2C3D4E5F6",
+          "A1B2C3D4E5f6",
+          "A1B2C3d4e5F6",
+          "A1B2C3d4e5f6",
+          "A1B2C3d4E5F6",
+          "A1B2C3d4E5f6",
+          "A1b2c3D4e5F6",
+          "A1b2c3D4e5f6",
+          "A1b2c3D4E5F6",
+          "A1b2c3D4E5f6",
+          "A1b2c3d4e5F6",
+          "A1b2c3d4e5f6",
+          "A1b2c3d4E5F6",
+          "A1b2c3d4E5f6",
+          "A1b2C3D4e5F6",
+          "A1b2C3D4e5f6",
+          "A1b2C3D4E5F6",
+          "A1b2C3D4E5f6",
+          "A1b2C3d4e5F6",
+          "A1b2C3d4e5f6",
+          "A1b2C3d4E5F6",
+          "A1b2C3d4E5f6"
+        ]
       },
       {
         "name": "edge_all_same_letter",
         "in": {
           "s": "aaaaaa"
-        }
+        },
+        "out": [
+          "aaaaaa",
+          "aaaaaA",
+          "aaaaAa",
+          "aaaaAA",
+          "aaaAaa",
+          "aaaAaA",
+          "aaaAAa",
+          "aaaAAA",
+          "aaAaaa",
+          "aaAaaA",
+          "aaAaAa",
+          "aaAaAA",
+          "aaAAaa",
+          "aaAAaA",
+          "aaAAAa",
+          "aaAAAA",
+          "aAaaaa",
+          "aAaaaA",
+          "aAaaAa",
+          "aAaaAA",
+          "aAaAaa",
+          "aAaAaA",
+          "aAaAAa",
+          "aAaAAA",
+          "aAAaaa",
+          "aAAaaA",
+          "aAAaAa",
+          "aAAaAA",
+          "aAAAaa",
+          "aAAAaA",
+          "aAAAAa",
+          "aAAAAA",
+          "Aaaaaa",
+          "AaaaaA",
+          "AaaaAa",
+          "AaaaAA",
+          "AaaAaa",
+          "AaaAaA",
+          "AaaAAa",
+          "AaaAAA",
+          "AaAaaa",
+          "AaAaaA",
+          "AaAaAa",
+          "AaAaAA",
+          "AaAAaa",
+          "AaAAaA",
+          "AaAAAa",
+          "AaAAAA",
+          "AAaaaa",
+          "AAaaaA",
+          "AAaaAa",
+          "AAaaAA",
+          "AAaAaa",
+          "AAaAaA",
+          "AAaAAa",
+          "AAaAAA",
+          "AAAaaa",
+          "AAAaaA",
+          "AAAaAa",
+          "AAAaAA",
+          "AAAAaa",
+          "AAAAaA",
+          "AAAAAa",
+          "AAAAAA"
+        ]
       },
       {
         "name": "edge_all_same_upper",
         "in": {
           "s": "ZZZZZZ"
-        }
+        },
+        "out": [
+          "ZZZZZZ",
+          "ZZZZZz",
+          "ZZZZzZ",
+          "ZZZZzz",
+          "ZZZzZZ",
+          "ZZZzZz",
+          "ZZZzzZ",
+          "ZZZzzz",
+          "ZZzZZZ",
+          "ZZzZZz",
+          "ZZzZzZ",
+          "ZZzZzz",
+          "ZZzzZZ",
+          "ZZzzZz",
+          "ZZzzzZ",
+          "ZZzzzz",
+          "ZzZZZZ",
+          "ZzZZZz",
+          "ZzZZzZ",
+          "ZzZZzz",
+          "ZzZzZZ",
+          "ZzZzZz",
+          "ZzZzzZ",
+          "ZzZzzz",
+          "ZzzZZZ",
+          "ZzzZZz",
+          "ZzzZzZ",
+          "ZzzZzz",
+          "ZzzzZZ",
+          "ZzzzZz",
+          "ZzzzzZ",
+          "Zzzzzz",
+          "zZZZZZ",
+          "zZZZZz",
+          "zZZZzZ",
+          "zZZZzz",
+          "zZZzZZ",
+          "zZZzZz",
+          "zZZzzZ",
+          "zZZzzz",
+          "zZzZZZ",
+          "zZzZZz",
+          "zZzZzZ",
+          "zZzZzz",
+          "zZzzZZ",
+          "zZzzZz",
+          "zZzzzZ",
+          "zZzzzz",
+          "zzZZZZ",
+          "zzZZZz",
+          "zzZZzZ",
+          "zzZZzz",
+          "zzZzZZ",
+          "zzZzZz",
+          "zzZzzZ",
+          "zzZzzz",
+          "zzzZZZ",
+          "zzzZZz",
+          "zzzZzZ",
+          "zzzZzz",
+          "zzzzZZ",
+          "zzzzZz",
+          "zzzzzZ",
+          "zzzzzz"
+        ]
       }
     ]
   },

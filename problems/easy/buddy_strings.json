@@ -70,280 +70,320 @@
         "in": {
           "s": "ab",
           "goal": "ba"
-        }
+        },
+        "out": true
       },
       {
         "name": "ex2",
         "in": {
           "s": "ab",
           "goal": "ab"
-        }
+        },
+        "out": false
       },
       {
         "name": "ex3",
         "in": {
           "s": "aa",
           "goal": "aa"
-        }
+        },
+        "out": true
       },
       {
         "name": "len1a",
         "in": {
           "s": "a",
           "goal": "a"
-        }
+        },
+        "out": false
       },
       {
         "name": "len1b",
         "in": {
           "s": "a",
           "goal": "b"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff1",
         "in": {
           "s": "abc",
           "goal": "abd"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff2",
         "in": {
           "s": "abcd",
           "goal": "abdc"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff3",
         "in": {
           "s": "abcd",
           "goal": "bacd"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff4",
         "in": {
           "s": "aabc",
           "goal": "abac"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff5",
         "in": {
           "s": "aabc",
           "goal": "aabc"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff6",
         "in": {
           "s": "aaab",
           "goal": "aaab"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff7",
         "in": {
           "s": "aaa",
           "goal": "aaa"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff8",
         "in": {
           "s": "abcdef",
           "goal": "abcfed"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff9",
         "in": {
           "s": "abcdef",
           "goal": "abcdef"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff10",
         "in": {
           "s": "aaaaa",
           "goal": "aaaaa"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff11",
         "in": {
           "s": "aaaaa",
           "goal": "aaaab"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff12",
         "in": {
           "s": "abca",
           "goal": "abca"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff13",
         "in": {
           "s": "abca",
           "goal": "abac"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff14",
         "in": {
           "s": "zyxw",
           "goal": "zxyw"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff15",
         "in": {
           "s": "zyxw",
           "goal": "zyxw"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff16",
         "in": {
           "s": "abcd",
           "goal": "abcd"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff17",
         "in": {
           "s": "aabbcc",
           "goal": "aabbcc"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff18",
         "in": {
           "s": "aabbcc",
           "goal": "aabcbc"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff19",
         "in": {
           "s": "ab",
           "goal": "ac"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff20",
         "in": {
           "s": "xyz",
           "goal": "xzy"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff21",
         "in": {
           "s": "xyz",
           "goal": "xyz"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff22",
         "in": {
           "s": "xxyy",
           "goal": "xxyy"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff23",
         "in": {
           "s": "xxyy",
           "goal": "xyxy"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff24",
         "in": {
           "s": "abcabc",
           "goal": "abcabc"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff25",
         "in": {
           "s": "abcabc",
           "goal": "abccab"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff26",
         "in": {
           "s": "aabb",
           "goal": "bbaa"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff27",
         "in": {
           "s": "aabb",
           "goal": "aabb"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff28",
         "in": {
           "s": "qwerty",
           "goal": "qewrty"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff29",
         "in": {
           "s": "qwerty",
           "goal": "qwerty"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff30",
         "in": {
           "s": "aacb",
           "goal": "abca"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff31",
         "in": {
           "s": "aacb",
           "goal": "aacb"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff32",
         "in": {
           "s": "abcde",
           "goal": "abced"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff33",
         "in": {
           "s": "abcde",
           "goal": "abcde"
-        }
+        },
+        "out": false
       },
       {
         "name": "diff34",
         "in": {
           "s": "hello",
           "goal": "heoll"
-        }
+        },
+        "out": true
       },
       {
         "name": "diff35",
         "in": {
           "s": "hello",
           "goal": "hello"
-        }
+        },
+        "out": true
       }
     ]
   },

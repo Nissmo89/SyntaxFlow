@@ -76,223 +76,346 @@
         "name": "example-1",
         "in": {
           "s": "()())()"
-        }
+        },
+        "out": [
+          "(())()",
+          "()()()"
+        ]
       },
       {
         "name": "example-2",
         "in": {
           "s": "(a)())()"
-        }
+        },
+        "out": [
+          "(a())()",
+          "(a)()()"
+        ]
       },
       {
         "name": "example-3",
         "in": {
           "s": ")("
-        }
+        },
+        "out": [
+          ""
+        ]
       },
       {
         "name": "single-letter",
         "in": {
           "s": "a"
-        }
+        },
+        "out": [
+          "a"
+        ]
       },
       {
         "name": "balanced-simple",
         "in": {
           "s": "()"
-        }
+        },
+        "out": [
+          "()"
+        ]
       },
       {
         "name": "already-valid-nested",
         "in": {
           "s": "(())"
-        }
+        },
+        "out": [
+          "(())"
+        ]
       },
       {
         "name": "leading-close",
         "in": {
           "s": ")a"
-        }
+        },
+        "out": [
+          "a"
+        ]
       },
       {
         "name": "trailing-open",
         "in": {
           "s": "a("
-        }
+        },
+        "out": [
+          "a"
+        ]
       },
       {
         "name": "all-closes",
         "in": {
           "s": "))))"
-        }
+        },
+        "out": [
+          ""
+        ]
       },
       {
         "name": "all-opens",
         "in": {
           "s": "(((("
-        }
+        },
+        "out": [
+          ""
+        ]
       },
       {
         "name": "no-parentheses",
         "in": {
           "s": "abcde"
-        }
+        },
+        "out": [
+          "abcde"
+        ]
       },
       {
         "name": "mixed-letters-1",
         "in": {
           "s": "a)b(c)d"
-        }
+        },
+        "out": [
+          "ab(c)d"
+        ]
       },
       {
         "name": "mixed-letters-2",
         "in": {
           "s": "(a(b)c)d"
-        }
+        },
+        "out": [
+          "(a(b)c)d"
+        ]
       },
       {
         "name": "min-remove-one",
         "in": {
           "s": "())"
-        }
+        },
+        "out": [
+          "()"
+        ]
       },
       {
         "name": "min-remove-one-2",
         "in": {
           "s": "(()"
-        }
+        },
+        "out": [
+          "()"
+        ]
       },
       {
         "name": "alternating-valid",
         "in": {
           "s": "()()"
-        }
+        },
+        "out": [
+          "()()"
+        ]
       },
       {
         "name": "alternating-valid-2",
         "in": {
           "s": "(()())"
-        }
+        },
+        "out": [
+          "(()())"
+        ]
       },
       {
         "name": "invalid-with-letter",
         "in": {
           "s": "a)bc(d"
-        }
+        },
+        "out": [
+          "abcd"
+        ]
       },
       {
         "name": "invalid-prefix",
         "in": {
           "s": ")(()"
-        }
+        },
+        "out": [
+          "()"
+        ]
       },
       {
         "name": "invalid-suffix",
         "in": {
           "s": "((())"
-        }
+        },
+        "out": [
+          "(())"
+        ]
       },
       {
         "name": "valid-with-letters",
         "in": {
           "s": "a((b))"
-        }
+        },
+        "out": [
+          "a((b))"
+        ]
       },
       {
         "name": "invalid-close-middle",
         "in": {
           "s": "a((b)c)d)"
-        }
+        },
+        "out": [
+          "a((bc)d)",
+          "a((b)cd)",
+          "a((b)c)d"
+        ]
       },
       {
         "name": "invalid-open-middle",
         "in": {
           "s": "a)()()("
-        }
+        },
+        "out": [
+          "a()()"
+        ]
       },
       {
         "name": "example-like-1",
         "in": {
           "s": "((a)())())"
-        }
+        },
+        "out": [
+          "((a())())",
+          "((a)()())",
+          "((a)())()"
+        ]
       },
       {
         "name": "example-like-2",
         "in": {
           "s": "a)b(c)d)e)f"
-        }
+        },
+        "out": [
+          "ab(cde)f",
+          "ab(cd)ef",
+          "ab(c)def"
+        ]
       },
       {
         "name": "long-balanced",
         "in": {
           "s": "((((((((((abcde))))))))))"
-        }
+        },
+        "out": [
+          "((((((((((abcde))))))))))"
+        ]
       },
       {
         "name": "long-unbalanced-closes",
         "in": {
           "s": "))))))))))abcde(((((((((("
-        }
+        },
+        "out": [
+          "abcde"
+        ]
       },
       {
         "name": "long-many-letters",
         "in": {
           "s": "ab(c)d(e)f(g)h(i)j"
-        }
+        },
+        "out": [
+          "ab(c)d(e)f(g)h(i)j"
+        ]
       },
       {
         "name": "long-all-invalid-mix",
         "in": {
           "s": "x(x(x(x(x(x("
-        }
+        },
+        "out": [
+          "xxxxxx"
+        ]
       },
       {
         "name": "long-all-invalid-closes",
         "in": {
           "s": "))))abc"
-        }
+        },
+        "out": [
+          "abc"
+        ]
       },
       {
         "name": "dense-valid",
         "in": {
           "s": "(((())))(()())"
-        }
+        },
+        "out": [
+          "(((())))(()())"
+        ]
       },
       {
         "name": "dense-invalid",
         "in": {
           "s": "(a(b(c)d)e"
-        }
+        },
+        "out": [
+          "a(b(c)d)e",
+          "(ab(c)d)e",
+          "(a(bc)d)e"
+        ]
       },
       {
         "name": "letters-around",
         "in": {
           "s": "m)no(p)q)r(s)t"
-        }
+        },
+        "out": [
+          "mno(pq)r(s)t",
+          "mno(p)qr(s)t"
+        ]
       },
       {
         "name": "maxish-balanced",
         "in": {
           "s": "((((a((((b))))c))))"
-        }
+        },
+        "out": [
+          "((((a((((b))))c))))"
+        ]
       },
       {
         "name": "maxish-unbalanced",
         "in": {
           "s": "((((a((((b))))c)))))"
-        }
+        },
+        "out": [
+          "((((a((((b)))c)))))",
+          "((((a((((b))))c))))"
+        ]
       },
       {
         "name": "single-close-followed-by-letters",
         "in": {
           "s": ")abc"
-        }
+        },
+        "out": [
+          "abc"
+        ]
       },
       {
         "name": "many-letters-and-opens",
         "in": {
           "s": "abcd((((("
-        }
+        },
+        "out": [
+          "abcd"
+        ]
       }
     ]
   },

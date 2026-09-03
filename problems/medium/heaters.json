@@ -91,7 +91,8 @@
           "heaters": [
             2
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "example2",
@@ -106,7 +107,8 @@
             1,
             4
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "example3",
@@ -118,7 +120,8 @@
           "heaters": [
             2
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "single_house_exact",
@@ -129,7 +132,8 @@
           "heaters": [
             7
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "single_house_left",
@@ -140,7 +144,8 @@
           "heaters": [
             10
           ]
-        }
+        },
+        "out": 9
       },
       {
         "name": "single_house_right",
@@ -151,7 +156,8 @@
           "heaters": [
             1
           ]
-        }
+        },
+        "out": 9
       },
       {
         "name": "one_heater_between",
@@ -164,7 +170,8 @@
           "heaters": [
             6
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "heater_at_left_edge",
@@ -178,7 +185,8 @@
           "heaters": [
             1
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "heater_at_right_edge",
@@ -192,7 +200,8 @@
           "heaters": [
             4
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "duplicate_houses",
@@ -206,7 +215,8 @@
           "heaters": [
             5
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "duplicate_heaters",
@@ -220,7 +230,8 @@
             5,
             5
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "unsorted_inputs",
@@ -234,7 +245,8 @@
             10,
             2
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "houses_on_heaters",
@@ -251,7 +263,8 @@
             3,
             5
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "two_heaters_far_apart",
@@ -266,7 +279,8 @@
             5,
             25
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "clustered_houses",
@@ -281,7 +295,8 @@
             1,
             200
           ]
-        }
+        },
+        "out": 99
       },
       {
         "name": "boundary_low_values",
@@ -294,7 +309,8 @@
           "heaters": [
             3
           ]
-        }
+        },
+        "out": 2
       },
       {
         "name": "boundary_high_values",
@@ -307,7 +323,8 @@
           "heaters": [
             999999999
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "mixed_boundaries",
@@ -320,7 +337,8 @@
             1,
             1000000000
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "more_houses_than_heaters",
@@ -337,7 +355,8 @@
             3,
             11
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "one_heater_center",
@@ -352,7 +371,8 @@
           "heaters": [
             4
           ]
-        }
+        },
+        "out": 2
       },
       {
         "name": "spaced_evenly",
@@ -367,7 +387,8 @@
             2,
             8
           ]
-        }
+        },
+        "out": 2
       },
       {
         "name": "heater_before_all",
@@ -381,7 +402,8 @@
             1,
             2
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "heater_after_all",
@@ -395,7 +417,8 @@
             10,
             20
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "alternating_nearest",
@@ -412,7 +435,8 @@
             8,
             13
           ]
-        }
+        },
+        "out": 2
       },
       {
         "name": "repeated_house_positions",
@@ -427,7 +451,8 @@
             1,
             10
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "repeated_heater_positions",
@@ -442,7 +467,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "large_gap_single_heater",
@@ -456,7 +482,8 @@
           "heaters": [
             150
           ]
-        }
+        },
+        "out": 150
       },
       {
         "name": "houses_cover_heaters",
@@ -472,7 +499,8 @@
             4,
             10
           ]
-        }
+        },
+        "out": 4
       },
       {
         "name": "center_and_edges",
@@ -486,7 +514,8 @@
             25,
             75
           ]
-        }
+        },
+        "out": 25
       },
       {
         "name": "small_dense",
@@ -503,7 +532,8 @@
             2,
             5
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "one_apart_each_side",
@@ -517,7 +547,8 @@
             11,
             29
           ]
-        }
+        },
+        "out": 9
       },
       {
         "name": "exact_match_many",
@@ -534,7 +565,8 @@
             25,
             35
           ]
-        }
+        },
+        "out": 0
       }
     ]
   },

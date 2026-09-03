@@ -107,7 +107,16 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
       },
       {
         "name": "example_2",
@@ -118,7 +127,10 @@
           "postorder": [
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "pair_two_nodes_left",
@@ -131,7 +143,11 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2
+        ]
       },
       {
         "name": "pair_two_nodes_right",
@@ -144,7 +160,11 @@
             20,
             10
           ]
-        }
+        },
+        "out": [
+          10,
+          20
+        ]
       },
       {
         "name": "three_full",
@@ -159,7 +179,12 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3
+        ]
       },
       {
         "name": "three_chain",
@@ -174,7 +199,13 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          null,
+          3
+        ]
       },
       {
         "name": "four_left_bias",
@@ -191,7 +222,14 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          null,
+          4,
+          3
+        ]
       },
       {
         "name": "four_right_bias",
@@ -208,7 +246,15 @@
             6,
             5
           ]
-        }
+        },
+        "out": [
+          5,
+          6,
+          null,
+          7,
+          null,
+          8
+        ]
       },
       {
         "name": "five_balancedish",
@@ -227,7 +273,14 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       },
       {
         "name": "five_chain",
@@ -246,7 +299,17 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5
+        ]
       },
       {
         "name": "six_example_like",
@@ -267,7 +330,15 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
       },
       {
         "name": "six_two_level",
@@ -288,7 +359,16 @@
             20,
             10
           ]
-        }
+        },
+        "out": [
+          10,
+          20,
+          null,
+          30,
+          60,
+          40,
+          50
+        ]
       },
       {
         "name": "seven_full",
@@ -311,7 +391,16 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
       },
       {
         "name": "seven_chain",
@@ -334,7 +423,21 @@
             6,
             7
           ]
-        }
+        },
+        "out": [
+          7,
+          6,
+          null,
+          5,
+          null,
+          4,
+          null,
+          3,
+          null,
+          2,
+          null,
+          1
+        ]
       },
       {
         "name": "eight_mix",
@@ -359,7 +462,18 @@
             4,
             8
           ]
-        }
+        },
+        "out": [
+          8,
+          4,
+          null,
+          2,
+          6,
+          1,
+          3,
+          5,
+          7
+        ]
       },
       {
         "name": "nine_mix",
@@ -386,7 +500,25 @@
             4,
             9
           ]
-        }
+        },
+        "out": [
+          9,
+          4,
+          null,
+          2,
+          6,
+          1,
+          3,
+          5,
+          7,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          8
+        ]
       },
       {
         "name": "ten_chain_left",
@@ -415,7 +547,27 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5,
+          null,
+          6,
+          null,
+          7,
+          null,
+          8,
+          null,
+          9,
+          null,
+          10
+        ]
       },
       {
         "name": "ten_branch",
@@ -444,7 +596,27 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          null,
+          null,
+          null,
+          null,
+          null,
+          7,
+          null,
+          8,
+          9,
+          null,
+          null,
+          10
+        ]
       },
       {
         "name": "eleven_branch",
@@ -475,7 +647,20 @@
             15,
             11
           ]
-        }
+        },
+        "out": [
+          11,
+          7,
+          15,
+          3,
+          9,
+          13,
+          17,
+          1,
+          5,
+          8,
+          10
+        ]
       },
       {
         "name": "twelve_branch",
@@ -508,7 +693,22 @@
             18,
             12
           ]
-        }
+        },
+        "out": [
+          12,
+          6,
+          18,
+          3,
+          9,
+          15,
+          null,
+          1,
+          4,
+          8,
+          10,
+          14,
+          20
+        ]
       },
       {
         "name": "thirteen_branch",
@@ -543,7 +743,22 @@
             20,
             13
           ]
-        }
+        },
+        "out": [
+          13,
+          7,
+          20,
+          4,
+          10,
+          16,
+          22,
+          2,
+          5,
+          8,
+          12,
+          14,
+          18
+        ]
       },
       {
         "name": "fourteen_branch",
@@ -580,7 +795,23 @@
             21,
             14
           ]
-        }
+        },
+        "out": [
+          14,
+          7,
+          21,
+          3,
+          11,
+          17,
+          25,
+          1,
+          5,
+          9,
+          13,
+          15,
+          19,
+          23
+        ]
       },
       {
         "name": "fifteen_full",
@@ -619,7 +850,24 @@
             3,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
       },
       {
         "name": "sixteen_mix",
@@ -660,7 +908,39 @@
             24,
             16
           ]
-        }
+        },
+        "out": [
+          16,
+          8,
+          24,
+          4,
+          12,
+          20,
+          28,
+          2,
+          6,
+          10,
+          14,
+          18,
+          22,
+          26,
+          30,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          32
+        ]
       },
       {
         "name": "seventeen_mix",
@@ -703,7 +983,40 @@
             25,
             17
           ]
-        }
+        },
+        "out": [
+          17,
+          9,
+          25,
+          5,
+          13,
+          21,
+          29,
+          3,
+          7,
+          11,
+          15,
+          19,
+          23,
+          27,
+          31,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          33,
+          35
+        ]
       },
       {
         "name": "eighteen_mix",
@@ -748,7 +1061,43 @@
             27,
             18
           ]
-        }
+        },
+        "out": [
+          18,
+          9,
+          27,
+          4,
+          14,
+          23,
+          32,
+          2,
+          6,
+          11,
+          16,
+          20,
+          25,
+          29,
+          34,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          37,
+          39,
+          null,
+          null,
+          41
+        ]
       },
       {
         "name": "nineteen_mix",
@@ -795,7 +1144,44 @@
             29,
             19
           ]
-        }
+        },
+        "out": [
+          19,
+          10,
+          29,
+          5,
+          15,
+          24,
+          35,
+          3,
+          7,
+          12,
+          17,
+          21,
+          26,
+          31,
+          33,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          38,
+          40,
+          null,
+          null,
+          42,
+          44
+        ]
       },
       {
         "name": "twenty_mix",
@@ -844,7 +1230,47 @@
             30,
             20
           ]
-        }
+        },
+        "out": [
+          20,
+          10,
+          30,
+          5,
+          15,
+          25,
+          35,
+          2,
+          8,
+          12,
+          18,
+          22,
+          28,
+          32,
+          38,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          40,
+          42,
+          null,
+          null,
+          44,
+          46,
+          null,
+          null,
+          48
+        ]
       },
       {
         "name": "twentyone_mix",
@@ -895,7 +1321,48 @@
             32,
             21
           ]
-        }
+        },
+        "out": [
+          21,
+          11,
+          32,
+          6,
+          16,
+          27,
+          37,
+          3,
+          8,
+          13,
+          19,
+          24,
+          29,
+          34,
+          40,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          43,
+          45,
+          null,
+          null,
+          47,
+          49,
+          null,
+          null,
+          51,
+          53
+        ]
       },
       {
         "name": "twentytwo_mix",
@@ -948,7 +1415,51 @@
             34,
             22
           ]
-        }
+        },
+        "out": [
+          22,
+          12,
+          34,
+          6,
+          18,
+          28,
+          40,
+          3,
+          9,
+          15,
+          21,
+          25,
+          31,
+          37,
+          43,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          46,
+          48,
+          null,
+          null,
+          50,
+          52,
+          null,
+          null,
+          54,
+          56,
+          null,
+          null,
+          58
+        ]
       },
       {
         "name": "twentythree_mix",
@@ -1003,7 +1514,52 @@
             36,
             23
           ]
-        }
+        },
+        "out": [
+          23,
+          13,
+          36,
+          7,
+          19,
+          30,
+          41,
+          4,
+          10,
+          16,
+          22,
+          27,
+          33,
+          38,
+          44,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          47,
+          49,
+          null,
+          null,
+          51,
+          53,
+          null,
+          null,
+          55,
+          57,
+          null,
+          null,
+          59,
+          61
+        ]
       },
       {
         "name": "twentyfour_mix",
@@ -1060,7 +1616,55 @@
             36,
             24
           ]
-        }
+        },
+        "out": [
+          24,
+          12,
+          36,
+          6,
+          18,
+          30,
+          42,
+          3,
+          9,
+          15,
+          21,
+          27,
+          33,
+          39,
+          45,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          48,
+          50,
+          null,
+          null,
+          52,
+          54,
+          null,
+          null,
+          56,
+          58,
+          null,
+          null,
+          60,
+          62,
+          null,
+          null,
+          64
+        ]
       },
       {
         "name": "twentyfive_mix",
@@ -1119,7 +1723,56 @@
             38,
             25
           ]
-        }
+        },
+        "out": [
+          25,
+          13,
+          38,
+          7,
+          19,
+          31,
+          43,
+          4,
+          10,
+          16,
+          22,
+          28,
+          34,
+          40,
+          46,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          49,
+          51,
+          null,
+          null,
+          53,
+          55,
+          null,
+          null,
+          57,
+          59,
+          null,
+          null,
+          61,
+          63,
+          null,
+          null,
+          65,
+          67
+        ]
       },
       {
         "name": "twentysix_mix",
@@ -1180,7 +1833,59 @@
             40,
             26
           ]
-        }
+        },
+        "out": [
+          26,
+          14,
+          40,
+          8,
+          20,
+          33,
+          46,
+          4,
+          11,
+          17,
+          23,
+          30,
+          36,
+          43,
+          49,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          52,
+          54,
+          null,
+          null,
+          56,
+          58,
+          null,
+          null,
+          60,
+          62,
+          null,
+          null,
+          64,
+          66,
+          null,
+          null,
+          68,
+          70,
+          null,
+          null,
+          72
+        ]
       },
       {
         "name": "twentyseven_mix",
@@ -1243,7 +1948,60 @@
             41,
             27
           ]
-        }
+        },
+        "out": [
+          27,
+          14,
+          41,
+          7,
+          21,
+          34,
+          47,
+          3,
+          10,
+          18,
+          24,
+          31,
+          37,
+          44,
+          50,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          53,
+          55,
+          null,
+          null,
+          57,
+          59,
+          null,
+          null,
+          61,
+          63,
+          null,
+          null,
+          65,
+          67,
+          null,
+          null,
+          69,
+          71,
+          null,
+          null,
+          73,
+          75
+        ]
       },
       {
         "name": "twentyeight_mix",
@@ -1308,7 +2066,63 @@
             42,
             28
           ]
-        }
+        },
+        "out": [
+          28,
+          15,
+          42,
+          8,
+          22,
+          35,
+          48,
+          4,
+          11,
+          19,
+          25,
+          32,
+          38,
+          45,
+          51,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          54,
+          56,
+          null,
+          null,
+          58,
+          60,
+          null,
+          null,
+          62,
+          64,
+          null,
+          null,
+          66,
+          68,
+          null,
+          null,
+          70,
+          72,
+          null,
+          null,
+          74,
+          76,
+          null,
+          null,
+          78
+        ]
       },
       {
         "name": "twentynine_mix",
@@ -1375,7 +2189,64 @@
             43,
             29
           ]
-        }
+        },
+        "out": [
+          29,
+          15,
+          43,
+          8,
+          22,
+          36,
+          49,
+          4,
+          11,
+          19,
+          25,
+          33,
+          39,
+          46,
+          52,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          55,
+          57,
+          null,
+          null,
+          59,
+          61,
+          null,
+          null,
+          63,
+          65,
+          null,
+          null,
+          67,
+          69,
+          null,
+          null,
+          71,
+          73,
+          null,
+          null,
+          75,
+          77,
+          null,
+          null,
+          79,
+          81
+        ]
       },
       {
         "name": "thirty_max",
@@ -1444,7 +2315,67 @@
             2,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5,
+          null,
+          6,
+          null,
+          7,
+          null,
+          8,
+          null,
+          9,
+          null,
+          10,
+          null,
+          11,
+          null,
+          12,
+          null,
+          13,
+          null,
+          14,
+          null,
+          15,
+          null,
+          16,
+          null,
+          17,
+          null,
+          18,
+          null,
+          19,
+          null,
+          20,
+          null,
+          21,
+          null,
+          22,
+          null,
+          23,
+          null,
+          24,
+          null,
+          25,
+          null,
+          26,
+          null,
+          27,
+          null,
+          28,
+          null,
+          29,
+          null,
+          30
+        ]
       }
     ]
   },

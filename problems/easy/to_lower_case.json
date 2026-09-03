@@ -65,241 +65,281 @@
         "name": "ex1",
         "in": {
           "s": "Hello"
-        }
+        },
+        "out": "hello"
       },
       {
         "name": "ex2",
         "in": {
           "s": "here"
-        }
+        },
+        "out": "here"
       },
       {
         "name": "ex3",
         "in": {
           "s": "LOVELY"
-        }
+        },
+        "out": "lovely"
       },
       {
         "name": "single_lower_a",
         "in": {
           "s": "a"
-        }
+        },
+        "out": "a"
       },
       {
         "name": "single_upper_z",
         "in": {
           "s": "Z"
-        }
+        },
+        "out": "z"
       },
       {
         "name": "single_digit",
         "in": {
           "s": "7"
-        }
+        },
+        "out": "7"
       },
       {
         "name": "single_space",
         "in": {
           "s": " "
-        }
+        },
+        "out": " "
       },
       {
         "name": "single_punct",
         "in": {
           "s": "!"
-        }
+        },
+        "out": "!"
       },
       {
         "name": "mixed_case_1",
         "in": {
           "s": "LeetCode"
-        }
+        },
+        "out": "leetcode"
       },
       {
         "name": "mixed_case_2",
         "in": {
           "s": "aBcDeFgHiJ"
-        }
+        },
+        "out": "abcdefghij"
       },
       {
         "name": "mixed_case_3",
         "in": {
           "s": "ABCdefGHI"
-        }
+        },
+        "out": "abcdefghi"
       },
       {
         "name": "mixed_case_4",
         "in": {
           "s": "Hello, World!"
-        }
+        },
+        "out": "hello, world!"
       },
       {
         "name": "mixed_case_5",
         "in": {
           "s": "Python3.11"
-        }
+        },
+        "out": "python3.11"
       },
       {
         "name": "mixed_case_6",
         "in": {
           "s": "UPPER lower MIXED"
-        }
+        },
+        "out": "upper lower mixed"
       },
       {
         "name": "mixed_case_7",
         "in": {
           "s": "123ABCxyz"
-        }
+        },
+        "out": "123abcxyz"
       },
       {
         "name": "mixed_case_8",
         "in": {
           "s": "AaBbCcDdEeFfGgHhIiJj"
-        }
+        },
+        "out": "aabbccddeeffgghhiijj"
       },
       {
         "name": "mixed_case_9",
         "in": {
           "s": "qWeRtYuIoP"
-        }
+        },
+        "out": "qwertyuiop"
       },
       {
         "name": "mixed_case_10",
         "in": {
           "s": "THE QUICK BROWN FOX"
-        }
+        },
+        "out": "the quick brown fox"
       },
       {
         "name": "mixed_case_11",
         "in": {
           "s": "MiXeD CaSe 123 !@#"
-        }
+        },
+        "out": "mixed case 123 !@#"
       },
       {
         "name": "mixed_case_12",
         "in": {
           "s": "abcdefghijklmnopqrstuvwxyz"
-        }
+        },
+        "out": "abcdefghijklmnopqrstuvwxyz"
       },
       {
         "name": "mixed_case_13",
         "in": {
           "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        }
+        },
+        "out": "abcdefghijklmnopqrstuvwxyz"
       },
       {
         "name": "mixed_case_14",
         "in": {
           "s": "~`!@#$%^&*()_+"
-        }
+        },
+        "out": "~`!@#$%^&*()_+"
       },
       {
         "name": "mixed_case_15",
         "in": {
           "s": "ZzYyXxWwVvUuTtSsRrQq"
-        }
+        },
+        "out": "zzyyxxwwvvuuttssrrqq"
       },
       {
         "name": "mixed_case_16",
         "in": {
           "s": "N0T-S0-LOWER"
-        }
+        },
+        "out": "n0t-s0-lower"
       },
       {
         "name": "mixed_case_17",
         "in": {
           "s": "CamelCaseString"
-        }
+        },
+        "out": "camelcasestring"
       },
       {
         "name": "mixed_case_18",
         "in": {
           "s": "already lowercase"
-        }
+        },
+        "out": "already lowercase"
       },
       {
         "name": "mixed_case_19",
         "in": {
           "s": "MIXED with spaces"
-        }
+        },
+        "out": "mixed with spaces"
       },
       {
         "name": "mixed_case_20",
         "in": {
           "s": "EdgeCASE123"
-        }
+        },
+        "out": "edgecase123"
       },
       {
         "name": "mixed_case_21",
         "in": {
           "s": "AAAAABBBBBCCCCC"
-        }
+        },
+        "out": "aaaaabbbbbccccc"
       },
       {
         "name": "mixed_case_22",
         "in": {
           "s": "zzzzzYYYYY"
-        }
+        },
+        "out": "zzzzzyyyyy"
       },
       {
         "name": "mixed_case_23",
         "in": {
           "s": "OpenAI"
-        }
+        },
+        "out": "openai"
       },
       {
         "name": "mixed_case_24",
         "in": {
           "s": "LeEtCoDe"
-        }
+        },
+        "out": "leetcode"
       },
       {
         "name": "mixed_case_25",
         "in": {
           "s": "print(\"HI\")"
-        }
+        },
+        "out": "print(\"hi\")"
       },
       {
         "name": "mixed_case_26",
         "in": {
           "s": "TabSeparated"
-        }
+        },
+        "out": "tabseparated"
       },
       {
         "name": "mixed_case_27",
         "in": {
           "s": "LineBreak"
-        }
+        },
+        "out": "linebreak"
       },
       {
         "name": "mixed_case_28",
         "in": {
           "s": "   MIX   "
-        }
+        },
+        "out": "   mix   "
       },
       {
         "name": "mixed_case_29",
         "in": {
           "s": "0123456789"
-        }
+        },
+        "out": "0123456789"
       },
       {
         "name": "mixed_case_30",
         "in": {
           "s": "aBc123XyZ!?"
-        }
+        },
+        "out": "abc123xyz!?"
       },
       {
         "name": "mixed_case_31",
         "in": {
           "s": "NULL"
-        }
+        },
+        "out": "null"
       },
       {
         "name": "mixed_case_32",
         "in": {
           "s": "SphinxOfBlackQuartz"
-        }
+        },
+        "out": "sphinxofblackquartz"
       }
     ]
   },

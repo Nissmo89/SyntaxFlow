@@ -82,7 +82,18 @@
             "root/c/d 4.txt(efgh)",
             "root 4.txt(efgh)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/c/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/c/d/4.txt",
+            "root/4.txt"
+          ]
+        ]
       },
       {
         "name": "example-2",
@@ -92,7 +103,17 @@
             "root/c 3.txt(abcd)",
             "root/c/d 4.txt(efgh)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/c/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/c/d/4.txt"
+          ]
+        ]
       },
       {
         "name": "single-directory-single-file",
@@ -100,7 +121,8 @@
           "paths": [
             "root a.txt(x)"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "single-directory-two-unique-files",
@@ -108,7 +130,8 @@
           "paths": [
             "root a.txt(x) b.txt(y)"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "two-directories-one-duplicate-group",
@@ -117,7 +140,13 @@
             "root/a 1.txt(abcd) 2.txt(efgh)",
             "root/b 3.txt(abcd)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "two-directories-two-duplicate-groups",
@@ -126,7 +155,17 @@
             "root/a 1.txt(abcd) 2.txt(efgh)",
             "root/b 3.txt(abcd) 4.txt(efgh)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/b/4.txt"
+          ]
+        ]
       },
       {
         "name": "duplicate-with-root-directory",
@@ -135,7 +174,13 @@
             "root/a 1.txt(abcd)",
             "root 2.txt(abcd)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/2.txt"
+          ]
+        ]
       },
       {
         "name": "all-unique-many-files",
@@ -145,7 +190,8 @@
             "root/b 4.txt(d) 5.txt(e)",
             "root/c 6.txt(f)"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "duplicate-only-two-files",
@@ -154,7 +200,13 @@
             "root/a 1.txt(x)",
             "root/b 2.txt(x)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/2.txt"
+          ]
+        ]
       },
       {
         "name": "three-files-same-content",
@@ -164,7 +216,14 @@
             "root/b 2.txt(same)",
             "root/c 3.txt(same)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/2.txt",
+            "root/c/3.txt"
+          ]
+        ]
       },
       {
         "name": "duplicate-and-singleton-mixed",
@@ -174,7 +233,13 @@
             "root/b 3.txt(alpha) 4.txt(gamma)",
             "root/c 5.txt(delta)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "nested-directories",
@@ -184,7 +249,13 @@
             "root/a/b/d 2.txt(k)",
             "root/x/y 3.txt(z)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/b/c/1.txt",
+            "root/a/b/d/2.txt"
+          ]
+        ]
       },
       {
         "name": "content-with-digits",
@@ -193,7 +264,13 @@
             "root/a 1.txt(a1b2) 2.txt(c3d4)",
             "root/b 3.txt(a1b2)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "content-with-punctuation",
@@ -202,7 +279,13 @@
             "root/a 1.txt(abc123) 2.txt(x_y-z)",
             "root/b 3.txt(x_y-z)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/2.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "repeated-file-name-different-directories",
@@ -212,7 +295,13 @@
             "root/b 1.txt(foo)",
             "root/c 1.txt(bar)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/1.txt"
+          ]
+        ]
       },
       {
         "name": "many-groups-small",
@@ -222,7 +311,25 @@
             "root/b 4.txt(c1) 5.txt(c2) 6.txt(c4)",
             "root/c 7.txt(c3) 8.txt(c4)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/4.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/b/5.txt"
+          ],
+          [
+            "root/a/3.txt",
+            "root/c/7.txt"
+          ],
+          [
+            "root/b/6.txt",
+            "root/c/8.txt"
+          ]
+        ]
       },
       {
         "name": "group-size-four",
@@ -233,7 +340,15 @@
             "root/c 3.txt(shared)",
             "root/d 4.txt(shared)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/2.txt",
+            "root/c/3.txt",
+            "root/d/4.txt"
+          ]
+        ]
       },
       {
         "name": "group-size-five",
@@ -245,7 +360,15 @@
             "root/d 6.txt(same)",
             "root/e 7.txt(v)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt",
+            "root/c/5.txt",
+            "root/d/6.txt"
+          ]
+        ]
       },
       {
         "name": "two-groups-disjoint",
@@ -255,7 +378,21 @@
             "root/b 3.txt(a) 4.txt(c)",
             "root/c 5.txt(b) 6.txt(c)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/c/5.txt"
+          ],
+          [
+            "root/b/4.txt",
+            "root/c/6.txt"
+          ]
+        ]
       },
       {
         "name": "one-big-group-one-small-group",
@@ -266,7 +403,18 @@
             "root/c 5.txt(x)",
             "root/d 6.txt(z)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt",
+            "root/c/5.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/b/4.txt"
+          ]
+        ]
       },
       {
         "name": "same-content-across-many-directories",
@@ -277,7 +425,15 @@
             "root/d/e/f 3.txt(shared)",
             "root/g/h/i/j 4.txt(shared)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/c/2.txt",
+            "root/d/e/f/3.txt",
+            "root/g/h/i/j/4.txt"
+          ]
+        ]
       },
       {
         "name": "root-only-files",
@@ -285,7 +441,13 @@
           "paths": [
             "root 1.txt(a) 2.txt(b) 3.txt(a)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/1.txt",
+            "root/3.txt"
+          ]
+        ]
       },
       {
         "name": "multiple-files-per-directory",
@@ -294,7 +456,17 @@
             "root/a 1.txt(p) 2.txt(q) 3.txt(p)",
             "root/b 4.txt(q) 5.txt(r)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/a/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/b/4.txt"
+          ]
+        ]
       },
       {
         "name": "alternating-contents",
@@ -303,7 +475,19 @@
             "root/a 1.txt(a) 2.txt(b) 3.txt(a) 4.txt(b)",
             "root/b 5.txt(a) 6.txt(b)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/a/3.txt",
+            "root/b/5.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/a/4.txt",
+            "root/b/6.txt"
+          ]
+        ]
       },
       {
         "name": "long-directory-paths",
@@ -312,7 +496,13 @@
             "root/alpha/beta/gamma/delta 1.txt(content1) 2.txt(content2)",
             "root/alpha/beta/theta/lambda 3.txt(content1)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/alpha/beta/gamma/delta/1.txt",
+            "root/alpha/beta/theta/lambda/3.txt"
+          ]
+        ]
       },
       {
         "name": "long-content-strings",
@@ -321,7 +511,13 @@
             "root/a 1.txt(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) 2.txt(bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb)",
             "root/b 3.txt(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "similar-prefixes-different-contents",
@@ -330,7 +526,13 @@
             "root/a 1.txt(abc) 2.txt(abcd) 3.txt(abcde)",
             "root/b 4.txt(abcd)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/2.txt",
+            "root/b/4.txt"
+          ]
+        ]
       },
       {
         "name": "multiple-directories-same-file-name",
@@ -341,7 +543,17 @@
             "root/c 1.txt(x)",
             "root/d 1.txt(y)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/c/1.txt"
+          ],
+          [
+            "root/b/1.txt",
+            "root/d/1.txt"
+          ]
+        ]
       },
       {
         "name": "content-collision-test",
@@ -350,7 +562,13 @@
             "root/a 1.txt(ab) 2.txt(ac)",
             "root/b 3.txt(ab)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ]
+        ]
       },
       {
         "name": "many-singletons-one-group",
@@ -359,7 +577,13 @@
             "root/a 1.txt(a1) 2.txt(a2) 3.txt(a3) 4.txt(a4)",
             "root/b 5.txt(a5) 6.txt(a6) 7.txt(a1)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/7.txt"
+          ]
+        ]
       },
       {
         "name": "mixed-directory-depths",
@@ -370,7 +594,17 @@
             "root/a/b/c 3.txt(m)",
             "root/a/b/c/d 4.txt(n)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/a/b/c/3.txt"
+          ],
+          [
+            "root/a/b/2.txt",
+            "root/a/b/c/d/4.txt"
+          ]
+        ]
       },
       {
         "name": "large-like-balance-small",
@@ -379,7 +613,29 @@
             "root/a 1.txt(x1) 2.txt(x2) 3.txt(x3) 4.txt(x4) 5.txt(x5)",
             "root/b 6.txt(x1) 7.txt(x2) 8.txt(x3) 9.txt(x4) 10.txt(x5)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/6.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/b/7.txt"
+          ],
+          [
+            "root/a/3.txt",
+            "root/b/8.txt"
+          ],
+          [
+            "root/a/4.txt",
+            "root/b/9.txt"
+          ],
+          [
+            "root/a/5.txt",
+            "root/b/10.txt"
+          ]
+        ]
       },
       {
         "name": "duplicate-and-unique-interleaved",
@@ -390,7 +646,17 @@
             "root/c 5.txt(x) 6.txt(y)",
             "root/d 7.txt(v) 8.txt(z)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/4.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/d/7.txt"
+          ]
+        ]
       },
       {
         "name": "four-directories-two-shared-contents",
@@ -401,7 +667,21 @@
             "root/c 5.txt(b) 6.txt(c)",
             "root/d 7.txt(d)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/3.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/c/5.txt"
+          ],
+          [
+            "root/b/4.txt",
+            "root/c/6.txt"
+          ]
+        ]
       },
       {
         "name": "large-group-with-many-files",
@@ -416,7 +696,19 @@
             "root/g 7.txt(same)",
             "root/h 8.txt(same)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/2.txt",
+            "root/c/3.txt",
+            "root/d/4.txt",
+            "root/e/5.txt",
+            "root/f/6.txt",
+            "root/g/7.txt",
+            "root/h/8.txt"
+          ]
+        ]
       },
       {
         "name": "duplicate-at-end-of-directory-list",
@@ -426,7 +718,13 @@
             "root/b 3.txt(c)",
             "root/c 4.txt(d) 5.txt(a)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/c/5.txt"
+          ]
+        ]
       },
       {
         "name": "duplicate-at-start-of-directory-list",
@@ -436,7 +734,13 @@
             "root/b 3.txt(y) 4.txt(z)",
             "root/c 5.txt(same)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/c/5.txt"
+          ]
+        ]
       },
       {
         "name": "many-empty-different-groups",
@@ -448,7 +752,8 @@
             "root/d 4.txt(d)",
             "root/e 5.txt(e)"
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "multiple-groups-with-overlapping-file-names",
@@ -459,7 +764,21 @@
             "root/c 1.txt(c2) 2.txt(c3)",
             "root/d 1.txt(c4)"
           ]
-        }
+        },
+        "out": [
+          [
+            "root/a/1.txt",
+            "root/b/1.txt"
+          ],
+          [
+            "root/a/2.txt",
+            "root/c/1.txt"
+          ],
+          [
+            "root/b/2.txt",
+            "root/c/2.txt"
+          ]
+        ]
       }
     ]
   },

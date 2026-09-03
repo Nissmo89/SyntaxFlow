@@ -18,7 +18,7 @@
   ],
   "hints": [
     "How can we reuse a previously computed palindrome to compute a larger palindrome?",
-    "If \u201caba\u201d is a palindrome, is \u201cxabax\u201d a palindrome? Similarly is \u201cxabay\u201d a palindrome?",
+    "If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?",
     "Complexity based hint:</br>\r\nIf we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation."
   ],
   "method": {
@@ -74,109 +74,127 @@
         "name": "example_babad",
         "in": {
           "s": "babad"
-        }
+        },
+        "out": "bab"
       },
       {
         "name": "example_cbbd",
         "in": {
           "s": "cbbd"
-        }
+        },
+        "out": "bb"
       },
       {
         "name": "single_char_a",
         "in": {
           "s": "a"
-        }
+        },
+        "out": "a"
       },
       {
         "name": "single_char_z",
         "in": {
           "s": "z"
-        }
+        },
+        "out": "z"
       },
       {
         "name": "two_equal_chars",
         "in": {
           "s": "aa"
-        }
+        },
+        "out": "aa"
       },
       {
         "name": "two_different_chars",
         "in": {
           "s": "ab"
-        }
+        },
+        "out": "a"
       },
       {
         "name": "all_same_short",
         "in": {
           "s": "aaaaa"
-        }
+        },
+        "out": "aaaaa"
       },
       {
         "name": "even_palindrome_middle",
         "in": {
           "s": "abba"
-        }
+        },
+        "out": "abba"
       },
       {
         "name": "odd_palindrome_middle",
         "in": {
           "s": "racecar"
-        }
+        },
+        "out": "racecar"
       },
       {
         "name": "no_long_palindrome",
         "in": {
           "s": "abcde"
-        }
+        },
+        "out": "a"
       },
       {
         "name": "gen_structured_01",
         "in": {
           "s": "abacdfgdcaba"
-        }
+        },
+        "out": "aba"
       },
       {
         "name": "gen_structured_02",
         "in": {
           "s": "forgeeksskeegfor"
-        }
+        },
+        "out": "geeksskeeg"
       },
       {
         "name": "gen_structured_03",
         "in": {
           "s": "abccbaqwerty"
-        }
+        },
+        "out": "abccba"
       },
       {
         "name": "gen_structured_04",
         "in": {
           "s": "qwertytrewq"
-        }
+        },
+        "out": "qwertytrewq"
       },
       {
         "name": "gen_structured_05",
         "in": {
           "s": "abcddcbae"
-        }
+        },
+        "out": "abcddcba"
       },
       {
         "name": "gen_structured_06",
         "in": {
           "s": "xyzzyxabc"
-        }
+        },
+        "out": "xyzzyx"
       },
       {
         "name": "gen_structured_07",
         "in": {
           "s": "noonmadam"
-        }
+        },
+        "out": "madam"
       },
       {
         "name": "gen_structured_08",
         "in": {
           "s": "aaaaabaaaaa"
-        }
+        },
+        "out": "aaaaabaaaaa"
       }
     ]
   },

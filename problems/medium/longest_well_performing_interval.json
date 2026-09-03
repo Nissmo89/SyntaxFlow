@@ -80,7 +80,8 @@
           "hours": [
             9
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "single_non_tiring",
@@ -88,7 +89,8 @@
           "hours": [
             6
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "single_boundary",
@@ -96,7 +98,8 @@
           "hours": [
             8
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "single_high",
@@ -104,7 +107,8 @@
           "hours": [
             10
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "single_zero",
@@ -112,7 +116,8 @@
           "hours": [
             0
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "single_max_value",
@@ -120,7 +125,8 @@
           "hours": [
             16
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "two_all_tiring",
@@ -129,7 +135,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 2
       },
       {
         "name": "two_all_non_tiring",
@@ -138,7 +145,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "tiring_then_non_tiring",
@@ -147,7 +155,8 @@
             9,
             6
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "non_tiring_then_tiring",
@@ -156,7 +165,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "example_one",
@@ -170,7 +180,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "example_two",
@@ -180,7 +191,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "all_prefix_positive",
@@ -190,7 +202,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "alternating_small",
@@ -200,7 +213,8 @@
             9,
             6
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "long_first_block",
@@ -212,7 +226,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "long_last_block",
@@ -224,7 +239,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "boundary_alternation",
@@ -236,7 +252,8 @@
             9,
             8
           ]
-        }
+        },
+        "out": 3
       },
       {
         "name": "mixed_with_prefix_gain",
@@ -249,7 +266,8 @@
             9,
             8
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "all_nontiring_small",
@@ -261,7 +279,8 @@
             4,
             5
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "all_tiring_small",
@@ -273,7 +292,8 @@
             12,
             13
           ]
-        }
+        },
+        "out": 5
       },
       {
         "name": "late_long_interval",
@@ -287,7 +307,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "early_long_interval",
@@ -302,7 +323,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "one_tiring_in_four",
@@ -313,7 +335,8 @@
             8,
             9
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "tiring_then_three_boundaries",
@@ -324,7 +347,8 @@
             8,
             8
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "repeated_short_waves",
@@ -339,7 +363,8 @@
             8,
             9
           ]
-        }
+        },
+        "out": 1
       },
       {
         "name": "strong_middle_run",
@@ -354,7 +379,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 8
       },
       {
         "name": "mixed_tail",
@@ -370,7 +396,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "alternating_start_tiring",
@@ -385,7 +412,8 @@
             9,
             6
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "alternating_start_non_tiring",
@@ -400,7 +428,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "mixed_block_one",
@@ -418,7 +447,8 @@
             6,
             9
           ]
-        }
+        },
+        "out": 11
       },
       {
         "name": "mixed_block_two",
@@ -436,7 +466,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 11
       },
       {
         "name": "all_boundary_large",
@@ -473,7 +504,8 @@
             8,
             8
           ]
-        }
+        },
+        "out": 0
       },
       {
         "name": "tiring_then_non_tiring_blocks",
@@ -495,7 +527,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 9
       },
       {
         "name": "non_tiring_then_tiring_blocks",
@@ -517,7 +550,8 @@
             9,
             9
           ]
-        }
+        },
+        "out": 15
       },
       {
         "name": "mixed_low_high",
@@ -534,7 +568,8 @@
             9,
             6
           ]
-        }
+        },
+        "out": 7
       },
       {
         "name": "positive_prefix_then_noise",
@@ -551,7 +586,8 @@
             6,
             6
           ]
-        }
+        },
+        "out": 3
       }
     ]
   },

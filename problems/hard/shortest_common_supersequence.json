@@ -84,7 +84,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 17
+        "seed": 17,
+        "out": "cabac"
       },
       {
         "name": "example-2",
@@ -95,7 +96,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 34
+        "seed": 34,
+        "out": "aaaaaaaa"
       },
       {
         "name": "one-char-same",
@@ -106,7 +108,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 51
+        "seed": 51,
+        "out": "a"
       },
       {
         "name": "one-char-diff",
@@ -117,7 +120,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 68
+        "seed": 68,
+        "out": "ab"
       },
       {
         "name": "subsequence-left",
@@ -128,7 +132,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 85
+        "seed": 85,
+        "out": "abc"
       },
       {
         "name": "subsequence-right",
@@ -139,7 +144,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 102
+        "seed": 102,
+        "out": "abc"
       },
       {
         "name": "disjoint-2",
@@ -150,7 +156,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 119
+        "seed": 119,
+        "out": "abcd"
       },
       {
         "name": "overlap-1",
@@ -161,7 +168,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 136
+        "seed": 136,
+        "out": "abcd"
       },
       {
         "name": "overlap-2",
@@ -172,7 +180,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 153
+        "seed": 153,
+        "out": "geeke"
       },
       {
         "name": "palindrome-ish",
@@ -183,7 +192,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 170
+        "seed": 170,
+        "out": "cabca"
       },
       {
         "name": "repeated-pattern",
@@ -194,7 +204,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 187
+        "seed": 187,
+        "out": "ababa"
       },
       {
         "name": "same-prefix",
@@ -205,7 +216,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 204
+        "seed": 204,
+        "out": "leetcode"
       },
       {
         "name": "same-suffix",
@@ -216,7 +228,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 221
+        "seed": 221,
+        "out": "coding"
       },
       {
         "name": "medium-1",
@@ -227,7 +240,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 238
+        "seed": 238,
+        "out": "abcde"
       },
       {
         "name": "medium-2",
@@ -238,7 +252,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 255
+        "seed": 255,
+        "out": "xyzabc"
       },
       {
         "name": "medium-3",
@@ -249,7 +264,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 272
+        "seed": 272,
+        "out": "abcxbycz"
       },
       {
         "name": "medium-4",
@@ -260,7 +276,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 289
+        "seed": 289,
+        "out": "zzzzzz"
       },
       {
         "name": "long-a-b",
@@ -271,7 +288,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 306
+        "seed": 306,
+        "out": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       {
         "name": "long-overlap",
@@ -282,7 +300,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 323
+        "seed": 323,
+        "out": "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeab"
       },
       {
         "name": "long-mixed",
@@ -293,7 +312,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 340
+        "seed": 340,
+        "out": "abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba"
       },
       {
         "name": "generated-1",
@@ -304,7 +324,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 357
+        "seed": 357,
+        "out": "ababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababa"
       },
       {
         "name": "generated-2",
@@ -315,7 +336,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 374
+        "seed": 374,
+        "out": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda"
       },
       {
         "name": "generated-3",
@@ -326,7 +348,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 391
+        "seed": 391,
+        "out": "cabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"
       },
       {
         "name": "generated-4",
@@ -337,7 +360,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 408
+        "seed": 408,
+        "out": "aabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaabbccaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaaccbbaa"
       },
       {
         "name": "generated-5",
@@ -348,7 +372,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 425
+        "seed": 425,
+        "out": "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleet"
       },
       {
         "name": "generated-6",
@@ -359,7 +384,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 442
+        "seed": 442,
+        "out": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       },
       {
         "name": "generated-7",
@@ -370,7 +396,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 459
+        "seed": 459,
+        "out": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
       },
       {
         "name": "generated-8",
@@ -381,7 +408,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 476
+        "seed": 476,
+        "out": "qwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewqytrewq"
       },
       {
         "name": "generated-9",
@@ -392,7 +420,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 493
+        "seed": 493,
+        "out": "mnopqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrmnopstuvqrstuv"
       },
       {
         "name": "generated-10",
@@ -403,7 +432,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 510
+        "seed": 510,
+        "out": "abcxyzabcxyzabc"
       },
       {
         "name": "generated-11",
@@ -414,7 +444,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 527
+        "seed": 527,
+        "out": "baaaaaaaaab"
       },
       {
         "name": "generated-12",
@@ -425,7 +456,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 544
+        "seed": 544,
+        "out": "puizzleazz"
       },
       {
         "name": "generated-13",
@@ -436,7 +468,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 561
+        "seed": 561,
+        "out": "dynamicprogramdynamingc"
       },
       {
         "name": "generated-14",
@@ -447,7 +480,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 578
+        "seed": 578,
+        "out": "shports"
       },
       {
         "name": "generated-15",
@@ -458,7 +492,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 595
+        "seed": 595,
+        "out": "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssstttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
       },
       {
         "name": "generated-16",
@@ -469,7 +504,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 612
+        "seed": 612,
+        "out": "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcbaedcba"
       },
       {
         "name": "generated-17",
@@ -480,7 +516,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 629
+        "seed": 629,
+        "out": "abababababa"
       },
       {
         "name": "generated-18",
@@ -491,7 +528,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 646
+        "seed": 646,
+        "out": "xyzabcdxyz"
       },
       {
         "name": "generated-19",
@@ -502,7 +540,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 663
+        "seed": 663,
+        "out": "aaaabbbbcabcabcabc"
       },
       {
         "name": "generated-20",
@@ -513,7 +552,8 @@
         "judge": {
           "type": "exact"
         },
-        "seed": 680
+        "seed": 680,
+        "out": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl"
       }
     ]
   },

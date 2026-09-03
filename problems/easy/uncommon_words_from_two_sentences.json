@@ -71,280 +71,464 @@
         "in": {
           "s1": "this apple is sweet",
           "s2": "this apple is sour"
-        }
+        },
+        "out": [
+          "sweet",
+          "sour"
+        ]
       },
       {
         "name": "ex2",
         "in": {
           "s1": "apple apple",
           "s2": "banana"
-        }
+        },
+        "out": [
+          "banana"
+        ]
       },
       {
         "name": "both_same_single_word",
         "in": {
           "s1": "a",
           "s2": "a"
-        }
+        },
+        "out": []
       },
       {
         "name": "disjoint_single_words",
         "in": {
           "s1": "a",
           "s2": "b"
-        }
+        },
+        "out": [
+          "a",
+          "b"
+        ]
       },
       {
         "name": "repeated_only_one_side",
         "in": {
           "s1": "a a a b",
           "s2": "c c"
-        }
+        },
+        "out": [
+          "b"
+        ]
       },
       {
         "name": "mixed_overlap",
         "in": {
           "s1": "red blue green",
           "s2": "blue yellow"
-        }
+        },
+        "out": [
+          "red",
+          "green",
+          "yellow"
+        ]
       },
       {
         "name": "all_common",
         "in": {
           "s1": "x y",
           "s2": "x y"
-        }
+        },
+        "out": []
       },
       {
         "name": "no_overlap_unique",
         "in": {
           "s1": "aa bb cc",
           "s2": "dd ee ff"
-        }
+        },
+        "out": [
+          "aa",
+          "bb",
+          "cc",
+          "dd",
+          "ee",
+          "ff"
+        ]
       },
       {
         "name": "one_sentence_longer",
         "in": {
           "s1": "apple banana apple cherry",
           "s2": "banana date egg fig"
-        }
+        },
+        "out": [
+          "cherry",
+          "date",
+          "egg",
+          "fig"
+        ]
       },
       {
         "name": "duplicate_across_both",
         "in": {
           "s1": "one two two three",
           "s2": "three four four five"
-        }
+        },
+        "out": [
+          "one",
+          "five"
+        ]
       },
       {
         "name": "identical_longer",
         "in": {
           "s1": "red blue green",
           "s2": "red blue green"
-        }
+        },
+        "out": []
       },
       {
         "name": "one_unique_each",
         "in": {
           "s1": "alpha beta",
           "s2": "gamma delta"
-        }
+        },
+        "out": [
+          "alpha",
+          "beta",
+          "gamma",
+          "delta"
+        ]
       },
       {
         "name": "repeated_only_in_s1",
         "in": {
           "s1": "apple apple apple",
           "s2": "banana"
-        }
+        },
+        "out": [
+          "banana"
+        ]
       },
       {
         "name": "repeated_only_in_s2",
         "in": {
           "s1": "banana",
           "s2": "apple apple apple"
-        }
+        },
+        "out": [
+          "banana"
+        ]
       },
       {
         "name": "mixed_duplicates",
         "in": {
           "s1": "cat dog dog fish",
           "s2": "cat bird bird owl"
-        }
+        },
+        "out": [
+          "fish",
+          "owl"
+        ]
       },
       {
         "name": "shared_and_unique",
         "in": {
           "s1": "sun moon star",
           "s2": "moon comet"
-        }
+        },
+        "out": [
+          "sun",
+          "star",
+          "comet"
+        ]
       },
       {
         "name": "all_words_shared_once",
         "in": {
           "s1": "a b c",
           "s2": "c b a"
-        }
+        },
+        "out": []
       },
       {
         "name": "all_words_unique_across_both",
         "in": {
           "s1": "aa bb cc dd",
           "s2": "ee ff gg hh"
-        }
+        },
+        "out": [
+          "aa",
+          "bb",
+          "cc",
+          "dd",
+          "ee",
+          "ff",
+          "gg",
+          "hh"
+        ]
       },
       {
         "name": "interleaved_duplicates",
         "in": {
           "s1": "a a b c c d",
           "s2": "b e e f"
-        }
+        },
+        "out": [
+          "d",
+          "f"
+        ]
       },
       {
         "name": "single_word_each_different",
         "in": {
           "s1": "hello",
           "s2": "world"
-        }
+        },
+        "out": [
+          "hello",
+          "world"
+        ]
       },
       {
         "name": "single_word_each_same",
         "in": {
           "s1": "same",
           "s2": "same"
-        }
+        },
+        "out": []
       },
       {
         "name": "one_side_has_none",
         "in": {
           "s1": "x x x",
           "s2": "x"
-        }
+        },
+        "out": []
       },
       {
         "name": "many_shared_many_unique",
         "in": {
           "s1": "alpha beta gamma delta",
           "s2": "beta delta epsilon zeta"
-        }
+        },
+        "out": [
+          "alpha",
+          "gamma",
+          "epsilon",
+          "zeta"
+        ]
       },
       {
         "name": "alternating_repeats",
         "in": {
           "s1": "p q p q r",
           "s2": "r s s t"
-        }
+        },
+        "out": [
+          "t"
+        ]
       },
       {
         "name": "short_sentence_with_repeats",
         "in": {
           "s1": "zz zz yy",
           "s2": "xx"
-        }
+        },
+        "out": [
+          "yy",
+          "xx"
+        ]
       },
       {
         "name": "different_lengths",
         "in": {
           "s1": "a bb ccc dddd eeeee",
           "s2": "bb dddd fffff"
-        }
+        },
+        "out": [
+          "a",
+          "ccc",
+          "eeeee",
+          "fffff"
+        ]
       },
       {
         "name": "repeated_pair_on_both_sides",
         "in": {
           "s1": "k k l m",
           "s2": "l l n o"
-        }
+        },
+        "out": [
+          "m",
+          "n",
+          "o"
+        ]
       },
       {
         "name": "triple_overlap",
         "in": {
           "s1": "a b c d",
           "s2": "b c e f"
-        }
+        },
+        "out": [
+          "a",
+          "d",
+          "e",
+          "f"
+        ]
       },
       {
         "name": "unique_suffixes",
         "in": {
           "s1": "root branch leaf",
           "s2": "branch bark trunk"
-        }
+        },
+        "out": [
+          "root",
+          "leaf",
+          "bark",
+          "trunk"
+        ]
       },
       {
         "name": "unique_prefixes",
         "in": {
           "s1": "alpha alpha beta",
           "s2": "beta gamma gamma"
-        }
+        },
+        "out": []
       },
       {
         "name": "many_words_one_common",
         "in": {
           "s1": "h i j k l m",
           "s2": "i"
-        }
+        },
+        "out": [
+          "h",
+          "j",
+          "k",
+          "l",
+          "m"
+        ]
       },
       {
         "name": "many_words_two_common",
         "in": {
           "s1": "a b c d e f",
           "s2": "c d"
-        }
+        },
+        "out": [
+          "a",
+          "b",
+          "e",
+          "f"
+        ]
       },
       {
         "name": "two_unique_and_shared",
         "in": {
           "s1": "red red blue green",
           "s2": "green yellow yellow"
-        }
+        },
+        "out": [
+          "blue"
+        ]
       },
       {
         "name": "longer_sentence_balance",
         "in": {
           "s1": "aa bb cc dd ee ff gg hh ii jj",
           "s2": "bb dd ff hh jj kk ll mm nn oo"
-        }
+        },
+        "out": [
+          "aa",
+          "cc",
+          "ee",
+          "gg",
+          "ii",
+          "kk",
+          "ll",
+          "mm",
+          "nn",
+          "oo"
+        ]
       },
       {
         "name": "max_length_like_1",
         "in": {
           "s1": "a a a a a a a a a a a a a a a a a a a a",
           "s2": "b b b b b b b b b b"
-        }
+        },
+        "out": []
       },
       {
         "name": "max_length_like_2",
         "in": {
           "s1": "ab cd ef gh ij kl mn op qr st",
           "s2": "cd gh kl op st uv wx yz"
-        }
+        },
+        "out": [
+          "ab",
+          "ef",
+          "ij",
+          "mn",
+          "qr",
+          "uv",
+          "wx",
+          "yz"
+        ]
       },
       {
         "name": "chained_uniques",
         "in": {
           "s1": "a b b c c d d e",
           "s2": "f g g h h i"
-        }
+        },
+        "out": [
+          "a",
+          "e",
+          "f",
+          "i"
+        ]
       },
       {
         "name": "repeated_words_with_gap",
         "in": {
           "s1": "alpha alpha beta gamma gamma",
           "s2": "beta delta delta"
-        }
+        },
+        "out": []
       },
       {
         "name": "all_unique_many",
         "in": {
           "s1": "p1 p2 p3 p4 p5 p6",
           "s2": "q1 q2 q3 q4 q5 q6"
-        }
+        },
+        "out": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6",
+          "q1",
+          "q2",
+          "q3",
+          "q4",
+          "q5",
+          "q6"
+        ]
       },
       {
         "name": "final_mix",
         "in": {
           "s1": "one one two three four",
           "s2": "two five six six"
-        }
+        },
+        "out": [
+          "three",
+          "four",
+          "five"
+        ]
       }
     ]
   },

@@ -75,7 +75,12 @@
             2,
             -3
           ]
-        }
+        },
+        "out": [
+          2,
+          -3,
+          4
+        ]
       },
       {
         "name": "example_2",
@@ -85,7 +90,10 @@
             2,
             -5
           ]
-        }
+        },
+        "out": [
+          2
+        ]
       },
       {
         "name": "single_positive",
@@ -93,7 +101,10 @@
           "root": [
             7
           ]
-        }
+        },
+        "out": [
+          7
+        ]
       },
       {
         "name": "single_negative",
@@ -101,7 +112,10 @@
           "root": [
             -8
           ]
-        }
+        },
+        "out": [
+          -8
+        ]
       },
       {
         "name": "two_nodes_left_heavy",
@@ -110,7 +124,11 @@
             1,
             2
           ]
-        }
+        },
+        "out": [
+          2,
+          3
+        ]
       },
       {
         "name": "two_nodes_right_heavy",
@@ -120,7 +138,11 @@
             null,
             2
           ]
-        }
+        },
+        "out": [
+          2,
+          3
+        ]
       },
       {
         "name": "all_zero_full_tree",
@@ -134,7 +156,10 @@
             0,
             0
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "all_same_small",
@@ -144,7 +169,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "balanced_mixed",
@@ -156,7 +184,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "left_skewed_three",
@@ -167,7 +198,12 @@
             null,
             4
           ]
-        }
+        },
+        "out": [
+          4,
+          7,
+          9
+        ]
       },
       {
         "name": "right_skewed_three",
@@ -181,7 +217,11 @@
             null,
             4
           ]
-        }
+        },
+        "out": [
+          3,
+          5
+        ]
       },
       {
         "name": "tie_two_values",
@@ -191,7 +231,10 @@
             0,
             0
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "duplicate_frequent_sum",
@@ -205,7 +248,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "negative_and_zero",
@@ -217,7 +263,10 @@
             -1,
             -1
           ]
-        }
+        },
+        "out": [
+          -1
+        ]
       },
       {
         "name": "distinct_sums_full_tree",
@@ -231,7 +280,16 @@
             6,
             7
           ]
-        }
+        },
+        "out": [
+          4,
+          5,
+          10,
+          6,
+          7,
+          15,
+          28
+        ]
       },
       {
         "name": "all_leaves_same_sum",
@@ -245,7 +303,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "mixed_with_nulls",
@@ -259,7 +320,14 @@
             null,
             -1
           ]
-        }
+        },
+        "out": [
+          1,
+          3,
+          -1,
+          2,
+          10
+        ]
       },
       {
         "name": "negative_chain",
@@ -270,7 +338,12 @@
             null,
             -4
           ]
-        }
+        },
+        "out": [
+          -4,
+          -7,
+          -9
+        ]
       },
       {
         "name": "repeated_subtree_sum",
@@ -284,7 +357,10 @@
             2,
             2
           ]
-        }
+        },
+        "out": [
+          2
+        ]
       },
       {
         "name": "zero_root_positive_children",
@@ -296,7 +372,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "zero_root_negative_children",
@@ -308,7 +387,10 @@
             -1,
             -1
           ]
-        }
+        },
+        "out": [
+          -1
+        ]
       },
       {
         "name": "deep_left_mixed",
@@ -321,7 +403,13 @@
             null,
             2
           ]
-        }
+        },
+        "out": [
+          2,
+          5,
+          10,
+          20
+        ]
       },
       {
         "name": "deep_right_mixed",
@@ -335,7 +423,11 @@
             null,
             3
           ]
-        }
+        },
+        "out": [
+          5,
+          15
+        ]
       },
       {
         "name": "balanced_with_tie",
@@ -349,7 +441,11 @@
             3,
             3
           ]
-        }
+        },
+        "out": [
+          2,
+          3
+        ]
       },
       {
         "name": "large_values_positive",
@@ -359,7 +455,10 @@
             100000,
             100000
           ]
-        }
+        },
+        "out": [
+          100000
+        ]
       },
       {
         "name": "large_values_negative",
@@ -369,7 +468,10 @@
             -100000,
             -100000
           ]
-        }
+        },
+        "out": [
+          -100000
+        ]
       },
       {
         "name": "alternating_values",
@@ -383,7 +485,10 @@
             -1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "chain_four_with_duplicates",
@@ -396,7 +501,13 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       {
         "name": "wide_tree_many_leaves",
@@ -418,7 +529,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "unbalanced_with_null_gaps",
@@ -436,7 +550,15 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          4,
+          7,
+          1,
+          3,
+          8,
+          23
+        ]
       },
       {
         "name": "many_zero_sums",
@@ -450,7 +572,10 @@
             0,
             null
           ]
-        }
+        },
+        "out": [
+          0
+        ]
       },
       {
         "name": "root_only_frequent",
@@ -460,7 +585,12 @@
             4,
             5
           ]
-        }
+        },
+        "out": [
+          4,
+          5,
+          18
+        ]
       },
       {
         "name": "larger_balanced_mix",
@@ -482,7 +612,10 @@
             null,
             null
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "repeated_leaf_sum",
@@ -496,7 +629,10 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          1
+        ]
       },
       {
         "name": "mixed_negative_positive",
@@ -510,7 +646,10 @@
             -1,
             2
           ]
-        }
+        },
+        "out": [
+          5
+        ]
       },
       {
         "name": "final_case_asymmetric",
@@ -524,7 +663,15 @@
             1,
             3
           ]
-        }
+        },
+        "out": [
+          2,
+          4,
+          1,
+          3,
+          10,
+          19
+        ]
       }
     ]
   },

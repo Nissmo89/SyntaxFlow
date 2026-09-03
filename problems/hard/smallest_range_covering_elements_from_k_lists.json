@@ -20,7 +20,7 @@
     "1 <= k <= 3500",
     "1 <= nums[i].length <= 50",
     "-105 <= nums[i][j] <= 105",
-    "nums[i]\u00a0is sorted in non-decreasing order."
+    "nums[i] is sorted in non-decreasing order."
   ],
   "hints": [],
   "method": {
@@ -105,7 +105,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          20,
+          24
+        ]
       },
       {
         "name": "example-2",
@@ -130,7 +134,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          1
+        ]
       },
       {
         "name": "single-list-one-element",
@@ -143,7 +151,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          7,
+          7
+        ]
       },
       {
         "name": "two-lists-same-single-value",
@@ -159,7 +171,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          5,
+          5
+        ]
       },
       {
         "name": "two-lists-disjoint-singletons",
@@ -175,7 +191,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          10
+        ]
       },
       {
         "name": "three-singletons-negative",
@@ -194,7 +214,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          -10,
+          10
+        ]
       },
       {
         "name": "three-singletons-tie-left",
@@ -213,7 +237,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          3
+        ]
       },
       {
         "name": "three-lists-overlap-shifted",
@@ -238,7 +266,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          3
+        ]
       },
       {
         "name": "small-tie-break-left-lower",
@@ -263,7 +295,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          2,
+          2
+        ]
       },
       {
         "name": "duplicates-across-lists",
@@ -288,7 +324,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          1
+        ]
       },
       {
         "name": "negative-and-positive-spread",
@@ -313,7 +353,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          -3,
+          1
+        ]
       },
       {
         "name": "classic-narrow-window",
@@ -342,7 +386,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          20,
+          24
+        ]
       },
       {
         "name": "many-two-element-lists",
@@ -368,7 +416,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          4,
+          7
+        ]
       },
       {
         "name": "one-list-much-longer",
@@ -392,7 +444,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          4
+        ]
       },
       {
         "name": "already-common-value",
@@ -417,7 +473,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          0,
+          0
+        ]
       },
       {
         "name": "repeated-value-in-all-lists",
@@ -447,7 +507,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          8,
+          8
+        ]
       },
       {
         "name": "large-gap-around-one-center",
@@ -472,7 +536,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          -100000,
+          -99999
+        ]
       },
       {
         "name": "tie-on-length-prefer-smaller-start",
@@ -498,7 +566,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          2,
+          4
+        ]
       },
       {
         "name": "all-lists-share-two-values",
@@ -528,7 +600,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          2,
+          2
+        ]
       },
       {
         "name": "zigzag-best-at-end",
@@ -558,7 +634,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          4
+        ]
       },
       {
         "name": "compact-crossing-intervals",
@@ -583,7 +663,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          5,
+          7
+        ]
       },
       {
         "name": "four-lists-single-common",
@@ -611,7 +695,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          6,
+          6
+        ]
       },
       {
         "name": "broad-range-with-negative-tie",
@@ -641,7 +729,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          -8,
+          -5
+        ]
       },
       {
         "name": "tightly-packed-foursome",
@@ -671,7 +763,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          4
+        ]
       },
       {
         "name": "one-element-plus-long-lists",
@@ -701,7 +797,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          14,
+          15
+        ]
       },
       {
         "name": "edge-values-symmetric",
@@ -726,7 +826,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          -100000,
+          -99999
+        ]
       },
       {
         "name": "ascending-staggered-triple",
@@ -754,7 +858,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          1,
+          3
+        ]
       },
       {
         "name": "many-repeats-with-one-outlier",
@@ -782,7 +890,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          4,
+          4
+        ]
       },
       {
         "name": "two-long-lists-interleaved",
@@ -808,7 +920,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          0,
+          5
+        ]
       },
       {
         "name": "four-long-lists-example-shape",
@@ -843,7 +959,11 @@
               ]
             ]
           }
-        }
+        },
+        "out": [
+          20,
+          24
+        ]
       }
     ]
   },

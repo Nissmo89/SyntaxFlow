@@ -82,7 +82,21 @@
             "nat",
             "bat"
           ]
-        }
+        },
+        "out": [
+          [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          [
+            "tan",
+            "nat"
+          ],
+          [
+            "bat"
+          ]
+        ]
       },
       {
         "name": "example_2",
@@ -90,7 +104,12 @@
           "strs": [
             ""
           ]
-        }
+        },
+        "out": [
+          [
+            ""
+          ]
+        ]
       },
       {
         "name": "example_3",
@@ -98,7 +117,12 @@
           "strs": [
             "a"
           ]
-        }
+        },
+        "out": [
+          [
+            "a"
+          ]
+        ]
       },
       {
         "name": "single_empty_string",
@@ -108,7 +132,14 @@
             "",
             ""
           ]
-        }
+        },
+        "out": [
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
       },
       {
         "name": "all_unique_single_chars",
@@ -125,7 +156,39 @@
             "i",
             "j"
           ]
-        }
+        },
+        "out": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ],
+          [
+            "e"
+          ],
+          [
+            "f"
+          ],
+          [
+            "g"
+          ],
+          [
+            "h"
+          ],
+          [
+            "i"
+          ],
+          [
+            "j"
+          ]
+        ]
       },
       {
         "name": "simple_pairs",
@@ -138,7 +201,21 @@
             "ef",
             "fe"
           ]
-        }
+        },
+        "out": [
+          [
+            "ab",
+            "ba"
+          ],
+          [
+            "cd",
+            "dc"
+          ],
+          [
+            "ef",
+            "fe"
+          ]
+        ]
       },
       {
         "name": "duplicates_and_groups",
@@ -153,7 +230,21 @@
             "zxy",
             "xyz"
           ]
-        }
+        },
+        "out": [
+          [
+            "abc",
+            "bca",
+            "cab",
+            "abc"
+          ],
+          [
+            "xyz",
+            "yzx",
+            "zxy",
+            "xyz"
+          ]
+        ]
       },
       {
         "name": "mixed_lengths",
@@ -170,7 +261,35 @@
             "aab",
             "aba"
           ]
-        }
+        },
+        "out": [
+          [
+            "a"
+          ],
+          [
+            "aa"
+          ],
+          [
+            "aaa"
+          ],
+          [
+            "b"
+          ],
+          [
+            "bb"
+          ],
+          [
+            "bbb"
+          ],
+          [
+            "ab",
+            "ba"
+          ],
+          [
+            "aab",
+            "aba"
+          ]
+        ]
       },
       {
         "name": "includes_repeated_word",
@@ -183,7 +302,17 @@
             "tinsel",
             "inlets"
           ]
-        }
+        },
+        "out": [
+          [
+            "listen",
+            "silent",
+            "enlist",
+            "listen",
+            "tinsel",
+            "inlets"
+          ]
+        ]
       },
       {
         "name": "two_groups_with_noise",
@@ -197,7 +326,22 @@
             "act",
             "tac"
           ]
-        }
+        },
+        "out": [
+          [
+            "dormitory",
+            "dirtyroom"
+          ],
+          [
+            "schoolmaster",
+            "theclassroom"
+          ],
+          [
+            "cat",
+            "act",
+            "tac"
+          ]
+        ]
       },
       {
         "name": "palindrome_like",
@@ -210,7 +354,19 @@
             "aabb",
             "bbaa"
           ]
-        }
+        },
+        "out": [
+          [
+            "noon",
+            "onon"
+          ],
+          [
+            "abba",
+            "baab",
+            "aabb",
+            "bbaa"
+          ]
+        ]
       },
       {
         "name": "long_common_signature",
@@ -223,7 +379,19 @@
             "bab",
             "bba"
           ]
-        }
+        },
+        "out": [
+          [
+            "aab",
+            "aba",
+            "baa"
+          ],
+          [
+            "abb",
+            "bab",
+            "bba"
+          ]
+        ]
       },
       {
         "name": "many_small_buckets",
@@ -242,7 +410,29 @@
             "ponm",
             "opmn"
           ]
-        }
+        },
+        "out": [
+          [
+            "abcd",
+            "bcda",
+            "cdab"
+          ],
+          [
+            "efgh",
+            "ghef",
+            "hgfe"
+          ],
+          [
+            "ijkl",
+            "ljik",
+            "klij"
+          ],
+          [
+            "mnop",
+            "ponm",
+            "opmn"
+          ]
+        ]
       },
       {
         "name": "with_empty_and_nonempty",
@@ -255,7 +445,23 @@
             "c",
             ""
           ]
-        }
+        },
+        "out": [
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ]
       },
       {
         "name": "single_long_word_bucket",
@@ -265,7 +471,14 @@
             "edcba",
             "baced"
           ]
-        }
+        },
+        "out": [
+          [
+            "abcde",
+            "edcba",
+            "baced"
+          ]
+        ]
       },
       {
         "name": "triples_and_singles",
@@ -281,7 +494,26 @@
             "arc",
             "scar"
           ]
-        }
+        },
+        "out": [
+          [
+            "rat",
+            "tar",
+            "art"
+          ],
+          [
+            "star",
+            "tsar",
+            "arts"
+          ],
+          [
+            "car",
+            "arc"
+          ],
+          [
+            "scar"
+          ]
+        ]
       },
       {
         "name": "repeated_triples",
@@ -294,7 +526,17 @@
             "bac",
             "cab"
           ]
-        }
+        },
+        "out": [
+          [
+            "abc",
+            "bac",
+            "cab",
+            "abc",
+            "bac",
+            "cab"
+          ]
+        ]
       },
       {
         "name": "mosaic_groups",
@@ -310,7 +552,24 @@
             "cdab",
             "dabc"
           ]
-        }
+        },
+        "out": [
+          [
+            "ab",
+            "ba"
+          ],
+          [
+            "abc",
+            "bca",
+            "cab"
+          ],
+          [
+            "abcd",
+            "bcad",
+            "cdab",
+            "dabc"
+          ]
+        ]
       },
       {
         "name": "case_dense_lower_bound",
@@ -323,7 +582,19 @@
             "bdca",
             "cabd"
           ]
-        }
+        },
+        "out": [
+          [
+            "aabc",
+            "abac",
+            "caba"
+          ],
+          [
+            "bcda",
+            "bdca",
+            "cabd"
+          ]
+        ]
       },
       {
         "name": "five_way_group",
@@ -335,7 +606,16 @@
             "deabc",
             "eabcd"
           ]
-        }
+        },
+        "out": [
+          [
+            "abcde",
+            "bcdea",
+            "cdeab",
+            "deabc",
+            "eabcd"
+          ]
+        ]
       },
       {
         "name": "longer_words_mixed",
@@ -348,7 +628,17 @@
             "post",
             "opts"
           ]
-        }
+        },
+        "out": [
+          [
+            "stop",
+            "pots",
+            "tops",
+            "spot",
+            "post",
+            "opts"
+          ]
+        ]
       },
       {
         "name": "same_signature_many_duplicates",
@@ -363,7 +653,19 @@
             "aab",
             "aba"
           ]
-        }
+        },
+        "out": [
+          [
+            "aab",
+            "aba",
+            "baa",
+            "aab",
+            "aba",
+            "baa",
+            "aab",
+            "aba"
+          ]
+        ]
       },
       {
         "name": "extra_1",
@@ -376,7 +678,19 @@
             "yzx",
             "zxy"
           ]
-        }
+        },
+        "out": [
+          [
+            "abc",
+            "cba",
+            "bac"
+          ],
+          [
+            "xyz",
+            "yzx",
+            "zxy"
+          ]
+        ]
       },
       {
         "name": "extra_2",
@@ -389,7 +703,21 @@
             "bb",
             "cc"
           ]
-        }
+        },
+        "out": [
+          [
+            "aa",
+            "aa",
+            "aa"
+          ],
+          [
+            "bb",
+            "bb"
+          ],
+          [
+            "cc"
+          ]
+        ]
       },
       {
         "name": "extra_3",
@@ -401,7 +729,16 @@
             "bcad",
             "dcba"
           ]
-        }
+        },
+        "out": [
+          [
+            "abcd",
+            "abdc",
+            "adcb",
+            "bcad",
+            "dcba"
+          ]
+        ]
       },
       {
         "name": "extra_4",
@@ -413,7 +750,24 @@
             "abcd",
             "abcde"
           ]
-        }
+        },
+        "out": [
+          [
+            "a"
+          ],
+          [
+            "ab"
+          ],
+          [
+            "abc"
+          ],
+          [
+            "abcd"
+          ],
+          [
+            "abcde"
+          ]
+        ]
       },
       {
         "name": "extra_5",
@@ -424,7 +778,21 @@
             "zzz",
             "zzzz"
           ]
-        }
+        },
+        "out": [
+          [
+            "z"
+          ],
+          [
+            "zz"
+          ],
+          [
+            "zzz"
+          ],
+          [
+            "zzzz"
+          ]
+        ]
       },
       {
         "name": "extra_6",
@@ -437,7 +805,19 @@
             "wto",
             "owt"
           ]
-        }
+        },
+        "out": [
+          [
+            "one",
+            "eno",
+            "neo"
+          ],
+          [
+            "two",
+            "wto",
+            "owt"
+          ]
+        ]
       },
       {
         "name": "extra_7",
@@ -450,7 +830,19 @@
             "care",
             "acre"
           ]
-        }
+        },
+        "out": [
+          [
+            "face",
+            "cafe"
+          ],
+          [
+            "acer",
+            "race",
+            "care",
+            "acre"
+          ]
+        ]
       },
       {
         "name": "extra_8",
@@ -462,7 +854,16 @@
             "bac",
             "acb"
           ]
-        }
+        },
+        "out": [
+          [
+            "bca",
+            "cab",
+            "abc",
+            "bac",
+            "acb"
+          ]
+        ]
       },
       {
         "name": "extra_9",
@@ -474,7 +875,18 @@
             "baa",
             "aab"
           ]
-        }
+        },
+        "out": [
+          [
+            "ab",
+            "ba"
+          ],
+          [
+            "aba",
+            "baa",
+            "aab"
+          ]
+        ]
       },
       {
         "name": "extra_10",
@@ -487,7 +899,21 @@
             "qaz",
             "zaq"
           ]
-        }
+        },
+        "out": [
+          [
+            "qwerty",
+            "ytrewq"
+          ],
+          [
+            "asdfgh",
+            "hgfdsa"
+          ],
+          [
+            "qaz",
+            "zaq"
+          ]
+        ]
       },
       {
         "name": "extra_11",
@@ -500,7 +926,19 @@
             "nus",
             "uns"
           ]
-        }
+        },
+        "out": [
+          [
+            "moon",
+            "noom",
+            "omon"
+          ],
+          [
+            "sun",
+            "nus",
+            "uns"
+          ]
+        ]
       },
       {
         "name": "extra_12",
@@ -511,7 +949,17 @@
             "stone",
             "tones"
           ]
-        }
+        },
+        "out": [
+          [
+            "note",
+            "tone"
+          ],
+          [
+            "stone",
+            "tones"
+          ]
+        ]
       },
       {
         "name": "extra_13",
@@ -523,7 +971,16 @@
             "lopo",
             "opol"
           ]
-        }
+        },
+        "out": [
+          [
+            "loop",
+            "pool",
+            "polo",
+            "lopo",
+            "opol"
+          ]
+        ]
       }
     ]
   },

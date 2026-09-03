@@ -82,7 +82,16 @@
             null,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ]
       },
       {
         "name": "Example 2",
@@ -92,7 +101,12 @@
             1,
             1
           ]
-        }
+        },
+        "out": [
+          [
+            1
+          ]
+        ]
       },
       {
         "name": "Example 3",
@@ -106,7 +120,16 @@
             3,
             null
           ]
-        }
+        },
+        "out": [
+          [
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
       },
       {
         "name": "Single node",
@@ -114,7 +137,8 @@
           "root": [
             1
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Two nodes left",
@@ -123,7 +147,8 @@
             1,
             1
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Two nodes right",
@@ -133,7 +158,8 @@
             null,
             1
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Root with repeated leaves",
@@ -147,7 +173,12 @@
             3,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ]
+        ]
       },
       {
         "name": "Duplicate leaf only once per value",
@@ -157,7 +188,8 @@
             2,
             3
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Balanced no duplicates",
@@ -171,7 +203,8 @@
             6,
             7
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Left chain",
@@ -184,7 +217,8 @@
             null,
             4
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Right chain",
@@ -198,7 +232,8 @@
             null,
             4
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Duplicate subtree with null child",
@@ -212,7 +247,17 @@
             null,
             2
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ],
+          [
+            4,
+            null,
+            2
+          ]
+        ]
       },
       {
         "name": "Duplicate subtree deeper",
@@ -232,7 +277,12 @@
             null,
             1
           ]
-        }
+        },
+        "out": [
+          [
+            1
+          ]
+        ]
       },
       {
         "name": "Negative values",
@@ -246,7 +296,16 @@
             -3,
             null
           ]
-        }
+        },
+        "out": [
+          [
+            -3
+          ],
+          [
+            -2,
+            -3
+          ]
+        ]
       },
       {
         "name": "Mixed positive negative",
@@ -260,7 +319,17 @@
             null,
             2
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ],
+          [
+            -1,
+            null,
+            2
+          ]
+        ]
       },
       {
         "name": "Duplicate root shape",
@@ -274,7 +343,20 @@
             2,
             3
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
       },
       {
         "name": "Repeated grandchild pattern",
@@ -296,7 +378,40 @@
             5,
             7
           ]
-        }
+        },
+        "out": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            6,
+            5,
+            7
+          ],
+          [
+            4,
+            2,
+            6,
+            1,
+            3,
+            5,
+            7
+          ]
+        ]
       },
       {
         "name": "Sparse asymmetric",
@@ -316,7 +431,12 @@
             null,
             5
           ]
-        }
+        },
+        "out": [
+          [
+            5
+          ]
+        ]
       },
       {
         "name": "Deep duplicate leaves",
@@ -333,7 +453,22 @@
             null,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            3,
+            null,
+            4
+          ]
+        ]
       },
       {
         "name": "Duplicate subtree on both sides",
@@ -355,7 +490,40 @@
             7,
             9
           ]
-        }
+        },
+        "out": [
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            4,
+            3,
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            8,
+            7,
+            9
+          ],
+          [
+            6,
+            4,
+            8,
+            3,
+            5,
+            7,
+            9
+          ]
+        ]
       },
       {
         "name": "Example-like sparse variant",
@@ -375,7 +543,16 @@
             null,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ]
       },
       {
         "name": "Distinct values only",
@@ -397,7 +574,8 @@
             14,
             15
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Perfect tree duplicate left-right leaves",
@@ -411,7 +589,20 @@
             4,
             5
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            2,
+            4,
+            5
+          ]
+        ]
       },
       {
         "name": "Complex sparse duplicate",
@@ -433,7 +624,34 @@
             null,
             5
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ],
+          [
+            1,
+            null,
+            2
+          ],
+          [
+            5
+          ],
+          [
+            4,
+            null,
+            5
+          ],
+          [
+            3,
+            1,
+            4,
+            null,
+            2,
+            null,
+            5
+          ]
+        ]
       },
       {
         "name": "Chain with repeated suffix",
@@ -452,7 +670,8 @@
             null,
             5
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Mirror duplicates",
@@ -466,7 +685,12 @@
             3,
             null
           ]
-        }
+        },
+        "out": [
+          [
+            3
+          ]
+        ]
       },
       {
         "name": "Duplicate subtree with two children",
@@ -488,7 +712,32 @@
             6,
             7
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            2,
+            4,
+            5,
+            null,
+            null,
+            6,
+            7
+          ]
+        ]
       },
       {
         "name": "Larger balanced duplicate",
@@ -510,7 +759,40 @@
             31,
             43
           ]
-        }
+        },
+        "out": [
+          [
+            6
+          ],
+          [
+            18
+          ],
+          [
+            12,
+            6,
+            18
+          ],
+          [
+            31
+          ],
+          [
+            43
+          ],
+          [
+            37,
+            31,
+            43
+          ],
+          [
+            25,
+            12,
+            37,
+            6,
+            18,
+            31,
+            43
+          ]
+        ]
       },
       {
         "name": "Large perfect tree no duplicates",
@@ -548,7 +830,8 @@
             30,
             31
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Large repeated perfect tree",
@@ -570,7 +853,40 @@
             6,
             7
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            2,
+            4,
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            3,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        ]
       },
       {
         "name": "Duplicate subtree with zeros",
@@ -584,7 +900,16 @@
             0,
             null
           ]
-        }
+        },
+        "out": [
+          [
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
       },
       {
         "name": "Skew with repeated pair",
@@ -599,7 +924,8 @@
             null,
             2
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Mixed branch duplicates",
@@ -620,7 +946,8 @@
             null,
             7
           ]
-        }
+        },
+        "out": []
       },
       {
         "name": "Duplicate leaf and internal",
@@ -641,7 +968,15 @@
             null,
             6
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ],
+          [
+            6
+          ]
+        ]
       },
       {
         "name": "Example 1 variant with extra duplicate",
@@ -660,7 +995,12 @@
             2,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ]
+        ]
       },
       {
         "name": "Another sparse mix",
@@ -678,7 +1018,12 @@
             null,
             2
           ]
-        }
+        },
+        "out": [
+          [
+            2
+          ]
+        ]
       },
       {
         "name": "Wide duplicate leaves",
@@ -700,7 +1045,26 @@
             4,
             4
           ]
-        }
+        },
+        "out": [
+          [
+            4
+          ],
+          [
+            3,
+            4,
+            4
+          ],
+          [
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ]
+        ]
       }
     ]
   },
