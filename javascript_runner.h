@@ -1,6 +1,5 @@
 #pragma once
 #include "embedded_runner.h"
-#include <QMutex>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // JavascriptRunner  —  runs Javascript in-process.
@@ -42,5 +41,4 @@ public:
 
 private:
     bool    m_initialised = false;
-    QMutex  m_mutex;
 };

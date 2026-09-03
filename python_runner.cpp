@@ -118,7 +118,7 @@ EmbeddedRunner::Result PythonRunner::execute(
   qDebug() << "PythonRunner: waiting for finish...";
   QByteArray outBuf;
   QByteArray errBuf;
-  const int MAX_OUTPUT_SIZE = 10 * 1024 * 1024; // 1 MB
+  const int MAX_OUTPUT_SIZE = 100 * 1024 * 1024; // 100 MB
 
   while (!runProc.waitForFinished(100)) {
     outBuf.append(runProc.readAllStandardOutput());

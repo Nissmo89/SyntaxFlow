@@ -1,6 +1,5 @@
 #pragma once
 #include "embedded_runner.h"
-#include <QMutex>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PythonRunner  —  runs Python 3 in-process via CPython's embedding API.
@@ -50,5 +49,4 @@ public:
 
 private:
     bool    m_initialised = false;
-    QMutex  m_mutex;
 };

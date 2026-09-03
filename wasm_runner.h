@@ -1,6 +1,5 @@
 #pragma once
 #include "embedded_runner.h"
-#include <QMutex>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // WasmRunner  —  WASM-based C/C++ cross-platform runner
@@ -25,7 +24,6 @@ public:
 
 private:
     bool m_isCpp;
-    QMutex m_mutex;
     QString getWasmerExecutable() const;
     QString getWasiSdkCompiler() const;
 };
