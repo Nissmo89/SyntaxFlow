@@ -655,7 +655,7 @@ run_all_tests()
     fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", QLatin1String("\"") + escapedManifest + QLatin1String("\""));
     
     QString dynamicExec = R"python(
-with open("solution.py", "r", encoding="utf-8") as _sf_f:
+with open("/src/solution.py", "r", encoding="utf-8") as _sf_f:
     _sf_user_code_str = _sf_f.read()
 _sf_code_obj = compile(_sf_user_code_str, "solution.py", "exec")
 exec(_sf_code_obj, globals())
