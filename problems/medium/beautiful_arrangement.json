@@ -62,7 +62,7 @@
     "oracle": {
       "python3": {
         "call": "Checker().countArrangement(n, {result})",
-        "checker": "class Checker:\n    def countArrangement(self, n, result):\n        if not isinstance(result, int):\n            return False\n        size = 1 << n\n        dp = [0] * size\n        dp[0] = 1\n        for mask in range(size):\n            pos = mask.bit_count() + 1\n            if pos > n:\n                continue\n            cur = dp[mask]\n            if cur == 0:\n                continue\n            for v in range(1, n + 1):\n                bit = 1 << (v - 1)\n                if mask & bit == 0 and (v % pos == 0 or pos % v == 0):\n                    dp[mask | bit] += cur\n        return result == dp[-1]\n"
+        "checker": "class Checker:\n    def countArrangement(self, n, result):\n        if not isinstance(result, int):\n            return False\n        size = 1 << n\n        dp = [0] * size\n        dp[0] = 1\n        for mask in range(size):\n            pos = bin(mask).count('1') + 1\n            if pos > n:\n                continue\n            cur = dp[mask]\n            if cur == 0:\n                continue\n            for v in range(1, n + 1):\n                bit = 1 << (v - 1)\n                if mask & bit == 0 and (v % pos == 0 or pos % v == 0):\n                    dp[mask | bit] += cur\n        return result == dp[-1]\n"
       }
     },
     "seed": 526,

@@ -57,7 +57,7 @@
     "oracle": {
       "python3": {
         "call": "Checker().countBits(n, {result})",
-        "checker": "class Checker:\n    def countBits(self, n, result):\n        if not isinstance(n, int):\n            return False\n        if n < 0 or n > 100000:\n            return False\n        if not isinstance(result, list):\n            return False\n        if len(result) != n + 1:\n            return False\n        for i, v in enumerate(result):\n            if not isinstance(v, int):\n                return False\n            if v < 0:\n                return False\n            if v != i.bit_count():\n                return False\n        return True\n"
+        "checker": "class Checker:\n    def countBits(self, n, result):\n        if not isinstance(n, int):\n            return False\n        if n < 0 or n > 100000:\n            return False\n        if not isinstance(result, list):\n            return False\n        if len(result) != n + 1:\n            return False\n        for i, v in enumerate(result):\n            if not isinstance(v, int):\n                return False\n            if v < 0:\n                return False\n            if v != bin(i).count('1'):\n                return False\n        return True\n"
       }
     },
     "seed": 338,

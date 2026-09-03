@@ -59,7 +59,7 @@
     "oracle": {
       "python3": {
         "call": "Checker().check(x, y, {result})",
-        "checker": "class Checker:\n    def check(self, x, y, result):\n        if not isinstance(x, int) or not isinstance(y, int):\n            return False\n        if x < 0 or y < 0 or x > 2147483647 or y > 2147483647:\n            return False\n        if not isinstance(result, int):\n            return False\n        expected = (x ^ y).bit_count()\n        return result == expected\n"
+        "checker": "class Checker:\n    def check(self, x, y, result):\n        if not isinstance(x, int) or not isinstance(y, int):\n            return False\n        if x < 0 or y < 0 or x > 2147483647 or y > 2147483647:\n            return False\n        if not isinstance(result, int):\n            return False\n        expected = bin(x ^ y).count('1')\n        return result == expected\n"
       }
     },
     "seed": 461,
