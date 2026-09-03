@@ -653,7 +653,15 @@ run_all_tests()
     int offset = 0; // offset is 0 because user code is in a separate file (solution.py)
     QString fullExecutionCode = harnessTemplate;
     fullExecutionCode.replace("_SF_MANIFEST_JSON_HERE_", QLatin1String("\"") + escapedManifest + QLatin1String("\""));
-    fullExecutionCode.replace("_SF_USER_CODE_HERE_", "from solution import *");
+    
+    QString dynamicExec = R"python(
+with open("solution.py", "r", encoding="utf-8") as _sf_f:
+    _sf_user_code_str = _sf_f.read()
+_sf_code_obj = compile(_sf_user_code_str, "solution.py", "exec")
+exec(_sf_code_obj, globals())
+)python";
+
+    fullExecutionCode.replace("_SF_USER_CODE_HERE_", dynamicExec);
     
     QFile dumpFile("/home/nord/Git/OWN_GIT_REPO/SyntaxFlow/dump_python.py");
     if (dumpFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
