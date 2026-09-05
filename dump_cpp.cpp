@@ -297,11 +297,8 @@ inline string toJson(ListNode *head) { return toJson(listNodeToArray(head)); }
 inline string toJson(TreeNode *root) { return toJson(treeNodeToArray(root)); }
 class Solution {
 public:
-    int addDigits(int num) {
-        if (num == 0) {
-            return 0;
-        }
-        return 1 + (num - 1) % 9;
+    bool buddyStrings(string s, string goal) {
+        
     }
 };
 
@@ -317,8 +314,9 @@ int main() {
     for (auto& caseJson : _TEST_JSON_) {
         cout << "DEBUG:" << caseJson.dump() << endl;
         auto inputs = caseJson["in"];
-        int _num = (inputs.contains("num") && inputs["num"].is_number()) ? inputs["num"].get<int>() : 0;
-        auto res = Solution().addDigits(_num);
+        string _goal = (inputs.contains("goal") && inputs["goal"].is_string()) ? inputs["goal"].get<string>() : "";
+        string _s = (inputs.contains("s") && inputs["s"].is_string()) ? inputs["s"].get<string>() : "";
+        auto res = Solution().buddyStrings(_s, _goal);
         _JSON_ resObj;
         resObj = _JSON_::parse(toJson(res), nullptr, false);
         if (resObj.is_discarded()) { resObj = toJson(res); }

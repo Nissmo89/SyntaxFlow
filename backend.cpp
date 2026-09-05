@@ -103,6 +103,10 @@ bool Backend::isRunning() const {
 
 void Backend::runCode(const QString &code, const QString &languageId, const QString &problemId) {
     m_runner->runCode(code, languageId, problemId);
+    qDebug() <<  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    qDebug() << code;
+    qDebug() <<  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+
 }
 
 void Backend::runTestCase(const QString &code, const QString &languageId,
