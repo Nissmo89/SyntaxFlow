@@ -17,7 +17,7 @@
   "outputFormat": "Returned value from the solution method.",
   "constraints": [
     "3 <= graph.length <= 50",
-    "1 <= graph[i].length < graph.length",
+    "1\u00a0<= graph[i].length < graph.length",
     "0 <= graph[i][j] < graph.length",
     "graph[i][j] != i",
     "graph[i] is unique.",
@@ -65,7 +65,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 2000,

@@ -11,8 +11,8 @@
   "inputFormat": "Passed directly as parameters.",
   "outputFormat": "Returned value from the solution method.",
   "constraints": [
-    "0 <= poured <= 109",
-    "0 <= query_glass <= query_row < 100"
+    "0 <=\u00a0poured <= 109",
+    "0 <= query_glass <= query_row\u00a0< 100"
   ],
   "hints": [],
   "method": {
@@ -64,7 +64,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,

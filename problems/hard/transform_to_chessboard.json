@@ -17,7 +17,7 @@
     "n == board.length",
     "n == board[i].length",
     "2 <= n <= 30",
-    "board[i][j] is either 0 or 1."
+    "board[i][j] is either\u00a00 or 1."
   ],
   "hints": [],
   "method": {
@@ -61,7 +61,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,

@@ -19,8 +19,8 @@
     "grid[i][j] is 0 or 1.",
     "1 <= hits.length <= 4 * 104",
     "hits[i].length == 2",
-    "0 <= xi <= m - 1",
-    "0 <= yi <= n - 1",
+    "0 <= xi\u00a0<= m - 1",
+    "0 <=\u00a0yi <= n - 1",
     "All (xi, yi) are unique."
   ],
   "hints": [],
@@ -78,7 +78,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 500,

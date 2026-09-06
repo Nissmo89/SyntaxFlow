@@ -357,7 +357,21 @@ import json
 import time
 import io
 import traceback
-from typing import List, Optional, Any, Dict, Set, Tuple, Union, Callable
+import math
+import string
+import random
+import re
+import heapq
+import bisect
+import operator
+import collections
+import itertools
+import functools
+from collections import *
+from itertools import *
+from functools import *
+from math import *
+from typing import *
 
 # --- UTILITIES ---
 class TreeNode:
@@ -603,9 +617,16 @@ def run_all_tests():
                                 if "expected" in locals_dict:
                                     extracted_expected[0] = locals_dict["expected"]
                             return trace_calls_local
+                        
+                        oracle_local_vars = {}
+                        for p_name, p_schema in params_schema.items():
+                            p_type = p_schema.get('type', 'int')
+                            raw_val = tc['in'][p_name]
+                            oracle_local_vars[p_name] = deserialize_val(raw_val, p_type)
+                            
                         sys.settrace(trace_calls)
                         oracle_call_replaced = oracle_call.replace("{result}", "res")
-                        is_correct = eval(oracle_call_replaced, globals(), {**local_vars, "res": res_val})
+                        is_correct = eval(oracle_call_replaced, globals(), {**oracle_local_vars, "res": res_val})
                         sys.settrace(None)
                         if not is_correct:
                             status = "Wrong Answer"
@@ -616,7 +637,7 @@ def run_all_tests():
                 else:
                     if res_val != exp_val:
                         status = "Wrong Answer"
-            elif judge_type == 'unordered':
+            elif judge_type in ['unordered', 'ignore_order', 'any_order']:
                 if not compare_ignore_order(res_val, exp_val):
                     status = "Wrong Answer"
             else:
@@ -1675,7 +1696,7 @@ def evaluate():
                     status = "System Error"
             else:
                 if actual != exp: status = "Wrong Answer"
-        elif judge_type == 'unordered':
+        elif judge_type in ['unordered', 'ignore_order', 'any_order']:
             if not compare_ignore_order(actual, exp): status = "Wrong Answer"
         else:
             if json.dumps(actual, separators=(',', ':')) != json.dumps(exp, separators=(',', ':')):

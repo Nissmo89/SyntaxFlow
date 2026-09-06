@@ -46,7 +46,7 @@
       }
     },
     "judge": {
-      "type": "ignore_order"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,
@@ -55,7 +55,7 @@
     "oracle": {
       "python3": {
         "call": "Checker().findMode(root, {result})",
-        "checker": "from collections import Counter\n\nclass Checker:\n    def findMode(self, root, result):\n        vals = [x for x in root if x is not None]\n        counts = Counter(vals)\n        if not counts:\n            return result == []\n        mx = max(counts.values())\n        expected = sorted({v for v, c in counts.items() if c == mx})\n        if not isinstance(result, list):\n            return False\n        if sorted(result) != expected:\n            return False\n        return len(result) == len(expected)\n"
+        "checker": "from collections import Counter\n\nclass Checker:\n    def findMode(self, root, result):\n        def get_vals(node):\n            if not node: return []\n            return [node.val] + get_vals(node.left) + get_vals(node.right)\n        vals = get_vals(root)\n        counts = Counter(vals)\n        if not counts:\n            return result == []\n        mx = max(counts.values())\n        expected = sorted({v for v, c in counts.items() if c == mx})\n        if not isinstance(result, list):\n            return False\n        if sorted(result) != expected:\n            return False\n        return len(result) == len(expected)\n"
       }
     },
     "seed": 501,

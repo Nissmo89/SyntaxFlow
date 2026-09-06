@@ -18,7 +18,7 @@
   ],
   "hints": [
     "How can we reuse a previously computed palindrome to compute a larger palindrome?",
-    "If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?",
+    "If \u201caba\u201d is a palindrome, is \u201cxabax\u201d a palindrome? Similarly is \u201cxabay\u201d a palindrome?",
     "Complexity based hint:</br>\r\nIf we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation."
   ],
   "method": {
@@ -56,7 +56,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 200,

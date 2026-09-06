@@ -18,7 +18,7 @@
     "n == grid[i].length",
     "1 <= m, n <= 30",
     "grid[i][j] is either an English letter, '.', '#', or '@'.",
-    "There is exactly one '@' in the grid.",
+    "There is exactly one\u00a0'@'\u00a0in the grid.",
     "The number of keys in the grid is in the range [1, 6].",
     "Each key in the grid is unique.",
     "Each key in the grid has a matching lock."
@@ -62,7 +62,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 2000,

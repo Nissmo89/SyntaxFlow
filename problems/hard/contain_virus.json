@@ -15,8 +15,8 @@
   "inputFormat": "Passed directly as parameters.",
   "outputFormat": "Returned value from the solution method.",
   "constraints": [
-    "m == isInfected.length",
-    "n == isInfected[i].length",
+    "m ==\u00a0isInfected.length",
+    "n ==\u00a0isInfected[i].length",
     "1 <= m, n <= 50",
     "isInfected[i][j] is either 0 or 1.",
     "There is always a contiguous viral region throughout the described process that will infect strictly more uncontaminated squares in the next round."
@@ -65,7 +65,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1500,

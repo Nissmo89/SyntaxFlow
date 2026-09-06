@@ -18,7 +18,7 @@
     "1 <= n <= 100",
     "0 <= graph[u].length < n",
     "0 <= graph[u][i] <= n - 1",
-    "graph[u] does not contain u.",
+    "graph[u]\u00a0does not contain\u00a0u.",
     "All the values of graph[u] are unique.",
     "If graph[u] contains v, then graph[v] contains u."
   ],
@@ -64,7 +64,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,

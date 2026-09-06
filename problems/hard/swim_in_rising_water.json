@@ -20,7 +20,7 @@
     "n == grid.length",
     "n == grid[i].length",
     "1 <= n <= 50",
-    "0 <= grid[i][j] < n2",
+    "0 <= grid[i][j] <\u00a0n2",
     "Each value grid[i][j] is unique."
   ],
   "hints": [
@@ -67,7 +67,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 2000,

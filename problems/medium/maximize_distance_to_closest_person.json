@@ -12,7 +12,7 @@
   "outputFormat": "Returned value from the solution method.",
   "constraints": [
     "2 <= seats.length <= 2 * 104",
-    "seats[i] is 0 or 1.",
+    "seats[i]\u00a0is 0 or\u00a01.",
     "At least one seat is empty.",
     "At least one seat is occupied."
   ],
@@ -55,7 +55,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,

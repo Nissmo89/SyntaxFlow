@@ -21,7 +21,7 @@
     "1 <= buildings.length <= 104",
     "0 <= lefti < righti <= 231 - 1",
     "1 <= heighti <= 231 - 1",
-    "buildings is sorted by lefti in non-decreasing order."
+    "buildings is sorted by lefti in\u00a0non-decreasing order."
   ],
   "hints": [],
   "method": {
@@ -65,7 +65,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 2000,

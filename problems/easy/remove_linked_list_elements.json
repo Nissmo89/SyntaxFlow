@@ -51,7 +51,7 @@
       }
     },
     "judge": {
-      "type": "exact"
+      "type": "custom"
     },
     "limits": {
       "time_ms": 1000,
@@ -60,7 +60,7 @@
     "oracle": {
       "python3": {
         "call": "Checker().removeElements(head, val, {result})",
-        "checker": "class Checker:\n    def removeElements(self, head, val, result):\n        def to_array(node):\n            if isinstance(node, list):\n                return node\n            values = []\n            seen = 0\n            while node is not None:\n                if isinstance(node, dict):\n                    node_val = node.get(\"val\")\n                    node = node.get(\"next\")\n                else:\n                    node_val = getattr(node, \"val\", None)\n                    node = getattr(node, \"next\", None)\n                values.append(node_val)\n                seen += 1\n                if seen > 20000:\n                    return None\n            return values\n\n        if head is None:\n            expected = []\n        else:\n            expected = [x for x in list(head) if x != val]\n\n        actual = to_array(result)\n        return actual == expected\n"
+        "checker": "class Checker:\n    def removeElements(self, head, val, result):\n        def to_array(node):\n            if isinstance(node, list):\n                return node\n            values = []\n            seen = 0\n            while node is not None:\n                if isinstance(node, dict):\n                    node_val = node.get(\"val\")\n                    node = node.get(\"next\")\n                else:\n                    node_val = getattr(node, \"val\", None)\n                    node = getattr(node, \"next\", None)\n                values.append(node_val)\n                seen += 1\n                if seen > 20000:\n                    return None\n            return values\n\n        if head is None:\n            expected = []\n        else:\n            expected = [x for x in to_array(head) if x != val]\n\n        actual = to_array(result)\n        return actual == expected\n"
       }
     },
     "seed": 203,
