@@ -47,7 +47,7 @@ def main():
         os.makedirs(wasmer_dir, exist_ok=True)
         url = get_wasmer_url()
         print(f"Downloading Wasmer from {url}...")
-        
+        archive_path = os.path.join(tools_dir, "wasmer_archive")
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req) as response, open(archive_path, 'wb') as out_file:
             shutil.copyfileobj(response, out_file)
