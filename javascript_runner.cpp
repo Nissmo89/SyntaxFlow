@@ -72,7 +72,7 @@ EmbeddedRunner::Result JavascriptRunner::execute(const QString &code,
 
     QStringList args;
     QString pkgPath = QDir::cleanPath(toolsPath + "/wasmer/packages/quickjs");
-    args << "run" << "--mapdir" << "/src:." << pkgPath << "--command" << "qjs" << "--" << "/src/user_code.js";
+    args << "run" << "--volume" << ".:/src" << pkgPath << "--command" << "qjs" << "--" << "/src/user_code.js";
     
     qDebug() << "JavascriptRunner: starting wasmer... args:" << args;
     runProc.start(wasmerExe, args);

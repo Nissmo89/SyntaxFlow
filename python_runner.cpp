@@ -78,7 +78,7 @@ EmbeddedRunner::Result PythonRunner::execute(
 
   QStringList args;
   QString pkgPath = QDir::cleanPath(toolsPath + "/wasmer/packages/python/python313");
-  args << "run" << "--mapdir" << "/src:." << pkgPath << "--"
+  args << "run" << "--volume" << ".:/src" << pkgPath << "--"
        << "/src/user_code.py";
 
   // QString final_solution = QFile("/src/user_code.py").;

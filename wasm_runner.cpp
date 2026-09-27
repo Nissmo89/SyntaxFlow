@@ -114,7 +114,10 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     compileProc.setWorkingDirectory(tmpDir.path());
     
     QString basePath = QCoreApplication::applicationDirPath();
-    QString includeDir = QDir::cleanPath(basePath + "/../resources/include");
+    QString includeDir = QDir::cleanPath(basePath + "/resources/include");
+    if (!QDir(includeDir).exists()) {
+        includeDir = QDir::cleanPath(basePath + "/../resources/include");
+    }
     QString wasiSdkCompiler = getWasiSdkCompiler();
     
     QStringList compileArgs;
@@ -186,7 +189,7 @@ EmbeddedRunner::Result WasmRunner::execute(const QString &code,
     runProc.setWorkingDirectory(tmpDir.path());
     
     QStringList runArgs;
-    runArgs << "run" << "--mapdir" << "/src:." << "user_bin.wasm";
+    runArgs << "run" << "--volume" << ".:/src" << "user_bin.wasm";
     
     qDebug() << "WasmRunner: starting wasmer... args:" << runArgs;
     runProc.start(wasmerExe, runArgs);
