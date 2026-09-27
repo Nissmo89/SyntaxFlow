@@ -73,14 +73,35 @@ after_build:
   - if exist "%EXE_DIR%\fonts" xcopy /E /I /Y "%EXE_DIR%\fonts" package\fonts
   - if exist "%EXE_DIR%\web_editor" xcopy /E /I /Y "%EXE_DIR%\web_editor" package\web_editor
   - if exist "%EXE_DIR%\wasi-sdk" xcopy /E /I /Y "%EXE_DIR%\wasi-sdk" package\wasi-sdk
+  - if exist "resources\include" xcopy /E /I /Y "resources\include" package\resources\include
   - xcopy /E /I /Y "copilot_bridge" package\copilot_bridge
-  - C:\Python313-x64\python.exe scripts\setup_wasm_tools.py
+  - set "PYTHON_CMD=python"
+  - if exist "C:\Python313-x64\python.exe" set "PYTHON_CMD=C:\Python313-x64\python.exe"
+  - "%PYTHON_CMD%" scripts\setup_wasm_tools.py
   - xcopy /E /I /Y "tools\wasmer" package\tools\wasmer
+  - if not exist "package\tools\wasmer\bin\wasmer.exe" ( echo [INFO] Downloading Wasmer fallback... & curl -sL -o wasmer.tar.gz https://github.com/wasmerio/wasmer/releases/latest/download/wasmer-windows-amd64.tar.gz & tar -xzf wasmer.tar.gz -C package\tools\wasmer & del wasmer.tar.gz )
   - curl -sL -o package\node.exe https://nodejs.org/dist/v22.14.0/win-x64/node.exe
   - for /R build-windows %%F in (qt6*.dll) do copy /Y "%%F" "%QT_PATH%\bin\"
   - call "%QT_PATH%\bin\windeployqt.exe" --release --no-translations package\SyntaxFlow.exe
+  - echo ==========================================
+  - echo Verifying Package Integrity
+  - echo ==========================================
   - if not exist "package\SyntaxFlow.exe" ( echo [ERROR] SyntaxFlow.exe missing after deployment & exit 1 )
   - if not exist "package\Qt6Core.dll" ( echo [ERROR] Qt6Core.dll missing after deployment & exit 1 )
+  - if not exist "package\tools\wasmer\bin\wasmer.exe" ( echo [ERROR] wasmer.exe missing in package & exit 1 )
+  - if not exist "package\tools\wasmer\packages\python\python313" ( echo [ERROR] Python WASM package missing & exit 1 )
+  - if not exist "package\node.exe" ( echo [ERROR] node.exe missing in package & exit 1 )
+  - if not exist "package\resources\include\stdcpp.h" ( echo [ERROR] stdcpp.h missing in package & exit 1 )
+  - echo ==========================================
+  - echo Smoke Testing Packaged Engines
+  - echo ==========================================
+  - package\tools\wasmer\bin\wasmer.exe --version
+  - package\tools\wasmer\bin\wasmer.exe run --volume .:/src package\tools\wasmer\packages\python\python313 -- -c "print('Python WASM OK')"
+  - package\tools\wasmer\bin\wasmer.exe run --volume .:/src package\tools\wasmer\packages\quickjs --command qjs -- -e "console.log('QuickJS WASM OK');"
+  - package\node.exe --version
+  - echo ==========================================
+  - echo Creating ZIP Archive
+  - echo ==========================================
   - 7z a -tzip "SyntaxFlow-Windows-x64.zip" ".\package\*"
   - if not exist "SyntaxFlow-Windows-x64.zip" ( echo [ERROR] ZIP file not created & exit 1 )
 

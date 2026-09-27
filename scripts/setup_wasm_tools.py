@@ -48,8 +48,9 @@ def main():
         url = get_wasmer_url()
         print(f"Downloading Wasmer from {url}...")
         
-        archive_path = os.path.join(tools_dir, "wasmer_archive")
-        urllib.request.urlretrieve(url, archive_path)
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response, open(archive_path, 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
         
         print("Extracting Wasmer...")
         if url.endswith(".zip"):
@@ -66,13 +67,12 @@ def main():
             
         print(f"Wasmer installed to {wasmer_exe}")
 
-    print("Pre-caching clang/clang package (Clang compiled to WASM)...")
+    print("Verifying Wasmer installation...")
     try:
-        # Run clang/clang once to cache the .wasm compiler binary
-        subprocess.run([wasmer_exe, "run", "clang/clang", "--", "--version"], check=True)
-        print("Successfully cached clang/clang WASM module!")
+        subprocess.run([wasmer_exe, "--version"], check=True)
+        print("Wasmer verified successfully!")
     except subprocess.CalledProcessError as e:
-        print(f"Failed to cache clang/clang: {e}")
+        print(f"Failed to verify Wasmer: {e}")
         sys.exit(1)
         
 if __name__ == "__main__":
